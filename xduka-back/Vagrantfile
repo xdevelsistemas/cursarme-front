@@ -1,0 +1,30 @@
+VAGRANTFILE_API_VERSION = "2"  
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.define "mongodb-env" do |v|
+    v.vm.provider "docker" do |d|
+      d.vagrant_vagrantfile = ENV['VAGRANT_MAIN_FILE']
+      d.vagrant_machine = "core-01"
+      d.image = "xdevelsistemas/debian-env:mongodb-env"
+      d.ports = ["27017:27017"]
+      d.volumes = ["/home/core/data/mongo:/var/opt/mongodb"]
+      d.name = "mongodb"
+    end
+  end
+  
+  config.vm.define "postgres-env" do |v|
+    v.vm.provider "docker" do |d|
+      d.vagrant_vagrantfile = ENV['VAGRANT_MAIN_FILE']
+      d.vagrant_machine = "core-01"
+      d.image = "xdevelsistemas/debian-env:postgresql-env"
+      d.ports = ["5432:5432"]
+      d.volumes = ["/home/core/data/postgres/etc/postgresql:/etc/postgresql", "/home/core/data/postgres/var/log/postgresql:/var/log/postgresql", "/home/core/data/postgres/var/lib/postgresql:/var/lib/postgresql"]
+     d.name = "postgres"
+    end
+  end
+end  
+
+
+
+
+
+
