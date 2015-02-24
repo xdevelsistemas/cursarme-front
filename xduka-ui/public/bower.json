@@ -1,0 +1,23 @@
+{
+    "name": "xDuka",
+    "version": "0.14.10.0",
+    "dependencies": {
+        "angular": "latest",
+        "angular-bootstrap": "latest",
+        "angular-route": "latest",
+        "angular-sanitize": "latest",
+        "angular-ui-utils": "latest",
+        "angular-ui-select": "latest",
+        "animate.css": "latest",
+        "bootstrap": "latest",
+        "entypo": "latest",
+        "font-awesome": "latest",
+        "jquery": "1.9",
+        "jquery-maskedinput": "latest",
+        "jquery-ui": "latest",
+        "requirejs": "latest",
+        "requirejs-domready": "latest",
+        "select2": "latest",
+        "ngImgCrop": "latest"
+    }
+}

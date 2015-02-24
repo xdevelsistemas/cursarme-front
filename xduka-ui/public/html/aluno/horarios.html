@@ -1,0 +1,31 @@
+<div ng-controller="Horarios as horarios"
+     class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+
+        <table class="table table-condensed table-bordered table-hover table-striped responsive">
+            <thead>
+            <tr>
+                <th>Domingo</th>
+                <th>Segunda</th>
+                <th>Terça</th>
+                <th>Quarta</th>
+                <th>Quinta</th>
+                <th>Sexta</th>
+                <th>Sábado</th>
+            </tr>
+            </thead>
+            <tbody data-ng-repeat="i in [] | range:horarios.MAX">
+            <tr>
+                <td data-ng-bind="horarios.domingo[$index]"></td>
+                <td data-ng-bind="horarios.segunda[$index]"></td>
+                <td data-ng-bind="horarios.terca[$index]"></td>
+                <td data-ng-bind="horarios.quarta[$index]"></td>
+                <td data-ng-bind="horarios.quinta[$index]"></td>
+                <td data-ng-bind="horarios.sexta[$index]"></td>
+                <td data-ng-bind="horarios.sabado[$index]"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

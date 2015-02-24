@@ -1,0 +1,53 @@
+<ng-form name="formModalCheques"
+         novalidate>
+    <div class="modal-header">
+        <h3 ng-bind="_model.label"
+            class="modal-title"></h3>
+    </div>
+    <div class="modal-body">
+
+        <xd-field field="_model.banco"
+                  model="_novo_cheque.banco">
+        </xd-field>
+
+        <xd-field field="_model.agencia"
+                  model="_novo_cheque.agencia">
+        </xd-field>
+
+        <xd-field field="_model.conta"
+                  model="_novo_cheque.conta">
+        </xd-field>
+
+        <xd-field field="_model.numero"
+                  model="_novo_cheque.numero">
+        </xd-field>
+
+        <xd-field field="_model.data"
+                  model="_novo_cheque.data">
+        </xd-field>
+
+        <xd-field field="_model.valor"
+                  model="_novo_cheque.valor">
+        </xd-field>
+
+        <xd-field field="_model.titular"
+                  model="_novo_cheque.titular">
+        </xd-field>
+
+    </div>
+    </div>
+    <div class="modal-footer">
+        <button ng-click="voltar()"
+                type="button" class="btn btn-lg btn-default">Voltar
+        </button>
+        <a ng-disabled="formModalCheques.$invalid"
+           ng-click="lista_cheques.add(_novo_cheque)"
+           class="btn btn-lg btn-success btn-icon icon-left">
+            <i class="entypo-plus"></i>
+            Adicionar Cheque
+        </a>
+        <br>
+        <br>
+        <xd-lista-cheques model="lista_cheques"></xd-lista-cheques>
+    </div>
+</ng-form>

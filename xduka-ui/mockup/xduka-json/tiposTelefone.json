@@ -1,0 +1,14 @@
+"tiposTelefone": [
+	{
+	    "id": "00",
+	    "text": "Celular"
+	},
+	{
+	    "id": "01",
+	    "text": "Residencial"
+	},
+	{
+	    "id": "02",
+	    "text": "Comercial"
+	}
+    ]

@@ -1,0 +1,36 @@
+<div collapse="model.lista.length<1"
+     class="row">
+    <div class="col-sm-12" style="overflow: auto;">
+        <table class="table table-condensed table-bordered table-hover table-striped responsive">
+            <thead>
+            <tr>
+                <th>Banco</th>
+                <th>Agência</th>
+                <th>Conta</th>
+                <th>Número</th>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>Nome</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in model.lista">
+                <td ng-bind="item.banco"></td>
+                <td ng-bind="item.agencia"></td>
+                <td ng-bind="item.conta"></td>
+                <td ng-bind="item.numero"></td>
+                <td ng-bind="item.data"></td>
+                <td ng-bind="item.valor"></td>
+                <td ng-bind="item.titular"></td>
+                <td>
+                    <button type="button" class="btn btn-white"
+                            ng-click="model.remove(item)">
+                        <i class="entypo-cancel"></i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

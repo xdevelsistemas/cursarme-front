@@ -1,0 +1,19 @@
+<ng-form name="fieldForm">
+    <div ng-class="{ 'has-error' : !fieldForm.data.$pristine &&
+                                    fieldForm.data.$invalid}"
+         class="row form-group">
+        <label ng-bind="field.label"
+               class="col-sm-3 control-label">
+        </label>
+
+        <div class="col-sm-5">
+            <xd-input field="field"
+                      model="model"
+                      change="change"></xd-input>
+            <p ng-show="!fieldForm.data.$pristine &&
+                        fieldForm.data.$invalid"
+               class="help-block" ng-bind="field.help">
+            </p>
+        </div>
+    </div>
+</ng-form>

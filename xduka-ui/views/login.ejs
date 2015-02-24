@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>xDuka | <%= title %></title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+    <link rel="stylesheet" href="assets/js/vertical-timeline/css/component.css">
+    <link rel="stylesheet" href="assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
+    <link rel="stylesheet" href="assets/css/font-icons/entypo/css/entypo.css">
+    <link rel="stylesheet" href="assets/css/neon.css">
+    <link rel="stylesheet" href="assets/js/jvectormap/jquery-jvectormap-1.2.2.css">
+    <link rel="stylesheet" href="assets/js/rickshaw/rickshaw.min.css">
+    <link rel="stylesheet" href="assets/js/zurb-responsive-tables/responsive-tables.css">
+    <link rel="stylesheet" href="assets/js/datatables/responsive/css/datatables.responsive.css">
+    <link rel="stylesheet" href="assets/js/select2/select2-bootstrap.css">
+    <link rel="stylesheet" href="assets/js/select2/select2.css">
+    <link rel="stylesheet" href="assets/js/selectboxit/jquery.selectBoxIt.css">
+    <link rel="stylesheet" href="assets/js/daterangepicker/daterangepicker-bs3.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/js/vertical-timeline/css/component.css">
+
+    <!--XDUKA-->
+    <link rel="stylesheet" href="assets/xduka/css/skin.css">
+
+    <script src="assets/js/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+<div id="login-view" class="page-body login-page login-form-fall">
+    <div class="login-container">
+
+        <div class="login-header login-caret">
+
+            <div class="login-content">
+
+                <a href="#" class="logo">
+                    <div style="background: url('assets/xduka/img/logo.png') center no-repeat; height: 140px; background-size: contain"></div>
+                </a>
+
+                <!-- show any messages that come back with authentication -->
+                <% if (message.length > 0) { %>
+                <div class="alert alert-danger"><%= message %></div>
+                <% } %>
+
+                <!--<p class="description">Dear user, log in to access the admin area!</p>-->
+
+                <!-- progress bar indicator -->
+                <div class="login-progressbar-indicator">
+                    <h3>43%</h3>
+                    <span>logging in...</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="login-progressbar">
+            <div></div>
+        </div>
+
+        <div class="login-form">
+
+            <div class="login-content">
+
+                <form action="/login" method="post" role="form" id="form_login" class="validate">
+
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="entypo-user"></i>
+                            </div>
+
+                            <input type="text" class="form-control"
+                                   name="email" id="username"
+                                   placeholder="Usuário"
+                                   autocomplete="off"
+                                   data-validate="required"
+                                   data-message-required="Este é um campo obrigatório."
+                                   data-message-minlength="Digite pelo menos 8 caracteres."/>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="entypo-key"></i>
+                            </div>
+                            <input type="password" class="form-control"
+                                   name="password" id="password"
+                                   placeholder="Senha"
+                                   autocomplete="off"
+                                   data-validate="required"
+                                   data-message-required="Este é um campo obrigatório."
+                                   data-message-minlength="Digite pelo menos 8 caracteres."/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit"
+                                class="btn btn-primary btn-block btn-login">
+                            Entrar
+                            <i class="entypo-login"></i>
+                        </button>
+                    </div>
+
+                </form>
+
+
+                <div class="login-bottom-links">
+                    <a href="#" class="link" data-bind="event:{click: function(){$root.esqueceuSenha();} }">Esqueceu
+                        sua senha?</a>
+                    <br/>
+                    © 2014 xDuka Desenvolvido por <a href="#"><u>xDevel</u></a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Bottom Scripts -->
+<script src="assets/js/gsap/main-gsap.js"></script>
+<script src="assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/joinable.js"></script>
+<script src="assets/js/resizeable.js"></script>
+<script src="assets/js/neon-api.js"></script>
+<script src="assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="assets/js/jvectormap/jquery-jvectormap-europe-merc-en.js"></script>
+<script src="assets/js/jquery.sparkline.min.js"></script>
+<script src="assets/js/rickshaw/vendor/d3.v3.js"></script>
+<script src="assets/js/rickshaw/rickshaw.min.js"></script>
+<script src="assets/js/raphael-min.js"></script>
+<script src="assets/js/morris.min.js"></script>
+<script src="assets/js/toastr.js"></script>
+<script src="assets/js/neon-chat.js"></script>
+<script src="assets/js/neon-custom.js"></script>
+<script src="assets/js/neon-demo.js"></script>
+<!-- tables -->
+<script src="assets/js/jquery.dataTables.min.js"></script>
+<script src="assets/js/datatables/TableTools.min.js"></script>
+<script src="assets/js/dataTables.bootstrap.js"></script>
+<script src="assets/js/datatables/jquery.dataTables.columnFilter.js"></script>
+<script src="assets/js/datatables/lodash.min.js"></script>
+<script src="assets/js/datatables/responsive/js/datatables.responsive.js"></script>
+<script src="assets/js/select2/select2.min.js"></script>
+
+<!-- rasponsive tables -->
+<script src="assets/js/zurb-responsive-tables/responsive-tables.js"></script>
+
+
+<!--forms-->
+<script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.inputmask.bundle.min.js"></script>
+
+<script>
+    $("#login-view").fadeIn('1s', function () {
+        $(".login-form").css({
+            top: 0, opacity: 1});
+        $(".login-form .form-group").css({opacity: 1});
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+<div ng-controller="EditarPerfil as perfil"
+     class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+
+        <!--FOTO-->
+        <div class="panel panel-primary" data-collapsed="0">
+            <div class="panel-heading">
+                <div data-ng-bind="perfil.STR.FOTO_PERFIL"
+                     class="panel-title">
+                </div>
+            </div>
+            <div class="panel-body">
+                <form name="formFoto"
+                      class="form-horizontal">
+                    <div class="form-group">
+                        <label data-ng-bind="perfil.STR.ARQUIVO"
+                               class="col-sm-3
+                                      col-md-3 col-md-offset-1
+                                      control-label">
+                        </label>
+
+                        <div class="col-sm-8
+                                    col-md-6">
+                            <div data-provides="fileinput"
+                                 class="fileinput fileinput-new">
+                                <div class="input-group">
+                                    <div data-trigger="fileinput"
+                                         class="form-control uneditable-input">
+                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                        <span class="fileinput-filename"></span>
+                                    </div>
+                                    <span class="input-group-addon btn btn-default btn-file">
+                                        <span class="fileinput-new">Selecionar o Arquivo</span>
+                                        <span class="fileinput-exists">Alterar</span>
+                                        <input type="file" id="fileInput"/>
+                                    </span>
+                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists"
+                                       data-dismiss="fileinput">Excluir</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-collapse="!perfil.showCropArea"
+                             class="col-sm-11
+                                    col-md-9 col-md-offset-1">
+                            <div class="cropArea">
+                                <img-crop image="myImage"
+                                          result-image="myCroppedImage">
+                                </img-crop>
+                            </div>
+                        </div>
+                        <!--<div class="col-sm-4">
+                            <div>Cropped Image:</div>
+                            <div><img data-ng-src="{{myCroppedImage}}"/></div>
+                        </div>-->
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8 col-sm-offset-3
+                                    col-md-6 col-md-offset-4">
+                            <button data-ng-disabled="!perfil.showCropArea"
+                                    data-ng-click="perfil.sendFoto()"
+                                    class="btn btn-lg btn-info btn-icon icon-left pull-right">
+                                <i class="entypo-check"></i>
+                                {{perfil.STR.SALVAR}}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <!--TROCAR SENHA-->
+        <div class="panel panel-primary" data-collapsed="0">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    Trocar Senha
+                </div>
+            </div>
+            <div class="panel-body">
+                <form role="form" class="form-horizontal form-groups-bordered">
+                    <!--SENHA ATUAL-->
+                    <xd-input
+                            label="'Senha Atual'"
+                            placeholder="'Digite aqui a senha atual'"
+                            model="perfil.password.current"
+                            name="'password'"
+                            type="'password'">
+                    </xd-input>
+                    <!--NOVA SENHA-->
+                    <xd-input
+                            label="'Nova Senha'"
+                            placeholder="'Digite sua nova senha'"
+                            model="perfil.password.new"
+                            name="'newPassword'"
+                            type="'password'">
+                    </xd-input>
+                    <!--CONFIRMAR NOVA SENHA-->
+                    <xd-input
+                            label="'Confirmar Nova Senha'"
+                            placeholder="'Digite a nova senha novamente'"
+                            model="perfil.password.confirm"
+                            name="'confirmPassword'"
+                            type="'password'">
+                    </xd-input>
+                    <xd-btn label="'Salvar'"
+                            icon="'entypo-check'"
+                            click="perfil.sendSenha">
+                    </xd-btn>
+                </form>
+            </div>
+        </div>
+
+        <!--INFORMACOES COMPARTILHADAS-->
+        <div class="panel panel-primary" data-collapsed="0">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    Informações Compartilhadas
+                </div>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal form-groups-bordered validate">
+                    <!--PERMISSOES-->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Permissões</label>
+
+                        <div class="checkbox">
+                            <div class="col-sm-5">
+                                <input data-ng-model="perfil.info.sharePic.val"
+                                       type="checkbox"
+                                       id="input_sharePic">
+                                <label for="input_sharePic">
+                                    Exibir foto na lista de aniversariantes do mês
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--TELEFONE RESIDENCIAL-->
+                    <xd-input
+                            label="'Telefone Residencial'"
+                            model="perfil.info.phone"
+                            placeholder="'(__) ____-____'"
+                            mask="'(99) 9999-9999'"
+                            name="'phone'">
+                    </xd-input>
+                    <!--TELEFONE CELULAR-->
+                    <xd-input
+                            label="'Telefone Celular'"
+                            model="perfil.info.cel"
+                            placeholder="'(__) _____-____'"
+                            mask="'(99) 99999-9999'"
+                            name="'cel'">
+                    </xd-input>
+                    <!--EMAIL-->
+                    <xd-input
+                            label="'E-mail'"
+                            model="perfil.info.email"
+                            name="'email'"
+                            placeholder="'Digite seu e-mail'"
+                            type="'email'">
+                    </xd-input>
+                    <xd-btn label="'Salvar'"
+                            icon="'entypo-check'"
+                            click="perfil.sendInfo">
+                    </xd-btn>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
