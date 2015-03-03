@@ -10,10 +10,10 @@ define([
     controllers
         .controller('Messages', Messages);
 
-    Messages.$inject = ['$scope', 'breadCrumb'];
+    Messages.$inject = ['$scope', '$http', 'breadCrumb'];
 
     /* @ngInject */
-    function Messages($scope, breadCrumb) {
+    function Messages($scope, $http, breadCrumb) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -21,7 +21,16 @@ define([
 
         vm.STR = modelStrings;
         vm.user = modelUser;
-        vm.messages = modelMessages;
+
+        $http.get("./mockup/xduka-json/aluno/messages.json")
+            .success(function(data) {
+                vm.messages = data;
+                console.log("Certo!");
+        }).error(function() {
+            vm.messages = modelMessages;
+            console.log("Erro!");
+        });
+        //vm.messages = modelMessages;
 
         vm.sendData = sendData;
 
