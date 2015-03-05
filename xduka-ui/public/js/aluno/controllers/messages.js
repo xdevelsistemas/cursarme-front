@@ -16,7 +16,7 @@ define([
     function Messages($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
         var vm = this,
-            Mensagem = $resource('/mensagens');
+            mensagem = $resource('/mensagens/:id');
 
         breadCrumb.title = 'Mensagens';
 
@@ -32,7 +32,7 @@ define([
         }
 
         function buscaMensagens() {
-            Mensagem.query(
+            mensagem.query(
                 function(data) {
                     vm.mensagem = data;
                 }
