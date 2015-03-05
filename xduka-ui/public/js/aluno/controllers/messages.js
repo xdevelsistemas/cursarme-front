@@ -13,31 +13,30 @@ define([
     Messages.$inject = ['$scope', '$http', 'breadCrumb'];
 
     /* @ngInject */
-    function Messages($scope, $http, breadCrumb) {
+    function Messages($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this,
+            Mensagem = $resource('/mensagens');
 
         breadCrumb.title = 'Mensagens';
 
         vm.STR = modelStrings;
         vm.user = modelUser;
-
-        $http.get("./mockup/xduka-json/aluno/messages.json")
-            .success(function(data) {
-                vm.messages = data;
-                console.log("Certo!");
-        }).error(function() {
-            vm.messages = modelMessages;
-            console.log("Erro!");
-        });
-        //vm.messages = modelMessages;
-
+        buscaMensagens();
         vm.sendData = sendData;
 
         ////////////////
 
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
+        }
+
+        function buscaMensagens() {
+            Mensagem.query(
+                function(data) {
+                    vm.mensagem = data;
+                }
+            );
         }
 
     }
