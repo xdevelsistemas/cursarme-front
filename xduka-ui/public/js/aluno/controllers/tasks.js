@@ -1,26 +1,32 @@
 define([
     './__module__',
-    '../../common/models/strings',
-    '../models/tasks'
-], function (controllers, modelStrings, modelTasks) {
+    '../../common/models/strings'
+], function (controllers, modelStrings) {
 
     'use strict';
 
     controllers
         .controller('Tasks', Tasks);
 
-    Tasks.$inject = ['$scope', 'breadCrumb'];
+    Tasks.$inject = ['$scope', '$http', 'breadCrumb'];
 
     /* @ngInject */
-    function Tasks($scope, breadCrumb) {
+    function Tasks($scope, $http, breadCrumb) {
         /* jshint validthis: true */
         var vm = this;
 
         breadCrumb.title = 'Tarefas';
 
         vm.STR = modelStrings;
-        vm.filter = modelTasks.filter;
-        vm.tasks = modelTasks.tasks;
+
+        $http.get('/api/aluno/conteudo')
+            .success(function(data) {
+                vm.filter = data.filter;
+                vm.tasks = data.tasks;
+            })
+            .error(function(statusTexto) {
+                console.log("Erro!\n" + statusTexto)
+            });
 
         //vm.sendData = sendData;
         vm.selectFilter = selectFilter;

@@ -1,9 +1,9 @@
-var controller = require('../controllers/aluno');
 
 module.exports = function (app, passport) {
+    var controller = require('../controllers/aluno')();
+
     //aniversariantes
-    app.route('/api/aluno/aniversariantes')
-        .get(controller.showAniversariantes);
+    app.get('/api/aluno/aniversariantes', controller.showAniversariantes);
 
     //conteudo
     app.route('/api/aluno/conteudo')
@@ -36,6 +36,10 @@ module.exports = function (app, passport) {
     //Tarefas
     app.route('/api/aluno/tarefas')
         .get(controller.showTarefas);
+
+    //Tarefas
+    app.route('/api/aluno/usuario')
+        .get(controller.showUsuario);
 
     return app;
 };

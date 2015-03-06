@@ -7,19 +7,21 @@ var aniversariantes = require('../mockup/xduka-json/aluno/aniversariantes.json')
     notas = require('../mockup/xduka-json/aluno/notas.json'),
     parcelas = require('../mockup/xduka-json/aluno/parcelas.json'),
     tarefas = require('../mockup/xduka-json/aluno/tasks.json');
+    usuario = require('../mockup/xduka-json/aluno/user.json');
 
-module.exports = function () {
+module.exports = function() {
     var controller = {};
 
-    controller.showAniversariantes = getAniversariantes();
-    controller.showConteudo = getContato();
-    controller.showEditarPerfil = getEditarPerfil();
-    controller.showGrade = getGrade();
-    controller.showHorarios = getHorarios();
-    controller.showMessages = getMessages();
-    controller.showNotas = getNotas();
-    controller.showParcelas = getParcelas();
-    controller.showTarefas = getTarefas();
+    controller.showAniversariantes = getAniversariantes;
+    controller.showConteudo = getContato;
+    controller.showEditarPerfil = getEditarPerfil;
+    controller.showGrade = getGrade;
+    controller.showHorarios = getHorarios;
+    controller.showMessages = getMessages;
+    controller.showNotas = getNotas;
+    controller.showParcelas = getParcelas;
+    controller.showTarefas = getTarefas;
+    controller.showUsuario = getUsuario;
 
     return controller;
 };
@@ -58,4 +60,8 @@ function getParcelas(req, res) {
 
 function getTarefas(req, res) {
     res.json(tarefas);
+}
+
+function getUsuario(req, res) {
+    res.json(usuario);
 }

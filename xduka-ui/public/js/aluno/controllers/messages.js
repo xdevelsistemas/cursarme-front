@@ -1,9 +1,7 @@
 define([
     './__module__',
-    '../../common/models/strings',
-    '../../common/models/user',
-    '../models/messages'
-], function (controllers, modelStrings, modelUser, modelMessages) {
+    '../../common/models/strings'
+], function (controllers, modelStrings) {
 
     'use strict';
 
@@ -13,16 +11,30 @@ define([
     Messages.$inject = ['$http', 'breadCrumb'];
 
     /* @ngInject */
-    function Messages($resource, breadCrumb) {
+    function Messages($http, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this,
-            mensagem = $http.get('/api/aluno/mensagens');
+        var vm = this;
 
         breadCrumb.title = 'Mensagens';
 
         vm.STR = modelStrings;
-        vm.user = modelUser;
-        buscaMensagens();
+
+        $http.get('/api/aluno/usuario')
+            .success(function (data) {
+                vm.user = data;
+            })
+            .error(function (statusTexto) {
+                console.log("Erro!\n" + statusTexto);
+            });
+
+        $http.get('/api/aluno/mensagens')
+            .success(function(data) {
+                vm.mensagens = data;
+            })
+            .error(function(statusTexto) {
+                console.log("Erro");
+            });
+
         vm.sendData = sendData;
 
         ////////////////
@@ -30,15 +42,6 @@ define([
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
         }
-
-        function buscaMensagens() {
-            mensagem.query(
-                function(data) {
-                    vm.mensagem = data;
-                }
-            );
-        }
-
     }
 
 });

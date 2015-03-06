@@ -1,18 +1,17 @@
 define([
     './__module__',
-    '../../common/models/strings',
-    '../models/aniversariantes'
-], function (controllers, modelStrings, modelAniversariantes) {
+    '../../common/models/strings'
+], function (controllers, modelStrings) {
 
     'use strict';
 
     controllers
         .controller('Aniversariantes', Aniversariantes);
 
-    Aniversariantes.$inject = ['$scope', 'breadCrumb'];
+    Aniversariantes.$inject = ['$http', 'breadCrumb'];
 
     /* @ngInject */
-    function Aniversariantes($scope, breadCrumb) {
+    function Aniversariantes($http, breadCrumb) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -21,7 +20,15 @@ define([
         breadCrumb.title = 'Aniversariantes';
 
         vm.STR = modelStrings;
-        vm.lista = modelAniversariantes.lista;
+
+        $http.get('/api/aluno/aniversariantes')
+            .success(function(data) {
+                vm.lista = data.lista;
+            })
+            .error(function(statusTexto) {
+                console.log("Erro!\n" + statusTexto)
+            });
+
 
         vm.sendData = sendData;
 

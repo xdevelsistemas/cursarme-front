@@ -9,17 +9,24 @@ define([
     controllers
         .controller('Parcelas', Parcelas);
 
-    Parcelas.$inject = ['$scope', 'breadCrumb'];
+    Parcelas.$inject = ['$http', 'breadCrumb'];
 
     /* @ngInject */
-    function Parcelas($scope, breadCrumb) {
+    function Parcelas($http, breadCrumb) {
         /* jshint validthis: true */
         var vm = this;
 
         breadCrumb.title = 'Mensalidades';
 
         vm.STR = modelStrings;
-        vm.lista = modelParcelas.lista;
+
+        $http.get('/api/aluno/parcelas')
+            .success(function(data) {
+                vm.lista = data.lista
+            })
+            .error(function(statusTexto) {
+                console.log("Erro!\n" + statusTexto)
+            });
 
         vm.sendData = sendData;
 

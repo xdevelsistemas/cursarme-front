@@ -1,40 +1,46 @@
 define([
     './__module__',
-    '../../common/models/strings',
-    '../models/horarios'
-], function (controllers, modelStrings, modelHorarios) {
+    '../../common/models/strings'
+], function (controllers, modelStrings) {
 
     'use strict';
 
     controllers
         .controller('Horarios', Horarios);
 
-    Horarios.$inject = ['$scope', 'breadCrumb'];
+    Horarios.$inject = ['$http', 'breadCrumb'];
 
     /* @ngInject */
-    function Horarios($scope,breadCrumb) {
+    function Horarios($http,breadCrumb) {
         /* jshint validthis: true */
         var vm = this;
 
         breadCrumb.title = 'Quadro de Horários';
 
         vm.STR = modelStrings;
-        vm.MAX =
-            modelHorarios.MAX;
-        vm.domingo =
-            modelHorarios.domingo;
-        vm.segunda =
-            modelHorarios.segunda;
-        vm.terca =
-            modelHorarios.terca;
-        vm.quarta =
-            modelHorarios.quarta;
-        vm.quinta =
-            modelHorarios.quinta;
-        vm.sexta =
-            modelHorarios.sexta;
-        vm.sabado =
-            modelHorarios.sabado;
+
+        $http.get('/api/aluno/horarios')
+            .success(function(data){
+                vm.MAX =
+                    data.MAX;
+                vm.domingo =
+                    data.domingo;
+                vm.segunda =
+                    data.segunda;
+                vm.terca =
+                    data.terca;
+                vm.quarta =
+                    data.quarta;
+                vm.quinta =
+                    data.quinta;
+                vm.sexta =
+                    data.sexta;
+                vm.sabado =
+                    data.sabado;
+            })
+            .error(function(statusTexto){
+                console.log("Erro!\n" + statusTexto);
+            });
 
         vm.sendData = sendData;
 
