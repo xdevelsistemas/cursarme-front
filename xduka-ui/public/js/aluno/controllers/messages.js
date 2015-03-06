@@ -10,13 +10,13 @@ define([
     controllers
         .controller('Messages', Messages);
 
-    Messages.$inject = ['$resource', 'breadCrumb'];
+    Messages.$inject = ['$http', 'breadCrumb'];
 
     /* @ngInject */
     function Messages($resource, breadCrumb) {
         /* jshint validthis: true */
         var vm = this,
-            mensagem = $resource('/mensagens');
+            mensagem = $http.get('/api/aluno/mensagens');
 
         breadCrumb.title = 'Mensagens';
 

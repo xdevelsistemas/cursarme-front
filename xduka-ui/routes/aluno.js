@@ -1,39 +1,40 @@
-module.exports = function (app) {
-    var controller = app.controllers.aluno;
+var controller = require('../controllers/aluno');
 
+module.exports = function (app, passport) {
     //aniversariantes
-    app.route('/aniversariantes')
-        .get(controller.showAniversariantes);
+    app.get('/api/aluno/aniversariantes', controller.showAniversariantes);
 
     //conteudo
-    app.route('/conteudo')
+    app.route('/api/aluno/conteudo')
         .get(controller.showConteudo);
 
     //editar-perfil
-    app.route('/editar-perfil')
+    app.route('/api/aluno/editar-perfil')
         .get(controller.showEditarPerfil);
 
     //grade
-    app.route('/grade')
+    app.route('/api/aluno/grade')
         .get(controller.showGrade);
 
     //Horarios
-    app.route('/horarios')
+    app.route('/api/aluno/horarios')
         .get(controller.showHorarios);
 
     //Mensagens
-    app.route('/mensagens')
+    app.route('/api/aluno/mensagens')
         .get(controller.showMessages);
 
     //Notas
-    app.route('/notas')
+    app.route('/api/aluno/notas')
         .get(controller.showNotas);
 
     //Parcelas
-    app.route('/parcelas')
+    app.route('/api/aluno/parcelas')
         .get(controller.showParcelas);
 
     //Tarefas
-    app.route('/tarefas')
+    app.route('/api/aluno/tarefas')
         .get(controller.showTarefas);
+
+    return app;
 };
