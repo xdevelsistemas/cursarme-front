@@ -2,7 +2,8 @@ var controller = require('../controllers/aluno');
 
 module.exports = function (app, passport) {
     //aniversariantes
-    app.get('/api/aluno/aniversariantes', controller.showAniversariantes);
+    app.route('/api/aluno/aniversariantes')
+        .get(controller.showAniversariantes);
 
     //conteudo
     app.route('/api/aluno/conteudo')
