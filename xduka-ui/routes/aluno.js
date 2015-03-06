@@ -21,7 +21,7 @@ module.exports = function (app) {
     app.route('/horarios')
         .get(controller.showHorarios);
 
-    //mensagens
+    //Mensagens
     app.route('/mensagens')
         .get(controller.showMessages);
 

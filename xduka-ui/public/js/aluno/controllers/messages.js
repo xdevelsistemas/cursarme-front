@@ -10,13 +10,13 @@ define([
     controllers
         .controller('Messages', Messages);
 
-    Messages.$inject = ['$scope', '$http', 'breadCrumb'];
+    Messages.$inject = ['$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function Messages($scope, $resource, breadCrumb) {
+    function Messages($resource, breadCrumb) {
         /* jshint validthis: true */
         var vm = this,
-            mensagem = $resource('/mensagens/:id');
+            mensagem = $resource('/mensagens');
 
         breadCrumb.title = 'Mensagens';
 
