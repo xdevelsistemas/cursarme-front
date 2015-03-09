@@ -19,7 +19,7 @@ define([
 
         vm.STR = modelStrings;
 
-        $http.get('/api/aluno/conteudo')
+        $http.get('/api/aluno/tarefas')
             .success(function(data) {
                 vm.filter = data.filter;
                 vm.tasks = data.tasks;
