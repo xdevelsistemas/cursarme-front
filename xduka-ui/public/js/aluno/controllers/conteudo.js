@@ -8,10 +8,10 @@ define([
     controllers
         .controller('Conteudo', Conteudo);
 
-    Conteudo.$inject = ['$http', 'breadCrumb'];
+    Conteudo.$inject = ['$scope', '$http', 'breadCrumb'];
 
     /* @ngInject */
-    function Conteudo($http, breadCrumb) {
+    function Conteudo($scope, $http, breadCrumb) {
         /* jshint validthis: true */
         var vm = this;
 

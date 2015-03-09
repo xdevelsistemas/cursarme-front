@@ -8,10 +8,10 @@ define([
     controllers
         .controller('Grade', Grade);
 
-    Grade.$inject = ['$http', 'breadCrumb'];
+    Grade.$inject = ['$scope', '$http', 'breadCrumb'];
 
     /* @ngInject */
-    function Grade($http, breadCrumb) {
+    function Grade($scope, $http, breadCrumb) {
         /* jshint validthis: true */
         var vm = this;
 

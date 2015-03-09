@@ -9,10 +9,10 @@ define([
     controllers
         .controller('Parcelas', Parcelas);
 
-    Parcelas.$inject = ['$http', 'breadCrumb'];
+    Parcelas.$inject = ['$scope', '$http', 'breadCrumb'];
 
     /* @ngInject */
-    function Parcelas($http, breadCrumb) {
+    function Parcelas($scope, $http, breadCrumb) {
         /* jshint validthis: true */
         var vm = this;
 

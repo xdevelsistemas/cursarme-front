@@ -8,10 +8,10 @@ define([
     controllers
         .controller('Aniversariantes', Aniversariantes);
 
-    Aniversariantes.$inject = ['$http', 'breadCrumb'];
+    Aniversariantes.$inject = ['$scope', '$http', 'breadCrumb'];
 
     /* @ngInject */
-    function Aniversariantes($http, breadCrumb) {
+    function Aniversariantes($scope, $http, breadCrumb) {
         /* jshint validthis: true */
         var vm = this;
 

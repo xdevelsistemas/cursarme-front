@@ -8,10 +8,10 @@ define([
     controllers
         .controller('Horarios', Horarios);
 
-    Horarios.$inject = ['$http', 'breadCrumb'];
+    Horarios.$inject = ['$scope', '$http', 'breadCrumb'];
 
     /* @ngInject */
-    function Horarios($http,breadCrumb) {
+    function Horarios($scope, $http,breadCrumb) {
         /* jshint validthis: true */
         var vm = this;
 

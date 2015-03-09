@@ -8,10 +8,10 @@ define([
     controllers
         .controller('Messages', Messages);
 
-    Messages.$inject = ['$http', 'breadCrumb'];
+    Messages.$inject = ['$scope', '$http', 'breadCrumb'];
 
     /* @ngInject */
-    function Messages($http, breadCrumb) {
+    function Messages($scope, $http, breadCrumb) {
         /* jshint validthis: true */
         var vm = this;
 
