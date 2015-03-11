@@ -40,7 +40,7 @@ function getEditarPerfil(req, res) {
 }
 
 function putEditarPerfil(req, res) {
-
+    res.json(req.body);
 }
 
 function getGrade(req, res) {
@@ -70,3 +70,6 @@ function getTarefas(req, res) {
 function getUsuario(req, res) {
     res.json(usuario);
 }
+
+
+//      =========== XX ===========

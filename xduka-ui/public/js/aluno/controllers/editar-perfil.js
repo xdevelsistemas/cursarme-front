@@ -64,18 +64,20 @@ define([
         ////////////////////////////////////////////////////////////////////
 
         function sendSenha() {
-            console.log('>>>>>', vm.password);
-            $.extend(true, vm.password, {
-                current: {err: 'Senha Inválida!'},
-                new: {err: 'A senha deve conter pelo menos 6 caracteres!'},
-                confirm: {err: 'As novas senhas não batem!'}
-            });
-            return console.log('<<<<<', vm.password);
+            //console.log('>>>>>', vm.password);
+            //$.extend(true, vm.password, {
+            //    current: {err: 'Senha Inválida!'},
+            //    new: {err: 'A senha deve conter pelo menos 6 caracteres!'},
+            //    confirm: {err: 'As novas senhas não batem!'}
+            //});
+            //return console.log('<<<<<', vm.password);
 
             var dataPw = {"password": vm.password};
             $http.post('/api/aluno/editar-perfil', dataPw)
-                .sucess(function(data) {
-                    console.log("Dados enviados com sucesso!..");
+                .success(function(data) {
+                    $.extend(true, vm.password, {
+                        successMessage: modelStrings.SUCESSO
+                    });
                 })
                 .error(function(statusTexto) {
                     console.log("Erro!" + statusTexto);
@@ -84,22 +86,28 @@ define([
 
         function sendInfo() {
             //console.log('>>>>>', vm.info);
-            $.extend(true, vm.info, {
-                sharePic: {err: ''},
-                email: {err: 'E-mail inválido!'},
-                cel: {err: ''},
-                phone: {err: ''}
-            });
+            //$.extend(true, vm.info, {
+            //    sharePic: {err: ''},
+            //    email: {err: 'E-mail inválido!'},
+            //    cel: {err: ''},
+            //    phone: {err: ''}
+            //});
             //return console.log('<<<<<', vm.info);
 
-            var dataInfo = {"info": vm.info};
-            $http.post('/api/aluno/editar-perfil', dataInfo)
-                .sucess(function(data) {
-                    console.log("Dados enviados com sucesso!..");
+            var dataInfo = {"info": vm.info},
+                promisse = $http.post('/api/aluno/editar-perfil', dataInfo);
+
+            promisse
+                .then(msgSuccess)
+                .catch(function(erro) {
+                    console.log("Erro!" + erro.statusTexto);
                 })
-                .error(function(statusTexto) {
-                    console.log("Erro!" + statusTexto);
-                })
+        }
+
+        function msgSuccess(){
+            $.extend(true, vm.info, {
+                successMessage: modelStrings.SUCESSO
+            });
         }
 
         function sendFoto() {

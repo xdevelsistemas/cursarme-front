@@ -106,6 +106,9 @@
                             icon="'entypo-check'"
                             click="perfil.sendSenha">
                     </xd-btn>
+                    <p data-collapse="!perfil.password.successMessage"
+                       data-ng-bind="perfil.password.successMessage"
+                       class="control-label"></p>
                 </form>
             </div>
         </div>
@@ -162,6 +165,9 @@
                             icon="'entypo-check'"
                             click="perfil.sendInfo">
                     </xd-btn>
+                    <p data-collapse="!perfil.info.successMessage"
+                       data-ng-bind="perfil.info.successMessage"
+                       class="control-label"></p>
                 </form>
             </div>
         </div>
