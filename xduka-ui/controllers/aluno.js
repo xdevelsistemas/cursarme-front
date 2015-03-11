@@ -15,6 +15,7 @@ module.exports = function() {
     controller.showAniversariantes = getAniversariantes;
     controller.showConteudo = getContato;
     controller.showEditarPerfil = getEditarPerfil;
+    controller.putEditarPerfil = putEditarPerfil;
     controller.showGrade = getGrade;
     controller.showHorarios = getHorarios;
     controller.showMessages = getMessages;
@@ -36,6 +37,10 @@ function getContato(req, res) {
 
 function getEditarPerfil(req, res) {
     res.json(editarPerfil);
+}
+
+function putEditarPerfil(req, res) {
+
 }
 
 function getGrade(req, res) {

@@ -12,7 +12,8 @@ module.exports = function (app, passport) {
 
     //editar-perfil
     app.route('/api/aluno/editar-perfil')
-        .get(controller.showEditarPerfil);
+        .get(controller.showEditarPerfil)
+        .post(controller.putEditarPerfil);
 
     //grade
     app.route('/api/aluno/grade')
