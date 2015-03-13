@@ -14,8 +14,8 @@ define([], function () {
         FOTO_PERFIL: 'Foto para perfil',
         ARQUIVO: 'Arquivo',
         SALVAR: 'Salvar',
-        SUCESSO: 'Dados salvos com sucesso'
-
+        SUCESSO: 'Dados salvos com sucesso',
+        NOCONFER: 'Senhas não conferem'
     };
 
 });

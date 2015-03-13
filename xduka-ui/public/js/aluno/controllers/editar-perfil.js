@@ -61,7 +61,14 @@ define([
         vm.sendInfo = sendInfo;
         vm.sendFoto = sendFoto;
 
-        ////////////////////////////////////////////////////////////////////
+        //vm.teste = validPassword;
+        //////////////////////////////////////////////////////////////////////
+        //
+        //function validPassword(){
+        //    if ((vm.password.confirm.val == "") || (vm.password.confirm.val != vm.password.new.val)) {
+        //        vm.password.confirm.err = modelStrings.NOCONFER;
+        //    }
+        //}
 
         function sendSenha() {
             //console.log('>>>>>', vm.password);
@@ -72,15 +79,13 @@ define([
             //});
             //return console.log('<<<<<', vm.password);
 
-            var dataPw = {"password": vm.password};
-            $http.post('/api/aluno/editar-perfil', dataPw)
-                .success(function(data) {
-                    $.extend(true, vm.password, {
-                        successMessage: modelStrings.SUCESSO
-                    });
-                })
-                .error(function(statusTexto) {
-                    console.log("Erro!" + statusTexto);
+            var dataPw = {"password": vm.password},
+                promisse = $http.post('/api/aluno/editar-perfil', dataPw);
+
+            promisse
+                .then(msgSuccessPw)
+                .catch(function(erro) {
+                    console.log("Erro!" + erro.statusTexto);
                 })
         }
 
@@ -98,16 +103,18 @@ define([
                 promisse = $http.post('/api/aluno/editar-perfil', dataInfo);
 
             promisse
-                .then(msgSuccess)
+                .then(msgSuccessInfo)
                 .catch(function(erro) {
                     console.log("Erro!" + erro.statusTexto);
                 })
         }
 
-        function msgSuccess(){
-            $.extend(true, vm.info, {
-                successMessage: modelStrings.SUCESSO
-            });
+        function msgSuccessInfo(){
+            $.extend(true, vm.info, {successMessageInfo: modelStrings.SUCESSO});
+        }
+
+        function msgSuccessPw(){
+            $.extend(true, vm.password, {successMessagePw: modelStrings.SUCESSO});
         }
 
         function sendFoto() {
