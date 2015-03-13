@@ -103,14 +103,12 @@ define([
                 promisse = $http.post('/api/aluno/editar-perfil', dataInfo);
 
             promisse
-                .then(msgSuccessInfo)
+                .then(function(){
+                    $.extend(true, vm.info, {successMessage: vm.STR.SUCESSO});
+                })
                 .catch(function(erro) {
                     console.log("Erro!" + erro.statusTexto);
                 })
-        }
-
-        function msgSuccessInfo(){
-            $.extend(true, vm.info, {successMessageInfo: modelStrings.SUCESSO});
         }
 
         function msgSuccessPw(){
