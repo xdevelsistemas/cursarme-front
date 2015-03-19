@@ -70,6 +70,65 @@ define([
         //    }
         //}
 
+        function isEmail(email){
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            return regex.test(email);
+        }
+
+        function isPhone(phone){
+            return phone.length == 10;
+        }
+
+        function isCel(cel){
+            return cel.length == 11;
+        }
+
+        function sendInfo() {
+            vm.info.email.err = "";
+            vm.info.phone.err = "";
+            vm.info.cel.err = "";
+
+            if (isEmail(vm.info.email.val) && isPhone(vm.info.phone.val) && isCel(vm.info.cel.val)) {
+                var dataInfo = {"info": vm.info},
+                    promisse = $http.post('/api/aluno/editar-perfil', dataInfo);
+
+                promisse
+                    .then(function(){
+                        vm.info.successMessage = modelStrings.SUCESSO;
+                        vm.info.email.err = "";
+                        vm.info.phone.err = "";
+                        vm.info.cel.err = "";
+                    })
+                    .catch(function(erro) {
+                        console.log("Erro!" + erro.statusTexto);
+                    });
+            }else{
+                if (!isEmail(vm.info.email.val)) {
+                    vm.info.email.err = vm.STR.NOEMAIL;
+                }
+                if (!isPhone(vm.info.phone.val)) {
+                    vm.info.phone.err = vm.STR.NOPHONE;
+                }
+                if (!isCel(vm.info.cel.val)) {
+                    vm.info.cel.err = vm.STR.NOCEL;
+                }
+            }
+
+            //console.log('>>>>>', vm.info);
+            //$.extend(true, vm.info, {
+            //    sharePic: {err: ''},
+            //    email: {err: 'E-mail inválido!'},
+            //    cel: {err: ''},
+            //    phone: {err: ''}
+            //});
+            //return console.log('<<<<<', vm.info);
+        }
+
+        function sendFoto() {
+            console.log($scope.myCroppedImage);
+            //window.open($scope.myCroppedImage, '_blank');
+        }
+
         function sendSenha() {
             //console.log('>>>>>', vm.password);
             //$.extend(true, vm.password, {
@@ -83,41 +142,12 @@ define([
                 promisse = $http.post('/api/aluno/editar-perfil', dataPw);
 
             promisse
-                .then(msgSuccessPw)
-                .catch(function(erro) {
-                    console.log("Erro!" + erro.statusTexto);
-                })
-        }
-
-        function sendInfo() {
-            //console.log('>>>>>', vm.info);
-            //$.extend(true, vm.info, {
-            //    sharePic: {err: ''},
-            //    email: {err: 'E-mail inválido!'},
-            //    cel: {err: ''},
-            //    phone: {err: ''}
-            //});
-            //return console.log('<<<<<', vm.info);
-
-            var dataInfo = {"info": vm.info},
-                promisse = $http.post('/api/aluno/editar-perfil', dataInfo);
-
-            promisse
                 .then(function(){
-                    $.extend(true, vm.info, {successMessage: vm.STR.SUCESSO});
+                    vm.password.successMessagePw = modelStrings.SUCESSO;
                 })
                 .catch(function(erro) {
                     console.log("Erro!" + erro.statusTexto);
                 })
-        }
-
-        function msgSuccessPw(){
-            $.extend(true, vm.password, {successMessagePw: modelStrings.SUCESSO});
-        }
-
-        function sendFoto() {
-            console.log($scope.myCroppedImage);
-            //window.open($scope.myCroppedImage, '_blank');
         }
 
     }

@@ -4,7 +4,7 @@
     "email": "clayton@xdevel.com.br",
     "telefoneResidencial": "2730193097",
     "telefoneCelular": "27981132563",
-    "compartilharAniversario": 0,
+    "compartilharAniversario": false,
     "unidade": {
         "codUnidade": "0",
         "unidade": "Ieses / Cariacica - ES"
