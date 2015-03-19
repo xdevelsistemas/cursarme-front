@@ -19,10 +19,10 @@ define([
         breadCrumb.title = 'Tarefas';
 
         vm.STR = modelStrings;
+        vm.filter = modelTasks.filter;
 
         $http.get('/api/aluno/tarefas')
             .success(function(data) {
-                vm.filter = modelTasks.filter;
                 vm.tasks = data.tasks;
             })
             .error(function(statusTexto) {

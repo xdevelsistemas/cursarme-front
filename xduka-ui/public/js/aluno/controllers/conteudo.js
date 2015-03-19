@@ -1,7 +1,8 @@
 define([
     './__module__',
-    '../../common/models/strings'
-], function (controllers, modelStrings) {
+    '../../common/models/strings',
+    '../models/conteudo'
+], function (controllers, modelStrings, modelConteudo) {
 
     'use strict';
 
@@ -18,6 +19,9 @@ define([
         breadCrumb.title = 'Conteúdo Aplicado';
 
         vm.STR = modelStrings;
+        vm.filterPeriodo = modelConteudo.filterPeriodo;
+        vm.filterDisciplina = modelConteudo.filterDisciplina;
+        vm.disciplina = modelConteudo.disciplina;
 
         $http.get('/api/aluno/conteudo')
             .success(function(data) {
