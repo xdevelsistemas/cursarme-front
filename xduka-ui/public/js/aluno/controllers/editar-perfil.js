@@ -61,14 +61,16 @@ define([
         vm.sendInfo = sendInfo;
         vm.sendFoto = sendFoto;
 
-        //vm.teste = validPassword;
-        //////////////////////////////////////////////////////////////////////
-        //
-        //function validPassword(){
-        //    if ((vm.password.confirm.val == "") || (vm.password.confirm.val != vm.password.new.val)) {
-        //        vm.password.confirm.err = modelStrings.NOCONFER;
-        //    }
-        //}
+
+/////////////  FUNCTIONS  /////////////
+
+        function isCel(cel){
+            return cel.length == 11;
+        }
+
+        function isConfPw(newPw, confPw){
+            return newPw == confPw;
+        }
 
         function isEmail(email){
             var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -79,25 +81,18 @@ define([
             return phone.length == 10;
         }
 
-        function isCel(cel){
-            return cel.length == 11;
-        }
-
         function sendInfo() {
-            vm.info.email.err = "";
-            vm.info.phone.err = "";
-            vm.info.cel.err = "";
-
             if (isEmail(vm.info.email.val) && isPhone(vm.info.phone.val) && isCel(vm.info.cel.val)) {
                 var dataInfo = {"info": vm.info},
                     promisse = $http.post('/api/aluno/editar-perfil', dataInfo);
 
+                vm.info.email.err = "";
+                vm.info.phone.err = "";
+                vm.info.cel.err = "";
+
                 promisse
                     .then(function(){
-                        vm.info.successMessage = modelStrings.SUCESSO;
-                        vm.info.email.err = "";
-                        vm.info.phone.err = "";
-                        vm.info.cel.err = "";
+                        vm.info.successMessage = vm.STR.SUCESSO;
                     })
                     .catch(function(erro) {
                         console.log("Erro!" + erro.statusTexto);
@@ -113,15 +108,6 @@ define([
                     vm.info.cel.err = vm.STR.NOCEL;
                 }
             }
-
-            //console.log('>>>>>', vm.info);
-            //$.extend(true, vm.info, {
-            //    sharePic: {err: ''},
-            //    email: {err: 'E-mail inválido!'},
-            //    cel: {err: ''},
-            //    phone: {err: ''}
-            //});
-            //return console.log('<<<<<', vm.info);
         }
 
         function sendFoto() {
@@ -130,26 +116,26 @@ define([
         }
 
         function sendSenha() {
-            //console.log('>>>>>', vm.password);
-            //$.extend(true, vm.password, {
-            //    current: {err: 'Senha Inválida!'},
-            //    new: {err: 'A senha deve conter pelo menos 6 caracteres!'},
-            //    confirm: {err: 'As novas senhas não batem!'}
-            //});
-            //return console.log('<<<<<', vm.password);
+            if (isConfPw(vm.password.new.val, vm.password.confirm.val)) {
+                var dataPw = {"password": vm.password},
+                    promisse = $http.post('/api/aluno/editar-perfil', dataPw);
 
-            var dataPw = {"password": vm.password},
-                promisse = $http.post('/api/aluno/editar-perfil', dataPw);
+                vm.password.current.err = "";
+                vm.password.new.err = "";
+                vm.password.confirm.err = "";
 
-            promisse
-                .then(function(){
-                    vm.password.successMessagePw = modelStrings.SUCESSO;
-                })
-                .catch(function(erro) {
-                    console.log("Erro!" + erro.statusTexto);
-                })
+                promisse
+                    .then(function () {
+                        vm.password.successMessagePw = vm.STR.SUCESSO;
+                    })
+                    .catch(function (erro) {
+                        console.log("Erro!" + erro.statusTexto);
+                    });
+            }else{
+                vm.password.confirm.err = vm.STR.NOCONFER;
+                vm.password.successMessagePw = "";
+            }
         }
-
     }
 
 });

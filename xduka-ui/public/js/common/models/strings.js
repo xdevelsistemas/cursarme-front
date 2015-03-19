@@ -11,7 +11,7 @@ define([], function () {
         FINISH_DATE: 'Data final',
         FOTO_PERFIL: 'Foto para perfil',
         LOGOUT: 'Sair',
-        NOCONFER: 'Senhas não conferem',
+        NOCONFER: 'As novas senhas não batem!',
         NOCEL: 'Telefone Celular inválido',
         NOEMAIL: 'Email inválido',
         NOPHONE: 'Telefone Residencial inválido',
