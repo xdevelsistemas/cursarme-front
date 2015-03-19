@@ -1,7 +1,8 @@
 define([
     './__module__',
-    '../../common/models/strings'
-], function (controllers, modelStrings) {
+    '../../common/models/strings',
+    '../models/tasks'
+], function (controllers, modelStrings, modelTasks) {
 
     'use strict';
 
@@ -21,7 +22,7 @@ define([
 
         $http.get('/api/aluno/tarefas')
             .success(function(data) {
-                vm.filter = data.filter;
+                vm.filter = modelTasks.filter;
                 vm.tasks = data.tasks;
             })
             .error(function(statusTexto) {
