@@ -1,7 +1,5 @@
 {
     "filter": {
-        "label": "Filtro",
-        "placeholder": "Filtrar por disciplina",
         "value": "-1",
         "list": [
             {

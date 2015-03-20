@@ -1,8 +1,7 @@
 define([
     './__module__',
-    '../../common/models/strings',
-    '../models/tasks'
-], function (controllers, modelStrings, modelTasks) {
+    '../../common/models/strings'
+], function (controllers, modelStrings) {
 
     'use strict';
 
@@ -19,11 +18,12 @@ define([
         breadCrumb.title = 'Tarefas';
 
         vm.STR = modelStrings;
-        vm.filter = modelTasks.filter;
 
         $http.get('/api/aluno/tarefas')
             .success(function(data) {
+                vm.filter = $.extend({label: vm.STR.FILTER, placeholder: vm.STR.FILTER_BY_SUBJECT}, data.filter);
                 vm.tasks = data.tasks;
+
             })
             .error(function(statusTexto) {
                 console.log("Erro!\n" + statusTexto)
@@ -50,7 +50,5 @@ define([
         function selectFilter() {
 
         }
-
     }
-
 });

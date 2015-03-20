@@ -4,7 +4,7 @@ define(['app'], function (app) {
         //Home
         $routeProvider.when('/', {
             //redirectTo: '/mensagens'
-            redirectTo: '/editar-perfil'
+            redirectTo: '/conteudo'
         });
 
         //Mensagens
