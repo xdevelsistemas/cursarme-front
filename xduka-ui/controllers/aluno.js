@@ -1,5 +1,6 @@
 var aniversariantes = require('../mockup/xduka-json/aluno/aniversariantes.json'),
     conteudo = require('../mockup/xduka-json/aluno/conteudo.json'),
+    curso = require('../mockup/xduka-json/aluno/cursos.json'),
     editarPerfil = require('../mockup/xduka-json/aluno/editar-perfil.json'),
     grade = require('../mockup/xduka-json/aluno/grade.json'),
     horarios = require('../mockup/xduka-json/aluno/horarios.json'),
@@ -13,7 +14,8 @@ module.exports = function() {
     var controller = {};
 
     controller.showAniversariantes = getAniversariantes;
-    controller.showConteudo = getContato;
+    controller.showConteudo = getConteudo;
+    controller.showCurso = getCurso;
     controller.showEditarPerfil = getEditarPerfil;
     controller.putEditarPerfil = putEditarPerfil;
     controller.showGrade = getGrade;
@@ -31,8 +33,12 @@ function getAniversariantes(req, res) {
     res.json(aniversariantes);
 }
 
-function getContato(req, res) {
+function getConteudo(req, res) {
     res.json(conteudo);
+}
+
+function getCurso(req, res) {
+    res.json(curso);
 }
 
 function getEditarPerfil(req, res) {

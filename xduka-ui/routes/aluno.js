@@ -10,6 +10,10 @@ module.exports = function (app, passport) {
     app.route('/api/aluno/conteudo')
         .get(controller.showConteudo);
 
+    //curso
+    app.route('/api/aluno/curso')
+        .get(controller.showCurso);
+
     //editar-perfil
     app.route('/api/aluno/editar-perfil')
         .get(controller.showEditarPerfil)
