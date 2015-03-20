@@ -11,8 +11,8 @@ module.exports = function (app, passport) {
         .get(controller.showConteudo);
 
     //curso
-    app.route('/api/aluno/curso')
-        .get(controller.showCurso);
+    app.route('/api/aluno/cursos')
+        .get(controller.showCursos);
 
     //editar-perfil
     app.route('/api/aluno/editar-perfil')

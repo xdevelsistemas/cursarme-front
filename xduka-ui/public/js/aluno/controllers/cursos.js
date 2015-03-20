@@ -6,22 +6,22 @@ define([
     'use strict';
 
     controllers
-        .controller('Parcelas', Parcelas);
+        .controller('Cursos', Cursos);
 
-    Parcelas.$inject = ['$scope', '$http', 'breadCrumb'];
+    Cursos.$inject = ['$scope', '$http', 'breadCrumb'];
 
     /* @ngInject */
-    function Parcelas($scope, $http, breadCrumb) {
+    function Cursos($scope, $http, breadCrumb) {
         /* jshint validthis: true */
         var vm = this;
 
-        breadCrumb.title = 'Mensalidades';
+        breadCrumb.title = 'Seleção de Curso';
 
         vm.STR = modelStrings;
 
-        $http.get('/api/aluno/parcelas')
+        $http.get('/api/aluno/cursos')
             .success(function(data) {
-                vm.lista = data.lista
+                vm.cursos = $.extend(true, data.cursos);
             })
             .error(function(statusTexto) {
                 console.log("Erro!\n" + statusTexto)

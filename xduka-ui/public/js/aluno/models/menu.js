@@ -3,7 +3,7 @@ define([], function () {
     return {
         "list": [
             {
-                "text": "Seleção de Curso",
+                "text": "Seleção de Cursos",
                 "iconClass": "entypo-graduation-cap",
                 "href": "#/cursos"
             },

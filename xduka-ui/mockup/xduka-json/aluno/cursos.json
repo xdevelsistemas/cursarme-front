@@ -1,16 +1,25 @@
 {
-  "cursos": [
-    {
-      "id": "1",
-      "nome": "Biblioteconomia"
-    },
-    {
-      "id": "12",
-      "nome": "Educação Física"
-    },
-    {
-      "id": "123",
-      "nome": "Engenharia Civil"
-    }
-  ]
+  "cursos": {
+    "label": "Filtro",
+    "placeholder": "Selecione um Curso",
+    "value": "-1",
+    "list": [
+      {
+        "id": "-1",
+        "text": "Todos os Cursos"
+      },
+      {
+        "id": "1",
+        "text": "Biblioteconomia"
+      },
+      {
+        "id": "12",
+        "text": "Educação Física"
+      },
+      {
+        "id": "123",
+        "text": "Engenharia Civil"
+      }
+    ]
+  }
 }
