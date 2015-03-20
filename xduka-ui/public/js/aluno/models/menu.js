@@ -3,6 +3,11 @@ define([], function () {
     return {
         "list": [
             {
+                "text": "Seleção de Curso",
+                "iconClass": "entypo-graduation-cap",
+                "href": "#/cursos"
+            },
+            {
                 "text": "Mensagens",
                 "iconClass": "entypo-mail",
                 "href": "#/mensagens"

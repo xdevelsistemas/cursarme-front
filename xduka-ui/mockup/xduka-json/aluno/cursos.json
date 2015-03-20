@@ -1,0 +1,16 @@
+{
+  "cursos": [
+    {
+      "id": "1",
+      "nome": "Biblioteconomia"
+    },
+    {
+      "id": "12",
+      "nome": "Educação Física"
+    },
+    {
+      "id": "123",
+      "nome": "Engenharia Civil"
+    }
+  ]
+}
