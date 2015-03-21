@@ -8,7 +8,7 @@ var aniversariantes = require('../mockup/xduka-json/aluno/aniversariantes.json')
     notas = require('../mockup/xduka-json/aluno/notas.json'),
     parcelas = require('../mockup/xduka-json/aluno/parcelas.json'),
     tarefas = require('../mockup/xduka-json/aluno/tasks.json');
-    usuario = require('../mockup/xduka-json/aluno/user.json');
+    usuario = require('../mockup/xduka-json/common/user.json');
 
 module.exports = function() {
     var controller = {};

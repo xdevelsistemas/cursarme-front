@@ -28,15 +28,17 @@ define([
         vm.section = '';
         vm.sendData = sendData;
 
+        //TODO passar $http para $resource
+        //TODO colocar as requisições em promisse
         $http.get('/api/aluno/usuario')
-            .then(getUsuario)
-            .catch(function(erro){
+            .success(getUsuario)
+            .error(function(erro){
                 console.log("Erro:\n" + erro + "\n");
             });
 
         $http.get('/api/aluno/cursos')
-            .then(getCursos)
-            .catch(function(erro){
+            .success(getCursos)
+            .error(function(erro){
                 console.log("Erro:\n" + erro + "\n");
             });
 
@@ -44,6 +46,7 @@ define([
 
         function getCursos(data){
             vm.cursos = data.cursos;
+            //vm.curso = vm.cursos.value;
         }
 
         function getUsuario(data){

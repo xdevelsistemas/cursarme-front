@@ -2,12 +2,8 @@
   "cursos": {
     "label": "Filtro",
     "placeholder": "Selecione um Curso",
-    "value": "-1",
+    "value": "123",
     "list": [
-      {
-        "id": "-1",
-        "text": "Todos os Cursos"
-      },
       {
         "id": "1",
         "text": "Biblioteconomia"
