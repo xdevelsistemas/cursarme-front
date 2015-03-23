@@ -10,13 +10,12 @@
             <select name="data"
                     required="{{params.required}}"
                     ng-required="params.required"
-                    ng-model="params.value"
-                    ng-options="list.text for list in params.list track by list.id">
+                    ng-model="params.value">
                 <option></option>
-                <!--<option ng-repeat="item in params.list"
+                <option ng-repeat="item in params.list"
                         value="{{item.id}}"
                         ng-bind="item.text">
-                </option>-->
+                </option>
             </select>
 
             <p ng-show="!fieldForm.data.$pristine &&

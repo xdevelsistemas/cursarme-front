@@ -3,8 +3,8 @@ define(['app'], function (app) {
 
         //Home
         $routeProvider.when('/', {
-            //redirectTo: '/mensagens'
-            redirectTo: '/cursos'
+            redirectTo: '/mensagens'
+            //redirectTo: '/cursos'
         });
 
         //Mensagens

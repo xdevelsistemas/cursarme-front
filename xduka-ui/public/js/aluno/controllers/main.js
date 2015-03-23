@@ -31,27 +31,23 @@ define([
         //TODO passar $http para $resource
         //TODO colocar as requisições em promisse
         $http.get('/api/aluno/usuario')
-            .success(getUsuario)
+            .success(function(data){
+                vm.user = data;
+            })
             .error(function(erro){
                 console.log("Erro:\n" + erro + "\n");
             });
 
         $http.get('/api/aluno/cursos')
-            .success(getCursos)
+            .success(function(data){
+                vm.cursos = data.cursos;
+                //vm.curso = vm.cursos.value;
+            })
             .error(function(erro){
                 console.log("Erro:\n" + erro + "\n");
             });
 
         ////////////////
-
-        function getCursos(data){
-            vm.cursos = data.cursos;
-            //vm.curso = vm.cursos.value;
-        }
-
-        function getUsuario(data){
-            vm.user = data;
-        }
 
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
