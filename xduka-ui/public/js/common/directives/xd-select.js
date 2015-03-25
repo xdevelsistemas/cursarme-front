@@ -16,21 +16,18 @@ define([
                 return {
                     restrict: "E",
                     replace: true,
+                    scope: {params: '=params'},
                     templateUrl: 'html/common/xd-select.html',
-                    link: link,
-                    scope: {
-                        //params: '='
-                        cursos: '=xDados'
-                    }
+                    link: link
                 };
 
                 function link(scope, element, attributes) {
-                    scope.cursos._recompile = _recompile;
+                    //scope.params._recompile = _recompile;
                     _recompile();
                     function _recompile() {
-                        console.log (scope.cursos);
                         $timeout(function () {
-                            var pr = scope.cursos;
+                            console.log(scope.params);
+                            var pr = scope.params;
                             element.find('select').select2('destroy');
                             element.find('select').select2({
                                 placeholder: pr.placeholder,
