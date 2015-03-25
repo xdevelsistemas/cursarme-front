@@ -8,12 +8,13 @@ define([
     controllers
         .controller('Aniversariantes', Aniversariantes);
 
-    Aniversariantes.$inject = ['$scope', '$http', 'breadCrumb'];
+    Aniversariantes.$inject = ['$scope', '$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function Aniversariantes($scope, $http, breadCrumb) {
+    function Aniversariantes($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            , aniverPromise = $resource('/api/aluno/aniversariantes').get().$promise;
 
         //console.log(breadCrumb);
 
@@ -21,11 +22,11 @@ define([
 
         vm.STR = modelStrings;
 
-        $http.get('/api/aluno/aniversariantes')
-            .success(function(data) {
+        aniverPromise
+            .then(function(data) {
                 vm.lista = data.lista;
             })
-            .error(function(statusTexto) {
+            .catch(function(statusTexto) {
                 console.log("Erro!\n" + statusTexto)
             });
 

@@ -1,6 +1,7 @@
 define([
     'angular',
     'angularRoute',
+    'angularResource',
     'angularSanitize',
     'uiUtils',
     'uiBootstrap',
@@ -17,6 +18,7 @@ define([
 
     return angular.module('app', [
         'ngRoute',
+        'ngResource',
         'ngSanitize',
         'ui.utils',
         'ui.bootstrap',

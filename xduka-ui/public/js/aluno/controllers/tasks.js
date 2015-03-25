@@ -8,29 +8,20 @@ define([
     controllers
         .controller('Tasks', Tasks);
 
-    Tasks.$inject = ['$scope', '$http', 'breadCrumb'];
+    Tasks.$inject = ['$scope', '$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function Tasks($scope, $http, breadCrumb) {
+    function Tasks($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            ,tarefasPromise = $resource('/api/aluno/tarefas').get().$promise;
 
         breadCrumb.title = 'Tarefas';
 
         vm.STR = modelStrings;
 
-        $http.get('/api/aluno/tarefas')
-            .success(function(data) {
-                vm.filter = $.extend({label: vm.STR.FILTER, placeholder: vm.STR.FILTER_BY_SUBJECT}, data.filter);
-                vm.tasks = data.tasks;
-
-            })
-            .error(function(statusTexto) {
-                console.log("Erro!\n" + statusTexto)
-            });
-
         //vm.sendData = sendData;
-        vm.selectFilter = selectFilter;
+        //vm.selectFilter = selectFilter;
 
         /*This is just an example*/
         window.doo = function () {
@@ -42,6 +33,17 @@ define([
         };
 
         ////////////////
+        tarefasPromise
+            .then(
+                function(data) {
+                    vm.filter = $.extend({label: vm.STR.FILTER, placeholder: vm.STR.FILTER_BY_SUBJECT}, data.filter);
+                    vm.tasks = data.tasks;
+
+                })
+            .catch(function(statusTexto) {
+                    console.log("Erro!\n" + statusTexto)
+                }
+            );
 
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');

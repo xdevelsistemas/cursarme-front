@@ -1,19 +1,19 @@
 {
   "cursos": {
-    "label": "Filtro",
+    "label": "Curso",
     "placeholder": "Selecione um Curso",
-    "value": "123",
+    "value": "2",
     "list": [
       {
         "id": "1",
         "text": "Biblioteconomia"
       },
       {
-        "id": "12",
+        "id": "2",
         "text": "Educação Física"
       },
       {
-        "id": "123",
+        "id": "3",
         "text": "Engenharia Civil"
       }
     ]

@@ -9,12 +9,14 @@ define([
     controllers
         .controller('Main', Main);
 
-    Main.$inject = ['$scope', '$http', 'breadCrumb'];
+    Main.$inject = ['$scope', '$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function Main($scope, $http, breadCrumb) {
+    function Main($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            , userPromise = $resource('/api/aluno/usuario').get().$promise
+            , cursosPromise = $resource('/api/aluno/cursos').get().$promise;
 
         vm.breadCrumb = breadCrumb;
 
@@ -30,22 +32,28 @@ define([
 
         //TODO passar $http para $resource
         //TODO colocar as requisições em promisse
-        $http.get('/api/aluno/usuario')
-            .success(function(data){
-                vm.user = data;
-            })
-            .error(function(erro){
-                console.log("Erro:\n" + erro + "\n");
-            });
 
-        $http.get('/api/aluno/cursos')
-            .success(function(data){
-                vm.cursos = data.cursos;
-                //vm.curso = vm.cursos.value;
-            })
-            .error(function(erro){
-                console.log("Erro:\n" + erro + "\n");
-            });
+        userPromise.
+            then(
+                function (data) {
+                    vm.user = data;
+                })
+            .catch(
+                function (erro) {
+                    console.log("Erro:\n" + erro + "\n");
+                }
+            );
+
+        cursosPromise
+            .then(
+                function (data) {
+                    vm.cursos = data.cursos;
+                    //vm.curso = vm.cursos.value;
+                })
+            .catch(function (erro) {
+                    console.log("Erro:\n" + erro + "\n");
+                }
+            );
 
         ////////////////
 

@@ -9,12 +9,13 @@ define([
     controllers
         .controller('EditarPerfil', EditarPerfil);
 
-    EditarPerfil.$inject = ['$scope', '$http', 'breadCrumb'];
+    EditarPerfil.$inject = ['$scope', '$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function EditarPerfil($scope, $http, breadCrumb) {
+    function EditarPerfil($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            , perfilPromise = $resource('/api/aluno/editar-perfil').get().$promise;
 
         breadCrumb.title = 'Editar Perfil';
 
@@ -39,8 +40,8 @@ define([
 
         angular.element(document.querySelector('#fileInput')).on('change', handleFileSelect);
 
-        $http.get('/api/aluno/editar-perfil')
-            .success(function(data){
+        perfilPromise
+            .then(function(data){
                 vm.password = {
                     current: {val: ''},
                     new: {val: ''},
@@ -53,7 +54,7 @@ define([
                     phone: {val: data.telefoneResidencial}
                 };
             })
-            .error(function(statusTexto){
+            .catch(function(statusTexto){
                 console.log("Erro!\n" + statusTexto)
             });
 
@@ -80,6 +81,8 @@ define([
         function isPhone(phone){
             return phone.length == 10;
         }
+
+        //TODO tratar os dados e enviar via promise tambem
 
         function sendInfo() {
             if (isEmail(vm.info.email.val) && isPhone(vm.info.phone.val) && isCel(vm.info.cel.val)) {

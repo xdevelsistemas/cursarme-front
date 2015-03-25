@@ -25,15 +25,17 @@ define([
                     //scope.params._recompile = _recompile;
                     _recompile();
                     function _recompile() {
-                        $timeout(function () {
-                            console.log(scope.params);
-                            var pr = scope.params;
-                            element.find('select').select2('destroy');
-                            element.find('select').select2({
-                                placeholder: pr.placeholder,
-                                width: '100%'
-                            });
-                        }, 1);
+                        scope.$watch('params', function(newVal) {
+                            if(newVal) {
+                                console.log(scope.params);
+                                var pr = scope.params;
+                                element.find('select').select2('destroy');
+                                element.find('select').select2({
+                                    placeholder: pr.placeholder,
+                                    width: '100%'
+                                });
+                            }
+                        }, true);
                     }
                 }
 
