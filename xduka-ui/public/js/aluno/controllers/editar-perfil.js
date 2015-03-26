@@ -40,13 +40,14 @@ define([
 
         angular.element(document.querySelector('#fileInput')).on('change', handleFileSelect);
 
+        vm.password = {
+            current: {val: ''},
+            new: {val: ''},
+            confirm: {val: ''}
+        };
+
         perfilPromise
             .then(function(data){
-                vm.password = {
-                    current: {val: ''},
-                    new: {val: ''},
-                    confirm: {val: ''}
-                };
                 vm.info = {
                     sharePic: {val: data.compartilharAniversario},
                     email: {val: data.email},
@@ -85,32 +86,57 @@ define([
         //TODO tratar os dados e enviar via promise tambem
 
         function sendInfo() {
-            if (isEmail(vm.info.email.val) && isPhone(vm.info.phone.val) && isCel(vm.info.cel.val)) {
-                //TODO reajustar e inserir a service 'User' criada
-                var dataInfo = {"info": vm.info},
-                    promisse = $resource('/api/aluno/editar-perfil', dataInfo).save().$promise;
+            //// Limpa os dados referente aos maios de contato do ususario
+            vm.info.email.err = "";
+            vm.info.phone.err = "";
+            vm.info.cel.err = "";
 
-                vm.info.email.err = "";
-                vm.info.phone.err = "";
-                vm.info.cel.err = "";
+            //// verifica se os campos sao validos e se os campo não estão vazios
+            if (isEmail(vm.info.email.val) && isPhone(vm.info.phone.val) && isCel(vm.info.cel.val) &&
+                (vm.info.email.val && vm.info.phone.val && vm.info.cel.val)) {
+
+                var dataInfo = {"info": vm.info},
+                    promisse = $resource('/api/aluno/editar-perfil').save({}, dataInfo).$promise;
 
                 promisse
-                    .then(function(){
+                    .then(function(data){
                         vm.info.successMessage = vm.STR.SUCESSO;
+                        console.log(data.status);
                     })
                     .catch(function(erro) {
-                        console.log("Erro!" + erro.statusTexto);
+                        console.log("Erro!\n" + erro.statusText + "\n");
                     });
             }else{
-                if (!isEmail(vm.info.email.val)) {
-                    vm.info.email.err = vm.STR.NOEMAIL;
+                //// Verifica se os campo não estão vazios
+                if (!vm.info.email.val || !vm.info.phone.val || !vm.info.cel.val) {
+                    if (!isEmail(vm.info.email.val)) {
+                        vm.info.email.err = vm.STR.REQUIRIDO;
+                    }else{
+                        vm.info.email.err = '';
+                    }
+                    if (!isPhone(vm.info.phone.val)) {
+                        vm.info.phone.err = vm.STR.REQUIRIDO;
+                    }else{
+                        vm.info.phone.err = '';
+                    }
+                    if (!isCel(vm.info.cel.val)) {
+                        vm.info.cel.err = vm.STR.REQUIRIDO;
+                    }else{
+                        vm.info.cel.err = '';
+                    }
+                }else{
+                    //// Verifica se os campos nao sao validos
+                    if (!isEmail(vm.info.email.val)) {
+                        vm.info.email.err = vm.STR.NOEMAIL;
+                    }
+                    if (!isPhone(vm.info.phone.val)) {
+                        vm.info.phone.err = vm.STR.NOPHONE;
+                    }
+                    if (!isCel(vm.info.cel.val)) {
+                        vm.info.cel.err = vm.STR.NOCEL;
+                    }
                 }
-                if (!isPhone(vm.info.phone.val)) {
-                    vm.info.phone.err = vm.STR.NOPHONE;
-                }
-                if (!isCel(vm.info.cel.val)) {
-                    vm.info.cel.err = vm.STR.NOCEL;
-                }
+                vm.info.successMessage = "";
             }
         }
 
@@ -120,13 +146,15 @@ define([
         }
 
         function sendSenha() {
-            if (isConfPw(vm.password.new.val, vm.password.confirm.val)) {
-                var dataPw = {"password": vm.password},
-                    promisse = $resource('/api/aluno/editar-perfil', dataPw).save().$promise;
+            //// Limpa as mensagens de erros referente as senhas
+            vm.password.current.err = "";
+            vm.password.new.err = "";
+            vm.password.confirm.err = "";
 
-                vm.password.current.err = "";
-                vm.password.new.err = "";
-                vm.password.confirm.err = "";
+            //// Verifica se as novas senhas batem e se não estão vazios
+            if (isConfPw(vm.password.new.val, vm.password.confirm.val) && (vm.password.current.val && vm.password.new.val && vm.password.confirm.val)) {
+                var dataPw = {"password": vm.password},
+                    promisse = $resource('/api/aluno/editar-perfil').save({}, dataPw).$promise;
 
                 promisse
                     .then(function () {
@@ -136,7 +164,26 @@ define([
                         console.log("Erro!" + erro.statusTexto);
                     });
             }else{
-                vm.password.confirm.err = vm.STR.NOCONFER;
+                //// Verifica se os campos estao vazios
+                if (!vm.password.current.val || !vm.password.new.val || !vm.password.confirm.val) {
+                    if (!vm.password.current.val) {
+                        vm.password.current.err = vm.STR.REQUIRIDO;
+                    }else{
+                        vm.password.current.err = '';
+                    }
+                    if (!vm.password.new.val) {
+                        vm.password.new.err = vm.STR.REQUIRIDO;
+                    }else{
+                        vm.password.new.err = '';
+                    }
+                    if (!vm.password.confirm.val) {
+                        vm.password.confirm.err = vm.STR.REQUIRIDO;
+                    }else{
+                        vm.password.confirm.err = '';
+                    }
+                }else{
+                    vm.password.confirm.err = vm.STR.NOCONFER;
+                }
                 vm.password.successMessagePw = "";
             }
         }
