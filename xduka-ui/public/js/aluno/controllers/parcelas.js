@@ -8,22 +8,23 @@ define([
     controllers
         .controller('Parcelas', Parcelas);
 
-    Parcelas.$inject = ['$scope', '$http', 'breadCrumb'];
+    Parcelas.$inject = ['$scope', '$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function Parcelas($scope, $http, breadCrumb) {
+    function Parcelas($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            , parcelasPromise = $resource('/api/aluno/parcelas').get().$promise;
 
         breadCrumb.title = 'Mensalidades';
 
         vm.STR = modelStrings;
 
-        $http.get('/api/aluno/parcelas')
-            .success(function(data) {
+        parcelasPromise
+            .then(function(data) {
                 vm.lista = data.lista
             })
-            .error(function(statusTexto) {
+            .catch(function(statusTexto) {
                 console.log("Erro!\n" + statusTexto)
             });
 

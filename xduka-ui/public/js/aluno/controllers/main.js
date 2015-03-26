@@ -28,6 +28,8 @@ define([
         vm.lang = 'pt-br';
         vm.title = 'Página Principal';
         vm.section = '';
+
+        vm.sendCurso = sendCurso;
         vm.sendData = sendData;
 
         //TODO passar $http para $resource
@@ -56,6 +58,11 @@ define([
             );
 
         ////////////////
+
+        function sendCurso() {
+            //var promise = $http.post('/api/aluno/curso-selecionado/:idCurso', {"idCurso": vm.curso.id});
+            console.log(vm.cursos.id);
+        }
 
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');

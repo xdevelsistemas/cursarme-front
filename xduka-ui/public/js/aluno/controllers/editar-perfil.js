@@ -86,8 +86,9 @@ define([
 
         function sendInfo() {
             if (isEmail(vm.info.email.val) && isPhone(vm.info.phone.val) && isCel(vm.info.cel.val)) {
+                //TODO reajustar e inserir a service 'User' criada
                 var dataInfo = {"info": vm.info},
-                    promisse = $http.post('/api/aluno/editar-perfil', dataInfo);
+                    promisse = $resource('/api/aluno/editar-perfil', dataInfo).save().$promise;
 
                 vm.info.email.err = "";
                 vm.info.phone.err = "";
@@ -121,7 +122,7 @@ define([
         function sendSenha() {
             if (isConfPw(vm.password.new.val, vm.password.confirm.val)) {
                 var dataPw = {"password": vm.password},
-                    promisse = $http.post('/api/aluno/editar-perfil', dataPw);
+                    promisse = $resource('/api/aluno/editar-perfil', dataPw).save().$promise;
 
                 vm.password.current.err = "";
                 vm.password.new.err = "";

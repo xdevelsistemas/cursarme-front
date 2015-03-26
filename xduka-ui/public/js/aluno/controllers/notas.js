@@ -8,24 +8,25 @@ define([
     controllers
         .controller('Notas', Notas);
 
-    Notas.$inject = ['$scope', '$http', 'breadCrumb'];
+    Notas.$inject = ['$scope', '$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function Notas($scope, $http, breadCrumb) {
+    function Notas($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            , notasPromise = $resource('/api/aluno/notas').get().$promise;
 
         breadCrumb.title = 'Notas e Avaliações';
 
         vm.STR = modelStrings;
 
-        $http.get('/api/aluno/notas')
-            .success(function(data) {
+        notasPromise
+            .then(function(data) {
                 vm.disciplinas = data.disciplinas;
                 vm.boletins = data.boletins;
 
             })
-            .error(function(statusTexto) {
+            .catch(function(statusTexto) {
                 console.log("Erro!\n" + statusTexto)
             });
 

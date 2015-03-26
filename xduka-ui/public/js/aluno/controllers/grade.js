@@ -8,22 +8,23 @@ define([
     controllers
         .controller('Grade', Grade);
 
-    Grade.$inject = ['$scope', '$http', 'breadCrumb'];
+    Grade.$inject = ['$scope', '$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function Grade($scope, $http, breadCrumb) {
+    function Grade($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            , gradePromise = $resource('/api/aluno/grade').get().$promise;
 
         breadCrumb.title = 'Grade Curricular';
 
         vm.STR = modelStrings;
 
-        $http.get('/api/aluno/grade')
-            .success(function(data) {
+        gradePromise
+            .then(function(data) {
                 vm.lista = data.lista;
             })
-            .error(function(statusText) {
+            .catch(function(statusText) {
                 console.log('Erro!\n' + statusText);
             });
 

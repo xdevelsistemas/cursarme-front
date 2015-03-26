@@ -8,30 +8,23 @@ define([
     controllers
         .controller('Messages', Messages);
 
-    Messages.$inject = ['$scope', '$http', 'breadCrumb'];
+    Messages.$inject = ['$scope', '$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function Messages($scope, $http, breadCrumb) {
+    function Messages($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            , msgPromise = $resource('/api/aluno/mensagens').get().$promise;
 
         breadCrumb.title = 'Mensagens';
 
         vm.STR = modelStrings;
 
-        $http.get('/api/aluno/usuario')
-            .success(function (data) {
-                vm.user = data;
-            })
-            .error(function (statusTexto) {
-                console.log("Erro!\n" + statusTexto);
-            });
-
-        $http.get('/api/aluno/mensagens')
-            .success(function(data) {
+        msgPromise
+            .then(function(data) {
                 vm.mensagens = data;
             })
-            .error(function(statusTexto) {
+            .catch(function(statusTexto) {
                 console.log("Erro");
             });
 
