@@ -15,7 +15,7 @@ define([], function () {
         NOCEL: 'Telefone celular inválido',
         NOEMAIL: 'Email inválido',
         NOPHONE: 'Telefone residencial inválido',
-        REQUIRIDO: 'Este     campo não pode ficar vazio',
+        REQUIRIDO: 'Este campo não pode ficar vazio',
         START_DATE: 'Data de início',
         SALVAR: 'Salvar',
         SUCESSO: 'Dados salvos com sucesso',

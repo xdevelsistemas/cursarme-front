@@ -10,11 +10,12 @@
             <select name="data"
                     required="{{params.required}}"
                     ng-required="params.required"
-                    ng-model="params.value"
-                    ng-change="">
+                    ng-model="params.value">
+                    <!--ng-change="">-->
                 <option></option>
                 <option ng-repeat="item in params.list"
                         value="{{item.id}}"
+                        ng-selected="{{params.value == item.id}}"
                         ng-bind="item.text">
                 </option>
             </select>
