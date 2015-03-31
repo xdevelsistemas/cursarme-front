@@ -10,10 +10,10 @@ define([
     controllers
         .controller('Main', Main);
 
-    Main.$inject = ['$scope', 'breadCrumb'];
+    Main.$inject = ['$scope', 'breadCrumb', 'cropService'];
 
     /* @ngInject */
-    function Main($scope, breadCrumb) {
+    function Main($scope, breadCrumb, cropService) {
         /* jshint validthis: true */
         var vm = this;
 
@@ -35,6 +35,17 @@ define([
 
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
+        };
+
+        vm.atualizaAvatar = atualizaAvatar;
+
+        function atualizaAvatar(){
+            vm.user.avatar.thumb = cropService.imgSalva;
+        };
+
+        vm.imgSalva = cropService.imgTemp;
+        function attImg(){
+            vm.imgSalva = cropService.imgTemp;
         }
 
     }

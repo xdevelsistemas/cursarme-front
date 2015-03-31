@@ -13,7 +13,8 @@ define([], function () {
         ATTACHMENT: 'Anexo',
         FOTO_PERFIL: 'Foto para perfil',
         ARQUIVO: 'Arquivo',
-        SALVAR: 'Salvar'
+        SALVAR: 'Salvar',
+        CORTAR: 'Cortar'
 
     };
 
