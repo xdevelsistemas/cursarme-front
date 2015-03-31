@@ -1,0 +1,21 @@
+{
+  "cursos": {
+    "label": "Curso",
+    "placeholder": "Selecione um Curso",
+    "value": "33",
+    "list": [
+      {
+        "id": "11",
+        "text": "Biblioteconomia"
+      },
+      {
+        "id": "22",
+        "text": "Educação Física"
+      },
+      {
+        "id": "33",
+        "text": "Engenharia Civil"
+      }
+    ]
+  }
+}

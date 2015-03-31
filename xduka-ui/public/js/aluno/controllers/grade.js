@@ -1,25 +1,33 @@
 define([
     './__module__',
-    '../../common/models/strings',
-    '../models/grade'
-], function (controllers, modelStrings, modelGrade) {
+    '../../common/models/strings'
+], function (controllers, modelStrings) {
 
     'use strict';
 
     controllers
         .controller('Grade', Grade);
 
-    Grade.$inject = ['$scope', 'breadCrumb'];
+    Grade.$inject = ['$scope', '$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function Grade($scope, breadCrumb) {
+    function Grade($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            , gradePromise = $resource('/api/aluno/grade').get().$promise;
 
         breadCrumb.title = 'Grade Curricular';
 
         vm.STR = modelStrings;
-        vm.lista = modelGrade.lista;
+
+        gradePromise
+            .then(function(data) {
+                vm.lista = data.lista;
+            })
+            .catch(function(statusText) {
+                console.log('Erro!\n' + statusText);
+            });
+
 
         vm.sendData = sendData;
 

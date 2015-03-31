@@ -1,27 +1,32 @@
 define([
     './__module__',
-    '../../common/models/strings',
-    '../../common/models/user',
-    '../models/messages'
-], function (controllers, modelStrings, modelUser, modelMessages) {
+    '../../common/models/strings'
+], function (controllers, modelStrings) {
 
     'use strict';
 
     controllers
         .controller('Messages', Messages);
 
-    Messages.$inject = ['$scope', 'breadCrumb'];
+    Messages.$inject = ['$scope', '$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function Messages($scope, breadCrumb) {
+    function Messages($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            , msgPromise = $resource('/api/aluno/mensagens').get().$promise;
 
         breadCrumb.title = 'Mensagens';
 
         vm.STR = modelStrings;
-        vm.user = modelUser;
-        vm.messages = modelMessages;
+
+        msgPromise
+            .then(function(data) {
+                vm.mensagens = data;
+            })
+            .catch(function(statusTexto) {
+                console.log("Erro");
+            });
 
         vm.sendData = sendData;
 
@@ -30,7 +35,6 @@ define([
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
         }
-
     }
 
 });

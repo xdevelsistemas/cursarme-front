@@ -21,12 +21,12 @@ define([], function () {
                 "text": "Mensalidades",
                 "iconClass": "entypo-credit-card",
                 "href": "#/parcelas"
-            },
+            }/*,
             {
                 "text": "Quadro de Horários",
                 "iconClass": "entypo-clock",
                 "href": "#/horarios"
-            },
+            }*/,
             {
                 "text": "Conteúdo Aplicado",
                 "iconClass": "entypo-check",
