@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/xdevelsistemas/xDuka",
   "authors": [
-    "clayton@xdevel.com.br <clayton@xdevel.com.br>"
+    "Clayton Santos da Silva <clayton@xdevel.com.br>",
+    "Douglas Bolis Lima <douglas@xdevel.com.br>",
+    "David Vilaça <david@xdevel.com.br>"
   ],
   "description": "ui do sistema xduka",
   "license": "MIT",
