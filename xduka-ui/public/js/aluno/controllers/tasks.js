@@ -1,29 +1,27 @@
 define([
     './__module__',
-    '../../common/models/strings',
-    '../models/tasks'
-], function (controllers, modelStrings, modelTasks) {
+    '../../common/models/strings'
+], function (controllers, modelStrings) {
 
     'use strict';
 
     controllers
         .controller('Tasks', Tasks);
 
-    Tasks.$inject = ['$scope', 'breadCrumb'];
+    Tasks.$inject = ['$scope', '$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function Tasks($scope, breadCrumb) {
+    function Tasks($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            ,tarefasPromise = $resource('/api/aluno/tarefas').get().$promise;
 
         breadCrumb.title = 'Tarefas';
 
         vm.STR = modelStrings;
-        vm.filter = modelTasks.filter;
-        vm.tasks = modelTasks.tasks;
 
         //vm.sendData = sendData;
-        vm.selectFilter = selectFilter;
+        //vm.selectFilter = selectFilter;
 
         /*This is just an example*/
         window.doo = function () {
@@ -35,6 +33,17 @@ define([
         };
 
         ////////////////
+        tarefasPromise
+            .then(
+                function(data) {
+                    vm.filter = $.extend({label: vm.STR.FILTER, placeholder: vm.STR.FILTER_BY_SUBJECT}, data.filter);
+                    vm.tasks = data.tasks;
+
+                })
+            .catch(function(statusTexto) {
+                    console.log("Erro!\n" + statusTexto)
+                }
+            );
 
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
@@ -43,7 +52,5 @@ define([
         function selectFilter() {
 
         }
-
     }
-
 });

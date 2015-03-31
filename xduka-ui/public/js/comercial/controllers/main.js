@@ -1,9 +1,8 @@
 define([
     './__module__',
     '../../common/models/strings',
-    '../../common/models/user',
     '../models/menu'
-], function (controllers, modelStrings, modelUser, modelMenu) {
+], function (controllers, modelStrings, modelMenu) {
 
     'use strict';
 
@@ -20,7 +19,6 @@ define([
         vm.breadCrumb = breadCrumb;
 
         vm.STR = modelStrings;
-        vm.user = modelUser;
         vm.menu = modelMenu;
 
         vm.appName = 'xDuka';
@@ -30,7 +28,17 @@ define([
 
         vm.sendData = sendData;
 
+        $http.get('/api/aluno/usuario')
+            .success(getUsuario)
+            .error(function(textError){
+                console.log("Erro:\n" + textError + "\n");
+            });
+
         ////////////////
+
+        function getUsuario(data) {
+            vm.user = data;
+        }
 
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');

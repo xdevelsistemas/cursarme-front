@@ -4,6 +4,7 @@ define(['app'], function (app) {
         //Home
         $routeProvider.when('/', {
             redirectTo: '/mensagens'
+            //redirectTo: '/cursos'
         });
 
         //Mensagens
@@ -34,6 +35,11 @@ define(['app'], function (app) {
         //conteudo
         $routeProvider.when('/conteudo', {
             templateUrl: 'html/aluno/conteudo.html'
+        });
+
+        //cursos
+        $routeProvider.when('/cursos', {
+            templateUrl: 'html/aluno/cursos.html'
         });
 
         //grade

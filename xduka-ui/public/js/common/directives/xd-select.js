@@ -16,25 +16,26 @@ define([
                 return {
                     restrict: "E",
                     replace: true,
+                    scope: {params: '=params'},
                     templateUrl: 'html/common/xd-select.html',
-                    link: link,
-                    scope: {
-                        params: '='
-                    }
+                    link: link
                 };
 
                 function link(scope, element, attributes) {
-                    scope.params._recompile = _recompile;
+                    //scope.params._recompile = _recompile;
                     _recompile();
                     function _recompile() {
-                        $timeout(function () {
-                            var pr = scope.params;
-                            element.find('select').select2('destroy');
-                            element.find('select').select2({
-                                placeholder: pr.placeholder,
-                                width: '100%'
-                            });
-                        }, 1);
+                        scope.$watch('params', function(newVal) {
+                            if(newVal) {
+                                console.log(scope.params);
+                                var pr = scope.params;
+                                element.find('select').select2('destroy');
+                                element.find('select').select2({
+                                    placeholder: pr.placeholder,
+                                    width: '100%'
+                                });
+                            }
+                        }, true);
                     }
                 }
 

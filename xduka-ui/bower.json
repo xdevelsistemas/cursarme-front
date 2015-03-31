@@ -35,5 +35,8 @@
     "lib",
     "test",
     "tests"
-  ]
+  ],
+  "resolutions": {
+    "angular": "1.2.26"
+  }
 }
