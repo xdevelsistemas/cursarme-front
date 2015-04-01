@@ -97,12 +97,7 @@
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <form role="form" class="form-horizontal form-groups-bordered">
 
-                            <ui-select ng-model="main.cursos.value" on-select="main.sendCurso($item, $model)" theme="select2" ng-disabled="disabled" title="{{main.cursos.placeholder}}">
-                                <ui-select-match placeholder="{{main.cursos.placeholder}}">{{$select.selected.text}}</ui-select-match>
-                                <ui-select-choices repeat="curso.id as curso in main.cursos.list | propsFilter: {text: $select.search, id: $select.search}">
-                                    <div ng-bind-html="curso.text | highlight: $select.search"></div>
-                                </ui-select-choices>
-                            </ui-select>
+                            <xd-select data-params="main.cursos" on-select="main.sendCurso($item, $model)"></xd-select>
 
                         </form>
                         <hr/>
