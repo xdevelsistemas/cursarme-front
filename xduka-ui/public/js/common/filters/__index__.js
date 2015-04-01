@@ -4,7 +4,7 @@
  * properly referenced in one of the module dependencies in the array.
  **/
 define([
-    './propsFilter',
+    './props-filter',
     './range'
 ], function () {
 });
