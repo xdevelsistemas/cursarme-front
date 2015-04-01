@@ -20,8 +20,9 @@ define([
 
         vm.STR = modelStrings;
 
-        //vm.sendData = sendData;
         //vm.selectFilter = selectFilter;
+        //vm.sendData = sendData;
+        vm.sendTask = sendTask;
 
         /*This is just an example*/
         window.doo = function () {
@@ -45,12 +46,16 @@ define([
                 }
             );
 
+        function selectFilter() {
+
+        }
+
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
         }
 
-        function selectFilter() {
-
+        function sendTask(item, model) {
+            console.log(item.id + " - " + item.text);
         }
     }
 });

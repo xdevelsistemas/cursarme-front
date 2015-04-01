@@ -32,11 +32,21 @@ define([
 
 
         vm.sendData = sendData;
+        vm.sendDisciplina = sendDisciplina;
+        vm.sendPeriodo = sendPeriodo;
 
         ////////////////
 
-        function sendData() {
-            console.log('>>>>>', 'Nothing sent!');
+        function sendData(item, model) {
+            console.log(item.id + " - " + item.text);
+        }
+
+        function sendDisciplina(item, model) {
+            console.log(item.id + " - " + item.text);
+        }
+
+        function sendPeriodo(item, model) {
+            console.log(item.id + " - " + item.text);
         }
 
     }

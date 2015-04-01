@@ -4,8 +4,38 @@
 
         <form role="form" class="form-horizontal form-groups-bordered">
 
-            <xd-select data-params="conteudo.filterPeriodo"></xd-select>
-            <xd-select data-params="conteudo.filterDisciplina"></xd-select>
+            <label ng-bind="conteudo.filterPeriodo.label"
+                   class="col-sm-3 control-label">
+            </label>
+            <ui-select name="data"
+                       ng-model="conteudo.filterPeriodo.value"
+                       on-select="conteudo.sendPeriodo($item, $model)"
+                       theme="select2"
+                       ng-disabled="disabled"
+                       title="{{conteudo.filterPeriodo.placeholder}}">
+                <ui-select-match placeholder="{{conteudo.filterPeriodo.placeholder}}">{{$select.selected.text}}</ui-select-match>
+                <ui-select-choices repeat="item.id as item in conteudo.filterPeriodo.list | propsFilter: {text: $select.search, id: $select.search}">
+                    <div ng-bind-html="item.text | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select><br>
+
+            <label ng-bind="conteudo.filterDisciplina.label"
+                   class="col-sm-3 control-label">
+            </label>
+            <ui-select name="data"
+                       ng-model="conteudo.filterDisciplina.value"
+                       on-select="conteudo.sendDisciplina($item, $model)"
+                       theme="select2"
+                       ng-disabled="disabled"
+                       title="{{conteudo.filterDisciplina.placeholder}}">
+                <ui-select-match placeholder="{{conteudo.filterDisciplina.placeholder}}">{{$select.selected.text}}</ui-select-match>
+                <ui-select-choices repeat="item.id as item in conteudo.filterDisciplina.list | propsFilter: {text: $select.search, id: $select.search}">
+                    <div ng-bind-html="item.text | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+
+            <!--<xd-select data-params="conteudo.filterPeriodo"></xd-select>
+            <xd-select data-params="conteudo.filterDisciplina"></xd-select>-->
 
         </form>
         <hr/>

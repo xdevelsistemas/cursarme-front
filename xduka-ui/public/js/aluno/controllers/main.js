@@ -29,6 +29,7 @@ define([
         vm.title = 'Página Principal';
         vm.section = '';
 
+        vm.onChange = '';
         vm.sendCurso = sendCurso;
         vm.sendData = sendData;
 
@@ -61,8 +62,11 @@ define([
 
         function sendCurso(item, model) {
             //var promise = $http.post('/api/aluno/curso-selecionado/:idCurso', {"idCurso": vm.curso.id});
-            console.log(item);
-            console.log(model);
+
+            if( vm.onChange !== item ) {
+                console.log(item.id + " - " + item.text);
+                vm.onChange = item;
+            }
         }
 
         function sendData() {
