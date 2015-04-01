@@ -14,7 +14,7 @@ define([
     function Aniversariantes($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
         var vm = this
-            , aniverPromise = $resource('/api/aluno/aniversariantes').get().$promise;
+            , aniverPromise = $resource('/api/aluno/aniversariantes/:id').get({id: service.id}).$promise;
 
         //console.log(breadCrumb);
 

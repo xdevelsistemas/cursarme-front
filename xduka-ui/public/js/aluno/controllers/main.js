@@ -59,11 +59,10 @@ define([
 
         ////////////////
 
-        function sendCurso() {
+        function sendCurso(item, model) {
             //var promise = $http.post('/api/aluno/curso-selecionado/:idCurso', {"idCurso": vm.curso.id});
-            if (vm.cursos.list.id == '1') {
-                console.log(vm.cursos.list.id);
-            }
+            console.log(item);
+            console.log(model);
         }
 
         function sendData() {

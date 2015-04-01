@@ -30,6 +30,7 @@ module.exports = function() {
 };
 
 function getAniversariantes(req, res) {
+    req.params.id
     res.json(aniversariantes);
 }
 
