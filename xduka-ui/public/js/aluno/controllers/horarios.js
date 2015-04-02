@@ -8,13 +8,13 @@ define([
     controllers
         .controller('Horarios', Horarios);
 
-    Horarios.$inject = ['$scope', '$resource', 'breadCrumb'];
+    Horarios.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
 
     /* @ngInject */
-    function Horarios($scope, $resource,breadCrumb) {
+    function Horarios($scope, $resource,breadCrumb, defineCurso) {
         /* jshint validthis: true */
         var vm = this
-            , horariosPromise = $resource('/api/aluno/horarios/:id').get({id: defineCurso.idCurso}).$promise;
+            , horariosPromise = $resource('/api/aluno/horarios/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
         breadCrumb.title = 'Quadro de Horários';
 

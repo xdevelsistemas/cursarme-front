@@ -8,13 +8,13 @@ define([
     controllers
         .controller('Aniversariantes', Aniversariantes);
 
-    Aniversariantes.$inject = ['$scope', '$resource', 'breadCrumb'];
+    Aniversariantes.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
 
     /* @ngInject */
-    function Aniversariantes($scope, $resource, breadCrumb) {
+    function Aniversariantes($scope, $resource, breadCrumb, defineCurso) {
         /* jshint validthis: true */
         var vm = this
-            , aniverPromise = $resource('/api/aluno/aniversariantes/:id').get({id: defineCurso.idCurso}).$promise;
+            , aniverPromise = $resource('/api/aluno/aniversariantes/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
         //console.log(breadCrumb);
 

@@ -9,14 +9,13 @@ define([
     controllers
         .controller('Main', Main);
 
-    Main.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
+    Main.$inject = ['$scope', '$resource', '$timeout','$route','breadCrumb', 'defineCurso'];
 
     /* @ngInject */
-    function Main($scope, $resource, breadCrumb, defineCurso) {
+    function Main($scope, $resource, $timeout, $route, breadCrumb, defineCurso) {
         /* jshint validthis: true */
         var vm = this
-            , userPromise = $resource('/api/aluno/usuario').get().$promise
-            , cursosPromise = $resource('/api/aluno/cursos').get().$promise;
+            , infoUserPromise = $resource('/api/aluno/infoUsuario').get().$promise;
 
         vm.breadCrumb = breadCrumb;
 
@@ -33,28 +32,16 @@ define([
         vm.sendCurso = sendCurso;
         vm.sendData = sendData;
 
-        //TODO passar $http para $resource
-        //TODO colocar as requisições em promisse
-
-        userPromise.
+        infoUserPromise.
             then(
                 function (data) {
-                    vm.user = data;
+                    vm.user = data.usuario;
+                    vm.cursos = data.cursos.cursos;
+                    defineCurso.setIdCurso(vm.cursos.value);
                 })
             .catch(
                 function (erro) {
-                    console.log("Erro:\n" + erro + "\n");
-                }
-            );
-
-        cursosPromise
-            .then(
-                function (data) {
-                    vm.cursos = data.cursos;
-                    //vm.curso = vm.cursos.value;
-                })
-            .catch(function (erro) {
-                    console.log("Erro:\n" + erro + "\n");
+                    console.log("Erro:\n" + erro.data + "\n");
                 }
             );
 
@@ -64,8 +51,12 @@ define([
             //var promise = $http.post('/api/aluno/curso-selecionado/:idCurso', {"idCurso": vm.curso.id});
 
             if( vm.onChange !== item ) {
-                defineCurso.setIdCurso(model);
                 vm.onChange = item;
+                defineCurso.setIdCurso(model);
+
+                $timeout(function () {
+                    $route.reload();
+                }, 0); // 0 ms delay to reload the page.
             }
         }
 

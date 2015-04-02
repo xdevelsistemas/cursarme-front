@@ -15,31 +15,26 @@ module.exports = function() {
 
     controller.showAniversariantes = getAniversariantes;
     controller.showConteudo = getConteudo;
-    controller.showCursos = getCursos;
     controller.showEditarPerfil = getEditarPerfil;
     controller.putEditarPerfil = putEditarPerfil;
     controller.showGrade = getGrade;
     controller.showHorarios = getHorarios;
+    controller.showInfoUsuario = getInfoUsuario;
     controller.showMessages = getMessages;
     controller.showNotas = getNotas;
     controller.showParcelas = getParcelas;
     controller.showTarefas = getTarefas;
-    controller.showUsuario = getUsuario;
 
     return controller;
 };
 
 function getAniversariantes(req, res) {
-    req.params.id
+    req.params.id;
     res.json(aniversariantes);
 }
 
 function getConteudo(req, res) {
     res.json(conteudo);
-}
-
-function getCursos(req, res) {
-    res.json(cursos);
 }
 
 function getEditarPerfil(req, res) {
@@ -48,7 +43,7 @@ function getEditarPerfil(req, res) {
 
 function putEditarPerfil(req, res) {
     //res.json(req.body);
-    console.log(req.body);
+    //console.log(req.body);
     res.json({"status": "ok"});
 }
 
@@ -60,8 +55,22 @@ function getHorarios(req, res) {
     res.json(horarios);
 }
 
+function getInfoUsuario(req, res) {
+    var infoUsuario = {
+        "cursos": cursos,
+        "usuario": usuario
+    };
+    res.json(infoUsuario);
+}
+
 function getMessages(req, res) {
-    res.json(mensagens);
+    var idCurso = req.params.id
+        , msg = mensagens.filter(function (msg) {
+            return msg.idCurso == idCurso;
+        })[0];
+    msg ?
+        res.json(msg) :
+        res.json({});
 }
 
 function getNotas(req, res) {
@@ -74,8 +83,4 @@ function getParcelas(req, res) {
 
 function getTarefas(req, res) {
     res.json(tarefas);
-}
-
-function getUsuario(req, res) {
-    res.json(usuario);
 }

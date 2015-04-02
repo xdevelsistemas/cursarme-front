@@ -8,13 +8,13 @@ define([
     controllers
         .controller('Conteudo', Conteudo);
 
-    Conteudo.$inject = ['$scope', '$resource', 'breadCrumb'];
+    Conteudo.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
 
     /* @ngInject */
-    function Conteudo($scope, $resource, breadCrumb) {
+    function Conteudo($scope, $resource, breadCrumb, defineCurso) {
         /* jshint validthis: true */
         var vm = this
-            , conteudoPromise = $resource('/api/aluno/conteudo/:id').get({id: defineCurso.idCurso}).$promise;
+            , conteudoPromise = $resource('/api/aluno/conteudo/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
         breadCrumb.title = 'Conteúdo Aplicado';
 
