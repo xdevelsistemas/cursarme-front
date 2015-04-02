@@ -8,13 +8,15 @@ define([
     controllers
         .controller('Messages', Messages);
 
-    Messages.$inject = ['$scope', '$resource', 'breadCrumb'];
+    Messages.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
 
     /* @ngInject */
-    function Messages($scope, $resource, breadCrumb) {
+    function Messages($scope, $resource, breadCrumb, defineCurso) {
         /* jshint validthis: true */
+
+        console.log(defineCurso.getIdCurso());
         var vm = this
-            , msgPromise = $resource('/api/aluno/mensagens').get().$promise;
+            , msgPromise = $resource('/api/aluno/mensagens/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
         breadCrumb.title = 'Mensagens';
 

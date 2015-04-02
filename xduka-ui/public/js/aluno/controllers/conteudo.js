@@ -14,7 +14,7 @@ define([
     function Conteudo($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
         var vm = this
-            , conteudoPromise = $resource('/api/aluno/conteudo').get().$promise;
+            , conteudoPromise = $resource('/api/aluno/conteudo/:id').get({id: defineCurso.idCurso}).$promise;
 
         breadCrumb.title = 'Conteúdo Aplicado';
 

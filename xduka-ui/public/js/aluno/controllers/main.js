@@ -9,10 +9,10 @@ define([
     controllers
         .controller('Main', Main);
 
-    Main.$inject = ['$scope', '$resource', 'breadCrumb'];
+    Main.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
 
     /* @ngInject */
-    function Main($scope, $resource, breadCrumb) {
+    function Main($scope, $resource, breadCrumb, defineCurso) {
         /* jshint validthis: true */
         var vm = this
             , userPromise = $resource('/api/aluno/usuario').get().$promise
@@ -64,7 +64,7 @@ define([
             //var promise = $http.post('/api/aluno/curso-selecionado/:idCurso', {"idCurso": vm.curso.id});
 
             if( vm.onChange !== item ) {
-                console.log(item.id + " - " + item.text);
+                defineCurso.setIdCurso(model);
                 vm.onChange = item;
             }
         }
@@ -74,5 +74,4 @@ define([
         }
 
     }
-
 });

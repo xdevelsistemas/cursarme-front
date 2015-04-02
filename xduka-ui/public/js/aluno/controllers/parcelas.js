@@ -14,7 +14,7 @@ define([
     function Parcelas($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
         var vm = this
-            , parcelasPromise = $resource('/api/aluno/parcelas').get().$promise;
+            , parcelasPromise = $resource('/api/aluno/parcelas/:id').get({id: defineCurso.idCurso}).$promise;
 
         breadCrumb.title = 'Mensalidades';
 

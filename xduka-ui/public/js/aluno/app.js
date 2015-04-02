@@ -32,6 +32,5 @@ define([
         'common.directives',
         'common.filters',
         'common.services'
-
     ]);
 });

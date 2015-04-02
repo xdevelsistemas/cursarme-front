@@ -1,11 +1,24 @@
 define(['./__module__', 'jquery'], function (services, $) {
     'use strict';
-    services.factory('defineCurso', defineCurso);
 
-    function defineCurso($scope){
-        $scope.idCurso = '';
-        $scope.path = '';
+    return services.factory('defineCurso', defineCurso);
 
-        //TODO implementar o algoritmo de pesquisa por id do curso
+
+    function defineCurso(){
+        var curso = {
+            getIdCurso: getIdCurso,
+            setIdCurso: setIdCurso
+        },
+        idCurso = '';
+
+        return curso;
+
+        function getIdCurso() {
+            return idCurso;
+        }
+
+        function setIdCurso(id) {
+            idCurso = id;
+        }
     }
 });

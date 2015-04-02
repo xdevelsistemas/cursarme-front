@@ -14,7 +14,7 @@ define([
     function Grade($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
         var vm = this
-            , gradePromise = $resource('/api/aluno/grade').get().$promise;
+            , gradePromise = $resource('/api/aluno/grade/:id').get({id: defineCurso.idCurso}).$promise;
 
         breadCrumb.title = 'Grade Curricular';
 

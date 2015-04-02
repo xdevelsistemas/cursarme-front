@@ -14,7 +14,7 @@ define([
     function Tasks($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
         var vm = this
-            ,tarefasPromise = $resource('/api/aluno/tarefas').get().$promise;
+            ,tarefasPromise = $resource('/api/aluno/tarefas/:id').get({id: defineCurso.idCurso}).$promise;
 
         breadCrumb.title = 'Tarefas';
 
