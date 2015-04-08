@@ -9,14 +9,13 @@ define([
     controllers
         .controller('Main', Main);
 
-    Main.$inject = ['$scope', '$resource', 'breadCrumb'];
+    Main.$inject = ['$scope', '$resource', '$timeout','$route','breadCrumb', 'defineCurso'];
 
     /* @ngInject */
-    function Main($scope, $resource, breadCrumb) {
+    function Main($scope, $resource, $timeout, $route, breadCrumb, defineCurso) {
         /* jshint validthis: true */
         var vm = this
-            , userPromise = $resource('/api/aluno/usuario').get().$promise
-            , cursosPromise = $resource('/api/aluno/cursos').get().$promise;
+            , infoUserPromise = $resource('/api/aluno/infoUsuario').get().$promise;
 
         vm.breadCrumb = breadCrumb;
 
@@ -29,40 +28,35 @@ define([
         vm.title = 'Página Principal';
         vm.section = '';
 
+        vm.onChange = '';
         vm.sendCurso = sendCurso;
         vm.sendData = sendData;
 
-        //TODO passar $http para $resource
-        //TODO colocar as requisições em promisse
-
-        userPromise.
+        infoUserPromise.
             then(
                 function (data) {
-                    vm.user = data;
+                    vm.user = data.usuario;
+                    vm.cursos = data.cursos.cursos;
+                    defineCurso.setIdCurso(vm.cursos.value);
                 })
             .catch(
                 function (erro) {
-                    console.log("Erro:\n" + erro + "\n");
-                }
-            );
-
-        cursosPromise
-            .then(
-                function (data) {
-                    vm.cursos = data.cursos;
-                    //vm.curso = vm.cursos.value;
-                })
-            .catch(function (erro) {
-                    console.log("Erro:\n" + erro + "\n");
+                    console.log("Erro:\n" + erro.data + "\n");
                 }
             );
 
         ////////////////
 
-        function sendCurso() {
+        function sendCurso(item, model) {
             //var promise = $http.post('/api/aluno/curso-selecionado/:idCurso', {"idCurso": vm.curso.id});
-            if (vm.cursos.list.id == '1') {
-                console.log(vm.cursos.list.id);
+
+            if( vm.onChange !== item ) {
+                vm.onChange = item;
+                defineCurso.setIdCurso(model);
+
+                $timeout(function () {
+                    $route.reload();
+                }, 0); // 0 ms delay to reload the page.
             }
         }
 
@@ -71,5 +65,4 @@ define([
         }
 
     }
-
 });

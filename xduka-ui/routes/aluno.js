@@ -3,16 +3,12 @@ module.exports = function (app, passport) {
     var controller = require('../controllers/aluno')();
 
     //aniversariantes
-    app.route('/api/aluno/aniversariantes')
+    app.route('/api/aluno/aniversariantes/:id')
         .get(controller.showAniversariantes);
 
     //conteudo
-    app.route('/api/aluno/conteudo')
+    app.route('/api/aluno/conteudo/:id')
         .get(controller.showConteudo);
-
-    //curso
-    app.route('/api/aluno/cursos')
-        .get(controller.showCursos);
 
     //editar-perfil
     app.route('/api/aluno/editar-perfil')
@@ -20,32 +16,32 @@ module.exports = function (app, passport) {
         .post(controller.putEditarPerfil);
 
     //grade
-    app.route('/api/aluno/grade')
+    app.route('/api/aluno/grade/:id')
         .get(controller.showGrade);
 
     //Horarios
-    app.route('/api/aluno/horarios')
+    app.route('/api/aluno/horarios/:id')
         .get(controller.showHorarios);
 
+    //Informações do usuario
+    app.route('/api/aluno/infoUsuario')
+        .get(controller.showInfoUsuario);
+
     //Mensagens
-    app.route('/api/aluno/mensagens')
+    app.route('/api/aluno/mensagens/:id')
         .get(controller.showMessages);
 
     //Notas
-    app.route('/api/aluno/notas')
+    app.route('/api/aluno/notas/:id')
         .get(controller.showNotas);
 
     //Parcelas
-    app.route('/api/aluno/parcelas')
+    app.route('/api/aluno/parcelas/:id')
         .get(controller.showParcelas);
 
     //Tarefas
-    app.route('/api/aluno/tarefas')
+    app.route('/api/aluno/tarefas/:id')
         .get(controller.showTarefas);
-
-    //Tarefas
-    app.route('/api/aluno/usuario')
-        .get(controller.showUsuario);
 
     return app;
 };

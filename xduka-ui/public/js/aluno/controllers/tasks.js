@@ -8,20 +8,21 @@ define([
     controllers
         .controller('Tasks', Tasks);
 
-    Tasks.$inject = ['$scope', '$resource', 'breadCrumb'];
+    Tasks.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
 
     /* @ngInject */
-    function Tasks($scope, $resource, breadCrumb) {
+    function Tasks($scope, $resource, breadCrumb, defineCurso) {
         /* jshint validthis: true */
         var vm = this
-            ,tarefasPromise = $resource('/api/aluno/tarefas').get().$promise;
+            ,tarefasPromise = $resource('/api/aluno/tarefas/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
         breadCrumb.title = 'Tarefas';
 
         vm.STR = modelStrings;
 
-        //vm.sendData = sendData;
         //vm.selectFilter = selectFilter;
+        //vm.sendData = sendData;
+        vm.sendTask = sendTask;
 
         /*This is just an example*/
         window.doo = function () {
@@ -40,17 +41,21 @@ define([
                     vm.tasks = data.tasks;
 
                 })
-            .catch(function(statusTexto) {
-                    console.log("Erro!\n" + statusTexto)
+            .catch(function(erro) {
+                    console.log("Erro!\n" + erro.data)
                 }
             );
+
+        function selectFilter() {
+
+        }
 
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
         }
 
-        function selectFilter() {
-
+        function sendTask(item, model) {
+            console.log(item.id + " - " + item.text);
         }
     }
 });

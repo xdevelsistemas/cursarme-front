@@ -8,13 +8,13 @@ define([
     controllers
         .controller('Notas', Notas);
 
-    Notas.$inject = ['$scope', '$resource', 'breadCrumb'];
+    Notas.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
 
     /* @ngInject */
-    function Notas($scope, $resource, breadCrumb) {
+    function Notas($scope, $resource, breadCrumb, defineCurso) {
         /* jshint validthis: true */
         var vm = this
-            , notasPromise = $resource('/api/aluno/notas').get().$promise;
+            , notasPromise = $resource('/api/aluno/notas/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
         breadCrumb.title = 'Notas e Avaliações';
 

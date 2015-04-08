@@ -2,7 +2,7 @@
   "cursos": {
     "label": "Curso",
     "placeholder": "Selecione um Curso",
-    "value": "33",
+    "value": "11",
     "list": [
       {
         "id": "11",
@@ -14,7 +14,11 @@
       },
       {
         "id": "33",
-        "text": "Engenharia Civil"
+        "text": "Mecânica"
+      },
+      {
+        "id": "44",
+        "text": "Pedagogia"
       }
     ]
   }

@@ -8,13 +8,13 @@ define([
     controllers
         .controller('Parcelas', Parcelas);
 
-    Parcelas.$inject = ['$scope', '$resource', 'breadCrumb'];
+    Parcelas.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
 
     /* @ngInject */
-    function Parcelas($scope, $resource, breadCrumb) {
+    function Parcelas($scope, $resource, breadCrumb, defineCurso) {
         /* jshint validthis: true */
         var vm = this
-            , parcelasPromise = $resource('/api/aluno/parcelas').get().$promise;
+            , parcelasPromise = $resource('/api/aluno/parcelas/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
         breadCrumb.title = 'Mensalidades';
 

@@ -8,13 +8,13 @@ define([
     controllers
         .controller('Conteudo', Conteudo);
 
-    Conteudo.$inject = ['$scope', '$resource', 'breadCrumb'];
+    Conteudo.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
 
     /* @ngInject */
-    function Conteudo($scope, $resource, breadCrumb) {
+    function Conteudo($scope, $resource, breadCrumb, defineCurso) {
         /* jshint validthis: true */
         var vm = this
-            , conteudoPromise = $resource('/api/aluno/conteudo').get().$promise;
+            , conteudoPromise = $resource('/api/aluno/conteudo/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
         breadCrumb.title = 'Conteúdo Aplicado';
 
@@ -32,11 +32,21 @@ define([
 
 
         vm.sendData = sendData;
+        vm.sendDisciplina = sendDisciplina;
+        vm.sendPeriodo = sendPeriodo;
 
         ////////////////
 
-        function sendData() {
-            console.log('>>>>>', 'Nothing sent!');
+        function sendData(item, model) {
+            console.log(item.id + " - " + item.text);
+        }
+
+        function sendDisciplina(item, model) {
+            console.log(item.id + " - " + item.text);
+        }
+
+        function sendPeriodo(item, model) {
+            console.log(item.id + " - " + item.text);
         }
 
     }

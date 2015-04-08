@@ -1,5 +1,7 @@
 *.iml
+.idea/*
+.idea/
 .idea
-node_modules
-public/lib
-.vagrant
+node_modules/
+public/lib/
+.vagrant/
