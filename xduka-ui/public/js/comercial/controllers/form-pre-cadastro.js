@@ -298,10 +298,10 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     $scope._model.curso.vagas.preenchidas = Math.floor(b * a / 100);
                 }, 1);
             };
-            $http.get('mock/comercial/info-aluno.json')
+            /*$http.get('mock/comercial/info-aluno.json')
                 .success(function (data) {
                     $scope._model.aluno = $.extend(true, {}, data.object);
-                });
+                });*/
 
             // ==== FORM DATA ==== //
 

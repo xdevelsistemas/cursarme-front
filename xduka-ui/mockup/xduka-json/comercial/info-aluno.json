@@ -1,0 +1,57 @@
+{
+    "success": true,
+    "object": {
+        "label": "Informações do Aluno",
+        "name": "aluno",
+        "nome": {
+            "label": "Nome",
+            "type": "text",
+            "name": "nome",
+            "help": "Campo obrigatório",
+            "required": true
+        },
+        "endereco": {
+            "label": "Edereço",
+            "type": "text",
+            "name": "endereco",
+            "help": "Campo obrigatório",
+            "required": true
+        },
+        "tipo_telefone": {
+            "label": "Tipo de telefone",
+            "type": "select",
+            "name": "tipo_telefone",
+            "help": "Campo obrigatório",
+            "placeholder": "Selecione uma opção",
+            "required": true,
+            "list": [
+                {
+                    "id": "1",
+                    "text": "Residencial"
+                },
+                {
+                    "id": "2",
+                    "text": "Comercial"
+                },
+                {
+                    "id": "3",
+                    "text": "Celular"
+                }
+            ]
+        },
+        "telefone": {
+            "label": "Telefone",
+            "type": "text",
+            "name": "telefone",
+            "help": "Campo obrigatório",
+            "required": true
+        },
+        "email": {
+            "label": "Email",
+            "type": "text",
+            "name": "email",
+            "help": "Campo obrigatório",
+            "required": true
+        }
+    }
+}
