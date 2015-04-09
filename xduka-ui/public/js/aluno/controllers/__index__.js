@@ -14,6 +14,7 @@ define([
     './conteudo',
     './grade',
     './aniversariantes',
-    './editar-perfil'
+    './editar-perfil',
+    './xd-crop'
 ], function () {
 });

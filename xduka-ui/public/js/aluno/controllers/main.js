@@ -9,10 +9,10 @@ define([
     controllers
         .controller('Main', Main);
 
-    Main.$inject = ['$scope', '$resource', '$timeout','$route','breadCrumb', 'defineCurso'];
+    Main.$inject = ['$scope', '$resource', '$timeout','$route','breadCrumb', 'defineCurso', 'cropService'];
 
     /* @ngInject */
-    function Main($scope, $resource, $timeout, $route, breadCrumb, defineCurso) {
+    function Main($scope, $resource, $timeout, $route, breadCrumb, defineCurso, cropService) {
         /* jshint validthis: true */
         var vm = this
             , infoUserPromise = $resource('/api/aluno/infoUsuario').get().$promise;
@@ -62,6 +62,17 @@ define([
 
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
+        };
+
+        vm.atualizaAvatar = atualizaAvatar;
+
+        function atualizaAvatar(){
+            vm.user.avatar.thumb = cropService.imgSalva;
+        };
+
+        vm.imgSalva = cropService.imgTemp;
+        function attImg(){
+            vm.imgSalva = cropService.imgTemp;
         }
 
     }

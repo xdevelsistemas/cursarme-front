@@ -64,6 +64,7 @@ module.exports = function (app, passport) {
         res.redirect('/login');
     });
 
+
     // USER JSON
     app.get('/json/user', function (req, res) {
         if (!!req.user) {

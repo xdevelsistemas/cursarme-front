@@ -4,6 +4,10 @@
  * properly referenced in one of the module dependencies in the array.
  **/
 define([
-    './app-version'
+    './app-version',
+    './common/xdModal',
+    './common/xd-bread-crumb',
+    './common/xd-panel-collapse',
+    './common/xd-main-menu'
 ], function () {
 });

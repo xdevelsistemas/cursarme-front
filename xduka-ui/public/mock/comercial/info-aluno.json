@@ -52,6 +52,34 @@
             "name": "email",
             "help": "Campo obrigatório",
             "required": true
+        },
+        "rg": {
+            "label": "RG",
+            "type": "text",
+            "name": "rg",
+            "help": "Campo obrigatório",
+            "required": true
+        },
+        "dataExp": {
+            "label": "Data Expedição",
+            "type": "date",
+            "name": "dataExp",
+            "help": "Campo obrigatório",
+            "required": true
+        },
+        "orgaoEmissor": {
+            "label": "Órgão Emissor",
+            "type": "text",
+            "name": "orgaoEmissor",
+            "help": "Campo obrigatório",
+            "required": true
+        },
+        "cpf": {
+            "label": "CPF",
+            "type": "text",
+            "name": "cpf",
+            "help": "Campo obrigatório",
+            "required": true
         }
     }
 }
