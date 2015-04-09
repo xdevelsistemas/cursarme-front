@@ -10,61 +10,10 @@
                 </div>
             </div>
             <div class="panel-body">
-                <form name="formFoto"
-                      class="form-horizontal">
-                    <div class="form-group">
-                        <label data-ng-bind="perfil.STR.ARQUIVO"
-                               class="col-sm-3
-                                      col-md-3 col-md-offset-1
-                                      control-label">
-                        </label>
+                <p>Foto atual:</p>
+                <img data-ng-src="{{main.user.avatar.thumb}}" alt="Teste" class="img-circle" width="150px" height="150px"/>
+                <a href="javascript:;" onclick="jQuery('#xdModal').modal('show', {backdrop: 'static'});" class="btn btn-green">Alterar foto</a>
 
-                        <div class="col-sm-8
-                                    col-md-6">
-                            <div data-provides="fileinput"
-                                 class="fileinput fileinput-new">
-                                <div class="input-group">
-                                    <div data-trigger="fileinput"
-                                         class="form-control uneditable-input">
-                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                        <span class="fileinput-filename"></span>
-                                    </div>
-                                    <span class="input-group-addon btn btn-default btn-file">
-                                        <span class="fileinput-new">Selecionar o Arquivo</span>
-                                        <span class="fileinput-exists">Alterar</span>
-                                        <input type="file" id="fileInput"/>
-                                    </span>
-                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists"
-                                       data-dismiss="fileinput">Excluir</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div data-collapse="!perfil.showCropArea"
-                             class="col-sm-11
-                                    col-md-9 col-md-offset-1">
-                            <div class="cropArea">
-                                <img-crop image="myImage"
-                                          result-image="myCroppedImage">
-                                </img-crop>
-                            </div>
-                        </div>
-                        <!--<div class="col-sm-4">
-                            <div>Cropped Image:</div>
-                            <div><img data-ng-src="{{myCroppedImage}}"/></div>
-                        </div>-->
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-8 col-sm-offset-3
-                                    col-md-6 col-md-offset-4">
-                            <button data-ng-disabled="!perfil.showCropArea"
-                                    data-ng-click="perfil.sendFoto()"
-                                    class="btn btn-lg btn-info btn-icon icon-left pull-right">
-                                <i class="entypo-check"></i>
-                                {{perfil.STR.SALVAR}}
-                            </button>
-                        </div>
-                    </div>
-                </form>
             </div>
         </div>
 
@@ -174,4 +123,5 @@
 
 
     </div>
+
 </div>

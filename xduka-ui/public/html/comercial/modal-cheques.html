@@ -1,40 +1,62 @@
 <ng-form name="formModalCheques"
-         novalidate>
+         novalidate
+        ng-controller="Main">
     <div class="modal-header">
         <h3 ng-bind="_model.label"
             class="modal-title"></h3>
     </div>
     <div class="modal-body">
 
-        <xd-field field="_model.banco"
-                  model="_novo_cheque.banco">
-        </xd-field>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="banco">Banco</label>
+                <select name="banco" id="banco" class="form-control" required>
+                    <option value="1">Caixa</option>
+                    <option value="2">Itaú</option>
+                    <option value="3">Banco do Brasil</option>
+                    <option value="4">Bradesco</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="agencia">Agência</label>
+                <input type="text" id="agencia" class="form-control" required/>
+            </div>
+            <div class="col-md-4">
+                <label for="conta">Conta</label>
+                <input type="text" id="conta" class="form-control" required/>
+            </div>
+        </div>
 
-        <xd-field field="_model.agencia"
-                  model="_novo_cheque.agencia">
-        </xd-field>
+        <div class="row">
+            <div class="col-md-8">
+                <label for="numero">Número</label>
+                <input type="text" id="numero" class="form-control" required/>
+            </div>
+            <div class="col-md-4">
+                <label for="dataCheque">Data</label>
+                <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" id="dataCheque" current-text="Hoje" clear-text="Limpar" close-text="Cancelar"/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+        </div>
 
-        <xd-field field="_model.conta"
-                  model="_novo_cheque.conta">
-        </xd-field>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="valor">Valor</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><b>R$</b></div>
+                    <input type="text" id="valor" class="form-control" required/>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <label for="titular">Nome do titular</label>
+                <input type="text" id="titular" class="form-control" required/>
+            </div>
+        </div>
 
-        <xd-field field="_model.numero"
-                  model="_novo_cheque.numero">
-        </xd-field>
-
-        <xd-field field="_model.data"
-                  model="_novo_cheque.data">
-        </xd-field>
-
-        <xd-field field="_model.valor"
-                  model="_novo_cheque.valor">
-        </xd-field>
-
-        <xd-field field="_model.titular"
-                  model="_novo_cheque.titular">
-        </xd-field>
-
-    </div>
     </div>
     <div class="modal-footer">
         <button ng-click="voltar()"
