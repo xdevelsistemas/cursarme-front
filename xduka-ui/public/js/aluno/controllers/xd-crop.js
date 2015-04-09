@@ -1,9 +1,8 @@
 define([
     './__module__',
     '../../common/models/strings',
-    '../models/editar-perfil',
     'jquery'
-], function (controllers, modelStrings, modelEditarPerfil, $) {
+], function (controllers, modelStrings, $) {
 
     'use strict';
 

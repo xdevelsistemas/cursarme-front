@@ -23,7 +23,7 @@ define([
         vm.menu = modelMenu;
 
         vm.appName = 'xDuka';
-        vm.area = 'Aluno';
+        vm.area = 'Comercial';
         vm.lang = 'pt-br';
         vm.title = 'Página Principal';
         vm.section = '';
