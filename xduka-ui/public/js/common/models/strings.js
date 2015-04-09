@@ -4,6 +4,7 @@ define([], function () {
         ABOUT: 'Assunto',
         ARQUIVO: 'Arquivo',
         ATTACHMENT: 'Anexo',
+        CORTAR: 'Cortar',
         DATE: 'Data',
         DOWNLOAD: 'Baixar',
         FILTER_BY_SUBJECT: 'Filtrar por disciplina',
