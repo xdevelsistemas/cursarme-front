@@ -56,6 +56,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 require('./routes/routes.js')(app, passport);
 require('./routes/areas.js')(app, passport);
 require('./routes/aluno.js')(app, passport);
+require('./routes/comercial.js')(app, passport);
 
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {
