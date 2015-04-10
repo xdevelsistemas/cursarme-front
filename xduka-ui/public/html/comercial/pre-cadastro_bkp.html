@@ -1,0 +1,168 @@
+<form ng-controller="FormPreCadastro"
+      ng-submit="sendForm()"
+      name="formScope"
+      novalidate
+      class="form-horizontal">
+
+    <!--INFORMAÇÕES DO ALUNO-->
+    <xd-panel-collapse title="_model.aluno.label">
+        <xd-field field="_model.aluno.nome"
+                  model="_data.aluno.nome">
+        </xd-field>
+        <xd-field field="_model.aluno.endereco"
+                  model="_data.aluno.endereco">
+        </xd-field>
+        <xd-field field="_model.aluno.tipo_telefone"
+                  model="_data.aluno.tipo_telefone"
+                  change="selectPhoneType">
+        </xd-field>
+        <xd-field field="_model.aluno.telefone"
+                  model="_data.aluno.telefone">
+        </xd-field>
+        <xd-field field="_model.aluno.email"
+                  model="_data.aluno.email">
+        </xd-field>
+        <xd-field field="_model.aluno.rg"
+                 model="_data.aluno.rg">
+        </xd-field>
+    </xd-panel-collapse>
+
+    <!--INFORMAÇÕES DO CURSO-->
+    <xd-panel-collapse title="_model.curso.label">
+        <xd-field field="_model.curso.unidade"
+                  model="_data.curso.unidade"
+                  change="getAreas">
+        </xd-field>
+        <div collapse="(!_data.curso.unidade)">
+            <xd-field field="_model.curso.area"
+                      model="_data.curso.area"
+                      id="f_curso_area"
+                      change="getCursos">
+            </xd-field>
+        </div>
+        <div collapse="(!_data.curso.area)">
+            <xd-field field="_model.curso.curso"
+                      model="_data.curso.curso"
+                      id="f_curso_curso"
+                      change="getVagas">
+            </xd-field>
+        </div>
+        <div id="precadastro-vagas"
+             collapse="(!_data.curso.curso)"
+             class="form-group">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-5">
+                <div ng-class="{'tile-red': _model.curso.vagas.isEnding()}"
+                     class="tile-stats">
+                    <div class="icon"><i class="entypo-users"></i></div>
+                    <div class="num" ng-bind="_model.curso.vagas.getDisponiveis()"></div>
+                    <h3 ng-bind="_model.curso.vagas.str.disponiveis"></h3>
+
+                    <p ng-bind-template="{{_model.curso.vagas.totais}} {{_model.curso.vagas.str.totais}}"></p>
+                </div>
+            </div>
+        </div>
+    </xd-panel-collapse>
+
+    <!--INFORMAÇÕES DE PAGAMENTO-->
+    <xd-panel-collapse title="_model.pagamento.label">
+        <xd-field field="_model.pagamento.entrada"
+                  model="_data.pagamento.entrada">
+        </xd-field>
+        <xd-field field="_model.pagamento.desconto"
+                  model="_data.pagamento.desconto">
+        </xd-field>
+        <xd-field field="_model.pagamento.forma"
+                  model="_data.pagamento.forma">
+        </xd-field>
+
+        <div collapse="_data.pagamento.forma != 'cheque'">
+            <div class="row form-group">
+                <label class="col-sm-3 control-label">
+                    Cheques
+                </label>
+
+                <div class="col-sm-5">
+                    <a ng-click="openModalCheque()"
+                       class="btn btn-default btn-icon icon-left btn-lg">
+                        Adicionar Cheques
+                        <i class="entypo-plus"></i>
+                    </a>
+                </div>
+            </div>
+            <xd-lista-cheques model="_data.pagamento.lista_cheques"></xd-lista-cheques>
+        </div>
+
+        </xd-field>
+        <xd-field field="_model.pagamento.parcelamento"
+                  model="_data.pagamento.parcelamento">
+        </xd-field>
+        <xd-field field="_model.pagamento.melhor_data"
+                  model="_data.pagamento.melhor_data">
+        </xd-field>
+
+        <ng-form name="fieldForm">
+            <div ng-class="{ 'has-error' : !fieldForm.data.$pristine &&
+                                    fieldForm.data.$invalid}"
+                 class="row form-group">
+                <label ng-bind="field.label"
+                       class="col-sm-3 control-label">
+                </label>
+
+                <div class="col-sm-5 input-group">
+                    <input ng-model="_data.pagamento.melhor_data"
+                           ng-click="_model.pagamento.melhor_data.open($event)"
+                           ng-required="required"
+                           required="required"
+                           name="data"
+                           type="text"
+                           disabled
+                           datepicker-popup="{{_model.pagamento.melhor_data.format}}"
+                           is-open="_model.pagamento.melhor_data.opened"
+                           min-date="_model.pagamento.melhor_data.min"
+                           close-text="Close"
+                           class="form-control"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default"
+                        ng-click="_model.pagamento.melhor_data.open($event)">
+                    <i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+                </div>
+            </div>
+            <p ng-show="!fieldForm.data.$pristine &&
+                        fieldForm.data.$invalid"
+               class="help-block" ng-bind="_model.pagamento.melhor_data.help">
+            </p>
+        </ng-form>
+
+
+        <xd-field field="_model.pagamento.observacoes"
+                  model="_data.pagamento.observacoes">
+        </xd-field>
+    </xd-panel-collapse>
+
+    <xd-panel-collapse title="_model.controle.label">
+        <xd-field field="_model.controle.numero_bloco"
+                  model="_data.controle.numero_bloco">
+        </xd-field>
+    </xd-panel-collapse>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <button ng-click="cleanForm()"
+                    class="btn btn-lg btn-danger">
+                <span class="glyphicon glyphicon-trash"></span>
+                Limpar
+            </button>
+
+            <button ng-disabled="formScope.$invalid"
+                    ng-click="sendForm()"
+                    class="btn btn-lg btn-success">
+                <span class="glyphicon glyphicon-ok"></span>
+                Salvar
+            </button>
+        </div>
+    </div>
+</form>

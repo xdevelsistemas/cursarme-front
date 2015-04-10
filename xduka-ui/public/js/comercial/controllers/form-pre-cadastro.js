@@ -194,6 +194,11 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     required: true
                 }
             };
+            $scope.formulariopc = {
+                email: {
+                    val: 'teste@teste'
+                }
+            };
 //            // ==== FORM DATA ==== //
 //
 //            $scope._novo_cheque = {};

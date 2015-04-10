@@ -16,7 +16,8 @@
                        ui-mask="{{mask}}"
                        name="{{name}}"
                        id="{{'input_'+name}}"
-                       ng-disabled="{{disable}}">
+                       ng-disabled="{{disable}}"
+                       data-validate="{{dValidate}}">
 
                 <p data-collapse="!model.err"
                    data-ng-bind="model.err"
