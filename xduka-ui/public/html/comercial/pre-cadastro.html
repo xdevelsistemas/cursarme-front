@@ -1,165 +1,523 @@
-<form ng-controller="FormPreCadastro"
-      ng-submit="sendForm()"
-      name="formScope"
-      novalidate
-      class="form-horizontal">
+<xd-panel-collapse title="'TESTE'">
+    <form action="" class="form-horizontal">
+       <div class="col-md-4">
+           <xd-input
+                   label="'Senha Atual'"
+                   placeholder="'Digite aqui a senha atual'"
+                   model="perfil.password.current"
+                   name="'password'"
+                   type="'password'"
+                   d-validate="'required'">
+           </xd-input>
+       </div>
+    </form>
+</xd-panel-collapse>
 
-    <!--INFORMAÇÕES DO ALUNO-->
-    <xd-panel-collapse title="_model.aluno.label">
-        <xd-field field="_model.aluno.nome"
-                  model="_data.aluno.nome">
-        </xd-field>
-        <xd-field field="_model.aluno.endereco"
-                  model="_data.aluno.endereco">
-        </xd-field>
-        <xd-field field="_model.aluno.tipo_telefone"
-                  model="_data.aluno.tipo_telefone"
-                  change="selectPhoneType">
-        </xd-field>
-        <xd-field field="_model.aluno.telefone"
-                  model="_data.aluno.telefone">
-        </xd-field>
-        <xd-field field="_model.aluno.email"
-                  model="_data.aluno.email">
-        </xd-field>
-    </xd-panel-collapse>
+<form id="teste" class="form-horizontal form-wizard validate" ng-controller="FormPreCadastro" action method="post" data-target="#step1">
 
-    <!--INFORMAÇÕES DO CURSO-->
-    <xd-panel-collapse title="_model.curso.label">
-        <xd-field field="_model.curso.unidade"
-                  model="_data.curso.unidade"
-                  change="getAreas">
-        </xd-field>
-        <div collapse="(!_data.curso.unidade)">
-            <xd-field field="_model.curso.area"
-                      model="_data.curso.area"
-                      id="f_curso_area"
-                      change="getCursos">
-            </xd-field>
-        </div>
-        <div collapse="(!_data.curso.area)">
-            <xd-field field="_model.curso.curso"
-                      model="_data.curso.curso"
-                      id="f_curso_curso"
-                      change="getVagas">
-            </xd-field>
-        </div>
-        <div id="precadastro-vagas"
-             collapse="(!_data.curso.curso)"
-             class="form-group">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-5">
-                <div ng-class="{'tile-red': _model.curso.vagas.isEnding()}"
-                     class="tile-stats">
-                    <div class="icon"><i class="entypo-users"></i></div>
-                    <div class="num" ng-bind="_model.curso.vagas.getDisponiveis()"></div>
-                    <h3 ng-bind="_model.curso.vagas.str.disponiveis"></h3>
-
-                    <p ng-bind-template="{{_model.curso.vagas.totais}} {{_model.curso.vagas.str.totais}}"></p>
-                </div>
-            </div>
-        </div>
-    </xd-panel-collapse>
-
-    <!--INFORMAÇÕES DE PAGAMENTO-->
-    <xd-panel-collapse title="_model.pagamento.label">
-        <xd-field field="_model.pagamento.entrada"
-                  model="_data.pagamento.entrada">
-        </xd-field>
-        <xd-field field="_model.pagamento.desconto"
-                  model="_data.pagamento.desconto">
-        </xd-field>
-        <xd-field field="_model.pagamento.forma"
-                  model="_data.pagamento.forma">
-        </xd-field>
-
-        <div collapse="_data.pagamento.forma != 'cheque'">
-            <div class="row form-group">
-                <label class="col-sm-3 control-label">
-                    Cheques
-                </label>
-
-                <div class="col-sm-5">
-                    <a ng-click="openModalCheque()"
-                       class="btn btn-default btn-icon icon-left btn-lg">
-                        Adicionar Cheques
-                        <i class="entypo-plus"></i>
-                    </a>
-                </div>
-            </div>
-            <xd-lista-cheques model="_data.pagamento.lista_cheques"></xd-lista-cheques>
-        </div>
-
-        </xd-field>
-        <xd-field field="_model.pagamento.parcelamento"
-                  model="_data.pagamento.parcelamento">
-        </xd-field>
-        <xd-field field="_model.pagamento.melhor_data"
-                  model="_data.pagamento.melhor_data">
-        </xd-field>
-
-        <ng-form name="fieldForm">
-            <div ng-class="{ 'has-error' : !fieldForm.data.$pristine &&
-                                    fieldForm.data.$invalid}"
-                 class="row form-group">
-                <label ng-bind="field.label"
-                       class="col-sm-3 control-label">
-                </label>
-
-                <div class="col-sm-5 input-group">
-                    <input ng-model="_data.pagamento.melhor_data"
-                           ng-click="_model.pagamento.melhor_data.open($event)"
-                           ng-required="required"
-                           required="required"
-                           name="data"
-                           type="text"
-                           disabled
-                           datepicker-popup="{{_model.pagamento.melhor_data.format}}"
-                           is-open="_model.pagamento.melhor_data.opened"
-                           min-date="_model.pagamento.melhor_data.min"
-                           close-text="Close"
-                           class="form-control"/>
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default"
-                        ng-click="_model.pagamento.melhor_data.open($event)">
-                    <i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-                </div>
-            </div>
-            <p ng-show="!fieldForm.data.$pristine &&
-                        fieldForm.data.$invalid"
-               class="help-block" ng-bind="_model.pagamento.melhor_data.help">
-            </p>
-        </ng-form>
-
-
-        <xd-field field="_model.pagamento.observacoes"
-                  model="_data.pagamento.observacoes">
-        </xd-field>
-    </xd-panel-collapse>
-
-    <xd-panel-collapse title="_model.controle.label">
-        <xd-field field="_model.controle.numero_bloco"
-                  model="_data.controle.numero_bloco">
-        </xd-field>
-    </xd-panel-collapse>
-
-    <hr/>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <button ng-click="cleanForm()"
-                    class="btn btn-lg btn-danger">
-                <span class="glyphicon glyphicon-trash"></span>
-                Limpar
-            </button>
-
-            <button ng-disabled="formScope.$invalid"
-                    ng-click="sendForm()"
-                    class="btn btn-lg btn-success">
-                <span class="glyphicon glyphicon-ok"></span>
-                Salvar
-            </button>
-        </div>
+    <div class="steps-progress">
+        <div class="progress-indicator" style="width: 0%"></div>
     </div>
+    <ul>
+        <li>
+            <a href="#step1" data-toggle="tab">
+                <span>1</span>
+                "Passo 1"
+            </a>
+        </li>
+        <li>
+            <a href="#step2" data-toggle="tab">
+                <span>2</span>
+                "Passo 2"
+            </a>
+        </li>
+        <li>
+            <a href="#step3" data-toggle="tab">
+                <span>3</span>
+                "Passo 3"
+            </a>
+        </li>
+    </ul>
+
+
+
+    <div class="tab-content">
+
+
+
+        <div class="tab-pane" id="step1">
+            <div class="col-md-12">
+                <!-- INFORMAÇÕES DO ALUNO -->
+                <xd-panel-collapse title="_model.aluno.label">
+                    <xd-input label="'CPF'" placeholder="'Digite o CPF'" name="'cpf'" type="'text'" d-validate="'required'" disable="false"></xd-input>
+                    <xd-input label="'RG'" placeholder="'Digite o RG'" name="'rg'" type="'text'" disable="true"></xd-input>
+
+                    <!--<div class="form-group has-feedback">-->
+                        <!--<div class="col-md-12">-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-md-7">-->
+                                    <!--&lt;!&ndash;<label for="cpf">CPF</label>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<input type="text" id="cpf" class="form-control" required autofocus/>&ndash;&gt;-->
+                                    <!--<xd-input-->
+                                            <!--label="'CPF'"-->
+                                            <!--placeholder="'Digite o CPF'"-->
+                                            <!--name="'cpf'"-->
+                                            <!--type="'text'">-->
+                                    <!--</xd-input>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-5">-->
+                                    <!--&lt;!&ndash;<label for="rg">RG</label>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<input type="text" id="rg" class="form-control" required/>&ndash;&gt;-->
+                                    <!--<xd-input-->
+                                            <!--label="'RG'"-->
+                                            <!--placeholder="'Digite o RG'"-->
+                                            <!--name="'rg'"-->
+                                            <!--type="'text'">-->
+                                    <!--</xd-input>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-md-12">-->
+                                    <!--<label for="nome">Nome</label>-->
+                                    <!--<input type="text" id="nome" class="form-control" required/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-md-8">-->
+                                    <!--<label for="cidade">Cidade</label>-->
+                                    <!--<input type="text" id="cidade" class="form-control" required placeholder="-" disabled/>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-4">-->
+                                    <!--<label for="cep">CEP</label>-->
+                                    <!--<input type="text" id="cep" class="form-control" required/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-md-8">-->
+                                    <!--<label for="telefone">Telefone</label>-->
+                                    <!--<input type="text" id="telefone" class="form-control" required/>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-4">-->
+                                    <!--<label for="tipo">Tipo</label>-->
+                                    <!--<select name="tipo_tel" id="tipo" class="form-control selectboxit" required>-->
+                                        <!--<optgroup label="Tipo de telefone">-->
+                                            <!--<option value="1">RESIDENCIAL</option>-->
+                                            <!--<option value="2">CELULAR</option>-->
+                                            <!--<option value="3">COMERCIAL</option>-->
+                                        <!--</optgroup>-->
+                                    <!--</select>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-md-12">-->
+                                    <!--<label for="email">E-mail</label>-->
+                                    <!--<input type="email" id="email" class="form-control" required/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </xd-panel-collapse>
+
+                <!-- INFORMAÇÕES DO CURSO -->
+                <xd-panel-collapse title="_model.curso.label">
+                    <div class="form-group has-feedback">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="unidade">Unidade</label>
+                                    <select name="unidade" id="unidade" class="form-control" required>
+                                        <option value="1">CARIACICA</option>
+                                        <option value="2">VILA VELHA</option>
+                                        <option value="3">SERRA</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="tipo_curso">Tipo de Curso</label>
+                                    <select name="tipo_curso" id="tipo_curso" class="form-control" required>
+                                        <option value="1">Área 00</option>
+                                        <option value="2">Área 01</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="curso">Curso</label>
+                                    <select name="curso" id="curso" class="form-control" required>
+                                        <option value="1">Curso01</option>
+                                        <option value="2">Curso02</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <div id="precadastro-vagas" class="form-group"><br>
+                                        <div class="col-sm-3"></div>
+                                        <div class="col-sm-5">
+                                            <!--ko foreach: preCadastro.cursos()-->
+                                            <!--ko if: codigo() === $root.preCadastro.filtro.codCurso()-->
+                                            <div data-bind="css: vagasPreenchidas()/(vagasTotais() == 0 ? 1 : vagasTotais()) >= 0.9 ? 'tile-red' : 'tile-gray'"
+                                                 class="tile-stats">
+                                                <div class="icon"><i class="entypo-users"></i></div>
+                                                <div class="num" data-bind="text: vagasTotais() - vagasPreenchidas()"></div>
+                                                <h3>Vagas disponíveis</h3>
+                                                <p><span data-bind="text: vagasTotais()"></span> vagas totais</p>
+                                            </div>
+                                            <!--/ko-->
+                                            <!--/ko-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xd-panel-collapse>
+
+                <!-- INFORMAÇÕES DE INSCRIÇÃO -->
+                <xd-panel-collapse title="_model.inscr.label">
+                    <div class="form-group has-feedback">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="inscr">Inscrição</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><b>R$</b></div>
+                                        <input type="text" id="inscr" class="form-control" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="desconto">Desconto</label>
+                                    <select name="desconto" id="desconto" class="form-control">
+                                        <option value="1">Desconto1</option>
+                                        <option value="2">Desconto2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="formaPagamento">Forma de pagamento</label>
+                                    <select name="forma_pagamento" id="formaPagamento" class="form-control" required>
+                                        <option value="1">Dinheiro</option>
+                                        <option value="2">Cheque</option>
+                                        <option value="3">Cartão de crédito</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <br/>
+                                    <button type="button" id="add_cheque" class="btn btn-lg btn-primary" ng-click="openModalCheque()">Adicionar Cheque</button>
+                                    <br/><br/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="qtdParcelas">Quantidade de parcelas</label>
+                                    <select name="quantidadeParcelas" id="qtdParcelas" class="form-control" required>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="vencimentoData">Melhor data de vencimento</label>
+                                    <select name="melhorData" id="vencimentoData" class="form-control" required>
+                                        <option value="1">5</option>
+                                        <option value="2">10</option>
+                                        <option value="3">15</option>
+                                        <option value="4">20</option>
+                                        <option value="5">25</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xd-panel-collapse>
+
+            </div>
+        </div>
+        <div class="tab-pane" id="step2">
+            <div class="col-md-12">
+                <!-- INNFORMAÇÕES COMPLEMENTARES DO ALUNO -->
+                <xd-panel-collapse title="_model.documentacao.label">
+                    <div class="form-group has-feedback">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="nome">Nome</label>
+                                    <input type="text" id="nome" class="form-control" required/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="rg">RG</label>
+                                    <input type="text" id="rg" class="form-control" required/>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="dataExp">Data Expedição</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control datepicker" data-format="dd/MM/yyyy" id="dataExp"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="orgaoEmissor">Órgão Emissor</label>
+                                    <input type="text" id="orgaoEmissor" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="tituloEleitor">Titulo Eleitor</label>
+                                    <input type="text" id="tituloEleitor" class="form-control"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="zona">Zona</label>
+                                    <input type="text" id="zona" class="form-control"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="secao">Seção</label>
+                                    <input type="text" id="secao" class="form-control"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="uf">UF</label>
+                                    <select name="uf" id="uf" class="form-control">
+                                        <option value="1">ES</option>
+                                        <option value="2">RJ</option>
+                                        <option value="3">MG</option>
+                                        <option value="4">SP</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="certidaoNasc">Certidão N C</label>
+                                    <input type="text" id="certidaoNasc" class="form-control"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="folha">Folha</label>
+                                    <input type="text" id="folha" class="form-control"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="livro">Livro</label>
+                                    <input type="text" id="livro" class="form-control"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="cartorio">Cartorio</label>
+                                    <input type="text" id="cartorio" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="certificadoReserv">Certificado Reservista</label>
+                                    <input type="text" id="certificadoReserv" class="form-control"/>
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="registro">Registro</label>
+                                    <input type="text" id="registro" class="form-control"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="uf2">UF</label>
+                                    <select name="uf" id="uf2" class="form-control">
+                                        <option value="1">ES</option>
+                                        <option value="2">RJ</option>
+                                        <option value="3">MG</option>
+                                        <option value="4">SP</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="categoria">Categoria</label>
+                                    <input type="text" id="categoria" class="form-control"/>
+                                </div>
+                                <div class="col-md-7">
+                                    <label for="cpf2">CPF</label>
+                                    <input type="text" id="cpf2" class="form-control"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="sexo">Sexo</label>
+                                    <select name="sexo" id="sexo" class="form-control">
+                                        <option value="1">F</option>
+                                        <option value="2">M</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="dataNasc">Data Nascimento</label>
+                                    <input type="text" id="dataNasc" class="form-control"/>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="raca">Raça</label>
+                                    <select name="raca" id="raca" class="form-control">
+                                        <option value="1">Pardo</option>
+                                        <option value="2">Negro</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="estadoCivil">Estado Civil</label>
+                                    <select name="estadoCivil" id="estadoCivil" class="form-control">
+                                        <option value="1">Solteiro</option>
+                                        <option value="2">Casado</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="nomePai">Pai</label>
+                                    <input type="text" id="nomePai" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="nomeMae">Mãe</label>
+                                    <input type="text" id="nomeMae" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="rua">Av/Rua</label>
+                                    <input type="text" id="rua" class="form-control"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="numEnd">N&compfn;</label>
+                                    <input type="text" id="numEnd" class="form-control"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="apt">Apt</label>
+                                    <input type="text" id="apt" class="form-control"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="cep2">CEP</label>
+                                    <input type="text" id="cep2" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="bairro">Bairro</label>
+                                    <input type="text" id="bairro" class="form-control"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="cidade2">Cidade</label>
+                                    <input type="text" id="cidade2" class="form-control"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="uf3">UF</label>
+                                    <select name="uf" id="uf3" class="form-control">
+                                        <option value="1">ES</option>
+                                        <option value="2">RJ</option>
+                                        <option value="3">MG</option>
+                                        <option value="4">SP</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="contato">Contato</label>
+                                    <input type="text" id="contato" class="contato form-control"/>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="tipoTel">Tipo</label>
+                                    <select name="tipoTel" id="tipoTel" class="form-control">
+                                        <option value="1">Telefone Residencial</option>
+                                        <option value="2">Telefone Celular</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="email2">E-mail</label>
+                                    <input type="text" id="email2" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="nacionalidade">Nacionalidade</label>
+                                    <input type="text" id="nacionalidade" class="form-control"/>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="naturalidade">Naturalidade</label>
+                                    <input type="text" id="naturalidade" class="form-control"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="uf4">UF</label>
+                                    <select name="uf4" id="uf4" class="form-control">
+                                        <option value="1">ES</option>
+                                        <option value="2">RJ</option>
+                                        <option value="3">SP</option>
+                                        <option value="4">MG</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xd-panel-collapse>
+
+                <xd-panel-collapse title="_model.documentacao.label2">
+                    <div class="form-group has-feedback">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="escolaEm">Escola em que estudou no Ensino Médio</label>
+                                    <input type="text" id="escolaEm" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="anoConclusao">Ano de Conclusão</label>
+                                    <input type="text" id="anoConclusao" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="cursoGraduacao">Curso de Graduação</label>
+                                    <input type="text" id="cursoGraduacao" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="anoConclusao2">Ano de Conclusão</label>
+                                    <input type="text" id="anoConclusao2" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="nomeInstituicao">Nome da instituição onde graduou</label>
+                                    <input type="text" id="nomeInstituicao" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xd-panel-collapse>
+
+            </div>
+        </div>
+        <div class="tab-pane" id="step3">
+            <div class="col-md-12">
+                <xd-field field="_model.aluno.telefone"
+                          model="_data.aluno.telefone">
+                </xd-field>
+            </div>
+        </div>
+
+
+        <ul class="pager wizard">
+            <li class="previous">
+                <a href="#" class="btn btn-default btn-lg disabled" ng-click="">
+                    Anterior
+                </a>
+            </li>
+            <li class="next">
+                <a href="#" class="btn btn-default btn-lg">
+                    Próximo
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
 </form>
