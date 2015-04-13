@@ -9,12 +9,16 @@ var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var SessionStore = require('connect-mongodb');
 
+var SessionStore = require('connect-mongodb');
 var app = express();
 
+var RedisStore = require('connect-redis')(session);
+
 // configuration ===============================================================
-var configDB = require('./config/database.js');
+var configDB = require('./config/database.js'),
+    configRedis = require('./config/redis.js');
+
 mongoose.connect(configDB.url); // connect to our database
 
 // view engine setup
@@ -30,11 +34,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// required for passport
-require('./config/passport')(passport); // pass passport for configuration
-
-
 app.use(session({
+        store: new RedisStore(configRedis),
+        cookie: {maxAge: (24 * 3600 * 1000 * 180)}, // 180 Days in ms
+        secret: 'ilovescotchscotchyscotchscotch'
+    })
+);
+
+/*app.use(session({
         secret: 'ilovescotchscotchyscotchscotch',
         store: new SessionStore({
             url: configDB.url,
@@ -42,14 +49,23 @@ app.use(session({
         }),
         cookie: { maxAge: 900000 }
     })
-);
+); // session secret*/
+
+// required for passport
+require('./config/passport')(passport); // pass passport for configuration
+
+app.use(passport.initialize());
+app.use(passport.session({
+    store: new SessionStore({
+        url: configDB.url,
+        maxAge: 300000
+    }),
+    cookie: { maxAge: 900000 } // expire session in 15 min or 900 seconds
+})); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
 // load our routes and pass in our app and fully configured passport
-
-app.use(passport.initialize());
-app.use(flash()); // use connect-flash for flash messages stored in session
-
 require('./routes/routes.js')(app, passport);
 require('./routes/areas.js')(app, passport);
 require('./routes/aluno.js')(app, passport);
