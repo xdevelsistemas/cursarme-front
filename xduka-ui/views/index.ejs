@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="lib/select2/select2-bootstrap.css">
 
     <!--NG-IMG-CROP-->
-    <link rel="stylesheet" type="text/css" href="/lib/ngImgCrop/compile/unminified/ng-img-crop.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/ng-img-crop-custom.css">
     <!--XDUKA-->
     <link rel="stylesheet" href="assets/xduka/css/skin.css">
 
@@ -67,6 +67,12 @@
         <ul id="main-menu" class="">
             <!-- add class "multiple-expanded" to allow multiple submenus to open -->
             <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+            <li ng-show="{{(main.user.cursos.length)-1}}">
+                <a href="javascript:;" onclick="jQuery('#xdModal').modal('show', {backdrop: 'static'});">
+                <i class="entypo-direction"></i>
+                    <span>Alterar Curso</span>
+                </a>
+            </li>
             <li ng-repeat="item in main.menu.list">
                 <a ng-href="{{item.href}}">
                     <i ng-class="item.iconClass"></i>
@@ -162,8 +168,85 @@
 
     </div>
 </div>
+<form name="formFoto"
+      class="form-horizontal">
+<xd-modal title="Alterar a foto de perfil" hidden="hidden" btn="Cancelar">
+    <div ng-controller="EditarPerfil as cortar">
+
+            <div class="form-group">
+
+                <div class="col-sm-12 left-aligned" style="overflow: hidden">
+
+                    <div class="input-group">
+                        <div class="form-control uneditable-input" data-trigger="fileinput">
+                            <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                            <span class="fileinput-filename">Selecione um arquivo de imagem (jpg, png, etc)</span>
+                        </div>
+                        <span class="input-group-addon btn btn-default btn-file">
+                            <span class="fileinput-new">Selecionar</span>
+                            <input name="fileInput" type="file" id="fileInput">
+                        </span>
+                    </div>
+
+                    <p class="help-block text-center">*Tamanho máximo do arquivo 10mb</p>
 
 
+
+                </div>
+
+                <div data-collapse="!cortar.showCropArea"
+                     class="col-sm-12 col-md-9 col-md-offset-1">
+                    <div class="cropArea">
+                        <img-crop image="myImage"
+                                  result-image="myCroppedImage">
+                        </img-crop>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12 text-center">
+                    <button data-ng-disabled="!cortar.showCropArea"
+                            class="btn btn-lg btn-info btn-icon icon-left pull-right"
+                            ng-click="cortar.tempFoto()"
+                            onclick="jQuery('#confirmPhoto').modal('show', {backdrop: 'static'});"
+                            data-dismiss="modal">
+                        <i class="entypo-check"></i>
+                        {{cortar.STR.CORTAR}}
+                    </button>
+                </div>
+            </div>
+
+    </div>
+</xd-modal>
+    <div aria-hidden="true" style="display: none;" class="modal fade" id="confirmPhoto" ng-controller="xdCrop as ft">
+        <div class="modal-dialog" onshow="ft.atualizar()">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Pré-vizualização</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="col-sm-12" onloadstart="ft.atualiza()">
+                        <div>Imagem cortada:</div>
+                        <div class="text-center"><img class="img-circle" data-ng-src="{{ft.atualizaImgTemp();ft.imgSv}}"/></div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-sm-6 text-center">
+                            <button type="button" class="btn btn-default btn-lg btn-icon icon-left pull-left" data-dismiss="modal" onclick="jQuery('#xdModal').modal('show', {backdrop: 'static'});"><i class="entypo-back"></i>Voltar</button>
+                        </div>
+                        <div class="col-sm-6 text-center">
+                            <button type="button" class="btn btn-info btn-lg btn-icon icon-left pull-right" data-dismiss="modal" data-ng-click="ft.sendFoto();main.atualizaAvatar();"><i class="entypo-check"></i>Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 <!-- Bottom Scripts -->
 <!--<script src="assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>-->
 <!--<script src="assets/js/jvectormap/jquery-jvectormap-europe-merc-en.js"></script>-->

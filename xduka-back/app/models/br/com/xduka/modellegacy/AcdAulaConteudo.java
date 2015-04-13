@@ -3,12 +3,14 @@ package models.br.com.xduka.modellegacy;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import java.sql.Timestamp;
 
 /**
  * Created by clayton on 04/12/14.
  */
 @Entity
+@IdClass(AcdAulaConteudoPK.class)
 @javax.persistence.Table(name = "acdAulaConteúdo", schema = "dbo", catalog = "xDuka")
 public class AcdAulaConteudo {
     private long aulaConteúdoId;

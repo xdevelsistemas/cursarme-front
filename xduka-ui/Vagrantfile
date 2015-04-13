@@ -10,10 +10,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       d.name = "mongodb"
     end
   end
-end  
-
-
-
-
-
-
+  config.vm.define "redis-env" do |v|
+    v.vm.provider "docker" do |d|
+      d.vagrant_vagrantfile = ENV['VAGRANT_MAIN_FILE']
+      d.vagrant_machine = "core-01"
+      d.image = "xdevelsistemas/debian-env:redis-env"
+      d.ports = ["6379:6379"]
+      d.name = "redis"
+    end
+  end
+end

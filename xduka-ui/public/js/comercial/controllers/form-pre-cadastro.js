@@ -118,6 +118,13 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     }
                 }
             };
+            $scope._model.inscr = {
+                "label": "Informações de Inscrição"
+            };
+            $scope._model.documentacao = {
+                "label": "Informações complementares do Aluno",
+                "label2": "Escolaridade"
+            };
             $scope._model.pagamento = {
                 label: "Informações de Pagamento",
                 name: "pagamento",
@@ -307,6 +314,12 @@ define(['./__module__', "jquery"], function (controllers, $) {
 
             $scope._novo_cheque = {};
             $scope.cleanForm();
+            $scope.tipoPagamento = false;
+            $scope.teste = function(){
+                $scope.tipoPagamento = true;
+            };
+
+
         }
     ]);
 });

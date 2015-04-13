@@ -9,13 +9,18 @@ define([
     controllers
         .controller('EditarPerfil', EditarPerfil);
 
-    EditarPerfil.$inject = ['$scope', '$resource', 'breadCrumb'];
+    EditarPerfil.$inject = ['$scope', '$resource', 'breadCrumb', 'cropService'];
 
     /* @ngInject */
-    function EditarPerfil($scope, $resource, breadCrumb) {
+    function EditarPerfil($scope, $resource, breadCrumb, cropService) {
         /* jshint validthis: true */
         var vm = this
             , perfilPromise = $resource('/api/aluno/editar-perfil').get().$promise;
+        
+        $scope.showModal = false;
+        $scope.toggleModal = function(){
+            $scope.showModal = !$scope.showModal;
+        };
 
         breadCrumb.title = 'Editar Perfil';
 
@@ -25,9 +30,12 @@ define([
         $scope.myCroppedImage = '';
 
         vm.showCropArea = false;
+        vm.showCroppedArea = false;
+
 
         var handleFileSelect = function (evt) {
             vm.showCropArea = true;
+            vm.showCroppedArea = true;
             var file = evt.currentTarget.files[0];
             var reader = new FileReader();
             reader.onload = function (evt) {
@@ -142,8 +150,21 @@ define([
 
         function sendFoto() {
             console.log($scope.myCroppedImage);
+            $scope.imgSalva = $scope.myCroppedImage;
+            console.log($scope.imgSalva);
             //window.open($scope.myCroppedImage, '_blank');
         }
+
+        vm.tempFoto = tempFoto;
+
+        function tempFoto() {
+            cropService.imgTemp = $scope.myCroppedImage;
+            vm.imgSv = cropService.imgTemp;
+        }
+
+        vm.url = 'testeaskldfsadnfasndfkl.png';
+
+
 
         function sendSenha() {
             //// Limpa as mensagens de erros referente as senhas
@@ -157,8 +178,9 @@ define([
                     promisse = $resource('/api/aluno/editar-perfil').save({}, dataPw).$promise;
 
                 promisse
-                    .then(function () {
+                    .then(function (data) {
                         vm.password.successMessagePw = vm.STR.SUCESSO;
+                        console.log(data.status);
                     })
                     .catch(function (erro) {
                         console.log("Erro!" + erro.statusTexto);

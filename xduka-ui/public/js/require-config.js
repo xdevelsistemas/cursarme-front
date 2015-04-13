@@ -3,7 +3,7 @@ define([], function () {
     var config = {
         paths: {
             'domReady': '../../lib/requirejs-domready/domReady',
-            'jquery': '../../lib/jquery/jquery',
+            'jquery': '../../lib/jquery/dist/jquery',
             'jqueryUi': '../../lib/jquery-ui/jquery-ui',
             'jqueryMaskedinput': '../../lib/jquery-maskedinput/dist/jquery.maskedinput',
             'bootstrap': '../../lib/bootstrap/dist/js/bootstrap',
