@@ -19,8 +19,9 @@ define([
                         label: '=',
                         mask: '=',
                         placeholder: '=',
+                        dValidate: '=',
                         disable: '=',
-                        dValidate: '='
+                        req: '='
                     }
                 };
 

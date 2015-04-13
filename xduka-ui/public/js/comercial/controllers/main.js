@@ -79,6 +79,8 @@ define([
         $scope.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         $scope.format = $scope.formats[0];
 
+        $scope.validaCpf = true;
+
     }
 
 
