@@ -16,10 +16,21 @@ define([
                 return {
                     restrict: "E",
                     replace: true,
-                    scope: {params: '=params', onChange:'=onChange' },
                     templateUrl: 'html/common/xd-select.html',
                     terminal: true,
                     priority: 1000,
+                    scope: {
+                        disabled: '=',
+                        name: '=',
+                        model: '=',
+                        onSelect: '=',
+                        placeholder: '=',
+                        title: '=',
+                        theme: '='
+                    }
+                };
+
+                    /*,
                     link: function(scope, elm, attrs) {
                         console.log(elm.find('select').select2());
                         elm.find('select').select2()
@@ -30,33 +41,33 @@ define([
 
 
 
-                        //scope.$watch('onChange', function(nVal) { elm.val(nVal); });
-                        //
-                        //
-                        //
-                        //elm.bind('change', function(event) {
-                        //    event.preventDefault();
-                        //    var currentValue = elm.val();
-                        //    if( scope.onChange !== currentValue ) {
-                        //        scope.$apply(function() {
-                        //            scope.onChange = currentValue;
-                        //        });
-                        //    }
-                        //    console.log("aqui");
-                        //});
+                        scope.$watch('onChange', function(nVal) { elm.val(nVal); });
+
+
+
+                        elm.bind('change', function(event) {
+                            event.preventDefault();
+                            var currentValue = elm.val();
+                            if( scope.onChange !== currentValue ) {
+                                scope.$apply(function() {
+                                    scope.onChange = currentValue;
+                                });
+                            }
+                            console.log("aqui");
+                        });
                     }
 
                 };
 
 
-                //function link(scope, element, attrs) {
-                //    element.removeAttr("xd-select"); //remove the attribute to avoid indefinite loop
-                //    element.removeAttr("data-xd-select"); //also remove the same attribute with data- prefix in case users specify data-common-things in the html
-                //
-                //    $compile(element)(scope);
-                //}
+                function link(scope, element, attrs) {
+                    element.removeAttr("xd-select"); //remove the attribute to avoid indefinite loop
+                    element.removeAttr("data-xd-select"); //also remove the same attribute with data- prefix in case users specify data-common-things in the html
 
-                /*function link(scope, element, attributes) {
+                    $compile(element)(scope);
+                }
+
+                function link(scope, element, attributes) {
                     //scope.params._recompile = _recompile;
                     _recompile();
                     function _recompile() {

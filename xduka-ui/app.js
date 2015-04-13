@@ -41,6 +41,7 @@ app.use(session({
     })
 );
 
+// session secret using mongodb
 /*app.use(session({
         secret: 'ilovescotchscotchyscotchscotch',
         store: new SessionStore({
@@ -49,7 +50,7 @@ app.use(session({
         }),
         cookie: { maxAge: 900000 }
     })
-); // session secret*/
+);*/
 
 // required for passport
 require('./config/passport')(passport); // pass passport for configuration
