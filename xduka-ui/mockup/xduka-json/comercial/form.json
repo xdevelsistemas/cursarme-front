@@ -1,0 +1,78 @@
+{
+    "obj": {
+        "children": [
+            {
+                "type": "node",
+                "name": "info_aluno",
+                "label": "Informações do Aluno",
+                "children": [
+                    {
+                        "label": "Nome",
+                        "name": "nome",
+                        "type": "name",
+                        "value": "",
+                        "placeholder": "",
+                        "tooltip": "",
+                        "required": true,
+                        "hidden": false
+                    },
+                    {
+                        "label": "Endereço",
+                        "name": "endereco",
+                        "type": "str",
+                        "value": "",
+                        "placeholder": "",
+                        "tooltip": "",
+                        "required": true,
+                        "hidden": false
+                    },
+                    {
+                        "label": "Tipo de Telefone",
+                        "name": "tipo_telefone",
+                        "type": "select2",
+                        "value": "",
+                        "placeholder": "",
+                        "tooltip": "",
+                        "required": true,
+                        "hidden": false,
+                        "search": true,
+                        "list": [
+                            {
+                                "id": "1",
+                                "text": "Residencial"
+                            },
+                            {
+                                "id": "2",
+                                "text": "Comercial"
+                            },
+                            {
+                                "id": "3",
+                                "text": "Celular"
+                            }
+                        ]
+                    },
+                    {
+                        "label": "Telefone",
+                        "name": "telefone",
+                        "type": "phone",
+                        "value": "",
+                        "placeholder": "",
+                        "tooltip": "",
+                        "required": true,
+                        "hidden": false
+                    },
+                    {
+                        "label": "Email",
+                        "name": "email",
+                        "type": "email",
+                        "value": "",
+                        "placeholder": "",
+                        "tooltip": "",
+                        "required": true,
+                        "hidden": false
+                    }
+                ]
+            }
+        ]
+    }
+}

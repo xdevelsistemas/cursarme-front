@@ -1,26 +1,34 @@
 define([
     './__module__',
-    '../../common/models/strings',
-    '../models/notas'
-], function (controllers, modelStrings, modelNotas) {
+    '../../common/models/strings'
+], function (controllers, modelStrings) {
 
     'use strict';
 
     controllers
         .controller('Notas', Notas);
 
-    Notas.$inject = ['$scope', 'breadCrumb'];
+    Notas.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
 
     /* @ngInject */
-    function Notas($scope, breadCrumb) {
+    function Notas($scope, $resource, breadCrumb, defineCurso) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            , notasPromise = $resource('/api/aluno/notas/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
         breadCrumb.title = 'Notas e Avaliações';
 
         vm.STR = modelStrings;
-        vm.disciplinas = modelNotas.disciplinas;
-        vm.boletins = modelNotas.boletins;
+
+        notasPromise
+            .then(function(data) {
+                vm.disciplinas = data.disciplinas;
+                vm.boletins = data.boletins;
+
+            })
+            .catch(function(statusTexto) {
+                console.log("Erro!\n" + statusTexto)
+            });
 
         vm.sendData = sendData;
 

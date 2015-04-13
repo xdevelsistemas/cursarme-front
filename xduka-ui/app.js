@@ -10,13 +10,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
+var SessionStore = require('connect-mongodb');
 var app = express();
 
-// configuration ===============================================================
-var configDB = require('./config/database.js');
-mongoose.connect(configDB.url); // connect to our database
+var RedisStore = require('connect-redis')(session);
 
-require('./config/passport')(passport); // pass passport for configuration
+// configuration ===============================================================
+var configDB = require('./config/database.js'),
+    configRedis = require('./config/redis.js');
+
+mongoose.connect(configDB.url); // connect to our database
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,16 +34,42 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+        store: new RedisStore(configRedis),
+        cookie: {maxAge: (24 * 3600 * 1000 * 180)}, // 180 Days in ms
+        secret: 'ilovescotchscotchyscotchscotch'
+    })
+);
+
+/*app.use(session({
+        secret: 'ilovescotchscotchyscotchscotch',
+        store: new SessionStore({
+            url: configDB.url,
+            maxAge: 300000
+        }),
+        cookie: { maxAge: 900000 }
+    })
+); // session secret*/
+
 // required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+require('./config/passport')(passport); // pass passport for configuration
+
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+app.use(passport.session({
+    store: new SessionStore({
+        url: configDB.url,
+        maxAge: 300000
+    }),
+    cookie: { maxAge: 900000 } // expire session in 15 min or 900 seconds
+})); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
 // load our routes and pass in our app and fully configured passport
 require('./routes/routes.js')(app, passport);
 require('./routes/areas.js')(app, passport);
+require('./routes/aluno.js')(app, passport);
+require('./routes/comercial.js')(app, passport);
 
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {

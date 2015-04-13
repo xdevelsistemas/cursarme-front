@@ -3,7 +3,23 @@
     <div class="col-sm-12 col-md-12 col-lg-12">
 
         <form name="form_filter" class="form-horizontal form-groups-bordered">
-            <xd-select data-params="tasks.filter"></xd-select>
+
+            <label ng-bind="tasks.filter.label"
+                   class="col-sm-3 control-label">
+            </label>
+            <ui-select name="data"
+                       ng-model="tasks.filter.value"
+                       on-select="tasks.sendTask($item, $model)"
+                       theme="select2"
+                       ng-disabled="disabled"
+                       title="{{tasks.filter.placeholder}}">
+                <ui-select-match placeholder="{{tasks.filter.placeholder}}">{{$select.selected.text}}</ui-select-match>
+                <ui-select-choices repeat="item.id as item in tasks.filter.list | propsFilter: {text: $select.search, id: $select.search}">
+                    <div ng-bind-html="item.text | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+
+            <!--<xd-select data-params="tasks.filter" ></xd-select>-->
         </form>
         <hr/>
 

@@ -3,7 +3,7 @@ define([], function () {
     var config = {
         paths: {
             'domReady': '../../lib/requirejs-domready/domReady',
-            'jquery': '../../lib/jquery/jquery',
+            'jquery': '../../lib/jquery/dist/jquery',
             'jqueryUi': '../../lib/jquery-ui/jquery-ui',
             'jqueryMaskedinput': '../../lib/jquery-maskedinput/dist/jquery.maskedinput',
             'bootstrap': '../../lib/bootstrap/dist/js/bootstrap',
@@ -11,6 +11,7 @@ define([], function () {
             'select2localePtBR': '../../lib/select2/select2_locale_pt-BR',
             'angular': '../../lib/angular/angular',
             'angularRoute': '../../lib/angular-route/angular-route',
+            'angularResource': '../../lib/angular-resource/angular-resource',
             'angularSanitize': '../../lib/angular-sanitize/angular-sanitize',
             "uiUtils": '../../lib/angular-ui-utils/ui-utils',
             "uiSelect": '../../lib/angular-ui-select/dist/select',
@@ -50,6 +51,9 @@ define([], function () {
             },
             'angularRoute': {
                 deps: ['angular']
+            },
+            'angularResource': {
+                deps: ['angular', 'angularRoute']
             },
             "uiUtils": {
                 deps: ['angular']

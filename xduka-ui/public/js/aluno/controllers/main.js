@@ -1,26 +1,25 @@
 define([
     './__module__',
     '../../common/models/strings',
-    '../../common/models/user',
     '../models/menu'
-], function (controllers, modelStrings, modelUser, modelMenu) {
+], function (controllers, modelStrings, modelMenu) {
 
     'use strict';
 
     controllers
         .controller('Main', Main);
 
-    Main.$inject = ['$scope', 'breadCrumb', 'cropService'];
+    Main.$inject = ['$scope', '$resource', '$timeout','$route','breadCrumb', 'defineCurso', 'cropService'];
 
     /* @ngInject */
-    function Main($scope, breadCrumb, cropService) {
+    function Main($scope, $resource, $timeout, $route, breadCrumb, defineCurso, cropService) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            , infoUserPromise = $resource('/api/aluno/infoUsuario').get().$promise;
 
         vm.breadCrumb = breadCrumb;
 
         vm.STR = modelStrings;
-        vm.user = modelUser;
         vm.menu = modelMenu;
 
         vm.appName = 'xDuka';
@@ -29,9 +28,37 @@ define([
         vm.title = 'Página Principal';
         vm.section = '';
 
+        vm.onChange = '';
+        vm.sendCurso = sendCurso;
         vm.sendData = sendData;
 
+        infoUserPromise.
+            then(
+                function (data) {
+                    vm.user = data.usuario;
+                    vm.cursos = data.cursos.cursos;
+                    defineCurso.setIdCurso(vm.cursos.value);
+                })
+            .catch(
+                function (erro) {
+                    console.log("Erro:\n" + erro.data + "\n");
+                }
+            );
+
         ////////////////
+
+        function sendCurso(item, model) {
+            //var promise = $http.post('/api/aluno/curso-selecionado/:idCurso', {"idCurso": vm.curso.id});
+
+            if( vm.onChange !== item ) {
+                vm.onChange = item;
+                defineCurso.setIdCurso(model);
+
+                $timeout(function () {
+                    $route.reload();
+                }, 0); // 0 ms delay to reload the page.
+            }
+        }
 
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
@@ -49,5 +76,4 @@ define([
         }
 
     }
-
 });

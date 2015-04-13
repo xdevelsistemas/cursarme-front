@@ -1,21 +1,25 @@
 define([], function () {
     //Strings
     return {
-        LOGOUT: 'Sair',
+        ABOUT: 'Assunto',
+        ARQUIVO: 'Arquivo',
+        ATTACHMENT: 'Anexo',
+        CORTAR: 'Cortar',
+        DATE: 'Data',
+        DOWNLOAD: 'Baixar',
         FILTER_BY_SUBJECT: 'Filtrar por disciplina',
         FILTER: 'Filtro',
-        DATE: 'Data',
-        START_DATE: 'Data de início',
         FINISH_DATE: 'Data final',
-        ABOUT: 'Assunto',
-        TEACHER: 'Professor',
-        DOWNLOAD: 'Baixar',
-        ATTACHMENT: 'Anexo',
         FOTO_PERFIL: 'Foto para perfil',
-        ARQUIVO: 'Arquivo',
+        LOGOUT: 'Sair',
+        NOCONFER: 'As novas senhas não batem!',
+        NOCEL: 'Telefone celular inválido',
+        NOEMAIL: 'Email inválido',
+        NOPHONE: 'Telefone residencial inválido',
+        REQUIRIDO: 'Este campo não pode ficar vazio',
+        START_DATE: 'Data de início',
         SALVAR: 'Salvar',
-        CORTAR: 'Cortar'
-
+        SUCESSO: 'Dados salvos com sucesso',
+        TEACHER: 'Professor'
     };
-
 });
