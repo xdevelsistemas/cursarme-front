@@ -265,7 +265,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
                             id: "3",
                             text: $scope._data.curso.unidade + " - Área 03"
                         }
-                    ]
+                    ];
                     $scope._data.curso.area = '';
                     $scope._data.curso.curso = '';
                     view.remake('#f_curso_area select');
@@ -289,7 +289,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
                             text: $scope._data.curso.unidade + ' - ' +
                                 $scope._data.curso.area + " - Curso 03"
                         }
-                    ]
+                    ];
                     $scope._data.curso.curso = '';
                     view.remake('#f_curso_curso select');
                 }, 1);

@@ -42,7 +42,9 @@
         "telefone": {
             "label": "Telefone",
             "type": "text",
+            "model": {"val": "", "err": ""},
             "name": "telefone",
+            "mask": "(99)9999-9999",
             "help": "Campo obrigatório",
             "required": true
         },
@@ -55,6 +57,7 @@
         },
         "rg": {
             "label": "RG",
+            "model": {"val": "", "err": ""},
             "type": "text",
             "name": "rg",
             "help": "Campo obrigatório",
@@ -76,6 +79,7 @@
         },
         "cpf": {
             "label": "CPF",
+            "model": {"val": "", "err": ""},
             "type": "text",
             "name": "cpf",
             "help": "Campo obrigatório",
