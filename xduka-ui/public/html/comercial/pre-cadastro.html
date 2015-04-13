@@ -49,14 +49,8 @@
             <div class="col-md-12">
                 <!-- INFORMAÇÕES DO ALUNO -->
                 <xd-panel-collapse title="_model.aluno.label">
-
-                    <xd-input
-                            label="'E-mail'"
-                            model="formulariopc.email"
-                            name="'email'"
-                            placeholder="'Digite seu e-mail'"
-                            type="'text'">
-                    </xd-input>
+                    <xd-input label="'CPF'" placeholder="'Digite o CPF'" name="'cpf'" type="'text'" d-validate="'required'" disable="false"></xd-input>
+                    <xd-input label="'RG'" placeholder="'Digite o RG'" name="'rg'" type="'text'" disable="true"></xd-input>
 
                     <!--<div class="form-group has-feedback">-->
                         <!--<div class="col-md-12">-->
