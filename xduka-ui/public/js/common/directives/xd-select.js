@@ -20,13 +20,8 @@ define([
                     terminal: true,
                     priority: 1000,
                     scope: {
-                        disabled: '=',
-                        name: '=',
-                        model: '=',
-                        onSelect: '=',
-                        placeholder: '=',
-                        title: '=',
-                        theme: '='
+                        //selected: '=',
+                        params: '='
                     }
                 };
 

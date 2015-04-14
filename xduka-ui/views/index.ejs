@@ -106,18 +106,8 @@
                             <label ng-bind="main.cursos.label"
                                    class="col-sm-3 control-label">
                             </label>
-                            <ui-select name="data"
-                                       ng-model="main.cursos.value"
-                                       on-select="main.sendCurso($item, $model)"
-                                       theme="select2"
-                                       ng-disabled="disabled"
-                                       title="{{main.cursos.placeholder}}">
-                                <ui-select-match placeholder="{{main.cursos.placeholder}}">{{$select.selected.text}}</ui-select-match>
-                                <ui-select-choices repeat="item.id as item in main.cursos.list | propsFilter: {text: $select.search, id: $select.search}">
-                                    <div ng-bind-html="item.text | highlight: $select.search"></div>
-                                </ui-select-choices>
-                            </ui-select>
-
+                            <xd-select data-params="main.curso" ></xd-select>
+                            <!--selected="main.sendCurso"-->
                         </form>
                         <hr/>
                         <br/>
