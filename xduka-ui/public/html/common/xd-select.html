@@ -11,6 +11,7 @@
             <ui-select name="data"
                        ng-model="params.value"
                        theme="select2"
+                       on-select="change($item, $model)"
                        ng-disabled="disabled">
                 <ui-select-match placeholder="params.placeholder">{{$select.selected.text}}</ui-select-match>
                 <ui-select-choices repeat="item.id as item in params.list | propsFilter: {text: $select.search, id: $select.search}">
