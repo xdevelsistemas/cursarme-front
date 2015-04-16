@@ -10,6 +10,7 @@ define([
         .controller('Main', Main);
 
     Main.$inject = ['$scope', 'breadCrumb'];
+    //Main.$inject = ['$scope', 'breadCrumb'];
 
     /* @ngInject */
     function Main($scope, breadCrumb) {
@@ -28,12 +29,12 @@ define([
 
         vm.sendData = sendData;
 
-        $http.get('/api/aluno/usuario')
+        /*$http.get('/api/aluno/usuario')
             .success(getUsuario)
             .error(function(textError){
                 console.log("Erro:\n" + textError + "\n");
             });
-
+*/
         ////////////////
 
         function getUsuario(data) {
