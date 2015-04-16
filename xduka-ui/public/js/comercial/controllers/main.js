@@ -16,6 +16,8 @@ define([
         /* jshint validthis: true */
         var vm = this;
 
+        console.log("I'm here(comercial)");
+
         vm.breadCrumb = breadCrumb;
 
         vm.STR = modelStrings;
@@ -25,6 +27,29 @@ define([
         vm.area = 'Comercial';
         vm.lang = 'pt-br';
         vm.section = '';
+        vm.curso = {
+            "label": "Curso",
+            "placeholder": "Selecione um Curso",
+            "value": "11",
+            "list": [
+                {
+                    "id": "11",
+                    "text": "Biblioteconomia"
+                },
+                {
+                    "id": "22",
+                    "text": "Educação Física"
+                },
+                {
+                    "id": "33",
+                    "text": "Mecânica"
+                },
+                {
+                    "id": "44",
+                    "text": "Pedagogia"
+                }
+            ]
+        };
 
         vm.sendData = sendData;
 

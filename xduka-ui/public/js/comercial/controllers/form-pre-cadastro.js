@@ -3,68 +3,12 @@ define(['./__module__', "jquery"], function (controllers, $) {
     controllers.controller('FormPreCadastro', [
         '$scope', '$timeout', '$modal', '$http', 'lista_cheques',
         function ($scope, $timeout, $modal, $http, lista_cheques) {
+            var vm = this;
+
             // ==== MODELOS ==== //
+
             $scope._model = {};
-            $scope._model.aluno = {
-                "label": "Foto",
-                "name": "foto",
-                "nome": {
-                    "label": "Nome",
-                    "type": "text",
-                    "name": "nome",
-                    "help": "Campo obrigatório",
-                    "required": true,
-                    "model": {"err": "", "val": ""}
-                },
-                "endereco": {
-                    "label": "Edereço",
-                    "type": "text",
-                    "name": "endereco",
-                    "help": "Campo obrigatório",
-                    "required": true,
-                    "model": {"err": "", "val": ""}
-                },
-                "tipo_telefone": {
-                    "label": "Tipo de telefone",
-                    "type": "select",
-                    "name": "tipo_telefone",
-                    "help": "Campo obrigatório",
-                    "placeholder": "Selecione uma opção",
-                    "required": true,
-                    "list": [
-                        {
-                            "id": "res",
-                            "text": "Residencial"
-                        },
-                        {
-                            "id": "com",
-                            "text": "Comercial"
-                        },
-                        {
-                            "id": "cel",
-                            "text": "Celular"
-                        }
-                    ],
-                    "model": {"err": "", "val": ""}
-                },
-                "telefone": {
-                    "label": "Telefone",
-                    "type": "text",
-                    "mask": "(99) 9999-9999",
-                    "name": "telefone",
-                    "help": "Campo obrigatório",
-                    "required": true,
-                    "model": {"err": "", "val": ""}
-                },
-                "email": {
-                    "label": "Email",
-                    "type": "email",
-                    "name": "email",
-                    "help": "Campo obrigatório",
-                    "required": true,
-                    "model": {"err": "", "val": ""}
-                }
-            };
+            $scope._model.aluno = {};
             $scope._model.curso = {
                 label: "Informações do Curso",
                 name: "curso",
@@ -105,10 +49,11 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     label: "Curso",
                     type: "select",
                     name: "curso",
+                    value: "1",
                     help: "Campo obrigatório",
                     placeholder: "Selecione uma opção",
                     required: true,
-                    list: [{id: 1, text: "Curso 00"}],
+                    list: [{id: 1, text: "Curso 01"}, {id: 2, text: "Curso 02"}],
                     model: {err: "", val: ""}
                 },
                 vagas: {
@@ -416,7 +361,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     view.remake('#f_curso_curso select');
                 }, 1);
             };
-            $scope.getVagas = function (view) {
+            vm.getVagas = function (view, view2) {
                 $timeout(function () {
                     function getRandomInt(min, max) {
                         return Math.floor(Math.random() * (max - min)) + min;

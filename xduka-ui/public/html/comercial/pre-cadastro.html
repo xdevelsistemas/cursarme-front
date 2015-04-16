@@ -1,4 +1,4 @@
-<form id="teste" class="form-horizontal form-wizard" ng-controller="FormPreCadastro" action method="post" data-target="#step1">
+<form id="teste" class="form-horizontal form-wizard" ng-controller="FormPreCadastro as pre" action method="post" data-target="#step1">
 
     <div class="steps-progress">
         <div class="progress-indicator" style="width: 0%"></div>
@@ -194,6 +194,7 @@
                                     <select name="curso" id="select_curso" class="form-control" ng-disabled="!validaCpf">
                                         <option ng-repeat="curso in _model.curso.curso.list" value="{{curso.id}}">{{curso.text}}</option>
                                     </select>
+
                                 </div>
                             </div>
 
@@ -207,7 +208,9 @@
                                         <div class="icon"><i class="entypo-users"></i></div>
                                         <div class="num" data-bind="text: vagasTotais() - vagasPreenchidas()"></div>
                                         <h3>Vagas disponíveis</h3>
-                                        <p><span data-bind="text: vagasTotais()"></span> vagas totais</p>
+                                        <p><span data-ng-bind="_model.curso.vagas.getDisponiveis()"></span></p>
+                                        <h3>Vagas totais</h3>
+                                        <p><span data-ng-bind="_model.curso.vagas.totais"></span></p>
                                     </div>
                                     <!--/ko-->
                                     <!--/ko-->
@@ -1019,5 +1022,6 @@
         </div>
 
     </div>
+    <xd-select data-params="_model.curso.curso" data-change="getVagas "></xd-select>
 
 </form>
