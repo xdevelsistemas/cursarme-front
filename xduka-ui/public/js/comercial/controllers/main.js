@@ -1,8 +1,9 @@
 define([
     './__module__',
     '../../common/models/strings',
+    '../../common/models/user',
     '../models/menu'
-], function (controllers, modelStrings, modelMenu) {
+], function (controllers, modelStrings, modelUser, modelMenu) {
 
     'use strict';
 
@@ -19,6 +20,7 @@ define([
         vm.breadCrumb = breadCrumb;
 
         vm.STR = modelStrings;
+        vm.user = modelUser;
         vm.menu = modelMenu;
 
         vm.appName = 'xDuka';
@@ -28,11 +30,11 @@ define([
 
         vm.sendData = sendData;
 
-        $http.get('/api/aluno/usuario')
-            .success(getUsuario)
-            .error(function(textError){
-                console.log("Erro:\n" + textError + "\n");
-            });
+        //$http.get('/api/aluno/usuario')
+        //    .success(getUsuario)
+        //    .error(function(textError){
+        //        console.log("Erro:\n" + textError + "\n");
+        //    });
 
         ////////////////
 
@@ -78,6 +80,8 @@ define([
 
         $scope.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         $scope.format = $scope.formats[0];
+
+        $scope.validaCpf = false;
 
     }
 

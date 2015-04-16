@@ -13,14 +13,16 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     "type": "text",
                     "name": "nome",
                     "help": "Campo obrigatório",
-                    "required": true
+                    "required": true,
+                    "model": {"err": "", "val": ""}
                 },
                 "endereco": {
                     "label": "Edereço",
                     "type": "text",
                     "name": "endereco",
                     "help": "Campo obrigatório",
-                    "required": true
+                    "required": true,
+                    "model": {"err": "", "val": ""}
                 },
                 "tipo_telefone": {
                     "label": "Tipo de telefone",
@@ -42,7 +44,8 @@ define(['./__module__', "jquery"], function (controllers, $) {
                             "id": "cel",
                             "text": "Celular"
                         }
-                    ]
+                    ],
+                    "model": {"err": "", "val": ""}
                 },
                 "telefone": {
                     "label": "Telefone",
@@ -50,14 +53,16 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     "mask": "(99) 9999-9999",
                     "name": "telefone",
                     "help": "Campo obrigatório",
-                    "required": true
+                    "required": true,
+                    "model": {"err": "", "val": ""}
                 },
                 "email": {
                     "label": "Email",
                     "type": "email",
                     "name": "email",
                     "help": "Campo obrigatório",
-                    "required": true
+                    "required": true,
+                    "model": {"err": "", "val": ""}
                 }
             };
             $scope._model.curso = {
@@ -83,7 +88,8 @@ define(['./__module__', "jquery"], function (controllers, $) {
                             id: "3",
                             text: "Unidade 03"
                         }
-                    ]
+                    ],
+                    model: {err: "", val: ""}
                 },
                 area: {
                     label: "Área",
@@ -92,7 +98,8 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     help: "Campo obrigatório",
                     placeholder: "Selecione uma opção",
                     required: true,
-                    list: []
+                    list: [{id: 1, text: "Area 00"}],
+                    model: {err: "", val: ""}
                 },
                 curso: {
                     label: "Curso",
@@ -101,7 +108,8 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     help: "Campo obrigatório",
                     placeholder: "Selecione uma opção",
                     required: true,
-                    list: []
+                    list: [{id: 1, text: "Curso 00"}],
+                    model: {err: "", val: ""}
                 },
                 vagas: {
                     str: {
@@ -119,28 +127,138 @@ define(['./__module__', "jquery"], function (controllers, $) {
                 }
             };
             $scope._model.inscr = {
-                "label": "Informações de Inscrição"
+                label: "Informações de Inscrição",
+                inscricao: {
+                    label: "Inscrição",
+                    type: "text",
+                    name: "inscr",
+                    help: "Campo obrigatório",
+                    model: {err: "", val: ""},
+                    required: true,
+                    mask: ""
+                },
+                desconto: {
+                    label: "Desconto",
+                    type: "select",
+                    model: {err: "", val: ""},
+                    help: "Campo obrigatório",
+                    required: true,
+                    name: "descontoInscr",
+                    list: [
+                        {id: 1, text: "Sem desconto"},
+                        {id: 2, text: "10%"},
+                        {id: 3, text: "20%"}
+                    ]
+                },
+                formaPagamento: {
+                    label: "Forma de pagamento",
+                    type: "select",
+                    model: {err: "", val: ""},
+                    help: "Campo obrigatório",
+                    required: true,
+                    name: "formaPagamento",
+                    list: [
+                        {id: 1, text: "Dinheiro"},
+                        {id: 2, text: "Cheque"},
+                        {id: 3, text: "Cartão de Crédito"}
+                    ]
+                },
+                qtdParcelas: {
+                    label: "Quantidade de parcelas",
+                    type: "select",
+                    model: {err: "", val: ""},
+                    help: "Campo obrigatório",
+                    required: true,
+                    name: "qtdParcelas",
+                    list: [
+                        {id: 1, text:"1"},
+                        {id: 2, text: "3"},
+                        {id: 3, text: "6"}
+                    ]
+                },
+                melhorData: {
+                    label: "Melhor data de vencimento",
+                    type: "select",
+                    model: {err: "", text:""},
+                    help: "Campo obrigatório",
+                    name: "melhorData",
+                    list: [
+                        {id: 1, text: "05"},
+                        {id: 2, text: "10"},
+                        {id: 3, text: "25"}
+                    ]
+                }
             };
             $scope._model.documentacao = {
                 "label": "Informações complementares do Aluno",
-                "label2": "Escolaridade"
+                "label2": "Escolaridade",
+                "escolaEm": {
+                    "label": "Escola que cursou Ensino Médio",
+                    "type": "text",
+                    "name": "escolaEm",
+                    "help": "Campo obrigatório",
+                    "required": false,
+                    "model": {"err": "", "val": ""}
+                },
+                "anoEm": {
+                    "label": "Ano de Conclusão",
+                    "type": "text",
+                    "name": "anoEm",
+                    "help": "Campo obrigatório",
+                    "required": false,
+                    "model": {"err": "", "val": ""}
+                },
+                "cursoGrad": {
+                    "label": "Curso de Graduação",
+                    "type": "text",
+                    "name": "cursoGrad",
+                    "help": "Campo obrigatório",
+                    "required": false,
+                    "model": {"err": "", "val": ""}
+                },
+                "anoGrad": {
+                    "label": "Ano de Conclusão",
+                    "type": "text",
+                    "name": "anoGrad",
+                    "help": "Campo obrigatório",
+                    "required": false,
+                    "model": {"err": "", "val": ""}
+                },
+                "instituicao": {
+                    "label": "Nome da instituição onde graduou",
+                    "type": "text",
+                    "name": "instituicao",
+                    "help": "Campo obrigatório",
+                    "required": false,
+                    "model": {"err": "", "val": ""}
+                }
             };
             $scope._model.pagamento = {
                 label: "Informações de Pagamento",
                 name: "pagamento",
+                valorIntegral: {
+                    "label": "Valor Integral",
+                    "type": "text",
+                    "model": {err: "", val: ""},
+                    "name": "valorIntegral",
+                    "help": "Campo obrigatório",
+                    "required": false
+                },
                 entrada: {
                     label: "Entrada",
                     type: "text",
                     name: 'entrada',
                     help: "Campo obrigatório",
-                    required: true
+                    required: true,
+                    model: {err: "", val: ""}
                 },
                 desconto: {
                     label: "Desconto",
                     type: "text",
                     name: 'desconto',
                     help: "Campo obrigatório",
-                    required: true
+                    required: true,
+                    model: {err: "", val: ""}
                 },
                 forma: {
                     label: "Forma de pagamento",
@@ -152,14 +270,16 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     list: [
                         {id: "cheque", text: "Cheque"},
                         {id: "cartao", text: "Cartão"}
-                    ]
+                    ],
+                    model: {err: "", val: ""}
                 },
                 parcelamento: {
-                    label: "Parcelamento",
+                    label: "Quantidade de parcelas",
                     type: "text",
                     name: 'parcelamento',
                     help: "Campo obrigatório",
-                    required: true
+                    required: true,
+                    model: {err: "", val: ""}
                 },
                 melhor_data: {
                     label: "Melhor data de vencimento",
@@ -173,14 +293,16 @@ define(['./__module__', "jquery"], function (controllers, $) {
                         $event.preventDefault();
                         $event.stopPropagation();
                         this.opened = true;
-                    }
+                    },
+                    model: {err: "", val: ""}
                 },
                 observacoes: {
                     label: "Observações",
                     type: "text",
                     name: 'observacoes',
                     help: "Campo obrigatório",
-                    required: true
+                    required: true,
+                    model: {err: "", val: ""}
                 }
             };
             $scope._model.controle = {
@@ -265,7 +387,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
                             id: "3",
                             text: $scope._data.curso.unidade + " - Área 03"
                         }
-                    ]
+                    ];
                     $scope._data.curso.area = '';
                     $scope._data.curso.curso = '';
                     view.remake('#f_curso_area select');
@@ -289,7 +411,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
                             text: $scope._data.curso.unidade + ' - ' +
                                 $scope._data.curso.area + " - Curso 03"
                         }
-                    ]
+                    ];
                     $scope._data.curso.curso = '';
                     view.remake('#f_curso_curso select');
                 }, 1);
@@ -305,10 +427,11 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     $scope._model.curso.vagas.preenchidas = Math.floor(b * a / 100);
                 }, 1);
             };
-            /*$http.get('mock/comercial/info-aluno.json')
+
+            $http.get('mock/comercial/info-aluno.json')
                 .success(function (data) {
                     $scope._model.aluno = $.extend(true, {}, data.object);
-                });*/
+                });
 
             // ==== FORM DATA ==== //
 
@@ -318,6 +441,8 @@ define(['./__module__', "jquery"], function (controllers, $) {
             $scope.teste = function(){
                 $scope.tipoPagamento = true;
             };
+
+
 
 
         }
