@@ -10,7 +10,6 @@ define([
         .controller('Main', Main);
 
     Main.$inject = ['$scope', 'breadCrumb'];
-    //Main.$inject = ['$scope', 'breadCrumb'];
 
     /* @ngInject */
     function Main($scope, breadCrumb) {
@@ -79,6 +78,8 @@ define([
 
         $scope.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         $scope.format = $scope.formats[0];
+
+        $scope.validaCpf = false;
 
     }
 

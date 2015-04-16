@@ -20,7 +20,8 @@ define([
                         mask: '=',
                         placeholder: '=',
                         disable: '=',
-                        dValidate: '='
+                        dValidate: '=',
+                        req: '='
                     }
                 };
 

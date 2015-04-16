@@ -1,27 +1,29 @@
 <div data-ng-class="{'has-error':!!model.err}"
      class="form-group">
-    <div class="row">
+
+    <div class="col-md-12">
+        <div class="col-md-12 left">
+            <label for="{{'input_'+name}}">
+                {{label}}
+            </label>
+        </div>
+
         <div class="col-md-12">
-            <div class="col-md-12 left">
-                <label for="{{'input_'+name}}">
-                    {{label}}
-                </label>
-            </div>
+            <input data-ng-model="model.val"
+                   placeholder="{{placeholder}}"
+                   type="{{type || text}}"
+                   class="form-control"
+                   ui-mask="{{mask}}"
+                   name="{{name}}"
+                   id="{{'input_'+name}}"
+                   ng-disabled="disable"
+                   data-validate="{{dValidate}}"
+                   ng-required="req">
 
-            <div class="col-md-12">
-                <input data-ng-model="model.val"
-                       placeholder="{{placeholder}}"
-                       type="{{type || text}}"
-                       class="form-control"
-                       ui-mask="{{mask}}"
-                       name="{{name}}"
-                       id="{{'input_'+name}}"
-                       ng-disabled="{{disable}}">
-
-                <p data-collapse="!model.err"
-                   data-ng-bind="model.err"
-                   class="control-label"></p>
-            </div>
+            <p data-collapse="!model.err"
+               data-ng-bind="model.err"
+               class="control-label"></p>
         </div>
     </div>
+
 </div>

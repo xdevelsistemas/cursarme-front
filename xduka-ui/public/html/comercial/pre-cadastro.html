@@ -1,19 +1,4 @@
-<xd-panel-collapse title="'TESTE'">
-    <form action="" class="form-horizontal">
-       <div class="col-md-4">
-           <xd-input
-                   label="'Senha Atual'"
-                   placeholder="'Digite aqui a senha atual'"
-                   model="perfil.password.current"
-                   name="'password'"
-                   type="'password'"
-                   d-validate="'required'">
-           </xd-input>
-       </div>
-    </form>
-</xd-panel-collapse>
-
-<form id="teste" class="form-horizontal form-wizard validate" ng-controller="FormPreCadastro" action method="post" data-target="#step1">
+<form id="teste" class="form-horizontal form-wizard" ng-controller="FormPreCadastro" action method="post" data-target="#step1">
 
     <div class="steps-progress">
         <div class="progress-indicator" style="width: 0%"></div>
@@ -43,480 +28,995 @@
 
     <div class="tab-content">
 
-
-
         <div class="tab-pane" id="step1">
-            <div class="col-md-12">
-                <!-- INFORMAÇÕES DO ALUNO -->
-                <xd-panel-collapse title="_model.aluno.label">
-                    <xd-input label="'CPF'" placeholder="'Digite o CPF'" name="'cpf'" type="'text'" d-validate="'required'" disable="false"></xd-input>
-                    <xd-input label="'RG'" placeholder="'Digite o RG'" name="'rg'" type="'text'" disable="true"></xd-input>
+            <xd-panel-collapse title="_model.aluno.label">
+                <div class="row">
 
-                    <!--<div class="form-group has-feedback">-->
-                        <!--<div class="col-md-12">-->
-                            <!--<div class="row">-->
-                                <!--<div class="col-md-7">-->
-                                    <!--&lt;!&ndash;<label for="cpf">CPF</label>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<input type="text" id="cpf" class="form-control" required autofocus/>&ndash;&gt;-->
-                                    <!--<xd-input-->
-                                            <!--label="'CPF'"-->
-                                            <!--placeholder="'Digite o CPF'"-->
-                                            <!--name="'cpf'"-->
-                                            <!--type="'text'">-->
-                                    <!--</xd-input>-->
-                                <!--</div>-->
-                                <!--<div class="col-md-5">-->
-                                    <!--&lt;!&ndash;<label for="rg">RG</label>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<input type="text" id="rg" class="form-control" required/>&ndash;&gt;-->
-                                    <!--<xd-input-->
-                                            <!--label="'RG'"-->
-                                            <!--placeholder="'Digite o RG'"-->
-                                            <!--name="'rg'"-->
-                                            <!--type="'text'">-->
-                                    <!--</xd-input>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="row">-->
-                                <!--<div class="col-md-12">-->
-                                    <!--<label for="nome">Nome</label>-->
-                                    <!--<input type="text" id="nome" class="form-control" required/>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="row">-->
-                                <!--<div class="col-md-8">-->
-                                    <!--<label for="cidade">Cidade</label>-->
-                                    <!--<input type="text" id="cidade" class="form-control" required placeholder="-" disabled/>-->
-                                <!--</div>-->
-                                <!--<div class="col-md-4">-->
-                                    <!--<label for="cep">CEP</label>-->
-                                    <!--<input type="text" id="cep" class="form-control" required/>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="row">-->
-                                <!--<div class="col-md-8">-->
-                                    <!--<label for="telefone">Telefone</label>-->
-                                    <!--<input type="text" id="telefone" class="form-control" required/>-->
-                                <!--</div>-->
-                                <!--<div class="col-md-4">-->
-                                    <!--<label for="tipo">Tipo</label>-->
-                                    <!--<select name="tipo_tel" id="tipo" class="form-control selectboxit" required>-->
-                                        <!--<optgroup label="Tipo de telefone">-->
-                                            <!--<option value="1">RESIDENCIAL</option>-->
-                                            <!--<option value="2">CELULAR</option>-->
-                                            <!--<option value="3">COMERCIAL</option>-->
-                                        <!--</optgroup>-->
-                                    <!--</select>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="row">-->
-                                <!--<div class="col-md-12">-->
-                                    <!--<label for="email">E-mail</label>-->
-                                    <!--<input type="email" id="email" class="form-control" required/>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                </xd-panel-collapse>
+                    <div class="col-md-6">
+                        <xd-input name="_model.aluno.cpf.name"
+                                  model="_model.aluno.cpf.model"
+                                  type="_model.aluno.cpf.type"
+                                  label="_model.aluno.cpf.label"
+                                  mask="_model.aluno.cpf.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  req="_model.aluno_cpf.required"></xd-input>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-input name="_model.aluno.rg.name"
+                                  model="_model.aluno.rg.model"
+                                  type="_model.aluno.rg.type"
+                                  label="_model.aluno.rg.label"
+                                  mask="_model.aluno.rg.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="true"></xd-input>
+                    </div>
 
-                <!-- INFORMAÇÕES DO CURSO -->
-                <xd-panel-collapse title="_model.curso.label">
-                    <div class="form-group has-feedback">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="unidade">Unidade</label>
-                                    <select name="unidade" id="unidade" class="form-control" required>
-                                        <option value="1">CARIACICA</option>
-                                        <option value="2">VILA VELHA</option>
-                                        <option value="3">SERRA</option>
-                                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input name="_model.aluno.nome.name"
+                                  model="_model.aluno.nome.model"
+                                  type="_model.aluno.nome.type"
+                                  label="_model.aluno.nome.label"
+                                  mask="_model.aluno.nome.mask"
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="true"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <xd-input name="_model.aluno.cidade.name"
+                                  model="_model.aluno.cidade.model"
+                                  type="_model.aluno.cidade.type"
+                                  label="_model.aluno.cidade.label"
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="true"></xd-input>
+                    </div>
+                    <div class="col-md-5">
+                        <xd-input name="_model.aluno.cep.name"
+                                  model="_model.aluno.cep.model"
+                                  type="_model.aluno.cep.type"
+                                  label="_model.aluno.cep.label"
+                                  mask="_model.aluno.cep.mask"
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="true"></xd-input>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <xd-input name="_model.aluno.telefone.name"
+                                  model="_model.aluno.telefone.model"
+                                  type="_model.aluno.telefone.type"
+                                  label="_model.aluno.telefone.label"
+                                  mask="_model.aluno.telefone.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="true"></xd-input>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="col-md-12 left">
+                                    <label for="{{'select_'+_model.aluno.tipo_telefone.name}}">
+                                        {{_model.aluno.tipo_telefone.label}}
+                                    </label>
                                 </div>
-                            </div>
-                            <div class="row">
+
                                 <div class="col-md-12">
-                                    <label for="tipo_curso">Tipo de Curso</label>
-                                    <select name="tipo_curso" id="tipo_curso" class="form-control" required>
-                                        <option value="1">Área 00</option>
-                                        <option value="2">Área 01</option>
+                                    <select name="{{_model.aluno.tipo_telefone.name}}" id="{{'select'+_model.aluno.tipo_telefone.name}}" class="form-control" ng-disabled="!validaCpf">
+                                        <option ng-repeat="tipo_tel in _model.aluno.tipo_telefone.list" value="{{tipo_tel.id}}">{{tipo_tel.text}}</option>
                                     </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="curso">Curso</label>
-                                    <select name="curso" id="curso" class="form-control" required>
-                                        <option value="1">Curso01</option>
-                                        <option value="2">Curso02</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-12">
-                                    <div id="precadastro-vagas" class="form-group"><br>
-                                        <div class="col-sm-3"></div>
-                                        <div class="col-sm-5">
-                                            <!--ko foreach: preCadastro.cursos()-->
-                                            <!--ko if: codigo() === $root.preCadastro.filtro.codCurso()-->
-                                            <div data-bind="css: vagasPreenchidas()/(vagasTotais() == 0 ? 1 : vagasTotais()) >= 0.9 ? 'tile-red' : 'tile-gray'"
-                                                 class="tile-stats">
-                                                <div class="icon"><i class="entypo-users"></i></div>
-                                                <div class="num" data-bind="text: vagasTotais() - vagasPreenchidas()"></div>
-                                                <h3>Vagas disponíveis</h3>
-                                                <p><span data-bind="text: vagasTotais()"></span> vagas totais</p>
-                                            </div>
-                                            <!--/ko-->
-                                            <!--/ko-->
-                                        </div>
-                                    </div>
+                                    <p data-collapse="!_model.aluno.tipo_telefone..model.err"
+                                       data-ng-bind="_model.aluno.tipo_telefone.model.err"
+                                       class="control-label"></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </xd-panel-collapse>
+                </div>
 
-                <!-- INFORMAÇÕES DE INSCRIÇÃO -->
-                <xd-panel-collapse title="_model.inscr.label">
-                    <div class="form-group has-feedback">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="inscr">Inscrição</label>
-                                    <div class="input-group">
-                                        <div class="input-group-addon"><b>R$</b></div>
-                                        <input type="text" id="inscr" class="form-control" required/>
-                                    </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input name="_model.aluno.email.name"
+                                  model="_model.aluno.email.model"
+                                  type="_model.aluno.email.type"
+                                  label="_model.aluno.email.label"
+                                  mask="_model.aluno.email.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="true"></xd-input>
+                    </div>
+                </div>
+
+            </xd-panel-collapse>
+
+            <xd-panel-collapse  title="_model.curso.label">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+
+                            <div class="col-md-12">
+                                <div class="col-md-12 left">
+                                    <label for="select_unidade">
+                                        Unidade
+                                    </label>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-12">
-                                    <label for="desconto">Desconto</label>
-                                    <select name="desconto" id="desconto" class="form-control">
-                                        <option value="1">Desconto1</option>
-                                        <option value="2">Desconto2</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="formaPagamento">Forma de pagamento</label>
-                                    <select name="forma_pagamento" id="formaPagamento" class="form-control" required>
-                                        <option value="1">Dinheiro</option>
-                                        <option value="2">Cheque</option>
-                                        <option value="3">Cartão de crédito</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <br/>
-                                    <button type="button" id="add_cheque" class="btn btn-lg btn-primary" ng-click="openModalCheque()">Adicionar Cheque</button>
-                                    <br/><br/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="qtdParcelas">Quantidade de parcelas</label>
-                                    <select name="quantidadeParcelas" id="qtdParcelas" class="form-control" required>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="vencimentoData">Melhor data de vencimento</label>
-                                    <select name="melhorData" id="vencimentoData" class="form-control" required>
-                                        <option value="1">5</option>
-                                        <option value="2">10</option>
-                                        <option value="3">15</option>
-                                        <option value="4">20</option>
-                                        <option value="5">25</option>
+                                    <select name="unidade" id="select_unidade" class="form-control" ng-disabled="!validaCpf">
+                                        <option ng-repeat="unidade in _model.curso.unidade.list" value="{{unidade.id}}">{{unidade.text}}</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </xd-panel-collapse>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
 
+                            <div class="col-md-12">
+                                <div class="col-md-12 left">
+                                    <label for="select_tipoCurso">
+                                        Tipo de Curso
+                                    </label>
+                                </div>
+                                <div class="col-md-12">
+                                    <select name="tipoCurso" id="select_tipoCurso" class="form-control" ng-disabled="!validaCpf">
+                                        <option ng-repeat="area in _model.curso.area.list" value="{{area.id}}">{{area.text}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+
+                            <div class="col-md-12">
+                                <div class="col-md-12 left">
+                                    <label for="select_curso">
+                                        Curso
+                                    </label>
+                                </div>
+                                <div class="col-md-12">
+                                    <select name="curso" id="select_curso" class="form-control" ng-disabled="!validaCpf">
+                                        <option ng-repeat="curso in _model.curso.curso.list" value="{{curso.id}}">{{curso.text}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div id="precadastro-vagas" class="form-group"><br>
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-5">
+                                    <!--ko foreach: preCadastro.cursos()-->
+                                    <!--ko if: codigo() === $root.preCadastro.filtro.codCurso()-->
+                                    <div data-bind="css: vagasPreenchidas()/(vagasTotais() == 0 ? 1 : vagasTotais()) >= 0.9 ? 'tile-red' : 'tile-gray'"
+                                         class="tile-stats">
+                                        <div class="icon"><i class="entypo-users"></i></div>
+                                        <div class="num" data-bind="text: vagasTotais() - vagasPreenchidas()"></div>
+                                        <h3>Vagas disponíveis</h3>
+                                        <p><span data-bind="text: vagasTotais()"></span> vagas totais</p>
+                                    </div>
+                                    <!--/ko-->
+                                    <!--/ko-->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </xd-panel-collapse>
+
+            <xd-panel-collapse title="_model.inscr.label">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="col-md-12 left">
+                                    <label for="{{'input_'+_model.inscr.inscricao.name}}">
+                                        {{_model.inscr.inscricao.label}}
+                                    </label>
+                                </div>
+
+                                <div class="col-md-12 input-group">
+                                    <div class="input-group-addon">R$</div>
+                                    <input data-ng-model="_model.inscr.inscricao.model.val"
+                                           placeholder="{{_model.inscr.inscricao.placeholder}}"
+                                           type="{{_model.inscr.inscricao.type || text}}"
+                                           class="form-control"
+                                           ui-mask="{{_model.inscr.inscricao.mask}}"
+                                           name="{{_model.inscr.inscricao.name}}"
+                                           id="{{'input_'+_model.inscr.inscricao.name}}"
+                                           ng-disabled="!validaCpf"
+                                           data-validate="{{_model.inscr.inscricao.dValidate}}"
+                                           ng-required="_model.inscr.inscricao.required">
+
+                                    <p data-collapse="!_model.inscr.inscricao.model.err"
+                                       data-ng-bind="_model.inscr.inscricao.model.err"
+                                       class="control-label"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="col-md-12 left">
+                                    <label for="{{'input_'+_model.inscr.desconto.name}}">
+                                        {{_model.inscr.desconto.label}}
+                                    </label>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <select name="{{_model.inscr.desconto.name}}" id="{{'select'+_model.inscr.desconto.name}}" class="form-control" ng-disabled="!validaCpf">
+                                        <option ng-repeat="desconto in _model.inscr.desconto.list" value="{{desconto.id}}">{{desconto.text}}</option>
+                                    </select>
+                                    <p data-collapse="!_model.inscr.desconto.model.err"
+                                       data-ng-bind="_model.inscr.desconto.model.err"
+                                       class="control-label"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="col-md-12 left">
+                                    <label for="{{'select_'+_model.inscr.formaPagamento.name}}">
+                                        {{_model.inscr.formaPagamento.label}}
+                                    </label>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <select name="{{_model.inscr.formaPagamento.name}}" id="{{'select_'+_model.inscr.formaPagamento.name}}" class="form-control" data-ng-model="_model.inscr.formaPagamento.name" ng-disabled="!validaCpf">
+                                        <option ng-repeat="forma in _model.inscr.formaPagamento.list" value="{{forma.id}}">{{forma.text}}</option>
+                                    </select>
+                                    <p data-collapse="!_model.inscr.desconto.model.err"
+                                       data-ng-bind="_model.inscr.formaPagamento.model.err"
+                                       class="control-label"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--BOTAO ADD CHEQUE-->
+                <div class="row" ng-show="true">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-bind="" id="btn_addCheque" ng-click="openModalCheque()">
+                                        Adicionar Cheques
+                                        <i class="entypo-credit-card"></i>
+                                    </button>
+                                    <p data-collapse="!_model.inscr.desconto.model.err"
+                                       data-ng-bind="_model.inscr.desconto.model.err"
+                                       class="control-label"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="col-md-12 left">
+                                    <label for="{{'select_'+_model.inscr.qtdParcelas.name}}">
+                                        {{_model.inscr.qtdParcelas.label}}
+                                    </label>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <select name="{{_model.inscr.qtdParcelas.name}}" id="{{'select_'+_model.inscr.qtdParcelas.name}}" class="form-control" data-ng-model="_model.inscr.formaPagamento.name" ng-disabled="!validaCpf">
+                                        <option ng-repeat="qtd in _model.inscr.qtdParcelas.list" value="{{qtd.id}}">{{qtd.text}}</option>
+                                    </select>
+                                    <p data-collapse="!_model.inscr.desconto.model.err"
+                                       data-ng-bind="_model.inscr.qtdParcelas.model.err"
+                                       class="control-label"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="col-md-12 left">
+                                    <label for="{{'select_'+_model.inscr.melhorData.name}}">
+                                        {{_model.inscr.melhorData.label}}
+                                    </label>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <select name="{{_model.inscr.melhorData.name}}" id="{{'select_'+_model.inscr.melhorData.name}}" class="form-control" data-ng-model="_model.inscr.formaPagamento.name" ng-disabled="!validaCpf">
+                                        <option ng-repeat="data in _model.inscr.melhorData.list" value="{{data.id}}">{{data.text}}</option>
+                                    </select>
+                                    <p data-collapse="!_model.inscr.desconto.model.err"
+                                       data-ng-bind="_model.inscr.melhorData.model.err"
+                                       class="control-label"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xd-panel-collapse>
+            <div class="col-md-12 text-center">
+                <div class="form-group">
+                    <div class="col-md-6 text-right col-md-offset-1">
+                        <button class="btn btn-green btn-lg btn-icon icon-left">
+                            Salvar
+                            <i class="entypo-check"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
+
         <div class="tab-pane" id="step2">
-            <div class="col-md-12">
-                <!-- INNFORMAÇÕES COMPLEMENTARES DO ALUNO -->
-                <xd-panel-collapse title="_model.documentacao.label">
-                    <div class="form-group has-feedback">
-                        <div class="col-md-12">
-                            <div class="row">
+            <xd-panel-collapse title="_model.documentacao.label">
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input name="_model.aluno.nome.name"
+                                  model="_model.aluno.nome.model"
+                                  type="_model.aluno.nome.type"
+                                  label="_model.aluno.nome.label"
+                                  mask="_model.aluno.nome.mask"
+                                  dValidate="'required'"
+                                  disable="true"
+                                  req="true"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <xd-input name="_model.aluno.rg.name"
+                                  model="_model.aluno.rg.model"
+                                  type="_model.aluno.rg.type"
+                                  label="_model.aluno.rg.label"
+                                  mask="_model.aluno.rg.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="true"
+                                  req="true"></xd-input>
+                    </div>
+                    <div class="col-md-4">
+                        <xd-input name="_model.aluno.dataExp.name"
+                                  model="_model.aluno.dataExp.model"
+                                  type="_model.aluno.dataExp.type"
+                                  label="_model.aluno.dataExp.label"
+                                  mask="_model.aluno.dataExp.mask"
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-4">
+                        <xd-input name="_model.aluno.orgaoEmissor.name"
+                                  model="_model.aluno.orgaoEmissor.model"
+                                  type="_model.aluno.orgaoEmissor.type"
+                                  label="_model.aluno.orgaoEmissor.label"
+                                  mask="_model.aluno.orgaoEmissor.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <xd-input name="_model.aluno.tituloEleitor.name"
+                                  model="_model.aluno.tituloEleitor.model"
+                                  type="_model.aluno.tituloEleitor.type"
+                                  label="_model.aluno.tituloEleitor.label"
+                                  mask="_model.aluno.tituloEleitor.mask"
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input name="_model.aluno.zona.name"
+                                  model="_model.aluno.zona.model"
+                                  type="_model.aluno.zona.type"
+                                  label="_model.aluno.zona.label"
+                                  mask="_model.aluno.zona.mask"
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input name="_model.aluno.secao.name"
+                                  model="_model.aluno.secao.model"
+                                  type="_model.aluno.secao.type"
+                                  label="_model.aluno.secao.label"
+                                  mask="_model.aluno.secao.mask"
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input name="_model.aluno.ufTitulo.name"
+                                  model="_model.aluno.ufTitulo.model"
+                                  type="_model.aluno.ufTitulo.type"
+                                  label="_model.aluno.ufTitulo.label"
+                                  mask="_model.aluno.ufTitulo.mask"
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <xd-input name="_model.aluno.certidaoNc.name"
+                                  model="_model.aluno.certidaoNc.model"
+                                  type="_model.aluno.certidaoNc.type"
+                                  label="_model.aluno.certidaoNc.label"
+                                  mask="_model.aluno.certidaoNc.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input name="_model.aluno.folha.name"
+                                  model="_model.aluno.folha.model"
+                                  type="_model.aluno.folha.type"
+                                  label="_model.aluno.folha.label"
+                                  mask="_model.aluno.folha.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input name="_model.aluno.livro.name"
+                                  model="_model.aluno.livro.model"
+                                  type="_model.aluno.livro.type"
+                                  label="_model.aluno.livro.label"
+                                  mask="_model.aluno.livro.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input name="_model.aluno.cartorio.name"
+                                  model="_model.aluno.cartorio.model"
+                                  type="_model.aluno.cartorio.type"
+                                  label="_model.aluno.cartorio.label"
+                                  mask="_model.aluno.cartorio.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <xd-input name="_model.aluno.certificadoRes.name"
+                                  model="_model.aluno.certificadoRes.model"
+                                  type="_model.aluno.certificadoRes.type"
+                                  label="_model.aluno.certificadoRes.label"
+                                  mask="_model.aluno.certificadoRes.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-5">
+                        <xd-input name="_model.aluno.registro.name"
+                                  model="_model.aluno.registro.model"
+                                  type="_model.aluno.registro.type"
+                                  label="_model.aluno.registro.label"
+                                  mask="_model.aluno.registro.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input name="_model.aluno.ufReservista.name"
+                                  model="_model.aluno.ufReservista.model"
+                                  type="_model.aluno.ufReservista.type"
+                                  label="_model.aluno.ufReservista.label"
+                                  mask="_model.aluno.ufReservista.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <xd-input name="_model.aluno.categoria.name"
+                                  model="_model.aluno.categoria.model"
+                                  type="_model.aluno.categoria.type"
+                                  label="_model.aluno.categoria.label"
+                                  mask="_model.aluno.categoria.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-5">
+                        <xd-input name="_model.aluno.cpf.name"
+                                  model="_model.aluno.cpf.model"
+                                  type="_model.aluno.cpf.type"
+                                  label="_model.aluno.cpf.label"
+                                  mask="_model.aluno.cpf.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="true"
+                                  req="_model.aluno_cpf.required"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input name="_model.aluno.sexo.name"
+                                  model="_model.aluno.sexo.model"
+                                  type="_model.aluno.sexo.type"
+                                  label="_model.aluno.sexo.label"
+                                  mask="_model.aluno.sexo.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <xd-input name="_model.aluno.dataNasc.name"
+                                  model="_model.aluno.dataNasc.model"
+                                  type="_model.aluno.dataNasc.type"
+                                  label="_model.aluno.dataNasc.label"
+                                  mask="_model.aluno.dataNasc.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input name="_model.aluno.raca.name"
+                                  model="_model.aluno.raca.model"
+                                  type="_model.aluno.raca.type"
+                                  label="_model.aluno.raca.label"
+                                  mask="_model.aluno.raca.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-4">
+                        <xd-input name="_model.aluno.estadoCivil.name"
+                                  model="_model.aluno.estadoCivil.model"
+                                  type="_model.aluno.estadoCivil.type"
+                                  label="_model.aluno.estadoCivil.label"
+                                  mask="_model.aluno.estadoCivil.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input name="_model.aluno.pai.name"
+                                  model="_model.aluno.pai.model"
+                                  type="_model.aluno.pai.type"
+                                  label="_model.aluno.pai.label"
+                                  mask="_model.aluno.pai.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                    <xd-input name="_model.aluno.mae.name"
+                                  model="_model.aluno.mae.model"
+                                  type="_model.aluno.mae.type"
+                                  label="_model.aluno.mae.label"
+                                  mask="_model.aluno.mae.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <xd-input name="_model.aluno.avRua.name"
+                                  model="_model.aluno.avRua.model"
+                                  type="_model.aluno.avRua.type"
+                                  label="_model.aluno.avRua.label"
+                                  mask="_model.aluno.avRua.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="true"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-2">
+                        <xd-input name="_model.aluno.endNum.name"
+                                  model="_model.aluno.endNum.model"
+                                  type="_model.aluno.endNum.type"
+                                  label="_model.aluno.endNum.label"
+                                  mask="_model.aluno.endNum.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="true"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-2">
+                        <xd-input name="_model.aluno.apt.name"
+                                  model="_model.aluno.apt.model"
+                                  type="_model.aluno.apt.type"
+                                  label="_model.aluno.apt.label"
+                                  mask="_model.aluno.apt.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="true"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input name="_model.aluno.cep.name"
+                                  model="_model.aluno.cep.model"
+                                  type="_model.aluno.cep.type"
+                                  label="_model.aluno.cep.label"
+                                  mask="_model.aluno.cep.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="true"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <xd-input name="_model.aluno.bairro.name"
+                                  model="_model.aluno.bairro.model"
+                                  type="_model.aluno.bairro.type"
+                                  label="_model.aluno.bairro.label"
+                                  mask="_model.aluno.bairro.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="true"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-5">
+                        <xd-input name="_model.aluno.cidade.name"
+                                  model="_model.aluno.cidade.model"
+                                  type="_model.aluno.cidade.type"
+                                  label="_model.aluno.cidade.label"
+                                  mask="_model.aluno.cidade.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-2">
+                        <xd-input name="_model.aluno.endUf.name"
+                                  model="_model.aluno.endUf.model"
+                                  type="_model.aluno.endUf.type"
+                                  label="_model.aluno.endUf.label"
+                                  mask="_model.aluno.endUf.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="false"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <xd-input name="_model.aluno.telefone.name"
+                                  model="_model.aluno.telefone.model"
+                                  type="_model.aluno.telefone.type"
+                                  label="'Contato'"
+                                  mask="_model.aluno.telefone.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="true"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-4">
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="col-md-12 left">
+                                    <label for="{{'select_'+_model.aluno.tipo_telefone.name}}">
+                                        {{_model.aluno.tipo_telefone.label}}
+                                    </label>
+                                </div>
+
                                 <div class="col-md-12">
-                                    <label for="nome">Nome</label>
-                                    <input type="text" id="nome" class="form-control" required/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <label for="rg">RG</label>
-                                    <input type="text" id="rg" class="form-control" required/>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="dataExp">Data Expedição</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control datepicker" data-format="dd/MM/yyyy" id="dataExp"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="orgaoEmissor">Órgão Emissor</label>
-                                    <input type="text" id="orgaoEmissor" class="form-control"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="tituloEleitor">Titulo Eleitor</label>
-                                    <input type="text" id="tituloEleitor" class="form-control"/>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="zona">Zona</label>
-                                    <input type="text" id="zona" class="form-control"/>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="secao">Seção</label>
-                                    <input type="text" id="secao" class="form-control"/>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="uf">UF</label>
-                                    <select name="uf" id="uf" class="form-control">
-                                        <option value="1">ES</option>
-                                        <option value="2">RJ</option>
-                                        <option value="3">MG</option>
-                                        <option value="4">SP</option>
+                                    <select name="{{_model.aluno.tipo_telefone.name}}" id="{{'select'+_model.aluno.tipo_telefone.name}}" class="form-control" ng-disabled="true">
+                                        <option ng-repeat="tipo_tel in _model.aluno.tipo_telefone.list" value="{{tipo_tel.id}}">{{tipo_tel.text}}</option>
                                     </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="certidaoNasc">Certidão N C</label>
-                                    <input type="text" id="certidaoNasc" class="form-control"/>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="folha">Folha</label>
-                                    <input type="text" id="folha" class="form-control"/>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="livro">Livro</label>
-                                    <input type="text" id="livro" class="form-control"/>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="cartorio">Cartorio</label>
-                                    <input type="text" id="cartorio" class="form-control"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <label for="certificadoReserv">Certificado Reservista</label>
-                                    <input type="text" id="certificadoReserv" class="form-control"/>
-                                </div>
-                                <div class="col-md-5">
-                                    <label for="registro">Registro</label>
-                                    <input type="text" id="registro" class="form-control"/>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="uf2">UF</label>
-                                    <select name="uf" id="uf2" class="form-control">
-                                        <option value="1">ES</option>
-                                        <option value="2">RJ</option>
-                                        <option value="3">MG</option>
-                                        <option value="4">SP</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label for="categoria">Categoria</label>
-                                    <input type="text" id="categoria" class="form-control"/>
-                                </div>
-                                <div class="col-md-7">
-                                    <label for="cpf2">CPF</label>
-                                    <input type="text" id="cpf2" class="form-control"/>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="sexo">Sexo</label>
-                                    <select name="sexo" id="sexo" class="form-control">
-                                        <option value="1">F</option>
-                                        <option value="2">M</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="dataNasc">Data Nascimento</label>
-                                    <input type="text" id="dataNasc" class="form-control"/>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="raca">Raça</label>
-                                    <select name="raca" id="raca" class="form-control">
-                                        <option value="1">Pardo</option>
-                                        <option value="2">Negro</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="estadoCivil">Estado Civil</label>
-                                    <select name="estadoCivil" id="estadoCivil" class="form-control">
-                                        <option value="1">Solteiro</option>
-                                        <option value="2">Casado</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="nomePai">Pai</label>
-                                    <input type="text" id="nomePai" class="form-control"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="nomeMae">Mãe</label>
-                                    <input type="text" id="nomeMae" class="form-control"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <label for="rua">Av/Rua</label>
-                                    <input type="text" id="rua" class="form-control"/>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="numEnd">N&compfn;</label>
-                                    <input type="text" id="numEnd" class="form-control"/>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="apt">Apt</label>
-                                    <input type="text" id="apt" class="form-control"/>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="cep2">CEP</label>
-                                    <input type="text" id="cep2" class="form-control"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="bairro">Bairro</label>
-                                    <input type="text" id="bairro" class="form-control"/>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="cidade2">Cidade</label>
-                                    <input type="text" id="cidade2" class="form-control"/>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="uf3">UF</label>
-                                    <select name="uf" id="uf3" class="form-control">
-                                        <option value="1">ES</option>
-                                        <option value="2">RJ</option>
-                                        <option value="3">MG</option>
-                                        <option value="4">SP</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="contato">Contato</label>
-                                    <input type="text" id="contato" class="contato form-control"/>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="tipoTel">Tipo</label>
-                                    <select name="tipoTel" id="tipoTel" class="form-control">
-                                        <option value="1">Telefone Residencial</option>
-                                        <option value="2">Telefone Celular</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="email2">E-mail</label>
-                                    <input type="text" id="email2" class="form-control"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="nacionalidade">Nacionalidade</label>
-                                    <input type="text" id="nacionalidade" class="form-control"/>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="naturalidade">Naturalidade</label>
-                                    <input type="text" id="naturalidade" class="form-control"/>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="uf4">UF</label>
-                                    <select name="uf4" id="uf4" class="form-control">
-                                        <option value="1">ES</option>
-                                        <option value="2">RJ</option>
-                                        <option value="3">SP</option>
-                                        <option value="4">MG</option>
-                                    </select>
+                                    <p data-collapse="!_model.aluno.tipo_telefone..model.err"
+                                       data-ng-bind="_model.aluno.tipo_telefone.model.err"
+                                       class="control-label"></p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </xd-panel-collapse>
 
-                <xd-panel-collapse title="_model.documentacao.label2">
-                    <div class="form-group has-feedback">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="escolaEm">Escola em que estudou no Ensino Médio</label>
-                                    <input type="text" id="escolaEm" class="form-control"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="anoConclusao">Ano de Conclusão</label>
-                                    <input type="text" id="anoConclusao" class="form-control"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="cursoGraduacao">Curso de Graduação</label>
-                                    <input type="text" id="cursoGraduacao" class="form-control"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="anoConclusao2">Ano de Conclusão</label>
-                                    <input type="text" id="anoConclusao2" class="form-control"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="nomeInstituicao">Nome da instituição onde graduou</label>
-                                    <input type="text" id="nomeInstituicao" class="form-control"/>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </xd-panel-collapse>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input name="_model.aluno.email.name"
+                                  model="_model.aluno.email.model"
+                                  type="_model.aluno.email.type"
+                                  label="_model.aluno.email.label"
+                                  mask="_model.aluno.email.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="true"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <xd-input name="_model.aluno.nacionalidade.name"
+                                  model="_model.aluno.nacionalidade.model"
+                                  type="_model.aluno.nacionalidade.type"
+                                  label="_model.aluno.nacionalidade.label"
+                                  mask="_model.aluno.nacionalidade.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-5">
+                        <xd-input name="_model.aluno.naturalidade.name"
+                                  model="_model.aluno.naturalidade.model"
+                                  type="_model.aluno.naturalidade.type"
+                                  label="_model.aluno.naturalidade.label"
+                                  mask="_model.aluno.naturalidade.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-2">
+                        <xd-input name="_model.aluno.natUf.name"
+                                  model="_model.aluno.natUf.model"
+                                  type="_model.aluno.natUf.type"
+                                  label="_model.aluno.natUf.label"
+                                  mask="_model.aluno.natUf.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+            </xd-panel-collapse>
 
+            <xd-panel-collapse title="_model.documentacao.label2">
+                <div class="row">
+                    <div class="col-md-8">
+                        <xd-input name="_model.documentacao.escolaEm.name"
+                                  model="_model.documentacao.escolaEm.model"
+                                  type="_model.documentacao.escolaEm.type"
+                                  label="_model.documentacao.escolaEm.label"
+                                  mask="_model.documentacao.escolaEm.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-4">
+                        <xd-input name="_model.documentacao.anoEm.name"
+                                  model="_model.documentacao.anoEm.model"
+                                  type="_model.documentacao.anoEm.type"
+                                  label="_model.documentacao.anoEm.label"
+                                  mask="_model.documentacao.anoEm.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <xd-input name="_model.documentacao.cursoGrad.name"
+                                  model="_model.documentacao.cursoGrad.model"
+                                  type="_model.documentacao.cursoGrad.type"
+                                  label="_model.documentacao.cursoGrad.label"
+                                  mask="_model.documentacao.cursoGrad.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                    <div class="col-md-4">
+                        <xd-input name="_model.documentacao.anoGrad.name"
+                                  model="_model.documentacao.anoGrad.model"
+                                  type="_model.documentacao.anoGrad.type"
+                                  label="_model.documentacao.anoGrad.label"
+                                  mask="_model.documentacao.anoGrad.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input name="_model.documentacao.instituicao.name"
+                                  model="_model.documentacao.instituicao.model"
+                                  type="_model.documentacao.instituicao.type"
+                                  label="_model.documentacao.instituicao.label"
+                                  mask="_model.documentacao.instituicao.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+            </xd-panel-collapse>
+
+            <div class="col-md-12 text-center">
+                <div class="form-group">
+                    <div class="col-md-6 text-right col-md-offset-1">
+                        <button class="btn btn-green btn-lg btn-icon icon-left">
+                            Salvar
+                            <i class="entypo-check"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
+
         </div>
+
         <div class="tab-pane" id="step3">
-            <div class="col-md-12">
-                <xd-field field="_model.aluno.telefone"
-                          model="_data.aluno.telefone">
-                </xd-field>
+
+            <xd-panel-collapse title="_model.pagamento.label">
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input name="_model.pagamento.valorIntegral.name"
+                                  model="_model.pagamento.valorIntegral.model"
+                                  type="_model.pagamento.valorIntegral.type"
+                                  label="_model.pagamento.valorIntegral.label"
+                                  mask="_model.pagamento.valorIntegral.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="true"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input name="_model.pagamento.desconto.name"
+                                  model="_model.pagamento.desconto.model"
+                                  type="_model.pagamento.desconto.type"
+                                  label="_model.pagamento.desconto.label"
+                                  mask="_model.pagamento.desconto.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input name="_model.pagamento.forma.name"
+                                  model="_model.pagamento.forma.model"
+                                  type="_model.pagamento.forma.type"
+                                  label="_model.pagamento.forma.label"
+                                  mask="_model.pagamento.forma.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <!--BOTÃO ADD CHEQUE-->
+                <div class="row" ng-show="true">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-bind="" id="btn_addCheque" ng-click="openModalCheque()">
+                                        Adicionar Cheques
+                                        <i class="entypo-credit-card"></i>
+                                    </button>
+                                    <p data-collapse="!_model.inscr.desconto.model.err"
+                                       data-ng-bind="_model.inscr.desconto.model.err"
+                                       class="control-label"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input name="_model.pagamento.parcelamento.name"
+                                  model="_model.pagamento.parcelamento.model"
+                                  type="_model.pagamento.parcelamento.type"
+                                  label="_model.pagamento.parcelamento.label"
+                                  mask="_model.pagamento.parcelamento.mask"
+                                  placeholder=""
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input name="'Valor da Parcela'"
+                                  model=""
+                                  type="'text'"
+                                  label="'Valor da parcela'"
+                                  dValidate="'required'"
+                                  disable="true"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input name="_model.pagamento.melhor_data.name"
+                                  model="_model.pagamento.melhor_data.model"
+                                  type="_model.pagamento.melhor_data.type"
+                                  label="_model.pagamento.melhor_data.label"
+                                  mask="_model.pagamento.melhor_data.mask"
+                                  dValidate="'required'"
+                                  disable="!validaCpf"
+                                  req="false"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <label for="{{'textarea_'+_model.pagamento.observacoes.name}}">{{_model.pagamento.observacoes.label}}</label>
+                                </div>
+                                <div class="col-md-12">
+                                    <textarea name="{{_model.pagamento.observacoes.name}}"
+                                      id="{{'textarea_'+_model.pagamento.observacoes.name}}" cols="30" rows="10" class="form-control" data-ng-model="_model.pagamento.observacoes.model.val" ng-disabled="!validaCpf"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xd-panel-collapse>
+
+            <div class="col-md-12 text-center">
+                <div class="form-group">
+                <div class="col-md-4 text-right">
+                    <button class="btn btn-green btn-lg btn-icon icon-left">
+                        Efetuar Matrícula
+                        <i class="entypo-list-add"></i>
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-danger btn-lg btn-icon icon-left">
+                        Cancelar
+                        <i class="entypo-cancel"></i>
+                    </button>
+                </div>
+                <div class="col-md-4 text-left">
+                    <button class="btn btn-info btn-lg btn-icon icon-left">
+                        Imprimir
+                        <i class="entypo-print"></i>
+                    </button>
+                </div>
+                </div>
             </div>
+
         </div>
-
-
-        <ul class="pager wizard">
-            <li class="previous">
-                <a href="#" class="btn btn-default btn-lg disabled" ng-click="">
-                    Anterior
-                </a>
-            </li>
-            <li class="next">
-                <a href="#" class="btn btn-default btn-lg">
-                    Próximo
-                </a>
-            </li>
-        </ul>
 
     </div>
 
