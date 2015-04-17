@@ -1,5 +1,6 @@
 define(['./__module__', "jquery"], function (controllers, $) {
     'use strict';
+    
     controllers.controller('FormPreCadastro', [
         '$scope', '$timeout', '$modal', '$http', 'lista_cheques',
         function ($scope, $timeout, $modal, $http, lista_cheques) {
@@ -7,15 +8,16 @@ define(['./__module__', "jquery"], function (controllers, $) {
 
             // ==== MODELOS ==== //
 
-            $scope._model = {};
-            $scope._model.aluno = {};
-            $scope._model.curso = {
+            vm._model = {};
+            vm._model.aluno = {};
+            vm._model.curso = {
                 label: "Informações do Curso",
                 name: "curso",
                 unidade: {
                     label: "Unidade",
                     type: "select",
                     name: 'unidade',
+                    value: "1",
                     help: "Campo obrigatório",
                     placeholder: "Selecione uma opção",
                     required: true,
@@ -39,10 +41,11 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     label: "Área",
                     type: "select",
                     name: "area",
+                    value: "1",
                     help: "Campo obrigatório",
                     placeholder: "Selecione uma opção",
                     required: true,
-                    list: [{id: 1, text: "Area 00"}],
+                    list: [{id: 1, text: "Area 01"}, {id: 2, text: "Area 02"}],
                     model: {err: "", val: ""}
                 },
                 curso: {
@@ -61,7 +64,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
                         totais: "vagas totais",
                         disponiveis: "Vagas disponíveis"
                     },
-                    preenchidas: 50,
+                    preenchidas: 40,
                     totais: 100,
                     isEnding: function () {
                         return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
@@ -71,7 +74,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     }
                 }
             };
-            $scope._model.inscr = {
+            vm._model.inscr = {
                 label: "Informações de Inscrição",
                 inscricao: {
                     label: "Inscrição",
@@ -134,7 +137,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     ]
                 }
             };
-            $scope._model.documentacao = {
+            vm._model.documentacao = {
                 "label": "Informações complementares do Aluno",
                 "label2": "Escolaridade",
                 "escolaEm": {
@@ -178,7 +181,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     "model": {"err": "", "val": ""}
                 }
             };
-            $scope._model.pagamento = {
+            vm._model.pagamento = {
                 label: "Informações de Pagamento",
                 name: "pagamento",
                 valorIntegral: {
@@ -250,7 +253,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     model: {err: "", val: ""}
                 }
             };
-            $scope._model.controle = {
+            vm._model.controle = {
                 label: "Controle Interno",
                 name: "controle",
                 numero_bloco: {
@@ -263,9 +266,9 @@ define(['./__module__', "jquery"], function (controllers, $) {
             };
 //            // ==== FORM DATA ==== //
 //
-//            $scope._novo_cheque = {};
-//            $scope.cleanForm();
-//            $scope._data = {
+//            vm._novo_cheque = {};
+//            vm.cleanForm();
+//            vm._data = {
 //                curso: {
 //                    unidade: ''
 //                },
@@ -277,13 +280,13 @@ define(['./__module__', "jquery"], function (controllers, $) {
 
             // ==== MÉTODOS ==== //
 
-            $scope.selectPhoneType = function (view) {
+            vm.selectPhoneType = function (view) {
                 console.log("trocou!");
-                console.log("data tipo_telefone", $scope._data.aluno.tipo_telefone);
-                $scope._model.aluno.telefone.mask = $scope._data.aluno.tipo_telefone == 'cel' ? '(99) 99999-9999' : '(99) 9999-9999';
+                console.log("data tipo_telefone", vm._data.aluno.tipo_telefone);
+                vm._model.aluno.telefone.mask = vm._data.aluno.tipo_telefone == 'cel' ? '(99) 99999-9999' : '(99) 9999-9999';
             };
 
-            $scope.openModalCheque = function () {
+            vm.openModalCheque = function () {
                 var modalInstance = $modal.open({
                     templateUrl: '../html/comercial/modal-cheques.html',
                     controller: 'ModalCheques',
@@ -291,9 +294,9 @@ define(['./__module__', "jquery"], function (controllers, $) {
                 });
             };
 
-            $scope.cleanForm = function () {
+            vm.cleanForm = function () {
                 lista_cheques.clean();
-                $scope._data = {
+                vm._data = {
                     aluno: {},
                     curso: {
                         unidade: ''
@@ -309,55 +312,55 @@ define(['./__module__', "jquery"], function (controllers, $) {
                 });
             };
 
-            $scope.sendForm = function () {
+            vm.sendForm = function () {
                 console.log('//=== Formuário enviado:');
-                console.log(JSON.stringify($scope._data));
+                console.log(JSON.stringify(vm._data));
                 console.log('====//');
             };
 
             // ==== REQUISIÇÕES ==== //
 
-            $scope.getAreas = function (view) {
+            vm.getAreas = function (view) {
                 $timeout(function () {
-                    $scope._model.curso.area.list = [
+                    vm._model.curso.area.list = [
                         {
                             id: "1",
-                            text: $scope._data.curso.unidade + " - Área 01"
+                            text: vm._data.curso.unidade + " - Área 01"
                         },
                         {
                             id: "2",
-                            text: $scope._data.curso.unidade + " - Área 02"
+                            text: vm._data.curso.unidade + " - Área 02"
                         },
                         {
                             id: "3",
-                            text: $scope._data.curso.unidade + " - Área 03"
+                            text: vm._data.curso.unidade + " - Área 03"
                         }
                     ];
-                    $scope._data.curso.area = '';
-                    $scope._data.curso.curso = '';
+                    vm._data.curso.area = '';
+                    vm._data.curso.curso = '';
                     view.remake('#f_curso_area select');
                 }, 1);
             };
-            $scope.getCursos = function (view) {
+            vm.getCursos = function (view) {
                 $timeout(function () {
-                    $scope._model.curso.curso.list = [
+                    vm._model.curso.curso.list = [
                         {
                             id: "1",
-                            text: $scope._data.curso.unidade + ' - ' +
-                                $scope._data.curso.area + " - Curso 01"
+                            text: vm._data.curso.unidade + ' - ' +
+                                vm._data.curso.area + " - Curso 01"
                         },
                         {
                             id: "2",
-                            text: $scope._data.curso.unidade + ' - ' +
-                                $scope._data.curso.area + " - Curso 02"
+                            text: vm._data.curso.unidade + ' - ' +
+                                vm._data.curso.area + " - Curso 02"
                         },
                         {
                             id: "3",
-                            text: $scope._data.curso.unidade + ' - ' +
-                                $scope._data.curso.area + " - Curso 03"
+                            text: vm._data.curso.unidade + ' - ' +
+                                vm._data.curso.area + " - Curso 03"
                         }
                     ];
-                    $scope._data.curso.curso = '';
+                    vm._data.curso.curso = '';
                     view.remake('#f_curso_curso select');
                 }, 1);
             };
@@ -368,23 +371,23 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     }
 
                     var a = getRandomInt(100, 201), b = getRandomInt(0, 101);
-                    $scope._model.curso.vagas.totais = a;
-                    $scope._model.curso.vagas.preenchidas = Math.floor(b * a / 100);
+                    vm._model.curso.vagas.totais = a;
+                    vm._model.curso.vagas.preenchidas = Math.floor(b * a / 100);
                 }, 1);
             };
 
             $http.get('mock/comercial/info-aluno.json')
                 .success(function (data) {
-                    $scope._model.aluno = $.extend(true, {}, data.object);
+                    vm._model.aluno = data.object;
                 });
 
             // ==== FORM DATA ==== //
 
-            $scope._novo_cheque = {};
-            $scope.cleanForm();
-            $scope.tipoPagamento = false;
-            $scope.teste = function(){
-                $scope.tipoPagamento = true;
+            vm._novo_cheque = {};
+            vm.cleanForm();
+            vm.tipoPagamento = false;
+            vm.teste = function(){
+                vm.tipoPagamento = true;
             };
 
 

@@ -2,108 +2,230 @@
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <title>xDuka | Comercial</title>
+    <title>xDuka | <%= title %></title>
 
-
+    <!--NEON-->
+    <link rel="stylesheet" href="assets/neon/vertical-timeline/css/component.css">
     <link rel="stylesheet" href="assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
     <link rel="stylesheet" href="assets/css/font-icons/entypo/css/entypo.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
     <link rel="stylesheet" href="assets/css/neon.css">
 
-
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="assets/css/custom.css">
-
-
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
-    <link rel="stylesheet" href="assets/css/font-icons/entypo/css/entypo.css">
-    <link rel="stylesheet" href="assets/js/vertical-timeline/css/component.css">
-    <link rel="stylesheet" href="assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
-    <link rel="stylesheet" href="assets/js/jvectormap/jquery-jvectormap-1.2.2.css">
-    <link rel="stylesheet" href="assets/js/rickshaw/rickshaw.min.css">
-    <link rel="stylesheet" href="assets/js/zurb-responsive-tables/responsive-tables.css">
-    <link rel="stylesheet" href="assets/js/datatables/responsive/css/datatables.responsive.css">
-
-    <!--<link rel="stylesheet" href="assets/js/selectboxit/jquery.selectBoxIt.css">-->
-    <!--<link rel="stylesheet" href="assets/js/daterangepicker/daterangepicker-bs3.css">-->
-
-    <!--SELECT2-->
+    <!--UI-SELECT-->
+    <!--
+    IE8 support, see AngularJS Internet Explorer Compatibility http://docs.angularjs.org/guide/ie
+    For Firefox 3.6, you will also need to include jQuery and ECMAScript 5 shim -->
+    <!--[if lt IE 9]>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
+    <script>
+        document.createElement('ui-select');
+        document.createElement('ui-select-match');
+        document.createElement('ui-select-choices');
+    </script>
+    <![endif]-->
+    <link rel="stylesheet" href="lib/angular-ui-select/dist/select.css">
     <link rel="stylesheet" href="lib/select2/select2.css">
     <link rel="stylesheet" href="lib/select2/select2-bootstrap.css">
 
-    <!--CUSTOM-->
-    <link rel="stylesheet" href="assets/css/neon.css">
-    <link rel="stylesheet" href="assets/css/custom.css">
+    <!--NG-IMG-CROP-->
+    <link rel="stylesheet" type="text/css" href="assets/css/ng-img-crop-custom.css">
+    <!--XDUKA-->
+    <link rel="stylesheet" href="assets/xduka/css/skin.css">
 
-    <!--<script src="lib/jquery/jquery.js"></script>-->
+    <!--SCRIPT-->
+    <script src="lib/requirejs/require.js" data-main="js/<%= area %>/main"></script>
+
 </head>
-<body ng-controller="Main"
-      class="container-fluid">
+<body ng-controller="Main as main"
+      class="page-body page-fade" data-url="http://neon.dev">
 
 <div class="page-container">
-    <!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 
     <div class="sidebar-menu">
-
         <header class="logo-env">
-
             <!-- logo -->
             <div class="logo">
-                <a href="#">
-                    <img src="assets/images/logo-cliente.png" width="120" alt=""/>
+                <a href="/">
+                    <img src="assets/xduka/img/logo.png" width="120" alt=""/>
                 </a>
             </div>
-
             <!-- logo collapse icon -->
-
             <div class="sidebar-collapse">
                 <a href="#" class="sidebar-collapse-icon with-animation">
                     <!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
                     <i class="entypo-menu"></i>
                 </a>
             </div>
-
             <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
-            <div class="sidebar-mobile-menu  visible-xs">
-                <a href="#" class="with-animation">
-                    <!-- add class "with-animation" to support animation -->
+            <div class="sidebar-mobile-menu visible-xs">
+                <a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
                     <i class="entypo-menu"></i>
                 </a>
             </div>
-
         </header>
-
-        <!--MAIN MENU-->
-        <ul id="main-menu">
-            <li ng-repeat="item in menu">
-                <a class="menu-dinamico"
-                   ng-href="{{item.href}}">
+        <ul id="main-menu" class="">
+            <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+            <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+            <li ng-repeat="item in main.menu.list">
+                <a ng-href="{{item.href}}">
                     <i ng-class="item.iconClass"></i>
                     <span ng-bind="item.text"></span>
                 </a>
             </li>
         </ul>
-
     </div>
 
     <div class="main-content">
-        <xd-bread-crumb></xd-bread-crumb>
-        <div data-ng-view></div>
+
+        <div class="row">
+            <!-- Profile Info and Notifications -->
+            <div class="col-md-6 col-sm-8 clearfix">
+                <ul class="user-info pull-left pull-none-xsm">
+                    <!-- Profile Info -->
+                    <li class="profile-info dropdown">
+                        <!-- add class "pull-right" if you want to place this from right -->
+                        <span href="#" class="dropdown-toggle">
+                            <img ng-src="{{main.user.avatar.thumb}}" alt="{{main.user.name}}"
+                                 class="img-circle" width="44"/>
+                            {{main.user.name}}
+                        </span>
+                    </li>
+                </ul>
+<!--
+                <div class="row">
+                    <div class="col-md-6">
+                        <form role="form" class="form-horizontal form-groups-bordered">
+                            <xd-select data-params="main.cursos" data-change="main.sendCurso" ></xd-select>
+                        </form>
+                        <br/>
+                    </div>
+                </div>-->
+            </div>
+
+            <!-- Raw Links -->
+            <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+                <ul class="list-inline links-list pull-right">
+                    <li>
+                        <a href="/logout">
+                            {{main.STR.LOGOUT}}
+                            <i class="entypo-logout right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr/>
+
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb bc-3">
+                    <li>
+                        <a href="/"><i class="entypo-home"></i>Home</a>
+                    </li>
+                    <li class="active">
+                        <strong>{{main.breadCrumb.title}}</strong>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="row">
+            <div data-ng-view
+                 class="col-sm-12 col-md-12 col-lg-12">
+            </div>
+        </div>
+
         <footer class="main">
-            &copy; 2014 <strong ng-bind="appName"></strong>
-            Desenvolvido pela <a href="http://xdevel.com.br"
-                                 target="_blank">xDevel</a>
+            &copy; 2014
+            <strong>xDuka</strong>
+            Desenvolvido pela
+            <a href="http://xdevel.com.br"
+               target="_blank">xDevel</a>
         </footer>
+
     </div>
-
 </div>
+<!--<form name="formFoto"
+      class="form-horizontal">
+<xd-modal title="Alterar a foto de perfil" hidden="hidden" btn="Cancelar">
+    <div ng-controller="EditarPerfil as cortar">
 
+            <div class="form-group">
+
+                <div class="col-sm-12 left-aligned" style="overflow: hidden">
+
+                    <div class="input-group">
+                        <div class="form-control uneditable-input" data-trigger="fileinput">
+                            <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                            <span class="fileinput-filename">Selecione um arquivo de imagem (jpg, png, etc)</span>
+                        </div>
+                        <span class="input-group-addon btn btn-default btn-file">
+                            <span class="fileinput-new">Selecionar</span>
+                            <input name="fileInput" type="file" id="fileInput">
+                        </span>
+                    </div>
+
+                    <p class="help-block text-center">*Tamanho máximo do arquivo 10mb</p>
+
+
+
+                </div>
+
+                <div data-collapse="!cortar.showCropArea"
+                     class="col-sm-12 col-md-9 col-md-offset-1">
+                    <div class="cropArea">
+                        <img-crop image="myImage"
+                                  result-image="myCroppedImage">
+                        </img-crop>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12 text-center">
+                    <button data-ng-disabled="!cortar.showCropArea"
+                            class="btn btn-lg btn-info btn-icon icon-left pull-right"
+                            ng-click="cortar.tempFoto()"
+                            onclick="jQuery('#confirmPhoto').modal('show', {backdrop: 'static'});"
+                            data-dismiss="modal">
+                        <i class="entypo-check"></i>
+                        {{cortar.STR.CORTAR}}
+                    </button>
+                </div>
+            </div>
+
+    </div>
+</xd-modal>
+    <div aria-hidden="true" style="display: none;" class="modal fade" id="confirmPhoto" ng-controller="xdCrop as ft">
+        <div class="modal-dialog" onshow="ft.atualizar()">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Pré-vizualização</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="col-sm-12" onloadstart="ft.atualiza()">
+                        <div>Imagem cortada:</div>
+                        <div class="text-center"><img class="img-circle" data-ng-src="{{ft.atualizaImgTemp();ft.imgSv}}"/></div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-sm-6 text-center">
+                            <button type="button" class="btn btn-default btn-lg btn-icon icon-left pull-left" data-dismiss="modal" onclick="jQuery('#xdModal').modal('show', {backdrop: 'static'});"><i class="entypo-back"></i>Voltar</button>
+                        </div>
+                        <div class="col-sm-6 text-center">
+                            <button type="button" class="btn btn-info btn-lg btn-icon icon-left pull-right" data-dismiss="modal" data-ng-click="ft.sendFoto();main.atualizaAvatar();"><i class="entypo-check"></i>Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>-->
 <!-- Bottom Scripts -->
-<script src="assets/js/gsap/main-gsap.js"></script>
-<script src="assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
-<!--<script src="assets/js/bootstrap.min.js"></script>-->
-<!--<script src="assets/js/joinable.js"></script>-->
-<script src="assets/js/resizeable.js"></script>
 <!--<script src="assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>-->
 <!--<script src="assets/js/jvectormap/jquery-jvectormap-europe-merc-en.js"></script>-->
 <!--<script src="assets/js/jquery.sparkline.min.js"></script>-->
@@ -113,24 +235,5 @@
 <!--<script src="assets/js/morris.min.js"></script>-->
 <!--<script src="assets/js/toastr.js"></script>-->
 
-<script src="assets/js/neon-api.js"></script>
-<script src="assets/js/neon-chat.js"></script>
-<script src="assets/js/neon-custom.js"></script>
-<script src="assets/js/neon-demo.js"></script>
-<!-- tables -->
-<script src="assets/js/jquery.dataTables.min.js"></script>
-<!-- rasponsive tables -->
-<script src="assets/js/zurb-responsive-tables/responsive-tables.js"></script>
-<script src="assets/js/datatables/TableTools.min.js"></script>
-<script src="assets/js/dataTables.bootstrap.js"></script>
-<script src="assets/js/datatables/jquery.dataTables.columnFilter.js"></script>
-<script src="assets/js/datatables/lodash.min.js"></script>
-<script src="assets/js/datatables/responsive/js/datatables.responsive.js"></script>
-
-<!--forms-->
-<script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.inputmask.bundle.min.js"></script>
-
-<script src="lib/requirejs/require.js" data-main="js/<%= area %>/main"></script>
 </body>
 </html>

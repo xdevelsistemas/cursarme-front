@@ -1,41 +1,30 @@
 <ng-form name="fieldForm">
     <div ng-class="{ 'has-error' : !fieldForm.data.$pristine &&
                                     fieldForm.data.$invalid}"
-         class="row form-group">
-        <label ng-bind="params.label"
-               class="col-sm-3 control-label">
-        </label>
+         class="form-group">
+        <div class="col-md-12">
+            <div class="col-md-12 left">
+                <label ng-bind="params.label"></label>
+            </div>
 
-        <div class="col-sm-5">
+            <div class="col-md-12">
+                <ui-select class="form-control" name="data"
+                           ng-model="params.value"
+                           theme="select2"
+                           on-select="change($item, $model)"
+                           ng-disabled="disabled"
+                           title="{{params.placeholder}}">
+                    <ui-select-match placeholder="{{params.placeholder}}">{{$select.selected.text}}</ui-select-match>
+                    <ui-select-choices repeat="item.id as item in params.list | propsFilter: {text: $select.search, id: $select.search}">
+                        <div ng-bind-html="item.text | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
 
-            <ui-select name="data"
-                       ng-model="params.value"
-                       theme="select2"
-                       on-select="change($item, $model)"
-                       ng-disabled="disabled">
-                <ui-select-match placeholder="params.placeholder">{{$select.selected.text}}</ui-select-match>
-                <ui-select-choices repeat="item.id as item in params.list | propsFilter: {text: $select.search, id: $select.search}">
-                    <div ng-bind-html="item.text | highlight: $select.search"></div>
-                </ui-select-choices>
-            </ui-select>
-
-            <!--<select name="data"
-                    required="{{params.required}}"
-                    ng-required="params.required"
-                    ng-model="params.value">
-                    &lt;!&ndash;ng-change="">&ndash;&gt;
-                <option></option>
-                <option ng-repeat="item in params.list"
-                        value="{{item.id}}"
-                        ng-selected="{{params.value == item.id}}"
-                        ng-bind="item.text">
-                </option>
-            </select>-->
-
-            <p ng-show="!fieldForm.data.$pristine &&
-                        fieldForm.data.$invalid"
-               class="help-block" ng-bind="params.help">
-            </p>
+                <p ng-show="!fieldForm.data.$pristine &&
+                            fieldForm.data.$invalid"
+                   class="help-block" ng-bind="params.help">
+                </p>
+            </div>
         </div>
     </div>
 </ng-form>

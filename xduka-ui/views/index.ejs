@@ -67,12 +67,6 @@
         <ul id="main-menu" class="">
             <!-- add class "multiple-expanded" to allow multiple submenus to open -->
             <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-            <li ng-show="{{(main.user.cursos.length)-1}}">
-                <a href="javascript:;" onclick="jQuery('#xdModal').modal('show', {backdrop: 'static'});">
-                <i class="entypo-direction"></i>
-                    <span>Alterar Curso</span>
-                </a>
-            </li>
             <li ng-repeat="item in main.menu.list">
                 <a ng-href="{{item.href}}">
                     <i ng-class="item.iconClass"></i>
@@ -100,12 +94,10 @@
                 </ul>
 
                 <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-md-6">
                         <form role="form" class="form-horizontal form-groups-bordered">
                             <xd-select data-params="main.cursos" data-change="main.sendCurso" ></xd-select>
-                            <!--selected="main.sendCurso"-->
                         </form>
-                        <hr/>
                         <br/>
                     </div>
                 </div>

@@ -9,12 +9,13 @@ define([
     controllers
         .controller('Main', Main);
 
-    Main.$inject = ['$scope', 'breadCrumb'];
+    Main.$inject = ['$scope', '$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function Main($scope, breadCrumb) {
+    function Main($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            , infoUserPromise = $resource('/api/comercial/info-usuario').get().$promise;
 
         console.log("I'm here(comercial)");
 
@@ -27,43 +28,24 @@ define([
         vm.area = 'Comercial';
         vm.lang = 'pt-br';
         vm.section = '';
-        vm.curso = {
-            "label": "Curso",
-            "placeholder": "Selecione um Curso",
-            "value": "11",
-            "list": [
-                {
-                    "id": "11",
-                    "text": "Biblioteconomia"
-                },
-                {
-                    "id": "22",
-                    "text": "Educação Física"
-                },
-                {
-                    "id": "33",
-                    "text": "Mecânica"
-                },
-                {
-                    "id": "44",
-                    "text": "Pedagogia"
-                }
-            ]
-        };
 
         vm.sendData = sendData;
 
-        /*$http.get('/api/aluno/usuario')
-            .success(getUsuario)
-            .error(function(textError){
-                console.log("Erro:\n" + textError + "\n");
-            });
-*/
-        ////////////////
+        infoUserPromise.
+            then(
+            function (data) {
+                vm.user = data.usuario;
+                vm.cursos = data.cursos.cursos;
+                //defineCurso.setIdCurso(vm.cursos.value);
+            })
+            .catch(
+            function (erro) {
+                console.log("Erro:\n" + erro.data + "\n");
+            }
+        );
 
-        function getUsuario(data) {
-            vm.user = data;
-        }
+
+        ////////////////
 
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
@@ -105,9 +87,5 @@ define([
         $scope.format = $scope.formats[0];
 
         $scope.validaCpf = false;
-
     }
-
-
-
 });
