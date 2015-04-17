@@ -18,12 +18,12 @@ module.exports = function (app, passport) {
 
     // COMERCIAL ========
     app.get('/comercial', isLoggedIn, isComercial, require('../services/isComercial.js'), function (req, res) {
-        res.render('index', { title: 'Comercial', area: 'comercial' });
+        res.render('comercial', { title: 'Comercial', area: 'comercial' });
     });
 
     // App ========
     app.get('/app', isLoggedIn, isComercial, require('../services/isComercial.js'), function (req, res) {
-        res.render('index', { title: 'Comercial', area: 'comercial' });
+        res.render('comercial', { title: 'Comercial', area: 'comercial' });
     });
     return app;
 };

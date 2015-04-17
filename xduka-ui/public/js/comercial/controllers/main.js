@@ -1,26 +1,27 @@
 define([
     './__module__',
     '../../common/models/strings',
-    '../../common/models/user',
     '../models/menu'
-], function (controllers, modelStrings, modelUser, modelMenu) {
+], function (controllers, modelStrings, modelMenu) {
 
     'use strict';
 
     controllers
         .controller('Main', Main);
 
-    Main.$inject = ['$scope', 'breadCrumb'];
+    Main.$inject = ['$scope', '$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function Main($scope, breadCrumb) {
+    function Main($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            , infoUserPromise = $resource('/api/comercial/info-usuario').get().$promise;
+
+        console.log("I'm here(comercial)");
 
         vm.breadCrumb = breadCrumb;
 
         vm.STR = modelStrings;
-        vm.user = modelUser;
         vm.menu = modelMenu;
 
         vm.appName = 'xDuka';
@@ -30,17 +31,21 @@ define([
 
         vm.sendData = sendData;
 
-        //$http.get('/api/aluno/usuario')
-        //    .success(getUsuario)
-        //    .error(function(textError){
-        //        console.log("Erro:\n" + textError + "\n");
-        //    });
+        infoUserPromise.
+            then(
+            function (data) {
+                vm.user = data.usuario;
+                vm.cursos = data.cursos.cursos;
+                //defineCurso.setIdCurso(vm.cursos.value);
+            })
+            .catch(
+            function (erro) {
+                console.log("Erro:\n" + erro.data + "\n");
+            }
+        );
+
 
         ////////////////
-
-        function getUsuario(data) {
-            vm.user = data;
-        }
 
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
@@ -82,9 +87,5 @@ define([
         $scope.format = $scope.formats[0];
 
         $scope.validaCpf = false;
-
     }
-
-
-
 });

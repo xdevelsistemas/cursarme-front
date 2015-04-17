@@ -17,6 +17,8 @@ define([
         var vm = this
             , infoUserPromise = $resource('/api/aluno/infoUsuario').get().$promise;
 
+        console.log("Aluno");
+
         vm.breadCrumb = breadCrumb;
 
         vm.STR = modelStrings;
