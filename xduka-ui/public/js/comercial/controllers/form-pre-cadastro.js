@@ -342,7 +342,8 @@ define(['./__module__', "jquery"], function (controllers, $) {
                 var modalInstance = $modal.open({
                     templateUrl: '../html/comercial/modal-cheques.html',
                     controller: 'ModalCheques',
-                    size: 'lg'
+                    size: 'lg',
+                    id: 'teste'
                 });
             };
 
@@ -437,10 +438,6 @@ define(['./__module__', "jquery"], function (controllers, $) {
 
             $scope._novo_cheque = {};
             $scope.cleanForm();
-            $scope.tipoPagamento = false;
-            $scope.teste = function(){
-                $scope.tipoPagamento = true;
-            };
 
 
 
