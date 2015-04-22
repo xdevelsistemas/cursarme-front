@@ -53,7 +53,7 @@
             </div>
             <div class="col-md-8">
                 <label for="titular">Nome do titular</label>
-                <input type="text" id="titular" class="form-control" required/>
+                <input data-ng-model="_model.titular.val" type="text" id="titular" class="form-control" required/>
             </div>
         </div>
 
@@ -63,7 +63,7 @@
                 type="button" class="btn btn-lg btn-default">Voltar
         </button>
         <a ng-disabled="formModalCheques.$invalid"
-           ng-click="lista_cheques.add(_novo_cheque)"
+           ng-click="new_cheque(); lista_cheques.add(_novo_cheque)"
            class="btn btn-lg btn-success btn-icon icon-left">
             <i class="entypo-plus"></i>
             Adicionar Cheque

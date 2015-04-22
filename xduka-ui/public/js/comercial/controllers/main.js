@@ -17,8 +17,6 @@ define([
         var vm = this
             , infoUserPromise = $resource('/api/comercial/info-usuario').get().$promise;
 
-        console.log("I'm here(comercial)");
-
         vm.breadCrumb = breadCrumb;
 
         vm.STR = modelStrings;
@@ -35,8 +33,6 @@ define([
             then(
             function (data) {
                 vm.user = data.usuario;
-                vm.cursos = data.cursos.cursos;
-                //defineCurso.setIdCurso(vm.cursos.value);
             })
             .catch(
             function (erro) {

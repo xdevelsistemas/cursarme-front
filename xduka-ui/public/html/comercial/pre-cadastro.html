@@ -103,24 +103,7 @@
                                   req="true"></xd-input>
                     </div>
                     <div class="col-md-5">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="col-md-12 left">
-                                    <label for="{{'select_'+pre._model.aluno.tipo_telefone.name}}">
-                                        {{pre._model.aluno.tipo_telefone.label}}
-                                    </label>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <select name="{{pre._model.aluno.tipo_telefone.name}}" id="{{'select'+pre._model.aluno.tipo_telefone.name}}" class="form-control" ng-disabled="!pre.validaCpf">
-                                        <option ng-repeat="tipo_tel in pre._model.aluno.tipo_telefone.list" value="{{tipo_tel.id}}">{{tipo_tel.text}}</option>
-                                    </select>
-                                    <p data-collapse="!pre._model.aluno.tipo_telefone..model.err"
-                                       data-ng-bind="pre._model.aluno.tipo_telefone.model.err"
-                                       class="control-label"></p>
-                                </div>
-                            </div>
-                        </div>
+                        <xd-select data-params="pre._model.aluno.tipo_telefone" data-change="pre.selectPhoneType"></xd-select>
                     </div>
                 </div>
 
@@ -273,7 +256,7 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-bind="" id="btn_addCheque" ng-click="openModalCheque()">
+                                    <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-bind="" id="btn_addCheque" ng-click="pre.openModalCheque()">
                                         Adicionar Cheques
                                         <i class="entypo-credit-card"></i>
                                     </button>
@@ -333,7 +316,7 @@
             <div class="col-md-12 text-center">
                 <div class="form-group">
                     <div class="col-md-6 text-right col-md-offset-1">
-                        <button class="btn btn-green btn-lg btn-icon icon-left">
+                        <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="salvarFirstData">
                             Salvar
                             <i class="entypo-check"></i>
                         </button>
@@ -693,7 +676,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <xd-input name="pre._model.aluno.telefone.name"
-                                  model="pre._model.aluno.telefone.model"
+                                  model="pre._model.aluno.telefone"
                                   type="pre._model.aluno.telefone.type"
                                   label="'Contato'"
                                   mask="pre._model.aluno.telefone.mask"
