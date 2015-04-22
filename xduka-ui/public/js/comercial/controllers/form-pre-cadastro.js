@@ -91,7 +91,9 @@ define(['./__module__', "jquery"], function (controllers, $) {
             // ==== MÉTODOS ==== //
 
             vm.selectPhoneType = function (item, model) {
+                var tel = vm._model.aluno.telefone.val;
                 vm._model.aluno.telefone.mask = model == 'cel' ? '(99) 9999-99999' : '(99) 9999-9999';
+                vm._model.aluno.telefone.val = tel;
             };
 
             vm.openModalCheque = function () {

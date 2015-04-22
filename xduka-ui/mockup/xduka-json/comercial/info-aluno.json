@@ -7,6 +7,7 @@
             "label": "Nome",
             "type": "text",
             "name": "nome",
+            "val": "",
             "help": "Campo obrigatório",
             "required": true,
             "model": {"err": "", "val": ""}
@@ -15,6 +16,7 @@
             "label": "Edereço",
             "type": "text",
             "name": "endereco",
+            "val": "",
             "help": "Campo obrigatório",
             "required": true,
             "model": {"err": "", "val": ""}
@@ -23,6 +25,7 @@
             "label": "Tipo de telefone",
             "type": "select",
             "name": "tipo_telefone",
+            "val": "",
             "help": "Campo obrigatório",
             "placeholder": "Selecione uma opção",
             "required": true,
@@ -46,8 +49,8 @@
             "label": "Telefone",
             "type": "text",
             "mask": "(99) 9999-9999",
-            "val": "27998",
             "name": "telefone",
+            "val": "2730655645",
             "help": "Campo obrigatório",
             "required": true,
             "model": {"err": "", "val": ""}
@@ -56,6 +59,7 @@
             "label": "Email",
             "type": "email",
             "name": "email",
+            "val": "",
             "help": "Campo obrigatório",
             "required": true,
             "model": {"err": "", "val": ""}
@@ -64,6 +68,7 @@
             "label": "Cidade",
             "type": "text",
             "name": "cidade",
+            "val": "",
             "help": "Campo obrigatório",
             "required": true
         },
@@ -71,6 +76,7 @@
             "label": "CEP",
             "type": "text",
             "name": "cep",
+            "val": "",
             "model": {"err": "", "val": ""},
             "help": "Campo obrigatório",
             "mask": "99.999-999",
@@ -81,6 +87,7 @@
             "model": {"val": "", "err": ""},
             "type": "text",
             "name": "rg",
+            "val": "",
             "help": "Campo obrigatório",
             "required": true,
             "mask": "9.999-999"
@@ -90,6 +97,7 @@
             "type": "date",
             "model": {"err": "", "val": ""},
             "name": "dataExp",
+            "val": "",
             "help": "Campo obrigatório",
             "mask": "99/99/9999",
             "required": false
@@ -98,6 +106,7 @@
             "label": "Órgão Emissor",
             "type": "text",
             "name": "orgaoEmissor",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -106,6 +115,7 @@
             "model": {"val": "", "err": ""},
             "type": "text",
             "name": "cpf",
+            "val": "",
             "help": "Campo obrigatório",
             "required": true,
             "mask": "999.999.999-99"
@@ -114,6 +124,7 @@
             "label": "Título Eleitor",
             "type": "text",
             "name": "tituloEleito",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -121,6 +132,7 @@
             "label": "Zona",
             "type": "text",
             "name": "zona",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -128,6 +140,7 @@
             "label": "Seção",
             "type": "text",
             "name": "secao",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -135,6 +148,7 @@
             "label": "UF",
             "type": "text",
             "name": "ufTitulo",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -142,6 +156,7 @@
             "label": "Certidão N C",
             "type": "text",
             "name": "certidaoNc",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -149,6 +164,7 @@
             "label": "Folha",
             "type": "text",
             "name": "folha",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -156,6 +172,7 @@
             "label": "Livro",
             "type": "text",
             "name": "livro",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -163,6 +180,7 @@
             "label": "Cartório",
             "type": "text",
             "name": "cartorio",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -170,6 +188,7 @@
             "label": "Certificado Reservista",
             "type": "text",
             "name": "certificadoRes",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -177,6 +196,7 @@
             "label": "Registro",
             "type": "text",
             "name": "registro",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -184,6 +204,7 @@
             "label": "UF",
             "type": "text",
             "name": "ufReservista",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -191,6 +212,7 @@
             "label": "Categoria",
             "type": "text",
             "name": "categoria",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -198,6 +220,7 @@
             "label": "Sexo",
             "type": "text",
             "name": "sexo",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -205,6 +228,7 @@
             "label": "Data Nascimento",
             "type": "text",
             "name": "dataNasc",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -212,6 +236,7 @@
             "label": "Raça",
             "type": "text",
             "name": "raca",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -219,6 +244,7 @@
             "label": "Estado Civil",
             "type": "text",
             "name": "estadoCivil",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -226,6 +252,7 @@
             "label": "Pai",
             "type": "text",
             "name": "pai",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -233,6 +260,7 @@
             "label": "Mãe",
             "type": "text",
             "name": "mae",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -240,6 +268,7 @@
             "label": "Av/Rua",
             "type": "text",
             "name": "avRua",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -247,6 +276,7 @@
             "label": "N",
             "type": "text",
             "name": "endNum",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -254,6 +284,7 @@
             "label": "Apt",
             "type": "text",
             "name": "apt",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -261,6 +292,7 @@
             "label": "Bairro",
             "type": "text",
             "name": "bairro",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -268,6 +300,7 @@
             "label": "UF",
             "type": "text",
             "name": "endUf",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -275,6 +308,7 @@
             "label": "Nacionalidade",
             "type": "text",
             "name": "nacionalidade",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -282,6 +316,7 @@
             "label": "Naturalidade",
             "type": "text",
             "name": "naturalidade",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         },
@@ -289,9 +324,9 @@
             "label": "UF",
             "type": "text",
             "name": "natUf",
+            "val": "",
             "help": "Campo obrigatório",
             "required": false
         }
-
     }
 }
