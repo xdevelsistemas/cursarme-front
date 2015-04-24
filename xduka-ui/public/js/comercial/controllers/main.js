@@ -1,18 +1,19 @@
 define([
     './__module__',
+    'jqueryUi',
     '../../common/models/strings',
     '../models/menu'
-], function (controllers, modelStrings, modelMenu) {
+], function (controllers, $, modelStrings, modelMenu) {
 
     'use strict';
 
     controllers
         .controller('Main', Main);
 
-    Main.$inject = ['$scope', '$resource', 'breadCrumb'];
+    Main.$inject = ['$scope', '$resource', 'breadCrumb', 'dataCheque'];
 
     /* @ngInject */
-    function Main($scope, $resource, breadCrumb) {
+    function Main($scope, $resource, breadCrumb, dataCheque) {
         /* jshint validthis: true */
         var vm = this
             , infoUserPromise = $resource('/api/comercial/info-usuario').get().$promise;
@@ -48,8 +49,15 @@ define([
         }
 
         // ===Date picker ==//
+
+        $scope.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        $scope.format = $scope.formats[0];
+
         $scope.today = function() {
             $scope.dt = new Date();
+            console.log($scope.dt);
+            dataCheque.setData($scope.dt);
+            dataCheque.setDataFormat($scope.dt);
         };
         $scope.today();
 
@@ -78,9 +86,6 @@ define([
             formatYear: 'yy',
             startingDay: 1
         };
-
-        $scope.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-        $scope.format = $scope.formats[0];
 
         $scope.validaCpf = false;
     }

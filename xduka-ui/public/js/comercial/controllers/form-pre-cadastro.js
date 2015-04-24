@@ -5,9 +5,6 @@ define(['./__module__', "jquery"], function (controllers, $) {
         '$scope', '$timeout', '$modal', '$resource', 'lista_cheques',
         function ($scope, $timeout, $modal, $resource, lista_cheques) {
 
-            /* Ocultando botão add_cheque */
-            $("#btn_addCheque").fadeOut();
-
             /* jshint validthis: true */
             var vm = this
                 , alunoPromise = $resource('/api/comercial/info-aluno').get().$promise
@@ -22,6 +19,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
 
             vm._model = {};
             vm.validaCpf = true;
+            vm.btnAddCheque = false;
             vm.valoresCampos = {};
 
             alunoPromise
@@ -201,7 +199,8 @@ define(['./__module__', "jquery"], function (controllers, $) {
             };
 
             vm.selectCheque = function (item, model) {
-                model == "2" ? $("#btn_addChequeStep1").slideDown() : $("#btn_addChequeStep1").slideUp();
+                //model == "2" ? $("#btn_addChequeStep1").slideDown() : $("#btn_addChequeStep1").slideUp();
+                model == "2" ? vm.btnAddCheque = true : vm.btnAddCheque = false;
             };
 
             vm.selectPhoneType = function (item, model) {

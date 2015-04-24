@@ -9,7 +9,7 @@
             "val": "Teste1",
             "name": "nome",
             "help": "Campo obrigatório",
-            "model": {"err": "abcde", "val": ""}
+            "model": {"err": "", "val": ""}
         },
         "endereco": {
             "label": "Edereço",

@@ -1,8 +1,8 @@
 define(['./__module__', 'jquery'], function (controllers, $) {
     'use strict';
     controllers.controller('ModalCheques', [
-        '$scope', '$http', 'lista_cheques', '$modalInstance',
-        function ($scope, $http, lista_cheques, $modalInstance) {
+        '$scope', '$http', 'lista_cheques', '$modalInstance', 'dataCheque',
+        function ($scope, $http, lista_cheques, $modalInstance, dataCheque) {
             $scope._model = {
                 label: "Adicionar Cheques",
                 name: "modal_cheques",
@@ -10,78 +10,81 @@ define(['./__module__', 'jquery'], function (controllers, $) {
                     label: "Banco",
                     type: "select",
                     name: 'banco',
+                    value: "0",
                     help: "Campo obrigatório",
                     placeholder: "Selecione uma opção",
                     required: true,
-                    val: "",
                     list: [
-                        {id: "01", text: "Banco 01"},
-                        {id: "02", text: "Banco 02"},
-                        {id: "03", text: "Banco 03"}
-                    ]
+                        {id: "1", text: "Banco do Brasil"},
+                        {id: "2", text: "Bradesco"},
+                        {id: "3", text: "Caixa"},
+                        {id: "4", text: "Itaú"}
+                    ],
+                    model: {err: "", val: ""}
                 },
                 agencia: {
                     label: "Agência",
                     type: "text",
                     name: 'agencia',
                     help: "Campo obrigatório",
-                    val: "",
-                    required: true
+                    required: true,
+                    model: {err: "", val: ""}
                 },
                 conta: {
                     label: "Conta",
                     type: "text",
                     name: 'conta',
                     help: "Campo obrigatório",
-                    val: "",
-                    required: true
+                    required: true,
+                    model: {err: "", val: ""}
                 },
                 numero: {
                     label: "Número",
                     type: "text",
                     name: 'numero',
                     help: "Campo obrigatório",
-                    val: "",
-                    required: true
+                    required: true,
+                    model: {err: "", val: ""}
                 },
                 data: {
                     label: "Data",
                     type: "text",
                     name: 'data',
                     help: "Campo obrigatório",
-                    val: "",
-                    required: true
+                    required: true,
+                    model: {err: "", val: dataCheque.getData()}
                 },
                 valor: {
                     label: "Valor",
                     type: "text",
                     name: 'valor',
                     help: "Campo obrigatório",
-                    val: "",
-                    required: true
+                    required: true,
+                    model: {err: "", val: "200"}
                 },
                 titular: {
                     label: "Nome do titular",
                     type: "text",
                     name: 'titular',
                     help: "Campo obrigatório",
-                    val: "pp",
-                    required: true
+                    required: true,
+                    model: {err: "", val: ""}
                 }
             };
 
             $scope.new_cheque = function(){
-
+                dataCheque.setDataFormat($scope._model.data.model.val);
                 $scope._data = {
-                    "banco": $scope._model.banco.val,
-                    "agencia": $scope._model.agencia.val,
-                    "conta": $scope._model.conta.val,
-                    "numero": $scope._model.numero.val,
-                    "data": $scope._model.data.val,
-                    "valor": $scope._model.valor.val,
-                    "titular": $scope._model.titular.val
+                    "banco": $scope._model.banco.value,
+                    "agencia": $scope._model.agencia.model.val,
+                    "conta": $scope._model.conta.model.val,
+                    "numero": $scope._model.numero.model.val,
+                    "data": dataCheque.getDataFormat(),
+                    "valor": "R$ "+$scope._model.valor.model.val+",00",
+                    "titular": $scope._model.titular.model.val
                 };
                 $scope._novo_cheque = $scope._data;
+                console.log($scope._data)
             };
 
             $scope.lista_cheques = lista_cheques;
