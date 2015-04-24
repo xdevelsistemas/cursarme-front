@@ -12,6 +12,7 @@ var controle = require('../mockup/xduka-json/comercial/controle.json'),
 module.exports = function() {
     var controller = {};
 
+    controller.putDadosIniciais = putDadosIniciais;
     controller.showForm = getForm;
     controller.showInfoAluno = getInfoAluno;
     controller.showInfoControle = getInfoControle;
@@ -64,4 +65,10 @@ function getPreCadastro(req, res) {
 
 function getTipoTel(req, res) {
     res.json(tipoTel);
+}
+
+function putDadosIniciais(req, res) {
+    //res.json(req.body);
+    console.log(req.body);
+    res.json({"status": "ok"});
 }

@@ -2,19 +2,19 @@
     "label": "Informações do Curso",
     "name": "curso",
     "unidade": {
-    "label": "Unidade",
-    "type": "select",
-    "name": "unidade",
-    "value": "1",
-    "help": "Campo obrigatório",
-    "placeholder": "Selecione uma opção",
-    "required": true,
-    "list": [
-      {"id": "1", "text": "Unidade 01"},
-      {"id": "2", "text": "Unidade 02"},
-      {"id": "3", "text": "Unidade 03"}
-    ],
-    "model": {"err": "", "val": ""}
+      "label": "Unidade",
+      "type": "select",
+      "name": "unidade",
+      "value": "1",
+      "help": "Campo obrigatório",
+      "placeholder": "Selecione uma opção",
+      "required": true,
+      "list": [
+        {"id": "1", "text": "Unidade 01"},
+        {"id": "2", "text": "Unidade 02"},
+        {"id": "3", "text": "Unidade 03"}
+      ],
+      "model": {"err": "", "val": ""}
     },
     "area": {
       "label": "Área",
@@ -45,8 +45,8 @@
     },
     "vagas": {
       "str": {
-        "totais": "vagas totais",
-        "disponiveis": "Vagas disponíveis"
+        "totais": "Vagas Totais",
+        "disponiveis": "Vagas Disponíveis"
       },
       "preenchidas": 40,
       "totais": 100

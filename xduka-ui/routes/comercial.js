@@ -37,6 +37,10 @@ module.exports = function (app, passport) {
     app.route('/api/comercial/pre-cadastro')
         .get(controller.showPreCadastro);
 
+    //salva-dados-iniciais
+    app.route('/api/comercial/salva-dados-iniciais')
+        .post(controller.putDadosIniciais);
+
     //tipo-telefone
     app.route('/api/comercial/tipo-telefone')
         .get(controller.showTipoTel);

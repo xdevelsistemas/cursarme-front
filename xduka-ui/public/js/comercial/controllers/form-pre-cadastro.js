@@ -4,6 +4,10 @@ define(['./__module__', "jquery"], function (controllers, $) {
     controllers.controller('FormPreCadastro', [
         '$scope', '$timeout', '$modal', '$resource', 'lista_cheques',
         function ($scope, $timeout, $modal, $resource, lista_cheques) {
+
+            /* Ocultando botão add_cheque */
+            $("#btn_addCheque").fadeOut();
+
             /* jshint validthis: true */
             var vm = this
                 , alunoPromise = $resource('/api/comercial/info-aluno').get().$promise
@@ -16,9 +20,9 @@ define(['./__module__', "jquery"], function (controllers, $) {
 
             // ==== MODELOS ==== //
 
-            vm.validaCpf = true;
-
             vm._model = {};
+            vm.validaCpf = true;
+            vm.valoresCampos = {};
 
             alunoPromise
                 .then(function(data){
@@ -74,35 +78,8 @@ define(['./__module__', "jquery"], function (controllers, $) {
                 .catch(function(erro){
                     console.log("\n" + erro.data + "\n");
                 });
-//            // ==== FORM DATA ==== //
-//
-//            vm._novo_cheque = {};
-//            vm.cleanForm();
-//            vm._data = {
-//                curso: {
-//                    unidade: ''
-//                },
-//                pagamento: {
-//                    lista_cheques: lista_cheques
-//                },
-//                controle: {}
-//            };
 
             // ==== MÉTODOS ==== //
-
-            vm.selectPhoneType = function (item, model) {
-                var tel = vm._model.aluno.telefone.val;
-                vm._model.aluno.telefone.mask = model == 'cel' ? '(99) 9999-99999' : '(99) 9999-9999';
-                vm._model.aluno.telefone.val = tel;
-            };
-
-            vm.openModalCheque = function () {
-                var modalInstance = $modal.open({
-                    templateUrl: '../html/comercial/modal-cheques.html',
-                    controller: 'ModalCheques',
-                    size: 'lg'
-                });
-            };
 
             vm.cleanForm = function () {
                 lista_cheques.clean();
@@ -120,12 +97,6 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     $('select').select2('destroy');
                     $('select').select2({width: "100%", placeholder: "Selecione uma opção"});
                 });
-            };
-
-            vm.sendForm = function () {
-                console.log('//=== Formuário enviado:');
-                console.log(JSON.stringify(vm._data));
-                console.log('====//');
             };
 
             // ==== REQUISIÇÕES ==== //
@@ -186,18 +157,64 @@ define(['./__module__', "jquery"], function (controllers, $) {
                 }, 1);
             };
 
-            vm.salvarFirstData = function() {
-                console.log("salva!")
+            vm.openModalCheque = function () {
+                var modalInstance = $modal.open({
+                    templateUrl: '../html/comercial/modal-cheques.html',
+                    controller: 'ModalCheques',
+                    size: 'lg'
+                });
             };
 
-            // ==== FORM DATA ==== //
-/*
-            vm._novo_cheque = {};
-            vm.cleanForm();
-            vm.tipoPagamento = false;
-            vm.teste = function(){
-                vm.tipoPagamento = true;
-            };*/
+            vm.salvarFirstData = function() {
+                vm.dadosIniciais = {
+                    area: vm._model.curso.area.value,
+                    cep: vm._model.aluno.cep.model.val,
+                    cidade: vm._model.aluno.cidade.model.val,
+                    cpf: vm._model.aluno.cpf.model.val,
+                    curso: vm._model.curso.curso.value,
+                    desconto: vm._model.inscr.desconto.value,
+                    email: vm._model.aluno.email.model.val,
+                    formaPagamento: vm._model.inscr.formaPagamento.value,
+                    melhorData: vm._model.inscr.melhorData.value,
+                    nome: vm._model.aluno.nome.model.val,
+                    qtdParcelas: vm._model.inscr.qtdParcelas.value,
+                    rg: vm._model.aluno.rg.model.val,
+                    telefone: vm._model.aluno.telefone.model.val,
+                    tipoTelefone: vm._model.aluno.tipo_telefone.value,
+                    unidade: vm._model.curso.unidade.value,
+                    valorInscricao: vm._model.inscr.inscricao.model.val
+                };
+
+                //// verifica se os campos sao validos e se os campo não estão vazios
+
+                var dataDadosIniciais = {"dadosIniciais": vm.dadosIniciais},
+                    savePromisse = $resource('/api/comercial/salva-dados-iniciais').save({}, dataDadosIniciais).$promise;
+
+                savePromisse
+                    .then(function(data){
+                        //vm.dadosIniciais.successMessage = vm.STR.SUCESSO;
+                        vm._model.aluno = data.object;
+                    })
+                    .catch(function(erro) {
+
+                    });
+            };
+
+            vm.selectCheque = function (item, model) {
+                model == "2" ? $("#btn_addChequeStep1").slideDown() : $("#btn_addChequeStep1").slideUp();
+            };
+
+            vm.selectPhoneType = function (item, model) {
+                var tel = vm._model.aluno.telefone.model.val;
+                vm._model.aluno.telefone.mask = model == 'cel' ? '(99)9999-99999' : '(99)9999-9999';
+                vm._model.aluno.telefone.model.val = tel;
+            };
+
+            vm.sendForm = function () {
+                console.log('//=== Formuário enviado:');
+                console.log(JSON.stringify(vm._data));
+                console.log('====//');
+            };
         }
     ]);
 });
