@@ -129,29 +129,29 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.unidade"></xd-select>
+                                <xd-select data-params="pre._model.curso.unidade" data-change="pre.getAreas"></xd-select>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" ng-show="pre.selectCursoArea">
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.area"></xd-select>
+                                <xd-select data-params="pre._model.curso.area" data-change="pre.getCursos"></xd-select>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" ng-show="pre.selectCursoCurso">
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
                                 <xd-select data-params="pre._model.curso.curso" data-change="pre.getVagas"></xd-select>
                             </div>
 
-                            <div id="precadastro-vagas" class="form-group"><br>
+                            <div id="precadastro-vagas" class="form-group" ng-show="pre.selectCursoVagas"><br>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5">
                                     <!--ko foreach: preCadastro.cursos()-->
@@ -218,11 +218,11 @@
                     </div>
                 </div>
                 <!--BOTAO ADD CHEQUE-->
-                <div class="row" ng-show="true">
+                <div class="row" ng-show="pre.btnAddCheque">
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <div class="col-md-12" ng-show="pre.btnAddCheque">
+                                <div class="col-md-12">
                                     <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-bind="" id="btn_addChequeStep1" ng-click="pre.openModalCheque()">
                                         Adicionar Cheques
                                         <i class="entypo-credit-card"></i>
@@ -796,7 +796,7 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-bind="" id="btn_addChequeStep3" ng-click="openModalCheque()">
+                                    <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-bind="" id="btn_addChequeStep3" ng-click="pre.openModalCheque()">
                                         Adicionar Cheques
                                         <i class="entypo-credit-card"></i>
                                     </button>

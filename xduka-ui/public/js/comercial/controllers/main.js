@@ -10,10 +10,10 @@ define([
     controllers
         .controller('Main', Main);
 
-    Main.$inject = ['$scope', '$resource', 'breadCrumb', 'dataCheque'];
+    Main.$inject = ['$scope', '$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function Main($scope, $resource, breadCrumb, dataCheque) {
+    function Main($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
         var vm = this
             , infoUserPromise = $resource('/api/comercial/info-usuario').get().$promise;
@@ -53,22 +53,14 @@ define([
         $scope.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         $scope.format = $scope.formats[0];
 
-        $scope.today = function() {
-            $scope.dt = new Date();
-            console.log($scope.dt);
-            dataCheque.setData($scope.dt);
-            dataCheque.setDataFormat($scope.dt);
-        };
-        $scope.today();
-
         $scope.clear = function () {
             $scope.dt = null;
         };
 
         // Disable weekend selection
-        $scope.disabled = function(date, mode) {
+        /*$scope.disabled = function(date, mode) {
             return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-        };
+        };*/
 
         $scope.toggleMin = function() {
             $scope.minDate = $scope.minDate ? null : new Date();

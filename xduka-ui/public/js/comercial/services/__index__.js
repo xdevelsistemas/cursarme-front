@@ -6,6 +6,7 @@
  * which avails each service of, for example, the `config` constants object.
  **/
 define([
+    './all-cheques',
     './data-cheque',
     './lista-cheques'
 ], function () {

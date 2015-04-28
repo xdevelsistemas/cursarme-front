@@ -1,8 +1,8 @@
 define(['./__module__', 'jquery'], function (controllers, $) {
     'use strict';
     controllers.controller('ModalCheques', [
-        '$scope', '$http', 'lista_cheques', '$modalInstance', 'dataCheque',
-        function ($scope, $http, lista_cheques, $modalInstance, dataCheque) {
+        '$scope', '$http', 'lista_cheques', '$modalInstance', 'dataCheque', 'allCheques',
+        function ($scope, $http, lista_cheques, $modalInstance, dataCheque, allCheques) {
             $scope._model = {
                 label: "Adicionar Cheques",
                 name: "modal_cheques",
@@ -51,8 +51,9 @@ define(['./__module__', 'jquery'], function (controllers, $) {
                     type: "text",
                     name: 'data',
                     help: "Campo obrigatório",
+                    placeholder: "Selecione uma Data",
                     required: true,
-                    model: {err: "", val: dataCheque.getData()}
+                    model: {err: "", val: ""}
                 },
                 valor: {
                     label: "Valor",
@@ -60,7 +61,7 @@ define(['./__module__', 'jquery'], function (controllers, $) {
                     name: 'valor',
                     help: "Campo obrigatório",
                     required: true,
-                    model: {err: "", val: "200"}
+                    model: {err: "", val: ""}
                 },
                 titular: {
                     label: "Nome do titular",
@@ -73,23 +74,26 @@ define(['./__module__', 'jquery'], function (controllers, $) {
             };
 
             $scope.new_cheque = function(){
-                dataCheque.setDataFormat($scope._model.data.model.val);
+                dataCheque.setData($scope._model.data.model.val);
                 $scope._data = {
                     "banco": $scope._model.banco.value,
                     "agencia": $scope._model.agencia.model.val,
                     "conta": $scope._model.conta.model.val,
                     "numero": $scope._model.numero.model.val,
-                    "data": dataCheque.getDataFormat(),
-                    "valor": "R$ "+$scope._model.valor.model.val+",00",
+                    "data": dataCheque.getData(),
+                    "valor": "R$ "+$scope._model.valor.model.val,
                     "titular": $scope._model.titular.model.val
                 };
                 $scope._novo_cheque = $scope._data;
-                console.log($scope._data)
+                /*$scope._data.data = dataCheque.getDataInt();
+                $scope._data.valor = $scope._model.valor.model.val;*/
             };
 
             $scope.lista_cheques = lista_cheques;
             $scope.voltar = function () {
                 $modalInstance.dismiss('cancel');
+                allCheques.setAllCheques($scope.lista_cheques.lista);
+                console.log(allCheques.getAllCheques());
             };
         }]);
 });

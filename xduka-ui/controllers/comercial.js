@@ -68,7 +68,17 @@ function getTipoTel(req, res) {
 }
 
 function putDadosIniciais(req, res) {
+
+    for (var elem = 0; elem < req.body.dadosIniciais.listaCheques.length; elem++) {
+        req.body.dadosIniciais.listaCheques[elem].data = setDataInt(req.body.dadosIniciais.listaCheques[elem].data)
+        console.log(req.body.dadosIniciais.listaCheques[elem])
+    }
+
     //res.json(req.body);
-    console.log(req.body);
+    //console.log(req.body);
     res.json({"status": "ok"});
+}
+
+function setDataInt(a) {
+    return new Date(a).getTime();
 }

@@ -7,13 +7,13 @@
     "help": "Campo obrigatório",
     "required": true,
     "mask": "",
-    "model": {"err": "Campo obrigatório", "val": "20"}
+    "model": {"val": ""}
   },
   "desconto": {
     "label": "Desconto",
     "type": "select",
     "name": "descontoInscr",
-    "value": "1",
+    "value": "",
     "help": "Campo obrigatório",
     "placeholder": "Selecione uma opção",
     "required": true,
@@ -22,13 +22,13 @@
       {"id": "2", "text": "10%"},
       {"id": "3", "text": "20%"}
     ],
-    "model": {"err": "", "val": ""}
+    "model": {"val": ""}
   },
   "formaPagamento": {
     "label": "Forma de pagamento",
     "type": "select",
     "name": "formaPagamento",
-    "value": "1",
+    "value": "",
     "help": "Campo obrigatório",
     "required": true,
     "placeholder": "Selecione uma opção",
@@ -37,13 +37,13 @@
       {"id": "2", "text": "Cheque"},
       {"id": "3", "text": "Cartão de Crédito"}
     ],
-    "model": {"err": "", "val": ""}
+    "model": {"val": ""}
   },
   "qtdParcelas": {
     "label": "Quantidade de parcelas",
     "type": "select",
     "name": "qtdParcelas",
-    "value": "1",
+    "value": "",
     "help": "Campo obrigatório",
     "required": true,
     "placeholder": "Selecione uma opção",
@@ -52,19 +52,20 @@
       {"id": "2", "text": "3"},
       {"id": "3", "text": "6"}
     ],
-    "model": {"err": "", "val": ""}
+    "model": {"val": ""}
   },
   "melhorData": {
     "label": "Melhor data de vencimento",
     "type": "select",
-    "model": {"err": "", "text":""},
+    "name": "melhorData",
+    "value": "",
     "help": "Campo obrigatório",
     "placeholder": "Selecione uma opção",
-    "name": "melhorData",
     "list": [
       {"id": "1", "text": "05"},
       {"id": "2", "text": "10"},
       {"id": "3", "text": "25"}
-    ]
+    ],
+    "model": {"val": ""}
   }
 }

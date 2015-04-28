@@ -2,8 +2,8 @@ define(['./__module__', "jquery"], function (controllers, $) {
     'use strict';
     
     controllers.controller('FormPreCadastro', [
-        '$scope', '$timeout', '$modal', '$resource', 'lista_cheques',
-        function ($scope, $timeout, $modal, $resource, lista_cheques) {
+        '$scope', '$timeout', '$modal', '$resource', 'lista_cheques', 'allCheques',
+        function ($scope, $timeout, $modal, $resource, lista_cheques, allCheques) {
 
             /* jshint validthis: true */
             var vm = this
@@ -21,6 +21,9 @@ define(['./__module__', "jquery"], function (controllers, $) {
             vm.validaCpf = true;
             vm.btnAddCheque = false;
             vm.valoresCampos = {};
+            vm.selectCursoArea = false;
+            vm.selectCursoCurso = false;
+            vm.selectCursoVagas = false;
 
             alunoPromise
                 .then(function(data){
@@ -77,73 +80,22 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     console.log("\n" + erro.data + "\n");
                 });
 
-            // ==== MÉTODOS ==== //
-
-            vm.cleanForm = function () {
-                lista_cheques.clean();
-                vm._data = {
-                    aluno: {},
-                    curso: {
-                        unidade: ''
-                    },
-                    pagamento: {
-                        lista_cheques: lista_cheques
-                    },
-                    controle: {}
-                };
-                $timeout(function () {
-                    $('select').select2('destroy');
-                    $('select').select2({width: "100%", placeholder: "Selecione uma opção"});
-                });
-            };
-
             // ==== REQUISIÇÕES ==== //
 
-            /*vm.getAreas = function (view) {
-                $timeout(function () {
-                    vm._model.curso.area.list = [
-                        {
-                            id: "1",
-                            text: vm._data.curso.unidade + " - Área 01"
-                        },
-                        {
-                            id: "2",
-                            text: vm._data.curso.unidade + " - Área 02"
-                        },
-                        {
-                            id: "3",
-                            text: vm._data.curso.unidade + " - Área 03"
-                        }
-                    ];
-                    vm._data.curso.area = '';
-                    vm._data.curso.curso = '';
-                    view.remake('#f_curso_area select');
-                }, 1);
+            vm.getAreas = function (item, model) {
+                vm.selectCursoArea = true;
+                vm.selectCursoCurso = false;
+                vm.selectCursoVagas = false;
+                vm._model.curso.area.value = '';
+                vm._model.curso.curso.value = '';
             };
-            vm.getCursos = function (view) {
-                $timeout(function () {
-                    vm._model.curso.curso.list = [
-                        {
-                            id: "1",
-                            text: vm._data.curso.unidade + ' - ' +
-                                vm._data.curso.area + " - Curso 01"
-                        },
-                        {
-                            id: "2",
-                            text: vm._data.curso.unidade + ' - ' +
-                                vm._data.curso.area + " - Curso 02"
-                        },
-                        {
-                            id: "3",
-                            text: vm._data.curso.unidade + ' - ' +
-                                vm._data.curso.area + " - Curso 03"
-                        }
-                    ];
-                    vm._data.curso.curso = '';
-                    view.remake('#f_curso_curso select');
-                }, 1);
-            };*/
-            vm.getVagas = function (view, view2) {
+            vm.getCursos = function (item, model) {
+                vm.selectCursoCurso = true;
+                vm.selectCursoVagas = false;
+                vm._model.curso.curso.value = '';
+            };
+            vm.getVagas = function (item, model) {
+                vm.selectCursoVagas = true;
                 $timeout(function () {
                     function getRandomInt(min, max) {
                         return Math.floor(Math.random() * (max - min)) + min;
@@ -180,7 +132,8 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     telefone: vm._model.aluno.telefone.model.val,
                     tipoTelefone: vm._model.aluno.tipo_telefone.value,
                     unidade: vm._model.curso.unidade.value,
-                    valorInscricao: vm._model.inscr.inscricao.model.val
+                    valorInscricao: vm._model.inscr.inscricao.model.val,
+                    listaCheques: allCheques.getAllCheques()
                 };
 
                 //// verifica se os campos sao validos e se os campo não estão vazios
@@ -191,7 +144,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
                 savePromisse
                     .then(function(data){
                         //vm.dadosIniciais.successMessage = vm.STR.SUCESSO;
-                        vm._model.aluno = data.object;
+                        //vm._model.aluno = data.object;
                     })
                     .catch(function(erro) {
 
