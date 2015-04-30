@@ -4,7 +4,7 @@ var dadosComercial = require('../mockup/xduka-json/comercial/dados-comercial.jso
 module.exports = function() {
     var controller = {};
 
-    controller.putDadosIniciais = putDadosIniciais;
+    controller.putDadosMatricula = putDadosMatricula;
     controller.showDadosComercial = getDadosComercial;
     controller.showInfoUsuario = getInfoUsuario;
 
@@ -19,12 +19,11 @@ function getInfoUsuario(req, res) {
     res.json({"usuario": usuario});
 }
 
-function putDadosIniciais(req, res) {
+function putDadosMatricula(req, res) {
 
-    for (var elem = 0; elem < req.body.dadosIniciais.listaCheques.length; elem++) {
-        req.body.dadosIniciais.listaCheques[elem].data = setDataInt(req.body.dadosIniciais.listaCheques[elem].data);
-        console.log(req.body.dadosIniciais.listaCheques[elem]);
-
+    for (var elem = 0; elem < req.body.pagamento.listaCheques.length; elem++) {
+        req.body.pagamento.listaCheques[elem].data = setDataInt(req.body.pagamento.listaCheques[elem].data);
+        console.log(req.body.pagamento.listaCheques[elem]);
     }
 
     function setDataInt(a) {
@@ -33,5 +32,5 @@ function putDadosIniciais(req, res) {
 
     //res.json(req.body);
     //console.log(req.body);
-    res.json({"status": "ok"});
+    res.json(req.body);
 }

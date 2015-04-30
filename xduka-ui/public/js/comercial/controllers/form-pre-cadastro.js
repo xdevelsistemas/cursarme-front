@@ -71,8 +71,8 @@ define(['./__module__', "jquery"], function (controllers, $) {
                 });
             };
 
-            vm.salvarFirstData = function() {
-                vm.dadosIniciais = {
+            vm.salvarFirstDados = function() {
+                /*vm.dadosIniciais = {
                     area: vm._model.curso.area.value,
                     cep: vm._model.aluno.cep.model.val,
                     cidade: vm._model.aluno.cidade.model.val,
@@ -90,17 +90,17 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     unidade: vm._model.curso.unidade.value,
                     valorInscricao: vm._model.inscr.inscricao.model.val,
                     listaCheques: allCheques.getAllCheques()
-                };
+                };*/
 
-                //// verifica se os campos sao validos e se os campo não estão vazios
+                $.extend(vm._model.pagamento.listaCheques, allCheques.getAllCheques());
 
-                var dataDadosIniciais = {"dadosIniciais": vm.dadosIniciais},
-                    savePromisse = $resource('/api/comercial/salva-dados-iniciais').save({}, dataDadosIniciais).$promise;
+                var savePromisse = $resource('/api/comercial/dados-matricula').save({}, vm._model).$promise;
+                console.log(vm._model);
 
                 savePromisse
                     .then(function(data){
                         //vm.dadosIniciais.successMessage = vm.STR.SUCESSO;
-                        //vm._model.aluno = data.object;
+                        vm._model = data;
                     })
                     .catch(function(erro) {
 

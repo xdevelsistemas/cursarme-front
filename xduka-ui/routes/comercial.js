@@ -10,8 +10,8 @@ module.exports = function (app, passport) {
         .get(controller.showInfoUsuario);
 
     //salva-dados-iniciais
-    app.route('/api/comercial/salva-dados-iniciais')
-        .post(controller.putDadosIniciais);
+    app.route('/api/comercial/dados-matricula')
+        .post(controller.putDadosMatricula);
 
     return app;
 };

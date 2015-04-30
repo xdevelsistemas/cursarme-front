@@ -9,7 +9,7 @@
 
             <div class="col-md-12">
                 <ui-select class="form-control" name="data"
-                           ng-model="params.value"
+                           ng-model="params.model.val"
                            theme="select2"
                            on-select="change($item, $model)"
                            ng-disabled="disabled"
@@ -24,7 +24,7 @@
 
                 <p ng-show="!fieldForm.data.$pristine &&
                             fieldForm.data.$invalid"
-                   class="help-block" ng-bind="params.help">
+                   class="help-block" ng-bind="params.model.err">
                 </p>
             </div>
         </div>

@@ -205,7 +205,7 @@
             <div class="col-md-12 text-center">
                 <div class="form-group">
                     <div class="col-md-6 text-right col-md-offset-1">
-                        <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="pre.salvarFirstData()">
+                        <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="pre.salvarFirstDados()">
                             Salvar
                             <i class="entypo-check"></i>
                         </button>
@@ -228,7 +228,7 @@
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-input data-params="pre._model.aluno.dataExp
+                        <xd-input data-params="pre._model.aluno.dataExp"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-4">
@@ -513,7 +513,7 @@
             <div class="col-md-12 text-center">
                 <div class="form-group">
                 <div class="col-md-4 text-right">
-                    <button class="btn btn-green btn-lg btn-icon icon-left">
+                    <button name="efetuarMat" class="btn btn-green btn-lg btn-icon icon-left" ng-click="pre.sendDadosMatricula()">
                         Efetuar Matrícula
                         <i class="entypo-list-add"></i>
                     </button>

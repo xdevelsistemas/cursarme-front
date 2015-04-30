@@ -76,7 +76,7 @@ define(['./__module__', 'jquery'], function (controllers, $) {
             $scope.new_cheque = function(){
                 dataCheque.setData($scope._model.data.model.val);
                 $scope._data = {
-                    "banco": $scope._model.banco.value,
+                    "banco": $scope._model.banco.model.val,
                     "agencia": $scope._model.agencia.model.val,
                     "conta": $scope._model.conta.model.val,
                     "numero": $scope._model.numero.model.val,
