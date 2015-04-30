@@ -13,15 +13,8 @@ define([
                     replace: true,
                     templateUrl: 'html/common/xd-input.html',
                     scope: {
-                        name: '=',
-                        model: '=',
-                        type: '=',
-                        label: '=',
-                        mask: '=',
-                        placeholder: '=',
                         disable: '=',
-                        dValidate: '=',
-                        req: '='
+                        params: '='
                     }
                 };
 

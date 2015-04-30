@@ -1,42 +1,36 @@
-var form = require('../mockup/xduka-json/comercial/form.json'),
-    infoAluno = require('../mockup/xduka-json/comercial/info-aluno.json'),
-    preCadastro = require('../mockup/xduka-json/preCadastro.json'),
-    tipoTel = require('../mockup/xduka-json/comercial/tipo_telefone.json'),
-    cursos = require('../mockup/xduka-json/aluno/cursos.json'),
+var dadosComercial = require('../mockup/xduka-json/comercial/dados-comercial.json'),
     usuario = require('../mockup/xduka-json/common/user.json');
 
 module.exports = function() {
     var controller = {};
 
-    controller.showForm = getForm;
-    controller.showInfoAluno = getInfoAluno;
+    controller.putDadosMatricula = putDadosMatricula;
+    controller.showDadosComercial = getDadosComercial;
     controller.showInfoUsuario = getInfoUsuario;
-    controller.showPreCadastro = getPreCadastro;
-    controller.showTipoTel = getTipoTel;
 
     return controller;
 };
 
-function getForm(req, res) {
-    res.json(form);
-}
-
-function getInfoAluno(req, res) {
-    res.json(infoAluno);
+function getDadosComercial(req, res) {
+    res.json(dadosComercial);
 }
 
 function getInfoUsuario(req, res) {
-    var infoUsuario = {
-        "cursos": cursos,
-        "usuario": usuario
-    };
-    res.json(infoUsuario);
+    res.json({"usuario": usuario});
 }
 
-function getPreCadastro(req, res) {
-    res.json(preCadastro);
-}
+function putDadosMatricula(req, res) {
 
-function getTipoTel(req, res) {
-    res.json(tipoTel);
+    for (var elem = 0; elem < req.body.pagamento.listaCheques.length; elem++) {
+        req.body.pagamento.listaCheques[elem].data = setDataInt(req.body.pagamento.listaCheques[elem].data);
+        console.log(req.body.pagamento.listaCheques[elem]);
+    }
+
+    function setDataInt(a) {
+        return new Date(a).getTime();
+    }
+
+    //res.json(req.body);
+    //console.log(req.body);
+    res.json(req.body);
 }

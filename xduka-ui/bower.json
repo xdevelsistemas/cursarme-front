@@ -19,7 +19,8 @@
     "requirejs": "2.1.16",
     "requirejs-domready": "2.0.1",
     "select2": "3.5.2",
-    "ngImgCrop": "0.3.2"
+    "ngImgCrop": "0.3.2",
+    "angular-input-masks": "~1.4.2"
   },
   "homepage": "https://github.com/xdevelsistemas/xDuka",
   "authors": [

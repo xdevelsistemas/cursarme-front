@@ -1,8 +1,9 @@
 define([
     './__module__',
+    'jqueryUi',
     '../../common/models/strings',
     '../models/menu'
-], function (controllers, modelStrings, modelMenu) {
+], function (controllers, $, modelStrings, modelMenu) {
 
     'use strict';
 
@@ -16,8 +17,6 @@ define([
         /* jshint validthis: true */
         var vm = this
             , infoUserPromise = $resource('/api/comercial/info-usuario').get().$promise;
-
-        console.log("I'm here(comercial)");
 
         vm.breadCrumb = breadCrumb;
 
@@ -35,8 +34,6 @@ define([
             then(
             function (data) {
                 vm.user = data.usuario;
-                vm.cursos = data.cursos.cursos;
-                //defineCurso.setIdCurso(vm.cursos.value);
             })
             .catch(
             function (erro) {
@@ -52,19 +49,18 @@ define([
         }
 
         // ===Date picker ==//
-        $scope.today = function() {
-            $scope.dt = new Date();
-        };
-        $scope.today();
+
+        $scope.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        $scope.format = $scope.formats[0];
 
         $scope.clear = function () {
             $scope.dt = null;
         };
 
         // Disable weekend selection
-        $scope.disabled = function(date, mode) {
+        /*$scope.disabled = function(date, mode) {
             return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-        };
+        };*/
 
         $scope.toggleMin = function() {
             $scope.minDate = $scope.minDate ? null : new Date();
@@ -82,9 +78,6 @@ define([
             formatYear: 'yy',
             startingDay: 1
         };
-
-        $scope.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-        $scope.format = $scope.formats[0];
 
         $scope.validaCpf = false;
     }
