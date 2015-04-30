@@ -21,7 +21,8 @@ define([
                     priority: 1000,
                     scope: {
                         params: '=',
-                        change: '='
+                        change: '=',
+                        disabled: '='
                     }
                 };
             }

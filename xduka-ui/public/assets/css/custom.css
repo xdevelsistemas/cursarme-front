@@ -7,5 +7,24 @@
 body {
 	
 }
-
+.titleRed {
+    background-color: rgba(228, 11, 11, 0.88);
+}
+.titleRed:hover {
+    background-color: rgba(206, 8, 8, 0.79);
+}
+.titleRed>#vagasDisponiveisTitle {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 400ms ease-in-out 0.2s;
+}
+.titleRed>#vagasDisponiveisValue{
+    text-align: center;
+    transition: all 400ms ease-in-out 0.2s;
+}
+.titleGray>#vagasDisponiveisTitle{
+    font-size: 21px;
+    transition: all 400ms ease-in-out 0.2s;
+}
 

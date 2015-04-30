@@ -1,4 +1,4 @@
-define(['./__module__', "jquery"], function (controllers, $) {
+define(['./__module__', "jquery", "form-wizard"], function (controllers, $, formWizard) {
     'use strict';
     
     controllers.controller('FormPreCadastro', [
@@ -9,6 +9,14 @@ define(['./__module__', "jquery"], function (controllers, $) {
             // ==== MODELOS ==== //
 
             vm._model = {};
+            vm.teste = {
+                'label': 'Melhor data de vencimento',
+                'type': 'text',
+                'name': 'dataTeste',
+                'help': 'Campo obrigatório',
+                'format': 'dd/MM/yyyy',
+                'model': {'err': '', 'val': ''}
+            };
             vm._model.aluno = {};
             vm._model.curso = {
                 label: "Informações do Curso",
@@ -66,6 +74,10 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     },
                     preenchidas: 40,
                     totais: 100,
+                    css: {
+                        titleGray: true,
+                        titleRed: false
+                    },
                     isEnding: function () {
                         return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
                     },
@@ -373,6 +385,15 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     var a = getRandomInt(100, 201), b = getRandomInt(0, 101);
                     vm._model.curso.vagas.totais = a;
                     vm._model.curso.vagas.preenchidas = Math.floor(b * a / 100);
+
+                    if (vm._model.curso.vagas.totais/vm._model.curso.vagas.preenchidas < 1.5){
+                        vm._model.curso.vagas.css.titleRed = true;
+                        vm._model.curso.vagas.css.titleGray = false
+                    }else{
+                        vm._model.curso.vagas.css.titleGray = true;
+                        vm._model.curso.vagas.css.titleRed = false
+                    }
+
                 }, 1);
             };
 
@@ -390,7 +411,47 @@ define(['./__module__', "jquery"], function (controllers, $) {
                 vm.tipoPagamento = true;
             };
 
+            vm.validaCpf = true;
 
+            // ===Date picker ==//
+            $scope.dt = {val:''};
+            $scope.today = function() {
+                $scope.dt.val = new Date();
+            };
+            $scope.today();
+
+            $scope.clear = function () {
+                $scope.dt.val = null;
+            };
+
+            /*$scope.toggleMin = function() {
+                $scope.minDate = $scope.minDate ? null : new Date();
+            };
+            $scope.toggleMin();*/
+
+            $scope.open = function($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+
+                $scope.opened = true;
+            };
+
+            $scope.dateOptions = {
+                formatYear: 'yyyy',
+                startingDay: 1
+            };
+            //==FIM DATE PICKER==//
+
+            vm.topCollapse = function(){
+                $('html, body').animate({scrollTop: 0},'slow');
+            };
+
+            $(function(){
+                $('a').bind('contextmenu', function(e){
+                    alert('Função desabilitada para este elemento!');
+                    return false;
+                });
+            });
 
 
         }

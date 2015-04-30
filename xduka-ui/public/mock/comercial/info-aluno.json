@@ -45,7 +45,7 @@
         "telefone": {
             "label": "Telefone",
             "type": "text",
-            "mask": "(99) 9999-9999",
+            "mask": "(99)9999-9999",
             "name": "telefone",
             "help": "Campo obrigatório",
             "required": true,

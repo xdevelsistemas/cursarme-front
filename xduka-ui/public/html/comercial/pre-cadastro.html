@@ -1,10 +1,10 @@
 <form id="teste" class="form-horizontal form-wizard" ng-controller="FormPreCadastro as pre" action method="post" data-target="#step1">
 
-    <div class="steps-progress">
+    <div id="progress" class="steps-progress">
         <div class="progress-indicator" style="width: 0%"></div>
     </div>
     <ul>
-        <li>
+        <li class="active">
             <a href="#step1" data-toggle="tab">
                 <span>1</span>
                 "Passo 1"
@@ -24,11 +24,32 @@
         </li>
     </ul>
 
-
-
     <div class="tab-content">
+        <ul class="pager wizard col-md-12">
+            <li class="previous first col-md-3">
+                <button class="btn btn-blue btn-icon icon-left btn-sm" ng-click="pre.topCollapse()">
+                    Primeiro
+                    <i class="entypo-to-start"></i>
+                </button>
+            </li>
+            <li class="previous col-md-3">
+                <button class="btn btn-blue btn-icon icon-left btn-sm" ng-click="pre.topCollapse()">
+                    <i class="entypo-left"></i> Anterior
+                </button>
+            </li>
+            <li class="next col-md-3">
+                <button class="btn btn-blue btn-icon icon-right btn-sm" ng-click="pre.topCollapse()">
+                    Próximo <i class="entypo-right"></i>
+                </button>
+            </li>
+            <li class="next last col-md-3">
+                <button class="btn btn-blue btn-icon icon-right btn-sm" ng-click="pre.topCollapse()">
+                    Último <i class="entypo-to-end"></i>
+                </button>
+            </li>
+        </ul>
 
-        <div class="tab-pane" id="step1">
+        <div class="tab-pane active" id="step1">
             <xd-panel-collapse title="pre._model.aluno.label">
                 <div class="row">
 
@@ -40,7 +61,7 @@
                                   mask="pre._model.aluno.cpf.mask"
                                   placeholder=""
                                   dValidate="'required'"
-                                  req="pre._model.aluno_cpf.required"></xd-input>
+                                  req="pre._model.aluno.cpf.required"></xd-input>
                     </div>
                     <div class="col-md-6">
                         <xd-input name="pre._model.aluno.rg.name"
@@ -51,7 +72,7 @@
                                   placeholder=""
                                   dValidate="'required'"
                                   disable="!pre.validaCpf"
-                                  req="true"></xd-input>
+                                  req="false"></xd-input>
                     </div>
 
                 </div>
@@ -112,7 +133,7 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    <select name="{{pre._model.aluno.tipo_telefone.name}}" id="{{'select'+pre._model.aluno.tipo_telefone.name}}" class="form-control" ng-disabled="!pre.validaCpf">
+                                    <select name="{{pre._model.aluno.tipo_telefone.name}}" id="{{'select'+pre._model.aluno.tipo_telefone.name}}" class="form-control" ng-disabled="!pre.validaCpf" ng-required="true" data-validate="required" data-placeholder="Selecione">
                                         <option ng-repeat="tipo_tel in pre._model.aluno.tipo_telefone.list" value="{{tipo_tel.id}}">{{tipo_tel.text}}</option>
                                     </select>
                                     <p data-collapse="!pre._model.aluno.tipo_telefone..model.err"
@@ -123,7 +144,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <xd-input name="pre._model.aluno.email.name"
@@ -145,7 +165,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.unidade"></xd-select>
+                                <xd-select data-params="pre._model.curso.unidade" disabled="!pre.validaCpf"></xd-select>
                             </div>
                         </div>
                     </div>
@@ -154,7 +174,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.area"></xd-select>
+                                <xd-select data-params="pre._model.curso.area" disabled="!pre.validaCpf"></xd-select>
                             </div>
                         </div>
                     </div>
@@ -164,7 +184,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.curso" data-change="pre.getVagas"></xd-select>
+                                <xd-select data-params="pre._model.curso.curso" data-change="pre.getVagas" disabled="!pre.validaCpf"></xd-select>
                             </div>
 
                             <div id="precadastro-vagas" class="form-group"><br>
@@ -172,12 +192,10 @@
                                 <div class="col-sm-5">
                                     <!--ko foreach: preCadastro.cursos()-->
                                     <!--ko if: codigo() === $root.preCadastro.filtro.codCurso()-->
-                                    <div data-bind="css: vagasPreenchidas()/(vagasTotais() == 0 ? 1 : vagasTotais()) >= 0.9 ? 'tile-red' : 'tile-gray'"
-                                         class="tile-stats">
+                                    <div data-ng-class="pre._model.curso.vagas.css" class="tile-stats">
                                         <div class="icon"><i class="entypo-users"></i></div>
-                                        <div class="num" data-bind="text: vagasTotais() - vagasPreenchidas()"></div>
-                                        <h3>Vagas disponíveis</h3>
-                                        <p><span data-ng-bind="pre._model.curso.vagas.getDisponiveis()"></span></p>
+                                        <h3 id="vagasDisponiveisTitle">Vagas disponíveis</h3>
+                                        <p id="vagasDisponiveisValue" class="num"><span data-ng-bind="pre._model.curso.vagas.getDisponiveis()"></span></p>
                                         <h3>Vagas totais</h3>
                                         <p><span data-ng-bind="pre._model.curso.vagas.totais"></span></p>
                                     </div>
@@ -228,13 +246,13 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <div class="col-md-12 left">
-                                    <label for="{{'input_'+pre._model.inscr.desconto.name}}">
+                                    <label for="{{'select_'+pre._model.inscr.desconto.name}}">
                                         {{pre._model.inscr.desconto.label}}
                                     </label>
                                 </div>
 
                                 <div class="col-md-12">
-                                    <select name="{{pre._model.inscr.desconto.name}}" id="{{'select'+pre._model.inscr.desconto.name}}" class="form-control" ng-disabled="!pre.validaCpf">
+                                    <select name="{{pre._model.inscr.desconto.name}}" id="{{'select_'+pre._model.inscr.desconto.name}}" class="form-control" ng-disabled="!pre.validaCpf" ng-i>
                                         <option ng-repeat="desconto in pre._model.inscr.desconto.list" value="{{desconto.id}}">{{desconto.text}}</option>
                                     </select>
                                     <p data-collapse="!pre._model.inscr.desconto.model.err"
@@ -269,11 +287,11 @@
                 </div>
                 <!--BOTAO ADD CHEQUE-->
                 <div class="row" ng-show="true">
-                    <div class="col-md-12">
+                    <div class="col-md-12" ng-include="$('#btn_addCheque').fadeOut()">
                         <div class="form-group">
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-bind="" id="btn_addCheque" ng-click="openModalCheque()">
+                                    <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-bind="" id="btn_addCheque" ng-click="pre.openModalCheque()">
                                         Adicionar Cheques
                                         <i class="entypo-credit-card"></i>
                                     </button>
@@ -332,7 +350,7 @@
             </xd-panel-collapse>
             <div class="col-md-12 text-center">
                 <div class="form-group">
-                    <div class="col-md-6 text-right col-md-offset-1">
+                    <div class="col-md-12 center-block">
                         <button class="btn btn-green btn-lg btn-icon icon-left">
                             Salvar
                             <i class="entypo-check"></i>
@@ -713,7 +731,7 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    <select name="{{pre._model.aluno.tipo_telefone.name}}" id="{{'select'+pre._model.aluno.tipo_telefone.name}}" class="form-control" ng-disabled="true">
+                                    <select name="{{pre._model.aluno.tipo_telefone.name}}" id="{{'select_'+pre._model.aluno.tipo_telefone.name}}" class="form-control" ng-disabled="true">
                                         <option ng-repeat="tipo_tel in pre._model.aluno.tipo_telefone.list" value="{{tipo_tel.id}}">{{tipo_tel.text}}</option>
                                     </select>
                                     <p data-collapse="!pre._model.aluno.tipo_telefone..model.err"
@@ -841,7 +859,7 @@
 
             <div class="col-md-12 text-center">
                 <div class="form-group">
-                    <div class="col-md-6 text-right col-md-offset-1">
+                    <div class="col-md-12 center-block">
                         <button class="btn btn-green btn-lg btn-icon icon-left">
                             Salvar
                             <i class="entypo-check"></i>
@@ -900,7 +918,7 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <div class="col-md-12">
-                                    <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-bind="" id="btn_addCheque" ng-click="openModalCheque()">
+                                    <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-bind="" id="btn_addCheque" ng-click="pre.openModalCheque()">
                                         Adicionar Cheques
                                         <i class="entypo-credit-card"></i>
                                     </button>
@@ -967,19 +985,19 @@
 
             <div class="col-md-12 text-center">
                 <div class="form-group">
-                <div class="col-md-4 text-right">
+                <div class="col-md-4 center-block">
                     <button class="btn btn-green btn-lg btn-icon icon-left">
                         Efetuar Matrícula
                         <i class="entypo-list-add"></i>
                     </button>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 center-block">
                     <button class="btn btn-danger btn-lg btn-icon icon-left">
                         Cancelar
                         <i class="entypo-cancel"></i>
                     </button>
                 </div>
-                <div class="col-md-4 text-left">
+                <div class="col-md-4 center-block">
                     <button class="btn btn-info btn-lg btn-icon icon-left">
                         Imprimir
                         <i class="entypo-print"></i>
@@ -989,7 +1007,30 @@
             </div>
 
         </div>
+        <hr/>
+        <ul class="pager wizard col-md-12">
+            <li class="previous first col-md-3">
+                <button class="btn btn-blue btn-icon icon-left btn-sm" ng-click="pre.topCollapse()">
+                    Primeiro
+                    <i class="entypo-to-start"></i>
+                </button>
+            </li>
+            <li class="previous col-md-3">
+                <button class="btn btn-blue btn-icon icon-left btn-sm" ng-click="pre.topCollapse()">
+                    <i class="entypo-left"></i> Anterior
+                </button>
+            </li>
+            <li class="next col-md-3">
+                <button class="btn btn-blue btn-icon icon-right btn-sm" ng-click="pre.topCollapse()">
+                    Próximo <i class="entypo-right"></i>
+                </button>
+            </li>
+            <li class="next last col-md-3">
+                <button class="btn btn-blue btn-icon icon-right btn-sm" ng-click="pre.topCollapse()">
+                    Último <i class="entypo-to-end"></i>
+                </button>
+            </li>
+        </ul>
 
     </div>
-
 </form>

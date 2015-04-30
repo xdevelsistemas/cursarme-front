@@ -5,7 +5,7 @@ define([], function () {
             {
                 "text": "Pré Cadastro",
                 "iconClass": "entypo-docs",
-                "href": "#/"
+                "href": "#/pre-cadastro"
             }
         ]
     };
