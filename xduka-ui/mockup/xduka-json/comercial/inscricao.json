@@ -1,0 +1,71 @@
+{
+  "label": "Informações de Inscrição",
+  "inscricao": {
+    "label": "Inscrição",
+    "type": "text",
+    "name": "inscr",
+    "help": "Campo obrigatório",
+    "required": true,
+    "mask": "",
+    "model": {"val": ""}
+  },
+  "desconto": {
+    "label": "Desconto",
+    "type": "select",
+    "name": "descontoInscr",
+    "value": "",
+    "help": "Campo obrigatório",
+    "placeholder": "Selecione uma opção",
+    "required": true,
+    "list": [
+      {"id": "1", "text": "Sem desconto"},
+      {"id": "2", "text": "10%"},
+      {"id": "3", "text": "20%"}
+    ],
+    "model": {"val": ""}
+  },
+  "formaPagamento": {
+    "label": "Forma de pagamento",
+    "type": "select",
+    "name": "formaPagamento",
+    "value": "",
+    "help": "Campo obrigatório",
+    "required": true,
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {"id": "1", "text": "Dinheiro"},
+      {"id": "2", "text": "Cheque"},
+      {"id": "3", "text": "Cartão de Crédito"}
+    ],
+    "model": {"val": ""}
+  },
+  "qtdParcelas": {
+    "label": "Quantidade de parcelas",
+    "type": "select",
+    "name": "qtdParcelas",
+    "value": "",
+    "help": "Campo obrigatório",
+    "required": true,
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {"id": "1", "text": "1"},
+      {"id": "2", "text": "3"},
+      {"id": "3", "text": "6"}
+    ],
+    "model": {"val": ""}
+  },
+  "melhorData": {
+    "label": "Melhor data de vencimento",
+    "type": "select",
+    "name": "melhorData",
+    "value": "",
+    "help": "Campo obrigatório",
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {"id": "1", "text": "05"},
+      {"id": "2", "text": "10"},
+      {"id": "3", "text": "25"}
+    ],
+    "model": {"val": ""}
+  }
+}
