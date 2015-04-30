@@ -1,0 +1,555 @@
+{
+  "aluno": {
+    "label": "Informações do Aluno",
+    "name": "aluno",
+    "nome": {
+      "label": "Nome",
+      "type": "text",
+      "val": "Teste1",
+      "name": "nome",
+      "help": "Campo obrigatório",
+      "model": {"err": "", "val": ""}
+    },
+    "endereco": {
+      "label": "Edereço",
+      "type": "text",
+      "name": "endereco",
+      "help": "",
+      "model": {"val": ""}
+    },
+    "tipo_telefone": {
+      "label": "Tipo de telefone",
+      "type": "select",
+      "name": "tipo_telefone",
+      "help": "Campo obrigatório",
+      "placeholder": "Selecione uma opção",
+      "list": [
+        {
+          "id": "res",
+          "text": "Residencial"
+        },
+        {
+          "id": "com",
+          "text": "Comercial"
+        },
+        {
+          "id": "cel",
+          "text": "Celular"
+        }
+      ],
+      "model": {"val": ""}
+    },
+    "telefone": {
+      "label": "Telefone",
+      "type": "text",
+      "mask": "(99)9999-9999",
+      "name": "telefone",
+      "help": "Campo obrigatório",
+
+      "model": {"val": ""}
+    },
+    "email": {
+      "label": "Email",
+      "type": "email",
+      "name": "email",
+      "help": "Campo obrigatório",
+
+      "model": {"val": ""}
+    },
+    "cidade": {
+      "label": "Cidade",
+      "type": "text",
+      "name": "cidade",
+      "help": "Campo obrigatório",
+
+      "model": {"val": ""}
+    },
+    "cep": {
+      "label": "CEP",
+      "type": "text",
+      "name": "cep",
+      "help": "Campo obrigatório",
+      "mask": "99.999-999",
+
+      "model": {"val": ""}
+    },
+    "rg": {
+      "label": "RG",
+      "type": "text",
+      "name": "rg",
+      "help": "Campo obrigatório",
+
+      "mask": "9.999-999",
+      "model": {"val": ""}
+    },
+    "dataExp": {
+      "label": "Data Expedição",
+      "type": "date",
+      "model": {"val": ""},
+      "name": "dataExp",
+      "help": "",
+      "mask": "99/99/9999",
+      "required": false
+    },
+    "orgaoEmissor": {
+      "label": "Órgão Emissor",
+      "type": "text",
+      "name": "orgaoEmissor",
+      "help": "",
+      "model": {"val": ""}
+    },
+    "cpf": {
+      "label": "CPF",
+      "type": "text",
+      "name": "cpf",
+      "help": "Campo obrigatório",
+      "required": "required",
+      "mask": "999.999.999-99",
+      "model": {"val": ""}
+    },
+    "tituloEleitor": {
+      "label": "Título Eleitor",
+      "type": "text",
+      "name": "tituloEleito",
+      "help": "",
+      "model": {"val": ""}
+    },
+    "zona": {
+      "label": "Zona",
+      "type": "text",
+      "name": "zona",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "secao": {
+      "label": "Seção",
+      "type": "text",
+      "name": "secao",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "ufTitulo": {
+      "label": "UF",
+      "type": "text",
+      "name": "ufTitulo",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "certidaoNc": {
+      "label": "Certidão N C",
+      "type": "text",
+      "name": "certidaoNc",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "folha": {
+      "label": "Folha",
+      "type": "text",
+      "name": "folha",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "livro": {
+      "label": "Livro",
+      "type": "text",
+      "name": "livro",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "cartorio": {
+      "label": "Cartório",
+      "type": "text",
+      "name": "cartorio",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "certificadoRes": {
+      "label": "Certificado Reservista",
+      "type": "text",
+      "name": "certificadoRes",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "registro": {
+      "label": "Registro",
+      "type": "text",
+      "name": "registro",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "ufReservista": {
+      "label": "UF",
+      "type": "text",
+      "name": "ufReservista",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "categoria": {
+      "label": "Categoria",
+      "type": "text",
+      "name": "categoria",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "sexo": {
+      "label": "Sexo",
+      "type": "text",
+      "name": "sexo",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "dataNasc": {
+      "label": "Data Nascimento",
+      "type": "text",
+      "name": "dataNasc",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "raca": {
+      "label": "Raça",
+      "type": "text",
+      "name": "raca",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "estadoCivil": {
+      "label": "Estado Civil",
+      "type": "text",
+      "name": "estadoCivil",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "pai": {
+      "label": "Pai",
+      "type": "text",
+      "name": "pai",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "mae": {
+      "label": "Mãe",
+      "type": "text",
+      "name": "mae",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "avRua": {
+      "label": "Av/Rua",
+      "type": "text",
+      "name": "avRua",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "endNum": {
+      "label": "N",
+      "type": "text",
+      "name": "endNum",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "apt": {
+      "label": "Apt",
+      "type": "text",
+      "name": "apt",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "bairro": {
+      "label": "Bairro",
+      "type": "text",
+      "name": "bairro",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "endUf": {
+      "label": "UF",
+      "type": "text",
+      "name": "endUf",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "nacionalidade": {
+      "label": "Nacionalidade",
+      "type": "text",
+      "name": "nacionalidade",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "naturalidade": {
+      "label": "Naturalidade",
+      "type": "text",
+      "name": "naturalidade",
+      "help": "",
+
+      "model": {"val": ""}
+    },
+    "natUf": {
+      "label": "UF",
+      "type": "text",
+      "name": "natUf",
+      "help": "",
+
+      "model": {"val": ""}
+    }
+  },
+  "curso": {
+    "label": "Informações do Curso",
+    "name": "curso",
+    "unidade": {
+      "label": "Unidade",
+      "type": "select",
+      "name": "unidade",
+      "value": "",
+      "help": "Campo obrigatório",
+      "placeholder": "Selecione uma opção",
+      "required": true,
+      "list": [
+        {"id": "1", "text": "Unidade 01"},
+        {"id": "2", "text": "Unidade 02"},
+        {"id": "3", "text": "Unidade 03"}
+      ],
+      "model": {"err": "", "val": ""}
+    },
+    "area": {
+      "label": "Área",
+      "type": "select",
+      "name": "area",
+      "value": "",
+      "help": "Campo obrigatório",
+      "placeholder": "Selecione uma opção",
+      "required": true,
+      "list": [
+        {"id": 1, "text": "Area 01"},
+        {"id": 2, "text": "Area 02"}
+      ],
+      "model": {"err": "", "val": ""}
+    },
+    "curso": {
+      "label": "Curso",
+      "type": "select",
+      "name": "curso",
+      "value": "",
+      "help": "Campo obrigatório",
+      "placeholder": "Selecione uma opção",
+      "required": true,
+      "list": [
+        {"id": 1, "text": "Curso 01"},
+        {"id": 2, "text": "Curso 02"}],
+      "model": {"err": "", "val": ""}
+    },
+    "vagas": {
+      "str": {
+        "totais": "Vagas Totais",
+        "disponiveis": "Vagas Disponíveis"
+      },
+      "preenchidas": 40,
+      "totais": 100
+    }
+  },
+  "documentacao": {
+    "label": "Informações complementares do Aluno",
+    "label2": "Escolaridade",
+    "escolaEm": {
+      "label": "Escola que cursou Ensino Médio",
+      "type": "text",
+      "name": "escolaEm",
+      "help": "Campo obrigatório",
+      "required": false,
+      "model": {"err": "", "val": ""}
+    },
+    "anoEm": {
+      "label": "Ano de Conclusão",
+      "type": "text",
+      "name": "anoEm",
+      "help": "Campo obrigatório",
+      "required": false,
+      "model": {"err": "", "val": ""}
+    },
+    "cursoGrad": {
+      "label": "Curso de Graduação",
+      "type": "text",
+      "name": "cursoGrad",
+      "help": "Campo obrigatório",
+      "required": false,
+      "model": {"err": "", "val": ""}
+    },
+    "anoGrad": {
+      "label": "Ano de Conclusão",
+      "type": "text",
+      "name": "anoGrad",
+      "help": "Campo obrigatório",
+      "required": false,
+      "model": {"err": "", "val": ""}
+    },
+    "instituicao": {
+      "label": "Nome da instituição onde graduou",
+      "type": "text",
+      "name": "instituicao",
+      "help": "Campo obrigatório",
+      "required": false,
+      "model": {"err": "", "val": ""}
+    }
+  },
+  "inscr": {
+    "label": "Informações de Inscrição",
+    "inscricao": {
+      "label": "Inscrição",
+      "type": "text",
+      "name": "inscr",
+      "help": "Campo obrigatório",
+      "required": true,
+      "mask": "",
+      "model": {"val": ""}
+    },
+    "desconto": {
+      "label": "Desconto",
+      "type": "select",
+      "name": "descontoInscr",
+      "value": "",
+      "help": "Campo obrigatório",
+      "placeholder": "Selecione uma opção",
+      "required": true,
+      "list": [
+        {"id": "1", "text": "Sem desconto"},
+        {"id": "2", "text": "10%"},
+        {"id": "3", "text": "20%"}
+      ],
+      "model": {"val": ""}
+    },
+    "formaPagamento": {
+      "label": "Forma de pagamento",
+      "type": "select",
+      "name": "formaPagamento",
+      "value": "",
+      "help": "Campo obrigatório",
+      "required": true,
+      "placeholder": "Selecione uma opção",
+      "list": [
+        {"id": "1", "text": "Dinheiro"},
+        {"id": "2", "text": "Cheque"},
+        {"id": "3", "text": "Cartão de Crédito"}
+      ],
+      "model": {"val": ""}
+    },
+    "qtdParcelas": {
+      "label": "Quantidade de parcelas",
+      "type": "select",
+      "name": "qtdParcelas",
+      "value": "",
+      "help": "Campo obrigatório",
+      "required": true,
+      "placeholder": "Selecione uma opção",
+      "list": [
+        {"id": "1", "text": "1"},
+        {"id": "2", "text": "3"},
+        {"id": "3", "text": "6"}
+      ],
+      "model": {"val": ""}
+    },
+    "melhorData": {
+      "label": "Melhor data de vencimento",
+      "type": "select",
+      "name": "melhorData",
+      "value": "",
+      "help": "Campo obrigatório",
+      "placeholder": "Selecione uma opção",
+      "list": [
+        {"id": "1", "text": "05"},
+        {"id": "2", "text": "10"},
+        {"id": "3", "text": "25"}
+      ],
+      "model": {"val": ""}
+    }
+  },
+  "pagamento": {
+    "label": "Informações de Pagamento",
+    "name": "pagamento",
+    "valorIntegral": {
+      "label": "Valor Integral",
+      "type": "text",
+      "model": {"err": "", "val": ""},
+      "name": "valorIntegral",
+      "help": "Campo obrigatório",
+      "required": false
+    },
+    "entrada": {
+      "label": "Entrada",
+      "type": "text",
+      "name": "entrada",
+      "help": "Campo obrigatório",
+      "required": true,
+      "model": {"err": "", "val": ""}
+    },
+    "desconto": {
+      "label": "Desconto",
+      "type": "text",
+      "name": "desconto",
+      "help": "Campo obrigatório",
+      "required": true,
+      "model": {"err": "", "val": ""}
+    },
+    "forma": {
+      "label": "Forma de pagamento",
+      "type": "select",
+      "name": "forma",
+      "help": "Campo obrigatório",
+      "placeholder": "Selecione uma opção",
+      "required": true,
+      "list": [
+        {"id": "cheque", "text": "Cheque"},
+        {"id": "cartao", "text": "Cartão"}
+      ],
+      "model": {"err": "", "val": ""}
+    },
+    "parcelamento": {
+      "label": "Quantidade de parcelas",
+      "type": "text",
+      "name": "parcelamento",
+      "help": "Campo obrigatório",
+      "required": true,
+      "model": {"err": "", "val": ""}
+    },
+    "melhor_data": {
+      "label": "Melhor data de vencimento",
+      "type": "text",
+      "name": "melhor_data",
+      "help": "Campo obrigatório",
+      "required": true,
+      "format": "dd/MM/yyyy",
+      "opened": false,
+      "open": "function ($event) {$event.preventDefault();$event.stopPropagation();this.opened = true;}",
+      "model": {"err": "", "val": ""}
+    },
+    "observacoes": {
+      "label": "Observações",
+      "type": "text",
+      "name": "observacoes",
+      "help": "Campo obrigatório",
+      "required": true,
+      "model": {"err": "", "val": ""}
+    }
+  }
+}

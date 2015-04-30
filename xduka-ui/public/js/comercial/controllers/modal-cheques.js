@@ -10,15 +10,15 @@ define(['./__module__', 'jquery'], function (controllers, $) {
                     label: "Banco",
                     type: "select",
                     name: 'banco',
-                    value: "0",
+                    value: "",
                     help: "Campo obrigatório",
                     placeholder: "Selecione uma opção",
                     required: true,
                     list: [
-                        {id: "1", text: "Banco do Brasil"},
-                        {id: "2", text: "Bradesco"},
-                        {id: "3", text: "Caixa"},
-                        {id: "4", text: "Itaú"}
+                        {id: "Banco do Brasil", text: "Banco do Brasil"},
+                        {id: "Bradesco", text: "Bradesco"},
+                        {id: "Caixa", text: "Caixa"},
+                        {id: "Itau", text: "Itaú"}
                     ],
                     model: {err: "", val: ""}
                 },

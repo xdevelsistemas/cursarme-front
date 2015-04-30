@@ -33,73 +33,36 @@
                 <div class="row">
 
                     <div class="col-md-6">
-                        <xd-input name="pre._model.aluno.cpf.name"
-                                  model="pre._model.aluno.cpf.model"
-                                  type="pre._model.aluno.cpf.type"
-                                  label="pre._model.aluno.cpf.label"
-                                  mask="pre._model.aluno.cpf.mask"
-                                  placeholder=""
-                                  d-validate="'required'"></xd-input>
+                        <xd-input data-params="pre._model.aluno.cpf"></xd-input>
                     </div>
                     <div class="col-md-6">
-                        <xd-input name="pre._model.aluno.rg.name"
-                                  model="pre._model.aluno.rg.model"
-                                  type="pre._model.aluno.rg.type"
-                                  label="pre._model.aluno.rg.label"
-                                  mask="pre._model.aluno.rg.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.rg"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
 
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input name="pre._model.aluno.nome.name"
-                                  model="pre._model.aluno.nome.model"
-                                  type="pre._model.aluno.nome.type"
-                                  label="pre._model.aluno.nome.label"
-                                  mask="pre._model.aluno.nome.mask"
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.nome"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-7">
-                        <xd-input name="pre._model.aluno.cidade.name"
-                                  model="pre._model.aluno.cidade.model"
-                                  type="pre._model.aluno.cidade.type"
-                                  label="pre._model.aluno.cidade.label"
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.cidade"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-5">
-                        <xd-input name="pre._model.aluno.cep.name"
-                                  model="pre._model.aluno.cep.model"
-                                  type="pre._model.aluno.cep.type"
-                                  label="pre._model.aluno.cep.label"
-                                  mask="pre._model.aluno.cep.mask"
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.cep"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-7">
-                        <xd-input name="pre._model.aluno.telefone.name"
-                                  model="pre._model.aluno.telefone.model"
-                                  type="pre._model.aluno.telefone.type"
-                                  label="pre._model.aluno.telefone.label"
-                                  mask="pre._model.aluno.telefone.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.telefone"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-5">
                         <xd-select data-params="pre._model.aluno.tipo_telefone"
@@ -110,15 +73,8 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input name="pre._model.aluno.email.name"
-                                  model="pre._model.aluno.email.model"
-                                  type="pre._model.aluno.email.type"
-                                  label="pre._model.aluno.email.label"
-                                  mask="pre._model.aluno.email.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.email"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
 
@@ -193,7 +149,7 @@
                                            type="{{pre._model.inscr.inscricao.type || text}}"
                                            class="form-control"
                                            ui-mask="{{pre._model.inscr.inscricao.mask}}"
-                                           name="{{pre._model.inscr.inscricao.name}}"
+                                           data-params="{{pre._model.inscr.inscricao.name}}"
                                            id="{{'input_'+pre._model.inscr.inscricao.name}}"
                                            ng-disabled="!pre.validaCpf"
                                            data-validate="{{pre._model.inscr.inscricao.dValidate}}"
@@ -262,360 +218,150 @@
             <xd-panel-collapse title="pre._model.documentacao.label">
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input name="pre._model.aluno.nome.name"
-                                  model="pre._model.aluno.nome.model"
-                                  type="pre._model.aluno.nome.type"
-                                  label="pre._model.aluno.nome.label"
-                                  mask="pre._model.aluno.nome.mask"
-                                  dValidate="'required'"
-                                  disable="true"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.nome"
+                                  disable="true"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <xd-input name="pre._model.aluno.rg.name"
-                                  model="pre._model.aluno.rg.model"
-                                  type="pre._model.aluno.rg.type"
-                                  label="pre._model.aluno.rg.label"
-                                  mask="pre._model.aluno.rg.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="true"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.rg"
+                                  disable="true"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-input name="pre._model.aluno.dataExp.name"
-                                  model="pre._model.aluno.dataExp.model"
-                                  type="pre._model.aluno.dataExp.type"
-                                  label="pre._model.aluno.dataExp.label"
-                                  mask="pre._model.aluno.dataExp.mask"
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.dataExp
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-input name="pre._model.aluno.orgaoEmissor.name"
-                                  model="pre._model.aluno.orgaoEmissor.model"
-                                  type="pre._model.aluno.orgaoEmissor.type"
-                                  label="pre._model.aluno.orgaoEmissor.label"
-                                  mask="pre._model.aluno.orgaoEmissor.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.orgaoEmissor"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <xd-input name="pre._model.aluno.tituloEleitor.name"
-                                  model="pre._model.aluno.tituloEleitor.model"
-                                  type="pre._model.aluno.tituloEleitor.type"
-                                  label="pre._model.aluno.tituloEleitor.label"
-                                  mask="pre._model.aluno.tituloEleitor.mask"
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.tituloEleitor"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input name="pre._model.aluno.zona.name"
-                                  model="pre._model.aluno.zona.model"
-                                  type="pre._model.aluno.zona.type"
-                                  label="pre._model.aluno.zona.label"
-                                  mask="pre._model.aluno.zona.mask"
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.zona"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input name="pre._model.aluno.secao.name"
-                                  model="pre._model.aluno.secao.model"
-                                  type="pre._model.aluno.secao.type"
-                                  label="pre._model.aluno.secao.label"
-                                  mask="pre._model.aluno.secao.mask"
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.secao"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input name="pre._model.aluno.ufTitulo.name"
-                                  model="pre._model.aluno.ufTitulo.model"
-                                  type="pre._model.aluno.ufTitulo.type"
-                                  label="pre._model.aluno.ufTitulo.label"
-                                  mask="pre._model.aluno.ufTitulo.mask"
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.ufTitulo"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <xd-input name="pre._model.aluno.certidaoNc.name"
-                                  model="pre._model.aluno.certidaoNc.model"
-                                  type="pre._model.aluno.certidaoNc.type"
-                                  label="pre._model.aluno.certidaoNc.label"
-                                  mask="pre._model.aluno.certidaoNc.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.certidaoNc"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input name="pre._model.aluno.folha.name"
-                                  model="pre._model.aluno.folha.model"
-                                  type="pre._model.aluno.folha.type"
-                                  label="pre._model.aluno.folha.label"
-                                  mask="pre._model.aluno.folha.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.folha"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input name="pre._model.aluno.livro.name"
-                                  model="pre._model.aluno.livro.model"
-                                  type="pre._model.aluno.livro.type"
-                                  label="pre._model.aluno.livro.label"
-                                  mask="pre._model.aluno.livro.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.livro"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input name="pre._model.aluno.cartorio.name"
-                                  model="pre._model.aluno.cartorio.model"
-                                  type="pre._model.aluno.cartorio.type"
-                                  label="pre._model.aluno.cartorio.label"
-                                  mask="pre._model.aluno.cartorio.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.cartorio"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <xd-input name="pre._model.aluno.certificadoRes.name"
-                                  model="pre._model.aluno.certificadoRes.model"
-                                  type="pre._model.aluno.certificadoRes.type"
-                                  label="pre._model.aluno.certificadoRes.label"
-                                  mask="pre._model.aluno.certificadoRes.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.certificadoRes"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-5">
-                        <xd-input name="pre._model.aluno.registro.name"
-                                  model="pre._model.aluno.registro.model"
-                                  type="pre._model.aluno.registro.type"
-                                  label="pre._model.aluno.registro.label"
-                                  mask="pre._model.aluno.registro.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.registro"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input name="pre._model.aluno.ufReservista.name"
-                                  model="pre._model.aluno.ufReservista.model"
-                                  type="pre._model.aluno.ufReservista.type"
-                                  label="pre._model.aluno.ufReservista.label"
-                                  mask="pre._model.aluno.ufReservista.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.ufReservista"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <xd-input name="pre._model.aluno.categoria.name"
-                                  model="pre._model.aluno.categoria.model"
-                                  type="pre._model.aluno.categoria.type"
-                                  label="pre._model.aluno.categoria.label"
-                                  mask="pre._model.aluno.categoria.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.categoria"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-5">
-                        <xd-input name="pre._model.aluno.cpf.name"
-                                  model="pre._model.aluno.cpf.model"
-                                  type="pre._model.aluno.cpf.type"
-                                  label="pre._model.aluno.cpf.label"
-                                  mask="pre._model.aluno.cpf.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
+                        <xd-input data-params="pre._model.aluno.cpf"
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input name="pre._model.aluno.sexo.name"
-                                  model="pre._model.aluno.sexo.model"
-                                  type="pre._model.aluno.sexo.type"
-                                  label="pre._model.aluno.sexo.label"
-                                  mask="pre._model.aluno.sexo.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.sexo"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5">
-                        <xd-input name="pre._model.aluno.dataNasc.name"
-                                  model="pre._model.aluno.dataNasc.model"
-                                  type="pre._model.aluno.dataNasc.type"
-                                  label="pre._model.aluno.dataNasc.label"
-                                  mask="pre._model.aluno.dataNasc.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.dataNasc"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input name="pre._model.aluno.raca.name"
-                                  model="pre._model.aluno.raca.model"
-                                  type="pre._model.aluno.raca.type"
-                                  label="pre._model.aluno.raca.label"
-                                  mask="pre._model.aluno.raca.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.raca"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-input name="pre._model.aluno.estadoCivil.name"
-                                  model="pre._model.aluno.estadoCivil.model"
-                                  type="pre._model.aluno.estadoCivil.type"
-                                  label="pre._model.aluno.estadoCivil.label"
-                                  mask="pre._model.aluno.estadoCivil.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.estadoCivil"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input name="pre._model.aluno.pai.name"
-                                  model="pre._model.aluno.pai.model"
-                                  type="pre._model.aluno.pai.type"
-                                  label="pre._model.aluno.pai.label"
-                                  mask="pre._model.aluno.pai.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.pai"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                    <xd-input name="pre._model.aluno.mae.name"
-                                  model="pre._model.aluno.mae.model"
-                                  type="pre._model.aluno.mae.type"
-                                  label="pre._model.aluno.mae.label"
-                                  mask="pre._model.aluno.mae.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                    <xd-input data-params="pre._model.aluno.mae"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5">
-                        <xd-input name="pre._model.aluno.avRua.name"
-                                  model="pre._model.aluno.avRua.model"
-                                  type="pre._model.aluno.avRua.type"
-                                  label="pre._model.aluno.avRua.label"
-                                  mask="pre._model.aluno.avRua.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="true"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.avRua"
+                                  disable="true"></xd-input>
                     </div>
                     <div class="col-md-2">
-                        <xd-input name="pre._model.aluno.endNum.name"
-                                  model="pre._model.aluno.endNum.model"
-                                  type="pre._model.aluno.endNum.type"
-                                  label="pre._model.aluno.endNum.label"
-                                  mask="pre._model.aluno.endNum.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="false"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.endNum"
+                                  disable="false"></xd-input>
                     </div>
                     <div class="col-md-2">
-                        <xd-input name="pre._model.aluno.apt.name"
-                                  model="pre._model.aluno.apt.model"
-                                  type="pre._model.aluno.apt.type"
-                                  label="pre._model.aluno.apt.label"
-                                  mask="pre._model.aluno.apt.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="false"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.apt"
+                                  disable="false"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input name="pre._model.aluno.cep.name"
-                                  model="pre._model.aluno.cep.model"
-                                  type="pre._model.aluno.cep.type"
-                                  label="pre._model.aluno.cep.label"
-                                  mask="pre._model.aluno.cep.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="true"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.cep"
+                                  disable="true"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5">
-                        <xd-input name="pre._model.aluno.bairro.name"
-                                  model="pre._model.aluno.bairro.model"
-                                  type="pre._model.aluno.bairro.type"
-                                  label="pre._model.aluno.bairro.label"
-                                  mask="pre._model.aluno.bairro.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="true"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.bairro"
+                                  disable="true"></xd-input>
                     </div>
                     <div class="col-md-5">
-                        <xd-input name="pre._model.aluno.cidade.name"
-                                  model="pre._model.aluno.cidade.model"
-                                  type="pre._model.aluno.cidade.type"
-                                  label="pre._model.aluno.cidade.label"
-                                  mask="pre._model.aluno.cidade.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="true"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.cidade"
+                                  disable="true"></xd-input>
                     </div>
                     <div class="col-md-2">
-                        <xd-input name="pre._model.aluno.endUf.name"
-                                  model="pre._model.aluno.endUf.model"
-                                  type="pre._model.aluno.endUf.type"
-                                  label="pre._model.aluno.endUf.label"
-                                  mask="pre._model.aluno.endUf.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="true"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.endUf"
+                                  disable="true"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5">
-                        <xd-input name="pre._model.aluno.telefone.name"
-                                  model="pre._model.aluno.telefone.model"
-                                  type="pre._model.aluno.telefone.type"
-                                  label="'Contato'"
-                                  mask="pre._model.aluno.telefone.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="true"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.telefone"
+                                  disable="true"></xd-input>
                     </div>
                     <div class="col-md-4">
                         <xd-select data-params="pre._model.aluno.tipo_telefone" disabled="true"></xd-select>
@@ -623,50 +369,22 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input name="pre._model.aluno.email.name"
-                                  model="pre._model.aluno.email.model"
-                                  type="pre._model.aluno.email.type"
-                                  label="pre._model.aluno.email.label"
-                                  mask="pre._model.aluno.email.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="true"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.email"
+                                  disable="true"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5">
-                        <xd-input name="pre._model.aluno.nacionalidade.name"
-                                  model="pre._model.aluno.nacionalidade.model"
-                                  type="pre._model.aluno.nacionalidade.type"
-                                  label="pre._model.aluno.nacionalidade.label"
-                                  mask="pre._model.aluno.nacionalidade.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.nacionalidade"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-5">
-                        <xd-input name="pre._model.aluno.naturalidade.name"
-                                  model="pre._model.aluno.naturalidade.model"
-                                  type="pre._model.aluno.naturalidade.type"
-                                  label="pre._model.aluno.naturalidade.label"
-                                  mask="pre._model.aluno.naturalidade.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.naturalidade"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-2">
-                        <xd-input name="pre._model.aluno.natUf.name"
-                                  model="pre._model.aluno.natUf.model"
-                                  type="pre._model.aluno.natUf.type"
-                                  label="pre._model.aluno.natUf.label"
-                                  mask="pre._model.aluno.natUf.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.aluno.natUf"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
             </xd-panel-collapse>
@@ -674,63 +392,28 @@
             <xd-panel-collapse title="pre._model.documentacao.label2">
                 <div class="row">
                     <div class="col-md-8">
-                        <xd-input name="pre._model.documentacao.escolaEm.name"
-                                  model="pre._model.documentacao.escolaEm.model"
-                                  type="pre._model.documentacao.escolaEm.type"
-                                  label="pre._model.documentacao.escolaEm.label"
-                                  mask="pre._model.documentacao.escolaEm.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.documentacao.escolaEm"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-input name="pre._model.documentacao.anoEm.name"
-                                  model="pre._model.documentacao.anoEm.model"
-                                  type="pre._model.documentacao.anoEm.type"
-                                  label="pre._model.documentacao.anoEm.label"
-                                  mask="pre._model.documentacao.anoEm.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.documentacao.anoEm"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-8">
-                        <xd-input name="pre._model.documentacao.cursoGrad.name"
-                                  model="pre._model.documentacao.cursoGrad.model"
-                                  type="pre._model.documentacao.cursoGrad.type"
-                                  label="pre._model.documentacao.cursoGrad.label"
-                                  mask="pre._model.documentacao.cursoGrad.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.documentacao.cursoGrad"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-input name="pre._model.documentacao.anoGrad.name"
-                                  model="pre._model.documentacao.anoGrad.model"
-                                  type="pre._model.documentacao.anoGrad.type"
-                                  label="pre._model.documentacao.anoGrad.label"
-                                  mask="pre._model.documentacao.anoGrad.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.documentacao.anoGrad"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input name="pre._model.documentacao.instituicao.name"
-                                  model="pre._model.documentacao.instituicao.model"
-                                  type="pre._model.documentacao.instituicao.type"
-                                  label="pre._model.documentacao.instituicao.label"
-                                  mask="pre._model.documentacao.instituicao.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.documentacao.instituicao"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
             </xd-panel-collapse>
@@ -738,7 +421,7 @@
             <div class="col-md-12 text-center">
                 <div class="form-group">
                     <div class="col-md-6 text-right col-md-offset-1">
-                        <button class="btn btn-green btn-lg btn-icon icon-left">
+                        <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="pre.salvarSecondData()">
                             Salvar
                             <i class="entypo-check"></i>
                         </button>
@@ -753,41 +436,20 @@
             <xd-panel-collapse title="pre._model.pagamento.label">
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input name="pre._model.pagamento.valorIntegral.name"
-                                  model="pre._model.pagamento.valorIntegral.model"
-                                  type="pre._model.pagamento.valorIntegral.type"
-                                  label="pre._model.pagamento.valorIntegral.label"
-                                  mask="pre._model.pagamento.valorIntegral.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="true"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.pagamento.valorIntegral"
+                                  disable="true"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input name="pre._model.pagamento.desconto.name"
-                                  model="pre._model.pagamento.desconto.model"
-                                  type="pre._model.pagamento.desconto.type"
-                                  label="pre._model.pagamento.desconto.label"
-                                  mask="pre._model.pagamento.desconto.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.pagamento.desconto"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input name="pre._model.pagamento.forma.name"
-                                  model="pre._model.pagamento.forma.model"
-                                  type="pre._model.pagamento.forma.type"
-                                  label="pre._model.pagamento.forma.label"
-                                  mask="pre._model.pagamento.forma.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.pagamento.forma"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <!--BOTÃO ADD CHEQUE-->
@@ -810,20 +472,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input name="pre._model.pagamento.parcelamento.name"
-                                  model="pre._model.pagamento.parcelamento.model"
-                                  type="pre._model.pagamento.parcelamento.type"
-                                  label="pre._model.pagamento.parcelamento.label"
-                                  mask="pre._model.pagamento.parcelamento.mask"
-                                  placeholder=""
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.pagamento.parcelamento"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input name="'Valor da Parcela'"
+                        <xd-input data-params="'Valor da Parcela'"
                                   model=""
                                   type="'text'"
                                   label="'Valor da parcela'"
@@ -834,14 +489,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input name="pre._model.pagamento.melhor_data.name"
-                                  model="pre._model.pagamento.melhor_data.model"
-                                  type="pre._model.pagamento.melhor_data.type"
-                                  label="pre._model.pagamento.melhor_data.label"
-                                  mask="pre._model.pagamento.melhor_data.mask"
-                                  dValidate="'required'"
-                                  disable="!pre.validaCpf"
-                                  ></xd-input>
+                        <xd-input data-params="pre._model.pagamento.melhor_data"
+                                  disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
@@ -852,7 +501,7 @@
                                     <label for="{{'textarea_'+pre._model.pagamento.observacoes.name}}">{{pre._model.pagamento.observacoes.label}}</label>
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea name="{{pre._model.pagamento.observacoes.name}}"
+                                    <textarea data-params="{{pre._model.pagamento.observacoes.name}}"
                                       id="{{'textarea_'+pre._model.pagamento.observacoes.name}}" cols="30" rows="10" class="form-control" data-ng-model="pre._model.pagamento.observacoes.model.val" ng-disabled="!pre.validaCpf"></textarea>
                                 </div>
                             </div>

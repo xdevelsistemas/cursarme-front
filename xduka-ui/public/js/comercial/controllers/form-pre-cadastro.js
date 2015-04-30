@@ -7,12 +7,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
 
             /* jshint validthis: true */
             var vm = this
-                , alunoPromise = $resource('/api/comercial/info-aluno').get().$promise
-                , controlePromise = $resource('/api/comercial/info-controle').get().$promise
-                , cursoPromise = $resource('/api/comercial/info-curso').get().$promise
-                , docPromise = $resource('/api/comercial/info-documentacao').get().$promise
-                , inscrPromise = $resource('/api/comercial/info-inscricao').get().$promise
-                , pagPromise = $resource('/api/comercial/info-pagamento').get().$promise;
+                , comercialPromise = $resource('/api/comercial/dados-comercial').get().$promise;
 
 
             // ==== MODELOS ==== //
@@ -25,56 +20,17 @@ define(['./__module__', "jquery"], function (controllers, $) {
             vm.selectCursoCurso = false;
             vm.selectCursoVagas = false;
 
-            alunoPromise
+            comercialPromise
                 .then(function(data){
-                    vm._model.aluno = data.object;
-                })
-                .catch(function(erro){
-                    console.log("\n" + erro.data + "\n");
-                });
-
-            controlePromise
-                .then(function(data){
-                    vm._model.controle = data;
-                })
-                .catch(function(erro){
-                    console.log("\n" + erro.data + "\n");
-                });
-
-            cursoPromise
-                .then(function(data){
-                    vm._model.curso = data;
+                    vm._model = data;
                     $.extend(vm._model.curso.vagas, {}, {
                         isEnding: function () {
                             return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
                         },
-                        getDisponiveis: function () {return (parseInt(this.totais) - parseInt(this.preenchidas));
+                        getDisponiveis: function () {
+                            return (parseInt(this.totais) - parseInt(this.preenchidas));
                         }
                     });
-                })
-                .catch(function(erro){
-                    console.log("\n" + erro.data + "\n");
-                });
-
-            docPromise
-                .then(function(data){
-                    vm._model.documentacao = data;
-                })
-                .catch(function(erro){
-                    console.log("\n" + erro.data + "\n");
-                });
-
-            inscrPromise
-                .then(function(data){
-                    vm._model.inscr = data;
-                })
-                .catch(function(erro){
-                    console.log("\n" + erro.data + "\n");
-                });
-
-            pagPromise
-                .then(function(data){
-                    vm._model.pagamento = data;
                 })
                 .catch(function(erro){
                     console.log("\n" + erro.data + "\n");
@@ -149,6 +105,10 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     .catch(function(erro) {
 
                     });
+            };
+
+            vm.salvarSecondData = function() {
+                console.table(vm._model.aluno);
             };
 
             vm.selectCheque = function (item, model) {

@@ -9,14 +9,7 @@
 
         <div class="row">
             <div class="col-md-4">
-                <label for="banco">Banco</label>
-                <select data-ng-model="_model.banco.value" name="banco" id="banco" class="form-control" required>
-                    <option value="0" disabled>Selecione uma opção</option>
-                    <option value="Caixa">Caixa</option>
-                    <option value="Itau">Itaú</option>
-                    <option value="Banco do Brasil">Banco do Brasil</option>
-                    <option value="Bradesco">Bradesco</option>
-                </select>
+                <xd-select data-params="_model.banco"></xd-select>
             </div>
             <div class="col-md-4">
                 <label for="agencia">Agência</label>
@@ -30,8 +23,7 @@
 
         <div class="row">
             <div class="col-md-8">
-                <label for="numero">Número</label>
-                <input data-ng-model="_model.numero.model.val" type="text" id="numero" class="form-control" required/>
+                <xd-input data-params="_model.numero"></xd-input>
             </div>
             <div class="col-md-4">
                 <label for="dataCheque">Data</label>
