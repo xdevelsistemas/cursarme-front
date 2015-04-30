@@ -9,33 +9,26 @@
 
         <div class="row">
             <div class="col-md-4">
-                <label for="banco">Banco</label>
-                <select name="banco" id="banco" class="form-control" required>
-                    <option value="1">Caixa</option>
-                    <option value="2">Itaú</option>
-                    <option value="3">Banco do Brasil</option>
-                    <option value="4">Bradesco</option>
-                </select>
+                <xd-select data-params="_model.banco"></xd-select>
             </div>
             <div class="col-md-4">
                 <label for="agencia">Agência</label>
-                <input type="text" id="agencia" class="form-control" required/>
+                <input data-ng-model="_model.agencia.model.val" type="text" id="agencia" class="form-control" required/>
             </div>
             <div class="col-md-4">
                 <label for="conta">Conta</label>
-                <input type="text" id="conta" class="form-control" required/>
+                <input data-ng-model="_model.conta.model.val" type="text" id="conta" class="form-control" required/>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-8">
-                <label for="numero">Número</label>
-                <input type="text" id="numero" class="form-control" required/>
+                <xd-input data-params="_model.numero"></xd-input>
             </div>
             <div class="col-md-4">
                 <label for="dataCheque">Data</label>
                 <p class="input-group">
-                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" id="dataCheque" current-text="Hoje" clear-text="Limpar" close-text="Cancelar" datepicker-mode="day" />
+                    <input data-ng-model="_model.data.model.val" type="text" class="form-control" datepicker-popup="{{format}}" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" id="dataCheque" current-text="Hoje" clear-text="Limpar" close-text="Cancelar"/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
@@ -48,12 +41,12 @@
                 <label for="valor">Valor</label>
                 <div class="input-group">
                     <div class="input-group-addon"><b>R$</b></div>
-                    <input type="text" id="valor" class="form-control" required/>
+                    <input data-ng-model="_model.valor.model.val" ui-number-mask="2" type="text" id="valor" class="form-control ng-valid ng-dirty" required/>
                 </div>
             </div>
             <div class="col-md-8">
                 <label for="titular">Nome do titular</label>
-                <input type="text" id="titular" class="form-control" required/>
+                <input data-ng-model="_model.titular.model.val" type="text" id="titular" class="form-control" required/>
             </div>
         </div>
 
@@ -63,7 +56,7 @@
                 type="button" class="btn btn-lg btn-default">Voltar
         </button>
         <a ng-disabled="formModalCheques.$invalid"
-           ng-click="lista_cheques.add(_novo_cheque)"
+           ng-click="new_cheque(); lista_cheques.add(_novo_cheque)"
            class="btn btn-lg btn-success btn-icon icon-left">
             <i class="entypo-plus"></i>
             Adicionar Cheque

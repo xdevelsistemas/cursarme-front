@@ -1,5 +1,6 @@
 define([
     'angular',
+    'angularInputMasks',
     'angularRoute',
     'angularResource',
     'uiSelect',
@@ -18,6 +19,7 @@ define([
     'use strict';
 
     return angular.module('app', [
+        'ui.utils.masks',
         'ngRoute',
         'ngResource',
         'ui.select',

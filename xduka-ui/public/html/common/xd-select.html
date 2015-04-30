@@ -9,10 +9,12 @@
 
             <div class="col-md-12">
                 <ui-select class="form-control" name="data"
-                           ng-model="params.value"
+                           ng-model="params.model.val"
                            theme="select2"
                            on-select="change($item, $model)"
                            ng-disabled="disabled"
+                           ng-required="params.required"
+                           data-validade="{{dValidate}}"
                            title="{{params.placeholder}}">
                     <ui-select-match placeholder="{{params.placeholder}}">{{$select.selected.text}}</ui-select-match>
                     <ui-select-choices repeat="item.id as item in params.list | propsFilter: {text: $select.search, id: $select.search}">
@@ -22,9 +24,11 @@
 
                 <p ng-show="!fieldForm.data.$pristine &&
                             fieldForm.data.$invalid"
-                   class="help-block" ng-bind="params.help">
+                   class="help-block" ng-bind="params.model.err">
                 </p>
             </div>
         </div>
     </div>
 </ng-form>
+
+<xd-input

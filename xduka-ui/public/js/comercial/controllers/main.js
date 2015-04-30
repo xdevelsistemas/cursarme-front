@@ -1,8 +1,9 @@
 define([
     './__module__',
+    'jqueryUi',
     '../../common/models/strings',
     '../models/menu'
-], function (controllers, modelStrings, modelMenu) {
+], function (controllers, $, modelStrings, modelMenu) {
 
     'use strict';
 
@@ -16,8 +17,6 @@ define([
         /* jshint validthis: true */
         var vm = this
             , infoUserPromise = $resource('/api/comercial/info-usuario').get().$promise;
-
-        console.log("I'm here(comercial)");
 
         vm.breadCrumb = breadCrumb;
 
@@ -35,8 +34,6 @@ define([
             then(
             function (data) {
                 vm.user = data.usuario;
-                vm.cursos = data.cursos.cursos;
-                //defineCurso.setIdCurso(vm.cursos.value);
             })
             .catch(
             function (erro) {
@@ -51,7 +48,37 @@ define([
             console.log('>>>>>', 'Enviou nada!');
         }
 
+        // ===Date picker ==//
 
+        $scope.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        $scope.format = $scope.formats[0];
 
+        $scope.clear = function () {
+            $scope.dt = null;
+        };
+
+        // Disable weekend selection
+        /*$scope.disabled = function(date, mode) {
+            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+        };*/
+
+        $scope.toggleMin = function() {
+            $scope.minDate = $scope.minDate ? null : new Date();
+        };
+        $scope.toggleMin();
+
+        $scope.open = function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            $scope.opened = true;
+        };
+
+        $scope.dateOptions = {
+            formatYear: 'yy',
+            startingDay: 1
+        };
+
+        $scope.validaCpf = false;
     }
 });
