@@ -8,21 +8,20 @@
             </label>
         </div>
 
-        <div class="col-md-12">
-            <input data-ng-model="params.model.val"
-                   placeholder="{{params.placeholder}}"
-                   type="{{params.type || text}}"
+        <div class="col-md-12 input-group">
+            <div class="input-group-addon">R$</div>
+            <input id="{{'input_'+params.name}}"
+                   data-ng-model="params.model.val"
+                   type="text"
                    class="form-control"
-                   ui-mask="{{params.mask}}"
+                   ui-number-mask="2"
                    name="{{params.name}}"
-                   id="{{'input_'+params.name}}"
                    ng-disabled="disable"
                    ng-required="params.required">
-
-            <p data-collapse="params.model.err == ''"
-               data-ng-bind="params.model.err"
-               class="control-label"></p>
         </div>
+        <p data-collapse="params.model.err == ''"
+           data-ng-bind="params.model.err"
+           class="control-label"></p>
     </div>
 
 </div>

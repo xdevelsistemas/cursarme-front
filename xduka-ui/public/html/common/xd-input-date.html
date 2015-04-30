@@ -1,0 +1,37 @@
+<div data-ng-class="{'has-error':!(params.model.err === undefined || params.model.err == '')}"
+     class="form-group">
+
+    <div class="col-md-12">
+        <div class="col-md-12 left">
+            <label for="{{'input_'+params.name}}">
+                {{params.label}}
+            </label>
+        </div>
+
+        <div class="col-md-12">
+           <p class="input-group">
+               <input data-ng-model="params.model.val"
+                      type="text" class="form-control"
+                      datepicker-popup="{{params.format}}"
+                      is-open="opened"
+                      datepicker-options="dateOptions"
+                      id="{{'input_'+params.name}}"
+
+                      current-text="Hoje"
+                      clear-text="Limpar"
+                      close-text="Cancelar"
+                      ng-required="params.required"/>
+
+               <span class="input-group-btn">
+                   <button type="button" class="btn btn-default" ng-click="click($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+               </span>
+           </p>
+
+            <p data-collapse="params.model.err == ''"
+               data-ng-bind="params.model.err"
+               class="control-label"></p>
+
+        </div>
+    </div>
+
+</div>

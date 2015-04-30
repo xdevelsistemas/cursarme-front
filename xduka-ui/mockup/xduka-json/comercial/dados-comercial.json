@@ -86,9 +86,7 @@
       "type": "text",
       "model": {"val": ""},
       "name": "dataExp",
-      
-      "mask": "99/99/9999",
-      "required": false
+      "format": "dd/MM/yyyy"
     },
     "orgaoEmissor": {
       "label": "Órgão Emissor",

@@ -2,8 +2,8 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
     'use strict';
     
     controllers.controller('FormPreCadastro', [
-        '$scope', '$timeout', '$modal', '$resource', 'lista_cheques', 'allCheques',
-        function ($scope, $timeout, $modal, $resource, lista_cheques, allCheques) {
+        '$scope', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'allCheques',
+        function ($scope, $timeout, $modal, $resource, lista_cheques, dataCheque, allCheques) {
 
             /* jshint validthis: true */
             var vm = this
@@ -80,6 +80,7 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
                 var modalInstance = $modal.open({
                     templateUrl: '../html/comercial/modal-cheques.html',
                     controller: 'ModalCheques',
+                    controllerAs: 'cheq',
                     size: 'lg'
                 });
             };
