@@ -155,33 +155,7 @@
             <xd-panel-collapse title="pre._model.inscr.label">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="col-md-12 left">
-                                    <label for="{{'input_'+pre._model.inscr.inscricao.name}}">
-                                        {{pre._model.inscr.inscricao.label}}
-                                    </label>
-                                </div>
-
-                                <div class="col-md-12 input-group">
-                                    <div class="input-group-addon">R$</div>
-                                    <input data-ng-model="pre._model.inscr.inscricao.model.val"
-                                           placeholder="{{pre._model.inscr.inscricao.placeholder}}"
-                                           type="{{pre._model.inscr.inscricao.type || text}}"
-                                           class="form-control"
-                                           ui-mask="{{pre._model.inscr.inscricao.mask}}"
-                                           name="{{pre._model.inscr.inscricao.name}}"
-                                           id="{{'input_'+pre._model.inscr.inscricao.name}}"
-                                           ng-disabled="!pre.validaCpf"
-                                           data-validate="{{pre._model.inscr.inscricao.dValidate}}"
-                                           ng-required="pre._model.inscr.inscricao.required">
-
-                                    <p data-collapse="!pre._model.inscr.inscricao.model.err"
-                                       data-ng-bind="pre._model.inscr.inscricao.model.err"
-                                       class="control-label"></p>
-                                </div>
-                            </div>
-                        </div>
+                        <xd-input-money data-params="pre._model.inscr.inscricao" disable="!pre.validaCpf"></xd-input-money>
                     </div>
                 </div>
                 <div class="row">
@@ -239,8 +213,8 @@
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-input data-params="pre._model.aluno.dataExp"
-                                  disable="!pre.validaCpf"></xd-input>
+                        <xd-input-date data-params="pre._model.aluno.dataExp" data-opened="main.opened"
+                                       date-options="main.dateOptions" data-click="main.open"></xd-input-date>
                     </div>
                     <div class="col-md-4">
                         <xd-input data-params="pre._model.aluno.orgaoEmissor"
@@ -436,8 +410,8 @@
             <xd-panel-collapse title="pre._model.pagamento.label">
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.pagamento.valorIntegral"
-                                  disable="true"></xd-input>
+                        <xd-input-money data-params="pre._model.pagamento.valorIntegral"
+                                  disable="true"></xd-input-money>
                     </div>
                 </div>
                 <div class="row">
@@ -478,7 +452,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="'Valor da Parcela'"
+                        <xd-input nome="'Valor da Parcela'"
                                   model=""
                                   type="'text'"
                                   label="'Valor da parcela'"

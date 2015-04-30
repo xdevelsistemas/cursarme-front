@@ -1,9 +1,13 @@
-define(['./__module__', 'jquery'], function (controllers, $) {
+define(['./__module__', 'jqueryUi'], function (controllers, $) {
     'use strict';
     controllers.controller('ModalCheques', [
         '$scope', '$http', 'lista_cheques', '$modalInstance', 'dataCheque', 'allCheques',
         function ($scope, $http, lista_cheques, $modalInstance, dataCheque, allCheques) {
-            $scope._model = {
+
+            /* jshint validthis: true */
+            var vm = this;
+
+            vm._model = {
                 label: "Adicionar Cheques",
                 name: "modal_cheques",
                 banco: {
@@ -52,6 +56,7 @@ define(['./__module__', 'jquery'], function (controllers, $) {
                     name: 'data',
                     help: "Campo obrigatório",
                     placeholder: "Selecione uma Data",
+                    format: "dd/MM/yyyy",
                     required: true,
                     model: {err: "", val: ""}
                 },
@@ -73,26 +78,26 @@ define(['./__module__', 'jquery'], function (controllers, $) {
                 }
             };
 
-            $scope.new_cheque = function(){
-                dataCheque.setData($scope._model.data.model.val);
-                $scope._data = {
-                    "banco": $scope._model.banco.model.val,
-                    "agencia": $scope._model.agencia.model.val,
-                    "conta": $scope._model.conta.model.val,
-                    "numero": $scope._model.numero.model.val,
+            vm.new_cheque = function(){
+                dataCheque.setData(vm._model.data.model.val);
+                vm._data = {
+                    "banco": vm._model.banco.model.val,
+                    "agencia": vm._model.agencia.model.val,
+                    "conta": vm._model.conta.model.val,
+                    "numero": vm._model.numero.model.val,
                     "data": dataCheque.getData(),
-                    "valor": "R$ "+$scope._model.valor.model.val,
-                    "titular": $scope._model.titular.model.val
+                    "valor": "R$ "+vm._model.valor.model.val,
+                    "titular": vm._model.titular.model.val
                 };
-                $scope._novo_cheque = $scope._data;
-                /*$scope._data.data = dataCheque.getDataInt();
-                $scope._data.valor = $scope._model.valor.model.val;*/
+                vm._novo_cheque = vm._data;
+                /*vm._data.data = dataCheque.getDataInt();
+                vm._data.valor = vm._model.valor.model.val;*/
             };
 
-            $scope.lista_cheques = lista_cheques;
-            $scope.voltar = function () {
+            vm.lista_cheques = lista_cheques;
+            vm.voltar = function () {
                 $modalInstance.dismiss('cancel');
-                allCheques.setAllCheques($scope.lista_cheques.lista);
+                allCheques.setAllCheques(vm.lista_cheques.lista);
                 console.log(allCheques.getAllCheques());
             };
         }]);

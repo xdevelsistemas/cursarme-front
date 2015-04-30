@@ -1,68 +1,55 @@
 <ng-form name="formModalCheques"
          novalidate
-        ng-controller="Main">
+        ng-controller="Main as main">
     <div class="modal-header">
-        <h3 ng-bind="_model.label"
+        <h3 ng-bind="cheq._model.label"
             class="modal-title"></h3>
     </div>
     <div class="modal-body">
 
         <div class="row">
             <div class="col-md-4">
-                <xd-select data-params="_model.banco"></xd-select>
+                <xd-select data-params="cheq._model.banco"></xd-select>
             </div>
             <div class="col-md-4">
-                <label for="agencia">Agência</label>
-                <input data-ng-model="_model.agencia.model.val" type="text" id="agencia" class="form-control" required/>
+                <xd-input data-params="cheq._model.agencia"></xd-input>
             </div>
             <div class="col-md-4">
-                <label for="conta">Conta</label>
-                <input data-ng-model="_model.conta.model.val" type="text" id="conta" class="form-control" required/>
+                <xd-input data-params="cheq._model.conta"></xd-input>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-8">
-                <xd-input data-params="_model.numero"></xd-input>
+                <xd-input data-params="cheq._model.numero"></xd-input>
             </div>
             <div class="col-md-4">
-                <label for="dataCheque">Data</label>
-                <p class="input-group">
-                    <input data-ng-model="_model.data.model.val" type="text" class="form-control" datepicker-popup="{{format}}" is-open="opened" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" id="dataCheque" current-text="Hoje" clear-text="Limpar" close-text="Cancelar"/>
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                </p>
+                <xd-input-date data-params="cheq._model.data" data-opened="main.opened" date-options="main.dateOptions" data-click="main.open"></xd-input-date>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-4">
-                <label for="valor">Valor</label>
-                <div class="input-group">
-                    <div class="input-group-addon"><b>R$</b></div>
-                    <input data-ng-model="_model.valor.model.val" ui-number-mask="2" type="text" id="valor" class="form-control ng-valid ng-dirty" required/>
-                </div>
+                <xd-input-money data-params="cheq._model.valor"></xd-input-money>
             </div>
             <div class="col-md-8">
-                <label for="titular">Nome do titular</label>
-                <input data-ng-model="_model.titular.model.val" type="text" id="titular" class="form-control" required/>
+                <xd-input data-params="cheq._model.titular"></xd-input>
             </div>
         </div>
 
     </div>
     <div class="modal-footer">
-        <button ng-click="voltar()"
+        <button ng-click="cheq.voltar()"
                 type="button" class="btn btn-lg btn-default">Voltar
         </button>
         <a ng-disabled="formModalCheques.$invalid"
-           ng-click="new_cheque(); lista_cheques.add(_novo_cheque)"
+           ng-click="cheq.new_cheque(); cheq.lista_cheques.add(cheq._novo_cheque)"
            class="btn btn-lg btn-success btn-icon icon-left">
             <i class="entypo-plus"></i>
             Adicionar Cheque
         </a>
         <br>
         <br>
-        <xd-lista-cheques model="lista_cheques"></xd-lista-cheques>
+        <xd-lista-cheques model="cheq.lista_cheques"></xd-lista-cheques>
     </div>
 </ng-form>
