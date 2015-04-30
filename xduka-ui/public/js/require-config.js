@@ -1,5 +1,6 @@
 define([], function () {
 
+
     var config = {
         paths: {
             'domReady': '../../lib/requirejs-domready/domReady',
@@ -25,7 +26,8 @@ define([], function () {
             'neonApi': '../../assets/neon/js/neon-api',
             'neonChat': '../../assets/neon/js/neon-chat',
             'neonCustom': '../../assets/neon/js/neon-custom',
-            'neonDemo': '../../assets/neon/js/neon-demo'
+            'neonDemo': '../../assets/neon/js/neon-demo',
+            'form-wizard': '../../assets/js/jquery.bootstrap.wizard.min'
         },
         shim: {
             'jqueryMaskedinput': {
@@ -92,6 +94,9 @@ define([], function () {
             },
             'neonDemo': {
                 deps: ['neonApi']
+            },
+            'form-wizard': {
+                deps: ['jqueryUi','uiBootstrap', 'neonApi']
             }
         },
         deps: [

@@ -1,4 +1,4 @@
-define(['./__module__', "jquery"], function (controllers, $) {
+define(['./__module__', "jquery", "form-wizard"], function (controllers, $, formWizard) {
     'use strict';
     
     controllers.controller('FormPreCadastro', [
@@ -24,6 +24,10 @@ define(['./__module__', "jquery"], function (controllers, $) {
                 .then(function(data){
                     vm._model = data;
                     $.extend(vm._model.curso.vagas, {}, {
+                        css: {
+                            titleGray: true,
+                            titleRed: false
+                        },
                         isEnding: function () {
                             return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
                         },
@@ -60,6 +64,15 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     var a = getRandomInt(100, 201), b = getRandomInt(0, 101);
                     vm._model.curso.vagas.totais = a;
                     vm._model.curso.vagas.preenchidas = Math.floor(b * a / 100);
+
+                    if (vm._model.curso.vagas.totais/vm._model.curso.vagas.preenchidas < 1.5){
+                        vm._model.curso.vagas.css.titleRed = true;
+                        vm._model.curso.vagas.css.titleGray = false
+                    }else{
+                        vm._model.curso.vagas.css.titleGray = true;
+                        vm._model.curso.vagas.css.titleRed = false
+                    }
+
                 }, 1);
             };
 
@@ -122,11 +135,18 @@ define(['./__module__', "jquery"], function (controllers, $) {
                 vm._model.aluno.telefone.model.val = tel;
             };
 
-            vm.sendForm = function () {
-                console.log('//=== Formuário enviado:');
-                console.log(JSON.stringify(vm._data));
-                console.log('====//');
+            vm.topCollapse = function(){
+                $('html, body').animate({scrollTop: 0},'slow');
             };
+
+            $(function(){
+                $('a').bind('contextmenu', function(e){
+                    alert('Função desabilitada para este elemento!');
+                    return false;
+                });
+            });
+
+
         }
     ]);
 });

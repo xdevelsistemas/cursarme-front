@@ -22,8 +22,7 @@ define([
                     scope: {
                         params: '=',
                         change: '=',
-                        disabled: '=',
-                        dValidate: '='
+                        disabled: '='
                     }
                 };
             }
