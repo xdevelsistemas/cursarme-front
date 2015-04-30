@@ -1,6 +1,8 @@
 define([
     'angular',
     'angularRoute',
+    'angularResource',
+    'uiSelect',
     'angularSanitize',
     'uiUtils',
     'uiBootstrap',
@@ -17,6 +19,8 @@ define([
 
     return angular.module('app', [
         'ngRoute',
+        'ngResource',
+        'ui.select',
         'ngSanitize',
         'ui.utils',
         'ui.bootstrap',
@@ -28,6 +32,5 @@ define([
         'common.directives',
         'common.filters',
         'common.services'
-
     ]);
 });

@@ -8,7 +8,56 @@
             "type": "text",
             "name": "nome",
             "help": "Campo obrigatório",
-            "required": true
+            "required": true,
+            "model": {"err": "", "val": ""}
+        },
+        "endereco": {
+            "label": "Edereço",
+            "type": "text",
+            "name": "endereco",
+            "help": "Campo obrigatório",
+            "required": true,
+            "model": {"err": "", "val": ""}
+        },
+        "tipo_telefone": {
+            "label": "Tipo de telefone",
+            "type": "select",
+            "name": "tipo_telefone",
+            "help": "Campo obrigatório",
+            "placeholder": "Selecione uma opção",
+            "required": true,
+            "list": [
+                {
+                    "id": "res",
+                    "text": "Residencial"
+                },
+                {
+                    "id": "com",
+                    "text": "Comercial"
+                },
+                {
+                    "id": "cel",
+                    "text": "Celular"
+                }
+            ],
+            "model": {"err": "", "val": ""}
+        },
+        "telefone": {
+            "label": "Telefone",
+            "type": "text",
+            "mask": "(99)9999-9999",
+            "name": "telefone",
+            "help": "Campo obrigatório",
+            "required": true,
+            "model": {"err": "", "val": ""}
+        },
+        "email": {
+            "label": "Email",
+            "type": "email",
+            "name": "email",
+            "help": "Campo obrigatório",
+            "required": true,
+            "model": {"err": "", "val": ""}
         },
         "cidade": {
             "label": "Cidade",
@@ -24,44 +73,6 @@
             "model": {"err": "", "val": ""},
             "help": "Campo obrigatório",
             "mask": "99.999-999",
-            "required": true
-        },
-        "tipo_telefone": {
-            "label": "Tipo de telefone",
-            "type": "select",
-            "name": "tipo_telefone",
-            "help": "Campo obrigatório",
-            "placeholder": "Selecione uma opção",
-            "required": true,
-            "list": [
-                {
-                    "id": "1",
-                    "text": "Residencial"
-                },
-                {
-                    "id": "2",
-                    "text": "Comercial"
-                },
-                {
-                    "id": "3",
-                    "text": "Celular"
-                }
-            ]
-        },
-        "telefone": {
-            "label": "Telefone",
-            "type": "text",
-            "model": {"val": "", "err": ""},
-            "name": "telefone",
-            "mask": "(99)9999-9999",
-            "help": "Campo obrigatório",
-            "required": true
-        },
-        "email": {
-            "label": "Email",
-            "type": "text",
-            "name": "email",
-            "help": "Campo obrigatório",
             "required": true
         },
         "rg": {

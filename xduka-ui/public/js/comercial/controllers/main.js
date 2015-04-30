@@ -1,26 +1,27 @@
 define([
     './__module__',
     '../../common/models/strings',
-    '../../common/models/user',
     '../models/menu'
-], function (controllers, modelStrings, modelUser, modelMenu) {
+], function (controllers, modelStrings, modelMenu) {
 
     'use strict';
 
     controllers
         .controller('Main', Main);
 
-    Main.$inject = ['$scope', 'breadCrumb'];
+    Main.$inject = ['$scope', '$resource', 'breadCrumb'];
 
     /* @ngInject */
-    function Main($scope, breadCrumb) {
+    function Main($scope, $resource, breadCrumb) {
         /* jshint validthis: true */
-        var vm = this;
+        var vm = this
+            , infoUserPromise = $resource('/api/comercial/info-usuario').get().$promise;
+
+        console.log("I'm here(comercial)");
 
         vm.breadCrumb = breadCrumb;
 
         vm.STR = modelStrings;
-        vm.user = modelUser;
         vm.menu = modelMenu;
 
         vm.appName = 'xDuka';
@@ -30,61 +31,27 @@ define([
 
         vm.sendData = sendData;
 
-        //$http.get('/api/aluno/usuario')
-        //    .success(getUsuario)
-        //    .error(function(textError){
-        //        console.log("Erro:\n" + textError + "\n");
-        //    });
+        infoUserPromise.
+            then(
+            function (data) {
+                vm.user = data.usuario;
+                vm.cursos = data.cursos.cursos;
+                //defineCurso.setIdCurso(vm.cursos.value);
+            })
+            .catch(
+            function (erro) {
+                console.log("Erro:\n" + erro.data + "\n");
+            }
+        );
+
 
         ////////////////
-
-        function getUsuario(data) {
-            vm.user = data;
-        }
 
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
         }
 
-        // ===Date picker ==//
-        $scope.today = function() {
-            $scope.dt = new Date();
-        };
-        $scope.today();
 
-        $scope.clear = function () {
-            $scope.dt = null;
-        };
-
-        // Disable weekend selection
-        $scope.disabled = function(date, mode) {
-            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-        };
-
-        $scope.toggleMin = function() {
-            $scope.minDate = $scope.minDate ? null : new Date();
-        };
-        $scope.toggleMin();
-
-        $scope.open = function($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-
-            $scope.opened = true;
-        };
-
-        $scope.dateOptions = {
-            formatYear: 'yy',
-            startingDay: 1
-        };
-
-        $scope.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-        $scope.format = $scope.formats[0];
-
-        $scope.validaCpf = false;
 
     }
-
-
-
 });

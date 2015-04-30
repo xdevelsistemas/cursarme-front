@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
     <link rel="stylesheet" href="assets/css/neon.css">
 
-
     <!--UI-SELECT-->
     <!--
     IE8 support, see AngularJS Internet Explorer Compatibility http://docs.angularjs.org/guide/ie
@@ -95,24 +94,9 @@
                 </ul>
 
                 <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-md-6">
                         <form role="form" class="form-horizontal form-groups-bordered">
-
-                            <label ng-bind="main.cursos.label"
-                                   class="col-sm-3 control-label">
-                            </label>
-                            <ui-select name="data"
-                                       ng-model="main.cursos.value"
-                                       on-select="main.sendCurso($item, $model)"
-                                       theme="select2"
-                                       ng-disabled="disabled"
-                                       title="{{main.cursos.placeholder}}">
-                                <ui-select-match placeholder="{{main.cursos.placeholder}}">{{$select.selected.text}}</ui-select-match>
-                                <ui-select-choices repeat="item.id as item in main.cursos.list | propsFilter: {text: $select.search, id: $select.search}">
-                                    <div ng-bind-html="item.text | highlight: $select.search"></div>
-                                </ui-select-choices>
-                            </ui-select>
-
+                            <xd-select data-params="main.cursos" data-change="main.sendCurso" ></xd-select>
                         </form>
                         <hr/>
                         <br/>
@@ -163,13 +147,10 @@
 
     </div>
 </div>
-
-<!-- MODAL NG-IMGCROP ALTERAR FOTO DE PERFIL -->
-
 <form name="formFoto"
       class="form-horizontal">
-    <xd-modal title="Alterar a foto de perfil" hidden="hidden" btn="Cancelar">
-        <div ng-controller="EditarPerfil as cortar">
+<xd-modal title="Alterar a foto de perfil" hidden="hidden" btn="Cancelar">
+    <div ng-controller="EditarPerfil as cortar">
 
             <div class="form-group">
 
@@ -214,8 +195,8 @@
                 </div>
             </div>
 
-        </div>
-    </xd-modal>
+    </div>
+</xd-modal>
     <div aria-hidden="true" style="display: none;" class="modal fade" id="confirmPhoto" ng-controller="xdCrop as ft">
         <div class="modal-dialog" onshow="ft.atualizar()">
             <div class="modal-content">
@@ -245,16 +226,7 @@
         </div>
     </div>
 </form>
-
 <!-- Bottom Scripts -->
-<!--<script src="assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>-->
-<!--<script src="assets/js/jvectormap/jquery-jvectormap-europe-merc-en.js"></script>-->
-<!--<script src="assets/js/jquery.sparkline.min.js"></script>-->
-<!--<script src="assets/js/rickshaw/vendor/d3.v3.js"></script>-->
-<!--<script src="assets/js/rickshaw/rickshaw.min.js"></script>-->
-<!--<script src="assets/js/raphael-min.js"></script>-->
-<!--<script src="assets/js/morris.min.js"></script>-->
-<!--<script src="assets/js/toastr.js"></script>-->
 
 </body>
 </html>

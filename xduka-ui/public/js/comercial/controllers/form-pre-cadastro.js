@@ -3,75 +3,28 @@ define(['./__module__', "jquery"], function (controllers, $) {
     controllers.controller('FormPreCadastro', [
         '$scope', '$timeout', '$modal', '$http', 'lista_cheques',
         function ($scope, $timeout, $modal, $http, lista_cheques) {
+            var vm = this;
+
             // ==== MODELOS ==== //
-            $scope._model = {};
-            $scope._model.aluno = {
-                "label": "Foto",
-                "name": "foto",
-                "nome": {
-                    "label": "Nome",
-                    "type": "text",
-                    "name": "nome",
-                    "help": "Campo obrigatório",
-                    "required": true,
-                    "model": {"err": "", "val": ""}
-                },
-                "endereco": {
-                    "label": "Edereço",
-                    "type": "text",
-                    "name": "endereco",
-                    "help": "Campo obrigatório",
-                    "required": true,
-                    "model": {"err": "", "val": ""}
-                },
-                "tipo_telefone": {
-                    "label": "Tipo de telefone",
-                    "type": "select",
-                    "name": "tipo_telefone",
-                    "help": "Campo obrigatório",
-                    "placeholder": "Selecione uma opção",
-                    "required": true,
-                    "list": [
-                        {
-                            "id": "res",
-                            "text": "Residencial"
-                        },
-                        {
-                            "id": "com",
-                            "text": "Comercial"
-                        },
-                        {
-                            "id": "cel",
-                            "text": "Celular"
-                        }
-                    ],
-                    "model": {"err": "", "val": ""}
-                },
-                "telefone": {
-                    "label": "Telefone",
-                    "type": "text",
-                    "mask": "(99) 9999-9999",
-                    "name": "telefone",
-                    "help": "Campo obrigatório",
-                    "required": true,
-                    "model": {"err": "", "val": ""}
-                },
-                "email": {
-                    "label": "Email",
-                    "type": "email",
-                    "name": "email",
-                    "help": "Campo obrigatório",
-                    "required": true,
-                    "model": {"err": "", "val": ""}
-                }
+
+            vm._model = {};
+            vm.teste = {
+                'label': 'Melhor data de vencimento',
+                'type': 'text',
+                'name': 'dataTeste',
+                'help': 'Campo obrigatório',
+                'format': 'dd/MM/yyyy',
+                'model': {'err': '', 'val': ''}
             };
-            $scope._model.curso = {
+            vm._model.aluno = {};
+            vm._model.curso = {
                 label: "Informações do Curso",
                 name: "curso",
                 unidade: {
                     label: "Unidade",
                     type: "select",
                     name: 'unidade',
+                    value: "1",
                     help: "Campo obrigatório",
                     placeholder: "Selecione uma opção",
                     required: true,
@@ -95,20 +48,22 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     label: "Área",
                     type: "select",
                     name: "area",
+                    value: "1",
                     help: "Campo obrigatório",
                     placeholder: "Selecione uma opção",
                     required: true,
-                    list: [{id: 1, text: "Area 00"}],
+                    list: [{id: 1, text: "Area 01"}, {id: 2, text: "Area 02"}],
                     model: {err: "", val: ""}
                 },
                 curso: {
                     label: "Curso",
                     type: "select",
                     name: "curso",
+                    value: "1",
                     help: "Campo obrigatório",
                     placeholder: "Selecione uma opção",
                     required: true,
-                    list: [{id: 1, text: "Curso 00"}],
+                    list: [{id: 1, text: "Curso 01"}, {id: 2, text: "Curso 02"}],
                     model: {err: "", val: ""}
                 },
                 vagas: {
@@ -116,8 +71,12 @@ define(['./__module__', "jquery"], function (controllers, $) {
                         totais: "vagas totais",
                         disponiveis: "Vagas disponíveis"
                     },
-                    preenchidas: 50,
+                    preenchidas: 40,
                     totais: 100,
+                    css: {
+                        titleGray: true,
+                        titleRed: false
+                    },
                     isEnding: function () {
                         return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
                     },
@@ -126,7 +85,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     }
                 }
             };
-            $scope._model.inscr = {
+            vm._model.inscr = {
                 label: "Informações de Inscrição",
                 inscricao: {
                     label: "Inscrição",
@@ -189,7 +148,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     ]
                 }
             };
-            $scope._model.documentacao = {
+            vm._model.documentacao = {
                 "label": "Informações complementares do Aluno",
                 "label2": "Escolaridade",
                 "escolaEm": {
@@ -233,7 +192,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     "model": {"err": "", "val": ""}
                 }
             };
-            $scope._model.pagamento = {
+            vm._model.pagamento = {
                 label: "Informações de Pagamento",
                 name: "pagamento",
                 valorIntegral: {
@@ -305,7 +264,7 @@ define(['./__module__', "jquery"], function (controllers, $) {
                     model: {err: "", val: ""}
                 }
             };
-            $scope._model.controle = {
+            vm._model.controle = {
                 label: "Controle Interno",
                 name: "controle",
                 numero_bloco: {
@@ -318,9 +277,9 @@ define(['./__module__', "jquery"], function (controllers, $) {
             };
 //            // ==== FORM DATA ==== //
 //
-//            $scope._novo_cheque = {};
-//            $scope.cleanForm();
-//            $scope._data = {
+//            vm._novo_cheque = {};
+//            vm.cleanForm();
+//            vm._data = {
 //                curso: {
 //                    unidade: ''
 //                },
@@ -332,24 +291,23 @@ define(['./__module__', "jquery"], function (controllers, $) {
 
             // ==== MÉTODOS ==== //
 
-            $scope.selectPhoneType = function (view) {
+            vm.selectPhoneType = function (view) {
                 console.log("trocou!");
-                console.log("data tipo_telefone", $scope._data.aluno.tipo_telefone);
-                $scope._model.aluno.telefone.mask = $scope._data.aluno.tipo_telefone == 'cel' ? '(99) 99999-9999' : '(99) 9999-9999';
+                console.log("data tipo_telefone", vm._data.aluno.tipo_telefone);
+                vm._model.aluno.telefone.mask = vm._data.aluno.tipo_telefone == 'cel' ? '(99) 99999-9999' : '(99) 9999-9999';
             };
 
-            $scope.openModalCheque = function () {
+            vm.openModalCheque = function () {
                 var modalInstance = $modal.open({
                     templateUrl: '../html/comercial/modal-cheques.html',
                     controller: 'ModalCheques',
-                    size: 'lg',
-                    id: 'teste'
+                    size: 'lg'
                 });
             };
 
-            $scope.cleanForm = function () {
+            vm.cleanForm = function () {
                 lista_cheques.clean();
-                $scope._data = {
+                vm._data = {
                     aluno: {},
                     curso: {
                         unidade: ''
@@ -365,81 +323,134 @@ define(['./__module__', "jquery"], function (controllers, $) {
                 });
             };
 
-            $scope.sendForm = function () {
+            vm.sendForm = function () {
                 console.log('//=== Formuário enviado:');
-                console.log(JSON.stringify($scope._data));
+                console.log(JSON.stringify(vm._data));
                 console.log('====//');
             };
 
             // ==== REQUISIÇÕES ==== //
 
-            $scope.getAreas = function (view) {
+            vm.getAreas = function (view) {
                 $timeout(function () {
-                    $scope._model.curso.area.list = [
+                    vm._model.curso.area.list = [
                         {
                             id: "1",
-                            text: $scope._data.curso.unidade + " - Área 01"
+                            text: vm._data.curso.unidade + " - Área 01"
                         },
                         {
                             id: "2",
-                            text: $scope._data.curso.unidade + " - Área 02"
+                            text: vm._data.curso.unidade + " - Área 02"
                         },
                         {
                             id: "3",
-                            text: $scope._data.curso.unidade + " - Área 03"
+                            text: vm._data.curso.unidade + " - Área 03"
                         }
                     ];
-                    $scope._data.curso.area = '';
-                    $scope._data.curso.curso = '';
+                    vm._data.curso.area = '';
+                    vm._data.curso.curso = '';
                     view.remake('#f_curso_area select');
                 }, 1);
             };
-            $scope.getCursos = function (view) {
+            vm.getCursos = function (view) {
                 $timeout(function () {
-                    $scope._model.curso.curso.list = [
+                    vm._model.curso.curso.list = [
                         {
                             id: "1",
-                            text: $scope._data.curso.unidade + ' - ' +
-                                $scope._data.curso.area + " - Curso 01"
+                            text: vm._data.curso.unidade + ' - ' +
+                                vm._data.curso.area + " - Curso 01"
                         },
                         {
                             id: "2",
-                            text: $scope._data.curso.unidade + ' - ' +
-                                $scope._data.curso.area + " - Curso 02"
+                            text: vm._data.curso.unidade + ' - ' +
+                                vm._data.curso.area + " - Curso 02"
                         },
                         {
                             id: "3",
-                            text: $scope._data.curso.unidade + ' - ' +
-                                $scope._data.curso.area + " - Curso 03"
+                            text: vm._data.curso.unidade + ' - ' +
+                                vm._data.curso.area + " - Curso 03"
                         }
                     ];
-                    $scope._data.curso.curso = '';
+                    vm._data.curso.curso = '';
                     view.remake('#f_curso_curso select');
                 }, 1);
             };
-            $scope.getVagas = function (view) {
+            vm.getVagas = function (view, view2) {
                 $timeout(function () {
                     function getRandomInt(min, max) {
                         return Math.floor(Math.random() * (max - min)) + min;
                     }
 
                     var a = getRandomInt(100, 201), b = getRandomInt(0, 101);
-                    $scope._model.curso.vagas.totais = a;
-                    $scope._model.curso.vagas.preenchidas = Math.floor(b * a / 100);
+                    vm._model.curso.vagas.totais = a;
+                    vm._model.curso.vagas.preenchidas = Math.floor(b * a / 100);
+
+                    if (vm._model.curso.vagas.totais/vm._model.curso.vagas.preenchidas < 1.5){
+                        vm._model.curso.vagas.css.titleRed = true;
+                        vm._model.curso.vagas.css.titleGray = false
+                    }else{
+                        vm._model.curso.vagas.css.titleGray = true;
+                        vm._model.curso.vagas.css.titleRed = false
+                    }
+
                 }, 1);
             };
 
             $http.get('mock/comercial/info-aluno.json')
                 .success(function (data) {
-                    $scope._model.aluno = $.extend(true, {}, data.object);
+                    vm._model.aluno = data.object;
                 });
 
             // ==== FORM DATA ==== //
 
-            $scope._novo_cheque = {};
-            $scope.cleanForm();
+            vm._novo_cheque = {};
+            vm.cleanForm();
+            vm.tipoPagamento = false;
+            vm.teste = function(){
+                vm.tipoPagamento = true;
+            };
 
+            vm.validaCpf = true;
 
+            // ===Date picker ==//
+            $scope.dt = {val:''};
+            $scope.today = function() {
+                $scope.dt.val = new Date();
+            };
+            $scope.today();
+
+            $scope.clear = function () {
+                $scope.dt.val = null;
+            };
+
+            /*$scope.toggleMin = function() {
+                $scope.minDate = $scope.minDate ? null : new Date();
+            };
+            $scope.toggleMin();*/
+
+            $scope.open = function($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+
+                $scope.opened = true;
+            };
+
+            $scope.dateOptions = {
+                formatYear: 'yyyy',
+                startingDay: 1
+            };
+            //==FIM DATE PICKER==//
+
+            vm.topCollapse = function(){
+                $('html, body').animate({scrollTop: 0},'slow');
+            };
+
+            $(function(){
+                $('a').bind('contextmenu', function(e){
+                    alert('Função desabilitada para este elemento!');
+                    return false;
+                });
+            });
 
 
         }
