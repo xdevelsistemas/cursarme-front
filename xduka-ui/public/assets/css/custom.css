@@ -11,8 +11,17 @@ body {
     background-color: rgba(228, 11, 11, 0.88);
 }
 .titleRed:hover {
-    background-color: rgba(206, 8, 8, 0.79);
+    background-color: rgba(227, 8, 8, 0.79);
+    transition: all 400ms ease-in-out 0.1s;
 }
+.titleGray{
+    background-color: #0073b7;
+}
+.titleGray:hover{
+    background-color: #005d93;
+    transition: all 400ms ease-in-out 0.1s;
+}
+
 .titleRed>#vagasDisponiveisTitle {
     font-size: 25px;
     font-weight: bold;
@@ -27,4 +36,9 @@ body {
     font-size: 21px;
     transition: all 400ms ease-in-out 0.2s;
 }
+
+.inLine {
+    display: inline;
+}
+
 

@@ -27,28 +27,28 @@
 
 
     <div class="tab-content">
-        <ul class="pager wizard col-md-12">
-            <li class="previous first col-md-3">
+        <ul class="pager wizard">
+            <!--<li class="previous">
                 <button class="btn btn-blue btn-icon icon-left btn-lg" ng-click="pre.topCollapse()">
                     Primeiro
                     <i class="entypo-to-start"></i>
                 </button>
-            </li>
-            <li class="previous col-md-3">
-                <button class="btn btn-blue btn-icon icon-left btn-lg" ng-click="pre.topCollapse()">
+            </li>-->
+            <li class="previous col-md-6">
+                <button class="btn btn-blue btn-icon icon-left btn-block btn-lg" ng-click="pre.topCollapse()">
                     <i class="entypo-left"></i> Anterior
                 </button>
             </li>
-            <li class="next col-md-3">
-                <button class="btn btn-blue btn-icon icon-right btn-lg" ng-click="pre.topCollapse()">
+            <li class="next col-md-6">
+                <button class="btn btn-blue btn-icon icon-right btn-block btn-lg" ng-click="pre.topCollapse()">
                     Próximo <i class="entypo-right"></i>
                 </button>
             </li>
-            <li class="next last col-md-3">
+            <!--<li class="next last">
                 <button class="btn btn-blue btn-icon icon-right btn-lg" ng-click="pre.topCollapse()">
                     Último <i class="entypo-to-end"></i>
                 </button>
-            </li>
+            </li>-->
         </ul>
 
         <div class="tab-pane active" id="step1">
@@ -512,33 +512,34 @@
 
         </div>
 
-        <ul class="pager wizard col-md-12">
-            <li class="previous first col-md-3">
+        <ul class="pager wizard">
+            <!--<li class="previous">
                 <button class="btn btn-blue btn-icon icon-left btn-lg" ng-click="pre.topCollapse()">
                     Primeiro
                     <i class="entypo-to-start"></i>
                 </button>
-            </li>
-            <li class="previous col-md-3">
-                <button class="btn btn-blue btn-icon icon-left btn-lg" ng-click="pre.topCollapse()">
+            </li>-->
+            <li class="previous col-md-6">
+                <button class="btn btn-blue btn-icon icon-left btn-block btn-lg" ng-click="pre.topCollapse()">
                     <i class="entypo-left"></i> Anterior
                 </button>
             </li>
-            <li class="next col-md-3">
-                <button class="btn btn-blue btn-icon icon-right btn-lg" ng-click="pre.topCollapse()">
+            <li class="next col-md-6">
+                <button class="btn btn-blue btn-icon icon-right btn-block btn-lg" ng-click="pre.topCollapse()">
                     Próximo <i class="entypo-right"></i>
                 </button>
             </li>
-            <li class="next last col-md-3">
+            <!--<li class="next last">
                 <button class="btn btn-blue btn-icon icon-right btn-lg" ng-click="pre.topCollapse()">
                     Último <i class="entypo-to-end"></i>
                 </button>
-            </li>
+            </li>-->
         </ul>
         <hr/>
-        <div class="col-md-12 text-center">
+        <div class="text-center col-md-12">
             <div class="form-group">
-                <div class="col-md-4">
+
+                <div class="col-md-3 inLine">
                     <button class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="pre.salvarFirstDados()">
                         Salvar
                         <i class="entypo-check"></i>
@@ -550,14 +551,14 @@
                         <i class="entypo-cancel"></i>
                     </button>
                 </div>-->
-                <div class="col-md-4">
+                <div class="col-md-3 col-md-offset-1 inLine">
                     <button class="btn btn-info btn-lg btn-icon icon-left btn-block">
                         Imprimir
                         <i class="entypo-print"></i>
                     </button>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4 col-md-offset-1 inLine">
                     <button name="efetuarMat" class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="pre.sendDadosMatricula()">
                         Efetuar Matrícula
                         <i class="entypo-list-add"></i>
