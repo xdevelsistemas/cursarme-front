@@ -6,6 +6,8 @@
 define([
     './xd-select',
     './xd-input',
+    './xd-input-date',
+    './xd-input-money',
     './xd-btn',
     './xd-panel-collapse'
 ], function () {
