@@ -7,7 +7,7 @@
       "type": "text",
       "val": "Teste1",
       "name": "nome",
-      "help": "Campo obrigatório",
+      
       "model": {"val": ""}
     },
     "endereco": {
@@ -21,7 +21,7 @@
       "label": "Tipo de telefone",
       "type": "select",
       "name": "tipo_telefone",
-      "help": "Campo obrigatório",
+      
       "placeholder": "Selecione uma opção",
       "list": [
         {
@@ -44,7 +44,7 @@
       "type": "text",
       "mask": "(99)9999-9999",
       "name": "telefone",
-      "help": "Campo obrigatório",
+      
 
       "model": {"val": ""}
     },
@@ -52,7 +52,7 @@
       "label": "Email",
       "type": "email",
       "name": "email",
-      "help": "Campo obrigatório",
+      
 
       "model": {"val": ""}
     },
@@ -60,7 +60,7 @@
       "label": "Cidade",
       "type": "text",
       "name": "cidade",
-      "help": "Campo obrigatório",
+      
 
       "model": {"val": ""}
     },
@@ -68,7 +68,7 @@
       "label": "CEP",
       "type": "text",
       "name": "cep",
-      "help": "Campo obrigatório",
+      
       "mask": "99.999-999",
 
       "model": {"val": ""}
@@ -77,7 +77,7 @@
       "label": "RG",
       "type": "text",
       "name": "rg",
-      "help": "Campo obrigatório",
+      
       "mask": "9.999-999",
       "model": {"val": ""}
     },
@@ -85,6 +85,7 @@
       "label": "Data Expedição",
       "type": "text",
       "model": {"val": ""},
+      "placeholder": "__/__/____",
       "name": "dataExp",
       "format": "dd/MM/yyyy"
     },
@@ -92,14 +93,13 @@
       "label": "Órgão Emissor",
       "type": "text",
       "name": "orgaoEmissor",
-      
       "model": {"val": ""}
     },
     "cpf": {
       "label": "CPF",
       "type": "text",
       "name": "cpf",
-      "help": "Campo obrigatório",
+      
       "required": "required",
       "mask": "999.999.999-99",
       "model": {"val": ""}
@@ -198,6 +198,7 @@
       "label": "Data Nascimento",
       "type": "text",
       "name": "dataNasc",
+      "mask": "99/99/9999",
       "model": {"val": ""}
     },
     "raca": {
@@ -284,7 +285,7 @@
       "label": "Unidade",
       "type": "select",
       "name": "unidade",
-      "help": "Campo obrigatório",
+      
       "placeholder": "Selecione uma opção",
       "required": true,
       "list": [
@@ -298,7 +299,7 @@
       "label": "Área",
       "type": "select",
       "name": "area",
-      "help": "Campo obrigatório",
+      
       "placeholder": "Selecione uma opção",
       "required": true,
       "list": [
@@ -311,7 +312,7 @@
       "label": "Curso",
       "type": "select",
       "name": "curso",
-      "help": "Campo obrigatório",
+      
       "placeholder": "Selecione uma opção",
       "required": true,
       "list": [
@@ -335,7 +336,7 @@
       "label": "Escola que cursou Ensino Médio",
       "type": "text",
       "name": "escolaEm",
-      "help": "Campo obrigatório",
+      
       "required": false,
       "model": {"val": ""}
     },
@@ -343,7 +344,6 @@
       "label": "Ano de Conclusão",
       "type": "text",
       "name": "anoEm",
-      "help": "Campo obrigatório",
       "required": false,
       "model": {"val": ""}
     },
@@ -351,7 +351,6 @@
       "label": "Curso de Graduação",
       "type": "text",
       "name": "cursoGrad",
-      "help": "Campo obrigatório",
       "required": false,
       "model": {"val": ""}
     },
@@ -359,7 +358,6 @@
       "label": "Ano de Conclusão",
       "type": "text",
       "name": "anoGrad",
-      "help": "Campo obrigatório",
       "required": false,
       "model": {"val": ""}
     },
@@ -367,7 +365,6 @@
       "label": "Nome da instituição onde graduou",
       "type": "text",
       "name": "instituicao",
-      "help": "Campo obrigatório",
       "required": false,
       "model": {"val": ""}
     }
@@ -378,7 +375,6 @@
       "label": "Inscrição",
       "type": "text",
       "name": "inscr",
-      "help": "Campo obrigatório",
       "required": true,
       "mask": "",
       "model": {"val": ""}
@@ -387,7 +383,6 @@
       "label": "Desconto",
       "type": "select",
       "name": "descontoInscr",
-      "help": "Campo obrigatório",
       "placeholder": "Selecione uma opção",
       "required": true,
       "list": [
@@ -401,13 +396,13 @@
       "label": "Forma de pagamento",
       "type": "select",
       "name": "formaPagamento",
-      "help": "Campo obrigatório",
       "required": true,
       "placeholder": "Selecione uma opção",
       "list": [
         {"id": "1", "text": "Dinheiro"},
         {"id": "2", "text": "Cheque"},
-        {"id": "3", "text": "Cartão de Crédito"}
+        {"id": "3", "text": "Cartão de Crédito"},
+        {"id": "4", "text": "Cartão de Débito"}
       ],
       "model": {"val": ""}
     },
@@ -415,7 +410,6 @@
       "label": "Quantidade de parcelas",
       "type": "select",
       "name": "qtdParcelas",
-      "help": "Campo obrigatório",
       "required": true,
       "placeholder": "Selecione uma opção",
       "list": [
@@ -429,7 +423,6 @@
       "label": "Melhor data de vencimento",
       "type": "select",
       "name": "melhorData",
-      "help": "Campo obrigatório",
       "placeholder": "Selecione uma opção",
       "list": [
         {"id": "1", "text": "05"},
@@ -447,34 +440,26 @@
       "type": "text",
       "model": {"val": ""},
       "name": "valorIntegral",
-      "help": "Campo obrigatório",
       "required": false
-    },
-    "entrada": {
-      "label": "Entrada",
-      "type": "text",
-      "name": "entrada",
-      "help": "Campo obrigatório",
-      "required": true,
-      "model": {"val": ""}
     },
     "desconto": {
       "label": "Desconto",
       "type": "text",
       "name": "desconto",
-      "help": "Campo obrigatório",
       "required": true,
       "model": {"val": ""}
     },
-    "forma": {
+    "formaPagamento": {
       "label": "Forma de pagamento",
       "type": "select",
-      "name": "forma",      
-      "placeholder": "Selecione uma opção",
+      "name": "formaPagamento",
       "required": true,
+      "placeholder": "Selecione uma opção",
       "list": [
-        {"id": "cheque", "text": "Cheque"},
-        {"id": "cartao", "text": "Cartão"}
+        {"id": "1", "text": "Dinheiro"},
+        {"id": "2", "text": "Cheque"},
+        {"id": "3", "text": "Cartão de Crédito"},
+        {"id": "4", "text": "Cartão de Débito"}
       ],
       "model": {"val": ""}
     },
@@ -482,26 +467,32 @@
       "label": "Quantidade de parcelas",
       "type": "text",
       "name": "parcelamento",
-      "help": "Campo obrigatório",
       "required": true,
       "model": {"val": ""}
     },
-    "melhor_data": {
-      "label": "Melhor data de vencimento",
+    "valorParcela": {
+      "label": "Valor da Parcela",
       "type": "text",
-      "name": "melhor_data",
-      "help": "Campo obrigatório",
+      "name": "valorParcela",
       "required": true,
-      "format": "dd/MM/yyyy",
-      "opened": false,
-      "open": "function ($event) {$event.preventDefault();$event.stopPropagation();this.opened = true;}",
+      "model": {"val": ""}
+    },
+    "melhorData": {
+      "label": "Melhor data de vencimento",
+      "type": "select",
+      "name": "melhorData",
+      "placeholder": "Selecione uma opção",
+      "list": [
+        {"id": "1", "text": "05"},
+        {"id": "2", "text": "10"},
+        {"id": "3", "text": "25"}
+      ],
       "model": {"val": ""}
     },
     "observacoes": {
       "label": "Observações",
       "type": "text",
       "name": "observacoes",
-      "help": "Campo obrigatório",
       "required": true,
       "model": {"val": ""}
     },

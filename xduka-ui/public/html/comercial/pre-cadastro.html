@@ -1,4 +1,4 @@
-<form onload="$('#btn_addChequeStep1').slideUp();" id="teste" class="form-horizontal form-wizard" ng-controller="FormPreCadastro as pre" action method="post" data-target="#step1">
+<form id="teste" class="form-horizontal form-wizard" ng-controller="FormPreCadastro as pre" action method="post" data-target="#step1">
 
     <div class="steps-progress">
         <div class="progress-indicator" style="width: 0%"></div>
@@ -165,11 +165,11 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params="pre._model.inscr.formaPagamento" data-change="pre.selectCheque"></xd-select>
+                        <xd-select data-params="pre._model.inscr.formaPagamento" data-change="pre.selectChequeStep1"></xd-select>
                     </div>
                 </div>
                 <!--BOTAO ADD CHEQUE-->
-                <div class="row" ng-show="pre.btnAddCheque">
+                <div class="row" ng-show="pre.btnAddChequeStep1">
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
@@ -422,12 +422,12 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.pagamento.forma"
-                                  disable="!pre.validaCpf"></xd-input>
+                        <xd-select data-params="pre._model.pagamento.formaPagamento" data-change="pre.selectChequeStep3"
+                                  disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <!--BOTÃO ADD CHEQUE-->
-                <div class="row" ng-show="true">
+                <div class="row" ng-show="pre.btnAddChequeStep3">
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
@@ -452,19 +452,14 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input nome="'Valor da Parcela'"
-                                  model=""
-                                  type="'text'"
-                                  label="'Valor da parcela'"
-                                  dValidate="'required'"
-                                  disable="true"
-                                  ></xd-input>
+                        <xd-input-money data-params="pre._model.pagamento.valorParcela"
+                                  disable="pre._model.pagamento.valorParcela"></xd-input-money>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.pagamento.melhor_data"
-                                  disable="!pre.validaCpf"></xd-input>
+                        <xd-select data-params="pre._model.pagamento.melhorData"
+                                  disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">

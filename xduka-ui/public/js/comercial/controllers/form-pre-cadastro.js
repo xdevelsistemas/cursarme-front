@@ -14,7 +14,8 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
 
             vm._model = {};
             vm.validaCpf = true;
-            vm.btnAddCheque = false;
+            vm.btnAddChequeStep1 = false;
+            vm.btnAddChequeStep3 = false;
             vm.valoresCampos = {};
             vm.selectCursoArea = false;
             vm.selectCursoCurso = false;
@@ -125,9 +126,12 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
                 console.table(vm._model.aluno);
             };
 
-            vm.selectCheque = function (item, model) {
-                //model == "2" ? $("#btn_addChequeStep1").slideDown() : $("#btn_addChequeStep1").slideUp();
-                model == "2" ? vm.btnAddCheque = true : vm.btnAddCheque = false;
+            vm.selectChequeStep1 = function (item, model) {
+                vm.btnAddChequeStep1 = item.text == "Cheque";
+            };
+
+            vm.selectChequeStep3 = function (item, model) {
+                vm.btnAddChequeStep3 = item.text == "Cheque";
             };
 
             vm.selectPhoneType = function (item, model) {
