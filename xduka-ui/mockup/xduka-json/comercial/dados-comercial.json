@@ -68,7 +68,7 @@
       "label": "CEP",
       "type": "text",
       "name": "cep",
-      
+      "help": "Campo obrigatório",
       "mask": "99.999-999",
 
       "model": {"val": ""}
@@ -77,7 +77,7 @@
       "label": "RG",
       "type": "text",
       "name": "rg",
-      
+      "help": "Campo obrigatório",
       "mask": "9.999-999",
       "model": {"val": ""}
     },
@@ -85,7 +85,6 @@
       "label": "Data Expedição",
       "type": "text",
       "model": {"val": ""},
-      "placeholder": "__/__/____",
       "name": "dataExp",
       "format": "dd/MM/yyyy"
     },
@@ -188,17 +187,21 @@
       
       "model": {"val": ""}
     },
-    "sexo": {
+    "'sexo'": {
       "label": "Sexo",
-      "type": "text",
+      "type": "select",
       "name": "sexo",
-      "model": {"val": ""}
+      "placeholder": "Selecione...",
+      "model": {"val": ""},
+      "list": [
+          {"id": "f", "text": "Feminino"},
+          {"id": "m", "text": "Masculino"}
+      ]
     },
     "dataNasc": {
       "label": "Data Nascimento",
       "type": "text",
       "name": "dataNasc",
-      "mask": "99/99/9999",
       "model": {"val": ""}
     },
     "raca": {
@@ -285,7 +288,7 @@
       "label": "Unidade",
       "type": "select",
       "name": "unidade",
-      
+      "help": "Campo obrigatório",
       "placeholder": "Selecione uma opção",
       "required": true,
       "list": [
@@ -299,7 +302,7 @@
       "label": "Área",
       "type": "select",
       "name": "area",
-      
+      "help": "Campo obrigatório",
       "placeholder": "Selecione uma opção",
       "required": true,
       "list": [
@@ -312,7 +315,7 @@
       "label": "Curso",
       "type": "select",
       "name": "curso",
-      
+      "help": "Campo obrigatório",
       "placeholder": "Selecione uma opção",
       "required": true,
       "list": [
@@ -336,7 +339,7 @@
       "label": "Escola que cursou Ensino Médio",
       "type": "text",
       "name": "escolaEm",
-      
+      "help": "Campo obrigatório",
       "required": false,
       "model": {"val": ""}
     },
@@ -344,6 +347,7 @@
       "label": "Ano de Conclusão",
       "type": "text",
       "name": "anoEm",
+      "help": "Campo obrigatório",
       "required": false,
       "model": {"val": ""}
     },
@@ -351,6 +355,7 @@
       "label": "Curso de Graduação",
       "type": "text",
       "name": "cursoGrad",
+      "help": "Campo obrigatório",
       "required": false,
       "model": {"val": ""}
     },
@@ -358,6 +363,7 @@
       "label": "Ano de Conclusão",
       "type": "text",
       "name": "anoGrad",
+      "help": "Campo obrigatório",
       "required": false,
       "model": {"val": ""}
     },
@@ -365,6 +371,7 @@
       "label": "Nome da instituição onde graduou",
       "type": "text",
       "name": "instituicao",
+      "help": "Campo obrigatório",
       "required": false,
       "model": {"val": ""}
     }
@@ -375,6 +382,7 @@
       "label": "Inscrição",
       "type": "text",
       "name": "inscr",
+      "help": "Campo obrigatório",
       "required": true,
       "mask": "",
       "model": {"val": ""}
@@ -383,6 +391,7 @@
       "label": "Desconto",
       "type": "select",
       "name": "descontoInscr",
+      "help": "Campo obrigatório",
       "placeholder": "Selecione uma opção",
       "required": true,
       "list": [
@@ -396,6 +405,7 @@
       "label": "Forma de pagamento",
       "type": "select",
       "name": "formaPagamento",
+      "help": "Campo obrigatório",
       "required": true,
       "placeholder": "Selecione uma opção",
       "list": [
@@ -410,6 +420,7 @@
       "label": "Quantidade de parcelas",
       "type": "select",
       "name": "qtdParcelas",
+      "help": "Campo obrigatório",
       "required": true,
       "placeholder": "Selecione uma opção",
       "list": [
@@ -423,6 +434,7 @@
       "label": "Melhor data de vencimento",
       "type": "select",
       "name": "melhorData",
+      "help": "Campo obrigatório",
       "placeholder": "Selecione uma opção",
       "list": [
         {"id": "1", "text": "05"},
@@ -446,6 +458,7 @@
       "label": "Desconto",
       "type": "text",
       "name": "desconto",
+      "help": "Campo obrigatório",
       "required": true,
       "model": {"val": ""}
     },
@@ -491,7 +504,7 @@
     },
     "observacoes": {
       "label": "Observações",
-      "type": "text",
+      "type": "textarea",
       "name": "observacoes",
       "required": true,
       "model": {"val": ""}

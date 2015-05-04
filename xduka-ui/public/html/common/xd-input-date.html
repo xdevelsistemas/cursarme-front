@@ -11,7 +11,7 @@
         <div class="col-md-12">
            <p class="input-group">
                <input data-ng-model="params.model.val"
-                      type="text" class="form-control"
+                      type="text" class="form-control heightFix"
                       datepicker-popup="{{params.format}}"
                       is-open="opened"
                       datepicker-options="dateOptions"
@@ -23,7 +23,7 @@
                       ng-required="params.required"/>
 
                <span class="input-group-btn">
-                   <button type="button" class="btn btn-default" ng-click="click($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                   <button type="button" class="btn btn-default heightFix" ng-click="click($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                </span>
            </p>
 
