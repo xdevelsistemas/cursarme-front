@@ -1,6 +1,5 @@
 define(['./__module__', "jquery", "form-wizard"], function (controllers, $, formWizard) {
     'use strict';
-    
     controllers.controller('FormPreCadastro', [
         '$scope', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'allCheques',
         function ($scope, $timeout, $modal, $resource, lista_cheques, dataCheque, allCheques) {

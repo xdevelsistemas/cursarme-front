@@ -2,17 +2,17 @@ define([
     './__module__',
     '../../common/models/strings',
     'jquery'
-], function (controllers, modelStrings, $) {
+], function (controllers, modelStrings, $, $modal) {
 
     'use strict';
 
     controllers
         .controller('EditarPerfil', EditarPerfil);
 
-    EditarPerfil.$inject = ['$scope', '$resource', 'breadCrumb', 'cropService'];
+    EditarPerfil.$inject = ['$scope', '$resource', 'breadCrumb', 'cropService', '$modal'];
 
     /* @ngInject */
-    function EditarPerfil($scope, $resource, breadCrumb, cropService) {
+    function EditarPerfil($scope, $resource, breadCrumb, cropService, $modal) {
         /* jshint validthis: true */
         var vm = this
             , perfilPromise = $resource('/api/aluno/editar-perfil').get().$promise;
@@ -45,6 +45,7 @@ define([
             };
             reader.readAsDataURL(file);
         };
+
 
         angular.element(document.querySelector('#fileInput')).on('change', handleFileSelect);
 
@@ -161,8 +162,6 @@ define([
             cropService.imgTemp = $scope.myCroppedImage;
             vm.imgSv = cropService.imgTemp;
         }
-
-        vm.url = 'testeaskldfsadnfasndfkl.png';
 
 
 

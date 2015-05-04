@@ -188,11 +188,16 @@
       
       "model": {"val": ""}
     },
-    "sexo": {
+    "'sexo'": {
       "label": "Sexo",
-      "type": "text",
+      "type": "select",
       "name": "sexo",
-      "model": {"val": ""}
+      "placeholder": "Selecione...",
+      "model": {"val": ""},
+      "list": [
+          {"id": "f", "text": "Feminino"},
+          {"id": "m", "text": "Masculino"}
+      ]
     },
     "dataNasc": {
       "label": "Data Nascimento",
@@ -486,6 +491,14 @@
       "required": true,
       "model": {"val": ""}
     },
+    "valorParcela": {
+      "label": "Valor da parcela",
+      "type": "text",
+      "name": "parcelamento",
+      "help": "Campo obrigatório",
+      "required": true,
+      "model": {"val": ""}
+    },
     "melhor_data": {
       "label": "Melhor data de vencimento",
       "type": "text",
@@ -499,10 +512,10 @@
     },
     "observacoes": {
       "label": "Observações",
-      "type": "text",
+      "type": "textarea",
       "name": "observacoes",
       "help": "Campo obrigatório",
-      "required": true,
+      "required": false,
       "model": {"val": ""}
     },
     "listaCheques": []
