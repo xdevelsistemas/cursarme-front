@@ -41,4 +41,7 @@ body {
     display: inline;
 }
 
+.heightFix {
+    height: 42px;
+}
 

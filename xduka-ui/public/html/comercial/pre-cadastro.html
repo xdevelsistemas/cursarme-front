@@ -281,8 +281,8 @@
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input data-params="pre._model.aluno.sexo"
-                                  disable="!pre.validaCpf"></xd-input>
+                        <xd-select data-params="pre._model.aluno.sexo"
+                                  disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
@@ -416,14 +416,18 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.pagamento.desconto"
-                                  disable="!pre.validaCpf"></xd-input>
+                        <!--<xd-input data-params="pre._model.pagamento.desconto"-->
+                                  <!--disable="!pre.validaCpf"></xd-input>-->
+                        <xd-select data-params="pre._model.pagamento.desconto"
+                                   disabled="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.pagamento.forma"
-                                  disable="!pre.validaCpf"></xd-input>
+                        <!--<xd-input data-params="pre._model.pagamento.forma"
+                                  disable="!pre.validaCpf"></xd-input>-->
+                        <xd-select data-params="pre._model.pagamento.forma"
+                                   disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <!--BOTÃO ADD CHEQUE-->
@@ -446,19 +450,16 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.pagamento.parcelamento"
-                                  disable="!pre.validaCpf"></xd-input>
+                        <!--<xd-input data-params="pre._model.pagamento.parcelamento"
+                                  disable="!pre.validaCpf"></xd-input>-->
+                        <xd-select data-params="pre._model.pagamento.parcelamento"
+                                   disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input nome="'Valor da Parcela'"
-                                  model=""
-                                  type="'text'"
-                                  label="'Valor da parcela'"
-                                  dValidate="'required'"
-                                  disable="true"
-                                  ></xd-input>
+                        <xd-input-money data-params="pre._model.pagamento.valorParcela"
+                                        disable="!pre.validaCpf"></xd-input-money>
                     </div>
                 </div>
                 <div class="row">
@@ -469,17 +470,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="col-md-12">
-                                    <label for="{{'textarea_'+pre._model.pagamento.observacoes.name}}">{{pre._model.pagamento.observacoes.label}}</label>
-                                </div>
-                                <div class="col-md-12">
-                                    <textarea data-params="{{pre._model.pagamento.observacoes.name}}"
-                                      id="{{'textarea_'+pre._model.pagamento.observacoes.name}}" cols="30" rows="10" class="form-control" data-ng-model="pre._model.pagamento.observacoes.model.val" ng-disabled="!pre.validaCpf"></textarea>
-                                </div>
-                            </div>
-                        </div>
+                        <xd-input-textarea data-params="pre._model.pagamento.observacoes"
+                                           disable="!pre.validaCpf"></xd-input-textarea>
                     </div>
                 </div>
             </xd-panel-collapse>
