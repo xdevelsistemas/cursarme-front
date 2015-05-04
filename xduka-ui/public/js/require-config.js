@@ -8,14 +8,14 @@ define([], function () {
             'jqueryUi': '../../lib/jquery-ui/jquery-ui',
             'jqueryMaskedinput': '../../lib/jquery-maskedinput/dist/jquery.maskedinput',
             'bootstrap': '../../lib/bootstrap/dist/js/bootstrap',
-            'select2': '../../lib/select2/select2',
-            'select2localePtBR': '../../lib/select2/select2_locale_pt-BR',
             'angular': '../../lib/angular/angular',
             'angularInputMasks': '../../lib/angular-input-masks/angular-input-masks.br',
             'angularRoute': '../../lib/angular-route/angular-route',
             'angularResource': '../../lib/angular-resource/angular-resource',
             'angularSanitize': '../../lib/angular-sanitize/angular-sanitize',
             "uiUtils": '../../lib/angular-ui-utils/ui-utils',
+            'select2': '../../lib/select2/select2',
+            'select2localePtBR': '../../lib/select2/select2_locale_pt-BR',
             "uiSelect": '../../lib/angular-ui-select/dist/select',
             'uiBootstrap': '../../lib/angular-bootstrap/ui-bootstrap-tpls',
             'ngImgCrop': '../../lib/ngImgCrop/compile/unminified/ng-img-crop',
@@ -39,12 +39,6 @@ define([], function () {
             'bootstrap': {
                 deps: ['jquery']
             },
-            'select2': {
-                deps: ['jquery']
-            },
-            'select2localePtBR': {
-                deps: ['select2']
-            },
             'angular': {
                 exports: 'angular',
                 deps: ['jquery']
@@ -63,6 +57,12 @@ define([], function () {
             },
             "uiUtils": {
                 deps: ['angular']
+            },
+            'select2': {
+                deps: ['jquery', 'angular']
+            },
+            'select2localePtBR': {
+                deps: ['select2', 'angular']
             },
             "uiSelect": {
                 deps: ['select2localePtBR', 'angular']
