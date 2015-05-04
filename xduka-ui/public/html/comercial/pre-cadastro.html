@@ -88,7 +88,7 @@
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-5">
-                        <xd-select data-params="pre._model.aluno.tipo_telefone"
+                        <xd-select data-params="pre._model.aluno.tipoTelefone"
                                    data-change="pre.selectPhoneType"
                                    d-validate="'required'"></xd-select>
                     </div>
@@ -155,7 +155,7 @@
             <xd-panel-collapse title="pre._model.inscr.label">
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input-money data-params="pre._model.inscr.inscricao" disable="!pre.validaCpf"></xd-input-money>
+                        <xd-input-money data-params="pre._model.inscr.valorInscricao" disable="!pre.validaCpf"></xd-input-money>
                     </div>
                 </div>
                 <div class="row">
@@ -287,8 +287,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-5">
-                        <xd-input data-params="pre._model.aluno.dataNasc"
-                                  disable="!pre.validaCpf"></xd-input>
+                        <xd-input-date data-params="pre._model.aluno.dataNasc" data-opened="main.opened"
+                                       date-options="main.dateOptions" data-click="main.open"></xd-input-date>
                     </div>
                     <div class="col-md-3">
                         <xd-input data-params="pre._model.aluno.raca"
@@ -349,7 +349,7 @@
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-select data-params="pre._model.aluno.tipo_telefone" disabled="true"></xd-select>
+                        <xd-select data-params="pre._model.aluno.tipoTelefone" disabled="true"></xd-select>
                     </div>
                 </div>
                 <div class="row">
@@ -450,7 +450,7 @@
                     <div class="col-md-12">
                         <!--<xd-input data-params="pre._model.pagamento.parcelamento"
                                   disable="!pre.validaCpf"></xd-input>-->
-                        <xd-select data-params="pre._model.pagamento.parcelamento"
+                        <xd-select data-params="pre._model.pagamento.qtdParcelas"
                                    disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>

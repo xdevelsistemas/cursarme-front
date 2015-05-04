@@ -86,51 +86,32 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
             };
 
             vm.salvarFirstDados = function() {
-                /*vm.dadosIniciais = {
-                    area: vm._model.curso.area.value,
-                    cep: vm._model.aluno.cep.model.val,
-                    cidade: vm._model.aluno.cidade.model.val,
-                    cpf: vm._model.aluno.cpf.model.val,
-                    curso: vm._model.curso.curso.value,
-                    desconto: vm._model.inscr.desconto.value,
-                    email: vm._model.aluno.email.model.val,
-                    formaPagamento: vm._model.inscr.formaPagamento.value,
-                    melhorData: vm._model.inscr.melhorData.value,
-                    nome: vm._model.aluno.nome.model.val,
-                    qtdParcelas: vm._model.inscr.qtdParcelas.value,
-                    rg: vm._model.aluno.rg.model.val,
-                    telefone: vm._model.aluno.telefone.model.val,
-                    tipoTelefone: vm._model.aluno.tipo_telefone.value,
-                    unidade: vm._model.curso.unidade.value,
-                    valorInscricao: vm._model.inscr.inscricao.model.val,
-                    listaCheques: allCheques.getAllCheques()
-                };*/
+                alert("Falta terminar");
+            };
 
+            vm.sendDadosMatricula = function() {
                 $.extend(vm._model.pagamento.listaCheques, allCheques.getAllCheques());
 
                 var savePromisse = $resource('/api/comercial/dados-matricula').save({}, vm._model).$promise;
-                console.log(vm._model);
 
                 savePromisse
                     .then(function(data){
                         //vm.dadosIniciais.successMessage = vm.STR.SUCESSO;
                         vm._model = data;
+                        console.log(data);
+                        allCheques.setAllCheques(vm._model.pagamento.listaCheques)
                     })
                     .catch(function(erro) {
-
+                        console.log("\n"+erro.data+"\n")
                     });
             };
 
-            vm.salvarSecondData = function() {
-                console.table(vm._model.aluno);
-            };
-
             vm.selectChequeStep1 = function (item, model) {
-                vm.btnAddChequeStep1 = item.text == "Cheque";
+                vm.btnAddChequeStep1 = item.tpCheque;
             };
 
             vm.selectChequeStep3 = function (item, model) {
-                vm.btnAddChequeStep3 = item.text == "Cheque";
+                vm.btnAddChequeStep3 = item.tpCheque;
             };
 
             vm.selectPhoneType = function (item, model) {
