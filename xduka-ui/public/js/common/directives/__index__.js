@@ -7,6 +7,7 @@ define([
     './xd-select',
     './xd-input',
     './xd-input-date',
+    './xd-input-email',
     './xd-input-money',
     './xd-input-textarea',
     './xd-btn',

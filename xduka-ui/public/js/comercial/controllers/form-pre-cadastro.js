@@ -24,10 +24,6 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
                 .then(function(data){
                     vm._model = data;
                     $.extend(vm._model.curso.vagas, {}, {
-                        css: {
-                            titleGray: true,
-                            titleRed: false
-                        },
                         isEnding: function () {
                             return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
                         },
@@ -98,8 +94,16 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
                     .then(function(data){
                         //vm.dadosIniciais.successMessage = vm.STR.SUCESSO;
                         vm._model = data;
+                        $.extend(vm._model.curso.vagas, {}, {
+                            isEnding: function () {
+                                return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
+                            },
+                            getDisponiveis: function () {
+                                return (parseInt(this.totais) - parseInt(this.preenchidas));
+                            }
+                        });
+
                         console.log(data);
-                        allCheques.setAllCheques(vm._model.pagamento.listaCheques)
                     })
                     .catch(function(erro) {
                         console.log("\n"+erro.data+"\n")

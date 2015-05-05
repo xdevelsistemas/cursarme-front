@@ -1,0 +1,28 @@
+<div data-ng-class="{'has-error':!(params.model.err === undefined || params.model.err == '')}"
+     class="form-group">
+
+    <div class="col-md-12">
+        <div class="col-md-12 left">
+            <label for="{{'input_'+params.name}}">
+                {{params.label}}
+            </label>
+        </div>
+
+        <div class="col-md-12 input-group">
+            <div class="input-group-addon">@</div>
+            <input id="{{'input_'+params.name}}"
+                   data-ng-model="params.model.val"
+                   ng-focus="isFocused=false"
+                   ng-blur="isFocused=false"
+                   type="email"
+                   class="form-control heightFix"
+                   name="{{params.name}}"
+                   ng-disabled="disable"
+                   ng-required="params.required">
+        </div>
+        <p data-collapse="params.model.err == ''"
+           data-ng-bind="params.model.err"
+           class="control-label"></p>
+    </div>
+
+</div>

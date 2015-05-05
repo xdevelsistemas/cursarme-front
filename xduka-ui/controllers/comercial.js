@@ -21,8 +21,18 @@ function getInfoUsuario(req, res) {
 }
 
 function putDadosMatricula(req, res) {
-
+/*  --- Json tela comercial / matricula ---   */
     var dataSend = req.body;
+
+/*  Transformando data por extenso para data numerica  */
+
+    for (var elem = 0; elem < dataSend.pagamento.listaCheques.length; elem++) {
+        dataSend.pagamento.listaCheques[elem].data = setDataInt(dataSend.pagamento.listaCheques[elem].data);
+        //console.log(dataSend.pagamento.listaCheques[elem]);
+    }
+
+/*  --- Resultado recebido do BackEnd (/Banco de Dados/)*/
+    /*   Alterar: dataSend.(...) para os dados do BackEnd   */
     var result = {
         "curso": {
             "area": {"model": {"val": dataSend.curso.area.model.val, "err": ""}},
@@ -48,17 +58,15 @@ function putDadosMatricula(req, res) {
         }
     };
 
-    for (var elem = 0; elem < req.body.pagamento.listaCheques.length; elem++) {
-        req.body.pagamento.listaCheques[elem].data = setDataInt(req.body.pagamento.listaCheques[elem].data);
-        console.log(req.body.pagamento.listaCheques[elem]);
+    for (var elem = 0; elem < result.pagamento.listaCheques.length; elem++) {
+        result.pagamento.listaCheques[elem].data = setDataExt(result.pagamento.listaCheques[elem].data);
     }
 
-    //res.json(req.body);
-    //console.log(result);
-
-    //var resultConcat = extend(true, dataSend, result);
-
     res.json(extend(true, dataSend, result));
+
+    function setDataExt(a) {
+        return new Date(a);
+    }
 
     function setDataInt(a) {
         return new Date(a).getTime();

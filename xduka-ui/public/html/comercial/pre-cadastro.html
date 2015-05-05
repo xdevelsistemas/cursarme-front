@@ -96,8 +96,8 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.aluno.email"
-                                  disable="!pre.validaCpf"></xd-input>
+                        <xd-input-email data-params="pre._model.aluno.email"
+                                  disable="!pre.validaCpf"></xd-input-email>
                     </div>
                 </div>
 
@@ -133,8 +133,6 @@
                             <div id="precadastro-vagas" class="form-group" ng-show="pre.selectCursoVagas"><br>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5">
-                                    <!--ko foreach: preCadastro.cursos()-->
-                                    <!--ko if: codigo() === $root.preCadastro.filtro.codCurso()-->
                                     <div data-ng-class="pre._model.curso.vagas.css" class="tile-stats">
                                         <div class="icon"><i class="entypo-users"></i></div>
                                         <h3 id="vagasDisponiveisTitle">Vagas disponíveis</h3>
@@ -142,8 +140,6 @@
                                         <h3>Vagas totais</h3>
                                         <p><span data-ng-bind="pre._model.curso.vagas.totais"></span></p>
                                     </div>
-                                    <!--/ko-->
-                                    <!--/ko-->
                                 </div>
                             </div>
 
@@ -354,8 +350,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.aluno.email"
-                                  disable="true"></xd-input>
+                        <xd-input-email data-params="pre._model.aluno.email"
+                                  disable="true"></xd-input-email>
                     </div>
                 </div>
                 <div class="row">
