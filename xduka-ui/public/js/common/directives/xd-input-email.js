@@ -31,7 +31,7 @@ define([
                     var fn = $parse(attr['ngBlur']);
                     element.bind('blur', function(event) {
                         scope.$apply(function () {
-                            fn(scope.params.model.err, {$event: event});
+                            fn(scope, {$event: event});
                             /*if (!isEmail(scope.params.model.val)) {
                                 scope.params.model.err = "Email inválido"
                             }*/
