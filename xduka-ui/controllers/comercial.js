@@ -8,6 +8,7 @@ module.exports = function() {
     controller.putDadosMatricula = putDadosMatricula;
     controller.showDadosComercial = getDadosComercial;
     controller.showInfoUsuario = getInfoUsuario;
+    controller.putFirstDados = putFirstDados;
 
     return controller;
 };
@@ -71,4 +72,8 @@ function putDadosMatricula(req, res) {
     function setDataInt(a) {
         return new Date(a).getTime();
     }
+}
+
+function putFirstDados(req, res) {
+    res.json({status: "ok!"})
 }

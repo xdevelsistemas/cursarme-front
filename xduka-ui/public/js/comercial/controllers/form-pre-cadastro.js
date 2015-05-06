@@ -68,7 +68,6 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
                         vm._model.curso.vagas.css.titleGray = true;
                         vm._model.curso.vagas.css.titleRed = false
                     }
-
                 }, 1);
             };
 
@@ -81,16 +80,26 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
                 });
             };
 
-            vm.salvarFirstDados = function() {
-                alert("Falta terminar");
+            vm.selectChequeStep1 = function (item, model) {
+                vm.btnAddChequeStep1 = item.tpCheque;
+            };
+
+            vm.selectChequeStep3 = function (item, model) {
+                vm.btnAddChequeStep3 = item.tpCheque;
+            };
+
+            vm.selectPhoneType = function (item, model) {
+                var tel = vm._model.aluno.telefone.model.val;
+                vm._model.aluno.telefone.mask = model == 'cel' ? '(99)9999-99999' : '(99)9999-9999';
+                vm._model.aluno.telefone.model.val = tel;
             };
 
             vm.sendDadosMatricula = function() {
                 $.extend(vm._model.pagamento.listaCheques, allCheques.getAllCheques());
 
-                var savePromisse = $resource('/api/comercial/dados-matricula').save({}, vm._model).$promise;
+                var sendDadosMatPromise = $resource('/api/comercial/dados-matricula').save({}, vm._model).$promise;
 
-                savePromisse
+                sendDadosMatPromise
                     .then(function(data){
                         //vm.dadosIniciais.successMessage = vm.STR.SUCESSO;
                         vm._model = data;
@@ -110,18 +119,29 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
                     });
             };
 
-            vm.selectChequeStep1 = function (item, model) {
-                vm.btnAddChequeStep1 = item.tpCheque;
-            };
+            vm.sendFirstDados = function() {
+                $.extend(vm._model.pagamento.listaCheques, allCheques.getAllCheques());
 
-            vm.selectChequeStep3 = function (item, model) {
-                vm.btnAddChequeStep3 = item.tpCheque;
-            };
+                var sendFirstDadosPromise = $resource('/api/comercial/first-dados').save({}, vm._model).$promise;
 
-            vm.selectPhoneType = function (item, model) {
-                var tel = vm._model.aluno.telefone.model.val;
-                vm._model.aluno.telefone.mask = model == 'cel' ? '(99)9999-99999' : '(99)9999-9999';
-                vm._model.aluno.telefone.model.val = tel;
+                sendFirstDadosPromise
+                    .then(function(data){
+                        //vm.dadosIniciais.successMessage = vm.STR.SUCESSO;
+                        /*vm._model = data;
+                        $.extend(vm._model.curso.vagas, {}, {
+                            isEnding: function () {
+                                return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
+                            },
+                            getDisponiveis: function () {
+                                return (parseInt(this.totais) - parseInt(this.preenchidas));
+                            }
+                        });*/
+
+                        console.log(data.status);
+                    })
+                    .catch(function(erro) {
+                        console.log("\n"+erro.data+"\n")
+                    });
             };
 
             vm.topCollapse = function(){
