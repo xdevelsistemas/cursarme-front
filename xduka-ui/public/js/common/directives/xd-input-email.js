@@ -5,8 +5,8 @@ define([
     'use strict';
 
     directives
-        .directive('xdInputEmail', ['$parse',
-            function ($parse) {
+        .directive('xdInputEmail', [
+            function () {
 
                 return {
                     restrict: "E",
@@ -19,29 +19,24 @@ define([
                     link: link
                 };
 
-    //TODO terminar lógica da validação do  campo email
-
-                function link(scope, el, attr) {
-
-                    if (!isEmail(scope.params.model.val)) {
-                        scope.params.model.err = "Email inválido"
-                    }
-
-
-                    var fn = $parse(attr['ngBlur']);
-                    element.bind('blur', function(event) {
-                        scope.$apply(function () {
-                            fn(scope, {$event: event});
-                            /*if (!isEmail(scope.params.model.val)) {
-                                scope.params.model.err = "Email inválido"
-                            }*/
-                        });
+                function link(scope, elem, attr) {
+                    elem.bind('blur', function() {
+                        scope.$apply(attr.xdInputEmail);
                     });
+
+                    scope.testfn = function() {
+                        if (!isEmail(scope.params.model.val)) {
+                            scope.params.model.err = "Email inválido"
+                        }else{
+                            scope.params.model.err = ""
+                        }
+                    };
 
                     function isEmail(email){
                         var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
                         return regex.test(email);
                     }
+
                 }
             }
         ]);

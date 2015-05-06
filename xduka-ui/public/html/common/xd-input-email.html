@@ -12,8 +12,7 @@
             <div class="input-group-addon">@</div>
             <input id="{{'input_'+params.name}}"
                    data-ng-model="params.model.val"
-                   ng-focus="isFocused=true"
-                   ng-blur="isFocused=false"
+                   ng-blur="testfn(params.model.val)"
                    type="email"
                    class="form-control heightFix"
                    name="{{params.name}}"
