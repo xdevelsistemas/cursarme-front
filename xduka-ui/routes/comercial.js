@@ -14,8 +14,8 @@ module.exports = function (app, passport) {
         .post(controller.putDadosMatricula);
 
     //salva-first-dados
-    app.route('/api/comercial/first-dados')
-        .post(controller.putFirstDados);
+    app.route('/api/comercial/dados-inscricao')
+        .post(controller.putDadosInscricao);
 
     return app;
 };

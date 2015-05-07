@@ -8,7 +8,7 @@ module.exports = function() {
     controller.putDadosMatricula = putDadosMatricula;
     controller.showDadosComercial = getDadosComercial;
     controller.showInfoUsuario = getInfoUsuario;
-    controller.putFirstDados = putFirstDados;
+    controller.putDadosInscricao = putDadosInscricao;
 
     return controller;
 };
@@ -25,15 +25,15 @@ function putDadosMatricula(req, res) {
 /*  --- Json tela comercial / matricula ---   */
     var dataSend = req.body;
 
-/*  Transformando data por extenso para data numerica  */
+/*  Transformando data por extenso para data numerica dos cheques enviados (se existirem é claro!!!)  */
 
     for (var elem = 0; elem < dataSend.pagamento.listaCheques.length; elem++) {
         dataSend.pagamento.listaCheques[elem].data = setDataInt(dataSend.pagamento.listaCheques[elem].data);
         //console.log(dataSend.pagamento.listaCheques[elem]);
     }
 
-/*  --- Resultado recebido do BackEnd (/Banco de Dados/)*/
-    /*   Alterar: dataSend.(...) para os dados do BackEnd   */
+/*  --- Resultado recebido do BackEnd (/#Banco de Dados#/)      */
+    /*   Alterar: dataSend.(...) para a sintaxe real da conversa com o BackEnd   */
     var result = {
         "curso": {
             "area": {"model": {"val": dataSend.curso.area.model.val, "err": ""}},
@@ -59,8 +59,9 @@ function putDadosMatricula(req, res) {
         }
     };
 
-    for (var elem = 0; elem < result.pagamento.listaCheques.length; elem++) {
-        result.pagamento.listaCheques[elem].data = setDataExt(result.pagamento.listaCheques[elem].data);
+/*  --- retransformando as datas de formato int para a data por extenso---  */
+    for (var elem = 0; elem < dataSend.pagamento.listaCheques.length; elem++) {
+        dataSend.pagamento.listaCheques[elem].data = setDataExt(dataSend.pagamento.listaCheques[elem].data);
     }
 
     res.json(extend(true, dataSend, result));
@@ -74,6 +75,6 @@ function putDadosMatricula(req, res) {
     }
 }
 
-function putFirstDados(req, res) {
+function putDadosInscricao(req, res) {
     res.json({status: "ok!"})
 }

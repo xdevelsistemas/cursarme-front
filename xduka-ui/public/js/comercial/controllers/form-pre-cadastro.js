@@ -89,9 +89,8 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
             };
 
             vm.selectPhoneType = function (item, model) {
-                var tel = vm._model.aluno.telefone.model.val;
                 vm._model.aluno.telefone.mask = model == 'cel' ? '(99)9999-99999' : '(99)9999-9999';
-                vm._model.aluno.telefone.model.val = tel;
+                vm._model.aluno.telefone.model.val = "";
             };
 
             vm.sendDadosMatricula = function() {
@@ -119,28 +118,19 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
                     });
             };
 
-            vm.sendFirstDados = function() {
+            vm.sendInscricao = function() {
+                console.log("Qtd de vagas disponiveis para o curso que você escolheu /==/ " + vm._model.curso.vagas.getDisponiveis());
+                console.log("Somente campo de teste (tanto no Node como no angular!)");
                 $.extend(vm._model.pagamento.listaCheques, allCheques.getAllCheques());
 
-                var sendFirstDadosPromise = $resource('/api/comercial/first-dados').save({}, vm._model).$promise;
+                var sendInscricaoPromise = $resource('/api/comercial/dados-inscricao').save({}, vm._model).$promise;
 
-                sendFirstDadosPromise
-                    .then(function(data){
-                        //vm.dadosIniciais.successMessage = vm.STR.SUCESSO;
-                        /*vm._model = data;
-                        $.extend(vm._model.curso.vagas, {}, {
-                            isEnding: function () {
-                                return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
-                            },
-                            getDisponiveis: function () {
-                                return (parseInt(this.totais) - parseInt(this.preenchidas));
-                            }
-                        });*/
-
+                sendInscricaoPromise
+                    .then(function (data) {
                         console.log(data.status);
                     })
-                    .catch(function(erro) {
-                        console.log("\n"+erro.data+"\n")
+                    .catch(function (erro) {
+                        console.log("\n" + erro.data + "\n")
                     });
             };
 

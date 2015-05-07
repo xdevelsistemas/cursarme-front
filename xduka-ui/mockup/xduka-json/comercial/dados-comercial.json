@@ -14,14 +14,12 @@
       "label": "Edereço",
       "type": "text",
       "name": "endereco",
-      
       "model": {"val": ""}
     },
     "tipoTelefone": {
       "label": "Tipo de telefone",
       "type": "select",
       "name": "tipoTelefone",
-      
       "placeholder": "Selecione uma opção",
       "list": [
         {

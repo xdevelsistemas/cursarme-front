@@ -25,10 +25,14 @@ define([
                     });
 
                     scope.testfn = function() {
-                        if (!isEmail(scope.params.model.val)) {
-                            scope.params.model.err = "Email inválido"
-                        }else{
-                            scope.params.model.err = ""
+                        if (scope.params.model.val == "") {
+                            scope.params.model.err = "Insira um email"
+                        }else {
+                            if (!isEmail(scope.params.model.val)) {
+                                scope.params.model.err = "Email inválido"
+                            } else {
+                                scope.params.model.err = ""
+                            }
                         }
                     };
 
