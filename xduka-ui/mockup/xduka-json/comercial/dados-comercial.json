@@ -8,13 +8,13 @@
       "val": "Teste1",
       "name": "nome",
       
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "endereco": {
       "label": "Edereço",
       "type": "text",
       "name": "endereco",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "tipoTelefone": {
       "label": "Tipo de telefone",
@@ -35,54 +35,52 @@
           "text": "Celular"
         }
       ],
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "telefone": {
       "label": "Telefone",
       "type": "text",
       "mask": "(99)9999-9999",
       "name": "telefone",
-      
 
-      "model": {"val": ""}
+
+      "model": {"val": "", "err": ""}
     },
     "email": {
       "label": "Email",
       "type": "email",
       "name": "email",
-      
-
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "cidade": {
       "label": "Cidade",
       "type": "text",
       "name": "cidade",
-      
 
-      "model": {"val": ""}
+
+      "model": {"val": "", "err": ""}
     },
     "cep": {
       "label": "CEP",
       "type": "text",
       "name": "cep",
-      
+
       "mask": "99.999-999",
 
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "rg": {
       "label": "RG",
       "type": "text",
       "name": "rg",
-      
+
       "mask": "9.999-999",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "dataExp": {
       "label": "Data Expedição",
       "type": "text",
-      "model": {"val": ""},
+      "model": {"val": "", "err": ""},
       "name": "dataExp",
       "format": "dd/MM/yyyy"
     },
@@ -90,105 +88,104 @@
       "label": "Órgão Emissor",
       "type": "text",
       "name": "orgaoEmissor",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "cpf": {
       "label": "CPF",
       "type": "text",
       "name": "cpf",
-      "required": "true",
       "mask": "999.999.999-99",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "tituloEleitor": {
       "label": "Título Eleitor",
       "type": "text",
       "name": "tituloEleito",
-      
-      "model": {"val": ""}
+
+      "model": {"val": "", "err": ""}
     },
     "zona": {
       "label": "Zona",
       "type": "text",
       "name": "zona",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "secao": {
       "label": "Seção",
       "type": "text",
       "name": "secao",
-      
-      "model": {"val": ""}
+
+      "model": {"val": "", "err": ""}
     },
     "ufTitulo": {
       "label": "UF",
       "type": "text",
       "name": "ufTitulo",
-      
-      "model": {"val": ""}
+
+      "model": {"val": "", "err": ""}
     },
     "certidaoNc": {
       "label": "Certidão N C",
       "type": "text",
       "name": "certidaoNc",
-      
-      "model": {"val": ""}
+
+      "model": {"val": "", "err": ""}
     },
     "folha": {
       "label": "Folha",
       "type": "text",
       "name": "folha",
-      
-      "model": {"val": ""}
+
+      "model": {"val": "", "err": ""}
     },
     "livro": {
       "label": "Livro",
       "type": "text",
       "name": "livro",
-      
-      "model": {"val": ""}
+
+      "model": {"val": "", "err": ""}
     },
     "cartorio": {
       "label": "Cartório",
       "type": "text",
       "name": "cartorio",
-      
-      "model": {"val": ""}
+
+      "model": {"val": "", "err": ""}
     },
     "certificadoRes": {
       "label": "Certificado Reservista",
       "type": "text",
       "name": "certificadoRes",
-      
-      "model": {"val": ""}
+
+      "model": {"val": "", "err": ""}
     },
     "registro": {
       "label": "Registro",
       "type": "text",
       "name": "registro",
-      
-      "model": {"val": ""}
+
+      "model": {"val": "", "err": ""}
     },
     "ufReservista": {
       "label": "UF",
       "type": "text",
       "name": "ufReservista",
-      
-      "model": {"val": ""}
+
+      "model": {"val": "", "err": ""}
     },
     "categoria": {
       "label": "Categoria",
       "type": "text",
       "name": "categoria",
-      
-      "model": {"val": ""}
+
+      "model": {"val": "", "err": ""}
     },
     "sexo": {
       "label": "Sexo",
       "type": "select",
       "name": "sexo",
       "placeholder": "Selecione...",
-      "model": {"val": ""},
+      "model": {"val": "", "err": ""},
       "list": [
           {"id": "f", "text": "Feminino"},
           {"id": "m", "text": "Masculino"}
@@ -198,84 +195,84 @@
       "label": "Data Nascimento",
       "type": "text",
       "name": "dataNasc",
-      "model": {"val": ""},
+      "model": {"val": "", "err": ""},
       "format": "dd/MM/yyyy"
     },
     "raca": {
       "label": "Raça",
       "type": "text",
       "name": "raca",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "estadoCivil": {
       "label": "Estado Civil",
       "type": "text",
       "name": "estadoCivil",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "pai": {
       "label": "Pai",
       "type": "text",
       "name": "pai",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "mae": {
       "label": "Mãe",
       "type": "text",
       "name": "mae",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "avRua": {
       "label": "Av/Rua",
       "type": "text",
       "name": "avRua",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "endNum": {
       "label": "N",
       "type": "text",
       "name": "endNum",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "apt": {
       "label": "Apt",
       "type": "text",
       "name": "apt",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "bairro": {
       "label": "Bairro",
       "type": "text",
       "name": "bairro",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "endUf": {
       "label": "UF",
       "type": "text",
       "name": "endUf",
-      
 
-      "model": {"val": ""}
+
+      "model": {"val": "", "err": ""}
     },
     "nacionalidade": {
       "label": "Nacionalidade",
       "type": "text",
       "name": "nacionalidade",
-      
 
-      "model": {"val": ""}
+
+      "model": {"val": "", "err": ""}
     },
     "naturalidade": {
       "label": "Naturalidade",
       "type": "text",
       "name": "naturalidade",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "natUf": {
       "label": "UF",
       "type": "text",
       "name": "natUf",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     }
   },
   "curso": {
@@ -285,7 +282,7 @@
       "label": "Unidade",
       "type": "select",
       "name": "unidade",
-      
+
       "placeholder": "Selecione uma opção",
       "required": false,
       "list": [
@@ -293,32 +290,32 @@
         {"id": "2", "text": "Unidade 02"},
         {"id": "3", "text": "Unidade 03"}
       ],
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "area": {
       "label": "Área",
       "type": "select",
       "name": "area",
-      
+
       "placeholder": "Selecione uma opção",
       "required": false,
       "list": [
         {"id": 1, "text": "Area 01"},
         {"id": 2, "text": "Area 02"}
       ],
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "curso": {
       "label": "Curso",
       "type": "select",
       "name": "curso",
-      
+
       "placeholder": "Selecione uma opção",
       "required": false,
       "list": [
         {"id": 1, "text": "Curso 01"},
         {"id": 2, "text": "Curso 02"}],
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "vagas": {
       "str": {
@@ -330,7 +327,8 @@
       "css": {
         "titleGray": true,
         "titleRed": false
-      }
+      },
+      "valorInscricao": 170
     }
   },
   "documentacao": {
@@ -340,41 +338,41 @@
       "label": "Escola que cursou Ensino Médio",
       "type": "text",
       "name": "escolaEm",
-      
+
       "required": false,
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "anoEm": {
       "label": "Ano de Conclusão",
       "type": "text",
       "name": "anoEm",
-      
+
       "required": false,
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "cursoGrad": {
       "label": "Curso de Graduação",
       "type": "text",
       "name": "cursoGrad",
-      
+
       "required": false,
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "anoGrad": {
       "label": "Ano de Conclusão",
       "type": "text",
       "name": "anoGrad",
-      
+
       "required": false,
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "instituicao": {
       "label": "Nome da instituição onde graduou",
       "type": "text",
       "name": "instituicao",
-      
+
       "required": false,
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     }
   },
   "inscr": {
@@ -383,16 +381,15 @@
       "label": "Valor Inscrição",
       "type": "text",
       "name": "inscr",
-      
       "required": false,
       "mask": "",
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "desconto": {
       "label": "Desconto",
       "type": "select",
       "name": "descontoInscr",
-      
+
       "placeholder": "Selecione uma opção",
       "required": false,
       "list": [
@@ -400,13 +397,13 @@
         {"id": "2", "text": "10%"},
         {"id": "3", "text": "20%"}
       ],
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "formaPagamento": {
       "label": "Forma de pagamento",
       "type": "select",
       "name": "formaPagamento",
-      
+
       "required": false,
       "placeholder": "Selecione uma opção",
       "list": [
@@ -415,13 +412,13 @@
         {"id": "3", "text": "Cartão de Crédito", "tpCheque": false},
         {"id": "4", "text": "Cartão de Débito", "tpCheque": false}
       ],
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "qtdParcelas": {
       "label": "Quantidade de parcelas",
       "type": "select",
       "name": "qtdParcelas",
-      
+
       "required": false,
       "placeholder": "Selecione uma opção",
       "list": [
@@ -429,20 +426,20 @@
         {"id": "2", "text": "3"},
         {"id": "3", "text": "6"}
       ],
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "melhorData": {
       "label": "Melhor data de vencimento",
       "type": "select",
       "name": "melhorData",
-      
+
       "placeholder": "Selecione uma opção",
       "list": [
         {"id": "1", "text": "05"},
         {"id": "2", "text": "10"},
         {"id": "3", "text": "25"}
       ],
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     }
   },
   "pagamento": {
@@ -451,7 +448,7 @@
     "valorIntegral": {
       "label": "Valor Integral",
       "type": "text",
-      "model": {"val": ""},
+      "model": {"val": "", "err": ""},
       "name": "valorIntegral",
       "required": false
     },
@@ -459,7 +456,7 @@
       "label": "Desconto",
       "type": "select",
       "name": "descontoInscr",
-      
+
       "placeholder": "Selecione uma opção",
       "required": false,
       "list": [
@@ -467,7 +464,7 @@
         {"id": "2", "text": "10%"},
         {"id": "3", "text": "20%"}
       ],
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "formaPagamento": {
       "label": "Forma de pagamento",
@@ -481,13 +478,13 @@
         {"id": "3", "text": "Cartão de Crédito", "tpCheque": false},
         {"id": "4", "text": "Cartão de Débito", "tpCheque": false}
       ],
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "qtdParcelas": {
       "label": "Quantidade de parcelas",
       "type": "select",
       "name": "qtdParcelas",
-      
+
       "required": false,
       "placeholder": "Selecione uma opção",
       "list": [
@@ -495,14 +492,14 @@
         {"id": "2", "text": "3"},
         {"id": "3", "text": "6"}
       ],
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "valorParcela": {
       "label": "Valor da Parcela",
       "type": "text",
       "name": "valorParcela",
       "required": false,
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "melhorData": {
       "label": "Melhor data de vencimento",
@@ -514,14 +511,14 @@
         {"id": "2", "text": "10"},
         {"id": "3", "text": "25"}
       ],
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "observacoes": {
       "label": "Observações",
       "type": "textarea",
       "name": "observacoes",
       "required": false,
-      "model": {"val": ""}
+      "model": {"val": "", "err": ""}
     },
     "listaCheques": []
   }

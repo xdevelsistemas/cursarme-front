@@ -52,12 +52,13 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
             };
             vm.getVagas = function (item, model) {
                 vm.selectCursoVagas = true;
+                vm._model.inscr.valorInscricao.model.val = vm._model.curso.vagas.valorInscricao;
                 $timeout(function () {
                     function getRandomInt(min, max) {
                         return Math.floor(Math.random() * (max - min)) + min;
                     }
 
-                    var a = getRandomInt(100, 201), b = getRandomInt(0, 101);
+                    var a = getRandomInt(50, 100), b = getRandomInt(98, 101);
                     vm._model.curso.vagas.totais = a;
                     vm._model.curso.vagas.preenchidas = Math.floor(b * a / 100);
 
@@ -127,7 +128,15 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
 
                 sendInscricaoPromise
                     .then(function (data) {
-                        console.log(data.status);
+                        vm._model = data;
+                        $.extend(vm._model.curso.vagas, {}, {
+                            isEnding: function () {
+                                return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
+                            },
+                            getDisponiveis: function () {
+                                return (parseInt(this.totais) - parseInt(this.preenchidas));
+                            }
+                        });
                     })
                     .catch(function (erro) {
                         console.log("\n" + erro.data + "\n")

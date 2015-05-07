@@ -1,6 +1,6 @@
 <ng-form name="fieldForm">
-    <div ng-class="{ 'has-error' : !fieldForm.data.$pristine &&
-                                    fieldForm.data.$invalid}"
+    <div ng-class="{ 'has-error' : params.model.err || (!fieldForm.data.$pristine &&
+                                    fieldForm.data.$invalid)}"
          class="form-group">
         <div class="col-md-12">
             <div class="col-md-12 left">
@@ -22,10 +22,13 @@
                     </ui-select-choices>
                 </ui-select>
 
-                <p ng-show="!fieldForm.data.$pristine &&
-                            fieldForm.data.$invalid"
-                   class="help-block" ng-bind="params.model.err">
+                <p ng-show="params.model.err || (!fieldForm.data.$pristine &&
+                            fieldForm.data.$invalid)"
+                   class="control-label" ng-bind="params.model.err">
                 </p>
+                <!--p data-collapse="params.model.err == ''"
+                   data-ng-bind="params.model.err"
+                   class="control-label"></p-->
             </div>
         </div>
     </div>
