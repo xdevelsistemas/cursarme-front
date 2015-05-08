@@ -117,7 +117,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.area" data-change="pre.getCursos"></xd-select>
+                                <xd-select data-params="pre._model.curso.unidade.list[pre._model.curso.unidade.select].area" data-change="pre.getCursos"></xd-select>
                             </div>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.curso" data-change="pre.getVagas"></xd-select>
+                                <xd-select data-params="pre._model.curso.unidade.list[pre._model.curso.unidade.select].area.list[pre._model.curso.unidade.list[pre._model.curso.unidade.select].area.select].curso" data-change="pre.getVagas"></xd-select>
                             </div>
 
                             <div id="precadastro-vagas" class="form-group" ng-show="pre.selectCursoVagas"><br>

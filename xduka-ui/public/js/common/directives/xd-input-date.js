@@ -45,12 +45,12 @@ define([
                     };
 
                     // Disable weekend selection
-                    /*vm.disabled = function(date, mode) {
+                    /*scope.disabled = function(date, mode) {
                      return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
                      };*/
 
                     scope.toggleMin = function() {
-                        vm.minDate = vm.minDate ? null : new Date();
+                        scope.minDate = scope.minDate ? null : new Date();
                     };
                     scope.toggleMin();
 

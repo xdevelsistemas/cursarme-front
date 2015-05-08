@@ -1,4 +1,4 @@
-define(['./__module__', "jquery", "form-wizard"], function (controllers, $, formWizard) {
+define(['./__module__', "jquery", "form-wizard", "underscore"], function (controllers, $, formWizard, _) {
     'use strict';
     controllers.controller('FormPreCadastro', [
         '$scope', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'allCheques',
@@ -16,6 +16,14 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
             vm.btnAddChequeStep1 = false;
             vm.btnAddChequeStep3 = false;
             vm.valoresCampos = {};
+            vm.selecao = {
+                "area": {
+                    "id": 0
+                },
+                "curso": {
+                    "id": 0
+                }
+            };
             vm.selectCursoArea = false;
             vm.selectCursoCurso = false;
             vm.selectCursoVagas = false;
@@ -42,13 +50,19 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
                 vm.selectCursoArea = true;
                 vm.selectCursoCurso = false;
                 vm.selectCursoVagas = false;
-                vm._model.curso.area.value = '';
-                vm._model.curso.curso.value = '';
+
+                vm._model.curso.unidade.select = _.findLastIndex(vm._model.curso.unidade.list, item);
+
+                /*vm._model.curso.area.value = '';
+                vm._model.curso.curso.value = '';*/
             };
             vm.getCursos = function (item, model) {
                 vm.selectCursoCurso = true;
                 vm.selectCursoVagas = false;
-                vm._model.curso.curso.value = '';
+
+                vm.selecao.curso.id = _.findLastIndex(vm._model.curso.unidade.list[this.select].area.list, item);
+
+                /*vm._model.curso.curso.value = '';*/
             };
             vm.getVagas = function (item, model) {
                 vm.selectCursoVagas = true;

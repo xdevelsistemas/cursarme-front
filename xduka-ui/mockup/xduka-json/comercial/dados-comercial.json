@@ -282,39 +282,125 @@
       "label": "Unidade",
       "type": "select",
       "name": "unidade",
-
+      "select": 0,
       "placeholder": "Selecione uma opção",
       "required": false,
       "list": [
-        {"id": "1", "text": "Unidade 01"},
-        {"id": "2", "text": "Unidade 02"},
-        {"id": "3", "text": "Unidade 03"}
+        {"id": "1", "text": "Unidade 01",
+          "area": {
+            "label": "Área",
+            "type": "select",
+            "name": "area",
+            "select": 0,
+            "placeholder": "Selecione uma opção",
+            "required": false,
+            "list": [
+              {"id": 1, "text": "Area 01 - Unidade 01",
+                "curso": {
+                  "label": "Curso",
+                  "type": "select",
+                  "name": "curso",
+
+                  "placeholder": "Selecione uma opção",
+                  "required": false,
+                  "list": [
+                    {"id": 1, "text": "Curso 01"},
+                    {"id": 2, "text": "Curso 02"}],
+                  "model": {"val": "", "err": ""}
+                }},
+              {"id": 2, "text": "Area 02 - Unidade 01",
+                "curso": {
+                  "label": "Curso",
+                  "type": "select",
+                  "name": "curso",
+
+                  "placeholder": "Selecione uma opção",
+                  "required": false,
+                  "list": [
+                    {"id": 1, "text": "Curso 01"},
+                    {"id": 2, "text": "Curso 02"}],
+                  "model": {"val": "", "err": ""}
+                }}
+            ],
+            "model": {"val": "", "err": ""}
+          }},
+        {"id": "2", "text": "Unidade 02",
+          "area": {
+            "label": "Área",
+            "type": "select",
+            "name": "area",
+            "select": 0,
+            "placeholder": "Selecione uma opção",
+            "required": false,
+            "list": [
+              {"id": 1, "text": "Area 01 - Unidade 02",
+                "curso": {
+                  "label": "Curso",
+                  "type": "select",
+                  "name": "curso",
+
+                  "placeholder": "Selecione uma opção",
+                  "required": false,
+                  "list": [
+                    {"id": 1, "text": "Curso 01"},
+                    {"id": 2, "text": "Curso 02"}],
+                  "model": {"val": "", "err": ""}
+                }},
+              {"id": 2, "text": "Area 02 - Unidade 02",
+                "curso": {
+                  "label": "Curso",
+                  "type": "select",
+                  "name": "curso",
+
+                  "placeholder": "Selecione uma opção",
+                  "required": false,
+                  "list": [
+                    {"id": 1, "text": "Curso 01"},
+                    {"id": 2, "text": "Curso 02"}],
+                  "model": {"val": "", "err": ""}
+                }}
+            ],
+            "model": {"val": "", "err": ""}
+          }},
+        {"id": "3", "text": "Unidade 03",
+          "area": {
+            "label": "Área",
+            "type": "select",
+            "name": "area",
+            "select": 0,
+            "placeholder": "Selecione uma opção",
+            "required": false,
+            "list": [
+              {"id": 1, "text": "Area 01- - Unidade 03",
+                "curso": {
+                  "label": "Curso",
+                  "type": "select",
+                  "name": "curso",
+
+                  "placeholder": "Selecione uma opção",
+                  "required": false,
+                  "list": [
+                    {"id": 1, "text": "Curso 01"},
+                    {"id": 2, "text": "Curso 02"}],
+                  "model": {"val": "", "err": ""}
+                }},
+              {"id": 2, "text": "Area 02 - Unidade 03",
+                "curso": {
+                  "label": "Curso",
+                  "type": "select",
+                  "name": "curso",
+
+                  "placeholder": "Selecione uma opção",
+                  "required": false,
+                  "list": [
+                    {"id": 1, "text": "Curso 01"},
+                    {"id": 2, "text": "Curso 02"}],
+                  "model": {"val": "", "err": ""}
+                }}
+            ],
+            "model": {"val": "", "err": ""}
+          }}
       ],
-      "model": {"val": "", "err": ""}
-    },
-    "area": {
-      "label": "Área",
-      "type": "select",
-      "name": "area",
-
-      "placeholder": "Selecione uma opção",
-      "required": false,
-      "list": [
-        {"id": 1, "text": "Area 01"},
-        {"id": 2, "text": "Area 02"}
-      ],
-      "model": {"val": "", "err": ""}
-    },
-    "curso": {
-      "label": "Curso",
-      "type": "select",
-      "name": "curso",
-
-      "placeholder": "Selecione uma opção",
-      "required": false,
-      "list": [
-        {"id": 1, "text": "Curso 01"},
-        {"id": 2, "text": "Curso 02"}],
       "model": {"val": "", "err": ""}
     },
     "vagas": {
