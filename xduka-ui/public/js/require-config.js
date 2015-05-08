@@ -19,6 +19,7 @@ define([], function () {
             "uiSelect": '../../lib/angular-ui-select/dist/select',
             'uiBootstrap': '../../lib/angular-bootstrap/ui-bootstrap-tpls',
             'ngImgCrop': '../../lib/ngImgCrop/compile/unminified/ng-img-crop',
+            'underscore': '../../lib/underscore/underscore',
             //NEON
             'gsap': '../../assets/neon/js/gsap/main-gsap',
             'resizeable': '../../assets/neon/js/resizeable',

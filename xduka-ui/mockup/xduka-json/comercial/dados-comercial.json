@@ -286,9 +286,8 @@
       "placeholder": "Selecione uma opção",
       "required": false,
       "list": [
-        {"id": "1", "text": "Unidade 01"},
-        {"id": "2", "text": "Unidade 02"},
-        {"id": "3", "text": "Unidade 03"}
+        {"id": 1, "text": "Unidade 01"},
+        {"id": 2, "text": "Unidade 02"}
       ],
       "model": {"val": "", "err": ""}
     },
@@ -300,8 +299,9 @@
       "placeholder": "Selecione uma opção",
       "required": false,
       "list": [
-        {"id": 1, "text": "Area 01"},
-        {"id": 2, "text": "Area 02"}
+        {"id": 1, "idParent": 1, "text": "Area 01"},
+        {"id": 2, "idParent": 2, "text": "Area 02"},
+        {"id": 3, "idParent": 1, "text": "Area 03"}
       ],
       "model": {"val": "", "err": ""}
     },
@@ -313,23 +313,32 @@
       "placeholder": "Selecione uma opção",
       "required": false,
       "list": [
-        {"id": 1, "text": "Curso 01"},
-        {"id": 2, "text": "Curso 02"}],
+        {"id": 1, "idParent": 1, "text": "Curso AB"},
+        {"id": 2, "idParent": 2, "text": "Curso CD"},
+        {"id": 3, "idParent": 1, "text": "Curso EF"},
+        {"id": 4, "idParent": 2, "text": "Curso GH"},
+        {"id": 5, "idParent": 3, "text": "Curso IJ"},
+        {"id": 6, "idParent": 2, "text": "Curso KL"}
+      ],
       "model": {"val": "", "err": ""}
     },
-    "vagas": {
-      "str": {
-        "totais": "Vagas Totais",
-        "disponiveis": "Vagas Disponíveis"
-      },
-      "preenchidas": 40,
-      "totais": 100,
-      "css": {
-        "titleGray": true,
-        "titleRed": false
-      },
-      "valorInscricao": 170
-    }
+    "turma": [{
+      "id": 1,
+      "idParent": 6,
+      "vagas": {
+        "str": {
+          "totais": "Vagas Totais",
+          "disponiveis": "Vagas Disponíveis"
+        },
+        "preenchidas": 40,
+        "totais": 100,
+        "css": {
+          "titleGray": true,
+          "titleRed": false
+        },
+        "valorInscricao": 170
+      }}
+    ]
   },
   "documentacao": {
     "label": "Informações complementares do Aluno",
