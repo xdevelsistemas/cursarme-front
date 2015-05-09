@@ -286,8 +286,7 @@
       "placeholder": "Selecione uma opção",
       "required": false,
       "list": [
-        {"id": "1", "text": "Unidade 01",
-          "area": {
+        {"id": "1", "text": "Unidade 01", "area": {
             "label": "Área",
             "type": "select",
             "name": "area",
@@ -304,8 +303,32 @@
                   "placeholder": "Selecione uma opção",
                   "required": false,
                   "list": [
-                    {"id": 1, "text": "Curso 01"},
-                    {"id": 2, "text": "Curso 02"}],
+                    {"id": 1, "text": "Curso 01 - Area 01 - Unidade 01", "turma":[{"vagas": {
+                      "str": {
+                        "totais": "Vagas Totais",
+                        "disponiveis": "Vagas Disponíveis"
+                      },
+                      "preenchidas": 12,
+                      "totais": 20,
+                      "css": {
+                        "titleGray": true,
+                        "titleRed": false
+                      },
+                      "valorInscricao": 170
+                    }}]},
+                    {"id": 2, "text": "Curso 02 - Area 01 - Unidade 01", "turma":[{"vagas": {
+                      "str": {
+                        "totais": "Vagas Totais",
+                        "disponiveis": "Vagas Disponíveis"
+                      },
+                      "preenchidas": 20,
+                      "totais": 28,
+                      "css": {
+                        "titleGray": true,
+                        "titleRed": false
+                      },
+                      "valorInscricao": 170
+                    }}]}],
                   "model": {"val": "", "err": ""}
                 }},
               {"id": 2, "text": "Area 02 - Unidade 01",
@@ -317,15 +340,38 @@
                   "placeholder": "Selecione uma opção",
                   "required": false,
                   "list": [
-                    {"id": 1, "text": "Curso 01"},
-                    {"id": 2, "text": "Curso 02"}],
+                    {"id": 1, "text": "Curso 01 - Area 02 - Unidade 01", "turma":[{"vagas": {
+                      "str": {
+                        "totais": "Vagas Totais",
+                        "disponiveis": "Vagas Disponíveis"
+                      },
+                      "preenchidas": 28,
+                      "totais": 30,
+                      "css": {
+                        "titleGray": true,
+                        "titleRed": false
+                      },
+                      "valorInscricao": 170
+                    }}]},
+                    {"id": 2, "text": "Curso 02 - Area 02 - Unidade 01", "turma":[{"vagas": {
+                      "str": {
+                        "totais": "Vagas Totais",
+                        "disponiveis": "Vagas Disponíveis"
+                      },
+                      "preenchidas": 15,
+                      "totais": 20,
+                      "css": {
+                        "titleGray": true,
+                        "titleRed": false
+                      },
+                      "valorInscricao": 170
+                    }}]}],
                   "model": {"val": "", "err": ""}
                 }}
             ],
             "model": {"val": "", "err": ""}
           }},
-        {"id": "2", "text": "Unidade 02",
-          "area": {
+        {"id": "2", "text": "Unidade 02", "area": {
             "label": "Área",
             "type": "select",
             "name": "area",
@@ -342,8 +388,32 @@
                   "placeholder": "Selecione uma opção",
                   "required": false,
                   "list": [
-                    {"id": 1, "text": "Curso 01"},
-                    {"id": 2, "text": "Curso 02"}],
+                    {"id": 1, "text": "Curso 01 - Area 01 - Unidade 02", "turma":[{"vagas": {
+                      "str": {
+                        "totais": "Vagas Totais",
+                        "disponiveis": "Vagas Disponíveis"
+                      },
+                      "preenchidas": 18,
+                      "totais": 30,
+                      "css": {
+                        "titleGray": true,
+                        "titleRed": false
+                      },
+                      "valorInscricao": 170
+                    }}]},
+                    {"id": 2, "text": "Curso 02 - Area 01 - Unidade 02", "turma":[{"vagas": {
+                      "str": {
+                        "totais": "Vagas Totais",
+                        "disponiveis": "Vagas Disponíveis"
+                      },
+                      "preenchidas": 5,
+                      "totais": 30,
+                      "css": {
+                        "titleGray": true,
+                        "titleRed": false
+                      },
+                      "valorInscricao": 170
+                    }}]}],
                   "model": {"val": "", "err": ""}
                 }},
               {"id": 2, "text": "Area 02 - Unidade 02",
@@ -355,15 +425,38 @@
                   "placeholder": "Selecione uma opção",
                   "required": false,
                   "list": [
-                    {"id": 1, "text": "Curso 01"},
-                    {"id": 2, "text": "Curso 02"}],
+                    {"id": 1, "text": "Curso 01 - Area 02 - Unidade 02", "turma":[{"vagas": {
+                      "str": {
+                        "totais": "Vagas Totais",
+                        "disponiveis": "Vagas Disponíveis"
+                      },
+                      "preenchidas": 0,
+                      "totais": 25,
+                      "css": {
+                        "titleGray": true,
+                        "titleRed": false
+                      },
+                      "valorInscricao": 170
+                    }}]},
+                    {"id": 2, "text": "Curso 02 - Area 02 - Unidade 02", "turma":[{"vagas": {
+                      "str": {
+                        "totais": "Vagas Totais",
+                        "disponiveis": "Vagas Disponíveis"
+                      },
+                      "preenchidas": 16,
+                      "totais": 20,
+                      "css": {
+                        "titleGray": true,
+                        "titleRed": false
+                      },
+                      "valorInscricao": 170
+                    }}]}],
                   "model": {"val": "", "err": ""}
                 }}
             ],
             "model": {"val": "", "err": ""}
           }},
-        {"id": "3", "text": "Unidade 03",
-          "area": {
+        {"id": "3", "text": "Unidade 03", "area": {
             "label": "Área",
             "type": "select",
             "name": "area",
@@ -376,12 +469,36 @@
                   "label": "Curso",
                   "type": "select",
                   "name": "curso",
-
+                  "select": 0,
                   "placeholder": "Selecione uma opção",
                   "required": false,
                   "list": [
-                    {"id": 1, "text": "Curso 01"},
-                    {"id": 2, "text": "Curso 02"}],
+                    {"id": 1, "text": "Curso 01 - Area 01 - Unidade 03", "turma":[{"vagas": {
+                      "str": {
+                        "totais": "Vagas Totais",
+                        "disponiveis": "Vagas Disponíveis"
+                      },
+                      "preenchidas": 40,
+                      "totais": 50,
+                      "css": {
+                        "titleGray": true,
+                        "titleRed": false
+                      },
+                      "valorInscricao": 170
+                    }}]},
+                    {"id": 2, "text": "Curso 02 - Area 01 - Unidade 03", "turma":[{"vagas": {
+                      "str": {
+                        "totais": "Vagas Totais",
+                        "disponiveis": "Vagas Disponíveis"
+                      },
+                      "preenchidas": 10,
+                      "totais": 10,
+                      "css": {
+                        "titleGray": true,
+                        "titleRed": false
+                      },
+                      "valorInscricao": 170
+                    }}]}],
                   "model": {"val": "", "err": ""}
                 }},
               {"id": 2, "text": "Area 02 - Unidade 03",
@@ -393,8 +510,32 @@
                   "placeholder": "Selecione uma opção",
                   "required": false,
                   "list": [
-                    {"id": 1, "text": "Curso 01"},
-                    {"id": 2, "text": "Curso 02"}],
+                    {"id": 1, "text": "Curso 01 - Area 02 - Unidade 03", "turma":[{"vagas": {
+                      "str": {
+                        "totais": "Vagas Totais",
+                        "disponiveis": "Vagas Disponíveis"
+                      },
+                      "preenchidas": 22,
+                      "totais": 25,
+                      "css": {
+                        "titleGray": true,
+                        "titleRed": false
+                      },
+                      "valorInscricao": 170
+                    }}]},
+                    {"id": 2, "text": "Curso 02 - Area 02 - Unidade 03", "turma":[{"vagas": {
+                      "str": {
+                        "totais": "Vagas Totais",
+                        "disponiveis": "Vagas Disponíveis"
+                      },
+                      "preenchidas": 15,
+                      "totais": 18,
+                      "css": {
+                        "titleGray": true,
+                        "titleRed": false
+                      },
+                      "valorInscricao": 170
+                    }}]}],
                   "model": {"val": "", "err": ""}
                 }}
             ],
@@ -402,19 +543,6 @@
           }}
       ],
       "model": {"val": "", "err": ""}
-    },
-    "vagas": {
-      "str": {
-        "totais": "Vagas Totais",
-        "disponiveis": "Vagas Disponíveis"
-      },
-      "preenchidas": 40,
-      "totais": 100,
-      "css": {
-        "titleGray": true,
-        "titleRed": false
-      },
-      "valorInscricao": 170
     }
   },
   "documentacao": {
