@@ -72,9 +72,6 @@ define(['./__module__', "jquery", "form-wizard", "underscore"], function (contro
                     .curso.select = _.findLastIndex(vm._model.curso.unidade.list[vm._model.curso.unidade.select]
                                         .area.list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso.list, item);
 
-                                    _.findLastIndex(vm._model.curso.unidade.list[vm._model.curso.unidade.select]
-                                        .area.list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso.list, item);
-
                 $.extend(vm._model.inscr.valorInscricao.model.val = vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
                             .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso
                             .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
