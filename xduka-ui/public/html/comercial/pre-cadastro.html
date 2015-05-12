@@ -414,8 +414,6 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <!--<xd-input data-params="pre._model.pagamento.desconto"-->
-                                  <!--disable="!pre.validaCpf"></xd-input>-->
                         <xd-select data-params="pre._model.pagamento.desconto"
                                    disabled="!pre.validaCpf"></xd-select>
                     </div>
@@ -446,8 +444,6 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <!--<xd-input data-params="pre._model.pagamento.parcelamento"
-                                  disable="!pre.validaCpf"></xd-input>-->
                         <xd-select data-params="pre._model.pagamento.qtdParcelas"
                                    disable="!pre.validaCpf"></xd-select>
                     </div>
@@ -501,26 +497,26 @@
         <div class="text-center col-md-12">
             <div class="form-group">
 
-                <div class="col-md-4 inLine">
-                    <button class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="pre.sendInscricao()">
+                <div class="col-md-6 inLine col-md-offset-3">
+                    <button ng-disabled="pre.btnSendInscr" class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="pre.sendInscricao()">
                         Efetuar Inscrição
                         <i class="entypo-check"></i>
                     </button>
                 </div>
-                <!--<div class="col-md-3 center-block">
+                <div ng-show="false" class="col-md-3 center-block">
                     <button class="btn btn-danger btn-lg btn-icon icon-left">
                         Cancelar
                         <i class="entypo-cancel"></i>
                     </button>
-                </div>-->
-                <div class="col-md-2 col-md-offset-1 inLine">
+                </div>
+                <div ng-show="false" class="col-md-2 col-md-offset-1 inLine">
                     <button class="btn btn-info btn-lg btn-icon icon-left btn-block">
                         Imprimir
                         <i class="entypo-print"></i>
                     </button>
                 </div>
 
-                <div class="col-md-4 col-md-offset-1 inLine">
+                <div ng-show="false" class="col-md-4 col-md-offset-1 inLine">
                     <button name="efetuarMat" class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="pre.sendDadosMatricula()">
                         Efetuar Matrícula
                         <i class="entypo-list-add"></i>

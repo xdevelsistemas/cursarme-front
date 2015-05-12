@@ -16,15 +16,9 @@ define(['./__module__', "jquery", "underscore"], function (controllers, $, _) {
             vm.validaCpf = true;
             vm.btnAddChequeStep1 = false;
             vm.btnAddChequeStep3 = false;
-            vm.valoresCampos = {};
-            vm.selecao = {
-                "area": {
-                    "id": 0
-                },
-                "curso": {
-                    "id": 0
-                }
-            };
+            vm.btnSendInscr = true;
+            //vm.valoresCampos = {};
+
             vm.selectCursoArea = false;
             vm.selectCursoCurso = false;
             vm.selectCursoVagas = false;
@@ -82,6 +76,7 @@ define(['./__module__', "jquery", "underscore"], function (controllers, $, _) {
                     }
                 });
 
+                vm.btnSendInscr = false;
                 vm._model.inscr.valorInscricao.model.val = vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
                     .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.valorInscricao;
 
@@ -154,7 +149,7 @@ define(['./__module__', "jquery", "underscore"], function (controllers, $, _) {
             };
 
             vm.sendInscricao = function() {
-                console.log("Qtd de vagas disponiveis para o curso que você escolheu /==/ " + vm._model.curso.unidade.list[vm._model.curso.unidade.select].area                     .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso                     .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area                     .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso.select].turma[0].vagas.getDisponiveis());
+                //console.log("Qtd de vagas disponiveis para o curso que você escolheu /==/ " + vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.getDisponiveis());
                 console.log("Somente campo de teste (tanto no Node como no angular!)");
                 $.extend(vm._model.pagamento.listaCheques, allCheques.getAllCheques());
 
@@ -163,14 +158,16 @@ define(['./__module__', "jquery", "underscore"], function (controllers, $, _) {
                 sendInscricaoPromise
                     .then(function (data) {
                         vm._model = data;
-                        $.extend(vm._model.curso.vagas, {}, {
+                        console.log("recebido");
+                        console.log(vm._model);
+                        /*$.extend(vm._model.curso.vagas, {}, {
                             isEnding: function () {
                                 return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
                             },
                             getDisponiveis: function () {
                                 return (parseInt(this.totais) - parseInt(this.preenchidas));
                             }
-                        });
+                        });*/
                     })
                     .catch(function (erro) {
                         console.log("\n" + erro.data + "\n")
