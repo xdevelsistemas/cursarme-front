@@ -597,7 +597,7 @@
       "name": "inscr",
       "required": false,
       "mask": "",
-      "model": {"val": 0, "err": ""}
+      "model": {"val": "", "err": ""}
     },
     "desconto": {
       "label": "Desconto",

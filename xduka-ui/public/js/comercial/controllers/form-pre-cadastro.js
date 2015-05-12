@@ -6,7 +6,8 @@ define(['./__module__', "jquery", "underscore"], function (controllers, $, _) {
 
             /* jshint validthis: true */
             var vm = this
-                , comercialPromise = $resource('/api/comercial/dados-comercial').get().$promise;
+                , comercialPromise = $resource('/api/comercial/dados-comercial').get().$promise
+                , viewInscrPeromise = $resource('/api/comercial/view-inscr').get().$promise;
 
 
             // ==== MODELOS ==== //
@@ -31,16 +32,16 @@ define(['./__module__', "jquery", "underscore"], function (controllers, $, _) {
             comercialPromise
                 .then(function(data){
                     vm._model = data;
-                    /*$.extend(vm._model.curso.vagas, {}, {
-                        isEnding: function () {
-                            return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
-                        },
-                        getDisponiveis: function () {
-                            return (parseInt(this.totais) - parseInt(this.preenchidas));
-                        }
-                    });*/
                 })
                 .catch(function(erro){
+                    console.log("\n" + erro.data + "\n");
+                });
+
+            viewInscrPeromise
+                .then(function(data) {
+                    vm._viewInscr = data;
+                })
+                .catch(function(erro) {
                     console.log("\n" + erro.data + "\n");
                 });
 

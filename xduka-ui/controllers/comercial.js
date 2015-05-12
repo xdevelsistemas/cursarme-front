@@ -1,5 +1,6 @@
 var extend = require('node.extend'),
     dadosComercial = require('../mockup/xduka-json/comercial/dados-comercial.json'),
+    viewInscr = require('../mockup/xduka-json/comercial/viewInscr.json'),
     usuario = require('../mockup/xduka-json/common/user.json');
 
 module.exports = function() {
@@ -8,6 +9,7 @@ module.exports = function() {
     controller.putDadosMatricula = putDadosMatricula;
     controller.showDadosComercial = getDadosComercial;
     controller.showInfoUsuario = getInfoUsuario;
+    controller.showViewInscr = getViewInscr;
     controller.putDadosInscricao = putDadosInscricao;
 
     return controller;
@@ -19,6 +21,10 @@ function getDadosComercial(req, res) {
 
 function getInfoUsuario(req, res) {
     res.json({"usuario": usuario});
+}
+
+function getViewInscr(req, res) {
+    res.json(viewInscr);
 }
 
 function putDadosInscricao(req, res) {
