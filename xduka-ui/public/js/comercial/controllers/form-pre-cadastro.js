@@ -1,4 +1,4 @@
-define(['./__module__', "jquery", "form-wizard", "underscore"], function (controllers, $, formWizard, _) {
+define(['./__module__', "jquery", "underscore"], function (controllers, $, _) {
     'use strict';
     controllers.controller('FormPreCadastro', [
         '$scope', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'allCheques',
@@ -51,31 +51,28 @@ define(['./__module__', "jquery", "form-wizard", "underscore"], function (contro
                 vm.selectCursoCurso = false;
                 vm.selectCursoVagas = false;
 
-                vm._model.curso.unidade.select = _.findLastIndex(vm._model.curso.unidade.list, item);
+                vm._model.curso.unidade.select.unidade = _.findLastIndex(vm._model.curso.unidade.list, item);
 
-                /*vm._model.curso.area.value = '';
-                vm._model.curso.curso.value = '';*/
+                vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.model.val = '';
+                vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.model.val = '';
             };
+
             vm.getCursos = function (item, model) {
                 vm.selectCursoCurso = true;
                 vm.selectCursoVagas = false;
 
-                vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select = _.findLastIndex(vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.list, item);
+                vm._model.curso.unidade.select.area = _.findLastIndex(vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list, item);
 
-                /*vm._model.curso.curso.value = '';*/
+                vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.model.val = '';
             };
+
             vm.getVagas = function (item, model) {
                 vm.selectCursoVagas = true;
 
-                vm._model.curso.unidade.list[vm._model.curso.unidade.select]
-                    .area.list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select]
-                    .curso.select = _.findLastIndex(vm._model.curso.unidade.list[vm._model.curso.unidade.select]
-                                        .area.list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso.list, item);
+                vm._model.curso.unidade.select.curso = _.findLastIndex(vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.list, item);
 
-                $.extend(vm._model.inscr.valorInscricao.model.val = vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso.select].turma[0].vagas, {}, {
+                $.extend(vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
+                    .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas, {}, {
                     isEnding: function () {
                         return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
                     },
@@ -84,40 +81,26 @@ define(['./__module__', "jquery", "form-wizard", "underscore"], function (contro
                     }
                 });
 
-                vm._model.inscr.valorInscricao.model.val = vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                    .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso
-                    .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                    .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso.select].turma[0].vagas.valorInscricao;
+                vm._model.inscr.valorInscricao.model.val = vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
+                    .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.valorInscricao;
 
                 $timeout(function () {
 
                     if (
-                        vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso.select].turma[0].vagas.totais
-                            /vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso.select].turma[0].vagas.preenchidas < 1.5
+                        vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
+                            .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.totais
+                            /vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
+                            .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.preenchidas < 1.5
                     ){
-                        vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso.select].turma[0].vagas.css.titleRed = true;
-                        vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso.select].turma[0].vagas.css.titleGray = false
+                        vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
+                            .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.css.titleRed = true;
+                        vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
+                            .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.css.titleGray = false
                     }else{
-                        vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso.select].turma[0].vagas.css.titleGray = true;
-                        vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area
-                            .list[vm._model.curso.unidade.list[vm._model.curso.unidade.select].area.select].curso.select].turma[0].vagas.css.titleRed = false
+                        vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
+                            .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.css.titleGray = true;
+                        vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
+                            .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.css.titleRed = false
                     }
                 }, 1);
             };

@@ -60,10 +60,19 @@ function putDadosInscricao(req, res) {
             }
         };
 
+        /*  Como curso está implementado em niveis  */
+        /*  Esta parte sera responsavel por gerar os itens selecionados  */
+        extend(dataSend.curso.unidade.list[dataSend.curso.unidade.select.unidade].area.model, result.area.model);
+        extend(dataSend.curso.unidade.list[dataSend.curso.unidade.select.unidade].area.list[dataSend.curso.unidade.select.area].curso.model, result.curso.model);
+
+
         /*  --- retransformando as datas de formato int para a data por extenso---  */
         for (var elem = 0; elem < dataSend.pagamento.listaCheques.length; elem++) {
             dataSend.pagamento.listaCheques[elem].data = setDataExt(dataSend.pagamento.listaCheques[elem].data);
         }
+
+
+        //TOdo terminar essa parte de extende de dataSend e result, visto que curso.curso e curso.area nao existem mais
         res.json(extend(true, dataSend, result));
     }else{
         if (!dataSend.aluno.email.model.val || dataSend.aluno.email.model.err) {

@@ -282,7 +282,7 @@
       "label": "Unidade",
       "type": "select",
       "name": "unidade",
-      "select": 0,
+      "select": {"unidade": 0, "area": 0, "curso": 0, "turma": 0},
       "placeholder": "Selecione uma opção",
       "required": false,
       "list": [
@@ -597,7 +597,7 @@
       "name": "inscr",
       "required": false,
       "mask": "",
-      "model": {"val": "", "err": ""}
+      "model": {"val": 0, "err": ""}
     },
     "desconto": {
       "label": "Desconto",

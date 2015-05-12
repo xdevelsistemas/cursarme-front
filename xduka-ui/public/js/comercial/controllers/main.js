@@ -1,9 +1,6 @@
 define([
-    './__module__',
-    'jqueryUi',
-    '../../common/models/strings',
-    '../models/menu'
-], function (controllers, $, modelStrings, modelMenu) {
+    './__module__', 'jqueryUi', '../../common/models/strings', '../models/menu', "form-wizard"
+], function (controllers, $, modelStrings, modelMenu, formWizard) {
 
     'use strict';
 
