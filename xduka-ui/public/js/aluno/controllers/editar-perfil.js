@@ -92,8 +92,6 @@ define([
             return phone.length == 10;
         }
 
-        //TODO tratar os dados e enviar via promise tambem
-
         function sendInfo() {
             //// Limpa os dados referente aos maios de contato do ususario
             vm.info.email.err = "";

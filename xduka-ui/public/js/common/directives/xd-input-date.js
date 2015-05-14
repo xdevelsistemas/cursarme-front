@@ -8,7 +8,6 @@ define([
         .directive('xdInputDate', [
             function () {
 
-        //TODO consertar BUG do openDatePicker /// que abre o "calendário" em todos os xd-input-date
                 return {
                     restrict: "E",
                     replace: true,

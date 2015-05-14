@@ -1,4 +1,4 @@
-<form id="teste" class="form-horizontal form-wizard" ng-controller="FormPreCadastro as pre" action method="post" data-target="#step1">
+<form id="teste" class="form-horizontal form-wizard" action method="post" data-target="#step1">
 
     <div class="steps-progress">
         <div class="progress-indicator" style="width: 0%"></div>
@@ -108,7 +108,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.unidade" data-change="pre.getAreas"></xd-select>
+                                <xd-select data-params="pre._model.curso.unidade" data-change="pre.unidadeChange"></xd-select>
                             </div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.area" data-change="pre.getCursos"></xd-select>
+                                <xd-select data-params="pre._model.curso.area" data-change="pre.areaChange"></xd-select>
                             </div>
                         </div>
                     </div>
@@ -127,18 +127,18 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.curso" data-change="pre.getTurma"></xd-select>
+                                <xd-select data-params="pre._model.curso.curso" data-change="pre.cursoChange"></xd-select>
                             </div>
 
                             <div id="precadastro-vagas" class="form-group" ng-show="pre.selectCursoVagas"><br>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5">
-                                    <div data-ng-class="pre._model.curso.turma[0].vagas.css" class="tile-stats">
+                                    <div data-ng-class="pre._model.curso.vagas.css" class="tile-stats">
                                         <div class="icon"><i class="entypo-users"></i></div>
                                         <h3 id="vagasDisponiveisTitle">Vagas disponíveis</h3>
-                                        <p id="vagasDisponiveisValue" class="num"><span data-ng-bind="pre._model.curso.turma[0].vagas.getDisponiveis()"></span></p>
+                                        <p id="vagasDisponiveisValue" class="num"><span data-ng-bind="pre._model.curso.vagas.getDisponiveis()"></span></p>
                                         <h3>Vagas totais</h3>
-                                        <p><span data-ng-bind="pre._model.curso.turma[0].vagas.totais"></span></p>
+                                        <p><span data-ng-bind="pre._model.curso.vagas.totais"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -412,8 +412,6 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <!--<xd-input data-params="pre._model.pagamento.desconto"-->
-                                  <!--disable="!pre.validaCpf"></xd-input>-->
                         <xd-select data-params="pre._model.pagamento.desconto"
                                    disabled="!pre.validaCpf"></xd-select>
                     </div>
@@ -444,8 +442,6 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <!--<xd-input data-params="pre._model.pagamento.parcelamento"
-                                  disable="!pre.validaCpf"></xd-input>-->
                         <xd-select data-params="pre._model.pagamento.qtdParcelas"
                                    disable="!pre.validaCpf"></xd-select>
                     </div>
@@ -499,26 +495,26 @@
         <div class="text-center col-md-12">
             <div class="form-group">
 
-                <div class="col-md-4 inLine">
-                    <button class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="pre.sendInscricao()">
+                <div class="col-md-6 inLine col-md-offset-3">
+                    <button ng-disabled="pre.btnSendInscr" class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="pre.sendInscricao()">
                         Efetuar Inscrição
                         <i class="entypo-check"></i>
                     </button>
                 </div>
-                <!--<div class="col-md-3 center-block">
+                <div ng-show="false" class="col-md-3 center-block">
                     <button class="btn btn-danger btn-lg btn-icon icon-left">
                         Cancelar
                         <i class="entypo-cancel"></i>
                     </button>
-                </div>-->
-                <div class="col-md-2 col-md-offset-1 inLine">
+                </div>
+                <div ng-show="false" class="col-md-2 col-md-offset-1 inLine">
                     <button class="btn btn-info btn-lg btn-icon icon-left btn-block">
                         Imprimir
                         <i class="entypo-print"></i>
                     </button>
                 </div>
 
-                <div class="col-md-4 col-md-offset-1 inLine">
+                <div ng-show="false" class="col-md-4 col-md-offset-1 inLine">
                     <button name="efetuarMat" class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="pre.sendDadosMatricula()">
                         Efetuar Matrícula
                         <i class="entypo-list-add"></i>
