@@ -1,9 +1,6 @@
 define([
-    './__module__',
-    'jqueryUi',
-    '../../common/models/strings',
-    '../models/menu'
-], function (controllers, $, modelStrings, modelMenu) {
+    './__module__', 'jqueryUi', '../../common/models/strings', '../models/menu', "form-wizard"
+], function (controllers, $, modelStrings, modelMenu, formWizard) {
 
     'use strict';
 
@@ -50,7 +47,7 @@ define([
 
         // ===Date picker ==//
 
-        vm.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        /*vm.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         vm.format = vm.formats[0];
 
         vm.clear = function () {
@@ -58,9 +55,9 @@ define([
         };
 
         // Disable weekend selection
-        /*vm.disabled = function(date, mode) {
+        /!*vm.disabled = function(date, mode) {
             return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-        };*/
+        };*!/
 
         vm.toggleMin = function() {
             vm.minDate = vm.minDate ? null : new Date();
@@ -77,6 +74,6 @@ define([
         vm.dateOptions = {
             formatYear: 'yyyy',
             startingDay: 1
-        };
+        };*/
     }
 });

@@ -1,5 +1,6 @@
 define(['./__module__', 'jquery'], function (services, $) {
     'use strict';
+
     services.value('lista_cheques', {
         lista: [],
         add: function (cheque) {

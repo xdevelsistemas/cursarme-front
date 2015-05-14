@@ -1,4 +1,5 @@
-<form onload="$('#btn_addChequeStep1').slideUp();" id="teste" class="form-horizontal form-wizard" ng-controller="FormPreCadastro as pre" action method="post" data-target="#step1">
+<form id="teste" class="form-horizontal form-wizard" action method="post" data-target="#step1">
+
     <div class="steps-progress">
         <div class="progress-indicator"></div>
     </div>
@@ -135,7 +136,7 @@
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-5">
-                        <xd-select data-params="pre._model.aluno.tipo_telefone"
+                        <xd-select data-params="pre._model.aluno.tipoTelefone"
                                    data-change="pre.selectPhoneType"
                                    d-validate="'required'"></xd-select>
                     </div>
@@ -143,8 +144,8 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.aluno.email"
-                                  disable="!pre.validaCpf"></xd-input>
+                        <xd-input-email data-params="pre._model.aluno.email"
+                                  disable="!pre.validaCpf"></xd-input-email>
                     </div>
                 </div>
 
@@ -155,7 +156,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.unidade" data-change="pre.getAreas"></xd-select>
+                                <xd-select data-params="pre._model.curso.unidade" data-change="pre.unidadeChange"></xd-select>
                             </div>
                         </div>
                     </div>
@@ -164,7 +165,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.area" data-change="pre.getCursos"></xd-select>
+                                <xd-select data-params="pre._model.curso.area" data-change="pre.areaChange"></xd-select>
                             </div>
                         </div>
                     </div>
@@ -174,14 +175,12 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.curso" data-change="pre.getVagas"></xd-select>
+                                <xd-select data-params="pre._model.curso.curso" data-change="pre.cursoChange"></xd-select>
                             </div>
 
                             <div id="precadastro-vagas" class="form-group" ng-show="pre.selectCursoVagas"><br>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5">
-                                    <!--ko foreach: preCadastro.cursos()-->
-                                    <!--ko if: codigo() === $root.preCadastro.filtro.codCurso()-->
                                     <div data-ng-class="pre._model.curso.vagas.css" class="tile-stats">
                                         <div class="icon"><i class="entypo-users"></i></div>
                                         <h3 id="vagasDisponiveisTitle">Vagas disponíveis</h3>
@@ -189,8 +188,6 @@
                                         <h3>Vagas totais</h3>
                                         <p><span data-ng-bind="pre._model.curso.vagas.totais"></span></p>
                                     </div>
-                                    <!--/ko-->
-                                    <!--/ko-->
                                 </div>
                             </div>
 
@@ -202,16 +199,21 @@
             <xd-panel-collapse title="pre._model.inscr.label">
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input-money data-params="pre._model.inscr.inscricao" disable="!pre.validaCpf"></xd-input-money>
+                        <xd-input-money data-params="pre._model.inscr.valorInscricao" disable="true"></xd-input-money>
                     </div>
                 </div>
+                <!--div class="row">
+                    <div class="col-md-12">
+                        <xd-select data-params="pre._model.inscr.desconto"></xd-select>
+                    </div>
+                </div-->
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params="pre._model.inscr.formaPagamento" data-change="pre.selectCheque"></xd-select>
+                        <xd-select data-params="pre._model.inscr.formaPagamento" data-change="pre.selectChequeStep1"></xd-select>
                     </div>
                 </div>
                 <!--BOTAO ADD CHEQUE-->
-                <div class="row" ng-show="pre.btnAddCheque">
+                <div class="row" ng-show="pre.btnAddChequeStep1">
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
@@ -228,21 +230,16 @@
                         </div>
                     </div>
                 </div>
-                <!--<div class="row">
-                    <div class="col-md-12">
-                        <xd-select data-params="pre._model.inscr.desconto"></xd-select>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params="pre._model.inscr.qtdParcelas"></xd-select>
+                        <!--xd-select data-params="pre._model.inscr.qtdParcelas"></xd-select>
                     </div>
-                </div>
+                </--div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params="pre._model.inscr.melhorData"></xd-select>
+                        <xd-select data-params="pre._model.inscr.melhorData"></xd-select-->
                     </div>
-                </div>-->
+                </div>
             </xd-panel-collapse>
         </div>
 
@@ -411,8 +408,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-5">
-                        <xd-input data-params="pre._model.aluno.dataNasc"
-                                  disable="!pre.validaCpf"></xd-input>
+                        <xd-input-date data-params="pre._model.aluno.dataNasc" data-opened="main.opened"
+                                       date-options="main.dateOptions" data-click="main.open"></xd-input-date>
                     </div>
                     <div class="col-md-3">
                         <xd-input data-params="pre._model.aluno.raca"
@@ -431,7 +428,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.aluno.mae"
+                    <xd-input data-params="pre._model.aluno.mae"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
@@ -473,13 +470,13 @@
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-select data-params="pre._model.aluno.tipo_telefone" disabled="true"></xd-select>
+                        <xd-select data-params="pre._model.aluno.tipoTelefone" disabled="true"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.aluno.email"
-                                  disable="true"></xd-input>
+                        <xd-input-email data-params="pre._model.aluno.email"
+                                  disable="true"></xd-input-email>
                     </div>
                 </div>
                 <div class="row">
@@ -542,7 +539,7 @@
                 </button>
             </li>
             <li class="col-md-3 inLine">
-                <button class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="pre.salvarFirstDados()">
+                <button class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="pre.sendInscricao()">
                     Salvar
                     <i class="entypo-check"></i>
                 </button>

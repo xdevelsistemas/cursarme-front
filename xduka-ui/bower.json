@@ -21,7 +21,7 @@
     "select2": "3.5.2",
     "ngImgCrop": "0.3.2",
     "angular-input-masks": "~1.4.2",
-    "ng-flow": "~2"
+    "underscore": "~1.8.3"
   },
   "homepage": "https://github.com/xdevelsistemas/xDuka",
   "authors": [
