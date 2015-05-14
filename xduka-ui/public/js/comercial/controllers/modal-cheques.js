@@ -17,7 +17,7 @@ define(['./__module__', 'jqueryUi'], function (controllers, $) {
                     value: "",
                     help: "Campo obrigatório",
                     placeholder: "Selecione uma opção",
-                    required: true,
+                    required: false,
                     list: [
                         {id: "Banco do Brasil", text: "Banco do Brasil"},
                         {id: "Bradesco", text: "Bradesco"},
@@ -31,7 +31,7 @@ define(['./__module__', 'jqueryUi'], function (controllers, $) {
                     type: "text",
                     name: 'agencia',
                     help: "Campo obrigatório",
-                    required: true,
+                    required: false,
                     model: {err: "", val: ""}
                 },
                 conta: {
@@ -39,7 +39,7 @@ define(['./__module__', 'jqueryUi'], function (controllers, $) {
                     type: "text",
                     name: 'conta',
                     help: "Campo obrigatório",
-                    required: true,
+                    required: false,
                     model: {err: "", val: ""}
                 },
                 numero: {
@@ -47,7 +47,7 @@ define(['./__module__', 'jqueryUi'], function (controllers, $) {
                     type: "text",
                     name: 'numero',
                     help: "Campo obrigatório",
-                    required: true,
+                    required: false,
                     model: {err: "", val: ""}
                 },
                 data: {
@@ -57,7 +57,7 @@ define(['./__module__', 'jqueryUi'], function (controllers, $) {
                     help: "Campo obrigatório",
                     placeholder: "Selecione uma Data",
                     format: "dd/MM/yyyy",
-                    required: true,
+                    required: false,
                     model: {err: "", val: ""}
                 },
                 valor: {
@@ -65,7 +65,7 @@ define(['./__module__', 'jqueryUi'], function (controllers, $) {
                     type: "text",
                     name: 'valor',
                     help: "Campo obrigatório",
-                    required: true,
+                    required: false,
                     model: {err: "", val: ""}
                 },
                 titular: {
@@ -73,7 +73,7 @@ define(['./__module__', 'jqueryUi'], function (controllers, $) {
                     type: "text",
                     name: 'titular',
                     help: "Campo obrigatório",
-                    required: true,
+                    required: false,
                     model: {err: "", val: ""}
                 }
             };

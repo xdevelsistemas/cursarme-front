@@ -264,12 +264,13 @@
                     <div class="col-md-12">
                         <!--<xd-input data-params="pre._model.pagamento.forma"
                                   disable="!pre.validaCpf"></xd-input>-->
-                        <xd-select data-params="pre._model.pagamento.forma"
-                                   disable="!pre.validaCpf"></xd-select>
+                        <xd-select data-params="pre._model.pagamento.formaPagamento"
+                                   disable="!pre.validaCpf"
+                                   data-change="pre.selectChequeStep2"></xd-select>
                     </div>
                 </div>
                 <!--BOTÃO ADD CHEQUE-->
-                <div class="row" ng-show="true">
+                <div class="row" ng-show="pre.btnAddChequeStep2">
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
@@ -290,7 +291,7 @@
                     <div class="col-md-12">
                         <!--<xd-input data-params="pre._model.pagamento.parcelamento"
                                   disable="!pre.validaCpf"></xd-input>-->
-                        <xd-select data-params="pre._model.pagamento.parcelamento"
+                        <xd-select data-params="pre._model.pagamento.qtdParcelas"
                                    disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
@@ -302,7 +303,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.pagamento.melhor_data"
+                        <xd-input data-params="pre._model.pagamento.melhorData"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
