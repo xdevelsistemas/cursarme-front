@@ -42,7 +42,7 @@
     "telefone": {
       "label": "Telefone",
       "type": "text",
-      "mask": "(99)9999-9999",
+      "mask": "?(99)9999-9999",
       "name": "telefone",
       "help": "Campo obrigatório",
 
@@ -100,7 +100,6 @@
       "type": "text",
       "name": "cpf",
       "help": "Campo obrigatório",
-      "required": "required",
       "mask": "999.999.999-99",
       "model": {"val": ""}
     },
@@ -291,7 +290,7 @@
       "name": "unidade",
       "help": "Campo obrigatório",
       "placeholder": "Selecione uma opção",
-      "required": true,
+      "required": false,
       "list": [
         {"id": "1", "text": "Unidade 01"},
         {"id": "2", "text": "Unidade 02"},
@@ -305,7 +304,7 @@
       "name": "area",
       "help": "Campo obrigatório",
       "placeholder": "Selecione uma opção",
-      "required": true,
+      "required": false,
       "list": [
         {"id": 1, "text": "Area 01"},
         {"id": 2, "text": "Area 02"}
@@ -318,7 +317,7 @@
       "name": "curso",
       "help": "Campo obrigatório",
       "placeholder": "Selecione uma opção",
-      "required": true,
+      "required": false,
       "list": [
         {"id": 1, "text": "Curso 01"},
         {"id": 2, "text": "Curso 02"}],
@@ -384,7 +383,7 @@
       "type": "text",
       "name": "inscr",
       "help": "Campo obrigatório",
-      "required": true,
+      "required": false,
       "mask": "",
       "model": {"val": ""}
     },
@@ -394,7 +393,7 @@
       "name": "descontoInscr",
       "help": "Campo obrigatório",
       "placeholder": "Selecione uma opção",
-      "required": true,
+      "required": false,
       "list": [
         {"id": "1", "text": "Sem desconto"},
         {"id": "2", "text": "10%"},
@@ -407,7 +406,7 @@
       "type": "select",
       "name": "formaPagamento",
       "help": "Campo obrigatório",
-      "required": true,
+      "required": false,
       "placeholder": "Selecione uma opção",
       "list": [
         {"id": "1", "text": "Dinheiro"},
@@ -421,7 +420,7 @@
       "type": "select",
       "name": "qtdParcelas",
       "help": "Campo obrigatório",
-      "required": true,
+      "required": false,
       "placeholder": "Selecione uma opção",
       "list": [
         {"id": "1", "text": "1"},
@@ -460,7 +459,7 @@
       "type": "text",
       "name": "entrada",
       "help": "Campo obrigatório",
-      "required": true,
+      "required": false,
       "model": {"val": ""}
     },
     "desconto": {
@@ -468,7 +467,7 @@
       "type": "text",
       "name": "desconto",
       "help": "Campo obrigatório",
-      "required": true,
+      "required": false,
       "model": {"val": ""}
     },
     "forma": {
@@ -476,7 +475,7 @@
       "type": "select",
       "name": "forma",      
       "placeholder": "Selecione uma opção",
-      "required": true,
+      "required": false,
       "list": [
         {"id": "cheque", "text": "Cheque"},
         {"id": "cartao", "text": "Cartão"}
@@ -488,7 +487,7 @@
       "type": "text",
       "name": "parcelamento",
       "help": "Campo obrigatório",
-      "required": true,
+      "required": false,
       "model": {"val": ""}
     },
     "valorParcela": {
@@ -496,7 +495,7 @@
       "type": "text",
       "name": "parcelamento",
       "help": "Campo obrigatório",
-      "required": true,
+      "required": false,
       "model": {"val": ""}
     },
     "melhor_data": {
@@ -504,7 +503,7 @@
       "type": "text",
       "name": "melhor_data",
       "help": "Campo obrigatório",
-      "required": true,
+      "required": false,
       "format": "dd/MM/yyyy",
       "opened": false,
       "open": "function ($event) {$event.preventDefault();$event.stopPropagation();this.opened = true;}",

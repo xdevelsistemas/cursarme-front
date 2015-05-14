@@ -1,25 +1,30 @@
 <form onload="$('#btn_addChequeStep1').slideUp();" id="teste" class="form-horizontal form-wizard" ng-controller="FormPreCadastro as pre" action method="post" data-target="#step1">
-
     <div class="steps-progress">
-        <div class="progress-indicator" style="width: 0%"></div>
+        <div class="progress-indicator"></div>
     </div>
     <ul>
+        <li>
+            <a href="#step0" data-toggle="tab" ng-click="pre.passoZero()">
+                <span>0</span>
+                Listagem
+            </a>
+        </li>
         <li class="active">
-            <a href="#step1" data-toggle="tab">
+            <a href="#step1" data-toggle="tab" ng-click="pre.passoZero()">
                 <span>1</span>
-                "Passo 1"
+                Informações Essenciais
             </a>
         </li>
         <li>
-            <a href="#step2" data-toggle="tab">
+            <a href="#step2" data-toggle="tab" ng-click="pre.passoZero()">
                 <span>2</span>
-                "Passo 2"
+                Informações de Pagamento
             </a>
         </li>
         <li>
-            <a href="#step3" data-toggle="tab">
+            <a href="#step3" data-toggle="tab" ng-click="pre.passoZero()">
                 <span>3</span>
-                "Passo 3"
+                Documentação Completa
             </a>
         </li>
     </ul>
@@ -27,29 +32,71 @@
 
 
     <div class="tab-content">
-        <ul class="pager wizard">
-            <!--<li class="previous">
-                <button class="btn btn-blue btn-icon icon-left btn-lg" ng-click="pre.topCollapse()">
-                    Primeiro
-                    <i class="entypo-to-start"></i>
-                </button>
-            </li>-->
-            <li class="previous col-md-6">
-                <button class="btn btn-blue btn-icon icon-left btn-block btn-lg" ng-click="pre.topCollapse()">
-                    <i class="entypo-left"></i> Anterior
-                </button>
-            </li>
-            <li class="next col-md-6">
-                <button class="btn btn-blue btn-icon icon-right btn-block btn-lg" ng-click="pre.topCollapse()">
-                    Próximo <i class="entypo-right"></i>
-                </button>
-            </li>
-            <!--<li class="next last">
-                <button class="btn btn-blue btn-icon icon-right btn-lg" ng-click="pre.topCollapse()">
-                    Último <i class="entypo-to-end"></i>
-                </button>
-            </li>-->
-        </ul>
+
+        <div class="tab-pane" id="step0">
+            <div class="col-md-12">
+                <xd-panel-collapse title="'Matrículas Cadastradas'">
+                    <div class="row">
+                        <div class="col-md-12" style="overflow: auto;">
+                            <table class="table table-condensed table-bordered table-hover table-striped responsive">
+                                <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Turma</th>
+                                    <th>Curso</th>
+                                    <th>Quantidade</th>
+                                    <th>Unidade</th>
+                                    <th>Status de Cadastro</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+
+                                    <th>Joao da Silva Ribeiro Lopes</th>
+                                    <th>Turma 1</th>
+                                    <th>Sistemas de Informação</th>
+                                    <th>22/30</th>
+                                    <th>Cariacica</th>
+                                    <th>Incompleto <button class="btn btn-sm"><i class="entypo-pencil"></i></button></th>
+                                </tr>
+                                <tr>
+
+                                    <th>Teste2</th>
+                                    <th>Turma 2</th>
+                                    <th>Curso BC</th>
+                                    <th>25/30</th>
+                                    <th>Serra</th>
+                                    <th>Completo <i class="entypo-check"></i></th>
+                                </tr>
+                                <tr>
+
+                                    <th>Teste</th>
+                                    <th>Turma 1</th>
+                                    <th>Curso AB</th>
+                                    <th>22/30</th>
+                                    <th>Cariacica</th>
+                                    <th>Incompleto <button class="btn btn-sm"><i class="entypo-pencil"></i></button></th>
+                                </tr>
+                                <tr>
+
+                                    <th>Teste</th>
+                                    <th>Turma 1</th>
+                                    <th>Curso AB</th>
+                                    <th>22/30</th>
+                                    <th>Cariacica</th>
+                                    <th>Incompleto <button class="btn btn-sm"><i class="entypo-pencil"></i></button></th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </xd-panel-collapse>
+                <div class="row">
+                    <div class="centered center-block text-center">
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="tab-pane active" id="step1">
             <xd-panel-collapse title="pre._model.aluno.label">
@@ -160,11 +207,6 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params="pre._model.inscr.desconto"></xd-select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
                         <xd-select data-params="pre._model.inscr.formaPagamento" data-change="pre.selectCheque"></xd-select>
                     </div>
                 </div>
@@ -186,6 +228,11 @@
                         </div>
                     </div>
                 </div>
+                <!--<div class="row">
+                    <div class="col-md-12">
+                        <xd-select data-params="pre._model.inscr.desconto"></xd-select>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <xd-select data-params="pre._model.inscr.qtdParcelas"></xd-select>
@@ -195,11 +242,88 @@
                     <div class="col-md-12">
                         <xd-select data-params="pre._model.inscr.melhorData"></xd-select>
                     </div>
-                </div>
+                </div>-->
             </xd-panel-collapse>
         </div>
 
         <div class="tab-pane" id="step2">
+
+            <xd-panel-collapse title="pre._model.pagamento.label">
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input-money data-params="pre._model.pagamento.valorIntegral"
+                                        disable="true"></xd-input-money>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--<xd-input data-params="pre._model.pagamento.desconto"-->
+                        <!--disable="!pre.validaCpf"></xd-input>-->
+                        <xd-select data-params="pre._model.pagamento.desconto"
+                                   disabled="!pre.validaCpf"></xd-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--<xd-input data-params="pre._model.pagamento.forma"
+                                  disable="!pre.validaCpf"></xd-input>-->
+                        <xd-select data-params="pre._model.pagamento.forma"
+                                   disable="!pre.validaCpf"></xd-select>
+                    </div>
+                </div>
+                <!--BOTÃO ADD CHEQUE-->
+                <div class="row" ng-show="true">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-bind="" id="btn_addChequeStep3" ng-click="pre.openModalCheque()">
+                                        Adicionar Cheques
+                                        <i class="entypo-credit-card"></i>
+                                    </button>
+                                    <p data-collapse="!pre._model.inscr.desconto.model.err"
+                                       data-ng-bind="pre._model.inscr.desconto.model.err"
+                                       class="control-label"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--<xd-input data-params="pre._model.pagamento.parcelamento"
+                                  disable="!pre.validaCpf"></xd-input>-->
+                        <xd-select data-params="pre._model.pagamento.parcelamento"
+                                   disable="!pre.validaCpf"></xd-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input-money data-params="pre._model.pagamento.valorParcela"
+                                        disable="!pre.validaCpf"></xd-input-money>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input data-params="pre._model.pagamento.melhor_data"
+                                  disable="!pre.validaCpf"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input-textarea data-params="pre._model.pagamento.observacoes"
+                                           disable="!pre.validaCpf"></xd-input-textarea>
+                    </div>
+                    <div class="col-md-12">
+
+                    </div>
+                </div>
+            </xd-panel-collapse>
+
+        </div>
+
+        <div class="tab-pane" id="step3">
+
             <xd-panel-collapse title="pre._model.documentacao.label">
                 <div class="row">
                     <div class="col-md-12">
@@ -282,7 +406,7 @@
                     </div>
                     <div class="col-md-3">
                         <xd-select data-params="pre._model.aluno.sexo"
-                                  disable="!pre.validaCpf"></xd-select>
+                                   disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
@@ -307,7 +431,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                    <xd-input data-params="pre._model.aluno.mae"
+                        <xd-input data-params="pre._model.aluno.mae"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
@@ -405,93 +529,32 @@
 
         </div>
 
-        <div class="tab-pane" id="step3">
-
-            <xd-panel-collapse title="pre._model.pagamento.label">
-                <div class="row">
-                    <div class="col-md-12">
-                        <xd-input-money data-params="pre._model.pagamento.valorIntegral"
-                                  disable="true"></xd-input-money>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <!--<xd-input data-params="pre._model.pagamento.desconto"-->
-                                  <!--disable="!pre.validaCpf"></xd-input>-->
-                        <xd-select data-params="pre._model.pagamento.desconto"
-                                   disabled="!pre.validaCpf"></xd-select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <!--<xd-input data-params="pre._model.pagamento.forma"
-                                  disable="!pre.validaCpf"></xd-input>-->
-                        <xd-select data-params="pre._model.pagamento.forma"
-                                   disable="!pre.validaCpf"></xd-select>
-                    </div>
-                </div>
-                <!--BOTÃO ADD CHEQUE-->
-                <div class="row" ng-show="true">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="col-md-12">
-                                    <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-bind="" id="btn_addChequeStep3" ng-click="pre.openModalCheque()">
-                                        Adicionar Cheques
-                                        <i class="entypo-credit-card"></i>
-                                    </button>
-                                    <p data-collapse="!pre._model.inscr.desconto.model.err"
-                                       data-ng-bind="pre._model.inscr.desconto.model.err"
-                                       class="control-label"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <!--<xd-input data-params="pre._model.pagamento.parcelamento"
-                                  disable="!pre.validaCpf"></xd-input>-->
-                        <xd-select data-params="pre._model.pagamento.parcelamento"
-                                   disable="!pre.validaCpf"></xd-select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <xd-input-money data-params="pre._model.pagamento.valorParcela"
-                                        disable="!pre.validaCpf"></xd-input-money>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <xd-input data-params="pre._model.pagamento.melhor_data"
-                                  disable="!pre.validaCpf"></xd-input>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <xd-input-textarea data-params="pre._model.pagamento.observacoes"
-                                           disable="!pre.validaCpf"></xd-input-textarea>
-                    </div>
-                </div>
-            </xd-panel-collapse>
-
-        </div>
-
-        <ul class="pager wizard">
+        <ul class="pager wizard centered">
             <!--<li class="previous">
                 <button class="btn btn-blue btn-icon icon-left btn-lg" ng-click="pre.topCollapse()">
                     Primeiro
                     <i class="entypo-to-start"></i>
                 </button>
             </li>-->
-            <li class="previous col-md-6">
-                <button class="btn btn-blue btn-icon icon-left btn-block btn-lg" ng-click="pre.topCollapse()">
+            <li class="previous col-md-3">
+                <button class="btn btn-blue btn-icon icon-left btn-block btn-lg" ng-click="pre.topCollapse();pre.passoZero()">
                     <i class="entypo-left"></i> Anterior
                 </button>
             </li>
-            <li class="next col-md-6">
-                <button class="btn btn-blue btn-icon icon-right btn-block btn-lg" ng-click="pre.topCollapse()">
+            <li class="col-md-3 inLine">
+                <button class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="pre.salvarFirstDados()">
+                    Salvar
+                    <i class="entypo-check"></i>
+                </button>
+            </li>
+
+            <li class="col-md-3 inLine">
+                <button class="btn btn-primary btn-icon icon-left btn-block btn-lg" data-ng-disabled="pre.disableAtualiza">
+                    Atualizar
+                    <i class="icon entypo-cw icon-right"></i></button>
+            </li>
+            <li class="next col-md-3">
+                <button class="btn btn-blue btn-icon icon-right btn-block btn-lg" ng-click="pre.topCollapse();pre.passoZero()">
                     Próximo <i class="entypo-right"></i>
                 </button>
             </li>
@@ -501,38 +564,26 @@
                 </button>
             </li>-->
         </ul>
+
         <hr/>
         <div class="text-center col-md-12">
             <div class="form-group">
 
-                <div class="col-md-3 inLine">
-                    <button class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="pre.salvarFirstDados()">
-                        Salvar
-                        <i class="entypo-check"></i>
-                    </button>
-                </div>
                 <!--<div class="col-md-3 center-block">
                     <button class="btn btn-danger btn-lg btn-icon icon-left">
                         Cancelar
                         <i class="entypo-cancel"></i>
                     </button>
                 </div>-->
-                <div class="col-md-3 col-md-offset-1 inLine">
-                    <button class="btn btn-info btn-lg btn-icon icon-left btn-block">
-                        Imprimir
-                        <i class="entypo-print"></i>
-                    </button>
-                </div>
 
-                <div class="col-md-4 col-md-offset-1 inLine">
+                <!--<div class="col-md-4 col-md-offset-1 inLine">
                     <button name="efetuarMat" class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="pre.sendDadosMatricula()">
                         Efetuar Matrícula
                         <i class="entypo-list-add"></i>
                     </button>
-                </div>
-
+                </div>-->
             </div>
         </div>
     </div>
-
 </form>
+<script src="/assets/js/jquery.bootstrap.wizard.min.js"></script>

@@ -16,11 +16,11 @@
                       is-open="opened"
                       datepicker-options="dateOptions"
                       id="{{'input_'+params.name}}"
-
                       current-text="Hoje"
                       clear-text="Limpar"
                       close-text="Cancelar"
-                      ng-required="params.required"/>
+                      ng-required="params.required"
+                      maxlength="10"/>
 
                <span class="input-group-btn">
                    <button type="button" class="btn btn-default heightFix" ng-click="click($event)"><i class="glyphicon glyphicon-calendar"></i></button>

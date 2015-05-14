@@ -1,4 +1,4 @@
-define(['./__module__', "jquery", "form-wizard"], function (controllers, $, formWizard) {
+define(['./__module__', "jquery", "form-wizard","flowFactoryProvider","jqueryMask"], function (controllers, $, formWizard, flowFactoryProvider,jqueryMask) {
     'use strict';
     controllers.controller('FormPreCadastro', [
         '$scope', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'allCheques',
@@ -18,13 +18,24 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
             vm.selectCursoArea = false;
             vm.selectCursoCurso = false;
             vm.selectCursoVagas = false;
+            vm.testeInput = function(){
+                console.log(vm._model.aluno.input)
+            };
+            vm.disableAtualiza = true;
+            vm.passoZero = passoZero;
+            function passoZero(){
+                $timeout(function () {
 
+                    vm.disableAtualiza = $('#step0').attr('class').indexOf('active') == -1;
+
+                }, 300);
+            }
             comercialPromise
                 .then(function(data){
                     vm._model = data;
                     $.extend(vm._model.curso.vagas, {}, {
                         css: {
-                            titleGray: true,
+                            titleBlue: true,
                             titleRed: false
                         },
                         isEnding: function () {
@@ -66,9 +77,9 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
 
                     if (vm._model.curso.vagas.totais/vm._model.curso.vagas.preenchidas < 1.5){
                         vm._model.curso.vagas.css.titleRed = true;
-                        vm._model.curso.vagas.css.titleGray = false
+                        vm._model.curso.vagas.css.titleBlue = false
                     }else{
-                        vm._model.curso.vagas.css.titleGray = true;
+                        vm._model.curso.vagas.css.titleBlue = true;
                         vm._model.curso.vagas.css.titleRed = false
                     }
 
@@ -130,9 +141,7 @@ define(['./__module__', "jquery", "form-wizard"], function (controllers, $, form
             };
 
             vm.selectPhoneType = function (item, model) {
-                var tel = vm._model.aluno.telefone.model.val;
-                vm._model.aluno.telefone.mask = model == 'cel' ? '(99)9999-99999' : '(99)9999-9999';
-                vm._model.aluno.telefone.model.val = tel;
+                vm._model.aluno.telefone.mask = model == 'cel' ? '?(99)9999-99999' : '?(99)9999-9999';
             };
 
             vm.topCollapse = function(){

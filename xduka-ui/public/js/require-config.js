@@ -27,7 +27,9 @@ define([], function () {
             'neonChat': '../../assets/neon/js/neon-chat',
             'neonCustom': '../../assets/neon/js/neon-custom',
             'neonDemo': '../../assets/neon/js/neon-demo',
-            'form-wizard': '../../assets/js/jquery.bootstrap.wizard.min'
+            'form-wizard': '../../assets/js/jquery.bootstrap.wizard.min',
+            'flowFactoryProvider': '../../lib/flow.js/dist/flow.min',
+            'jqueryMask': '../../assets/js/jquery.mask.min'
         },
         shim: {
             'jqueryMaskedinput': {
@@ -97,6 +99,9 @@ define([], function () {
             },
             'form-wizard': {
                 deps: ['jqueryUi','uiBootstrap', 'neonApi']
+            },
+            'jqueryMask': {
+                deps: ['jquery']
             }
         },
         deps: [
