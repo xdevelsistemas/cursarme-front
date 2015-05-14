@@ -30,11 +30,10 @@ function getViewInscr(req, res) {
 function putDadosInscricao(req, res) {
 /*  --- Json tela comercial / matricula ---   */
     var dataSend = req.body;
-    console.log(dataSend.curso.unidade.list[dataSend.curso.unidade.select.unidade].area.list[dataSend.curso.unidade.select.area].curso.list[dataSend.curso.unidade.select.curso].turma[0].vagas);
+    console.log(dataSend.curso.vagas.getDisponiveis);
 
-    if ((!dataSend.aluno.email.model.err && !!dataSend.aluno.email.model.val) && (
-            (dataSend.curso.unidade.list[dataSend.curso.unidade.select.unidade].area.list[dataSend.curso.unidade.select.area].curso.list[dataSend.curso.unidade.select.curso].turma[0].vagas.totais -
-            dataSend.curso.unidade.list[dataSend.curso.unidade.select.unidade].area.list[dataSend.curso.unidade.select.area].curso.list[dataSend.curso.unidade.select.curso].turma[0].vagas.preenchidas) > 0)) {
+    if ((!dataSend.aluno.email.model.err && !!dataSend.aluno.email.model.val) && ((dataSend.curso.vagas.totais - dataSend.curso.vagas.preenchidas) > 0)) {
+    //if ((!dataSend.aluno.email.model.err && !!dataSend.aluno.email.model.val) && ((dataSend.curso.vagas.getDisponiveis()) > 0)) {
         /*  Transformando data por extenso para data numerica dos cheques enviados (se existirem é claro!!!)  */
 
         for (var elem = 0; elem < dataSend.pagamento.listaCheques.length; elem++) {
@@ -71,8 +70,8 @@ function putDadosInscricao(req, res) {
 
         /*  Como curso está implementado em niveis  */
         /*  Esta parte sera responsavel por gerar os itens selecionados  */
-        extend(dataSend.curso.unidade.list[dataSend.curso.unidade.select.unidade].area.model, result.area.model);
-        extend(dataSend.curso.unidade.list[dataSend.curso.unidade.select.unidade].area.list[dataSend.curso.unidade.select.area].curso.model, result.curso.model);
+        /*extend(dataSend.curso.unidade.list[dataSend.curso.unidade.select.unidade].area.model, result.area.model);
+        extend(dataSend.curso.unidade.list[dataSend.curso.unidade.select.unidade].area.list[dataSend.curso.unidade.select.area].curso.model, result.curso.model);*/
 
 
         /*  --- retransformando as datas de formato int para a data por extenso---  */
@@ -87,11 +86,11 @@ function putDadosInscricao(req, res) {
         if (!dataSend.aluno.email.model.val || dataSend.aluno.email.model.err) {
             dataSend.aluno.email.model.err = "Email inválido";
         }
-        if ((dataSend.curso.unidade.list[dataSend.curso.unidade.select.unidade].area.list[dataSend.curso.unidade.select.area].curso.list[dataSend.curso.unidade.select.curso].turma[0].vagas.totais -
-            dataSend.curso.unidade.list[dataSend.curso.unidade.select.unidade].area.list[dataSend.curso.unidade.select.area].curso.list[dataSend.curso.unidade.select.curso].turma[0].vagas.preenchidas) == 0) {
-                dataSend.curso.unidade.list[dataSend.curso.unidade.select.unidade].area.list[dataSend.curso.unidade.select.area].curso.model.val = "Não há mais vagas neste curso, escolha outro!";
+        if ((dataSend.curso.vagas.totais - dataSend.curso.vagas.preenchidas) == 0) {
+        //if ((dataSend.curso.vagas.getDisponiveis()) == 0) {
+                dataSend.curso.curso.model.err = "Não há mais vagas neste curso, escolha outro!";
         }else{
-            dataSend.curso.unidade.list[dataSend.curso.unidade.select.unidade].area.list[dataSend.curso.unidade.select.area].curso.model.err = "";
+            dataSend.curso.curso.model.err = "";
         }
         res.json(dataSend);
     }
