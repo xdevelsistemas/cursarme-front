@@ -8,6 +8,7 @@ define([
     './main',
     './pre-cadastro',
     './form-pre-cadastro',
+    './confirmacao-matricula',
     './modal-cheques'
 ], function () {
 });

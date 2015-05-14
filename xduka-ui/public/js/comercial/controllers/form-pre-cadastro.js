@@ -1,4 +1,4 @@
-define(['./__module__', "jquery", "underscore"], function (controllers, $, _) {
+define(['./__module__', "jquery", "form-wizard","flowFactoryProvider","underscore"], function (controllers, $, formWizard, flowFactoryProvider,_) {
     'use strict';
     controllers.controller('FormPreCadastro', [
         '$scope', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'allCheques',
@@ -17,12 +17,21 @@ define(['./__module__', "jquery", "underscore"], function (controllers, $, _) {
             vm.btnAddChequeStep1 = false;
             vm.btnAddChequeStep3 = false;
             vm.btnSendInscr = true;
-            //vm.valoresCampos = {};
-
             vm.selectCursoArea = false;
             vm.selectCursoCurso = false;
             vm.selectCursoVagas = false;
+            vm.testeInput = function(){
+                console.log(vm._model.aluno.input)
+            };
+            vm.disableAtualiza = true;
+            vm.passoZero = passoZero;
+            function passoZero(){
+                $timeout(function () {
 
+                    vm.disableAtualiza = $('#step0').attr('class').indexOf('active') == -1;
+
+                }, 300);
+            }
             comercialPromise
                 .then(function(data){
                     vm._model = data;
@@ -116,8 +125,7 @@ define(['./__module__', "jquery", "underscore"], function (controllers, $, _) {
             };
 
             vm.selectPhoneType = function (item, model) {
-                vm._model.aluno.telefone.mask = model == 'cel' ? '(99)9999-99999' : '(99)9999-9999';
-                vm._model.aluno.telefone.model.val = "";
+                vm._model.aluno.telefone.mask = model == 'cel' ? '?(99)9999-99999' : '?(99)9999-9999';
             };
 
             vm.sendDadosMatricula = function() {
@@ -158,13 +166,13 @@ define(['./__module__', "jquery", "underscore"], function (controllers, $, _) {
                         console.log("recebido");
                         console.log(vm._model);
                         /*$.extend(vm._model.curso.vagas, {}, {
-                            isEnding: function () {
-                                return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
-                            },
-                            getDisponiveis: function () {
-                                return (parseInt(this.totais) - parseInt(this.preenchidas));
-                            }
-                        });*/
+                         isEnding: function () {
+                         return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
+                         },
+                         getDisponiveis: function () {
+                         return (parseInt(this.totais) - parseInt(this.preenchidas));
+                         }
+                         });*/
                     })
                     .catch(function (erro) {
                         console.log("\n" + erro.data + "\n")
