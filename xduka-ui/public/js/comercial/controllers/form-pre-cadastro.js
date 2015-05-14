@@ -1,4 +1,4 @@
-define(['./__module__', "jquery", "form-wizard","flowFactoryProvider","underscore"], function (controllers, $, formWizard, flowFactoryProvider,_) {
+define(['./__module__', "jquery", "form-wizard","underscore"], function (controllers, $, formWizard,_) {
     'use strict';
     controllers.controller('FormPreCadastro', [
         '$scope', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'allCheques',
@@ -15,7 +15,7 @@ define(['./__module__', "jquery", "form-wizard","flowFactoryProvider","underscor
             vm._model = {};
             vm.validaCpf = true;
             vm.btnAddChequeStep1 = false;
-            vm.btnAddChequeStep3 = false;
+            vm.btnAddChequeStep2 = false;
             vm.btnSendInscr = true;
             vm.selectCursoArea = false;
             vm.selectCursoCurso = false;
@@ -120,8 +120,8 @@ define(['./__module__', "jquery", "form-wizard","flowFactoryProvider","underscor
                 vm.btnAddChequeStep1 = item.tpCheque;
             };
 
-            vm.selectChequeStep3 = function (item, model) {
-                vm.btnAddChequeStep3 = item.tpCheque;
+            vm.selectChequeStep2 = function (item, model) {
+                vm.btnAddChequeStep2 = item.tpCheque;
             };
 
             vm.selectPhoneType = function (item, model) {
