@@ -7,7 +7,8 @@ define(['app'], function (app) {
 // ========= PRÉ CADASTRO ========= //
         $routeProvider.when('/pre-cadastro', {
             templateUrl: 'html/comercial/pre-cadastro.html',
-            controller: 'PreCadastro'
+            controller: 'FormPreCadastro',
+            controllerAs: 'pre'
         });
 // ========= FORMS EXAMPLE ========= //
         $routeProvider.when('/forms-example', {
