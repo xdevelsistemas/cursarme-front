@@ -108,7 +108,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.unidade" data-change="pre.getAreas"></xd-select>
+                                <xd-select data-params="pre._model.curso.unidade" data-change="pre.unidadeChange"></xd-select>
                             </div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.unidade.list[pre._model.curso.unidade.select.unidade].area" data-change="pre.getCursos"></xd-select>
+                                <xd-select data-params="pre._model.curso.area" data-change="pre.areaChange"></xd-select>
                             </div>
                         </div>
                     </div>
@@ -127,20 +127,18 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.unidade.list[pre._model.curso.unidade.select.unidade].area.list[pre._model.curso.unidade.select.area].curso" data-change="pre.getVagas"></xd-select>
+                                <xd-select data-params="pre._model.curso.curso" data-change="pre.cursoChange"></xd-select>
                             </div>
 
                             <div id="precadastro-vagas" class="form-group" ng-show="pre.selectCursoVagas"><br>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5">
-                                    <div data-ng-class="pre._model.curso.unidade.list[pre._model.curso.unidade.select.unidade]
-                                                                               .area.list[pre._model.curso.unidade.select.area].curso.list[pre._model.curso.unidade.select.curso].turma[0].vagas.css" class="tile-stats">
+                                    <div data-ng-class="pre._model.curso.vagas.css" class="tile-stats">
                                         <div class="icon"><i class="entypo-users"></i></div>
                                         <h3 id="vagasDisponiveisTitle">Vagas disponíveis</h3>
-                                        <p id="vagasDisponiveisValue" class="num"><span data-ng-bind="pre._model.curso.unidade.list[pre._model.curso.unidade.select.unidade]
-                                                                                                                             .area.list[pre._model.curso.unidade.select.area].curso.list[pre._model.curso.unidade.select.curso].turma[0].vagas.getDisponiveis()"></span></p>
+                                        <p id="vagasDisponiveisValue" class="num"><span data-ng-bind="pre._model.curso.vagas.getDisponiveis()"></span></p>
                                         <h3>Vagas totais</h3>
-                                        <p><span data-ng-bind="pre._model.curso.unidade.list[pre._model.curso.unidade.select.unidade].area.list[pre._model.curso.unidade.select.area].curso.list[pre._model.curso.unidade.select.curso].turma[0].vagas.totais"></span></p>
+                                        <p><span data-ng-bind="pre._model.curso.vagas.totais"></span></p>
                                     </div>
                                 </div>
                             </div>

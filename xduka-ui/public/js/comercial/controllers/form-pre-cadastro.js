@@ -41,33 +41,38 @@ define(['./__module__', "jquery", "underscore"], function (controllers, $, _) {
 
             // ==== REQUISIÇÕES ==== //
 
-            vm.getAreas = function (item, model) {
+            vm.unidadeChange = function (item, model) {
                 vm.selectCursoArea = true;
                 vm.selectCursoCurso = false;
                 vm.selectCursoVagas = false;
 
-                vm._model.curso.unidade.select.unidade = _.findLastIndex(vm._model.curso.unidade.list, item);
+                vm._model.curso.area.list = [];
+                vm._model.curso.area.model = {'val': '', 'err': ''};
+                $.extend(vm._model.curso.area.list, item.areas);
 
+                /*vm._model.curso.unidade.select.unidade = _.findLastIndex(vm._model.curso.unidade.list, item);
                 vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.model.val = '';
-                vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.model.val = '';
+                vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.model.val = '';*/
             };
 
-            vm.getCursos = function (item, model) {
+            vm.areaChange = function (item, model) {
                 vm.selectCursoCurso = true;
                 vm.selectCursoVagas = false;
 
-                vm._model.curso.unidade.select.area = _.findLastIndex(vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list, item);
+                vm._model.curso.curso.list = [];
+                vm._model.curso.curso.model = {'val': '', 'err': ''};
+                $.extend(vm._model.curso.curso.list, item.curso);
 
-                vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.model.val = '';
+                /*vm._model.curso.unidade.select.area = _.findLastIndex(vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list, item);
+                vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.model.val = '';*/
             };
 
-            vm.getVagas = function (item, model) {
+            vm.cursoChange = function (item, model) {
                 vm.selectCursoVagas = true;
 
-                vm._model.curso.unidade.select.curso = _.findLastIndex(vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.list, item);
+                /*vm._model.curso.unidade.select.curso = _.findLastIndex(vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.list, item);*/
 
-                $.extend(vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
-                    .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas, {}, {
+                $.extend(vm._model.curso.vagas, item.turma[0].vagas, {
                     isEnding: function () {
                         return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
                     },
@@ -77,26 +82,18 @@ define(['./__module__', "jquery", "underscore"], function (controllers, $, _) {
                 });
 
                 vm.btnSendInscr = false;
-                vm._model.inscr.valorInscricao.model.val = vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
-                    .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.valorInscricao;
+                vm._model.inscr.valorInscricao.model.val = vm._model.curso.vagas.valorInscricao;
 
                 $timeout(function () {
 
                     if (
-                        vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
-                            .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.totais
-                            /vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
-                            .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.preenchidas < 1.5
+                        vm._model.curso.vagas.totais / vm._model.curso.vagas.preenchidas < 1.5
                     ){
-                        vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
-                            .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.css.titleRed = true;
-                        vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
-                            .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.css.titleGray = false
+                        vm._model.curso.vagas.css.titleRed = true;
+                        vm._model.curso.vagas.css.titleGray = false
                     }else{
-                        vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
-                            .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.css.titleGray = true;
-                        vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade]
-                            .area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.css.titleRed = false
+                        vm._model.curso.vagas.css.titleGray = true;
+                        vm._model.curso.vagas.css.titleRed = false
                     }
                 }, 1);
             };
