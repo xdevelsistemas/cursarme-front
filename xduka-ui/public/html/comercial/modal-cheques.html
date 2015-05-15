@@ -23,7 +23,7 @@
                 <xd-input data-params="cheq._model.numero"></xd-input>
             </div>
             <div class="col-md-4">
-                <xd-input-date data-params="cheq._model.data" data-opened="main.opened" date-options="main.dateOptions" data-click="main.open"></xd-input-date>
+                <xd-input-date data-params="cheq._model.data"></xd-input-date>
             </div>
         </div>
 
@@ -41,8 +41,7 @@
         <button ng-click="cheq.voltar()"
                 type="button" class="btn btn-lg btn-default">Voltar
         </button>
-        <a ng-disabled="formModalCheques.$invalid"
-           ng-click="cheq.new_cheque(); cheq.lista_cheques.add(cheq._novo_cheque)"
+        <a ng-click="cheq.new_cheque()"
            class="btn btn-lg btn-success btn-icon icon-left">
             <i class="entypo-plus"></i>
             Adicionar Cheque

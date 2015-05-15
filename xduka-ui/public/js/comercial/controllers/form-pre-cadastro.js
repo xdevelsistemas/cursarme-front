@@ -1,4 +1,4 @@
-define(['./__module__', "jquery", "form-wizard","flowFactoryProvider","underscore"], function (controllers, $, formWizard, flowFactoryProvider,_) {
+define(['./__module__', "jquery", "form-wizard","underscore"], function (controllers, $, formWizard,_) {
     'use strict';
     controllers.controller('FormPreCadastro', [
         '$scope', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'allCheques',
@@ -189,6 +189,18 @@ define(['./__module__', "jquery", "form-wizard","flowFactoryProvider","underscor
                     return false;
                 });
             });
+
+            /*BUG WIZARD: STEP PROGRESS FICA MAIOR QUE O ULTIMO PASSO QUANDO ABRE A PAGINA*/
+            function bugStepProgressFix(){
+                $timeout(function () {
+
+                    $('.steps-progress').css({'margin-left': '120.25px', 'margin-right': '120.25px'})
+
+                }, 1500);
+            }
+
+            bugStepProgressFix();
+            /*FIM BUG TEMP FIX*/
 
 
         }
