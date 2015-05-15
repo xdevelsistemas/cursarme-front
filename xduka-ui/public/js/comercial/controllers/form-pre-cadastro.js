@@ -15,7 +15,7 @@ define(['./__module__', "jquery", "form-wizard","underscore"], function (control
             vm._model = {};
             vm.validaCpf = true;
             vm.btnAddChequeStep1 = false;
-            vm.btnAddChequeStep2 = false;
+            vm.btnAddChequeStep3 = false;
             vm.btnSendInscr = true;
             vm.selectCursoArea = false;
             vm.selectCursoCurso = false;
@@ -99,9 +99,9 @@ define(['./__module__', "jquery", "form-wizard","underscore"], function (control
                         vm._model.curso.vagas.totais / vm._model.curso.vagas.preenchidas < 1.5
                     ){
                         vm._model.curso.vagas.css.titleRed = true;
-                        vm._model.curso.vagas.css.titleGray = false
+                        vm._model.curso.vagas.css.titleBlue = false
                     }else{
-                        vm._model.curso.vagas.css.titleGray = true;
+                        vm._model.curso.vagas.css.titleBlue = true;
                         vm._model.curso.vagas.css.titleRed = false
                     }
                 }, 1);
@@ -120,8 +120,8 @@ define(['./__module__', "jquery", "form-wizard","underscore"], function (control
                 vm.btnAddChequeStep1 = item.tpCheque;
             };
 
-            vm.selectChequeStep2 = function (item, model) {
-                vm.btnAddChequeStep2 = item.tpCheque;
+            vm.selectChequeStep3 = function (item, model) {
+                vm.btnAddChequeStep3 = item.tpCheque;
             };
 
             vm.selectPhoneType = function (item, model) {
@@ -189,6 +189,18 @@ define(['./__module__', "jquery", "form-wizard","underscore"], function (control
                     return false;
                 });
             });
+
+            /*BUG WIZARD: STEP PROGRESS FICA MAIOR QUE O ULTIMO PASSO QUANDO ABRE A PAGINA*/
+            function bugStepProgressFix(){
+                $timeout(function () {
+
+                    $('.steps-progress').css({'margin-left': '120.25px', 'margin-right': '120.25px'})
+
+                }, 1500);
+            }
+
+            bugStepProgressFix();
+            /*FIM BUG TEMP FIX*/
 
 
         }

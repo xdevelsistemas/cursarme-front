@@ -8,9 +8,8 @@
             </label>
         </div>
 
-        <div class="col-md-12">
-           <p class="input-group">
-               <input data-ng-model="params.model.val"
+        <div class="col-md-12 input-group">
+            <input data-ng-model="params.model.val"
                       type="text" class="form-control heightFix"
                       datepicker-popup="{{params.format}}"
                       is-open="opened"
@@ -21,16 +20,14 @@
                       close-text="Cancelar"
                       ng-required="params.required"
                       maxlength="10"/>
-
-               <span class="input-group-btn">
-                   <button type="button" class="btn btn-default heightFix" ng-click="fnOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+               <span class="input-group-addon" ng-click="fnOpen($event)" style="cursor:pointer">
+                   <i class="glyphicon glyphicon-calendar"></i>
                </span>
-           </p>
-
+        </div>
+        <div class="col-md-12">
             <p data-collapse="params.model.err == ''"
                data-ng-bind="params.model.err"
                class="control-label"></p>
-
         </div>
     </div>
 

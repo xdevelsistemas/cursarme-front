@@ -29,7 +29,6 @@ define([], function () {
             'neonCustom': '../../assets/neon/js/neon-custom',
             'neonDemo': '../../assets/neon/js/neon-demo',
             'form-wizard': '../../assets/js/jquery.bootstrap.wizard.min',
-            'flowFactoryProvider': '../../lib/flow.js/dist/flow.min',
             'jqueryMask': '../../assets/js/jquery.mask.min'
         },
         shim: {
