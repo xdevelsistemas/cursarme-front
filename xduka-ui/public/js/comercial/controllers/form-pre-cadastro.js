@@ -1,14 +1,15 @@
 define(['./__module__', "jquery", "form-wizard","underscore"], function (controllers, $, formWizard,_) {
     'use strict';
     controllers.controller('FormPreCadastro', [
-        '$scope', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'allCheques',
-        function ($scope, $timeout, $modal, $resource, lista_cheques, dataCheque, allCheques) {
+        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'allCheques',
+        function ($scope, breadCrumb, $timeout, $modal, $resource, lista_cheques, dataCheque, allCheques) {
 
             /* jshint validthis: true */
             var vm = this
                 , comercialPromise = $resource('/api/comercial/dados-comercial').get().$promise
                 , viewInscrPeromise = $resource('/api/comercial/view-inscr').get().$promise;
 
+            breadCrumb.title = 'Pré Cadastro';
 
             // ==== MODELOS ==== //
 

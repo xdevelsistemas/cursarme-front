@@ -15,11 +15,20 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+        'public/lib/angular/angular.js',
+        'public/lib/angular-resource/angular-resource.js',
+        'public/lib/angular-mocks/angular-mocks.js',
+        'public/lib/requirejs/require.js',
+        {pattern: 'public/js/**/*.js', included: false},
+        {pattern: 'test/**/*Spec.js', included: false},
+        'test/spec/test-main.js',
+        "test/spec/**/*Spec.js"
     ],
 
 
     // list of files to exclude
     exclude: [
+        'public/js/require/config.js'
     ],
 
 
@@ -54,7 +63,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['Firefox'],
 
 
     // Continuous Integration mode
