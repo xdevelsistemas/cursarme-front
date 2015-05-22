@@ -5,24 +5,21 @@ requirejs.config({
     // Karma serves files from '/base'
     baseUrl: '/base/public',
     paths: {
-        'angular': '../../public/lib/angular/angular',
-        'angularMocks': '../../public/lib/angular-mocks/angular-mocks',
-        'angularResource': '../../public/lib/angular-resource/angular-resource',
-        'app': '../../public/js/comercial/app'
+        'angular': '../public/lib/angular/angular',
+        'angularResource': '../public/lib/angular-resource/angular-resource',
+        'angularMocks': '../public/lib/angular-mocks/angular-mocks',
+        'app': '../public/js/comerical/app'
     },
 
     shim: {
         'app': {
-            deps: ['angular', 'angularResource'],
-            exports: 'app'
+            deps: ['angular', 'angularResource']
         },
         'angularResource': {
-            deps: ['angular'],
-            exports: 'angularResource'
+            deps: ['angular']
         },
         'angularMocks': {
-            deps: ['angularResource'],
-            exports: 'angularMocks'
+            deps: ['angularResource']
         }
     },
     // ask Require.js to load these files (all our tests)

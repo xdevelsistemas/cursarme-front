@@ -1,6 +1,4 @@
 define([], function () {
-
-
     var config = {
         paths: {
             'domReady': '../../lib/requirejs-domready/domReady',
