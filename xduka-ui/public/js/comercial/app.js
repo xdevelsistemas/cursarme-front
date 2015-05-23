@@ -1,6 +1,7 @@
 define([
     'angular',
     'angularInputMasks',
+    'form-wizard',
     'angularRoute',
     'angularResource',
     'uiSelect',

@@ -19,7 +19,8 @@
                       clear-text="Limpar"
                       close-text="Cancelar"
                       ng-required="params.required"
-                      maxlength="10"/>
+                      maxlength="10"
+                      ng-focus="setMask(params.name)"/>
                <span class="input-group-addon" ng-click="fnOpen($event)" style="cursor:pointer">
                    <i class="glyphicon glyphicon-calendar"></i>
                </span>
