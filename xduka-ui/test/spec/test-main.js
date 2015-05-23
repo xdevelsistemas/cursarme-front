@@ -8,7 +8,7 @@ requirejs.config({
         'angular': '../public/lib/angular/angular',
         'angularResource': '../public/lib/angular-resource/angular-resource',
         'angularMocks': '../public/lib/angular-mocks/angular-mocks',
-        'app': '../public/js/comerical/app'
+        'app': '../public/js/require-config'
     },
 
     shim: {

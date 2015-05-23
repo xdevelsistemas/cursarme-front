@@ -80,7 +80,7 @@ function putDadosInscricao(req, res) {
         }
 
 
-        //TOdo terminar essa parte de extende de dataSend e result, visto que curso.curso e curso.area nao existem mais
+        //TOdo terminar essa parte de extende de dataSend e result
         res.json(extend(true, dataSend, result));
     }else{
         if (!dataSend.aluno.email.model.val || dataSend.aluno.email.model.err) {
