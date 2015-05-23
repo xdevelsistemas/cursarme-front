@@ -8,7 +8,7 @@
 
         <div class="row">
             <div class="col-md-4">
-                <xd-select data-params="cheq._model.banco"></xd-select>
+                <xd-select data-params="cheq._model.banco" data-change="cheq.changeBanco"></xd-select>
             </div>
             <div class="col-md-4">
                 <xd-input data-params="cheq._model.agencia"></xd-input>
@@ -41,7 +41,7 @@
         <button ng-click="cheq.voltar()"
                 type="button" class="btn btn-lg btn-default">Voltar
         </button>
-        <a ng-click="cheq.new_cheque()"
+        <a ng-click="cheq.validaData();cheq.new_cheque()"
            class="btn btn-lg btn-success btn-icon icon-left">
             <i class="entypo-plus"></i>
             Adicionar Cheque

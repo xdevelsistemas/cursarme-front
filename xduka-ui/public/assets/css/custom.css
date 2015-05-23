@@ -82,4 +82,9 @@ body {
 .heightFix {
     height: 42px;
 }
+.moneyDirective {
+    font-size: 15px;
+    font-family: "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
+    font-weight: 400;
 
+}

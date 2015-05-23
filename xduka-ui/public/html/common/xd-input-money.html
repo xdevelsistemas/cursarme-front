@@ -9,13 +9,14 @@
         </div>
 
         <div class="col-md-12 input-group">
-            <div class="input-group-addon">R$</div>
+            <div class="input-group-addon moneyDirective">R$</div>
             <input id="{{'input_'+params.name}}"
                    data-ng-model="params.model.val"
                    type="text"
                    class="form-control heightFix"
-                   ui-number-mask="2"
                    name="{{params.name}}"
+                   ui-number-mask="2"
+                   ui-hide-group-sep=""
                    ng-disabled="disable"
                    ng-required="params.required">
         </div>

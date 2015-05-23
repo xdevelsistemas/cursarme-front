@@ -1,6 +1,8 @@
 define([
-    './__module__'
-], function (directives) {
+    './__module__',
+    'jquery',
+    'jqueryMaskedinput'
+], function (directives,$,jqueryMaskedinput) {
 
     'use strict';
 
@@ -57,6 +59,23 @@ define([
                         formatYear: 'yyyy',
                         startingDay: 1
                     };
+                    scope.setMask = function(name){
+                        $('#input_'+name).mask("99/99/9999",{completed:function(){
+                            //if ((parseInt(this.val().substr(0,2)) > 31)||(parseInt(this.val().substr(3,2)) > 12)||(parseInt(this.val().substr(0,2)) == 0)||(parseInt(this.val().substr(3,2)) == 0)){
+                            if (!isDate(this.val())){
+                                $('#input_'+name)
+                                    .removeAttr('checked')
+                                    .removeAttr('selected');
+                                scope.params.model.err = 'Data inválida!';
+
+                            }else{
+                                scope.params.model.err = ''
+                            }
+                        }});
+                    };
+                    function isDate(date){
+                        return /^(0[1-9]|[12][0-9]|3[01])[\/](0[1-9]|1[012])[\/](19|20)\d\d$/gm.test(date)
+                    }
                 }
 
             }
