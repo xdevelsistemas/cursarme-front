@@ -12,7 +12,8 @@ define(['./__module__', "jquery", "form-wizard","underscore"], function (control
             breadCrumb.title = 'Pré Cadastro';
 
             // ==== MODELOS ==== //
-
+            $scope.cor = 'blue';
+            $scope.casa = 'ape';
             vm._model = {};
             vm.validaCpf = true;
             vm.btnAddChequeStep1 = false;

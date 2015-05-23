@@ -3,12 +3,12 @@ var tests = Object.keys(window.__karma__.files).filter(function (file) {
 });
 requirejs.config({
     // Karma serves files from '/base'
-    baseUrl: '/base/public',
+    baseUrl: '/base/public/js/comercial',
     paths: {
-        'angular': '../public/lib/angular/angular',
-        'angularResource': '../public/lib/angular-resource/angular-resource',
-        'angularMocks': '../public/lib/angular-mocks/angular-mocks',
-        'app': '../public/js/require-config'
+        'angular': '../../lib/angular/angular',
+        'angularResource': '../../lib/angular-resource/angular-resource',
+        'angularMocks': '../../lib/angular-mocks/angular-mocks',
+        'app': '../../js/require-config'
     },
 
     shim: {

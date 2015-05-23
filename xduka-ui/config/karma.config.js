@@ -11,6 +11,7 @@ module.exports = function(config) {
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
         frameworks: ['jasmine', 'requirejs'],
+        //frameworks: ['jasmine'],
 
 
         // list of files / patterns to load in the browser
@@ -19,14 +20,18 @@ module.exports = function(config) {
             {pattern: 'public/lib/requirejs/require.js', included: false},
             {pattern: 'public/lib/angular-resource/angular-resource.js', included: false},
             {pattern: 'public/lib/angular-mocks/angular-mocks.js', included: false},
-            'public/js/**/*.js',
-            'public/js/*.js',
-            'test/spec/**/*Spec.js',
+            {pattern: 'public/js/comercial/app-bootstrap.js', included: false},
+            {pattern: 'public/js/comercial/routes/routes.js', included: false},
+            {pattern: 'public/js/**/*.js', included: false},
+            {pattern: 'public/js/*.js', included: false},
+            {pattern: 'test/spec/**/*Spec.js', included: false},
             'test/spec/test-main.js'
         ],
 
         // list of files to exclude
-        exclude: [],
+        exclude: [
+            //'app-bootstrap.js'
+        ],
 
 
         // preprocess matching files before serving them to the browser
@@ -52,11 +57,11 @@ module.exports = function(config) {
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
         logLevel: config.LOG_INFO,
-        //logLevel = LOG_INFO;
+
 
         // enable / disable watching file and executing tests whenever any file changes
+        //autoWatch: true,
         autoWatch: true,
-        //autoWatch = false;
 
 
         // start these browsers
@@ -69,7 +74,7 @@ module.exports = function(config) {
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false
-        //singleRun = true;
+        singleRun: true
+        //singleRun: false
     });
 };
