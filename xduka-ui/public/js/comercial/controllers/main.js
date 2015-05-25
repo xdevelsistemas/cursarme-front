@@ -1,16 +1,6 @@
-define([
-    './__module__', 'jqueryUi', '../../common/models/strings', '../models/menu', "form-wizard"
-], function (controllers, $, modelStrings, modelMenu, formWizard) {
 
-    'use strict';
-
-    controllers
-        .controller('Main', Main);
-
-    Main.$inject = ['$scope', '$resource', 'breadCrumb'];
-
-    /* @ngInject */
-    function Main($scope, $resource, breadCrumb) {
+angular.module('app.controllers')
+        .controller('Main', function($scope, $resource, breadCrumb, modelStrings, modelMenu) {
         /* jshint validthis: true */
         var vm = this
             , infoUserPromise = $resource('/api/comercial/info-usuario').get().$promise;
@@ -44,36 +34,4 @@ define([
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
         }
-
-        // ===Date picker ==//
-
-        /*vm.formats = ['dd/MM/yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-        vm.format = vm.formats[0];
-
-        vm.clear = function () {
-            vm.dt = null;
-        };
-
-        // Disable weekend selection
-        /!*vm.disabled = function(date, mode) {
-            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-        };*!/
-
-        vm.toggleMin = function() {
-            vm.minDate = vm.minDate ? null : new Date();
-        };
-        vm.toggleMin();
-
-        vm.open = function($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-
-            vm.opened = true;
-        };
-
-        vm.dateOptions = {
-            formatYear: 'yyyy',
-            startingDay: 1
-        };*/
-    }
-});
+    });

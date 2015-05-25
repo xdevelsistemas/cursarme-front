@@ -1,6 +1,4 @@
-
-angular.module('app', ['ngRoute', 'ngResource'])
-    .config(['$routeProvider', function ($routeProvider) {
+angular.module('app',['ngRoute', 'ngResource']).config(['$routeProvider', function ($routeProvider) {
 // ========= HOME ========= //
         $routeProvider.when('/', {
             redirectTo: '/pre-cadastro'
@@ -21,3 +19,12 @@ angular.module('app', ['ngRoute', 'ngResource'])
             redirectTo: '/'
         });
     }]);
+
+/*
+*
+ 'jquery', 'angular', 'angular-bootstrap', 'angular-route', 'angular-resource',
+ 'angular-sanitize', 'angular-ui-utils', 'angular-ui-select', 'animate.css',
+ 'bootstrap', 'entypo', 'font-awesome', 'jquery', 'jquery-maskedinput',
+ 'jquery-ui', 'select2', 'ngImgCrop', 'angular-input-masks',
+ 'underscore', 'ngRoute', 'ngResource', ''
+ */

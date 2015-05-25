@@ -1,6 +1,7 @@
-define(['./__module__', "jquery", "form-wizard","underscore"], function (controllers, $, formWizard,_) {
-    'use strict';
-    controllers.controller('FormPreCadastro', [
+(function() {
+    "use strict";
+
+    angular.module('app.controllers').controller('FormPreCadastro', [
         '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'allCheques',
         function ($scope, breadCrumb, $timeout, $modal, $resource, lista_cheques, dataCheque, allCheques) {
 
@@ -69,8 +70,8 @@ define(['./__module__', "jquery", "form-wizard","underscore"], function (control
                 $.extend(vm._model.curso.area.list, item.areas);
 
                 /*vm._model.curso.unidade.select.unidade = _.findLastIndex(vm._model.curso.unidade.list, item);
-                vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.model.val = '';
-                vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.model.val = '';*/
+                 vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.model.val = '';
+                 vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.model.val = '';*/
             };
 
             vm.areaChange = function (item, model) {
@@ -83,7 +84,7 @@ define(['./__module__', "jquery", "form-wizard","underscore"], function (control
                 $.extend(vm._model.curso.curso.list, item.curso);
 
                 /*vm._model.curso.unidade.select.area = _.findLastIndex(vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list, item);
-                vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.model.val = '';*/
+                 vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.model.val = '';*/
             };
 
             vm.cursoChange = function (item, model) {
@@ -139,13 +140,13 @@ define(['./__module__', "jquery", "form-wizard","underscore"], function (control
                         //vm.dadosIniciais.successMessage = vm.STR.SUCESSO;
                         vm._model = data;
                         /*$.extend(vm._model.curso.vagas, {
-                            isEnding: function () {
-                                return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
-                            },
-                            getDisponiveis: function () {
-                                return (parseInt(this.totais) - parseInt(this.preenchidas));
-                            }
-                        });*/
+                         isEnding: function () {
+                         return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
+                         },
+                         getDisponiveis: function () {
+                         return (parseInt(this.totais) - parseInt(this.preenchidas));
+                         }
+                         });*/
 
                         console.log(data);
                     })
@@ -167,13 +168,13 @@ define(['./__module__', "jquery", "form-wizard","underscore"], function (control
                         console.log("recebido");
                         console.log(vm._model);
                         $.extend(vm._model.curso.vagas, {
-                             isEnding: function () {
+                            isEnding: function () {
                                 return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
-                             },
-                             getDisponiveis: function () {
+                            },
+                            getDisponiveis: function () {
                                 return (parseInt(this.totais) - parseInt(this.preenchidas));
-                             }
-                         });
+                            }
+                        });
                     })
                     .catch(function (erro) {
                         console.log("\n" + erro.data + "\n")
