@@ -1,5 +1,6 @@
-define(['app'], function (app) {
-    app.config(['$routeProvider', function ($routeProvider) {
+
+angular.module('app', ['ngRoute', 'ngResource'])
+    .config(['$routeProvider', function ($routeProvider) {
 // ========= HOME ========= //
         $routeProvider.when('/', {
             redirectTo: '/pre-cadastro'
@@ -20,4 +21,3 @@ define(['app'], function (app) {
             redirectTo: '/'
         });
     }]);
-});
