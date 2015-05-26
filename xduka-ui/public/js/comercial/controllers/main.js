@@ -1,37 +1,43 @@
+(function(){
+    'use strict';
 
-angular.module('app.controllers')
-        .controller('Main', function($scope, $resource, breadCrumb, modelStrings, modelMenu) {
-        /* jshint validthis: true */
-        var vm = this
-            , infoUserPromise = $resource('/api/comercial/info-usuario').get().$promise;
+    angular.module('app.controllers', [])
+        .controller('Main', Main);
 
-        vm.breadCrumb = breadCrumb;
 
-        vm.STR = modelStrings;
-        vm.menu = modelMenu;
+    function Main($scope, $resource, breadCrumb, modelStrings, modelMenu) {
+            /* jshint validthis: true */
+            var vm = this
+                , infoUserPromise = $resource('/api/comercial/info-usuario').get().$promise;
 
-        vm.appName = 'xDuka';
-        vm.area = 'Comercial';
-        vm.lang = 'pt-br';
-        vm.section = '';
+            vm.breadCrumb = breadCrumb;
 
-        vm.sendData = sendData;
+            vm.STR = modelStrings;
+            vm.menu = modelMenu;
 
-        infoUserPromise.
-            then(
-            function (data) {
-                vm.user = data.usuario;
-            })
-            .catch(
-            function (erro) {
-                console.log("Erro:\n" + erro.data + "\n");
+            vm.appName = 'xDuka';
+            vm.area = 'Comercial';
+            vm.lang = 'pt-br';
+            vm.section = '';
+
+            vm.sendData = sendData;
+
+            infoUserPromise.
+                then(
+                function (data) {
+                    vm.user = data.usuario;
+                })
+                .catch(
+                function (erro) {
+                    console.log("Erro:\n" + erro.data + "\n");
+                }
+            );
+
+
+            ////////////////
+
+            function sendData() {
+                console.log('>>>>>', 'Enviou nada!');
             }
-        );
-
-
-        ////////////////
-
-        function sendData() {
-            console.log('>>>>>', 'Enviou nada!');
         }
-    });
+})();
