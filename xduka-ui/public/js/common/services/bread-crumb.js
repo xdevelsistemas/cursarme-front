@@ -1,6 +1,4 @@
-define(['./__module__'], function (services, $) {
-    'use strict';
-    services.value('breadCrumb', {
+angular.module('common.services', [])
+       .value('breadCrumb', {
         title: ''
     });
-});

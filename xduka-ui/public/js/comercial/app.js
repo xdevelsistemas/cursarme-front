@@ -21,19 +21,19 @@ define([
 
     return angular.module('app', [
         'ui.utils.masks',
-        'ngRoute',
-        'ngResource',
+        /*'ngRoute',*/
+        /*'ngResource',*/
         'ui.select',
         'ngSanitize',
         'ui.utils',
-        'ui.bootstrap',
+        /*'ui.bootstrap',*/
         'ngImgCrop',
-        'app.controllers',
+        /*'app.controllers',*/
         'app.directives',
-        'app.filters',
+        /*'app.filters',*/
         'app.services',
         'common.directives',
-        'common.filters',
-        'common.services'
+        'common.filters'
+        /*'common.services'*/
     ]);
 });

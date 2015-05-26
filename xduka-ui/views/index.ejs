@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt">
+<html lang="pt" ng-app="app">
 <head>
     <meta charset="utf-8">
     <title>xDuka | <%= title %></title>
@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
 
     <!--SCRIPT-->
-    <script src="lib/requirejs/require.js" data-main="js/<%= area %>/main"></script>
+    <!--<script src="lib/requirejs/require.js" data-main="js/<%= area %>/main"></script>-->
 
 </head>
 <body ng-controller="Main as main"
@@ -228,6 +228,8 @@
     </div>
 </form>
 <!-- Bottom Scripts -->
+<% include config-dependencias-common.ejs %>
+<% include config-dependencias-aluno.ejs %>
 
 </body>
 </html>

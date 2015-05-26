@@ -1,5 +1,20 @@
-define(['app'], function (app) {
-    app.config(['$routeProvider', function ($routeProvider) {
+(function () {
+    angular.module('app',[
+        'ngRoute',
+        'ngResource',
+        'ui.select',
+        'ngSanitize',
+        'ui.utils',
+        'ui.bootstrap',
+        'ngImgCrop',
+        'app.controllers',
+        'app.directives',
+        'app.filters',
+        'app.services',
+        'common.directives',
+        'common.filters',
+        'common.services'
+    ]).config(['$routeProvider', function ($routeProvider) {
 
         //Home
         $routeProvider.when('/', {
@@ -63,4 +78,4 @@ define(['app'], function (app) {
         });
 
     }]);
-});
+})();

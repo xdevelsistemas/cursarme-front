@@ -1,12 +1,8 @@
-define([
-    './__module__',
-    '../../common/models/strings',
-    'jquery'
-], function (controllers, modelStrings, $, $modal) {
+(function () {
 
     'use strict';
 
-    controllers
+    angular.module('app.controllers')
         .controller('EditarPerfil', EditarPerfil);
 
     EditarPerfil.$inject = ['$scope', '$resource', 'breadCrumb', 'cropService', '$modal'];
@@ -197,4 +193,4 @@ define([
         }
     }
 
-});
+})();

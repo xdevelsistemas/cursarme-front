@@ -1,12 +1,8 @@
-define([
-    './__module__',
-    '../../common/models/strings',
-    'jquery'
-], function (controllers, modelStrings, $) {
+(function () {
 
     'use strict';
 
-    controllers
+    angular.module('app.controllers')
         .controller('xdCrop', xdCrop);
 
     xdCrop.$inject = ['$scope', 'breadCrumb', 'cropService'];
@@ -71,4 +67,4 @@ define([
 
 
     }
-});
+})();

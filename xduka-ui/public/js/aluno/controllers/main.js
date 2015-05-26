@@ -1,12 +1,8 @@
-define([
-    './__module__',
-    '../../common/models/strings',
-    '../models/menu'
-], function (controllers, modelStrings, modelMenu) {
+(function () {
 
     'use strict';
 
-    controllers
+    angular.module('app.controllers')
         .controller('Main', Main);
 
     Main.$inject = ['$scope', '$resource', '$timeout','$route','breadCrumb', 'defineCurso', 'cropService'];
@@ -78,4 +74,4 @@ define([
         }
 
     }
-});
+})();

@@ -1,11 +1,8 @@
-define([
-    './__module__',
-    '../../common/models/strings'
-], function (controllers, modelStrings) {
+(function () {
 
     'use strict';
 
-    controllers
+    angular.module('app.controllers')
         .controller('Aniversariantes', Aniversariantes);
 
     Aniversariantes.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
@@ -41,4 +38,4 @@ define([
 
     }
 
-});
+})();

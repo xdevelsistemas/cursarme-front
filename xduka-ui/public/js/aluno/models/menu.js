@@ -1,6 +1,6 @@
-define([], function () {
+(function () {
     //Menu
-    return {
+    angular.module('app').value('modelMenu', {
         "list": [
             {
                 "text": "Mensagens",
@@ -48,6 +48,6 @@ define([], function () {
                 "href": "#/editar-perfil"
             }
         ]
-    };
+    })
 
-});
+})();
