@@ -1,4 +1,4 @@
-define(['./__module__', "jquery", "jqueryMask"], function (controllers, $,jqueryMask) {
+define(['./__module__', "jquery", "jqueryMask"], function (controllers, $, jqueryMask) {
     'use strict';
     controllers.controller('confirmacaoMatricula', [
         '$scope', 'breadCrumb', '$timeout', '$modal', '$resource',

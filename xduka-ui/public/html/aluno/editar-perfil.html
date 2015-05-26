@@ -27,29 +27,11 @@
             <div class="panel-body">
                 <form role="form" class="form-horizontal form-groups-bordered">
                     <!--SENHA ATUAL-->
-                    <xd-input
-                            label="'Senha Atual'"
-                            placeholder="'Digite aqui a senha atual'"
-                            model="perfil.password.current"
-                            name="'password'"
-                            type="'password'">
-                    </xd-input>
+                    <xd-input data-params="perfil.password.current"></xd-input>
                     <!--NOVA SENHA-->
-                    <xd-input
-                            label="'Nova Senha'"
-                            placeholder="'Digite sua nova senha'"
-                            model="perfil.password.new"
-                            name="'newPassword'"
-                            type="'password'">
-                    </xd-input>
+                    <xd-input data-params="perfil.password.new"></xd-input>
                     <!--CONFIRMAR NOVA SENHA-->
-                    <xd-input
-                            label="'Confirmar Nova Senha'"
-                            placeholder="'Digite a nova senha novamente'"
-                            model="perfil.password.confirm"
-                            name="'confirmPassword'"
-                            type="'password'">
-                    </xd-input>
+                    <xd-input data-params="perfil.password.confirm"></xd-input>
 
                     <xd-btn label="'Salvar'"
                             icon="'entypo-check'"
@@ -78,7 +60,7 @@
 
                         <div class="checkbox">
                             <div class="col-sm-5">
-                                <input data-ng-model="perfil.info.sharePic.val"
+                                <input data-ng-model="perfil.info.sharePic"
                                        type="checkbox"
                                        id="input_sharePic">
                                 <label for="input_sharePic">
@@ -88,29 +70,11 @@
                         </div>
                     </div>
                     <!--TELEFONE RESIDENCIAL-->
-                    <xd-input
-                            label="'Telefone Residencial'"
-                            model="perfil.info.phone"
-                            placeholder="'(__) ____-____'"
-                            mask="'(99) 9999-9999'"
-                            name="'phone'">
-                    </xd-input>
+                    <xd-input data-params="perfil.info.phone"></xd-input>
                     <!--TELEFONE CELULAR-->
-                    <xd-input
-                            label="'Telefone Celular'"
-                            model="perfil.info.cel"
-                            placeholder="'(__) _____-____'"
-                            mask="'(99) 99999-9999'"
-                            name="'cel'">
-                    </xd-input>
+                    <xd-input data-params="perfil.info.cel"></xd-input>
                     <!--EMAIL-->
-                    <xd-input
-                            label="'E-mail'"
-                            model="perfil.info.email"
-                            name="'email'"
-                            placeholder="'Digite seu e-mail'"
-                            type="'email'">
-                    </xd-input>
+                    <xd-input-email data-params="perfil.info.email"></xd-input-email>
                     <xd-btn label="'Salvar'"
                             icon="'entypo-check'"
                             click="perfil.sendInfo">

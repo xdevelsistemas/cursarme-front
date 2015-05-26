@@ -1,17 +1,20 @@
-define(['./__module__', "jquery", "form-wizard","underscore"], function (controllers, $, formWizard,_) {
-    'use strict';
-    controllers.controller('FormPreCadastro', [
-        '$scope', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'allCheques',
-        function ($scope, $timeout, $modal, $resource, lista_cheques, dataCheque, allCheques) {
+(function() {
+    "use strict";
+
+    angular.module('app.controllers').controller('FormPreCadastro', [
+        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'allCheques',
+        function ($scope, breadCrumb, $timeout, $modal, $resource, lista_cheques, dataCheque, allCheques) {
 
             /* jshint validthis: true */
             var vm = this
                 , comercialPromise = $resource('/api/comercial/dados-comercial').get().$promise
                 , viewInscrPeromise = $resource('/api/comercial/view-inscr').get().$promise;
 
+            breadCrumb.title = 'Pré Cadastro';
 
             // ==== MODELOS ==== //
-
+            $scope.cor = 'blue';
+            $scope.casa = 'ape';
             vm._model = {};
             vm.validaCpf = true;
             vm.btnAddChequeStep1 = false;
@@ -27,14 +30,20 @@ define(['./__module__', "jquery", "form-wizard","underscore"], function (control
             vm.passoZero = passoZero;
             function passoZero(){
                 $timeout(function () {
-
                     vm.disableAtualiza = $('#step0').attr('class').indexOf('active') == -1;
-
                 }, 300);
             }
             comercialPromise
                 .then(function(data){
                     vm._model = data;
+                    $.extend(vm._model.curso.vagas, {
+                        isEnding: function () {
+                            return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
+                        },
+                        getDisponiveis: function () {
+                            return (parseInt(this.totais) - parseInt(this.preenchidas));
+                        }
+                    });
                 })
                 .catch(function(erro){
                     console.log("\n" + erro.data + "\n");
@@ -42,7 +51,7 @@ define(['./__module__', "jquery", "form-wizard","underscore"], function (control
 
             viewInscrPeromise
                 .then(function(data) {
-                    vm._viewInscr = data;
+                    vm._viewInscr = data.inscr;
                 })
                 .catch(function(erro) {
                     console.log("\n" + erro.data + "\n");
@@ -54,26 +63,28 @@ define(['./__module__', "jquery", "form-wizard","underscore"], function (control
                 vm.selectCursoArea = true;
                 vm.selectCursoCurso = false;
                 vm.selectCursoVagas = false;
+                vm._model.inscr.valorInscricao.model.val = '';
 
                 vm._model.curso.area.list = [];
                 vm._model.curso.area.model = {'val': '', 'err': ''};
                 $.extend(vm._model.curso.area.list, item.areas);
 
                 /*vm._model.curso.unidade.select.unidade = _.findLastIndex(vm._model.curso.unidade.list, item);
-                vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.model.val = '';
-                vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.model.val = '';*/
+                 vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.model.val = '';
+                 vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.model.val = '';*/
             };
 
             vm.areaChange = function (item, model) {
                 vm.selectCursoCurso = true;
                 vm.selectCursoVagas = false;
+                vm._model.inscr.valorInscricao.model.val = '';
 
                 vm._model.curso.curso.list = [];
                 vm._model.curso.curso.model = {'val': '', 'err': ''};
                 $.extend(vm._model.curso.curso.list, item.curso);
 
                 /*vm._model.curso.unidade.select.area = _.findLastIndex(vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list, item);
-                vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.model.val = '';*/
+                 vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.model.val = '';*/
             };
 
             vm.cursoChange = function (item, model) {
@@ -81,23 +92,14 @@ define(['./__module__', "jquery", "form-wizard","underscore"], function (control
 
                 /*vm._model.curso.unidade.select.curso = _.findLastIndex(vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.list, item);*/
 
-                $.extend(vm._model.curso.vagas, item.turma[0].vagas, {
-                    isEnding: function () {
-                        return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
-                    },
-                    getDisponiveis: function () {
-                        return (parseInt(this.totais) - parseInt(this.preenchidas));
-                    }
-                });
+                $.extend(vm._model.curso.vagas, item.turma[0].vagas);
 
                 vm.btnSendInscr = false;
                 vm._model.inscr.valorInscricao.model.val = vm._model.curso.vagas.valorInscricao;
 
                 $timeout(function () {
 
-                    if (
-                        vm._model.curso.vagas.totais / vm._model.curso.vagas.preenchidas < 1.5
-                    ){
+                    if ((vm._model.curso.vagas.totais / vm._model.curso.vagas.preenchidas) < 1.5){
                         vm._model.curso.vagas.css.titleRed = true;
                         vm._model.curso.vagas.css.titleBlue = false
                     }else{
@@ -137,14 +139,14 @@ define(['./__module__', "jquery", "form-wizard","underscore"], function (control
                     .then(function(data){
                         //vm.dadosIniciais.successMessage = vm.STR.SUCESSO;
                         vm._model = data;
-                        $.extend(vm._model.curso.vagas, {}, {
-                            isEnding: function () {
-                                return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
-                            },
-                            getDisponiveis: function () {
-                                return (parseInt(this.totais) - parseInt(this.preenchidas));
-                            }
-                        });
+                        /*$.extend(vm._model.curso.vagas, {
+                         isEnding: function () {
+                         return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
+                         },
+                         getDisponiveis: function () {
+                         return (parseInt(this.totais) - parseInt(this.preenchidas));
+                         }
+                         });*/
 
                         console.log(data);
                     })
@@ -165,14 +167,14 @@ define(['./__module__', "jquery", "form-wizard","underscore"], function (control
                         vm._model = data;
                         console.log("recebido");
                         console.log(vm._model);
-                        /*$.extend(vm._model.curso.vagas, {}, {
-                         isEnding: function () {
-                         return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
-                         },
-                         getDisponiveis: function () {
-                         return (parseInt(this.totais) - parseInt(this.preenchidas));
-                         }
-                         });*/
+                        $.extend(vm._model.curso.vagas, {
+                            isEnding: function () {
+                                return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
+                            },
+                            getDisponiveis: function () {
+                                return (parseInt(this.totais) - parseInt(this.preenchidas));
+                            }
+                        });
                     })
                     .catch(function (erro) {
                         console.log("\n" + erro.data + "\n")
