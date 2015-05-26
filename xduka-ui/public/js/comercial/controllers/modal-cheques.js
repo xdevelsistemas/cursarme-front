@@ -1,6 +1,6 @@
-define(['./__module__', 'jqueryUi'], function (controllers, $) {
+(function () {
     'use strict';
-    controllers.controller('ModalCheques', [
+    angular.module('app.controllers').controller('ModalCheques', [
         '$scope', '$http', 'lista_cheques', '$modalInstance', 'dataCheque', 'allCheques',
         function ($scope, $http, lista_cheques, $modalInstance, dataCheque, allCheques) {
 
@@ -101,4 +101,4 @@ define(['./__module__', 'jqueryUi'], function (controllers, $) {
                 console.log(allCheques.getAllCheques());
             };
         }]);
-});
+})();

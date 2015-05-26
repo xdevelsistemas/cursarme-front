@@ -1,4 +1,18 @@
-angular.module('app',['ngRoute', 'ngResource']).config(['$routeProvider', function ($routeProvider) {
+angular.module('app',[
+    'ngRoute',
+    'ngResource',
+    'ui.bootstrap',
+    'common.value',
+    'common.services',
+    'common.directives',
+    'app.filters',
+    'app.services',
+    'app.directives',
+    'app.controllers'
+
+])
+
+.config(['$routeProvider', function ($routeProvider) {
 // ========= HOME ========= //
         $routeProvider.when('/', {
             redirectTo: '/pre-cadastro'

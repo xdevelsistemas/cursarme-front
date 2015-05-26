@@ -1,6 +1,6 @@
-define(['./__module__', 'jquery'], function (services, $) {
+(function () {
     'use strict';
-    return services.factory('allCheques', allCheques);
+    angular.module('app.services').factory('allCheques', allCheques);
 
     function allCheques(){
         var all_cheques = {
@@ -19,4 +19,4 @@ define(['./__module__', 'jquery'], function (services, $) {
             return cheques = a;
         }
     }
-});
+})();

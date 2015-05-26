@@ -6,5 +6,5 @@
  **/
 (function() {
     'use strict';
-    return angular.module('app.controllers', []);
+    angular.module('app.controllers', []);
 })();

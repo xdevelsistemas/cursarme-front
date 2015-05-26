@@ -1,6 +1,8 @@
-define([], function () {
+(function () {
     //Menu
-    return {
+    'use strict';
+
+    angular.module('app').value('modelMenu', {
         "list": [
             {
                 "text": "Pré Cadastro",
@@ -8,6 +10,5 @@ define([], function () {
                 "href": "#/pre-cadastro"
             }
         ]
-    };
-
-});
+    })
+})();
