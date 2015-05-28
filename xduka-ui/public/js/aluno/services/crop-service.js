@@ -1,9 +1,9 @@
-define(['./__module__', 'jquery'], function (services, $) {
+(function () {
     'use strict';
-    services.value('cropService', {
+    angular.module('app.services').value('cropService', {
 
         imgSalva: '',
         imgTemp: ''
 
     });
-});
+})();

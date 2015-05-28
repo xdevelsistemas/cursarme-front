@@ -1,7 +1,7 @@
-define(['./__module__', 'jquery'], function (services, $) {
+(function () {
     'use strict';
 
-    return services.factory('defineCurso', defineCurso);
+    angular.module('app.services').factory('defineCurso', defineCurso);
 
 
     function defineCurso(){
@@ -21,4 +21,4 @@ define(['./__module__', 'jquery'], function (services, $) {
             idCurso = id;
         }
     }
-});
+})();

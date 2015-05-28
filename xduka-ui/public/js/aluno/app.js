@@ -1,3 +1,4 @@
+/*
 define([
     'angular',
     'angularRoute',
@@ -33,4 +34,4 @@ define([
         'common.filters',
         'common.services'
     ]);
-});
+});*/
