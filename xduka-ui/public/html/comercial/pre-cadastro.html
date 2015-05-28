@@ -36,10 +36,10 @@
 
         <div class="tab-pane" id="step0">
             <div class="col-md-12">
-                <xd-panel-collapse title="'Matrículas Cadastradas'">
+                <xd-panel-collapse title="pre._viewInscr.label">
                     <div class="row">
                         <div class="col-md-12" style="overflow: auto;">
-                            <table class="table table-condensed table-bordered table-hover table-striped table-responsive">
+                            <table class="table table-condensed table-bordered table-hover table-striped responsive">
                                 <thead>
                                 <tr>
                                     <th>Nome</th>
@@ -51,42 +51,15 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-
-                                    <th>Joao da Silva Ribeiro Lopes Monteiro Junior</th>
-                                    <th>Turma 1</th>
-                                    <th>Sistemas de Informação ajshdajksh</th>
-                                    <th class="text-center">22/30</th>
-                                    <th>Cariacica ajkshdjksah</th>
-                                    <th>Incompleto<button class="btn btn-sm"><i class="entypo-pencil"></i></button></th>
-                                </tr>
-                                <tr>
-
-                                    <th>Teste2</th>
-                                    <th>Turma 2 s</th>
-                                    <th>Curso BC</th>
-                                    <th class="text-center">25/30</th>
-                                    <th>Serra</th>
-                                    <th>Completo <i class="entypo-check"></i></th>
-                                </tr>
-                                <tr>
-
-                                    <th>Teste</th>
-                                    <th>Turma 1 s</th>
-                                    <th>Curso AB</th>
-                                    <th class="text-center">22/30</th>
-                                    <th>Cariacica</th>
-                                    <th>Incompleto<button class="btn btn-sm"><i class="entypo-pencil"></i></button></th>
-                                </tr>
-                                <tr>
-
-                                    <th>Teste</th>
-                                    <th>Turma 1</th>
-                                    <th>Curso AB</th>
-                                    <th class="text-center">22/30</th>
-                                    <th>Cariacica</th>
-                                    <th>Incompleto<button class="btn btn-sm"><i class="entypo-pencil"></i></button></th>
-                                </tr>
+                                    <tr ng-repeat="el in pre._viewInscr.list">
+                                        <th>{{ el.nome }}</th>
+                                        <th>{{ el.turma }}</th>
+                                        <th>{{ el.curso }}</th>
+                                        <th>{{ el.quantidade }}</th>
+                                        <th>{{ el.unidade }}</th>
+                                        <th ng-show="el.status">Completo<button title="Imprimir Contrato" class="btn btn-sm"><i class="entypo-print"></i></button></th>
+                                        <th ng-hide="el.status">Incompleto<button title="Completar Inscrição" class="btn btn-sm"><i class="entypo-pencil"></i></button></th>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -303,8 +276,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.pagamento.melhorData"
-                                  disable="!pre.validaCpf"></xd-input>
+                        <xd-select data-params="pre._model.pagamento.melhorData"
+                                  disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">

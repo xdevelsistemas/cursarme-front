@@ -518,13 +518,10 @@
         "totais": "Vagas Totais",
         "disponiveis": "Vagas Disponíveis"
       },
-      "preenchidas": 12,
-      "totais": 20,
       "css": {
         "titleBlue": true,
         "titleRed": false
-      },
-      "valorInscricao": 170
+      }
     }
   },
   "documentacao": {

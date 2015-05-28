@@ -1,11 +1,8 @@
-define([
-    './__module__',
-    '../../common/models/strings'
-], function (controllers, modelStrings) {
+(function () {
 
     'use strict';
 
-    controllers
+    angular.module('app.controllers')
         .controller('Tasks', Tasks);
 
     Tasks.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
@@ -58,4 +55,4 @@ define([
             console.log(item.id + " - " + item.text);
         }
     }
-});
+})();

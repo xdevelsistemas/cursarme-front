@@ -1,12 +1,8 @@
-define([
-    './__module__',
-    '../../common/models/strings',
-    'jquery'
-], function (controllers, modelStrings, $, $modal) {
+(function () {
 
     'use strict';
 
-    controllers
+    angular.module('app.controllers')
         .controller('EditarPerfil', EditarPerfil);
 
     EditarPerfil.$inject = ['$scope', '$resource', 'breadCrumb', 'cropService', '$modal'];
@@ -46,23 +42,12 @@ define([
             reader.readAsDataURL(file);
         };
 
-
         angular.element(document.querySelector('#fileInput')).on('change', handleFileSelect);
-
-        vm.password = {
-            current: {val: ''},
-            new: {val: ''},
-            confirm: {val: ''}
-        };
 
         perfilPromise
             .then(function(data){
-                vm.info = {
-                    sharePic: {val: data.compartilharAniversario},
-                    email: {val: data.email},
-                    cel: {val: data.telefoneCelular},
-                    phone: {val: data.telefoneResidencial}
-                };
+                vm.info = data.info;
+                vm.password = data.password;
             })
             .catch(function(statusTexto){
                 console.log("Erro!\n" + statusTexto)
@@ -103,9 +88,9 @@ define([
                 (vm.info.email.val && vm.info.phone.val && vm.info.cel.val)) {
 
                 var dataInfo = {"info": vm.info},
-                    promisse = $resource('/api/aluno/editar-perfil').save({}, dataInfo).$promise;
+                    SendInfoPromise = $resource('/api/aluno/editar-perfil').save({}, dataInfo).$promise;
 
-                promisse
+                SendInfoPromise
                     .then(function(data){
                         vm.info.successMessage = vm.STR.SUCESSO;
                         console.log(data.status);
@@ -172,9 +157,9 @@ define([
             //// Verifica se as novas senhas batem e se não estão vazios
             if (isConfPw(vm.password.new.val, vm.password.confirm.val) && (vm.password.current.val && vm.password.new.val && vm.password.confirm.val)) {
                 var dataPw = {"password": vm.password},
-                    promisse = $resource('/api/aluno/editar-perfil').save({}, dataPw).$promise;
+                    sendSenhaPromise = $resource('/api/aluno/editar-perfil').save({}, dataPw).$promise;
 
-                promisse
+                sendSenhaPromise
                     .then(function (data) {
                         vm.password.successMessagePw = vm.STR.SUCESSO;
                         console.log(data.status);
@@ -208,4 +193,4 @@ define([
         }
     }
 
-});
+})();

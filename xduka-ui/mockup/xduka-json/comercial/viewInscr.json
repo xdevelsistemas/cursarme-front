@@ -1,5 +1,5 @@
 {
-  "inscritos": {
+  "inscr": {
     "label": "Matrículas Pendentes",
     "name": "confMat",
     "list": [{
@@ -24,7 +24,7 @@
       "curso": "Matemática",
       "quantidade": "23/30",
       "unidade": "Cariacica",
-      "status": "Completo"
+      "status": true
     },
     {
       "nome": "Maria Antonieta",
@@ -32,7 +32,7 @@
       "curso": "Engenharia Química",
       "quantidade": "15/15",
       "unidade": "Cariacica",
-      "status": "Incompleto"
+      "status": false
     }]
   }
 }
