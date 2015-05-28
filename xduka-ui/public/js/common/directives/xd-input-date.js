@@ -1,13 +1,6 @@
-define([
-    './__module__',
-    'jquery',
-    'jqueryMaskedinput'
-], function (directives,$,jqueryMaskedinput) {
-
+(function () {
     'use strict';
-
-    directives
-        .directive('xdInputDate', [
+    angular.module('common.directives').directive('xdInputDate', [
             function () {
 
                 return {
@@ -80,4 +73,4 @@ define([
 
             }
         ]);
-});
+})();

@@ -4,10 +4,10 @@
  * properly referenced in one of the module dependencies in the array.
  * below, you can see we bring in our services and constants modules
  * which avails each service of, for example, the `config` constants object.
- **/
+ **//*
 define([
     './all-cheques',
     './data-cheque',
     './lista-cheques'
 ], function () {
-});
+});*/

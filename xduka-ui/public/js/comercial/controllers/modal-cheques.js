@@ -1,12 +1,12 @@
-define(['./__module__', 'jquery'], function (controllers, $) {
+(function () {
     'use strict';
-    controllers.controller('ModalCheques', [
+    angular.module('app.controllers').controller('ModalCheques', [
         '$scope', '$http', 'lista_cheques', '$modalInstance', 'dataCheque', 'allCheques',
         function ($scope, $http, lista_cheques, $modalInstance, dataCheque, allCheques) {
 
             /* jshint validthis: true */
             var vm = this;
-            vm._data = {};
+
             vm._model = {
                 label: "Adicionar Cheques",
                 name: "modal_cheques",
@@ -264,4 +264,4 @@ define(['./__module__', 'jquery'], function (controllers, $) {
                 return /^(0[1-9]|[12][0-9]|3[01])[\/](0[1-9]|1[012])[\/](19|20)\d\d$/gm.test(date)
             }
         }]);
-});
+})();

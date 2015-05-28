@@ -3,12 +3,12 @@
  * properly referenced in one of the module dependencies in the array.
  * below, you can see we bring in our services and constants modules
  * which avails each controller of, for example, the `config` constants object.
- **/
+ **//*
 define([
     './main',
     './pre-cadastro',
     './form-pre-cadastro',
-    './confirmacao-matricula',
     './modal-cheques'
 ], function () {
 });
+*/

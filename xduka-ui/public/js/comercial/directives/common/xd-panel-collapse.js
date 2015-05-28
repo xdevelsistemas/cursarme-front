@@ -1,6 +1,6 @@
-define(['../__module__'], function (directives) {
+(function () {
     'use strict';
-    directives.directive('xdPanelCollapse', function () {
+    angular.module('app.directives').directive('xdPanelCollapse', function () {
         return {
             restrict: 'E',
             transclude: true,
@@ -11,4 +11,4 @@ define(['../__module__'], function (directives) {
             }
         };
     });
-});
+})();

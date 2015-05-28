@@ -1,6 +1,8 @@
-define([], function () {
+(function () {
     //Strings
-    return {
+    'use strict';
+
+    angular.module('common.values').value('modelStrings', {
         ABOUT: 'Assunto',
         ARQUIVO: 'Arquivo',
         ATTACHMENT: 'Anexo',
@@ -21,5 +23,5 @@ define([], function () {
         SALVAR: 'Salvar',
         SUCESSO: 'Dados salvos com sucesso',
         TEACHER: 'Professor'
-    };
-});
+    })
+})();

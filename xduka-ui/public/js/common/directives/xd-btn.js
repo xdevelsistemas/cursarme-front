@@ -1,11 +1,6 @@
-define([
-    './__module__'
-], function (directives) {
-
+(function () {
     'use strict';
-
-    directives
-        .directive('xdBtn', [
+    angular.module('common.directives').directive('xdBtn', [
             function () {
 
                 return {
@@ -21,4 +16,4 @@ define([
 
             }
         ]);
-});
+})();

@@ -1,6 +1,6 @@
-define(['./__module__', 'jquery'], function (services, $) {
+(function () {
     'use strict';
-    return services.factory('dataCheque', dataCheque);
+    angular.module('app.services').factory('dataCheque', dataCheque);
 
 
     function dataCheque(){
@@ -20,4 +20,4 @@ define(['./__module__', 'jquery'], function (services, $) {
             data = a;
         }
     }
-});
+})();

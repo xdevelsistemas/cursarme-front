@@ -1,6 +1,7 @@
-define(['../__module__'], function (directives) {
+(function() {
     'use strict';
-    directives.directive('xdField', [
+
+    angular.module('common.directives').directive('xdField', [
         function () {
             return {
                 restrict: 'E',
@@ -14,4 +15,4 @@ define(['../__module__'], function (directives) {
             };
         }
     ]);
-});
+})();

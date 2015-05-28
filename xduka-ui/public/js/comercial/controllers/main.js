@@ -1,5 +1,9 @@
-    angular.module('app.controllers', [])
-        .controller('Main', function Main() {
+(function(){
+    'use strict';
+
+    angular.module('app.controllers')
+        .controller('Main', ['$scope', '$resource', 'breadCrumb', 'modelStrings', 'modelMenu',
+            function($scope, $resource, breadCrumb, modelStrings, modelMenu) {
             /* jshint validthis: true */
             var vm = this
                 , infoUserPromise = $resource('/api/comercial/info-usuario').get().$promise;
@@ -33,4 +37,5 @@
             function sendData() {
                 console.log('>>>>>', 'Enviou nada!');
             }
-        });
+        }]);
+})();
