@@ -1,6 +1,6 @@
-define(['./__module__', 'jquery'], function (services, $) {
+(function () {
     'use strict';
-    services.value('lista_cheques', {
+    angular.module('app.services').value('lista_cheques', {
         lista: [
             {
                 "banco": "Banco do Brasil",
@@ -29,4 +29,4 @@ define(['./__module__', 'jquery'], function (services, $) {
             this.lista = [];
         }
     });
-});
+})();
