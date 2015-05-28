@@ -149,5 +149,16 @@
 <% include config-dependencias-common.ejs %>
 <% include config-dependencias-comercial.ejs %>
 
+<script type="text/javascript">
+    //    SÓ CARREGA OS ARQUIVOS ABAIXO QUANDO OS DOM ESTIVER COMPLETO
+    $(document).ready(function() {
+
+        $.getScript('assets/neon/js/neon-api.js');
+        $.getScript('assets/neon/js/neon-chat.js');
+        $.getScript('assets/neon/js/neon-custom.js');
+        $.getScript('assets/neon/js/neon-demo.js');
+    });
+</script>
+
 </body>
 </html>
