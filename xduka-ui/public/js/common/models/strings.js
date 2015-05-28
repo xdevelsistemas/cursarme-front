@@ -2,7 +2,7 @@
     //Strings
     'use strict';
 
-    angular.module('common.value').value('modelStrings', {
+    angular.module('common.values').value('modelStrings', {
         ABOUT: 'Assunto',
         ARQUIVO: 'Arquivo',
         ATTACHMENT: 'Anexo',

@@ -1,11 +1,6 @@
-define([
-    './__module__'
-], function (directives) {
-
+(function () {
     'use strict';
-
-    directives
-        .directive('xdInputTextarea', [
+    angular.module('common.directives').directive('xdInputTextarea', [
             function () {
 
                 return {
@@ -20,4 +15,4 @@ define([
 
             }
         ]);
-});
+})();

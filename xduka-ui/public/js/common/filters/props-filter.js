@@ -1,7 +1,7 @@
-define(['./__module__'], function (filters) {
+(function() {
     'use strict';
 
-    return filters.filter('propsFilter', function() {
+    angular.module('common.filters').filter('propsFilter', function() {
         return function(items, props) {
             var out = [];
 
@@ -31,4 +31,4 @@ define(['./__module__'], function (filters) {
             return out;
         }
     });
-});
+})();

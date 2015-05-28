@@ -1,4 +1,4 @@
 (function () {
     'use strict';
-    return angular.module('common.services', []);
+    angular.module('common.services', []);
 })();

@@ -1,6 +1,5 @@
-define([
-    './__module__'
-], function (services) {
+(function () {
     'use strict';
-    services.value('version', '0.14.10.0');
-});
+
+    angular.module('common.services').value('version', '0.14.10.0');
+})();

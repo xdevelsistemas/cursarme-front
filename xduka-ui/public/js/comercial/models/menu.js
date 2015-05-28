@@ -2,7 +2,7 @@
     //Menu
     'use strict';
 
-    angular.module('app').value('modelMenu', {
+    angular.module('app.values').value('modelMenu', {
         "list": [
             {
                 "text": "Pré Cadastro",

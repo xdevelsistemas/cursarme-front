@@ -1,13 +1,8 @@
-define([
-    './__module__',
-    'jquery',
-    'select2'
-], function (directives, $) {
+(function () {
 
     'use strict';
 
-    directives
-        .directive('xdSelect', [
+    angular.module('common.directives').directive('xdSelect', [
             '$compile',
             '$http',
             '$timeout',
@@ -28,4 +23,4 @@ define([
             }
         ]
     );
-});
+})();

@@ -1,11 +1,6 @@
-define([
-    './__module__'
-], function (directives) {
-
+(function () {
     'use strict';
-
-    directives
-        .directive('xdInputMoney', [
+    angular.module('common.directives').directive('xdInputMoney', [
             function () {
 
                 return {
@@ -20,4 +15,4 @@ define([
 
             }
         ]);
-});
+})();

@@ -1,7 +1,7 @@
-define(['./__module__'], function (filters) {
+(function () {
     'use strict';
 
-    return filters.filter('range', function () {
+    angular.module('common.filters').filter('range', function () {
         return function (input, total) {
             total = parseInt(total);
             for (var i = 0; i < total; i++)
@@ -9,4 +9,4 @@ define(['./__module__'], function (filters) {
             return input;
         };
     });
-});
+})();

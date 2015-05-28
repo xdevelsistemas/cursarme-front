@@ -1,8 +1,8 @@
-define(['../__module__', 'jquery'], function (directives, $) {
+(function () {
     'use strict';
-    directives.directive('xdInput', [
-        '$compile', '$http', '$timeout',
-        function ($compile, $http, $timeout) {
+    angular.module('common.directives').directive('xdInput', [
+        '$compile', '$http', '$timeout', 'jquery',
+        function ($compile, $http, $timeout, $) {
 
             var ROOTPATH = 'html/xd-forms/input/';
 
@@ -66,4 +66,4 @@ define(['../__module__', 'jquery'], function (directives, $) {
             };
         }
     ]);
-});
+})();
