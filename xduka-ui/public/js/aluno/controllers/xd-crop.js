@@ -5,10 +5,10 @@
     angular.module('app.controllers')
         .controller('xdCrop', xdCrop);
 
-    xdCrop.$inject = ['$scope', 'breadCrumb', 'cropService'];
+    xdCrop.$inject = ['$scope', 'breadCrumb', 'cropService', 'modelStrings'];
 
     /* @ngInject */
-    function xdCrop($scope, breadCrumb, cropService) {
+    function xdCrop($scope, breadCrumb, cropService, modelStrings) {
         /* jshint validthis: true */
         $scope.showModal = false;
         $scope.toggleModal = function(){

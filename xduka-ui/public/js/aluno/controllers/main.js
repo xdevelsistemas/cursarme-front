@@ -5,10 +5,10 @@
     angular.module('app.controllers')
         .controller('Main', Main);
 
-    Main.$inject = ['$scope', '$resource', '$timeout','$route','breadCrumb', 'defineCurso', 'cropService'];
+    Main.$inject = ['$scope', '$resource', '$timeout','$route','breadCrumb', 'defineCurso', 'cropService', 'modelStrings','modelMenu'];
 
     /* @ngInject */
-    function Main($scope, $resource, $timeout, $route, breadCrumb, defineCurso, cropService) {
+    function Main($scope, $resource, $timeout, $route, breadCrumb, defineCurso, cropService, modelStrings, modelMenu) {
         /* jshint validthis: true */
         var vm = this
             , infoUserPromise = $resource('/api/aluno/infoUsuario').get().$promise;
