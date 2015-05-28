@@ -57,8 +57,8 @@
                                         <th>{{ el.curso }}</th>
                                         <th>{{ el.quantidade }}</th>
                                         <th>{{ el.unidade }}</th>
-                                        <th ng-show="el.status">Completo<button title="Imprimir Contrato" class="btn btn-sm"><i class="entypo-print"></i></button></th>
-                                        <th ng-hide="el.status">Incompleto<button title="Completar Inscrição" class="btn btn-sm"><i class="entypo-pencil"></i></button></th>
+                                        <th class="right" ng-show="el.status">Completo<button title="Imprimir Contrato" class="btn btn-sm"><i class="entypo-print"></i></button></th>
+                                        <th class="right" ng-hide="el.status">Incompleto<button title="Completar Inscrição" class="btn btn-sm"><i class="entypo-pencil"></i></button></th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -557,4 +557,5 @@
         </div>
     </div>
 </form>
-<script src="/assets/js/jquery.bootstrap.wizard.min.js"></script>
+<!-- <script src="/assets/js/jquery.bootstrap.wizard.min.js"></script> -->
+<script type="text/javascript" src="/assets/js/jquery.bootstrap.wizard.min.js"></script>
