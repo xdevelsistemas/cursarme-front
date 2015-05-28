@@ -7,13 +7,15 @@
         'ui.utils',
         'ui.bootstrap',
         'ngImgCrop',
-        'app.controllers',
-        'app.directives',
+        'common.values',
+        'common.filters',
+        'common.services',
+        'common.directives',
         'app.filters',
         'app.services',
-        'common.directives',
-        'common.filters',
-        'common.services'
+        'app.directives',
+        'app.controllers'
+
     ]).config(['$routeProvider', function ($routeProvider) {
 
         //Home

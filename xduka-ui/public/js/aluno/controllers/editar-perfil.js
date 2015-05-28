@@ -5,10 +5,10 @@
     angular.module('app.controllers')
         .controller('EditarPerfil', EditarPerfil);
 
-    EditarPerfil.$inject = ['$scope', '$resource', 'breadCrumb', 'cropService', '$modal'];
+    EditarPerfil.$inject = ['$scope', '$resource', 'breadCrumb', 'cropService', '$modal', 'modelStrings'];
 
     /* @ngInject */
-    function EditarPerfil($scope, $resource, breadCrumb, cropService, $modal) {
+    function EditarPerfil($scope, $resource, breadCrumb, cropService, $modal, modelStrings) {
         /* jshint validthis: true */
         var vm = this
             , perfilPromise = $resource('/api/aluno/editar-perfil').get().$promise;

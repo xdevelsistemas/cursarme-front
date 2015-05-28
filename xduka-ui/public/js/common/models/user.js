@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     //User
-    angular.module('app.values').value('user', {
+    angular.module('common.values').value('user', {
         name: 'Art Ramadani',
         avatar: {
             thumb2: 'assets/images/thumb-1@2x.png',
