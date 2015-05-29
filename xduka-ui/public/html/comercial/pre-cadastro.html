@@ -4,26 +4,26 @@
         <div class="progress-indicator"></div>
     </div>
     <ul>
-        <li>
-            <a class="linkCursor" data-toggle="tab" ng-click="pre.passoZero()">
+        <li class="active">
+            <a data-target="#step0" class="linkCursor" data-toggle="tab" ng-click="pre.passoZero()">
                 <span>0</span>
                 Listagem
             </a>
         </li>
-        <li class="active">
-            <a class="linkCursor" data-toggle="tab" ng-click="pre.passoZero()">
+        <li>
+            <a data-target="#step1" class="linkCursor" data-toggle="tab" ng-click="pre.passoZero()">
                 <span>1</span>
                 Informações Essenciais
             </a>
         </li>
         <li>
-            <a class="linkCursor" data-toggle="tab" ng-click="pre.passoZero()">
+            <a data-target="#step2" class="linkCursor" data-toggle="tab" ng-click="pre.passoZero()">
                 <span>2</span>
                 Informações de Pagamento
             </a>
         </li>
         <li>
-            <a class="linkCursor" data-toggle="tab" ng-click="pre.passoZero()">
+            <a data-target="#step3" class="linkCursor" data-toggle="tab" ng-click="pre.passoZero()">
                 <span>3</span>
                 Documentação Completa
             </a>
@@ -34,7 +34,7 @@
 
     <div class="tab-content">
 
-        <div class="tab-pane" id="step0">
+        <div class="tab-pane active" id="step0">
             <div class="col-md-12">
                 <xd-panel-collapse title="pre._viewInscr.label">
                     <div class="row">
@@ -72,7 +72,7 @@
             </div>
         </div>
 
-        <div class="tab-pane active" id="step1">
+        <div class="tab-pane" id="step1">
             <xd-panel-collapse title="pre._model.aluno.label">
                 <div class="row">
 
@@ -557,5 +557,15 @@
         </div>
     </div>
 </form>
-<!-- <script src="/assets/js/jquery.bootstrap.wizard.min.js"></script> -->
-<script type="text/javascript" src="/assets/js/jquery.bootstrap.wizard.min.js"></script>
+
+<script type="text/javascript">
+    //    SÓ CARREGA OS ARQUIVOS ABAIXO QUANDO OS DOM ESTIVER COMPLETO
+    $(document).ready(function() {
+
+        $.getScript('assets/neon/js/neon-api.js');
+        $.getScript('assets/neon/js/neon-chat.js');
+        $.getScript('assets/neon/js/neon-custom.js');
+        $.getScript('assets/neon/js/neon-demo.js');
+        $.getScript('assets/js/jquery.bootstrap.wizard.min.js');
+    });
+</script>
