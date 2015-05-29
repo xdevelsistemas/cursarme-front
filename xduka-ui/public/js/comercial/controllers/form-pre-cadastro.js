@@ -192,18 +192,6 @@
                 });
             });
 
-            /*BUG WIZARD: STEP PROGRESS FICA MAIOR QUE O ULTIMO PASSO QUANDO ABRE A PAGINA*/
-            function bugStepProgressFix(){
-                $timeout(function () {
-
-                    $('.steps-progress').css({'margin-left': '120.25px', 'margin-right': '120.25px'})
-
-                }, 1500);
-            }
-
-            bugStepProgressFix();
-            /*FIM BUG TEMP FIX*/
-
 
         }
     ]);
