@@ -5,25 +5,25 @@
     </div>
     <ul>
         <li class="active">
-            <a data-target="#step0" class="linkCursor" data-toggle="tab" ng-click="pre.passoZero()">
+            <a data-target="#step0" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
                 <span>0</span>
                 Listagem
             </a>
         </li>
         <li>
-            <a data-target="#step1" class="linkCursor" data-toggle="tab" ng-click="pre.passoZero()">
+            <a data-target="#step1" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
                 <span>1</span>
                 Informações Essenciais
             </a>
         </li>
         <li>
-            <a data-target="#step2" class="linkCursor" data-toggle="tab" ng-click="pre.passoZero()">
+            <a data-target="#step2" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
                 <span>2</span>
                 Informações de Pagamento
             </a>
         </li>
         <li>
-            <a data-target="#step3" class="linkCursor" data-toggle="tab" ng-click="pre.passoZero()">
+            <a data-target="#step3" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
                 <span>3</span>
                 Documentação Completa
             </a>
@@ -508,7 +508,7 @@
                 </button>
             </li>-->
             <li class="previous col-md-3">
-                <button class="btn btn-blue btn-icon icon-left btn-block btn-lg" ng-click="pre.topCollapse();pre.passoZero()">
+                <button class="btn btn-blue btn-icon icon-left btn-block btn-lg" data-ng-disabled="pre.disableAnterior" ng-click="pre.topCollapse();pre.disableBtn()">
                     <i class="entypo-left"></i> Anterior
                 </button>
             </li>
@@ -525,7 +525,7 @@
                     <i class="icon entypo-cw icon-right"></i></button>
             </li>
             <li class="next col-md-3">
-                <button class="btn btn-blue btn-icon icon-right btn-block btn-lg" ng-click="pre.topCollapse();pre.passoZero()">
+                <button class="btn btn-blue btn-icon icon-right btn-block btn-lg" data-ng-disabled="pre.disableProximo" ng-click="pre.topCollapse();pre.disableBtn()">
                     Próximo <i class="entypo-right"></i>
                 </button>
             </li>

@@ -26,13 +26,19 @@
             vm.testeInput = function(){
                 console.log(vm._model.aluno.input)
             };
-            vm.disableAtualiza = true;
-            vm.passoZero = passoZero;
-            function passoZero(){
+            vm.disableAtualiza = false;
+            vm.disableProximo = false;
+            vm.disableAnterior = true;
+            vm.disableBtn = disableBtn;
+
+            function disableBtn(){
                 $timeout(function () {
                     vm.disableAtualiza = $('#step0').attr('class').indexOf('active') == -1;
+                    vm.disableAnterior = $('#step0').attr('class').indexOf('active') != -1;
+                    vm.disableProximo = $('#step3').attr('class').indexOf('active') != -1;
                 }, 300);
             }
+
             comercialPromise
                 .then(function(data){
                     vm._model = data;
@@ -185,12 +191,13 @@
                 $('html, body').animate({scrollTop: 0},'slow');
             };
 
-            $(function(){
+            /*  DESABILITADO PARA TESTE */
+            /*$(function(){
                 $('a').bind('contextmenu', function(e){
                     alert('Função desabilitada para este elemento!');
                     return false;
                 });
-            });
+            });*/
 
 
         }
