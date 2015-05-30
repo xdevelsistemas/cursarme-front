@@ -26,13 +26,19 @@
             vm.testeInput = function(){
                 console.log(vm._model.aluno.input)
             };
-            vm.disableAtualiza = true;
-            vm.passoZero = passoZero;
-            function passoZero(){
+            vm.disableAtualiza = false;
+            vm.disableProximo = false;
+            vm.disableAnterior = true;
+            vm.disableBtn = disableBtn;
+
+            function disableBtn(){
                 $timeout(function () {
                     vm.disableAtualiza = $('#step0').attr('class').indexOf('active') == -1;
+                    vm.disableAnterior = $('#step0').attr('class').indexOf('active') != -1;
+                    vm.disableProximo = $('#step3').attr('class').indexOf('active') != -1;
                 }, 300);
             }
+
             comercialPromise
                 .then(function(data){
                     vm._model = data;
@@ -185,24 +191,82 @@
                 $('html, body').animate({scrollTop: 0},'slow');
             };
 
-            $(function(){
+            /*  DESABILITADO PARA TESTE */
+            /*$(function(){
                 $('a').bind('contextmenu', function(e){
                     alert('Função desabilitada para este elemento!');
                     return false;
                 });
-            });
+            });*/
+            vm.limpaForm = function(){
 
-            /*BUG WIZARD: STEP PROGRESS FICA MAIOR QUE O ULTIMO PASSO QUANDO ABRE A PAGINA*/
-            function bugStepProgressFix(){
-                $timeout(function () {
+                /* ALUNO */
+                vm._model.aluno.cpf.model.val = '';
+                vm._model.aluno.rg.model.val = '';
+                vm._model.aluno.nome.model.val = '';
+                vm._model.aluno.cidade.model.val = '';
+                vm._model.aluno.cep.model.val = '';
+                vm._model.aluno.telefone.model.val = '';
+                vm._model.aluno.tipoTelefone.model.val = '';
+                vm._model.aluno.email.model.val = '';
+                vm._model.aluno.dataExp.model.val = '';
+                vm._model.aluno.orgaoEmissor.model.val = '';
+                vm._model.aluno.tituloEleitor.model.val = '';
+                vm._model.aluno.zona.model.val = '';
+                vm._model.aluno.secao.model.val = '';
+                vm._model.aluno.ufTitulo.model.val = '';
+                vm._model.aluno.certidaoNc.model.val = '';
+                vm._model.aluno.folha.model.val = '';
+                vm._model.aluno.livro.model.val = '';
+                vm._model.aluno.cartorio.model.val = '';
+                vm._model.aluno.certificadoReservista.model.val = '';
+                vm._model.aluno.registro.model.val = '';
+                vm._model.aluno.ufReservista.model.val = '';
+                vm._model.aluno.categoria.model.val = '';
+                vm._model.aluno.sexo.model.val = '';
+                vm._model.aluno.dataNc.model.val = '';
+                vm._model.aluno.raca.model.val = '';
+                vm._model.aluno.estadoCivil.model.val = '';
+                vm._model.aluno.pai.model.val = '';
+                vm._model.aluno.mae.model.val = '';
+                vm._model.aluno.avRua.model.val = '';
+                vm._model.aluno.endNum.model.val = '';
+                vm._model.aluno.apt.model.val = '';
+                vm._model.aluno.bairro.model.val = '';
+                vm._model.aluno.endUf.model.val = '';
+                vm._model.aluno.nacionalidade.model.val = '';
+                vm._model.aluno.naturalidade.model.val = '';
+                vm._model.aluno.natUf.model.val = '';
 
-                    $('.steps-progress').css({'margin-left': '120.25px', 'margin-right': '120.25px'})
+                /* CURSO */
+                vm._model.curso.unidade.model.val = '';
+                vm._model.curso.area.model.val = '';
+                vm._model.curso.curso.model.val = '';
 
-                }, 1500);
+                /* DOCUMENTACAO */
+                vm._model.documentacao.escolaEm.model.val = '';
+                vm._model.documentacao.anoEm.model.val = '';
+                vm._model.documentacao.cursoGrad.model.val = '';
+                vm._model.documentacao.anoGrad.model.val = '';
+                vm._model.documentacao.instituicao.model.val = '';
+
+                /* INSCRIÇÃO */
+                vm._model.inscr.valorInscricao.model.val = '';
+                vm._model.inscr.desconto.model.val = '';
+                vm._model.inscr.formaPagamento.model.val = '';
+                vm._model.inscr.qtdParcelas.model.val = '';
+                vm._model.inscr.melhorData.model.val = '';
+
+                /* PAGAMENTO  */
+                vm._model.pagamento.valorIntegral.model.val = '';
+                vm._model.pagamento.desconto.model.val = '';
+                vm._model.pagamento.formaPagamento.model.val = '';
+                vm._model.pagamento.qtdParcelas.model.val = '';
+                vm._model.pagamento.valorParcela.model.val = '';
+                vm._model.pagamento.melhorData.model.val = '';
+                vm._model.pagamento.observacoes.model.val = '';
+                vm._model.pagamento.listaCheques = [];
             }
-
-            bugStepProgressFix();
-            /*FIM BUG TEMP FIX*/
 
 
         }
