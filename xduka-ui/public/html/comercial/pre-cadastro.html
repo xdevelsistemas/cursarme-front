@@ -36,7 +36,7 @@
 
         <div class="tab-pane active" id="step0">
             <div class="col-md-12">
-                <xd-panel-collapse title="pre._viewInscr.label">
+                <xd-panel-collapse title="pre._viewInscr.inscrPanelCollapse.label">
                     <div class="row">
                         <div class="col-md-12" style="overflow: auto;">
                             <table class="table table-condensed table-bordered table-hover table-striped responsive">
@@ -52,13 +52,13 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="el in pre._viewInscr.list">
-                                        <th>{{ el.nome }}</th>
-                                        <th>{{ el.turma }}</th>
-                                        <th>{{ el.curso }}</th>
-                                        <th>{{ el.quantidade }}</th>
-                                        <th>{{ el.unidade }}</th>
-                                        <th class="right" ng-show="el.status">Completo<button title="Imprimir Contrato" class="btn btn-sm"><i class="entypo-print"></i></button></th>
-                                        <th class="right" ng-hide="el.status">Incompleto<button title="Completar Inscrição" class="btn btn-sm"><i class="entypo-pencil"></i></button></th>
+                                        <th>{{ el.nome.model.val }}</th>
+                                        <th>{{ el.vagas.turma }}</th>
+                                        <th>{{ pre.getCurso(el.curso.model.val) }}</th>
+                                        <th>{{ el.vagas.preenchidas + "/" + el.vagas.totais }}</th>
+                                        <th>{{ el.unidade.model.val }}</th>
+                                        <th ng-show="el.status">Completo<button title="Imprimir Contrato" class="btn btn-sm"><i class="entypo-print"></i></button></th>
+                                        <th ng-hide="el.status">Incompleto<button title="Completar Inscrição" class="btn btn-sm"><i class="entypo-pencil"></i></button></th>
                                     </tr>
                                 </tbody>
                             </table>

@@ -200,6 +200,7 @@
         }
     },
     "vagas":{
+        "turma":"13B",
         "preenchidas":15,
         "totais":18
     },
@@ -479,6 +480,7 @@
         }
     },
     "vagas":{
+        "turma":"13B",
         "preenchidas":15,
         "totais":18
     },
@@ -769,6 +771,7 @@
         }
     },
     "vagas":{
+        "turma":"13B",
         "preenchidas":15,
         "totais":18
     },
