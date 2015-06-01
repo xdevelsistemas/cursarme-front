@@ -73,14 +73,14 @@
         </div>
 
         <div class="tab-pane" id="step1">
-            <xd-panel-collapse title="pre._model.aluno.label">
+            <xd-panel-collapse title="pre._model.alunoPanelCollapse.label">
                 <div class="row">
 
                     <div class="col-md-6">
-                        <xd-input data-params="pre._model.aluno.cpf"></xd-input>
+                        <xd-input data-params="pre._model.cpf"></xd-input>
                     </div>
                     <div class="col-md-6">
-                        <xd-input data-params="pre._model.aluno.rg"
+                        <xd-input data-params="pre._model.rg"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
 
@@ -88,28 +88,28 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.aluno.nome"
+                        <xd-input data-params="pre._model.nome"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-7">
-                        <xd-input data-params="pre._model.aluno.cidade"
+                        <xd-input data-params="pre._model.cidade"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-5">
-                        <xd-input data-params="pre._model.aluno.cep"
+                        <xd-input data-params="pre._model.cep"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-7">
-                        <xd-input data-params="pre._model.aluno.telefone"
+                        <xd-input data-params="pre._model.telefone"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-5">
-                        <xd-select data-params="pre._model.aluno.tipoTelefone"
+                        <xd-select data-params="pre._model.tipoTelefone"
                                    data-change="pre.selectPhoneType"
                                    d-validate="'required'"></xd-select>
                     </div>
@@ -117,19 +117,19 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input-email data-params="pre._model.aluno.email"
+                        <xd-input-email data-params="pre._model.email"
                                   disable="!pre.validaCpf"></xd-input-email>
                     </div>
                 </div>
 
             </xd-panel-collapse>
 
-            <xd-panel-collapse  title="pre._model.curso.label">
+            <xd-panel-collapse  title="pre._model.cursoPanelCollapse.label">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.unidade" data-change="pre.unidadeChange"></xd-select>
+                                <xd-select data-params="pre._model.unidade" data-change="pre.unidadeChange"></xd-select>
                             </div>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.area" data-change="pre.areaChange"></xd-select>
+                                <xd-select data-params="pre._model.area" data-change="pre.areaChange"></xd-select>
                             </div>
                         </div>
                     </div>
@@ -148,18 +148,18 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso.curso" data-change="pre.cursoChange"></xd-select>
+                                <xd-select data-params="pre._model.curso" data-change="pre.cursoChange"></xd-select>
                             </div>
 
                             <div id="precadastro-vagas" class="form-group" ng-show="pre.selectCursoVagas"><br>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5">
-                                    <div data-ng-class="pre._model.curso.vagas.css" class="tile-stats">
+                                    <div data-ng-class="pre._model.vagas.css" class="tile-stats">
                                         <div class="icon"><i class="entypo-users"></i></div>
                                         <h3 id="vagasDisponiveisTitle">Vagas disponíveis</h3>
-                                        <p id="vagasDisponiveisValue" class="num"><span data-ng-bind="pre._model.curso.vagas.getDisponiveis()"></span></p>
+                                        <p id="vagasDisponiveisValue" class="num"><span data-ng-bind="pre._model.vagas.getDisponiveis()"></span></p>
                                         <h3>Vagas totais</h3>
-                                        <p><span data-ng-bind="pre._model.curso.vagas.totais"></span></p>
+                                        <p><span data-ng-bind="pre._model.vagas.totais"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -169,20 +169,20 @@
                 </div>
             </xd-panel-collapse>
 
-            <xd-panel-collapse title="pre._model.inscr.label">
+            <xd-panel-collapse title="pre._model.inscrPanelCollapse.label">
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input-money data-params="pre._model.inscr.valorInscricao" disable="true"></xd-input-money>
+                        <xd-input-money data-params="pre._model.valorInscricao" disable="true"></xd-input-money>
                     </div>
                 </div>
                 <!--div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params="pre._model.inscr.desconto"></xd-select>
+                        <xd-select data-params="pre._model.desconto"></xd-select>
                     </div>
                 </div-->
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params="pre._model.inscr.formaPagamento" data-change="pre.selectChequeStep1"></xd-select>
+                        <xd-select data-params="pre._model.formaPagamentoInscr" data-change="pre.selectChequeStep1"></xd-select>
                     </div>
                 </div>
                 <!--BOTAO ADD CHEQUE-->
@@ -195,8 +195,8 @@
                                         Adicionar Cheques
                                         <i class="entypo-credit-card"></i>
                                     </button>
-                                    <p data-collapse="!pre._model.inscr.desconto.model.err"
-                                       data-ng-bind="pre._model.inscr.desconto.model.err"
+                                    <p data-collapse="!pre._model.desconto.model.err"
+                                       data-ng-bind="pre._model.desconto.model.err"
                                        class="control-label"></p>
                                 </div>
                             </div>
@@ -205,12 +205,12 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <!--xd-select data-params="pre._model.inscr.qtdParcelas"></xd-select>
+                        <!--xd-select data-params="pre._model.qtdParcelas"></xd-select>
                     </div>
                 </--div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params="pre._model.inscr.melhorData"></xd-select-->
+                        <xd-select data-params="pre._model.melhorData"></xd-select-->
                     </div>
                 </div>
             </xd-panel-collapse>
@@ -218,26 +218,26 @@
 
         <div class="tab-pane" id="step2">
 
-            <xd-panel-collapse title="pre._model.pagamento.label">
+            <xd-panel-collapse title="pre._model.pagamentoPanelCollapse.label">
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input-money data-params="pre._model.pagamento.valorIntegral"
+                        <xd-input-money data-params="pre._model.valorIntegral"
                                         disable="true"></xd-input-money>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <!--<xd-input data-params="pre._model.pagamento.desconto"-->
+                        <!--<xd-input data-params="pre._model.desconto"-->
                         <!--disable="!pre.validaCpf"></xd-input>-->
-                        <xd-select data-params="pre._model.pagamento.desconto"
+                        <xd-select data-params="pre._model.desconto"
                                    disabled="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <!--<xd-input data-params="pre._model.pagamento.forma"
+                        <!--<xd-input data-params="pre._model.forma"
                                   disable="!pre.validaCpf"></xd-input>-->
-                        <xd-select data-params="pre._model.pagamento.formaPagamento"
+                        <xd-select data-params="pre._model.formaPagamentoPag"
                                    disable="!pre.validaCpf"
                                    data-change="pre.selectChequeStep2"></xd-select>
                     </div>
@@ -252,8 +252,8 @@
                                         Adicionar Cheques
                                         <i class="entypo-credit-card"></i>
                                     </button>
-                                    <p data-collapse="!pre._model.inscr.desconto.model.err"
-                                       data-ng-bind="pre._model.inscr.desconto.model.err"
+                                    <p data-collapse="!pre._model.desconto.model.err"
+                                       data-ng-bind="pre._model.desconto.model.err"
                                        class="control-label"></p>
                                 </div>
                             </div>
@@ -262,27 +262,27 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <!--<xd-input data-params="pre._model.pagamento.parcelamento"
+                        <!--<xd-input data-params="pre._model.parcelamento"
                                   disable="!pre.validaCpf"></xd-input>-->
-                        <xd-select data-params="pre._model.pagamento.qtdParcelas"
+                        <xd-select data-params="pre._model.qtdParcelas"
                                    disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input-money data-params="pre._model.pagamento.valorParcela"
+                        <xd-input-money data-params="pre._model.valorParcela"
                                         disable="!pre.validaCpf"></xd-input-money>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params="pre._model.pagamento.melhorData"
+                        <xd-select data-params="pre._model.melhorData"
                                   disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input-textarea data-params="pre._model.pagamento.observacoes"
+                        <xd-input-textarea data-params="pre._model.observacoes"
                                            disable="!pre.validaCpf"></xd-input-textarea>
                     </div>
                     <div class="col-md-12">
@@ -295,204 +295,204 @@
 
         <div class="tab-pane" id="step3">
 
-            <xd-panel-collapse title="pre._model.documentacao.label">
+            <xd-panel-collapse title="pre._model.documentacaoPanelColapse.label">
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.aluno.nome"
+                        <xd-input data-params="pre._model.nome"
                                   disable="true"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <xd-input data-params="pre._model.aluno.rg"
+                        <xd-input data-params="pre._model.rg"
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-input-date data-params="pre._model.aluno.dataExp" data-opened="main.opened"
+                        <xd-input-date data-params="pre._model.dataExp" data-opened="main.opened"
                                        date-options="main.dateOptions" data-click="main.open"></xd-input-date>
                     </div>
                     <div class="col-md-4">
-                        <xd-input data-params="pre._model.aluno.orgaoEmissor"
+                        <xd-input data-params="pre._model.orgaoEmissor"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <xd-input data-params="pre._model.aluno.tituloEleitor"
+                        <xd-input data-params="pre._model.tituloEleitor"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input data-params="pre._model.aluno.zona"
+                        <xd-input data-params="pre._model.zona"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input data-params="pre._model.aluno.secao"
+                        <xd-input data-params="pre._model.secao"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-select data-params="pre._model.aluno.ufTitulo"
+                        <xd-select data-params="pre._model.ufTitulo"
                                    disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <xd-input data-params="pre._model.aluno.certidaoNc"
+                        <xd-input data-params="pre._model.certidaoNc"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input data-params="pre._model.aluno.folha"
+                        <xd-input data-params="pre._model.folha"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input data-params="pre._model.aluno.livro"
+                        <xd-input data-params="pre._model.livro"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input data-params="pre._model.aluno.cartorio"
+                        <xd-input data-params="pre._model.cartorio"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <xd-input data-params="pre._model.aluno.certificadoRes"
+                        <xd-input data-params="pre._model.certificadoRes"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-5">
-                        <xd-input data-params="pre._model.aluno.registro"
+                        <xd-input data-params="pre._model.registro"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-select data-params="pre._model.aluno.ufReservista"
+                        <xd-select data-params="pre._model.ufReservista"
                                    disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <xd-input data-params="pre._model.aluno.categoria"
+                        <xd-input data-params="pre._model.categoria"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-5">
-                        <xd-input data-params="pre._model.aluno.cpf"
+                        <xd-input data-params="pre._model.cpf"
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-select data-params="pre._model.aluno.sexo"
+                        <xd-select data-params="pre._model.sexo"
                                    disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5">
-                        <xd-input-date data-params="pre._model.aluno.dataNasc" data-opened="main.opened"
+                        <xd-input-date data-params="pre._model.dataNasc" data-opened="main.opened"
                                        date-options="main.dateOptions" data-click="main.open"></xd-input-date>
                     </div>
                     <div class="col-md-3">
-                        <xd-input data-params="pre._model.aluno.raca"
+                        <xd-input data-params="pre._model.raca"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-input data-params="pre._model.aluno.estadoCivil"
+                        <xd-input data-params="pre._model.estadoCivil"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.aluno.pai"
+                        <xd-input data-params="pre._model.pai"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                    <xd-input data-params="pre._model.aluno.mae"
+                    <xd-input data-params="pre._model.mae"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5">
-                        <xd-input data-params="pre._model.aluno.avRua"
+                        <xd-input data-params="pre._model.avRua"
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-2">
-                        <xd-input data-params="pre._model.aluno.endNum"
+                        <xd-input data-params="pre._model.endNum"
                                   disable="false"></xd-input>
                     </div>
                     <div class="col-md-2">
-                        <xd-input data-params="pre._model.aluno.apt"
+                        <xd-input data-params="pre._model.apt"
                                   disable="false"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-input data-params="pre._model.aluno.cep"
+                        <xd-input data-params="pre._model.cep"
                                   disable="true"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5">
-                        <xd-input data-params="pre._model.aluno.bairro"
+                        <xd-input data-params="pre._model.bairro"
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-input data-params="pre._model.aluno.cidade"
+                        <xd-input data-params="pre._model.cidade"
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-select data-params="pre._model.aluno.endUf"
+                        <xd-select data-params="pre._model.endUf"
                                   disable="true"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5">
-                        <xd-input data-params="pre._model.aluno.telefone"
+                        <xd-input data-params="pre._model.telefone"
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-select data-params="pre._model.aluno.tipoTelefone" disabled="true"></xd-select>
+                        <xd-select data-params="pre._model.tipoTelefone" disabled="true"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input-email data-params="pre._model.aluno.email"
+                        <xd-input-email data-params="pre._model.email"
                                   disable="true"></xd-input-email>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-5">
-                        <xd-input data-params="pre._model.aluno.nacionalidade"
+                        <xd-input data-params="pre._model.nacionalidade"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-input data-params="pre._model.aluno.naturalidade"
+                        <xd-input data-params="pre._model.naturalidade"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
-                        <xd-select data-params="pre._model.aluno.natUf"
+                        <xd-select data-params="pre._model.natUf"
                                    disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
             </xd-panel-collapse>
 
-            <xd-panel-collapse title="pre._model.documentacao.label2">
+            <xd-panel-collapse title="pre._model.documentacaoPanelCollapse.label2">
                 <div class="row">
                     <div class="col-md-8">
-                        <xd-input data-params="pre._model.documentacao.escolaEm"
+                        <xd-input data-params="pre._model.escolaEm"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-input data-params="pre._model.documentacao.anoEm"
+                        <xd-input data-params="pre._model.anoEm"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-8">
-                        <xd-input data-params="pre._model.documentacao.cursoGrad"
+                        <xd-input data-params="pre._model.cursoGrad"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-input data-params="pre._model.documentacao.anoGrad"
+                        <xd-input data-params="pre._model.anoGrad"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.documentacao.instituicao"
+                        <xd-input data-params="pre._model.instituicao"
                                   disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
