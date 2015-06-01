@@ -129,24 +129,6 @@
                 vm._model.aluno.telefone.mask = model == 'cel' ? '?(99)9999-99999' : '?(99)9999-9999';
             };
 
-            vm.sendDadosMatricula = function() {
-                $.extend(vm._model.pagamento.listaCheques, allCheques.getAllCheques());
-
-                var sendDadosMatPromise = $resource('/api/comercial/dados-matricula').save({}, vm._model).$promise;
-
-                sendDadosMatPromise
-                    .then(function(data){
-                        //vm.dadosIniciais.successMessage = vm.STR.SUCESSO;
-                        vm._model = data;
-                        /*$.extend(vm._model.curso.vagas, funcVagas());*/
-
-                        console.log(data);
-                    })
-                    .catch(function(erro) {
-                        console.log("\n"+erro.data+"\n")
-                    });
-            };
-
             vm.sendInscricao = function() {
                 //allCheques.setAllCheques(vm.lista_cheques.lista);
                 //console.log(allCheques.getAllCheques());

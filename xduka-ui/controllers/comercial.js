@@ -97,10 +97,6 @@ function putDadosInscricao(req, res) {
     }
 }
 
-function putDadosMatricula(req, res) {
-    res.json({status: "ok!"})
-}
-
 function setDataExt(a) {
     return new Date(a);
 }

@@ -13,11 +13,7 @@ module.exports = function (app, passport) {
     app.route('/api/comercial/view-inscr')
         .get(controller.showViewInscr);
 
-    //salva-dados-iniciais
-    app.route('/api/comercial/dados-matricula')
-        .post(controller.putDadosMatricula);
-
-    //salva-first-dados
+    //dados-inscricao
     app.route('/api/comercial/dados-inscricao')
         .post(controller.putDadosInscricao);
 
