@@ -42,14 +42,7 @@
             comercialPromise
                 .then(function(data){
                     vm._model = data;
-                    $.extend(vm._model.curso.vagas, {
-                        isEnding: function () {
-                            return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
-                        },
-                        getDisponiveis: function () {
-                            return (parseInt(this.totais) - parseInt(this.preenchidas));
-                        }
-                    });
+                    $.extend(vm._model.curso.vagas, funcVagas());
                 })
                 .catch(function(erro){
                     console.log("\n" + erro.data + "\n");
@@ -145,14 +138,7 @@
                     .then(function(data){
                         //vm.dadosIniciais.successMessage = vm.STR.SUCESSO;
                         vm._model = data;
-                        /*$.extend(vm._model.curso.vagas, {
-                         isEnding: function () {
-                         return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
-                         },
-                         getDisponiveis: function () {
-                         return (parseInt(this.totais) - parseInt(this.preenchidas));
-                         }
-                         });*/
+                        /*$.extend(vm._model.curso.vagas, funcVagas());*/
 
                         console.log(data);
                     })
@@ -162,25 +148,18 @@
             };
 
             vm.sendInscricao = function() {
-                //console.log("Qtd de vagas disponiveis para o curso que você escolheu /==/ " + vm._model.curso.unidade.list[vm._model.curso.unidade.select.unidade].area.list[vm._model.curso.unidade.select.area].curso.list[vm._model.curso.unidade.select.curso].turma[0].vagas.getDisponiveis());
-                console.log("Somente campo de teste (tanto no Node como no angular!)");
-                $.extend(vm._model.pagamento.listaCheques, allCheques.getAllCheques());
+                //allCheques.setAllCheques(vm.lista_cheques.lista);
+                //console.log(allCheques.getAllCheques());
+                $.extend(vm._model.pagamento.listaCheques, lista_cheques.lista);
+                console.log(vm._model.pagamento.listaCheques + 'teste');
 
                 var sendInscricaoPromise = $resource('/api/comercial/dados-inscricao').save({}, vm._model).$promise;
 
                 sendInscricaoPromise
                     .then(function (data) {
                         vm._model = data;
-                        console.log("recebido");
-                        console.log(vm._model);
-                        $.extend(vm._model.curso.vagas, {
-                            isEnding: function () {
-                                return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
-                            },
-                            getDisponiveis: function () {
-                                return (parseInt(this.totais) - parseInt(this.preenchidas));
-                            }
-                        });
+                        //console.log(vm._model);
+                        $.extend(vm._model.curso.vagas, funcVagas());
                     })
                     .catch(function (erro) {
                         console.log("\n" + erro.data + "\n")
@@ -190,6 +169,17 @@
             vm.topCollapse = function(){
                 $('html, body').animate({scrollTop: 0},'slow');
             };
+
+            function funcVagas() {
+                return {
+                    isEnding: function () {
+                        return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
+                    },
+                    getDisponiveis: function () {
+                        return (parseInt(this.totais) - parseInt(this.preenchidas));
+                    }
+                }
+            }
 
             /*  DESABILITADO PARA TESTE */
             /*$(function(){
@@ -219,12 +209,12 @@
                 vm._model.aluno.folha.model.val = '';
                 vm._model.aluno.livro.model.val = '';
                 vm._model.aluno.cartorio.model.val = '';
-                vm._model.aluno.certificadoReservista.model.val = '';
+                vm._model.aluno.certificadoRes.model.val = '';
                 vm._model.aluno.registro.model.val = '';
                 vm._model.aluno.ufReservista.model.val = '';
                 vm._model.aluno.categoria.model.val = '';
                 vm._model.aluno.sexo.model.val = '';
-                vm._model.aluno.dataNc.model.val = '';
+                vm._model.aluno.dataNasc.model.val = '';
                 vm._model.aluno.raca.model.val = '';
                 vm._model.aluno.estadoCivil.model.val = '';
                 vm._model.aluno.pai.model.val = '';
@@ -266,6 +256,8 @@
                 vm._model.pagamento.melhorData.model.val = '';
                 vm._model.pagamento.observacoes.model.val = '';
                 vm._model.pagamento.listaCheques = [];
+
+                lista_cheques.clean();
             }
 
 

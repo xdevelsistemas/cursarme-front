@@ -3,10 +3,10 @@
     angular.module('app.controllers').controller('ModalCheques', [
         '$scope', '$http', 'lista_cheques', '$modalInstance', 'dataCheque', 'allCheques',
         function ($scope, $http, lista_cheques, $modalInstance, dataCheque, allCheques) {
-
-            /* jshint validthis: true */
+        /* jshint validthis: true */
             var vm = this;
 
+            vm._data = {};
             vm._model = {
                 label: "Adicionar Cheques",
                 name: "modal_cheques",
@@ -189,14 +189,11 @@
             };
 
             vm.new_cheque = function(){
-                if ((!!vm._model.banco.model.val&&
-                    !!vm._model.agencia.model.val&&
-                    !!vm._model.conta.model.val&&
-                    !!vm._model.numero.model.val&&
-                    !!vm._model.data.model.val &&
-                    !!vm._model.valor.model.val&&
-                    !!vm._model.titular.model.val)&&(!vm._model.data.model.err)){
-                    /*LIMPANDO CAMPOS DE ERRO*/
+                if (!!vm._model.banco.model.val && !!vm._model.agencia.model.val && !!vm._model.conta.model.val &&
+                    !!vm._model.numero.model.val && !!vm._model.data.model.val && !!vm._model.valor.model.val &&
+                    !!vm._model.titular.model.val && !vm._model.data.model.err){
+
+                /*  LIMPANDO CAMPOS DE ERRO     */
                     vm._model.banco.model.err = '';
                     vm._model.agencia.model.err = '';
                     vm._model.conta.model.err = '';
@@ -246,20 +243,22 @@
             };
 
             vm.lista_cheques = lista_cheques;
+
             vm.voltar = function () {
                 $modalInstance.dismiss('cancel');
-                allCheques.setAllCheques(vm.lista_cheques.lista);
-                console.log(allCheques.getAllCheques());
             };
+
             vm.changeBanco = function(item,model){
                 console.log(item);
                 vm._data.banco = item
             };
+
             vm.validaData = function(){
                 if (isDate($('#input_data').val())){
                     vm._model.data.model.err = '';
                 }
             };
+
             function isDate(date){
                 return /^(0[1-9]|[12][0-9]|3[01])[\/](0[1-9]|1[012])[\/](19|20)\d\d$/gm.test(date)
             }

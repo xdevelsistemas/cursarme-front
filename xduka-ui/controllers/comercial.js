@@ -30,7 +30,6 @@ function getViewInscr(req, res) {
 function putDadosInscricao(req, res) {
 /*  --- Json tela comercial / matricula ---   */
     var dataSent = req.body;
-    console.log(dataSent.curso.vagas.getDisponiveis);
 
     if ((!dataSent.aluno.email.model.err && !!dataSent.aluno.email.model.val) && ((dataSent.curso.vagas.totais - dataSent.curso.vagas.preenchidas) > 0)) {
     //if ((!dataSent.aluno.email.model.err && !!dataSent.aluno.email.model.val) && ((dataSent.curso.vagas.getDisponiveis()) > 0)) {
@@ -54,7 +53,7 @@ function putDadosInscricao(req, res) {
                 "cidade": {"model": {"val": dataSent.aluno.cidade.model.val, "err": ""}},
                 "cpf": {"model": {"val": dataSent.aluno.cpf.model.val, "err": ""}},
                 "email": {"model": {"val": dataSent.aluno.email.model.val, "err": ""}},
-                "nome": {"model": {"val": dataSent.aluno.nome.model.val, "err": "Nome invalido"}},
+                "nome": {"model": {"val": dataSent.aluno.nome.model.val, "err": ""}},
                 "rg": {"model": {"val": dataSent.aluno.rg.model.val, "err": ""}},
                 "telefone": {"model": {"val": dataSent.aluno.telefone.model.val, "err": ""}},
                 "tipoTelefone": {"model": {"val": dataSent.aluno.tipoTelefone.model.val, "err": ""}}
@@ -67,6 +66,8 @@ function putDadosInscricao(req, res) {
                 "valorInscricao": {"model": {"val": dataSent.inscr.valorInscricao.model.val, "err": ""}}
             }
         };
+
+
 
         /*  Como curso está implementado em niveis  */
         /*  Esta parte sera responsavel por gerar os itens selecionados  */
