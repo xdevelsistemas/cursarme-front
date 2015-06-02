@@ -48,7 +48,9 @@ function putDadosInscricao(req, res) {
         /*TODO   Alterar: dataSent.(...) para a sintaxe real da conversa com o BackEnd   */
 
 /*-----------------------------------------------------------------------------------------------------------------------*/
+/*  ==============  =========   ==========  =========== ============    =============   ============    =========== =====*/
 
+        //Dados a serem passados pro backend
         var result = {
             "nome":{"model":{"val":dataSent.nome.model.val}},
             "endereco":{"model":{"val":dataSent.emdereco.model.val}},
