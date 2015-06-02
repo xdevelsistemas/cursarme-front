@@ -52,13 +52,20 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="el in pre._viewInscr.list">
-                                        <th>{{ el.nome.model.val }}</th>
-                                        <th>{{ el.vagas.turma }}</th>
-                                        <th>{{ pre.getCurso(el.curso.model.val) }}</th>
-                                        <th>{{ el.vagas.preenchidas + "/" + el.vagas.totais }}</th>
-                                        <th>{{ el.unidade.model.val }}</th>
-                                        <th ng-show="el.status">Completo<button title="Imprimir Contrato" class="btn btn-sm"><i class="entypo-print"></i></button></th>
-                                        <th ng-hide="el.status">Incompleto<button title="Completar Inscrição" class="btn btn-sm"><i class="entypo-pencil"></i></button></th>
+                                        <th ng-bind="el.nome.model.val"></th>
+                                        <th ng-bind="el.vagas.turma"></th>
+                                        <th ng-bind="el.curso.model.text"></th>
+                                        <th ng-bind="el.vagas.preenchidas + '/' + el.vagas.totais"></th>
+                                        <th ng-bind="el.unidade.model.text"></th>
+                                        <th ng-show="!el.validacoes.length">
+                                            Completo
+                                            <button title="Imprimir Contrato" class="btn btn-sm"><i class="entypo-print"></i></button>
+                                        </th>
+                                        <th ng-hide="!el.validacoes.length">
+                                            Incompleto
+                                            <a data-target="#step1" title="Completar Inscrição" class="btn btn-sm" ng-click="pre.disableBtn(); pre.editarInscr(el)"><span><i class="entypo-pencil"></i></span></a>
+                                            <button title="Imprimir Contrato" class="btn btn-sm"><i class="entypo-print"></i></button>
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>

@@ -25,7 +25,8 @@
         vm.disableProximo = false;
         vm.disableAnterior = true;
         vm.disableBtn = disableBtn;
-        vm.getCurso = getCurso;
+
+        vm.editarInscr = editarInscr;
 
         vm.selectCursoArea = false;
         vm.selectCursoCurso = false;
@@ -48,8 +49,14 @@
             });
 
         viewInscrPromise
-            .then(function(data) {
-                vm._viewInscr = data;
+            .then(function(data2) {
+                vm._viewInscr = data2;
+
+                for (var i = 0; i < data2.list.length; i++) {
+                    for (var j = 0; j < data2.list[i].listaCheques.length; j++) {
+                        vm._viewInscr.list[i].listaCheques[j].data = new Date(data2.list[i].listaCheques[j].data);
+                    }
+                }
             })
             .catch(function(erro) {
                 console.log("\n" + erro.data + "\n");
@@ -148,6 +155,21 @@
             }, 300);
         }
 
+        function editarInscr(item){
+            $.extend(true, vm._model, item);
+
+            vm._model.area.list = $.grep(vm._model.unidade.list, function(e){ return e.id == item.unidade.model.val; })[0].areas;
+            vm._model.curso.list = $.grep(vm._model.area.list, function(e){ return e.id == item.area.model.val; })[0].curso;
+
+            vm.selectCursoArea = true;
+            vm.selectCursoCurso = true;
+            vm.selectCursoVagas = true;
+
+            vm.btnAddChequeStep1 = item.formaPagamentoInscr.model.val == 2;
+            vm.btnAddChequeStep3 = item.formaPagamentoPag.model.val == 2;
+            lista_cheques.addAll(item.listaCheques);
+        }
+
         function funcVagas() {
             return {
                 isEnding: function () {
@@ -157,10 +179,6 @@
                     return (parseInt(this.totais) - parseInt(this.preenchidas));
                 }
             }
-        }
-
-        function getCurso(id) {
-            return $.grep(vm._model.curso.list, function(e){ return e.id == id; }).text;
         }
 
         /*  DESABILITADO PARA TESTE */

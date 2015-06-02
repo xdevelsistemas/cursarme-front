@@ -5,6 +5,7 @@
   },
   "list": [
     {
+      "validacoes":[{}],
       "nome":{
         "model":{
           "val":"João das Couves"
@@ -192,21 +193,23 @@
       },
       "unidade":{
         "model":{
-          "val":1
+          "val":1,
+          "text":"Vitória"
         }
       },
       "area":{
         "model":{
-          "val":1
+          "val":11
         }
       },
       "curso":{
         "model":{
-          "val":2
+          "val":222,
+          "text":"Física"
         }
       },
       "vagas":{
-        "turma":"13B",
+        "turma":"Turma A",
         "preenchidas":15,
         "totais":18
       },
@@ -242,7 +245,7 @@
       },
       "formaPagamentoInscr":{
         "model":{
-          "val":"1"
+          "val":1
         }
       },
       "valorIntegral":{
@@ -285,9 +288,10 @@
       ]
     },
     {
+      "validacoes":[{}],
       "nome":{
         "model":{
-          "val":"João das Couves"
+          "val":"Mariana Ramos"
         }
       },
       "endereco":{
@@ -337,7 +341,7 @@
       },
       "cpf":{
         "model":{
-          "val":"01234567890"
+          "val":"78495162030"
         }
       },
       "tituloEleitor":{
@@ -472,23 +476,25 @@
       },
       "unidade":{
         "model":{
-          "val":1
+          "val":1,
+          "text": "Vitória"
         }
       },
       "area":{
         "model":{
-          "val":1
+          "val":11
         }
       },
       "curso":{
         "model":{
-          "val":2
+          "val":222,
+          "text" :"Química"
         }
       },
       "vagas":{
-        "turma":"B54",
-        "preenchidas":15,
-        "totais":18
+        "turma":"Turma B",
+        "preenchidas":20,
+        "totais":25
       },
       "escolaEm":{
         "model":{
@@ -522,7 +528,7 @@
       },
       "formaPagamentoInscr":{
         "model":{
-          "val":"1"
+          "val":2
         }
       },
       "valorIntegral":{
@@ -569,16 +575,17 @@
           "agencia":"123",
           "conta":"4657",
           "numero":"817648716487165",
-          "data":"2015-06-15T03:00:00.000Z",
+          "data":1436929200000,
           "valor":123.03,
-          "titular":"João das Couves"
+          "titular":"Mariana Ramos"
         }
       ]
     },
     {
+      "validacoes":[{}],
       "nome":{
         "model":{
-          "val":"João das Couves"
+          "val":"Pedro Nascimento"
         }
       },
       "endereco":{
@@ -628,7 +635,7 @@
       },
       "cpf":{
         "model":{
-          "val":"01234567890"
+          "val":"30620951847"
         }
       },
       "tituloEleitor":{
@@ -763,21 +770,23 @@
       },
       "unidade":{
         "model":{
-          "val":1
+          "val":1,
+          "text":"Vitória"
         }
       },
       "area":{
         "model":{
-          "val":1
+          "val":11
         }
       },
       "curso":{
         "model":{
-          "val":2
+          "val":222,
+          "text":"Matemática"
         }
       },
       "vagas":{
-        "turma":"95F",
+        "turma":"Turma C",
         "preenchidas":15,
         "totais":18
       },
@@ -813,7 +822,7 @@
       },
       "formaPagamentoInscr":{
         "model":{
-          "val":"1"
+          "val":2
         }
       },
       "valorIntegral":{
@@ -860,9 +869,9 @@
           "agencia":"123",
           "conta":"4657",
           "numero":"817648716487165",
-          "data":"2015-06-15T03:00:00.000Z",
+          "data":1436929200000,
           "valor":123.03,
-          "titular":"João das Couves"
+          "titular":"Pedro Nascimento"
         },
         {
           "banco":{
@@ -872,9 +881,9 @@
           "agencia":"123",
           "conta":"4657",
           "numero":"817665465468464",
-          "data":"2015-07-15T03:00:00.000Z",
+          "data":1436929200000,
           "valor":132.03,
-          "titular":"João das Couves"
+          "titular":"Pedro Nascimento"
         }
       ]
     }

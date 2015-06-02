@@ -16,6 +16,9 @@
             console.log(cheque);
             console.log('====//');
         },
+        addAll: function (cheques) {
+            this.lista = cheques;
+        },
         clean: function () {
             this.lista = [];
         }
