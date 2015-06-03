@@ -138,6 +138,8 @@
                     vm._model = data;
                     //console.log(vm._model);
                     $.extend(vm._model.vagas, funcVagas());
+                    vm.disableLimpar = false;
+                    disableBtn()
                 })
                 .catch(function (erro) {
                     console.log("\n" + erro.data + "\n")
