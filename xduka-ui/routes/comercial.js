@@ -9,6 +9,10 @@ module.exports = function (app, passport) {
     app.route('/api/comercial/info-usuario')
         .get(controller.showInfoUsuario);
 
+    //modal-cheque
+    app.route('/api/comercial/modal-cheque')
+        .get(controller.showModalCheque);
+
     //view-inscr
     app.route('/api/comercial/view-inscr')
         .get(controller.showViewInscr);
