@@ -1,3 +1,4 @@
+/*
 define([
     'angular',
     'angularInputMasks',
@@ -35,4 +36,4 @@ define([
         'common.filters',
         'common.services'
     ]);
-});
+});*/
