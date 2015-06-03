@@ -2,9 +2,9 @@
     "use strict";
 
     angular.module('app.controllers').controller('FormPreCadastro', [
-        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'allCheques',
+        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque',
 
-    function ($scope, breadCrumb, $timeout, $modal, $resource, lista_cheques, dataCheque, allCheques) {
+    function ($scope, breadCrumb, $timeout, $modal, $resource, lista_cheques, dataCheque) {
 
         /* jshint validthis: true */
         var vm = this
@@ -293,7 +293,8 @@
             },
             editFunc: function(){
                 vm.disableLimpar = true
-            }
+            },
+            editInscr: vm.editarInscr
         }
     }])
 })();
