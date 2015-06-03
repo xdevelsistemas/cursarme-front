@@ -22,9 +22,10 @@
         vm.btnAddChequeStep3 = false;
         vm.btnSendInscr = true;
         vm.disableAtualiza = false;
-        vm.disableProximo = false;
         vm.disableAnterior = true;
         vm.disableBtn = disableBtn;
+        vm.disableLimpar = false;
+        vm.disableProximo = false;
 
         vm.editarInscr = editarInscr;
 
@@ -255,8 +256,25 @@
             vm._model.listaCheques = [];
 
             lista_cheques.clean();
+        };
+
+        vm.cancelEdit = function(){
+            vm.limpaForm();
+            vm.disableLimpar = false;
+            disableBtn()
+
+        };
+
+        vm.condTable = {
+            boolean: function(elem){
+                return typeof(elem) == 'boolean'
+            },
+            checkbox: function(elem){
+                return elem == 'checkbox'
+            },
+            editFunc: function(){
+                vm.disableLimpar = true
+            }
         }
-
-
     }])
 })();
