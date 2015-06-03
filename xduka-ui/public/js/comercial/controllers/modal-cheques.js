@@ -1,8 +1,8 @@
 (function () {
     'use strict';
     angular.module('app.controllers').controller('ModalCheques', [
-        '$scope', '$http', 'lista_cheques', '$modalInstance', 'dataCheque', 'allCheques',
-        function ($scope, $http, lista_cheques, $modalInstance, dataCheque, allCheques) {
+        '$scope', '$http', 'lista_cheques', '$modalInstance', 'dataCheque',
+        function ($scope, $http, lista_cheques, $modalInstance, dataCheque) {
         /* jshint validthis: true */
             var vm = this;
 

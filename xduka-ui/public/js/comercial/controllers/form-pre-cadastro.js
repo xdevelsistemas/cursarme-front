@@ -2,9 +2,9 @@
     "use strict";
 
     angular.module('app.controllers').controller('FormPreCadastro', [
-        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'allCheques',
+        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque',
 
-    function ($scope, breadCrumb, $timeout, $modal, $resource, lista_cheques, dataCheque, allCheques) {
+    function ($scope, breadCrumb, $timeout, $modal, $resource, lista_cheques, dataCheque) {
 
         /* jshint validthis: true */
         var vm = this
@@ -125,8 +125,6 @@
         };
 
         vm.sendInscricao = function() {
-            //allCheques.setAllCheques(vm.lista_cheques.lista);
-            //console.log(allCheques.getAllCheques());
             $.extend(vm._model.listaCheques, lista_cheques.lista);
             console.log(vm._model.listaCheques + 'teste');
 
