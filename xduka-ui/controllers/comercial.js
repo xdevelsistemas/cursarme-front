@@ -1,13 +1,15 @@
 var extend = require('node.extend'),
     dadosComercial = require('../mockup/xduka-json/comercial/dados-comercial.json'),
-    viewInscr = require('../mockup/xduka-json/comercial/viewInscr.json'),
-    usuario = require('../mockup/xduka-json/common/user.json');
+    modalCheque = require('../mockup/xduka-json/comercial/modal-cheque.json'),
+    usuario = require('../mockup/xduka-json/common/user.json'),
+    viewInscr = require('../mockup/xduka-json/comercial/viewInscr.json');
 
 module.exports = function() {
     var controller = {};
 
     controller.showDadosComercial = getDadosComercial;
     controller.showInfoUsuario = getInfoUsuario;
+    controller.showModalCheque = getModalCheque;
     controller.showViewInscr = getViewInscr;
     controller.putDadosInscricao = putDadosInscricao;
 
@@ -20,6 +22,10 @@ function getDadosComercial(req, res) {
 
 function getInfoUsuario(req, res) {
     res.json({"usuario": usuario});
+}
+
+function getModalCheque(req, res) {
+    res.json(modalCheque);
 }
 
 function getViewInscr(req, res) {
@@ -48,7 +54,9 @@ function putDadosInscricao(req, res) {
         /*TODO   Alterar: dataSent.(...) para a sintaxe real da conversa com o BackEnd   */
 
 /*-----------------------------------------------------------------------------------------------------------------------*/
+/*  ==============  =========   ==========  =========== ============    =============   ============    =========== =====*/
 
+        //Dados a serem passados pro backend
         var result = {
             "nome":{"model":{"val":dataSent.nome.model.val}},
             "endereco":{"model":{"val":dataSent.emdereco.model.val}},

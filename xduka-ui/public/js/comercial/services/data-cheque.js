@@ -1,7 +1,7 @@
 (function () {
     'use strict';
-    angular.module('app.services').factory('dataCheque', dataCheque);
 
+    angular.module('app.services').factory('dataCheque', dataCheque);
 
     function dataCheque(){
         var data_cheque = {

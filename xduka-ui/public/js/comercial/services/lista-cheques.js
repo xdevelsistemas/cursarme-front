@@ -5,16 +5,10 @@
         lista: [],
         add: function (cheque) {
             this.lista.push($.extend({}, cheque));
-            console.log('//=== Cheque adicionado:');
-            console.log(cheque);
-            console.log('====//');
         },
         remove: function (cheque) {
             var i = this.lista.indexOf(cheque);
             this.lista.splice(i, 1);
-            console.log('//=== Cheque removido:');
-            console.log(cheque);
-            console.log('====//');
         },
         addAll: function (cheques) {
             this.lista = cheques;

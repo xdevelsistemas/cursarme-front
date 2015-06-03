@@ -18,9 +18,10 @@
         $scope.casa = 'ape';
 
         vm._model = {};
+
+        // Botões de pre-cadastro
         vm.btnAddChequeStep1 = false;
-        vm.btnAddChequeStep3 = false;
-        vm.btnSendInscr = true;
+        vm.btnAddChequeStep2 = false;
         vm.disableAtualiza = false;
         vm.disableAnterior = true;
         vm.disableBtn = disableBtn;
@@ -29,13 +30,12 @@
 
         vm.editarInscr = editarInscr;
 
+        //xd-select de curso
         vm.selectCursoArea = false;
         vm.selectCursoCurso = false;
         vm.selectCursoVagas = false;
 
-        vm.testeInput = function(){
-            console.log(vm._model.input)
-        };
+        // valida todos os campos
         vm.validaCpf = true;
 
         // ==== REQUISIÇÕES ==== //
@@ -72,6 +72,9 @@
             vm._model.area.list = [];
             vm._model.area.model = {'val': '', 'err': ''};
             $.extend(vm._model.area.list, item.areas);
+
+            // limpa a sujeira que fica no model.val quando troca de curso
+            limpaCampoPag();
         };
 
         vm.areaChange = function (item, model) {
@@ -82,18 +85,27 @@
             vm._model.curso.list = [];
             vm._model.curso.model = {'val': '', 'err': ''};
             $.extend(vm._model.curso.list, item.curso);
+
+            // limpa a sujeira que fica no model.val quando troca de curso
+            limpaCampoPag();
         };
 
         vm.cursoChange = function (item, model) {
             vm.selectCursoVagas = true;
 
+            // alimentando valores referentes ao curso selecionado
             $.extend(vm._model.vagas, item.turma[0].vagas);
+            $.extend(vm._model.desconto.list, item.desconto);
+            $.extend(vm._model.qtdParcelas.list, item.qtdParcelas);
+            $.extend(vm._model.melhorData.list, item.melhorData);
 
-            vm.btnSendInscr = false;
+            // limpa a sujeira que fica no model.val quando troca de curso
+            limpaCampoPag();
+
+            // definindo valor de inscrição
             vm._model.valorInscricao.model.val = vm._model.vagas.valorInscricao;
 
             $timeout(function () {
-
                 if ((vm._model.vagas.totais / vm._model.vagas.preenchidas) < 1.5){
                     vm._model.vagas.css.titleRed = true;
                     vm._model.vagas.css.titleBlue = false
@@ -117,8 +129,8 @@
             vm.btnAddChequeStep1 = item.tpCheque;
         };
 
-        vm.selectChequeStep3 = function (item, model) {
-            vm.btnAddChequeStep3 = item.tpCheque;
+        vm.selectChequeStep2 = function (item, model) {
+            vm.btnAddChequeStep2 = item.tpCheque;
         };
 
         vm.selectPhoneType = function (item, model) {
@@ -126,8 +138,6 @@
         };
 
         vm.sendInscricao = function() {
-            //allCheques.setAllCheques(vm.lista_cheques.lista);
-            //console.log(allCheques.getAllCheques());
             $.extend(vm._model.listaCheques, lista_cheques.lista);
             console.log(vm._model.listaCheques + 'teste');
 
@@ -167,7 +177,7 @@
             vm.selectCursoVagas = true;
 
             vm.btnAddChequeStep1 = item.formaPagamentoInscr.model.val == 2;
-            vm.btnAddChequeStep3 = item.formaPagamentoPag.model.val == 2;
+            vm.btnAddChequeStep2 = item.formaPagamentoPag.model.val == 2;
             lista_cheques.addAll(item.listaCheques);
         }
 
@@ -180,6 +190,12 @@
                     return (parseInt(this.totais) - parseInt(this.preenchidas));
                 }
             }
+        }
+
+        function limpaCampoPag() {
+            vm._model.desconto.model.val = "";
+            vm._model.qtdParcelas.model.val = "";
+            vm._model.melhorData.model.val = "";
         }
 
         /*  DESABILITADO PARA TESTE */
@@ -255,6 +271,7 @@
             vm._model.observacoes.model.val = '';
             vm._model.listaCheques = [];
 
+            // limpando cheques adicionados
             lista_cheques.clean();
         };
 

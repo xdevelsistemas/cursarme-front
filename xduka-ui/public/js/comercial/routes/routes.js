@@ -1,11 +1,11 @@
 angular.module('app',[
-    'ui.utils.masks',
     'ngRoute',
     'ngResource',
     'ui.select',
     'ngSanitize',
-    'ui.utils',
     'ui.bootstrap',
+    'ui.utils',
+    'ui.utils.masks',
     'ngImgCrop',
     'common.values',
     'common.filters',
