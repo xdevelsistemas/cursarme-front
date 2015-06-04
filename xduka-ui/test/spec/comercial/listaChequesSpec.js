@@ -20,10 +20,9 @@ describe('lista_cheques', function() {
         };
 
         expect(factory.add(obj));
-        expect(factory.lista.length).toEqual(1);
-        expect(factory.lista[0]).not().toEqual({
+        expect(factory.lista.length).not.toEqual(1);
+        expect(factory.lista[0]).not.toEqual({
             "banco":{"id":"012","text":"012 - BANCO GUANABARA S.A."},
-            "agencia":"123",
             "conta":"4657",
             "numero":"817665465468464",
             "data":1436929200000,
