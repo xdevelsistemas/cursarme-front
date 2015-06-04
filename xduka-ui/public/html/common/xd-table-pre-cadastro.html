@@ -1,0 +1,41 @@
+<div class="scrollTable">
+    <div data-ng-class="{'has-error':!(params.model.err === undefined || params.model.err == '')}"
+     class="form-group">
+    <div class="tableLoading col-md-12 center text-center center-block" style="display: block">
+        <div class="col-md-12">
+            <img src="assets/images/loader-1.gif" alt="Carregando" class="text-center"/>
+        </div>
+        <div class="col-md-12">
+            <p class="text-center">Carregando</p>
+        </div>
+    </div>
+    <div class="divTable col-md-12" style="display: block">
+        <p class="tableOnError text-center text-info" style="display: none">Ops! Conexão lenta. Alguns recursos poderão ser desabilitados.</p>
+        <table id="{{'table_'+params.name}}" class="xd-table-pre table table-striped table-hover">
+            <thead>
+            <tr>
+               <th ng-repeat="head in params.head">{{head.text}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="line in params.list">
+                <th ng-bind="line.nome.model.val"></th>
+                <th ng-bind="line.vagas.turma"></th>
+                <th ng-bind="line.curso.model.text"></th>
+                <th ng-bind="line.vagas.preenchidas+'/'+line.vagas.totais"></th>
+                <th ng-bind="line.unidade.model.text"></th>
+                <th ng-if="!!line.validacoes.length">
+                    <span style="font-size: 11px">Incompleto</span>
+                    <button title="Editar Cadastro" class="btn btn-white" onclick="$('#cursorSetp1').click()" ng-click="cond.editFunc();cond.editInscr(line)"><i class="entypo-pencil"></i></button>
+                    <button title="Imprimir Contrato" class="btn btn-info"><i class="entypo-print"></i></button>
+                </th>
+                <th ng-if="!line.validacoes.length">
+                    <span style="font-size: 11px">Completo</span>
+                    <button title="Imprimir Contrato" class="btn btn-info"><i class="entypo-print"></i></button>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>

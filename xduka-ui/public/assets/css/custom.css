@@ -92,3 +92,13 @@ body {
 .linkCursor:hover {
     cursor:pointer;cursor:hand
 }
+
+.scrollTable{
+    overflow: hidden;
+}
+
+@media (max-width: 769px) {
+    .scrollTable{
+        overflow: scroll;
+    }
+}

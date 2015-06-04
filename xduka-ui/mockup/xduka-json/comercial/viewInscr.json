@@ -3,6 +3,14 @@
     "label": "Matrículas Pendentes",
     "name": "confMat"
   },
+  "head": [
+    {"id": "anome", "text": "Nome"},
+    {"id": "bturma", "text": "Turma"},
+    {"id": "ccurso", "text": "Curso"},
+    {"id": "dquantidade", "text": "Quantidade"},
+    {"id": "eunidade", "text": "Unidade"},
+    {"id": "ffstatus", "text": "Status"}
+  ],
   "list": [
     {
       "validacoes":[],
@@ -888,4 +896,4 @@
       ]
     }
   ]
-}
+  }

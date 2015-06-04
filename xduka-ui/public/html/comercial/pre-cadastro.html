@@ -1,43 +1,42 @@
-<form name="formPreCadastro" class="form-horizontal form-wizard" action method="post" data-target="#step1">
+<form name="formPreCadastro" class="form-horizontal form-wizard" action method="post" data-target="#step1" ng-cloak>
 
     <div class="steps-progress">
         <div class="progress-indicator"></div>
     </div>
     <ul>
         <li class="active">
-            <a data-target="#step0" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
+            <a id="cursorSetp0" data-target="#step0" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
                 <span>0</span>
                 Listagem
             </a>
         </li>
         <li>
-            <a data-target="#step1" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
+            <a id="cursorSetp1" data-target="#step1" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
                 <span>1</span>
                 Informações Essenciais
             </a>
         </li>
         <li>
-            <a data-target="#step2" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
+            <a id="cursorSetp2" data-target="#step2" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
                 <span>2</span>
                 Informações de Pagamento
             </a>
         </li>
         <li>
-            <a data-target="#step3" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
+            <a id="cursorSetp3" data-target="#step3" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
                 <span>3</span>
                 Documentação Completa
             </a>
         </li>
     </ul>
 
-
-
     <div class="tab-content">
 
         <div class="tab-pane active" id="step0">
             <div class="col-md-12">
                 <xd-panel-collapse title="pre._viewInscr.inscrPanelCollapse.label">
-                    <div class="row">
+                    <xd-table-pre-cadastro data-cond="pre.condTable" data-params="pre._viewInscr"></xd-table-pre-cadastro>
+                    <!--<div class="row">
                         <div class="col-md-12" style="overflow: auto;">
                             <table class="table table-condensed table-bordered table-hover table-striped responsive">
                                 <thead>
@@ -52,25 +51,18 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="el in pre._viewInscr.list">
-                                        <th ng-bind="el.nome.model.val"></th>
-                                        <th ng-bind="el.vagas.turma"></th>
-                                        <th ng-bind="el.curso.model.text"></th>
-                                        <th ng-bind="el.vagas.preenchidas + '/' + el.vagas.totais"></th>
-                                        <th ng-bind="el.unidade.model.text"></th>
-                                        <th ng-show="!el.validacoes.length">
-                                            Completo
-                                            <button title="Imprimir Contrato" class="btn btn-sm"><i class="entypo-print"></i></button>
-                                        </th>
-                                        <th ng-hide="!el.validacoes.length">
-                                            Incompleto
-                                            <a data-target="#step1" title="Completar Inscrição" class="btn btn-sm" ng-click="pre.disableBtn(); pre.editarInscr(el)"><span><i class="entypo-pencil"></i></span></a>
-                                            <button title="Imprimir Contrato" class="btn btn-sm"><i class="entypo-print"></i></button>
-                                        </th>
+                                        <th>{{ el.nome }}</th>
+                                        <th>{{ el.turma }}</th>
+                                        <th>{{ el.curso }}</th>
+                                        <th>{{ el.quantidade }}</th>
+                                        <th>{{ el.unidade }}</th>
+                                        <th class="right" ng-show="el.status">Completo<button title="Imprimir Contrato" class="btn btn-sm"><i class="entypo-print"></i></button></th>
+                                        <th class="right" ng-hide="el.status">Incompleto<button title="Completar Inscrição" class="btn btn-sm"><i class="entypo-pencil"></i></button></th>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div>-->
                 </xd-panel-collapse>
                 <div class="row">
                     <div class="centered center-block text-center">
@@ -520,7 +512,7 @@
                 </button>
             </li>
             <li class="col-md-3 inLine">
-                <button class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="pre.sendInscricao()">
+                <button class="btn btn-green btn-lg btn-icon icon-left btn-block" data-ng-disabled="pre.disableAnterior" ng-click="pre.sendInscricao()">
                     Salvar
                     <i class="entypo-check"></i>
                 </button>
@@ -531,10 +523,15 @@
                     Atualizar
                     <i class="icon entypo-cw icon-right"></i></button>
             </li>
-            <li class="col-md-3 inLine" ng-show="pre.disableAtualiza">
+            <li class="col-md-3 inLine" ng-show="pre.disableAtualiza&&!pre.disableLimpar">
                 <button class="btn btn-warning btn-icon icon-left btn-block btn-lg" data-toggle="modal" data-target="#confirmClear">
                     Limpar
                     <i class="icon entypo-cup icon-right"></i></button>
+            </li>
+            <li class="col-md-3 inLine" ng-show="pre.disableAtualiza&&pre.disableLimpar">
+                <button class="btn btn-danger btn-icon icon-left btn-block btn-lg" data-toggle="modal" data-target="#confirmCancel">
+                    Cancelar
+                    <i class="icon entypo-cancel icon-right"></i></button>
             </li>
             <li class="next col-md-3" ng-show="pre.disableAtualiza">
                 <button class="btn btn-blue btn-icon icon-right btn-block btn-lg" ng-click="pre.topCollapse();pre.disableBtn()" data-ng-disabled="pre.disableProximo">
@@ -592,6 +589,7 @@
 
     });
 </script>
+<!-- MODAL LIMPAR -->
 <div aria-hidden="true" style="display: none;" class="modal fade" id="confirmClear">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -611,6 +609,33 @@
                     </div>
                     <div class="col-sm-6 text-center">
                         <button type="button" class="btn btn-danger btn-lg btn-icon icon-left pull-right" data-dismiss="modal" data-ng-click="pre.limpaForm()"><i class="entypo-cup"></i>Limpar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL CANCELAR-->
+<div aria-hidden="true" style="display: none;" class="modal fade" id="confirmCancel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Cancelar edição</h4>
+            </div>
+            <div class="modal-body">
+
+                <p class="text-danger">TEM CERTEZA QUE DESEJA CANCELAR A EDIÇÃO DO CADASTRO ATUAL?</p>
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-sm-6 text-center">
+                        <button type="button" class="btn btn-default btn-lg btn-icon icon-left pull-left" data-dismiss="modal"><i class="entypo-left-bold"></i>Voltar</button>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <button type="button" class="btn btn-danger btn-lg btn-icon icon-left pull-right" data-dismiss="modal" data-ng-click="pre.cancelEdit()" data-target="#step0" onclick="$('#cursorSetp0').click()"><i class="entypo-cancel  "></i>Cancelar</button>
                     </div>
                 </div>
             </div>
