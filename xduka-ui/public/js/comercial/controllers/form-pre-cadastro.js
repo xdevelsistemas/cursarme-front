@@ -14,8 +14,8 @@
         breadCrumb.title = 'Pré Cadastro';
 
         // ==== MODELOS ==== //
-        $scope.cor = 'blue';
-        $scope.casa = 'ape';
+        vm.cor = 'blue';
+        vm.casa = 'ape';
 
         vm._model = {};
 
