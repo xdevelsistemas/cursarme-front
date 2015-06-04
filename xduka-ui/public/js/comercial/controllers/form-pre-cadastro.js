@@ -209,6 +209,11 @@
          });*/
         vm.limpaForm = function(){
 
+            // escondendo select's de curso
+            vm.selectCursoArea = false;
+            vm.selectCursoCurso = false;
+            vm.selectCursoVagas = false;
+
             /* ALUNO */
             vm._model.cpf.model.val = '';
             vm._model.rg.model.val = '';
@@ -280,8 +285,8 @@
         vm.cancelEdit = function(){
             vm.limpaForm();
             vm.disableLimpar = false;
-            disableBtn()
 
+            disableBtn()
         };
 
         vm.condTable = {
