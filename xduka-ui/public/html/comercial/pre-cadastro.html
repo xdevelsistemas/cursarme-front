@@ -524,7 +524,7 @@
                     <i class="icon entypo-cw icon-right"></i></button>
             </li>
             <li class="col-md-3 inLine" ng-show="pre.disableAtualiza&&!pre.disableLimpar">
-                <button class="btn btn-warning btn-icon icon-left btn-block btn-lg" data-toggle="modal" data-target="#confirmClear">
+                <button class="btn btn-warning btn-icon icon-left btn-block btn-lg" data-toggle="modal" data-target="#confirmClear" data-ng-disabled="pre._model.cpf.model.val.length != 11">
                     Limpar
                     <i class="icon entypo-cup icon-right"></i></button>
             </li>
@@ -582,11 +582,6 @@
         $.getScript('assets/neon/js/neon-demo.js');
         $.getScript('assets/js/jquery.bootstrap.wizard.min.js');
 
-        /*reduzindo o excesso da barra de progresso*/
-        setTimeout(function(){
-            $('.steps-progress').css({'margin-left': '120.25px', 'margin-right': '120.25px'})
-        },500)
-
     });
 </script>
 <!-- MODAL LIMPAR -->
@@ -636,6 +631,33 @@
                     </div>
                     <div class="col-sm-6 text-center">
                         <button type="button" class="btn btn-danger btn-lg btn-icon icon-left pull-right" data-dismiss="modal" data-ng-click="pre.cancelEdit()" data-target="#step0" onclick="$('#cursorSetp0').click()"><i class="entypo-cancel  "></i>Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL EDIÇÃO-->
+<div aria-hidden="true" style="display: none;" class="modal fade" id="confirmEdit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Processo de edição/cadastro em andamento</h4>
+            </div>
+            <div class="modal-body">
+
+                <p class="text-danger"><i class="fa fa-lg"></i>Há, atualmente, um cadastro em processo de edição/cadastro, deseja ignorá-lo?</p><p class="text-center text-warning">*Qualquer alteração feita será despresada</p>
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-sm-6 text-center">
+                        <button type="button" class="btn btn-default btn-lg btn-icon icon-left pull-left" data-dismiss="modal"><i class="entypo-left-bold"></i>Não</button>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <button type="button" class="btn btn-danger btn-lg btn-icon icon-left pull-right" data-dismiss="modal" ng-click="pre.confirmEdit(pre.tempItem)" data-target="#step0" onclick="$('#cursorSetp1').click()"><i class="entypo-cancel"></i>Sim</button>
                     </div>
                 </div>
             </div>
