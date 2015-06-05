@@ -32,6 +32,44 @@
 
     <div class="tab-content">
 
+        <div class="alert alert-danger col-md-12" role="alert" ng-show="pre.editing&&pre.showAlert">
+            <button type="button" class="close" aria-label="Close" data-ng-click="pre.disableAlert()"><span aria-hidden="true">&times;</span></button>
+            <span class="alert-title">Campos aguardando preenchimento:</span>
+            <span class="alert-padding" data-ng-show="!pre._model.dataExp.model.val">{{pre._model.dataExp.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.orgaoEmissor.model.val">{{pre._model.orgaoEmissor.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.tituloEleitor.model.val">{{pre._model.tituloEleitor.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.zona.model.val">{{pre._model.zona.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.secao.model.val">{{pre._model.secao.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.ufTitulo.model.val">{{pre._model.ufTitulo.label}} Título;</span>
+            <span class="alert-padding" data-ng-show="!pre._model.certidaoNc.model.val">{{pre._model.certidaoNc.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.folha.model.val">{{pre._model.folha.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.livro.model.val">{{pre._model.livro.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.cartorio.model.val">{{pre._model.cartorio.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.certificadoRes.model.val">{{pre._model.certificadoRes.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.registro.model.val">{{pre._model.registro.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.ufReservista.model.val">{{pre._model.ufReservista.label}} Reservista;</span>
+            <span class="alert-padding" data-ng-show="!pre._model.categoria.model.val">{{pre._model.categoria.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.sexo.model.val">{{pre._model.sexo.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.dataNasc.model.val">{{pre._model.dataNasc.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.raca.model.val">{{pre._model.raca.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.estadoCivil.model.val">{{pre._model.estadoCivil.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.pai.model.val">{{pre._model.pai.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.mae.model.val">{{pre._model.mae.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.avRua.model.val">{{pre._model.avRua.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.endNum.model.val">{{pre._model.endNum.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.apt.model.val">{{pre._model.apt.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.bairro.model.val">{{pre._model.bairro.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.endUf.model.val">{{pre._model.endUf.label}} Endereço;</span>
+            <span class="alert-padding" data-ng-show="!pre._model.nacionalidade.model.val">{{pre._model.nacionalidade.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.naturalidade.model.val">{{pre._model.naturalidade.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.natUf.model.val">{{pre._model.natUf.label}} Naturalidade;</span>
+            <span class="alert-padding" data-ng-show="!pre._model.escolaEm.model.val">{{pre._model.escolaEm.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.anoEm.model.val">{{pre._model.anoEm.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.cursoGrad.model.val">{{pre._model.cursoGrad.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.anoGrad.model.val">{{pre._model.anoGrad.label}};</span>
+            <span class="alert-padding" data-ng-show="!pre._model.instituicao.model.val">{{pre._model.instituicao.label}};</span>
+        </div>
+
         <div class="tab-pane active" id="step0">
             <div class="col-md-12">
                 <xd-panel-collapse title="pre._viewInscr.inscrPanelCollapse.label">

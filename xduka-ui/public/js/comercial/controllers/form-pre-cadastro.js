@@ -23,6 +23,7 @@
         vm.btnAddChequeStep1 = false;
         vm.btnAddChequeStep2 = false;
         vm.confirmEdit = confirmEdit;
+        vm.disableAlert = disableAlert;
         vm.disableAtualiza = false;
         vm.disableAnterior = true;
         vm.disableBtn = disableBtn;
@@ -30,6 +31,7 @@
         vm.disableProximo = false;
         vm.editarInscr = editarInscr;
         vm.editing = false;
+        vm.showAlert = true;
 
         //xd-select de curso
         vm.selectCursoArea = false;
@@ -172,10 +174,15 @@
             }, 300);
         }
 
+        function disableAlert(){
+            vm.showAlert = false;
+        }
+
         function editarInscr(item){
 
             if (!vm.editing) {
                 vm.editing = true;
+                vm.showAlert = true;
                 vm.disableLimpar = true;
                 $.extend(true, vm._model, item);
 
