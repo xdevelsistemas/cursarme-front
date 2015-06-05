@@ -4,7 +4,9 @@
     angular.module('app.services').value('lista_cheques', {
         lista: [],
         add: function (cheque) {
-            this.lista.push($.extend({}, cheque));
+            if (Object.keys(cheque).length == 7) {
+                this.lista.push($.extend({}, cheque));
+            }
         },
         remove: function (cheque) {
             var i = this.lista.indexOf(cheque);
