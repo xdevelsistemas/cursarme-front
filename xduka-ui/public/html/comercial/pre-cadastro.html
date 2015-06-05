@@ -80,7 +80,7 @@
                     </div>
                     <div class="col-md-6">
                         <xd-input data-params="pre._model.rg"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
 
                 </div>
@@ -88,36 +88,37 @@
                 <div class="row">
                     <div class="col-md-12">
                         <xd-input data-params="pre._model.nome"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-7">
                         <xd-input data-params="pre._model.cidade"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-5">
                         <xd-input data-params="pre._model.cep"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-7">
                         <xd-input data-params="pre._model.telefone"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-5">
                         <xd-select data-params="pre._model.tipoTelefone"
                                    data-change="pre.selectPhoneType"
-                                   d-validate="'required'"></xd-select>
+                                   d-validate="'required'"
+                                   data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
                         <xd-input-email data-params="pre._model.email"
-                                  disable="!pre.validaCpf"></xd-input-email>
+                                  data-disable="!pre.validaCpf"></xd-input-email>
                     </div>
                 </div>
 
@@ -128,7 +129,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.unidade" data-change="pre.unidadeChange"></xd-select>
+                                <xd-select data-params="pre._model.unidade" data-change="pre.unidadeChange" data-disable="!pre.validaCpf"></xd-select>
                             </div>
                         </div>
                     </div>
@@ -137,7 +138,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.area" data-change="pre.areaChange"></xd-select>
+                                <xd-select data-params="pre._model.area" data-change="pre.areaChange" data-disable="!pre.validaCpf"></xd-select>
                             </div>
                         </div>
                     </div>
@@ -147,7 +148,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso" data-change="pre.cursoChange"></xd-select>
+                                <xd-select data-params="pre._model.curso" data-change="pre.cursoChange" data-disable="!pre.validaCpf"></xd-select>
                             </div>
 
                             <div id="precadastro-vagas" class="form-group" ng-show="pre.selectCursoVagas"><br>
@@ -176,12 +177,12 @@
                 </div>
                 <!--div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params="pre._model.desconto"></xd-select>
+                        <xd-select data-params="pre._model.desconto" data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div-->
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params="pre._model.formaPagamentoInscr" data-change="pre.selectChequeStep1"></xd-select>
+                        <xd-select data-params="pre._model.formaPagamentoInscr" data-change="pre.selectChequeStep1" data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <!--BOTAO ADD CHEQUE-->
@@ -209,7 +210,7 @@
                 </--div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params="pre._model.melhorData"></xd-select-->
+                        <xd-select data-params="pre._model.melhorData" data-disable="!pre.validaCpf"></xd-select-->
                     </div>
                 </div>
             </xd-panel-collapse>
@@ -227,18 +228,18 @@
                 <div class="row">
                     <div class="col-md-12">
                         <!--<xd-input data-params="pre._model.desconto"-->
-                        <!--disable="!pre.validaCpf"></xd-input>-->
+                        <!--data-disable="!pre.validaCpf"></xd-input>-->
                         <xd-select data-params="pre._model.desconto"
-                                   disabled="!pre.validaCpf"></xd-select>
+                                   disabled="!pre.validaCpf" data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <!--<xd-input data-params="pre._model.forma"
-                                  disable="!pre.validaCpf"></xd-input>-->
+                                  data-disable="!pre.validaCpf"></xd-input>-->
                         <xd-select data-params="pre._model.formaPagamentoPag"
-                                   disable="!pre.validaCpf"
-                                   data-change="pre.selectChequeStep2"></xd-select>
+                                   data-disable="!pre.validaCpf"
+                                   data-change="pre.selectChequeStep2" data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <!--BOTÃO ADD CHEQUE-->
@@ -262,27 +263,27 @@
                 <div class="row">
                     <div class="col-md-12">
                         <!--<xd-input data-params="pre._model.parcelamento"
-                                  disable="!pre.validaCpf"></xd-input>-->
+                                  data-disable="!pre.validaCpf"></xd-input>-->
                         <xd-select data-params="pre._model.qtdParcelas"
-                                   disable="!pre.validaCpf"></xd-select>
+                                   data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <xd-input-money data-params="pre._model.valorParcela"
-                                        disable="!pre.validaCpf"></xd-input-money>
+                                        data-disable="!pre.validaCpf"></xd-input-money>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <xd-select data-params="pre._model.melhorData"
-                                  disable="!pre.validaCpf"></xd-select>
+                                  data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <xd-input-textarea data-params="pre._model.observacoes"
-                                           disable="!pre.validaCpf"></xd-input-textarea>
+                                           data-disable="!pre.validaCpf"></xd-input-textarea>
                     </div>
                     <div class="col-md-12">
 
@@ -312,63 +313,63 @@
                     </div>
                     <div class="col-md-4">
                         <xd-input data-params="pre._model.orgaoEmissor"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
                         <xd-input data-params="pre._model.tituloEleitor"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
                         <xd-input data-params="pre._model.zona"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
                         <xd-input data-params="pre._model.secao"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
                         <xd-select data-params="pre._model.ufTitulo"
-                                   disable="!pre.validaCpf"></xd-select>
+                                   data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
                         <xd-input data-params="pre._model.certidaoNc"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
                         <xd-input data-params="pre._model.folha"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
                         <xd-input data-params="pre._model.livro"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
                         <xd-input data-params="pre._model.cartorio"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <xd-input data-params="pre._model.certificadoRes"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-5">
                         <xd-input data-params="pre._model.registro"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
                         <xd-select data-params="pre._model.ufReservista"
-                                   disable="!pre.validaCpf"></xd-select>
+                                   data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <xd-input data-params="pre._model.categoria"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-5">
                         <xd-input data-params="pre._model.cpf"
@@ -376,7 +377,7 @@
                     </div>
                     <div class="col-md-3">
                         <xd-select data-params="pre._model.sexo"
-                                   disable="!pre.validaCpf"></xd-select>
+                                   data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
@@ -386,23 +387,23 @@
                     </div>
                     <div class="col-md-3">
                         <xd-input data-params="pre._model.raca"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-4">
                         <xd-input data-params="pre._model.estadoCivil"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <xd-input data-params="pre._model.pai"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                     <xd-input data-params="pre._model.mae"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
@@ -455,15 +456,15 @@
                 <div class="row">
                     <div class="col-md-5">
                         <xd-input data-params="pre._model.nacionalidade"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-4">
                         <xd-input data-params="pre._model.naturalidade"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
                         <xd-select data-params="pre._model.natUf"
-                                   disable="!pre.validaCpf"></xd-select>
+                                   data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
             </xd-panel-collapse>
@@ -472,27 +473,27 @@
                 <div class="row">
                     <div class="col-md-8">
                         <xd-input data-params="pre._model.escolaEm"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-4">
                         <xd-input data-params="pre._model.anoEm"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-8">
                         <xd-input data-params="pre._model.cursoGrad"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-4">
                         <xd-input data-params="pre._model.anoGrad"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <xd-input data-params="pre._model.instituicao"
-                                  disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
             </xd-panel-collapse>
