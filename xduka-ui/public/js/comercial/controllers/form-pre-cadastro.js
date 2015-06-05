@@ -36,7 +36,7 @@
         vm.selectCursoVagas = false;
 
         // valida todos os campos
-        vm.validaCpf = true;
+        vm.validaCpf = false;
 
         // ==== REQUISIÇÕES ==== //
 
@@ -62,6 +62,27 @@
             .catch(function(erro) {
                 console.log("\n" + erro.data + "\n");
             });
+
+        vm.verificaCpf = function (cpf) {
+            if (cpf.length == 11) {
+                try {
+                    console.log(cpf);
+                    var verificaCpfPromise = $resource('/api/comercial/verifica-cpf').save({}, {"cpf": cpf}).$promise;
+
+                    verificaCpfPromise
+                        .then(function (data) {
+                            vm._model.cpf.model.err = data.dados.msg;
+                            vm._model.unidade.list = data.dadosCurso.unidade.list;
+                            vm.validaCpf = !data.dados.msg;
+                        })
+                        .catch(function (erro) {
+                            console.log(erro);
+                        })
+                }catch(erro){
+                    console.log("Erro:\n" + erro);
+                }
+            }
+        };
 
         vm.unidadeChange = function (item, model) {
             vm.selectCursoArea = true;

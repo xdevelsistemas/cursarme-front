@@ -13,6 +13,9 @@ module.exports = function (app, passport) {
     app.route('/api/comercial/modal-cheque')
         .get(controller.showModalCheque);
 
+    app.route('/api/comercial/verifica-cpf')
+        .post(controller.putVerificaCpf);
+
     //view-inscr
     app.route('/api/comercial/view-inscr')
         .get(controller.showViewInscr);

@@ -1,0 +1,12 @@
+{
+  "verificaCpf": [
+    {
+      "cpf": "00000000001",
+      "msg": ""
+    },
+    {
+      "cpf": "00000000002",
+      "msg": "Fulano com pendências no financeiro"
+    }
+  ]
+}

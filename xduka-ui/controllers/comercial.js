@@ -1,5 +1,7 @@
 var extend = require('node.extend'),
     dadosComercial = require('../mockup/xduka-json/comercial/dados-comercial.json'),
+    dadosCurso = require('../mockup/xduka-json/comercial/dados-cursos.json'),
+    dadosTesteCpf = require('../mockup/xduka-json/comercial/dados-testes-cpf.json'),
     modalCheque = require('../mockup/xduka-json/comercial/modal-cheque.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
     viewInscr = require('../mockup/xduka-json/comercial/viewInscr.json');
@@ -10,6 +12,7 @@ module.exports = function() {
     controller.showDadosComercial = getDadosComercial;
     controller.showInfoUsuario = getInfoUsuario;
     controller.showModalCheque = getModalCheque;
+    controller.putVerificaCpf = putVerificaCpf;
     controller.showViewInscr = getViewInscr;
     controller.putDadosInscricao = putDadosInscricao;
 
@@ -26,6 +29,29 @@ function getInfoUsuario(req, res) {
 
 function getModalCheque(req, res) {
     res.json(modalCheque);
+}
+
+function putVerificaCpf(req, res) {
+    console.log(req.body.cpf);
+
+    var dados = verificaCpf(dadosTesteCpf.verificaCpf, req.body.cpf);
+
+    if (!!dados) {
+        res.json({"dados": dados, "dadosCurso": {"unidade": {"list": []}}});
+    }else{
+        dados = {};
+        dados.cpf = req.body.cpf;
+        dados.msg = "CPF inválido";
+        res.json({"dados": dados, "dadosCurso": dadosCurso});
+    }
+}
+
+function verificaCpf(obj, cpf) {
+    for (var i = 0; i < obj.length; i++) {
+        if (obj[i].cpf == cpf) {
+            return obj[i];
+        }
+    }
 }
 
 function getViewInscr(req, res) {
