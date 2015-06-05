@@ -66,7 +66,6 @@
         vm.verificaCpf = function (cpf) {
             if (cpf.length == 11) {
                 try {
-                    console.log(cpf);
                     var verificaCpfPromise = $resource('/api/comercial/verifica-cpf').save({}, {"cpf": cpf}).$promise;
 
                     verificaCpfPromise

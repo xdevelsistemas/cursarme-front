@@ -32,8 +32,6 @@ function getModalCheque(req, res) {
 }
 
 function putVerificaCpf(req, res) {
-    console.log(req.body.cpf);
-
     var dados = verificaCpf(dadosTesteCpf.verificaCpf, req.body.cpf);
 
     if (!!dados) {
