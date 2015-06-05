@@ -22,13 +22,14 @@
         // Botões de pre-cadastro
         vm.btnAddChequeStep1 = false;
         vm.btnAddChequeStep2 = false;
+        vm.confirmEdit = confirmEdit;
         vm.disableAtualiza = false;
         vm.disableAnterior = true;
         vm.disableBtn = disableBtn;
         vm.disableLimpar = false;
         vm.disableProximo = false;
-
         vm.editarInscr = editarInscr;
+        vm.editing = false;
 
         //xd-select de curso
         vm.selectCursoArea = false;
@@ -37,6 +38,9 @@
 
         // valida todos os campos
         vm.validaCpf = true;
+
+        // temporarias de dados
+        vm.tempItem = {}; /* Guarda um obj para confirmar a edição em caso de uma edição quando um cadastro já está sendo editado */
 
         // ==== REQUISIÇÕES ==== //
 
@@ -169,18 +173,43 @@
         }
 
         function editarInscr(item){
-            $.extend(true, vm._model, item);
 
-            vm._model.area.list = $.grep(vm._model.unidade.list, function(e){ return e.id == item.unidade.model.val; })[0].areas;
-            vm._model.curso.list = $.grep(vm._model.area.list, function(e){ return e.id == item.area.model.val; })[0].curso;
+            if (!vm.editing) {
+                vm.editing = true;
+                vm.disableLimpar = true;
+                $.extend(true, vm._model, item);
 
-            vm.selectCursoArea = true;
-            vm.selectCursoCurso = true;
-            vm.selectCursoVagas = true;
+                vm._model.area.list = $.grep(vm._model.unidade.list, function (e) {
+                    return e.id == item.unidade.model.val;
+                })[0].areas;
+                vm._model.curso.list = $.grep(vm._model.area.list, function (e) {
+                    return e.id == item.area.model.val;
+                })[0].curso;
 
-            vm.btnAddChequeStep1 = item.formaPagamentoInscr.model.val == 2;
-            vm.btnAddChequeStep2 = item.formaPagamentoPag.model.val == 2;
-            lista_cheques.addAll(item.listaCheques);
+                vm.selectCursoArea = true;
+                vm.selectCursoCurso = true;
+                vm.selectCursoVagas = true;
+
+                vm.btnAddChequeStep1 = item.formaPagamentoInscr.model.val == 2;
+                vm.btnAddChequeStep2 = item.formaPagamentoPag.model.val == 2;
+                lista_cheques.addAll(item.listaCheques);
+            }else{
+                $('#confirmEdit').modal('show');
+                vm.tempItem = item;
+                /*if(window.confirm('Há um cadastro atual em edição/cadastro, deseja ignorá-lo?')){
+                    vm.editing = false;
+                    vm.disableBtn();
+                    vm.limpaForm();
+                    $('#cursorSetp0').click()
+                }else{
+                    vm.disableBtn();
+                }*/
+            }
+        }
+
+        function confirmEdit(itemBkp){
+            vm.limpaForm();
+            vm.editarInscr(itemBkp);
         }
 
         function funcVagas() {
@@ -275,12 +304,16 @@
 
             // limpando cheques adicionados
             lista_cheques.clean();
+
+            vm.editing = false;
+            vm.disableLimpar = false;
         };
 
         vm.cancelEdit = function(){
             vm.limpaForm();
             vm.disableLimpar = false;
-            disableBtn()
+            disableBtn();
+            vm.editing = false;
 
         };
 
@@ -292,7 +325,7 @@
                 return elem == 'checkbox'
             },
             editFunc: function(){
-                vm.disableLimpar = true
+                vm.disableLimpar = true;
             },
             editInscr: vm.editarInscr
         }
