@@ -111,3 +111,10 @@ body {
     padding-left: 1%;
     display: table;
 }
+
+.alertContent{
+    -webkit-column-count:3; /* Chrome, Safari, Opera */
+    -moz-column-count:3;    /* Firefox */
+    column-count:3;         /* padrão */
+    overflow: auto;
+}
