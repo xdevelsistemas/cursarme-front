@@ -14,11 +14,13 @@
         <table id="{{'table_'+params.name}}" class="xd-table-pre table table-striped table-hover">
             <thead>
             <tr>
+                <th ng-if="!!params.naoEhComercial">Ação</th>
                <th ng-repeat="head in params.head">{{head.text}}</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="line in params.list">
+                <th ng-if="!!params.naoEhComercial"><input type="checkbox" ng-model="line.action"/></th>
                 <th ng-bind="line.nome.model.val"></th>
                 <th ng-bind="line.vagas.turma"></th>
                 <th ng-bind="line.curso.model.text"></th>

@@ -621,6 +621,11 @@
         $.getScript('assets/neon/js/neon-demo.js');
         $.getScript('assets/js/jquery.bootstrap.wizard.min.js');
 
+        /*reduzindo o excesso da barra de progresso*/
+        setTimeout(function(){
+            $('.steps-progress').css({'margin-left': '120.25px', 'margin-right': '120.25px'})
+        },500)
+
     });
 </script>
 <!-- MODAL LIMPAR -->
