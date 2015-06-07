@@ -78,14 +78,15 @@
         }
 
         function sendInfo() {
+            console.log(vm.info);
             //// Limpa os dados referente aos maios de contato do ususario
             vm.info.email.err = "";
             vm.info.phone.err = "";
             vm.info.cel.err = "";
 
             //// verifica se os campos sao validos e se os campo não estão vazios
-            if (isEmail(vm.info.email.val) && isPhone(vm.info.phone.val) && isCel(vm.info.cel.val) &&
-                (vm.info.email.val && vm.info.phone.val && vm.info.cel.val)) {
+            if (isEmail(vm.info.email.model.val) && isPhone(vm.info.phone.model.val) && isCel(vm.info.cel.model.val) &&
+                (vm.info.email.model.val && vm.info.phone.model.val && vm.info.cel.model.val)) {
 
                 var dataInfo = {"info": vm.info},
                     SendInfoPromise = $resource('/api/aluno/editar-perfil').save({}, dataInfo).$promise;
@@ -100,31 +101,31 @@
                     });
             }else{
                 //// Verifica se os campo não estão vazios
-                if (!vm.info.email.val || !vm.info.phone.val || !vm.info.cel.val) {
-                    if (!isEmail(vm.info.email.val)) {
+                if (!vm.info.email.model.val || !vm.info.phone.model.val || !vm.info.cel.model.val) {
+                    if (!isEmail(vm.info.email.model.val)) {
                         vm.info.email.err = vm.STR.REQUIRIDO;
                     }else{
                         vm.info.email.err = '';
                     }
-                    if (!isPhone(vm.info.phone.val)) {
+                    if (!isPhone(vm.info.phone.model.val)) {
                         vm.info.phone.err = vm.STR.REQUIRIDO;
                     }else{
                         vm.info.phone.err = '';
                     }
-                    if (!isCel(vm.info.cel.val)) {
+                    if (!isCel(vm.info.cel.model.val)) {
                         vm.info.cel.err = vm.STR.REQUIRIDO;
                     }else{
                         vm.info.cel.err = '';
                     }
                 }else{
                     //// Verifica se os campos nao sao validos
-                    if (!isEmail(vm.info.email.val)) {
+                    if (!isEmail(vm.info.email.model.val)) {
                         vm.info.email.err = vm.STR.NOEMAIL;
                     }
-                    if (!isPhone(vm.info.phone.val)) {
+                    if (!isPhone(vm.info.phone.model.val)) {
                         vm.info.phone.err = vm.STR.NOPHONE;
                     }
-                    if (!isCel(vm.info.cel.val)) {
+                    if (!isCel(vm.info.cel.model.val)) {
                         vm.info.cel.err = vm.STR.NOCEL;
                     }
                 }
@@ -155,7 +156,7 @@
             vm.password.confirm.err = "";
 
             //// Verifica se as novas senhas batem e se não estão vazios
-            if (isConfPw(vm.password.new.val, vm.password.confirm.val) && (vm.password.current.val && vm.password.new.val && vm.password.confirm.val)) {
+            if (isConfPw(vm.password.new.model.val, vm.password.confirm.model.val) && (vm.password.current.model.val && vm.password.new.model.val && vm.password.confirm.model.val)) {
                 var dataPw = {"password": vm.password},
                     sendSenhaPromise = $resource('/api/aluno/editar-perfil').save({}, dataPw).$promise;
 
@@ -169,18 +170,18 @@
                     });
             }else{
                 //// Verifica se os campos estao vazios
-                if (!vm.password.current.val || !vm.password.new.val || !vm.password.confirm.val) {
-                    if (!vm.password.current.val) {
+                if (!vm.password.current.model.val || !vm.password.new.model.val || !vm.password.confirm.model.val) {
+                    if (!vm.password.current.model.val) {
                         vm.password.current.err = vm.STR.REQUIRIDO;
                     }else{
                         vm.password.current.err = '';
                     }
-                    if (!vm.password.new.val) {
+                    if (!vm.password.new.model.val) {
                         vm.password.new.err = vm.STR.REQUIRIDO;
                     }else{
                         vm.password.new.err = '';
                     }
-                    if (!vm.password.confirm.val) {
+                    if (!vm.password.confirm.model.val) {
                         vm.password.confirm.err = vm.STR.REQUIRIDO;
                     }else{
                         vm.password.confirm.err = '';
