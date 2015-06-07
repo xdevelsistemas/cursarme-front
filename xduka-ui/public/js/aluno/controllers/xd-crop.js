@@ -45,26 +45,21 @@
 
         angular.element(document.querySelector('#fileInput')).on('change', handleFileSelect);
 
-        vm.sendFoto = sendFoto;
-
-        function sendFoto() {
-            cropService.imgSalva = cropService.imgTemp;
-            //window.open($scope.myCroppedImage, '_blank');
-        };
-
         vm.atualizaImgTemp = atualizaImgTemp;
+        vm.clearInput = clearInput;
+        vm.sendFoto = sendFoto;
 
         function atualizaImgTemp() {
             vm.imgSv = cropService.imgTemp;
-        };
+        }
 
-        vm.clearInput = clearInput;
         function clearInput(id) {
             $(id).replaceWith( $(id).clone() );
-        };
+        }
 
-
-
-
+        function sendFoto() {
+            //window.open($scope.myCroppedImage, '_blank');
+            cropService.imgSalva = cropService.imgTemp;
+        }
     }
 })();

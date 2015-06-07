@@ -1,4 +1,5 @@
-var aniversariantes = require('../mockup/xduka-json/aluno/aniversariantes.json'),
+var extend = require('node.extend'),
+    aniversariantes = require('../mockup/xduka-json/aluno/aniversariantes.json'),
     conteudo = require('../mockup/xduka-json/aluno/conteudo.json'),
     cursos = require('../mockup/xduka-json/aluno/cursos.json'),
     editarPerfil = require('../mockup/xduka-json/aluno/editar-perfil.json'),
@@ -17,6 +18,8 @@ module.exports = function() {
     controller.showConteudo = getConteudo;
     controller.showEditarPerfil = getEditarPerfil;
     controller.putEditarPerfil = putEditarPerfil;
+    controller.putEditarPerfilInfo = putEditarPerfilInfo;
+    controller.putEditarPerfilSenha = putEditarPerfilSenha;
     controller.showGrade = getGrade;
     controller.showHorarios = getHorarios;
     controller.showInfoUsuario = getInfoUsuario;
@@ -29,7 +32,7 @@ module.exports = function() {
 };
 
 function getAniversariantes(req, res) {
-    req.params.id;
+    //req.params.id;
     res.json(aniversariantes);
 }
 
@@ -42,6 +45,55 @@ function getEditarPerfil(req, res) {
 }
 
 function putEditarPerfil(req, res) {
+    //res.json(req.body);
+    console.log(req.body);
+    res.json({"status": "ok"});
+}
+
+function putEditarPerfilInfo(req, res) {
+    var dataSent = req.body,
+        dadosInfo;
+
+    //// Limpa os dados referente aos maios de contato do ususario
+    dataSent.info.email.err = "";
+    dataSent.info.phone.err = "";
+    dataSent.info.cel.err = "";
+
+    //// verifica se os campos sao validos e se os campo não estão vazios
+    if (isEmail(dataSent.info.email.val) && isPhone(dataSent.info.phone.val) && isCel(dataSent.info.cel.val) &&
+        (dataSent.info.email.val && dataSent.info.phone.val && dataSent.info.cel.val)) {
+
+        dadosInfo = {
+            "email":{"model":{"val": dataSent.info.email.val, "err": ""}},
+            "phone":{"model":{"val": dataSent.info.phone.val, "err": ""}},
+            "cel":{"model":{"val": dataSent.info.cel.val, "err": ""}}
+        };
+
+        res.json(extend(true, dataSent.info, dadosInfo));
+    }else{
+        //// Verifica se os campo estão vazios
+        if (!isEmail(dataSent.info.email.val)) {
+            dataSent.info.email.err = dataSent.STR.NOEMAIL;
+        }else{
+            dataSent.info.email.err = '';
+        }
+        if (!isPhone(dataSent.info.phone.val)) {
+            dataSent.info.phone.err = dataSent.STR.NOPHONE;
+        }else{
+            dataSent.info.phone.err = '';
+        }
+        if (!isCel(dataSent.info.cel.val)) {
+            dataSent.info.cel.err = dataSent.STR.NOCEL;
+        }else{
+            dataSent.info.cel.err = '';
+        }
+        dataSent.info.successMessage = dataSent.STR.SUCESSO;
+    }
+
+    res.json(dataSent);
+}
+
+function putEditarPerfilSenha(req, res) {
     //res.json(req.body);
     console.log(req.body);
     res.json({"status": "ok"});
@@ -83,4 +135,23 @@ function getParcelas(req, res) {
 
 function getTarefas(req, res) {
     res.json(tarefas);
+}
+
+/*  Funções de editar-perfil    */
+
+function isCel(cel){
+    return cel.length == 11;
+}
+
+function isConfPw(newPw, confPw){
+    return newPw == confPw;
+}
+
+function isEmail(email){
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+}
+
+function isPhone(phone){
+    return phone.length == 10;
 }

@@ -60,13 +60,16 @@
 
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
-        };
+        }
 
         vm.atualizaAvatar = atualizaAvatar;
 
         function atualizaAvatar(){
+            var sendFotoPromise;
             vm.user.avatar.thumb = cropService.imgSalva;
-        };
+
+            sendFotoPromise = $resource('api/aluno/send-foto').save({}, {"foto": vm.user.avatar.thumb}).$promise;
+        }
 
         vm.imgSalva = cropService.imgTemp;
         function attImg(){
