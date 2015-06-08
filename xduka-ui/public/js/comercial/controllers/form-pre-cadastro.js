@@ -154,7 +154,8 @@
 
             vm._model.curso.list = [];
             vm._model.curso.model = {'val': '', 'err': ''};
-            $.extend(vm._model.curso.list, item.curso);
+            $.extend(vm._model.curso.list, item.cursos);
+            $.extend(vm._model.vagas, item.turma[0].vagas);
 
             // limpa a sujeira que fica no model.val quando troca de curso
             limpaCampoPag();
@@ -164,7 +165,6 @@
             vm.selectCursoVagas = true;
 
             // alimentando valores referentes ao curso selecionado
-            $.extend(vm._model.vagas, item.turma[0].vagas);
             $.extend(vm._model.desconto.list, item.desconto);
             $.extend(vm._model.qtdParcelas.list, item.qtdParcelas);
             $.extend(vm._model.melhorData.list, item.melhorData);
@@ -248,18 +248,28 @@
                 vm.editing = true;
                 vm.showAlert = true;
                 vm.disableLimpar = true;
+                vm.validaCpf = true;
                 $.extend(true, vm._model, item);
-
-                vm._model.area.list = $.grep(vm._model.unidade.list, function (e) {
-                    return e.id == item.unidade.model.val;
-                })[0].areas;
-                vm._model.curso.list = $.grep(vm._model.area.list, function (e) {
-                    return e.id == item.area.model.val;
-                })[0].curso;
 
                 vm.selectCursoArea = true;
                 vm.selectCursoCurso = true;
                 vm.selectCursoVagas = true;
+
+                var getUnidadePromise = $resource('/api/comercial/dados-curso').get().$promise;
+
+                getUnidadePromise
+                    .then(function (data) {
+                        vm._model.unidade.list = data.unidade.list;
+                        vm._model.area.list = $.grep(vm._model.unidade.list, function (e) {
+                            return e.id == item.unidade.model.val;
+                        })[0].areas;
+                        vm._model.curso.list = $.grep(vm._model.area.list, function (e) {
+                            return e.id == item.area.model.val;
+                        })[0].curso;
+                    })
+                    .catch(function (erro) {
+                        console.log(erro);
+                    });
 
                 vm.btnAddChequeStep1 = item.formaPagamentoInscr.model.val == 2;
                 vm.btnAddChequeStep2 = item.formaPagamentoPag.model.val == 2;

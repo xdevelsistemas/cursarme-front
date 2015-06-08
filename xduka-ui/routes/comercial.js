@@ -5,6 +5,10 @@ module.exports = function (app, passport) {
     app.route('/api/comercial/dados-comercial')
         .get(controller.showDadosComercial);
 
+    //get-unidade
+    app.route('/api/comercial/dados-curso')
+        .get(controller.showDadosCurso);
+
     //info-usuario
     app.route('/api/comercial/info-usuario')
         .get(controller.showInfoUsuario);
