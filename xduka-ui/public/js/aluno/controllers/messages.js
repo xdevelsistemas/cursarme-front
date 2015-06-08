@@ -5,7 +5,7 @@
     angular.module('app.controllers')
         .controller('Messages', Messages);
 
-    Messages.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso', modelStrings];
+    Messages.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso', 'modelStrings'];
 
     /* @ngInject */
     function Messages($scope, $resource, breadCrumb, defineCurso, modelStrings) {
