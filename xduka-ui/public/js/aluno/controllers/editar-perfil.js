@@ -62,7 +62,7 @@
 
         function sendInfo() {
             var dadosInfo = {"info": vm.info},
-                SendInfoPromise = $resource('/api/aluno/editar-perfil-info').save({}, dadosInfo).$promise;
+                SendInfoPromise = $resource('/api/aluno/editar-perfil-info').save({}, {"info": vm.info, "STR": vm.STR}).$promise;
 
             SendInfoPromise
                 .then(function(data){
@@ -90,46 +90,15 @@
 
 
         function sendSenha() {
-            //// Limpa as mensagens de erros referente as senhas
-            vm.password.current.err = "";
-            vm.password.new.err = "";
-            vm.password.confirm.err = "";
+            var sendSenhaPromise = $resource('/api/aluno/editar-perfil-senha').save({}, {"password": vm.password, "STR": vm.STR}).$promise;
 
-            //// Verifica se as novas senhas batem e se não estão vazios
-            if (isConfPw(vm.password.new.val, vm.password.confirm.val) && (vm.password.current.val && vm.password.new.val && vm.password.confirm.val)) {
-                var sendSenhaPromise = $resource('/api/aluno/editar-perfil-senha').save({}, {"password": vm.password}).$promise;
-
-                sendSenhaPromise
-                    .then(function (data) {
-                        vm.password.successMessagePw = vm.STR.SUCESSO;
-                        console.log(data.status);
-                    })
-                    .catch(function (erro) {
-                        console.log("Erro!" + erro.statusTexto);
-                    });
-            }else{
-                //// Verifica se os campos estao vazios
-                if (!vm.password.current.val || !vm.password.new.val || !vm.password.confirm.val) {
-                    if (!vm.password.current.val) {
-                        vm.password.current.err = vm.STR.REQUIRIDO;
-                    }else{
-                        vm.password.current.err = '';
-                    }
-                    if (!vm.password.new.val) {
-                        vm.password.new.err = vm.STR.REQUIRIDO;
-                    }else{
-                        vm.password.new.err = '';
-                    }
-                    if (!vm.password.confirm.val) {
-                        vm.password.confirm.err = vm.STR.REQUIRIDO;
-                    }else{
-                        vm.password.confirm.err = '';
-                    }
-                }else{
-                    vm.password.confirm.err = vm.STR.NOCONFER;
-                }
-                vm.password.successMessagePw = "";
-            }
+            sendSenhaPromise
+                .then(function (data) {
+                    $.extend(true, vm.password, data);
+                })
+                .catch(function (erro) {
+                    console.log("Erro!" + erro.statusTexto);
+                });
         }
     }
 
