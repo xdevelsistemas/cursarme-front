@@ -32,7 +32,7 @@
                     var timer = $timeout(function (){
                         $('.xd-table-pre').ready(function(){
                             completo = !!$('.xd-table-pre').length;
-                        },5000)
+                        },3000)
                     });
                     timer.then(
                         function(){
@@ -43,29 +43,35 @@
                                     if (completo){
                                         dataTable();
                                         $('.tableLoading').attr({'style': 'display: none'});
-                                        $('.divTable').attr({'style': 'display: block'});
+                                        /*$('.divTable').attr({'style': 'display: block'});*/
                                     }
                                 })
                             }else{
                                 $timeout(function(){
                                     completo = !!$('.xd-table-pre').length;
-                                },3000).then(function(){
+                                },5000).then(function(){
                                     if (completo){
                                         dataTable();
                                         $('.tableLoading').attr({'style': 'display: none'});
-                                        $('.divTable').attr({'style': 'display: block'});
+                                        /*$('.divTable').attr({'style': 'display: block'});*/
                                     }else{
                                         $timeout(function(){
                                             dataTable();
                                             $('.tableLoading').attr({'style': 'display: none'});
-                                            $('.divTable').attr({'style': 'display: block'});
+                                            /*$('.divTable').attr({'style': 'display: block'});*/
                                             $('.tableOnError').attr({'style': 'display: block'});
                                         },10000)
                                     }
                                 })
                             }
                         }
-                    )
+                    );
+                    $timeout(function(){
+                        if($('.tableLoading').attr('style') == 'display: block'){
+                            $('.tableLoading').attr({'style': 'display: none'});
+                            $('.tableOnError').attr({'style': 'display: block'});
+                        }
+                    },20000)
                 })();
 
 

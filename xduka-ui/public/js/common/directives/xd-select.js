@@ -17,7 +17,7 @@
                     scope: {
                         params: '=',
                         change: '=',
-                        disabled: '='
+                        disable: '='
                     }
                 };
             }
