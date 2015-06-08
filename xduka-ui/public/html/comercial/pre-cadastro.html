@@ -346,7 +346,7 @@
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-input-date data-params="pre._model.dataExp" data-opened="main.opened"
+                        <xd-input-date data-disable="!pre.validaCpf"data-params="pre._model.dataExp" data-opened="main.opened"
                                        date-options="main.dateOptions" data-click="main.open"></xd-input-date>
                     </div>
                     <div class="col-md-4">
@@ -420,7 +420,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-5">
-                        <xd-input-date data-params="pre._model.dataNasc" data-opened="main.opened"
+                        <xd-input-date data-disable="!pre.validaCpf"data-params="pre._model.dataNasc" data-opened="main.opened"
                                        date-options="main.dateOptions" data-click="main.open"></xd-input-date>
                     </div>
                     <div class="col-md-3">
@@ -451,11 +451,11 @@
                     </div>
                     <div class="col-md-2">
                         <xd-input data-params="pre._model.endNum"
-                                  disable="false"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-2">
                         <xd-input data-params="pre._model.apt"
-                                  disable="false"></xd-input>
+                                  data-disable="!pre.validaCpf"></xd-input>
                     </div>
                     <div class="col-md-3">
                         <xd-input data-params="pre._model.cep"
@@ -482,7 +482,7 @@
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-select data-params="pre._model.tipoTelefone" disabled="true"></xd-select>
+                        <xd-select data-params="pre._model.tipoTelefone" data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
@@ -551,7 +551,7 @@
                 </button>
             </li>
             <li class="col-md-3 inLine">
-                <button class="btn btn-green btn-lg btn-icon icon-left btn-block" data-ng-disabled="pre.disableAnterior" ng-click="pre.sendInscricao()">
+                <button class="btn btn-green btn-lg btn-icon icon-left btn-block" data-ng-disabled="pre.disableAnterior||(pre._model.cpf.model.val.length != 11)" ng-click="pre.sendInscricao()">
                     Salvar
                     <i class="entypo-check"></i>
                 </button>
