@@ -33,7 +33,7 @@
                 function (data) {
                     vm.user = data.usuario;
                     vm.cursos = data.cursos.cursos;
-                    defineCurso.setIdCurso(vm.cursos.value);
+                    defineCurso.setIdCurso(vm.cursos.model.val);
                 })
             .catch(
                 function (erro) {

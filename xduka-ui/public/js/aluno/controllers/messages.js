@@ -11,7 +11,6 @@
     function Messages($scope, $resource, breadCrumb, defineCurso) {
         /* jshint validthis: true */
 
-        console.log(defineCurso.getIdCurso());
         var vm = this
             , msgPromise = $resource('/api/aluno/mensagens/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
@@ -23,8 +22,8 @@
             .then(function(data) {
                 vm.mensagens = data;
             })
-            .catch(function(statusTexto) {
-                console.log("Erro");
+            .catch(function(erro) {
+                console.log(erro);
             });
 
         vm.sendData = sendData;
