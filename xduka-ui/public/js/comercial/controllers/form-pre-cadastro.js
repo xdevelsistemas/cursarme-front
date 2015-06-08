@@ -75,8 +75,7 @@
                     if (cpf == "00000000000" || cpf == "11111111111" || cpf == "22222222222" ||
                         cpf == "33333333333" || cpf == "44444444444" || cpf == "55555555555" ||
                         cpf == "66666666666" || cpf == "77777777777" || cpf == "88888888888"){
-                        vm._model.cpf.model.err = 'CPF inválido';
-                        vm.validaCpf = false;
+                        vm._model.cpf.model.err = 'CPF inválido'
                     }else{
                         // Valida 1o digito
                         var add, rev;
@@ -88,7 +87,6 @@
                             rev = 0;
                         if (rev != parseInt(cpf.charAt(9))) {
                             vm._model.cpf.model.err = 'CPF inválido';
-                            vm.validaCpf = false;
                         }else{
                             // Valida 2o digito
                             add = 0;
@@ -99,7 +97,6 @@
                                 rev = 0;
                             if (rev != parseInt(cpf.charAt(10))) {
                                 vm._model.cpf.model.err = 'CPF inválido';
-                                vm.validaCpf = false;
                             }else{
                                 var verificaCpfPromise = $resource('/api/comercial/verifica-cpf').save({}, {"cpf": cpf}).$promise;
 
