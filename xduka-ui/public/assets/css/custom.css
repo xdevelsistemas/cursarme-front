@@ -102,3 +102,12 @@ body {
         overflow: scroll;
     }
 }
+
+.alert-title {
+    font-weight: bold;
+}
+
+.alert-padding {
+    padding-left: 1%;
+    display: table;
+}
