@@ -1,6 +1,9 @@
 {
     "filter": {
-        "value": "-1",
+        "label": "Filtro",
+        "nome": "fitro",
+        "type": "select",
+        "placeholder": "Selecione uma opção",
         "list": [
             {
                 "id": "-1",
@@ -14,7 +17,8 @@
                 "id": "2",
                 "text": "Doenças do Trab. Avançada"
             }
-        ]
+        ],
+        "model": {"val": "-1", "err": ""}
     },
     "tasks": [
         {
