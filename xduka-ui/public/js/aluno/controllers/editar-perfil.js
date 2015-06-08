@@ -60,83 +60,32 @@
 
 /////////////  FUNCTIONS  /////////////
 
-        function isCel(cel){
-            return cel.length == 11;
-        }
-
-        function isConfPw(newPw, confPw){
-            return newPw == confPw;
-        }
-
-        function isEmail(email){
-            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-            return regex.test(email);
-        }
-
-        function isPhone(phone){
-            return phone.length == 10;
-        }
-
         function sendInfo() {
-            console.log(vm.info);
-            //// Limpa os dados referente aos maios de contato do ususario
-            vm.info.email.err = "";
-            vm.info.phone.err = "";
-            vm.info.cel.err = "";
+            var SendInfoPromise = $resource('/api/aluno/editar-perfil-info').save({}, {"info": vm.info, "STR": vm.STR}).$promise;
 
-            //// verifica se os campos sao validos e se os campo não estão vazios
-            if (isEmail(vm.info.email.model.val) && isPhone(vm.info.phone.model.val) && isCel(vm.info.cel.model.val) &&
-                (vm.info.email.model.val && vm.info.phone.model.val && vm.info.cel.model.val)) {
-
-                var dataInfo = {"info": vm.info},
-                    SendInfoPromise = $resource('/api/aluno/editar-perfil').save({}, dataInfo).$promise;
-
-                SendInfoPromise
-                    .then(function(data){
-                        vm.info.successMessage = vm.STR.SUCESSO;
-                        console.log(data.status);
-                    })
-                    .catch(function(erro) {
-                        console.log("Erro!\n" + erro.statusText + "\n");
-                    });
-            }else{
-                //// Verifica se os campo não estão vazios
-                if (!vm.info.email.model.val || !vm.info.phone.model.val || !vm.info.cel.model.val) {
-                    if (!isEmail(vm.info.email.model.val)) {
-                        vm.info.email.err = vm.STR.REQUIRIDO;
-                    }else{
-                        vm.info.email.err = '';
-                    }
-                    if (!isPhone(vm.info.phone.model.val)) {
-                        vm.info.phone.err = vm.STR.REQUIRIDO;
-                    }else{
-                        vm.info.phone.err = '';
-                    }
-                    if (!isCel(vm.info.cel.model.val)) {
-                        vm.info.cel.err = vm.STR.REQUIRIDO;
-                    }else{
-                        vm.info.cel.err = '';
-                    }
-                }else{
-                    //// Verifica se os campos nao sao validos
-                    if (!isEmail(vm.info.email.model.val)) {
-                        vm.info.email.err = vm.STR.NOEMAIL;
-                    }
-                    if (!isPhone(vm.info.phone.model.val)) {
-                        vm.info.phone.err = vm.STR.NOPHONE;
-                    }
-                    if (!isCel(vm.info.cel.model.val)) {
-                        vm.info.cel.err = vm.STR.NOCEL;
-                    }
-                }
-                vm.info.successMessage = "";
-            }
+            SendInfoPromise
+                .then(function(data){
+                    $.extend(true, vm.info, data);
+                })
+                .catch(function(erro) {
+                    console.log(erro);
+                });
         }
 
         function sendFoto() {
             console.log($scope.myCroppedImage);
             $scope.imgSalva = $scope.myCroppedImage;
             console.log($scope.imgSalva);
+
+            var SendFotoPromise = $resource('/api/aluno/editar-perfil-foto').save({}, {"foto": vm.imgSv}).$promise;
+
+            SendFotoPromise
+                .then(function (data) {
+                    console.log(data);
+                })
+                .catch(function(erro) {
+                    console.log(erro);
+                });
             //window.open($scope.myCroppedImage, '_blank');
         }
 
@@ -150,47 +99,15 @@
 
 
         function sendSenha() {
-            //// Limpa as mensagens de erros referente as senhas
-            vm.password.current.err = "";
-            vm.password.new.err = "";
-            vm.password.confirm.err = "";
+            var sendSenhaPromise = $resource('/api/aluno/editar-perfil-senha').save({}, {"password": vm.password, "STR": vm.STR}).$promise;
 
-            //// Verifica se as novas senhas batem e se não estão vazios
-            if (isConfPw(vm.password.new.model.val, vm.password.confirm.model.val) && (vm.password.current.model.val && vm.password.new.model.val && vm.password.confirm.model.val)) {
-                var dataPw = {"password": vm.password},
-                    sendSenhaPromise = $resource('/api/aluno/editar-perfil').save({}, dataPw).$promise;
-
-                sendSenhaPromise
-                    .then(function (data) {
-                        vm.password.successMessagePw = vm.STR.SUCESSO;
-                        console.log(data.status);
-                    })
-                    .catch(function (erro) {
-                        console.log("Erro!" + erro.statusTexto);
-                    });
-            }else{
-                //// Verifica se os campos estao vazios
-                if (!vm.password.current.model.val || !vm.password.new.model.val || !vm.password.confirm.model.val) {
-                    if (!vm.password.current.model.val) {
-                        vm.password.current.err = vm.STR.REQUIRIDO;
-                    }else{
-                        vm.password.current.err = '';
-                    }
-                    if (!vm.password.new.model.val) {
-                        vm.password.new.err = vm.STR.REQUIRIDO;
-                    }else{
-                        vm.password.new.err = '';
-                    }
-                    if (!vm.password.confirm.model.val) {
-                        vm.password.confirm.err = vm.STR.REQUIRIDO;
-                    }else{
-                        vm.password.confirm.err = '';
-                    }
-                }else{
-                    vm.password.confirm.err = vm.STR.NOCONFER;
-                }
-                vm.password.successMessagePw = "";
-            }
+            sendSenhaPromise
+                .then(function (data) {
+                    $.extend(true, vm.password, data);
+                })
+                .catch(function (erro) {
+                    console.log("Erro!" + erro.statusTexto);
+                });
         }
     }
 

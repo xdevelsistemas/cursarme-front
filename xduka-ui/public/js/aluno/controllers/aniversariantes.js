@@ -5,10 +5,10 @@
     angular.module('app.controllers')
         .controller('Aniversariantes', Aniversariantes);
 
-    Aniversariantes.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
+    Aniversariantes.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso', 'modelStrings'];
 
     /* @ngInject */
-    function Aniversariantes($scope, $resource, breadCrumb, defineCurso) {
+    function Aniversariantes($scope, $resource, breadCrumb, defineCurso, modelStrings) {
         /* jshint validthis: true */
         var vm = this
             , aniverPromise = $resource('/api/aluno/aniversariantes/:id').get({id: defineCurso.getIdCurso()}).$promise;

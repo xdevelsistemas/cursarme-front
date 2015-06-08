@@ -1,8 +1,8 @@
 {
     "filterPeriodo": {
         "label": "Período",
+        "name": "período",
         "placeholder": "Selecione um período...",
-        "value": "-1",
         "list": [
             {
                 "id": "-1",
@@ -16,12 +16,13 @@
                 "id": "2",
                 "text": "Único dois"
             }
-        ]
+        ],
+        "model": {"val": "-1", "err": ""}
     },
     "filterDisciplina": {
         "label": "Disciplina",
+        "name": "Disciplina",
         "placeholder": "Selecione uma disciplina...",
-        "value": "-1",
         "list": [
             {
                 "id": "-1",
@@ -39,7 +40,8 @@
                 "id": 3,
                 "text": "Planejamento em Saúde"
             }
-        ]
+        ],
+        "model": {"val": "-1", "err": ""}
     },
     "disciplina": {
         "nome": "Ética e Bioética",

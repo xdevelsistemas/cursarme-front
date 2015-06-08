@@ -2,7 +2,6 @@
   "cursos": {
     "label": "Curso",
     "placeholder": "Selecione um Curso",
-    "value": "11",
     "list": [
       {
         "id": "11",
@@ -20,6 +19,7 @@
         "id": "44",
         "text": "Pedagogia"
       }
-    ]
+    ],
+    "model": {"val": "11","err": ""}
   }
 }

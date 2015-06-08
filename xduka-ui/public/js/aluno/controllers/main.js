@@ -33,7 +33,7 @@
                 function (data) {
                     vm.user = data.usuario;
                     vm.cursos = data.cursos.cursos;
-                    defineCurso.setIdCurso(vm.cursos.value);
+                    defineCurso.setIdCurso(vm.cursos.model.val);
                 })
             .catch(
                 function (erro) {
@@ -58,13 +58,16 @@
 
         function sendData() {
             console.log('>>>>>', 'Enviou nada!');
-        };
+        }
 
         vm.atualizaAvatar = atualizaAvatar;
 
         function atualizaAvatar(){
+            var sendFotoPromise;
             vm.user.avatar.thumb = cropService.imgSalva;
-        };
+
+            //sendFotoPromise = $resource('api/aluno/send-foto').save({}, {"foto": vm.user.avatar.thumb}).$promise;
+        }
 
         vm.imgSalva = cropService.imgTemp;
         function attImg(){

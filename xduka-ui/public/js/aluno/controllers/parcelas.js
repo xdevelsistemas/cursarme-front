@@ -5,10 +5,10 @@
     angular.module('app.controllers')
         .controller('Parcelas', Parcelas);
 
-    Parcelas.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
+    Parcelas.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso', 'modelStrings'];
 
     /* @ngInject */
-    function Parcelas($scope, $resource, breadCrumb, defineCurso) {
+    function Parcelas($scope, $resource, breadCrumb, defineCurso, modelStrings) {
         /* jshint validthis: true */
         var vm = this
             , parcelasPromise = $resource('/api/aluno/parcelas/:id').get({id: defineCurso.getIdCurso()}).$promise;

@@ -5,10 +5,10 @@
     angular.module('app.controllers')
         .controller('Messages', Messages);
 
-    Messages.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
+    Messages.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso', 'modelStrings'];
 
     /* @ngInject */
-    function Messages($scope, $resource, breadCrumb, defineCurso) {
+    function Messages($scope, $resource, breadCrumb, defineCurso, modelStrings) {
         /* jshint validthis: true */
 
         var vm = this
@@ -22,8 +22,8 @@
             .then(function(data) {
                 vm.mensagens = data;
             })
-            .catch(function(statusTexto) {
-                console.log("Erro");
+            .catch(function(erro) {
+                console.log(erro);
             });
 
         vm.sendData = sendData;

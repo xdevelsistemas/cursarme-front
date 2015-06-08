@@ -15,6 +15,18 @@ module.exports = function (app, passport) {
         .get(controller.showEditarPerfil)
         .post(controller.putEditarPerfil);
 
+    //editar-perfil-foto
+    app.route('/api/aluno/editar-perfil-foto')
+        .post(controller.putEditarPerfilFoto);
+
+    //editar-perfil-senha
+    app.route('/api/aluno/editar-perfil-senha')
+        .post(controller.putEditarPerfilSenha);
+
+    //editar-perfil-info
+    app.route('/api/aluno/editar-perfil-info')
+        .post(controller.putEditarPerfilInfo);
+
     //grade
     app.route('/api/aluno/grade/:id')
         .get(controller.showGrade);

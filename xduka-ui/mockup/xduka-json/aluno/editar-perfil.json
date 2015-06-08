@@ -3,7 +3,7 @@
         "phone": {
             "label": "Telefone Residencial",
             "placeholder": "(__) ____-____",
-            "mask": "(99) 9999-9999",
+            "mask": "?(99) 9999-9999",
             "name": "phone",
             "model": {
                 "val": "2730193097",
@@ -13,7 +13,7 @@
         "cel": {
             "label": "Telefone Celular",
             "placeholder": "(__) _____-____",
-            "mask": "(99) 99999-9999",
+            "mask": "?(99) 99999-9999",
             "name": "cel",
             "model": {
                 "val": "27981132563",
