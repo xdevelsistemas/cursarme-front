@@ -14,8 +14,8 @@
         breadCrumb.title = 'Pré Cadastro';
 
         // ==== MODELOS ==== //
-        $scope.cor = 'blue';
-        $scope.casa = 'ape';
+        vm.cor = 'blue';
+        vm.casa = 'ape';
 
         vm._model = {};
 
@@ -68,6 +68,26 @@
             .catch(function(erro) {
                 console.log("\n" + erro.data + "\n");
             });
+
+        vm.verificaCpf = function (cpf) {
+            if (cpf.length == 11) {
+                try {
+                    var verificaCpfPromise = $resource('/api/comercial/verifica-cpf').save({}, {"cpf": cpf}).$promise;
+
+                    verificaCpfPromise
+                        .then(function (data) {
+                            vm._model.cpf.model.err = data.dados.msg;
+                            vm._model.unidade.list = data.dadosCurso.unidade.list;
+                            vm.validaCpf = !data.dados.msg;
+                        })
+                        .catch(function (erro) {
+                            console.log(erro);
+                        })
+                }catch(erro){
+                    console.log("Erro:\n" + erro);
+                }
+            }
+        };
 
         vm.unidadeChange = function (item, model) {
             vm.selectCursoArea = true;
@@ -244,6 +264,11 @@
          });
          });*/
         vm.limpaForm = function(){
+
+            // escondendo select's de curso
+            vm.selectCursoArea = false;
+            vm.selectCursoCurso = false;
+            vm.selectCursoVagas = false;
 
             /* ALUNO */
             vm._model.cpf.model.val = '';
