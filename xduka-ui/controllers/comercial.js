@@ -45,6 +45,9 @@ function putVerificaCpf(req, res) {
 }
 
 function verificaCpf(obj, cpf) {
+
+    //TODO implementar cálculo de valores para informações de pagamento no json dados-cursos
+
     for (var i = 0; i < obj.length; i++) {
         if (obj[i].cpf == cpf) {
             return obj[i];

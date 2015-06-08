@@ -5,10 +5,10 @@
     angular.module('app.controllers')
         .controller('Tasks', Tasks);
 
-    Tasks.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
+    Tasks.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso', 'modelStrings'];
 
     /* @ngInject */
-    function Tasks($scope, $resource, breadCrumb, defineCurso) {
+    function Tasks($scope, $resource, breadCrumb, defineCurso, modelStrings) {
         /* jshint validthis: true */
         var vm = this
             ,tarefasPromise = $resource('/api/aluno/tarefas/:id').get({id: defineCurso.getIdCurso()}).$promise;
@@ -34,7 +34,7 @@
         tarefasPromise
             .then(
                 function(data) {
-                    vm.filter = $.extend({label: vm.STR.FILTER, placeholder: vm.STR.FILTER_BY_SUBJECT}, data.filter);
+                    vm.filter = data.filter;
                     vm.tasks = data.tasks;
 
                 })
