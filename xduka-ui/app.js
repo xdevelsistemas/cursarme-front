@@ -29,9 +29,10 @@ app.use(favicon());
 app.use(logger('dev'));
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser()); // get information from html forms
+app.use(bodyParser({limit: '50mb'})); // get information from html forms
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+//app.use(express.bodyParser({limit: '50mb'}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({

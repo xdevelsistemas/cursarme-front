@@ -5,10 +5,10 @@
     angular.module('app.controllers')
         .controller('Horarios', Horarios);
 
-    Horarios.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
+    Horarios.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso', 'modelStrings'];
 
     /* @ngInject */
-    function Horarios($scope, $resource,breadCrumb, defineCurso) {
+    function Horarios($scope, $resource,breadCrumb, defineCurso, modelStrings) {
         /* jshint validthis: true */
         var vm = this
             , horariosPromise = $resource('/api/aluno/horarios/:id').get({id: defineCurso.getIdCurso()}).$promise;

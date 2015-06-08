@@ -43,8 +43,6 @@
     "type": "text",
     "mask": "?(99)9999-9999",
     "name": "telefone",
-
-
     "model": {"val": "", "err": ""}
   },
   "email": {
@@ -57,8 +55,6 @@
     "label": "Cidade",
     "type": "text",
     "name": "cidade",
-
-
     "model": {"val": "", "err": ""}
   },
   "cep": {

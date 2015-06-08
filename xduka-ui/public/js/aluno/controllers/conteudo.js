@@ -5,10 +5,10 @@
     angular.module('app.controllers')
         .controller('Conteudo', Conteudo);
 
-    Conteudo.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
+    Conteudo.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso', 'modelStrings'];
 
     /* @ngInject */
-    function Conteudo($scope, $resource, breadCrumb, defineCurso) {
+    function Conteudo($scope, $resource, breadCrumb, defineCurso, modelStrings) {
         /* jshint validthis: true */
         var vm = this
             , conteudoPromise = $resource('/api/aluno/conteudo/:id').get({id: defineCurso.getIdCurso()}).$promise;

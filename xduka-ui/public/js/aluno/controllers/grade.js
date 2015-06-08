@@ -5,10 +5,10 @@
     angular.module('app.controllers')
         .controller('Grade', Grade);
 
-    Grade.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso'];
+    Grade.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso', 'modelStrings'];
 
     /* @ngInject */
-    function Grade($scope, $resource, breadCrumb, defineCurso) {
+    function Grade($scope, $resource, breadCrumb, defineCurso, modelStrings) {
         /* jshint validthis: true */
         var vm = this
             , gradePromise = $resource('/api/aluno/grade/:id').get({id: defineCurso.getIdCurso()}).$promise;
