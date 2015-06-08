@@ -61,8 +61,7 @@
 /////////////  FUNCTIONS  /////////////
 
         function sendInfo() {
-            var dadosInfo = {"info": vm.info},
-                SendInfoPromise = $resource('/api/aluno/editar-perfil-info').save({}, {"info": vm.info, "STR": vm.STR}).$promise;
+            var SendInfoPromise = $resource('/api/aluno/editar-perfil-info').save({}, {"info": vm.info, "STR": vm.STR}).$promise;
 
             SendInfoPromise
                 .then(function(data){
@@ -77,6 +76,16 @@
             console.log($scope.myCroppedImage);
             $scope.imgSalva = $scope.myCroppedImage;
             console.log($scope.imgSalva);
+
+            var SendFotoPromise = $resource('/api/aluno/editar-perfil-foto').save({}, {"foto": vm.imgSv}).$promise;
+
+            SendFotoPromise
+                .then(function (data) {
+                    console.log(data);
+                })
+                .catch(function(erro) {
+                    console.log(erro);
+                });
             //window.open($scope.myCroppedImage, '_blank');
         }
 

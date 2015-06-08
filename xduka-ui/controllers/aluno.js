@@ -18,6 +18,7 @@ module.exports = function() {
     controller.showConteudo = getConteudo;
     controller.showEditarPerfil = getEditarPerfil;
     controller.putEditarPerfil = putEditarPerfil;
+    controller.putEditarPerfilFoto = putEditarPerfilFoto;
     controller.putEditarPerfilInfo = putEditarPerfilInfo;
     controller.putEditarPerfilSenha = putEditarPerfilSenha;
     controller.showGrade = getGrade;
@@ -47,7 +48,12 @@ function getEditarPerfil(req, res) {
 function putEditarPerfil(req, res) {
     //res.json(req.body);
     console.log(req.body);
-    res.json({"status": "ok"});
+    res.json({"foto": req.body});
+}
+
+function putEditarPerfilFoto(req, res) {
+    //res.json(req.body);
+    res.json({"foto": req.body});
 }
 
 function putEditarPerfilInfo(req, res) {

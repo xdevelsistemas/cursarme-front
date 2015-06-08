@@ -66,7 +66,7 @@
             var sendFotoPromise;
             vm.user.avatar.thumb = cropService.imgSalva;
 
-            sendFotoPromise = $resource('api/aluno/send-foto').save({}, {"foto": vm.user.avatar.thumb}).$promise;
+            //sendFotoPromise = $resource('api/aluno/send-foto').save({}, {"foto": vm.user.avatar.thumb}).$promise;
         }
 
         vm.imgSalva = cropService.imgTemp;
