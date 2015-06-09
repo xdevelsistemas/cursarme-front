@@ -8,7 +8,8 @@ var userSchema = mongoose.Schema({
         password: String,
         areas: {
             aluno: Boolean,
-            comercial: Boolean
+            comercial: Boolean,
+            secretaria: Boolean
         }
     }
 });
