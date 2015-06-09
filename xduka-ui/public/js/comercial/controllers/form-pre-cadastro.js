@@ -214,8 +214,7 @@
         };
 
         vm.sendInscricao = function() {
-            $.extend(vm._model.listaCheques, lista_cheques.lista);
-            console.log(vm._model.listaCheques);
+            vm._model.listaCheques = vm.lista_cheques.lista;
 
             var sendInscricaoPromise = $resource('/api/comercial/dados-inscricao').save({}, vm._model).$promise;
 
