@@ -10,6 +10,7 @@ module.exports = function() {
     var controller = {};
 
     controller.showDadosComercial = getDadosComercial;
+    controller.showDadosCurso = getDadosCurso;
     controller.showInfoUsuario = getInfoUsuario;
     controller.showModalCheque = getModalCheque;
     controller.putVerificaCpf = putVerificaCpf;
@@ -32,14 +33,16 @@ function getModalCheque(req, res) {
 }
 
 function putVerificaCpf(req, res) {
-    var dados = verificaCpf(dadosTesteCpf.verificaCpf, req.body.cpf);
+    //var dados = verificaCpf(dadosTesteCpf.verificaCpf, req.body.cpf);
+    var dados = {};
 
-    if (!!dados) {
+    if (parseInt(req.body.cpf) %2 == 0) {
+        dados.cpf = req.body.cpf;
+        dados.msg = "";
         res.json({"dados": dados, "dadosCurso": dadosCurso});
     }else{
-        dados = {};
         dados.cpf = req.body.cpf;
-        dados.msg = "CPF inválido";
+        dados.msg = "Fulano com pendências no financeiro";
         res.json({"dados": dados, "dadosCurso": {"unidade": {"list": []}}});
     }
 }
@@ -53,6 +56,10 @@ function verificaCpf(obj, cpf) {
             return obj[i];
         }
     }
+}
+
+function getDadosCurso(req, res) {
+    res.json(dadosCurso);
 }
 
 function getViewInscr(req, res) {

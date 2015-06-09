@@ -13,7 +13,7 @@
   ],
   "list": [
     {
-      "validacoes":[],
+      "validacoes":[{}],
       "nome":{
         "model":{
           "val":"João das Couves"
@@ -349,7 +349,7 @@
       },
       "cpf":{
         "model":{
-          "val":"78495162030"
+          "val":"77613354431"
         }
       },
       "tituloEleitor":{
@@ -643,7 +643,7 @@
       },
       "cpf":{
         "model":{
-          "val":"30620951847"
+          "val":"19504036708"
         }
       },
       "tituloEleitor":{

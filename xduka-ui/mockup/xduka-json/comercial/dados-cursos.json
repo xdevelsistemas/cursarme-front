@@ -8,7 +8,18 @@
           {
             "id": 11,
             "text": "Exatas",
-            "curso": [
+            "turma": [
+              {
+                "vagas": {
+                  "id": "1A",
+                  "text": "1A",
+                  "preenchidas": 12,
+                  "totais": 20,
+                  "valorInscricao": 170
+                }
+              }
+            ],
+            "cursos": [
               {
                 "id": 111,
                 "text": "Matemática",
@@ -52,15 +63,6 @@
                   {
                     "id": "3",
                     "text": "25"
-                  }
-                ],
-                "turma": [
-                  {
-                    "vagas": {
-                      "preenchidas": 12,
-                      "totais": 20,
-                      "valorInscricao": 170
-                    }
                   }
                 ]
               },
@@ -108,15 +110,6 @@
                     "id": "3",
                     "text": "25"
                   }
-                ],
-                "turma": [
-                  {
-                    "vagas": {
-                      "preenchidas": 25,
-                      "totais": 28,
-                      "valorInscricao": 170
-                    }
-                  }
                 ]
               }
             ]
@@ -124,7 +117,18 @@
           {
             "id": 22,
             "text": "Humanas",
-            "curso": [
+            "turma": [
+                {
+                  "vagas": {
+                    "id": "2B",
+                    "text": "2B",
+                    "preenchidas": 28,
+                    "totais": 30,
+                    "valorInscricao": 170
+                }
+              }
+            ],
+            "cursos": [
               {
                 "id": 111,
                 "text": "Direito",
@@ -177,15 +181,6 @@
                     "id": "3",
                     "text": "24"
                   }
-                ],
-                "turma": [
-                  {
-                    "vagas": {
-                      "preenchidas": 28,
-                      "totais": 30,
-                      "valorInscricao": 170
-                    }
-                  }
                 ]
               },
               {
@@ -236,15 +231,6 @@
                     "id": "3",
                     "text": "28"
                   }
-                ],
-                "turma": [
-                  {
-                    "vagas": {
-                      "preenchidas": 15,
-                      "totais": 20,
-                      "valorInscricao": 170
-                    }
-                  }
                 ]
               }
             ]
@@ -258,7 +244,18 @@
           {
             "id": 11,
             "text": "Biomedicina",
-            "curso": [
+            "turma": [
+              {
+                "vagas": {
+                  "id": "3C",
+                  "text": "3C",
+                  "preenchidas": 25,
+                  "totais": 30,
+                  "valorInscricao": 170
+                }
+              }
+            ],
+            "cursos": [
               {
                 "id": 111,
                 "text": "Medicina",
@@ -302,15 +299,6 @@
                   {
                     "id": "3",
                     "text": "25"
-                  }
-                ],
-                "turma": [
-                  {
-                    "vagas": {
-                      "preenchidas": 12,
-                      "totais": 30,
-                      "valorInscricao": 170
-                    }
                   }
                 ]
               },
@@ -358,15 +346,6 @@
                     "id": "3",
                     "text": "28"
                   }
-                ],
-                "turma": [
-                  {
-                    "vagas": {
-                      "preenchidas": 15,
-                      "totais": 18,
-                      "valorInscricao": 170
-                    }
-                  }
                 ]
               }
             ]
@@ -374,7 +353,18 @@
           {
             "id": 22,
             "text": "Tecnologias da Informação",
-            "curso": [
+            "turma": [
+              {
+                "vagas": {
+                  "id": "4D",
+                  "text": "4D",
+                  "preenchidas": 18,
+                  "totais": 30,
+                  "valorInscricao": 170
+                }
+              }
+            ],
+            "cursos": [
               {
                 "id": 111,
                 "text": "Ciência da Computação",
@@ -423,15 +413,6 @@
                     "id": "3",
                     "text": "24"
                   }
-                ],
-                "turma": [
-                  {
-                    "vagas": {
-                      "preenchidas": 18,
-                      "totais": 30,
-                      "valorInscricao": 170
-                    }
-                  }
                 ]
               },
               {
@@ -478,15 +459,6 @@
                     "id": "3",
                     "text": "25"
                   }
-                ],
-                "turma": [
-                  {
-                    "vagas": {
-                      "preenchidas": 18,
-                      "totais": 20,
-                      "valorInscricao": 170
-                    }
-                  }
                 ]
               }
             ]
@@ -500,7 +472,18 @@
           {
             "id": 11,
             "text": "Exatas",
-            "curso": [
+            "turma": [
+              {
+                "vagas": {
+                  "id": "5E",
+                  "text": "5E",
+                  "preenchidas": 14,
+                  "totais": 22,
+                  "valorInscricao": 170
+                }
+              }
+            ],
+            "cursos": [
               {
                 "id": 111,
                 "text": "Matemática",
@@ -549,15 +532,6 @@
                     "id": "3",
                     "text": "24"
                   }
-                ],
-                "turma": [
-                  {
-                    "vagas": {
-                      "preenchidas": 15,
-                      "totais": 22,
-                      "valorInscricao": 170
-                    }
-                  }
                 ]
               },
               {
@@ -604,15 +578,6 @@
                     "id": "3",
                     "text": "25"
                   }
-                ],
-                "turma": [
-                  {
-                    "vagas": {
-                      "preenchidas": 35,
-                      "totais": 38,
-                      "valorInscricao": 170
-                    }
-                  }
                 ]
               }
             ]
@@ -620,7 +585,18 @@
           {
             "id": 22,
             "text": "Humanas",
-            "curso": [
+            "turma": [
+              {
+                "vagas": {
+                  "id": "6F",
+                  "text": "6F",
+                  "preenchidas": 40,
+                  "totais": 40,
+                  "valorInscricao": 170
+                }
+              }
+            ],
+            "cursos": [
               {
                 "id": 111,
                 "text": "Direito",
@@ -664,15 +640,6 @@
                   {
                     "id": "3",
                     "text": "25"
-                  }
-                ],
-                "turma": [
-                  {
-                    "vagas": {
-                      "preenchidas": 40,
-                      "totais": 40,
-                      "valorInscricao": 170
-                    }
                   }
                 ]
               },
@@ -723,15 +690,6 @@
                   {
                     "id": "3",
                     "text": "24"
-                  }
-                ],
-                "turma": [
-                  {
-                    "vagas": {
-                      "preenchidas": 15,
-                      "totais": 30,
-                      "valorInscricao": 170
-                    }
                   }
                 ]
               }

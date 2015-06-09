@@ -12,7 +12,7 @@
                            ng-model="params.model.val"
                            theme="select2"
                            on-select="change($item, $model)"
-                           ng-disabled="disable || !params.list.length"
+                           data-ng-disabled="disable || !params.list.length"
                            ng-required="params.required"
                            data-validade="{{dValidate}}"
                            title="{{params.placeholder}}">

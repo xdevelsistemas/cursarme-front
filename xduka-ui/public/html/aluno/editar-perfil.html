@@ -92,7 +92,7 @@
     <form name="formFoto"
           class="form-horizontal">
         <xd-modal title="Alterar a foto de perfil" hidden="hidden" btn="Cancelar">
-            <div>
+            <div ng-controller="EditarPerfil as cortar">
 
                 <div class="form-group">
 
@@ -115,7 +115,7 @@
 
                     </div>
 
-                    <div data-collapse="!perfil.showCropArea"
+                    <div data-collapse="!cortar.showCropArea"
                          class="col-sm-12 col-md-9 col-md-offset-1">
                         <div class="cropArea">
                             <img-crop image="myImage"
@@ -126,13 +126,13 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12 text-center">
-                        <button data-ng-disabled="!perfil.showCropArea"
+                        <button data-ng-disabled="!cortar.showCropArea"
                                 class="btn btn-lg btn-info btn-icon icon-left pull-right"
-                                ng-click="perfil.tempFoto()"
+                                ng-click="cortar.tempFoto()"
                                 onclick="jQuery('#confirmPhoto').modal('show', {backdrop: 'static'});"
                                 data-dismiss="modal">
                             <i class="entypo-check"></i>
-                            {{perfil.STR.CORTAR}}
+                            {{cortar.STR.CORTAR}}
                         </button>
                     </div>
                 </div>

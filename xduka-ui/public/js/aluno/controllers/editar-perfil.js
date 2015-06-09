@@ -77,11 +77,12 @@
             $scope.imgSalva = $scope.myCroppedImage;
             console.log($scope.imgSalva);
 
-            var SendFotoPromise = $resource('/api/aluno/editar-perfil-foto').save({}, {"foto": vm.imgSv}).$promise;
+            var SendFotoPromise = $resource('/api/aluno/editar-perfil-foto').save({}, {"foto": cropService.imgTemp}).$promise;
 
             SendFotoPromise
                 .then(function (data) {
                     console.log(data);
+                    window.open(data.foto.foto);
                 })
                 .catch(function(erro) {
                     console.log(erro);
@@ -106,7 +107,7 @@
                     $.extend(true, vm.password, data);
                 })
                 .catch(function (erro) {
-                    console.log("Erro!" + erro.statusTexto);
+                    console.log("Erro!" + erro);
                 });
         }
     }
