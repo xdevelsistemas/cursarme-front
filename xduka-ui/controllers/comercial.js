@@ -35,12 +35,12 @@ function putVerificaCpf(req, res) {
     var dados = verificaCpf(dadosTesteCpf.verificaCpf, req.body.cpf);
 
     if (!!dados) {
-        res.json({"dados": dados, "dadosCurso": {"unidade": {"list": []}}});
+        res.json({"dados": dados, "dadosCurso": dadosCurso});
     }else{
         dados = {};
         dados.cpf = req.body.cpf;
         dados.msg = "CPF inválido";
-        res.json({"dados": dados, "dadosCurso": dadosCurso});
+        res.json({"dados": dados, "dadosCurso": {"unidade": {"list": []}}});
     }
 }
 

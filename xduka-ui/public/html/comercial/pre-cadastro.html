@@ -31,8 +31,39 @@
     </ul>
 
     <div class="tab-content">
-
-        <div class="alert alert-danger col-md-12" role="alert" ng-show="pre.editing&&pre.showAlert">
+        <div class="alert alert-danger col-md-12" role="alert" ng-show="pre.editing&&pre.showAlert&&vm._model.dataExp.model.val||
+                vm._model.orgaoEmissor.model.val||
+                vm._model.tituloEleitor.model.val||
+                vm._model.zona.model.val||
+                vm._model.secao.model.val||
+                vm._model.ufTitulo.model.val||
+                vm._model.certidaoNc.model.val||
+                vm._model.folha.model.val||
+                vm._model.livro.model.val||
+                vm._model.cartorio.model.val||
+                vm._model.certificadoRes.model.val||
+                vm._model.registro.model.val||
+                vm._model.ufReservista.model.val||
+                vm._model.categoria.model.val||
+                vm._model.sexo.model.val||
+                vm._model.dataNasc.model.val||
+                vm._model.raca.model.val||
+                vm._model.estadoCivil.model.val||
+                vm._model.pai.model.val||
+                vm._model.mae.model.val||
+                vm._model.avRua.model.val||
+                vm._model.endNum.model.val||
+                vm._model.apt.model.val||
+                vm._model.bairro.model.val||
+                vm._model.endUf.model.val||
+                vm._model.nacionalidade.model.val||
+                vm._model.naturalidade.model.val||
+                vm._model.natUf.model.val||
+                vm._model.escolaEm.model.val||
+                vm._model.anoEm.model.val||
+                vm._model.cursoGrad.model.val||
+                vm._model.anoGrad.model.val||
+                vm._model.instituicao.model.val">
             <button type="button" class="close" aria-label="Close" data-ng-click="pre.disableAlert()"><span aria-hidden="true">&times;</span></button>
             <span class="alert-title">Campos aguardando preenchimento:</span>
             <hr/>
@@ -77,38 +108,8 @@
             <div class="col-md-12">
                 <xd-panel-collapse title="pre._viewInscr.inscrPanelCollapse.label">
                     <xd-table-pre-cadastro data-cond="pre.condTable" data-params="pre._viewInscr"></xd-table-pre-cadastro>
-                    <!--<div class="row">
-                        <div class="col-md-12" style="overflow: auto;">
-                            <table class="table table-condensed table-bordered table-hover table-striped responsive">
-                                <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Turma</th>
-                                    <th>Curso</th>
-                                    <th>Quantidade</th>
-                                    <th>Unidade</th>
-                                    <th>Status de Cadastro</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="el in pre._viewInscr.list">
-                                        <th>{{ el.nome }}</th>
-                                        <th>{{ el.turma }}</th>
-                                        <th>{{ el.curso }}</th>
-                                        <th>{{ el.quantidade }}</th>
-                                        <th>{{ el.unidade }}</th>
-                                        <th class="right" ng-show="el.status">Completo<button title="Imprimir Contrato" class="btn btn-sm"><i class="entypo-print"></i></button></th>
-                                        <th class="right" ng-hide="el.status">Incompleto<button title="Completar Inscrição" class="btn btn-sm"><i class="entypo-pencil"></i></button></th>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>-->
+                    <p class="text-warning" ng-show="pre.editing">*Cadastro ou edição em andamento ({{!!pre._model.nome.model.val?('Nome: '+pre._model.nome.model.val) : ('CPF: '+pre._model.cpf.model.val)}})</p>
                 </xd-panel-collapse>
-                <div class="row">
-                    <div class="centered center-block text-center">
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -117,7 +118,7 @@
                 <div class="row">
 
                     <div class="col-md-6">
-                        <xd-input data-params="pre._model.cpf" ng-keyup="pre.verificaCpf(pre._model.cpf.model.val)"></xd-input>
+                        <xd-input data-params="pre._model.cpf" data-change="pre.verificaCpf"></xd-input>
                     </div>
                     <div class="col-md-6">
                         <xd-input data-params="pre._model.rg"
@@ -186,25 +187,24 @@
                 </div>
 
                 <div class="row" ng-show="pre.selectCursoCurso">
+
                     <div class="col-md-12">
-
-                            <div class="col-md-12">
-                                <xd-select data-params="pre._model.curso" data-change="pre.cursoChange" data-disable="!pre.validaCpf"></xd-select>
-                            </div>
-
-                            <div id="precadastro-vagas" class="col-md-12" ng-show="pre.selectCursoVagas"><br>
-                                <div class="col-sm-3"></div>
-                                <div class="col-sm-5">
-                                    <div data-ng-class="pre._model.vagas.css" class="tile-stats">
-                                        <div class="icon"><i class="entypo-users"></i></div>
-                                        <h3 id="vagasDisponiveisTitle">Vagas disponíveis</h3>
-                                        <p id="vagasDisponiveisValue" class="num"><span data-ng-bind="pre._model.vagas.getDisponiveis()"></span></p>
-                                        <h3>Vagas totais</h3>
-                                        <p><span data-ng-bind="pre._model.vagas.totais"></span></p>
-                                    </div>
-                                </div>
-                            </div>
+                        <xd-select data-params="pre._model.curso" data-change="pre.cursoChange" data-disable="!pre.validaCpf"></xd-select>
                     </div>
+
+                    <div id="precadastro-vagas" class="col-md-12" ng-show="pre.selectCursoVagas"><br>
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-5">
+                            <div data-ng-class="pre._model.vagas.css" class="tile-stats">
+                                <div class="icon"><i class="entypo-users"></i></div>
+                                <h3 id="vagasDisponiveisTitle">Vagas disponíveis</h3>
+                                <p id="vagasDisponiveisValue" class="num"><span data-ng-bind="pre._model.vagas.getDisponiveis()"></span></p>
+                                <h3>Vagas totais</h3>
+                                <p><span data-ng-bind="pre._model.vagas.totais"></span></p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </xd-panel-collapse>
 
@@ -242,6 +242,21 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- LISTAR CHEQUES -->
+                <div class="row" ng-show="pre.lista_cheques.lista.length > 0">
+                    <div class="col-md-12">
+                        <div class="col-md-12 left">
+                            <label>
+                                Cheques adicionados:
+                            </label>
+                        </div>
+                        <div class="col-md-12">
+                            <xd-lista-cheques model="pre.lista_cheques"></xd-lista-cheques>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-md-12">
                         <!--xd-select data-params="pre._model.qtdParcelas"></xd-select>

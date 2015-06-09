@@ -9,7 +9,8 @@
                     templateUrl: 'html/common/xd-input.html',
                     scope: {
                         disable: '=',
-                        params: '='
+                        params: '=',
+                        change: '='
                     }
                 };
 

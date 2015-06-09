@@ -1,5 +1,5 @@
 <div collapse="model.lista.length<1"
-     class="row">
+     class="row" title="Listagem de cheques">
     <div class="col-sm-12 table-responsive" style="overflow: auto;">
         <table class="table table-bordered table-hover table-striped table-condensed">
             <thead>
@@ -24,7 +24,7 @@
                 <td class="text-center" ng-bind="'R$ '+item.valor"></td>
                 <td class="text-center" ng-bind="item.titular"></td>
                 <td class="text-center">
-                    <button type="button" class="btn btn-white"
+                    <button type="button" class="btn btn-white" title="Remover"
                             ng-click="model.remove(item)">
                         <i class="entypo-cancel"></i>
                     </button>
