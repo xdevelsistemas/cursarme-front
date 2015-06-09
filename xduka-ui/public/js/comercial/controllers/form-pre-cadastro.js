@@ -31,7 +31,10 @@
         vm.disableProximo = false;
         vm.editarInscr = editarInscr;
         vm.editing = false;
-        vm.showAlert = true;
+        vm.lista_cheques = lista_cheques;
+
+        //Alerta de campos faltando
+        vm.showAlert =
 
         //xd-select de curso
         vm.selectCursoArea = false;
@@ -74,7 +77,7 @@
                 try {
                     if (cpf == "00000000000" || cpf == "11111111111" || cpf == "22222222222" ||
                         cpf == "33333333333" || cpf == "44444444444" || cpf == "55555555555" ||
-                        cpf == "66666666666" || cpf == "77777777777" || cpf == "88888888888"){
+                        cpf == "66666666666" || cpf == "77777777777" || cpf == "88888888888" || cpf == "99999999999"){
                         vm._model.cpf.model.err = 'CPF inválido';
                         vm.validaCpf = false;
                     }else{
@@ -108,6 +111,9 @@
                                         vm._model.cpf.model.err = data.dados.msg;
                                         vm._model.unidade.list = data.dadosCurso.unidade.list;
                                         vm.validaCpf = !data.dados.msg;
+                                        if(vm.validaCpf){
+                                            vm.editing = true;
+                                        }
                                     })
                                     .catch(function (erro) {
                                         console.log(erro);
@@ -208,8 +214,7 @@
         };
 
         vm.sendInscricao = function() {
-            $.extend(vm._model.listaCheques, lista_cheques.lista);
-            console.log(vm._model.listaCheques + 'teste');
+            vm._model.listaCheques = vm.lista_cheques.lista;
 
             var sendInscricaoPromise = $resource('/api/comercial/dados-inscricao').save({}, vm._model).$promise;
 
@@ -384,6 +389,8 @@
             vm.editing = false;
             vm.disableLimpar = false;
             vm.validaCpf = false;
+
+            vm.topCollapse();
         };
 
         vm.cancelEdit = function(){
@@ -405,6 +412,9 @@
                 vm.disableLimpar = true;
             },
             editInscr: vm.editarInscr
-        }
+        };
+
+
+
     }])
 })();

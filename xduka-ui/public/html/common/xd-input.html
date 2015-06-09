@@ -18,6 +18,7 @@
                    name="{{params.name}}"
                    id="{{'input_'+params.name}}"
                    ng-disabled="disable"
+                   ng-change="change(params.model.val)"
                    ng-required="params.required">
 
             <p data-collapse="params.model.err == ''"
