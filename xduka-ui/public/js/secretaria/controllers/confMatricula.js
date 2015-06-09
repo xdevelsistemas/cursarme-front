@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('confMatricula', ['$scope', 'breadCrumb', 'lista_cheques', function($scope, breadCrumb, lista_cheques){
+        .controller('confMatricula', ['$scope', '$resource', 'breadCrumb', 'lista_cheques', function($scope, $resource, breadCrumb, lista_cheques){
 
             var vm = this
                 , comercialPromise = $resource('/api/comercial/dados-comercial').get().$promise
@@ -18,7 +18,6 @@
             comercialPromise
                 .then(function(data){
                     vm._model = data;
-                    $.extend(vm._model.vagas, funcVagas());
                 })
                 .catch(function(erro){
                     console.log("\n" + erro.data + "\n");
