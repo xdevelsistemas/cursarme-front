@@ -9,9 +9,9 @@
             <p class="text-center">Carregando</p>
         </div>
     </div>
-    <div class="divTable col-md-12" style="display: block">
+    <div class="divTable col-md-12" style="display: none">
         <p class="tableOnError text-center text-info" style="display: none">Ops! Conexão lenta. Alguns recursos poderão ser desabilitados para melhor performance.</p>
-        <table id="{{'table_'+params.name}}" class="xd-table-pre table table-striped table-hover">
+        <table id="{{params.name}}" class="xd-table-pre table table-striped table-hover">
             <thead>
             <tr>
                 <th ng-if="!!params.naoEhComercial">Ação</th>
@@ -20,7 +20,11 @@
             </thead>
             <tbody>
             <tr ng-repeat="line in params.list">
-                <th ng-if="!!params.naoEhComercial"><input type="checkbox" ng-model="line.action"/></th>
+                <th ng-if="!!params.naoEhComercial">
+                    <div class="text-center">
+                        <input type="checkbox" ng-model="line.action" ng-checked="!line.validacoes.length" ng-disabled="true"/>
+                    </div>
+                </th>
                 <th ng-bind="line.nome.model.val"></th>
                 <th ng-bind="line.vagas.turma"></th>
                 <th ng-bind="line.curso.model.text"></th>
