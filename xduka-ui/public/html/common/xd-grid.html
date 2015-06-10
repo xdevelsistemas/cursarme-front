@@ -1,0 +1,22 @@
+<table class="table {{params.class || 'table-hover table-bordered'}}" id="{{params.id}}" data-ng-disabled="disable" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <td ng-repeat="head in params.head">{{head}}</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="line in params.list">
+        <td ng-if="line['input'] != undefined">
+            <input type="{{line.input.type||'checkbox'}}"><label>{{line.input.label}}</label>
+        </td>
+        <td ng-if="line['progress'] != undefined">
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="35" aria-valuemin="{{line.progress.minVal||0}}" aria-valuemax="{{line.progress.maxVal||100}}" style="width: {{line.progress.percent}}%">
+                    <p style="color: #000">{{line.progress.text}}</p>
+                </div>
+            </div>
+        </td>
+        <td ng-if="line['text'] != undefined" ng-repeat="text in line.text">{{text}}</td>
+    </tr>
+    </tbody>
+</table>
