@@ -14,8 +14,6 @@
         breadCrumb.title = 'Pré Cadastro';
 
         // ==== MODELOS ==== //
-        vm.cor = 'blue';
-        vm.casa = 'ape';
 
         vm._model = {};
 

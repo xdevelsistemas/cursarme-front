@@ -32,4 +32,8 @@ describe('Controller: ModalCheques test', function() {
     it('00/00/2015 não é valido', function() {
         expect(modal.isDate('00/00/2015')).toEqual(false);
     });
+
+    it('01/02/2015 é valido', function() {
+        expect(modal.isDate('01/02/2015')).toEqual(true);
+    });
 });
