@@ -1,4 +1,4 @@
-describe('FormPreCadastro test', function() {
+describe('Controller: FormPreCadastro test', function() {
 
     var $scope, pre;
 
@@ -8,6 +8,10 @@ describe('FormPreCadastro test', function() {
             $scope = $injector.get('$rootScope').$new();
             pre = $controller('FormPreCadastro', {"$scope": $scope});
         });
+    });
+
+    it('FormPreCadastro definido', function() {
+        expect(pre).toBeDefined();
     });
 
     it('cor definida', function() {

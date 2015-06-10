@@ -1,4 +1,4 @@
-describe('dataCheque test', function() {
+describe('Service: dataCheque test', function() {
 
     var dc;
 
@@ -7,6 +7,10 @@ describe('dataCheque test', function() {
         inject(function ($injector) {
             dc = $injector.get('dataCheque');
         });
+    });
+
+    it('dataCheque definido', function() {
+        expect(dc).toBeDefined();
     });
 
     it('Testando inserção e requisição da data', function() {
