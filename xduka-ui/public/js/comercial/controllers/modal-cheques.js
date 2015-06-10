@@ -78,7 +78,6 @@
             };
 
             vm.changeBanco = function(item,model){
-                console.log(item);
                 vm._data.banco = item
             };
 

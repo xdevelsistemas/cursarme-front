@@ -122,17 +122,6 @@
                         }
 
                     }
-                        /*var verificaCpfPromise = $resource('/api/comercial/verifica-cpf').save({}, {"cpf": cpf}).$promise;
-
-                        verificaCpfPromise
-                            .then(function (data) {
-                                vm._model.cpf.model.err = data.dados.msg;
-                                vm._model.unidade.list = data.dadosCurso.unidade.list;
-                                vm.validaCpf = !data.dados.msg;
-                            })
-                            .catch(function (erro) {
-                                console.log(erro);
-                            })*/
                 }catch(erro){
                     console.log("Erro:\n" + erro);
                 }
@@ -179,7 +168,8 @@
             limpaCampoPag();
 
             // definindo valor de inscrição
-            vm._model.valorInscricao.model.val = vm._model.vagas.valorInscricao;
+            vm._model.valorInscricao.model.val = item.valorInscricao;
+            vm._model.valorIntegral.model.val = item.valorIntegral;
 
             $timeout(function () {
                 if ((vm._model.vagas.totais / vm._model.vagas.preenchidas) < 1.5){
@@ -210,7 +200,7 @@
         };
 
         vm.selectPhoneType = function (item, model) {
-            vm._model.telefone.mask = model == 'cel' ? '?(99)9999-99999' : '?(99)9999-9999';
+            vm._model.telefone.mask = model == 'cel' ? '?(99) 9999-99999' : '?(99) 9999-9999';
         };
 
         vm.sendInscricao = function() {
@@ -264,13 +254,14 @@
 
                 getUnidadePromise
                     .then(function (data) {
+                        vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
                         vm._model.unidade.list = data.unidade.list;
                         vm._model.area.list = $.grep(vm._model.unidade.list, function (e) {
                             return e.id == item.unidade.model.val;
                         })[0].areas;
                         vm._model.curso.list = $.grep(vm._model.area.list, function (e) {
                             return e.id == item.area.model.val;
-                        })[0].curso;
+                        })[0].cursos;
                     })
                     .catch(function (erro) {
                         console.log(erro);

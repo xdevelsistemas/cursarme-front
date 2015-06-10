@@ -93,7 +93,7 @@ function putDadosInscricao(req, res) {
         //Dados a serem passados pro backend
         var result = {
             "nome":{"model":{"val":dataSent.nome.model.val}},
-            "endereco":{"model":{"val":dataSent.emdereco.model.val}},
+            "endereco":{"model":{"val":dataSent.endereco.model.val}},
             "tipoTelefone":{"model":{"val":dataSent.tipoTelefone.model.val}},
             "telefone":{"model":{"val":dataSent.telefone.model.val}},
             "email":{"model":{"val":dataSent.email.model.val}},
