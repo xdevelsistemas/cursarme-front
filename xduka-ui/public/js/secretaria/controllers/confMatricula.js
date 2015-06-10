@@ -187,6 +187,7 @@
                 vm.limpaForm();
                 vm.disableLimpar = false;
                 vm.editing = false;
+                vm.topCollapse();
 
             };
             vm.topCollapse = function(){

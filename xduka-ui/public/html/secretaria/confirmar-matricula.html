@@ -50,7 +50,7 @@
         <!-- BOTÕES DE MENU -->
         <div class="col-md-12">
             <div class="col-md-3 inLine">
-                <button class="btn btn-green btn-icon icon-left btn-block btn-lg">
+                <button class="btn btn-green btn-icon icon-left btn-block btn-lg" data-toggle="modal" data-target="#gerarTurma">
                     Gerar turma
                     <i class="icon entypo-list-add icon-right"></i>
                 </button>
@@ -358,3 +358,63 @@
 </div>
 
 <!-- GERAR TURMA -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gerarTurma" id="gerarTurma" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Gerar as pautas abaixo</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <td></td>
+                        <td>Turma</td>
+                        <td>Vagas</td>
+                        <td>Área</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <input type="checkbox"><label>Gerar</label>
+                        </td>
+                        <td>10AB</td>
+                        <td><div class="progress"> <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="25" style="width: 60%"><p style="color: #000">15/25</p></div></div></td>
+                        <td>Saúde</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox"><label>Gerar</label>
+                        </td>
+                        <td>20CD</td>
+                        <td><div class="progress"> <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="25" style="width: 92%"><p style="color: #000">23/25</p></div> </div></td>
+                        <td>Tecnologia</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox"><label>com restrição</label>
+                        </td>
+                        <td>30EF</td>
+                        <td><div class="progress"> <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="30" style="width: 100%"><p style="color: #000">30/30</p></div> </div></td>
+                        <td>Educação</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-3 col-md-offset-1">
+                    <button type="button" class="btn btn-default btn-icon icon-left btn-block btn-lg" data-dismiss="modal">
+                        Voltar <i class="icon entypo-left icon-right"></i>
+                    </button>
+                </div>
+                <div class="col-md-3 col-md-offset-4">
+                    <button type="button" class="btn btn-green btn-icon icon-left btn-block btn-lg">
+                        Salvar <i class="icon entypo-check icon-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
