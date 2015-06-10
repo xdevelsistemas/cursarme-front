@@ -1,9 +1,4 @@
-describe('FormPreCadastro', function() {
-    // load the relevant application modules then load a special
-    // test module which overrides the $window with a mock version,
-    // so that calling window.alert() will not block the test
-    // runner with a real alert box. This is an example of overriding
-    // configuration information in tests.
+describe('FormPreCadastro test', function() {
 
     var $scope, pre;
 

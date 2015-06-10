@@ -24,7 +24,6 @@ module.exports = function(config) {
         'public/lib/jquery-maskedinput/dist/jquery.maskedinput.js',
         'public/lib/jquery-ui/jquery-ui.js',
         'public/lib/bootstrap/dist/js/bootstrap.js',
-        'public/assets/js/jquery.mask.min.js',
         'public/lib/angular-input-masks/angular-input-masks.br.js',
         'public/lib/angular-sanitize/angular-sanitize.js',
         'public/lib/ngImgCrop/compile/unminified/ng-img-crop.js',
@@ -33,10 +32,11 @@ module.exports = function(config) {
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-ui-utils/ui-utils.js',
         'public/lib/angular-ui-select/dist/select.js',
-        'public/js/comercial/routes/routes.js',
-        'public/js/comercial/**/*.js',
+        'public/assets/js/jquery.mask.min.js',
+        'public/js/aluno/routes/routes.js',
+        'public/js/aluno/**/*.js',
         'public/js/common/**/*.js',
-        'test/**/*Spec.js'
+        'test/spec/aluno/**/*Spec.js'
     ],
 
 

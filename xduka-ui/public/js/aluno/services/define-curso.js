@@ -1,17 +1,13 @@
 (function () {
     'use strict';
 
-    angular.module('app.services').factory('defineCurso', defineCurso);
+    angular.module('app.services').factory('defineCurso', function (){
+        var idCurso = '';
 
-
-    function defineCurso(){
-        var curso = {
+        return  {
             getIdCurso: getIdCurso,
             setIdCurso: setIdCurso
-        },
-        idCurso = '';
-
-        return curso;
+        };
 
         function getIdCurso() {
             return idCurso;
@@ -20,5 +16,5 @@
         function setIdCurso(id) {
             idCurso = id;
         }
-    }
+    })
 })();
