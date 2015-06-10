@@ -41,7 +41,8 @@
                         $timeout(function(){
                             dataTable();
                             $('.tableLoading').attr({'style': 'display: none'});
-                        },1500)
+                            $('.divTable').attr({'style': 'display: block'});
+                        },2000)
                     }
                 };
 

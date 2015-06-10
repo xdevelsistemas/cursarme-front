@@ -37,6 +37,8 @@
                             vm._viewInscr.list[i].listaCheques[j].data = new Date(data2.list[i].listaCheques[j].data);
                         }
                     }
+
+                    vm._viewInscr.naoEhComercial = true;
                 })
                 .catch(function(erro) {
                     console.log("\n" + erro.data + "\n");
@@ -180,7 +182,16 @@
             };
             vm.disableAlert = function(){
                 vm.showAlert = false;
-            }
+            };
+            vm.cancelEdit = function(){
+                vm.limpaForm();
+                vm.disableLimpar = false;
+                vm.editing = false;
+
+            };
+            vm.topCollapse = function(){
+                $('html, body').animate({scrollTop: 0},'slow');
+            };
 
         }])
 

@@ -45,9 +45,37 @@
     <div class="col-md-12" ng-show="!conf.collapseForm">
         <xd-panel-collapse title="conf._viewInscr.inscrPanelCollapse.label">
             <xd-table-pre-cadastro data-cond="conf.condTable" data-params="conf._viewInscr"></xd-table-pre-cadastro>
-            <p class="text-warning" ng-show="conf.editing">*Cadastro ou edição em andamento ({{!!conf._model.nome.model.val?('Nome: '+conf._model.nome.model.val) : ('CPF: '+conf._model.cpf.model.val)}})</p>
+            <p class="text-warning" ng-show="conf.editing">*Edição em andamento: {{!!conf._model.nome.model.val?('Nome: '+conf._model.nome.model.val) : ('CPF: '+conf._model.cpf.model.val)}}</p>
         </xd-panel-collapse>
+        <!-- BOTÕES DE MENU -->
+        <div class="col-md-12">
+            <div class="col-md-3 inLine">
+                <button class="btn btn-green btn-icon icon-left btn-block btn-lg">
+                    Gerar turma
+                    <i class="icon entypo-list-add icon-right"></i>
+                </button>
+            </div>
+            <div class="col-md-3 inLine">
+                <button class="btn btn-primary btn-icon icon-left btn-block btn-lg">
+                    Atualizar
+                    <i class="icon entypo-cw icon-right"></i>
+                </button>
+            </div>
+            <div class="col-md-3 inLine" ng-show="conf.editing">
+                <button class="btn btn-blue btn-icon icon-left btn-block btn-lg" ng-click="conf.collapseForm = true;conf.topCollapse()">
+                    Continuar Editando
+                    <i class="icon entypo-pencil icon-right"></i>
+                </button>
+            </div>
+            <div class="col-md-3 inLine" ng-show="conf.editing">
+                <button class="btn btn-danger btn-icon icon-left btn-block btn-lg" data-toggle="modal" data-target="#confirmCancel">
+                    Cancelar Edição
+                    <i class="icon entypo-cancel icon-right"></i>
+                </button>
+            </div>
+        </div>
     </div>
+
     <div class="col-md-12" ng-show="conf.collapseForm">
         <xd-panel-collapse title="conf._model.documentacaoPanelCollapse.label">
             <div class="row">
@@ -251,6 +279,27 @@
                 </div>
             </div>
         </xd-panel-collapse>
+        <!-- BOTÕES DE MENU DE EDIÇÃO -->
+        <div class="col-md-12">
+            <div class="col-md-3 inLine">
+                <button class="btn btn-blue btn-icon icon-left btn-block btn-lg" ng-click="conf.collapseForm = false;conf.topCollapse()">
+                    Voltar
+                    <i class="icon entypo-left icon-right"></i>
+                </button>
+            </div>
+            <div class="col-md-3 col-md-offset-1 inLine">
+                <button class="btn btn-green btn-icon icon-left btn-block btn-lg">
+                    Salvar
+                    <i class="icon entypo-check icon-right"></i>
+                </button>
+            </div>
+            <div class="col-md-3 col-md-offset-1 inLine">
+                <button class="btn btn-danger btn-icon icon-left btn-block btn-lg" data-toggle="modal" data-target="#confirmCancel">
+                    Cancelar Edição
+                    <i class="icon entypo-cancel icon-right"></i>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -280,3 +329,32 @@
         </div>
     </div>
 </div>
+
+<!-- MODAL CANCELAR-->
+<div aria-hidden="true" style="display: none;" class="modal fade" id="confirmCancel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Cancelar edição</h4>
+            </div>
+            <div class="modal-body">
+
+                <p class="text-danger">TEM CERTEZA QUE DESEJA CANCELAR A EDIÇÃO DO CADASTRO ATUAL?</p>
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-sm-6 text-center">
+                        <button type="button" class="btn btn-default btn-lg btn-icon icon-left pull-left" data-dismiss="modal"><i class="entypo-left-bold"></i>Voltar</button>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <button type="button" class="btn btn-danger btn-lg btn-icon icon-left pull-right" data-dismiss="modal" data-ng-click="conf.cancelEdit();conf.collapseForm = false;" data-target="#step0"><i class="entypo-cancel  "></i>Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- GERAR TURMA -->
