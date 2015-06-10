@@ -3,7 +3,27 @@
     angular.module('common.directives').directive('xdTablePreCadastro', ['$timeout',
             function ($timeout) {
 
-                var dataTable = function(){
+
+                return {
+                    restrict: "E",
+                    replace: true,
+                    templateUrl: 'html/common/xd-table-pre-cadastro.html',
+                    scope: {
+                        disable: '=',
+                        params: '=',
+                        cond: '=',
+                        pos: '='
+                    },
+                    link: function(elem, attr,scope){
+                        $timeout(function(){
+                            dataTable(scope);
+                            $('.tableLoading').attr({'style': 'display: none'});
+                            $('.divTable').attr({'style': 'display: block'});
+                        },2000)
+                    }
+                };
+
+                function dataTable(scope){
                     try {
                         $('.xd-table-pre').DataTable({
                             "language": {
@@ -20,31 +40,13 @@
                                     "previous": "Anterior"
                                 }
 
-                            }
+                            },
+                            "order": [[ (scope.pos||0), "asc" ]]
                         });
                     }catch(err){
                         $('.tableOnError').attr({'style': 'display: block'});
                     }
-                };
-
-
-                return {
-                    restrict: "E",
-                    replace: true,
-                    templateUrl: 'html/common/xd-table-pre-cadastro.html',
-                    scope: {
-                        disable: '=',
-                        params: '=',
-                        cond: '='
-                    },
-                    link: function(elem, attr){
-                        $timeout(function(){
-                            dataTable();
-                            $('.tableLoading').attr({'style': 'display: none'});
-                            $('.divTable').attr({'style': 'display: block'});
-                        },2000)
-                    }
-                };
+                }
 
             }
         ]);
