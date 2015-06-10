@@ -31,39 +31,7 @@
     </ul>
 
     <div class="tab-content">
-        <div class="alert alert-danger col-md-12" role="alert" ng-show="pre.editing&&pre.showAlert&&vm._model.dataExp.model.val||
-                vm._model.orgaoEmissor.model.val||
-                vm._model.tituloEleitor.model.val||
-                vm._model.zona.model.val||
-                vm._model.secao.model.val||
-                vm._model.ufTitulo.model.val||
-                vm._model.certidaoNc.model.val||
-                vm._model.folha.model.val||
-                vm._model.livro.model.val||
-                vm._model.cartorio.model.val||
-                vm._model.certificadoRes.model.val||
-                vm._model.registro.model.val||
-                vm._model.ufReservista.model.val||
-                vm._model.categoria.model.val||
-                vm._model.sexo.model.val||
-                vm._model.dataNasc.model.val||
-                vm._model.raca.model.val||
-                vm._model.estadoCivil.model.val||
-                vm._model.pai.model.val||
-                vm._model.mae.model.val||
-                vm._model.avRua.model.val||
-                vm._model.endNum.model.val||
-                vm._model.apt.model.val||
-                vm._model.bairro.model.val||
-                vm._model.endUf.model.val||
-                vm._model.nacionalidade.model.val||
-                vm._model.naturalidade.model.val||
-                vm._model.natUf.model.val||
-                vm._model.escolaEm.model.val||
-                vm._model.anoEm.model.val||
-                vm._model.cursoGrad.model.val||
-                vm._model.anoGrad.model.val||
-                vm._model.instituicao.model.val">
+        <div class="alert alert-danger col-md-12" role="alert" ng-show="conf.editing&&conf.showAlert&&(!conf._model.dataExp.model.val||!conf._model.orgaoEmissor.model.val||!conf._model.tituloEleitor.model.val||!conf._model.zona.model.val||!conf._model.secao.model.val||!conf._model.ufTitulo.model.val||!conf._model.certidaoNc.model.val||!conf._model.folha.model.val||!conf._model.livro.model.val||!conf._model.cartorio.model.val||!conf._model.certificadoRes.model.val||!conf._model.registro.model.val||!conf._model.ufReservista.model.val||!conf._model.categoria.model.val||!conf._model.sexo.model.val||!conf._model.dataNasc.model.val||!conf._model.raca.model.val||!conf._model.estadoCivil.model.val||!conf._model.pai.model.val||!conf._model.mae.model.val||!conf._model.avRua.model.val||!conf._model.endNum.model.val||!conf._model.apt.model.val||!conf._model.bairro.model.val||!conf._model.endUf.model.val||!conf._model.nacionalidade.model.val||!conf._model.naturalidade.model.val||!conf._model.natUf.model.val||!conf._model.escolaEm.model.val||!conf._model.anoEm.model.val||!conf._model.cursoGrad.model.val||!conf._model.anoGrad.model.val||!conf._model.instituicao.model.val)">
             <button type="button" class="close" aria-label="Close" data-ng-click="pre.disableAlert()"><span aria-hidden="true">&times;</span></button>
             <span class="alert-title">Campos aguardando preenchimento:</span>
             <hr/>
@@ -709,6 +677,9 @@
             </div>
         </div>
     </div>
+    <script>
+        $.getScript('assets/js/jquery.bootstrap.wizard.min.js')
+    </script>
 </div>
 
 <script type="text/javascript">
@@ -719,8 +690,5 @@
         $.getScript('assets/neon/js/neon-chat.js');
         $.getScript('assets/neon/js/neon-custom.js');
         $.getScript('assets/neon/js/neon-demo.js');
-        $.getScript('assets/js/jquery.bootstrap.wizard.min.js');
-
-
     });
 </script>

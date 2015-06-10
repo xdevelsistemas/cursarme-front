@@ -1,4 +1,282 @@
 <div class="col-md-12">
-    <h1>Confirmação de Matrícula</h1>
-    <p class="text-info" ng-bind="conf.teste"></p>
+    <div class="col-md-12">
+        <div class="alert col-md-12" ng-class="{'alert-danger': true}" role="alert" ng-show="conf.editing&&conf.showAlert&&(!conf._model.dataExp.model.val||!conf._model.orgaoEmissor.model.val||!conf._model.tituloEleitor.model.val||!conf._model.zona.model.val||!conf._model.secao.model.val||!conf._model.ufTitulo.model.val||!conf._model.certidaoNc.model.val||!conf._model.folha.model.val||!conf._model.livro.model.val||!conf._model.cartorio.model.val||!conf._model.certificadoRes.model.val||!conf._model.registro.model.val||!conf._model.ufReservista.model.val||!conf._model.categoria.model.val||!conf._model.sexo.model.val||!conf._model.dataNasc.model.val||!conf._model.raca.model.val||!conf._model.estadoCivil.model.val||!conf._model.pai.model.val||!conf._model.mae.model.val||!conf._model.avRua.model.val||!conf._model.endNum.model.val||!conf._model.apt.model.val||!conf._model.bairro.model.val||!conf._model.endUf.model.val||!conf._model.nacionalidade.model.val||!conf._model.naturalidade.model.val||!conf._model.natUf.model.val||!conf._model.escolaEm.model.val||!conf._model.anoEm.model.val||!conf._model.cursoGrad.model.val||!conf._model.anoGrad.model.val||!conf._model.instituicao.model.val)">
+            <button type="button" class="close" aria-label="Close" data-ng-click="conf.disableAlert()"><span aria-hidden="true">&times;</span></button>
+            <span class="alert-title">Campos aguardando preenchimento:</span>
+            <hr/>
+            <div class="alertContent">
+                <span class="alert-padding" data-ng-show="!conf._model.dataExp.model.val">{{conf._model.dataExp.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.orgaoEmissor.model.val">{{conf._model.orgaoEmissor.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.tituloEleitor.model.val">{{conf._model.tituloEleitor.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.zona.model.val">{{conf._model.zona.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.secao.model.val">{{conf._model.secao.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.ufTitulo.model.val">{{conf._model.ufTitulo.label}} Título;</span>
+                <span class="alert-padding" data-ng-show="!conf._model.certidaoNc.model.val">{{conf._model.certidaoNc.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.folha.model.val">{{conf._model.folha.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.livro.model.val">{{conf._model.livro.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.cartorio.model.val">{{conf._model.cartorio.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.certificadoRes.model.val">{{conf._model.certificadoRes.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.registro.model.val">{{conf._model.registro.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.ufReservista.model.val">{{conf._model.ufReservista.label}} Reservista;</span>
+                <span class="alert-padding" data-ng-show="!conf._model.categoria.model.val">{{conf._model.categoria.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.sexo.model.val">{{conf._model.sexo.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.dataNasc.model.val">{{conf._model.dataNasc.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.raca.model.val">{{conf._model.raca.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.estadoCivil.model.val">{{conf._model.estadoCivil.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.pai.model.val">{{conf._model.pai.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.mae.model.val">{{conf._model.mae.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.avRua.model.val">{{conf._model.avRua.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.endNum.model.val">{{conf._model.endNum.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.apt.model.val">{{conf._model.apt.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.bairro.model.val">{{conf._model.bairro.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.endUf.model.val">{{conf._model.endUf.label}} Endereço;</span>
+                <span class="alert-padding" data-ng-show="!conf._model.nacionalidade.model.val">{{conf._model.nacionalidade.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.naturalidade.model.val">{{conf._model.naturalidade.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.natUf.model.val">{{conf._model.natUf.label}} Naturalidade;</span>
+                <span class="alert-padding" data-ng-show="!conf._model.escolaEm.model.val">{{conf._model.escolaEm.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.anoEm.model.val">{{conf._model.anoEm.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.cursoGrad.model.val">{{conf._model.cursoGrad.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.anoGrad.model.val">{{conf._model.anoGrad.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.instituicao.model.val">{{conf._model.instituicao.label}};</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12" ng-show="!conf.collapseForm">
+        <xd-panel-collapse title="conf._viewInscr.inscrPanelCollapse.label">
+            <xd-table-pre-cadastro data-cond="conf.condTable" data-params="conf._viewInscr"></xd-table-pre-cadastro>
+            <p class="text-warning" ng-show="conf.editing">*Cadastro ou edição em andamento ({{!!conf._model.nome.model.val?('Nome: '+conf._model.nome.model.val) : ('CPF: '+conf._model.cpf.model.val)}})</p>
+        </xd-panel-collapse>
+    </div>
+    <div class="col-md-12" ng-show="conf.collapseForm">
+        <xd-panel-collapse title="conf._model.documentacaoPanelCollapse.label">
+            <div class="row">
+                <div class="col-md-12">
+                    <xd-input data-params="conf._model.nome"
+                              disable="true"></xd-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <xd-input data-params="conf._model.rg"
+                              disable="true"></xd-input>
+                </div>
+                <div class="col-md-4">
+                    <xd-input-date data-disable="!conf.validaCpf"data-params="conf._model.dataExp" data-opened="main.opened"
+                                   date-options="main.dateOptions" data-click="main.open"></xd-input-date>
+                </div>
+                <div class="col-md-4">
+                    <xd-input data-params="conf._model.orgaoEmissor"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <xd-input data-params="conf._model.tituloEleitor"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-3">
+                    <xd-input data-params="conf._model.zona"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-3">
+                    <xd-input data-params="conf._model.secao"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-3">
+                    <xd-select data-params="conf._model.ufTitulo"
+                               data-disable="!conf.validaCpf"></xd-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <xd-input data-params="conf._model.certidaoNc"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-3">
+                    <xd-input data-params="conf._model.folha"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-3">
+                    <xd-input data-params="conf._model.livro"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-3">
+                    <xd-input data-params="conf._model.cartorio"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <xd-input data-params="conf._model.certificadoRes"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-5">
+                    <xd-input data-params="conf._model.registro"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-3">
+                    <xd-select data-params="conf._model.ufReservista"
+                               data-disable="!conf.validaCpf"></xd-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <xd-input data-params="conf._model.categoria"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-5">
+                    <xd-input data-params="conf._model.cpf"
+                              disable="true"></xd-input>
+                </div>
+                <div class="col-md-3">
+                    <xd-select data-params="conf._model.sexo"
+                               data-disable="!conf.validaCpf"></xd-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <xd-input-date data-disable="!conf.validaCpf"data-params="conf._model.dataNasc" data-opened="main.opened"
+                                   date-options="main.dateOptions" data-click="main.open"></xd-input-date>
+                </div>
+                <div class="col-md-3">
+                    <xd-input data-params="conf._model.raca"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-4">
+                    <xd-input data-params="conf._model.estadoCivil"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <xd-input data-params="conf._model.pai"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <xd-input data-params="conf._model.mae"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <xd-input data-params="conf._model.avRua"
+                              disable="true"></xd-input>
+                </div>
+                <div class="col-md-2">
+                    <xd-input data-params="conf._model.endNum"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-2">
+                    <xd-input data-params="conf._model.apt"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-3">
+                    <xd-input data-params="conf._model.cep"
+                              disable="true"></xd-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <xd-input data-params="conf._model.bairro"
+                              disable="true"></xd-input>
+                </div>
+                <div class="col-md-4">
+                    <xd-input data-params="conf._model.cidade"
+                              disable="true"></xd-input>
+                </div>
+                <div class="col-md-3">
+                    <xd-select data-params="conf._model.endUf"
+                               disable="true"></xd-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <xd-input data-params="conf._model.telefone"
+                              disable="true"></xd-input>
+                </div>
+                <div class="col-md-4">
+                    <xd-select data-params="conf._model.tipoTelefone" data-disable="!conf.validaCpf"></xd-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <xd-input-email data-params="conf._model.email"
+                                    disable="true"></xd-input-email>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <xd-input data-params="conf._model.nacionalidade"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-4">
+                    <xd-input data-params="conf._model.naturalidade"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-3">
+                    <xd-select data-params="conf._model.natUf"
+                               data-disable="!conf.validaCpf"></xd-select>
+                </div>
+            </div>
+        </xd-panel-collapse>
+
+        <xd-panel-collapse title="conf._model.documentacaoPanelCollapse.label2">
+            <div class="row">
+                <div class="col-md-8">
+                    <xd-input data-params="conf._model.escolaEm"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-4">
+                    <xd-input data-params="conf._model.anoEm"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <xd-input data-params="conf._model.cursoGrad"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+                <div class="col-md-4">
+                    <xd-input data-params="conf._model.anoGrad"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <xd-input data-params="conf._model.instituicao"
+                              data-disable="!conf.validaCpf"></xd-input>
+                </div>
+            </div>
+        </xd-panel-collapse>
+    </div>
+</div>
+
+<!-- MODAL EDIÇÃO-->
+<div aria-hidden="true" style="display: none;" class="modal fade" id="confirmEdit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Processo de edição/cadastro em andamento</h4>
+            </div>
+            <div class="modal-body">
+
+                <p class="text-danger"><i class="fa fa-lg"></i>Há, atualmente, um cadastro em processo de edição/cadastro, deseja ignorá-lo?</p><p class="text-center text-warning">*Qualquer alteração feita será despresada</p>
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-sm-6 text-center">
+                        <button type="button" class="btn btn-default btn-lg btn-icon icon-left pull-left" data-dismiss="modal"><i class="entypo-left-bold"></i>Não</button>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <button type="button" class="btn btn-danger btn-lg btn-icon icon-left pull-right" data-dismiss="modal" ng-click="conf.confirmEdit(conf.tempItem)"><i class="entypo-cancel"></i>Sim</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
