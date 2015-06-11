@@ -1,6 +1,10 @@
 module.exports = function (app, passport) {
     var controller = require('../controllers/secretaria')();
 
+    //get-unidade
+    app.route('/api/secretaria/dados-curso')
+        .get(controller.showDadosCurso);
+
     //dados-gera-turma
     app.route('/api/secretaria/dados-gera-turma')
         .get(controller.showDadosGeraTurma);

@@ -1,4 +1,5 @@
 var extend = require('node.extend'),
+    dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
     dadosGeraTurma = require('../mockup/xduka-json/secretaria/dadosGeraTurma.json'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
@@ -7,6 +8,7 @@ var extend = require('node.extend'),
 module.exports = function() {
     var controller = {};
 
+    controller.showDadosCurso = getDadosCurso;
     controller.showDadosGeraTurma = getDadosGeraTurma;
     controller.showInfoUsuario = getInfoUsuario;
     controller.showViewInscr = getViewInscr;
@@ -19,6 +21,10 @@ module.exports = function() {
 
 function getDadosGeraTurma(req, res) {
     res.json(dadosGeraTurma);
+}
+
+function getDadosCurso(req, res) {
+    res.json(dadosCurso);
 }
 
 function getTemplateInscricao(req, res) {
