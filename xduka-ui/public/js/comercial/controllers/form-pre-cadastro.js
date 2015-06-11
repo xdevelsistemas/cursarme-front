@@ -2,9 +2,9 @@
     "use strict";
 
     angular.module('app.controllers').controller('FormPreCadastro', [
-        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque',
+        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'tipoTelefone',
 
-    function ($scope, breadCrumb, $timeout, $modal, $resource, lista_cheques, dataCheque) {
+    function ($scope, breadCrumb, $timeout, $modal, $resource, lista_cheques, dataCheque, tipoTelefone) {
 
         /* jshint validthis: true */
         var vm = this
@@ -158,6 +158,7 @@
             vm.selectCursoVagas = true;
 
             // alimentando valores referentes ao curso selecionado
+            $.extend(vm._model.descontoInscr.list, item.descontoInscr);
             $.extend(vm._model.desconto.list, item.desconto);
             $.extend(vm._model.qtdParcelas.list, item.qtdParcelas);
             $.extend(vm._model.melhorData.list, item.melhorData);
@@ -198,8 +199,9 @@
         };
 
         vm.selectPhoneType = function (item, model) {
-            vm._model.telefone.mask = model == 'cel' ? '?(99) 9999-99999' : '?(99) 9999-9999';
+            vm._model.telefone.mask = tipoTelefone.getMskPhone(model);
         };
+        vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
 
         vm.sendInscricao = function() {
             vm._model.listaCheques = vm.lista_cheques.lista;

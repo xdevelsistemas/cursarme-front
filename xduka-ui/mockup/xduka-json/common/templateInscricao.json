@@ -483,6 +483,15 @@
     ],
     "model": {"val": "", "err": ""}
   },
+  "descontoInscr": {
+    "label": "Desconto",
+    "type": "select",
+    "name": "descontoInscr",
+    "placeholder": "Selecione uma opção",
+    "required": false,
+    "list": [],
+    "model": {"val": "", "err": ""}
+  },
   "pagamentoPanelCollapse": {
     "label": "Informações de Pagamento",
     "name": "pagamento"
@@ -497,7 +506,7 @@
   "desconto": {
     "label": "Desconto",
     "type": "select",
-    "name": "descontoInscr",
+    "name": "desconto",
     "placeholder": "Selecione uma opção",
     "required": false,
     "list": [],

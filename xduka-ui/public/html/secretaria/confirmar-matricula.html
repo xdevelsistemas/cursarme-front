@@ -56,7 +56,7 @@
                 </button>
             </div>
             <div class="col-md-3 inLine">
-                <button class="btn btn-primary btn-icon icon-left btn-block btn-lg">
+                <button class="btn btn-primary btn-icon icon-left btn-block btn-lg" ng-click="conf.getViewInscr()">
                     Atualizar
                     <i class="icon entypo-cw icon-right"></i>
                 </button>
@@ -226,7 +226,7 @@
                               disable="true"></xd-input>
                 </div>
                 <div class="col-md-4">
-                    <xd-select data-params="conf._model.tipoTelefone" data-disable="!conf.validaCpf"></xd-select>
+                    <xd-select data-params="conf._model.tipoTelefone" data-change="conf.selectPhoneType" data-disable="!conf.validaCpf"></xd-select>
                 </div>
             </div>
             <div class="row">

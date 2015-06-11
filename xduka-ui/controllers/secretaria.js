@@ -1,8 +1,5 @@
 var extend = require('node.extend'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
-    dadosCurso = require('../mockup/xduka-json/comercial/dados-cursos.json'),
-    dadosTesteCpf = require('../mockup/xduka-json/comercial/dados-testes-cpf.json'),
-    modalCheque = require('../mockup/xduka-json/comercial/modal-cheque.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
     viewInscr = require('../mockup/xduka-json/common/viewInscr.json');
 
@@ -10,10 +7,7 @@ module.exports = function() {
     var controller = {};
 
     controller.showDadosComercial = getDadosComercial;
-    controller.showDadosCurso = getDadosCurso;
     controller.showInfoUsuario = getInfoUsuario;
-    controller.showModalCheque = getModalCheque;
-    controller.putVerificaCpf = putVerificaCpf;
     controller.showViewInscr = getViewInscr;
     controller.putDadosInscricao = putDadosInscricao;
 
@@ -26,40 +20,6 @@ function getDadosComercial(req, res) {
 
 function getInfoUsuario(req, res) {
     res.json({"usuario": usuario});
-}
-
-function getModalCheque(req, res) {
-    res.json(modalCheque);
-}
-
-function putVerificaCpf(req, res) {
-    //var dados = verificaCpf(dadosTesteCpf.verificaCpf, req.body.cpf);
-    var dados = {};
-
-    if (parseInt(req.body.cpf) %2 == 0) {
-        dados.cpf = req.body.cpf;
-        dados.msg = "";
-        res.json({"dados": dados, "dadosCurso": dadosCurso});
-    }else{
-        dados.cpf = req.body.cpf;
-        dados.msg = "Fulano com pendências no financeiro";
-        res.json({"dados": dados, "dadosCurso": {"unidade": {"list": []}}});
-    }
-}
-
-function verificaCpf(obj, cpf) {
-
-    //TODO implementar cálculo de valores para informações de pagamento no json dados-cursos
-
-    for (var i = 0; i < obj.length; i++) {
-        if (obj[i].cpf == cpf) {
-            return obj[i];
-        }
-    }
-}
-
-function getDadosCurso(req, res) {
-    res.json(dadosCurso);
 }
 
 function getViewInscr(req, res) {

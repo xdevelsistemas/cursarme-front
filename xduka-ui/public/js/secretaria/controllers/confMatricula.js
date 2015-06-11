@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('confMatricula', ['$scope', '$resource', 'breadCrumb', 'lista_cheques', function($scope, $resource, breadCrumb, lista_cheques){
+        .controller('confMatricula', ['$scope', '$resource', 'breadCrumb', 'lista_cheques', 'tipoTelefone',
+            function($scope, $resource, breadCrumb, lista_cheques, tipoTelefone){
 
             var vm = this
-                , comercialPromise = $resource('/api/comercial/dados-comercial').get().$promise
-                , viewInscrPromise = $resource('/api/comercial/view-inscr').get().$promise;
+                , comercialPromise = $resource('/api/comercial/dados-comercial').get().$promise;
 
             breadCrumb.title = 'Confirmação de Matrícula';
 
@@ -28,21 +28,27 @@
                     console.log("\n" + erro.data + "\n");
                 });
 
-            viewInscrPromise
-                .then(function(data2) {
-                    vm._viewInscr = data2;
+            vm.getViewInscr = getViewInscr();
 
-                    for (var i = 0; i < data2.list.length; i++) {
-                        for (var j = 0; j < data2.list[i].listaCheques.length; j++) {
-                            vm._viewInscr.list[i].listaCheques[j].data = new Date(data2.list[i].listaCheques[j].data);
+            function getViewInscr() {
+                var viewInscrPromise = $resource('/api/comercial/view-inscr').get().$promise;
+
+                viewInscrPromise
+                    .then(function (data2) {
+                        vm._viewInscr = data2;
+
+                        for (var i = 0; i < data2.list.length; i++) {
+                            for (var j = 0; j < data2.list[i].listaCheques.length; j++) {
+                                vm._viewInscr.list[i].listaCheques[j].data = new Date(data2.list[i].listaCheques[j].data);
+                            }
                         }
-                    }
 
-                    vm._viewInscr.naoEhComercial = true;
-                })
-                .catch(function(erro) {
-                    console.log("\n" + erro.data + "\n");
-                });
+                        vm._viewInscr.naoEhComercial = true;
+                    })
+                    .catch(function (erro) {
+                        console.log("\n" + erro.data + "\n");
+                    });
+            }
 
             vm.condTable = {
                 boolean: function(elem){
@@ -56,8 +62,13 @@
                 },
                 editInscr: vm.editarInscr
             };
-            function editarInscr(item){
 
+            vm.selectPhoneType = function (item, model) {
+                vm._model.telefone.mask = tipoTelefone.getMskPhone(model);
+            };
+
+
+            function editarInscr(item){
                 if (!vm.editing) {
                     vm.editing = true;
                     vm.showAlert = true;
@@ -73,6 +84,7 @@
 
                     getUnidadePromise
                         .then(function (data) {
+                            vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
                             vm._model.unidade.list = data.unidade.list;
                             vm._model.area.list = $.grep(vm._model.unidade.list, function (e) {
                                 return e.id == item.unidade.model.val;
@@ -101,10 +113,12 @@
                      }*/
                 }
             }
+
             function confirmEdit(itemBkp){
                 vm.limpaForm();
                 vm.editarInscr(itemBkp);
             }
+
             vm.limpaForm = function(){
 
                 // escondendo select's de curso
@@ -180,9 +194,11 @@
                 lista_cheques.clean();
                 vm.editing = false;
             };
+
             vm.disableAlert = function(){
                 vm.showAlert = false;
             };
+
             vm.cancelEdit = function(){
                 vm.limpaForm();
                 vm.disableLimpar = false;
@@ -190,10 +206,10 @@
                 vm.topCollapse();
 
             };
+
             vm.topCollapse = function(){
                 $('html, body').animate({scrollTop: 0},'slow');
             };
-
 
             vm.tableGerarTurma = {
                 /* ID importante se for usar dataTable*/

@@ -8,22 +8,30 @@
           {
             "id": 11,
             "text": "Exatas",
-            "turma": [
-              {
-                "vagas": {
-                  "id": "1A",
-                  "text": "1A",
-                  "preenchidas": 12,
-                  "totais": 20
-                }
+            "turma": [{
+              "vagas": {
+                "id": "1A",
+                "text": "1A",
+                "preenchidas": 12,
+                "totais": 20
               }
-            ],
+            }],
             "cursos": [
               {
                 "id": 111,
                 "text": "Matemática",
                 "valorInscricao": 170,
                 "valorIntegral": 300,
+                "descontoInscr": [
+                  {"id": "0", "text": "Sem desconto"},
+                  {"id": "5", "text": "5%"},
+                  {"id": "10", "text": "10%"},
+                  {"id": "15", "text": "15%"},
+                  {"id": "20", "text": "20%"},
+                  {"id": "30", "text": "30%"},
+                  {"id": "40", "text": "40%"},
+                  {"id": "50", "text": "50%"}
+                ],
                 "desconto": [
                   {
                     "id": "1",
@@ -72,6 +80,16 @@
                 "text": "Economia",
                 "valorInscricao": 170,
                 "valorIntegral": 350,
+                "descontoInscr": [
+                  {"id": "0", "text": "Sem desconto"},
+                  {"id": "5", "text": "5%"},
+                  {"id": "10", "text": "10%"},
+                  {"id": "15", "text": "15%"},
+                  {"id": "20", "text": "20%"},
+                  {"id": "30", "text": "30%"},
+                  {"id": "40", "text": "40%"},
+                  {"id": "50", "text": "50%"}
+                ],
                 "desconto": [
                   {
                     "id": "1",
@@ -136,6 +154,16 @@
                 "text": "Direito",
                 "valorInscricao": 170,
                 "valorIntegral": 450,
+                "descontoInscr": [
+                  {"id": "0", "text": "Sem desconto"},
+                  {"id": "5", "text": "5%"},
+                  {"id": "10", "text": "10%"},
+                  {"id": "15", "text": "15%"},
+                  {"id": "20", "text": "20%"},
+                  {"id": "30", "text": "30%"},
+                  {"id": "40", "text": "40%"},
+                  {"id": "50", "text": "50%"}
+                ],
                 "desconto": [
                   {
                     "id": "1",
@@ -192,6 +220,16 @@
                 "text": "História",
                 "valorInscricao": 170,
                 "valorIntegral": 350,
+                "descontoInscr": [
+                  {"id": "0", "text": "Sem desconto"},
+                  {"id": "5", "text": "5%"},
+                  {"id": "10", "text": "10%"},
+                  {"id": "15", "text": "15%"},
+                  {"id": "20", "text": "20%"},
+                  {"id": "30", "text": "30%"},
+                  {"id": "40", "text": "40%"},
+                  {"id": "50", "text": "50%"}
+                ],
                 "desconto": [
                   {
                     "id": "1",
@@ -266,6 +304,16 @@
                 "text": "Medicina",
                 "valorInscricao": 170,
                 "valorIntegral": 600,
+                "descontoInscr": [
+                  {"id": "0", "text": "Sem desconto"},
+                  {"id": "5", "text": "5%"},
+                  {"id": "10", "text": "10%"},
+                  {"id": "15", "text": "15%"},
+                  {"id": "20", "text": "20%"},
+                  {"id": "30", "text": "30%"},
+                  {"id": "40", "text": "40%"},
+                  {"id": "50", "text": "50%"}
+                ],
                 "desconto": [
                   {
                     "id": "1",
@@ -314,6 +362,16 @@
                 "text": "Biologia",
                 "valorInscricao": 170,
                 "valorIntegral": 500,
+                "descontoInscr": [
+                  {"id": "0", "text": "Sem desconto"},
+                  {"id": "5", "text": "5%"},
+                  {"id": "10", "text": "10%"},
+                  {"id": "15", "text": "15%"},
+                  {"id": "20", "text": "20%"},
+                  {"id": "30", "text": "30%"},
+                  {"id": "40", "text": "40%"},
+                  {"id": "50", "text": "50%"}
+                ],
                 "desconto": [
                   {
                     "id": "1",
@@ -378,6 +436,16 @@
                 "text": "Ciência da Computação",
                 "valorInscricao": 170,
                 "valorIntegral": 550,
+                "descontoInscr": [
+                  {"id": "0", "text": "Sem desconto"},
+                  {"id": "5", "text": "5%"},
+                  {"id": "10", "text": "10%"},
+                  {"id": "15", "text": "15%"},
+                  {"id": "20", "text": "20%"},
+                  {"id": "30", "text": "30%"},
+                  {"id": "40", "text": "40%"},
+                  {"id": "50", "text": "50%"}
+                ],
                 "desconto": [
                   {
                     "id": "1",
@@ -430,6 +498,16 @@
                 "text": "Sistema de Informação",
                 "valorInscricao": 170,
                 "valorIntegral": 450,
+                "descontoInscr": [
+                  {"id": "0", "text": "Sem desconto"},
+                  {"id": "5", "text": "5%"},
+                  {"id": "10", "text": "10%"},
+                  {"id": "15", "text": "15%"},
+                  {"id": "20", "text": "20%"},
+                  {"id": "30", "text": "30%"},
+                  {"id": "40", "text": "40%"},
+                  {"id": "50", "text": "50%"}
+                ],
                 "desconto": [
                   {
                     "id": "1",
@@ -500,6 +578,16 @@
                 "text": "Matemática",
                 "valorInscricao": 170,
                 "valorIntegral": 290,
+                "descontoInscr": [
+                  {"id": "0", "text": "Sem desconto"},
+                  {"id": "5", "text": "5%"},
+                  {"id": "10", "text": "10%"},
+                  {"id": "15", "text": "15%"},
+                  {"id": "20", "text": "20%"},
+                  {"id": "30", "text": "30%"},
+                  {"id": "40", "text": "40%"},
+                  {"id": "50", "text": "50%"}
+                ],
                 "desconto": [
                   {
                     "id": "1",
@@ -552,6 +640,16 @@
                 "text": "Ciências Contábeis",
                 "valorInscricao": 170,
                 "valorIntegral": 380,
+                "descontoInscr": [
+                  {"id": "0", "text": "Sem desconto"},
+                  {"id": "5", "text": "5%"},
+                  {"id": "10", "text": "10%"},
+                  {"id": "15", "text": "15%"},
+                  {"id": "20", "text": "20%"},
+                  {"id": "30", "text": "30%"},
+                  {"id": "40", "text": "40%"},
+                  {"id": "50", "text": "50%"}
+                ],
                 "desconto": [
                   {
                     "id": "1",
@@ -616,6 +714,16 @@
                 "text": "Direito",
                 "valorInscricao": 170,
                 "valorIntegral": 700,
+                "descontoInscr": [
+                  {"id": "0", "text": "Sem desconto"},
+                  {"id": "5", "text": "5%"},
+                  {"id": "10", "text": "10%"},
+                  {"id": "15", "text": "15%"},
+                  {"id": "20", "text": "20%"},
+                  {"id": "30", "text": "30%"},
+                  {"id": "40", "text": "40%"},
+                  {"id": "50", "text": "50%"}
+                ],
                 "desconto": [
                   {
                     "id": "1",
@@ -664,6 +772,16 @@
                 "text": "Geografia",
                 "valorInscricao": 170,
                 "valorIntegral": 400,
+                "descontoInscr": [
+                  {"id": "0", "text": "Sem desconto"},
+                  {"id": "5", "text": "5%"},
+                  {"id": "10", "text": "10%"},
+                  {"id": "15", "text": "15%"},
+                  {"id": "20", "text": "20%"},
+                  {"id": "30", "text": "30%"},
+                  {"id": "40", "text": "40%"},
+                  {"id": "50", "text": "50%"}
+                ],
                 "desconto": [
                   {
                     "id": "1",
