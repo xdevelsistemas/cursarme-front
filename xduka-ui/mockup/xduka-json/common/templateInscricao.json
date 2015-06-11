@@ -118,6 +118,7 @@
     "label": "UF",
     "type": "text",
     "name": "ufTitulo",
+    "placeholder": "Selecione...",
     "model": {"val": "", "err": ""},
     "list": [{"id": "UF_AC", "text": "AC"},
       {"id": "UF_AL", "text": "AL"},
@@ -192,6 +193,7 @@
   "ufReservista": {
     "label": "UF",
     "type": "text",
+    "placeholder": "Selecione...",
     "name": "ufReservista",
     "model": {"val": "", "err": ""},
     "list": [{"id": "UF_AC", "text": "AC"},
@@ -298,6 +300,7 @@
   "endUf": {
     "label": "UF",
     "type": "text",
+    "placeholder": "Selecione...",
     "name": "endUf",
     "model": {"val": "", "err": ""},
     "list": [{"id": "UF_AC", "text": "AC"},
@@ -345,6 +348,7 @@
   "natUf": {
     "label": "UF",
     "type": "text",
+    "placeholder": "Selecione...",
     "name": "natUf",
     "model": {"val": "", "err": ""},
     "list": [{"id": "UF_AC", "text": "AC"},

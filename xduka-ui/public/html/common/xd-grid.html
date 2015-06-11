@@ -7,7 +7,7 @@
     <tbody>
     <tr ng-repeat="line in params.list">
         <td ng-if="line['input'] != undefined">
-            <input type="{{line.input.type||'checkbox'}}"><label>{{line.input.label}}</label>
+            <input type="{{line.input.type||'checkbox'}}" ng-model="line.input.model.val"><label>{{line.input.label}}</label>
         </td>
         <td ng-if="line['progress'] != undefined">
             <div class="progress">

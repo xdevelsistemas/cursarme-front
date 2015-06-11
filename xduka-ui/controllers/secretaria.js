@@ -1,4 +1,5 @@
 var extend = require('node.extend'),
+    dadosGeraTurma = require('../mockup/xduka-json/secretaria/dadosGeraTurma.json'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
     viewInscr = require('../mockup/xduka-json/common/viewInscr.json');
@@ -6,15 +7,21 @@ var extend = require('node.extend'),
 module.exports = function() {
     var controller = {};
 
-    controller.showDadosComercial = getDadosComercial;
+    controller.showDadosGeraTurma = getDadosGeraTurma;
     controller.showInfoUsuario = getInfoUsuario;
     controller.showViewInscr = getViewInscr;
+    controller.showTemplateInscricao = getTemplateInscricao;
     controller.putDadosInscricao = putDadosInscricao;
+    controller.putDadosTurmas = putDadosTurmas;
 
     return controller;
 };
 
-function getDadosComercial(req, res) {
+function getDadosGeraTurma(req, res) {
+    res.json(dadosGeraTurma);
+}
+
+function getTemplateInscricao(req, res) {
     res.json(templateInscr);
 }
 
@@ -131,6 +138,24 @@ function putDadosInscricao(req, res) {
         }
         res.json(dataSent);
     }
+}
+
+function putDadosTurmas(req, res) {
+    var dadosSent = req.body;
+
+    var result = [];
+
+    for (var i = 0; i < dadosSent.list.length; i++) {
+        if (dadosSent.list[i].acao.model.val) {
+            result.push(dadosSent.list[i].area.turma.id)
+        }
+    }
+
+/*      Enviar para Clayton o result (que contém uma lista de id's de turmas a serem geradas)   */
+
+    console.log(result); // ???
+
+    res.json(dadosSent);
 }
 
 function setDataExt(a) {

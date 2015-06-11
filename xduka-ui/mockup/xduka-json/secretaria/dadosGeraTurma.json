@@ -1,0 +1,61 @@
+{
+  "list": [
+    {
+      "acao": {
+        "type": "checkbox",
+        "label": "Gerar",
+        "model": {"val": false, "err": ""}
+      },
+      "area": {
+        "id": "11",
+        "text": "Saúde",
+        "turma": {
+          "id": "25AB",
+          "text": "25AB",
+          "vagas": {
+            "preenchidas": 28,
+            "totais": 30
+          }
+        }
+      }
+    },
+    {
+      "acao": {
+        "type": "checkbox",
+        "label": "Gerar",
+        "model": {"val": false, "err": ""}
+      },
+      "area": {
+        "id": "22",
+        "text": "Tecnologia",
+        "turma": {
+          "id": "20CD",
+          "text": "20CD",
+          "vagas": {
+            "preenchidas": 22,
+            "totais": 25
+          }
+        }
+      }
+    },
+    {
+      "acao": {
+        "type": "checkbox",
+        "label": "Com Restrição",
+        "model": {"val": false, "err": ""}
+      },
+      "area": {
+        "id": "33",
+        "text": "Educação",
+        "turma": {
+          "id": "15EF",
+          "text": "15EF",
+          "vagas": {
+            "preenchidas": 30,
+            "totais": 30
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 var extend = require('node.extend'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
-    dadosCurso = require('../mockup/xduka-json/comercial/dados-cursos.json'),
-    dadosTesteCpf = require('../mockup/xduka-json/comercial/dados-testes-cpf.json'),
-    modalCheque = require('../mockup/xduka-json/comercial/modal-cheque.json'),
+    dadosCurso = require('../mockup/xduka-json/comercial/dadosCursos.json'),
+    dadosTesteCpf = require('../mockup/xduka-json/comercial/dadosTestesCpf.json'),
+    modalCheque = require('../mockup/xduka-json/comercial/modalCheque.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
     viewInscr = require('../mockup/xduka-json/common/viewInscr.json');
 
