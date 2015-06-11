@@ -9,7 +9,8 @@
             breadCrumb.title = 'Secretaria';
 
             vm._model = {
-                info: 'Página da secretaria'
+                totalAlunosNovos: '19',
+                alunosNovosInc: '8'
             }
 
             
