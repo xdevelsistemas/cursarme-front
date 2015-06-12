@@ -4,6 +4,7 @@
       "acao": {
         "type": "checkbox",
         "label": "Gerar",
+        "input": true,
         "model": {"val": false, "err": ""}
       },
       "area": {
@@ -14,6 +15,7 @@
           "text": "25AB",
           "vagas": {
             "preenchidas": 28,
+            "minima": 18,
             "totais": 30
           }
         }
@@ -23,6 +25,7 @@
       "acao": {
         "type": "checkbox",
         "label": "Gerar",
+        "input": true,
         "model": {"val": false, "err": ""}
       },
       "area": {
@@ -33,6 +36,7 @@
           "text": "20CD",
           "vagas": {
             "preenchidas": 22,
+            "minima": 15,
             "totais": 25
           }
         }
@@ -42,6 +46,7 @@
       "acao": {
         "type": "checkbox",
         "label": "Com Restrição",
+        "input": true,
         "model": {"val": false, "err": ""}
       },
       "area": {
@@ -52,6 +57,28 @@
           "text": "15EF",
           "vagas": {
             "preenchidas": 30,
+            "minima": 18,
+            "totais": 30
+          }
+        }
+      }
+    },
+    {
+      "acao": {
+        "type": "checkbox",
+        "label": "Com Restrição",
+        "input": true,
+        "model": {"val": false, "err": ""}
+      },
+      "area": {
+        "id": "33",
+        "text": "Humanas",
+        "turma": {
+          "id": "B12",
+          "text": "B12",
+          "vagas": {
+            "preenchidas": 12,
+            "minima": 18,
             "totais": 30
           }
         }

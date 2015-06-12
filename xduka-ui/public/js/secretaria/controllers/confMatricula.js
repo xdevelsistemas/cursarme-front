@@ -55,15 +55,18 @@
 
                         for (var i = 0; i < data.list.length; i++) {
                             var turma = {
-                                input: data.list[i].acao,
-                                text: [data.list[i].area.turma.text, data.list[i].area.text],
-                                'progress': {
-                                    maxVal: data.list[i].area.turma.vagas.totais,
-                                    percent: (data.list[i].area.turma.vagas.preenchidas*100)/data.list[i].area.turma.vagas.totais,
-                                    text: data.list[i].area.turma.vagas.preenchidas + '/' + data.list[i].area.turma.vagas.totais
-                                }
+                                "ainput": data.list[i].acao,
+                                "bprogress": {
+                                    "maxVal": data.list[i].area.turma.vagas.totais,
+                                    "minVal": data.list[i].area.turma.vagas.minima,
+                                    "percent": (data.list[i].area.turma.vagas.preenchidas*100)/data.list[i].area.turma.vagas.totais,
+                                    "text": data.list[i].area.turma.vagas.preenchidas + '/' + data.list[i].area.turma.vagas.totais,
+                                    "progress": true
+                                },
+                                "ctext": data.list[i].area.turma.text,
+                                "dtext": data.list[i].area.text
                             };
-                            turma.input.model.val = data.list[i].area.turma.vagas.totais == data.list[i].area.turma.vagas.preenchidas;
+                            turma.ainput.model.val = data.list[i].area.turma.vagas.totais == data.list[i].area.turma.vagas.preenchidas;
 
                             list.push(turma);
                         }
