@@ -1,65 +1,38 @@
 var extend = require('node.extend'),
-    templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
     dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
-    dadosTesteCpf = require('../mockup/xduka-json/comercial/dadosTestesCpf.json'),
-    modalCheque = require('../mockup/xduka-json/comercial/modalCheque.json'),
+    dadosGeraTurma = require('../mockup/xduka-json/secretaria/dadosGeraTurma.json'),
+    templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
     viewInscr = require('../mockup/xduka-json/common/viewInscr.json');
 
 module.exports = function() {
     var controller = {};
 
-    controller.showDadosComercial = getDadosComercial;
     controller.showDadosCurso = getDadosCurso;
+    controller.showDadosGeraTurma = getDadosGeraTurma;
     controller.showInfoUsuario = getInfoUsuario;
-    controller.showModalCheque = getModalCheque;
-    controller.putVerificaCpf = putVerificaCpf;
     controller.showViewInscr = getViewInscr;
+    controller.showTemplateInscricao = getTemplateInscricao;
     controller.putDadosInscricao = putDadosInscricao;
+    controller.putDadosTurmas = putDadosTurmas;
 
     return controller;
 };
 
-function getDadosComercial(req, res) {
+function getDadosGeraTurma(req, res) {
+    res.json(dadosGeraTurma);
+}
+
+function getDadosCurso(req, res) {
+    res.json(dadosCurso);
+}
+
+function getTemplateInscricao(req, res) {
     res.json(templateInscr);
 }
 
 function getInfoUsuario(req, res) {
     res.json({"usuario": usuario});
-}
-
-function getModalCheque(req, res) {
-    res.json(modalCheque);
-}
-
-function putVerificaCpf(req, res) {
-    //var dados = verificaCpf(dadosTesteCpf.verificaCpf, req.body.cpf);
-    var dados = {};
-
-    if (parseInt(req.body.cpf) %2 == 0) {
-        dados.cpf = req.body.cpf;
-        dados.msg = "";
-        res.json({"dados": dados, "dadosCurso": dadosCurso});
-    }else{
-        dados.cpf = req.body.cpf;
-        dados.msg = "Fulano com pendências no financeiro";
-        res.json({"dados": dados, "dadosCurso": {"unidade": {"list": []}}});
-    }
-}
-
-function verificaCpf(obj, cpf) {
-
-    //TODO implementar cálculo de valores para informações de pagamento no json dados-cursos
-
-    for (var i = 0; i < obj.length; i++) {
-        if (obj[i].cpf == cpf) {
-            return obj[i];
-        }
-    }
-}
-
-function getDadosCurso(req, res) {
-    res.json(dadosCurso);
 }
 
 function getViewInscr(req, res) {
@@ -171,6 +144,24 @@ function putDadosInscricao(req, res) {
         }
         res.json(dataSent);
     }
+}
+
+function putDadosTurmas(req, res) {
+    var dadosSent = req.body;
+
+    var result = [];
+
+    for (var i = 0; i < dadosSent.list.length; i++) {
+        if (dadosSent.list[i].acao.model.val) {
+            result.push(dadosSent.list[i].area.turma.id)
+        }
+    }
+
+/*      Enviar para Clayton o result (que contém uma lista de id's de turmas a serem geradas)   */
+
+    console.log(result); // ???
+
+    res.json(dadosSent);
 }
 
 function setDataExt(a) {

@@ -77,18 +77,17 @@
                 $modalInstance.dismiss('cancel');
             };
 
-            vm.changeBanco = function(item,model){
-                console.log(item);
+            vm.changeBanco = function(item, model){
                 vm._data.banco = item
             };
 
             vm.validaData = function(){
-                if (isDate($('#input_data').val())){
+                if (vm.isDate($('#input_data').val())){
                     vm._model.data.model.err = '';
                 }
             };
 
-            function isDate(date){
+            vm.isDate = function isDate(date){
                 return /^(0[1-9]|[12][0-9]|3[01])[\/](0[1-9]|1[012])[\/](19|20)\d\d$/gm.test(date)
             }
         }]);

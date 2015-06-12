@@ -46,13 +46,13 @@
         function sendCurso(item, model) {
             //var promise = $http.post('/api/aluno/curso-selecionado/:idCurso', {"idCurso": vm.curso.id});
 
-            if( vm.onChange !== item ) {
+            if( vm.onChange != item ) {
                 vm.onChange = item;
                 defineCurso.setIdCurso(model);
 
                 $timeout(function () {
                     $route.reload();
-                }, 0); // 0 ms delay to reload the page.
+                }, 0); // 0 ms de delay para recarregar a página.
             }
         }
 
