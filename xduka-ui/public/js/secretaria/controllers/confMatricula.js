@@ -201,7 +201,7 @@
                 /* CLASSES CSS QUE A TABELA IRÁ UTILIZAR*/
                 class: 'table-hover display',
 
-                /* Se irá sar dataTable*/
+                /* Se irá usar dataTable*/
                 dataTable: {
                     /*  elementos desabilitados ou habilitados dataTable*/
                     "paging":   false,
@@ -210,25 +210,27 @@
                     "filter":   false,
                     "order": [[ 1, "desc" ]]
                 },
-
                 /* CABEÇALHO DA TABELA */
                 head: ['', 'Vagas', 'Turma', 'Área'],
 
                 list: [
                     {
-                        input: {type: 'checkbox', label: 'Gerar'},
-                        text: ['25AB','Saúde'],
-                        'progress': {maxVal: 25, percent: (15*100)/25, text: '15/25'}
+                        '0input': {type: 'checkbox', label: 'Gerar', input: true},
+                        '2text': '25AB',
+                        '1progress': {maxVal: 25, percent: (15*100)/25, text: '15/25', progress: true},
+                        '3text': 'Saúde'
                     },
                     {
-                        input: {type: 'checkbox', label: 'Gerar'},
-                        text: ['20CD', 'Tecnologia'],
-                        'progress': {maxVal: 25, percent: (22*100)/25, text: '22/25'}
+                        '0input': {type: 'checkbox', label: 'Gerar', input: true},
+                        '2text': '20CD',
+                        '1progress': {maxVal: 25, percent: (22*100)/25, text: '22/25', progress: true},
+                        '3text': 'Tecnologia'
                     },
                     {
-                        input: {type: 'checkbox', label: 'com restrição'},
-                        text: ['15EF','Educação '],
-                        'progress': {maxVal: 30, percent: (30*100)/30, text: '30/30'}
+                        '0input': {type: 'checkbox', label: 'com restrição', input: true},
+                        '2text': '15EF',
+                        '1progress': {maxVal: 30, percent: (30*100)/30, text: '30/30', progress: true},
+                        '3text': 'Educação'
                     }
                 ]
             };
