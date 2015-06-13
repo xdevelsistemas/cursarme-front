@@ -1,0 +1,28 @@
+<div data-ng-class="{'has-error':!(params.model.err === undefined || params.model.err == '')}"
+     class="form-group">
+
+    <div class="col-md-12">
+        <div class="col-md-12 left">
+            <label for="{{'textarea_'+params.name}}">
+                {{params.label}}
+            </label>
+        </div>
+
+        <div class="col-md-12">
+            <textarea data-ng-model="params.model.val" 
+                      id="{{'textarea_'+params.name}}"
+                      placeholder="{{params.placeholder}}"
+                      name="{{params.name}}"
+                      cols="30" rows="10"
+                      class="form-control"
+                      data-ng-model="params.model.val"
+                      ng-disabled="disable"
+                      ng-required="params.required"></textarea>
+
+            <p data-collapse="params.model.err == ''"
+               data-ng-bind="params.model.err"
+               class="control-label"></p>
+        </div>
+    </div>
+
+</div>

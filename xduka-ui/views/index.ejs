@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt" ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <title>xDuka | <%= title %></title>
+
+    <!--NEON-->
+    <link rel="stylesheet" href="assets/neon/vertical-timeline/css/component.css">
+    <link rel="stylesheet" href="assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
+    <link rel="stylesheet" href="assets/css/font-icons/entypo/css/entypo.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+    <link rel="stylesheet" href="assets/css/neon.css">
+
+    <!--UI-SELECT-->
+    <!--
+    IE8 support, see AngularJS Internet Explorer Compatibility http://docs.angularjs.org/guide/ie
+    For Firefox 3.6, you will also need to include jQuery and ECMAScript 5 shim -->
+    <!--[if lt IE 9]>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
+    <script>
+        document.createElement('ui-select');
+        document.createElement('ui-select-match');
+        document.createElement('ui-select-choices');
+    </script>
+    <![endif]-->
+    <link rel="stylesheet" href="lib/angular-ui-select/dist/select.css">
+    <link rel="stylesheet" href="lib/select2/select2.css">
+    <link rel="stylesheet" href="lib/select2/select2-bootstrap.css">
+
+    <!--NG-IMG-CROP-->
+    <link rel="stylesheet" type="text/css" href="assets/css/ng-img-crop-custom.css">
+    <!--XDUKA-->
+    <link rel="stylesheet" href="assets/xduka/css/skin.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+
+    <!--SCRIPT-->
+    <!--<script src="lib/requirejs/require.js" data-main="js/<%= area %>/main"></script>-->
+
+</head>
+<body ng-controller="Main as main"
+      class="page-body page-fade" data-url="http://neon.dev">
+
+<div class="page-container">
+
+    <div class="sidebar-menu">
+        <header class="logo-env">
+            <!-- logo -->
+            <div class="logo">
+                <a href="/">
+                    <img src="assets/xduka/img/logo.png" width="120" alt=""/>
+                </a>
+            </div>
+            <!-- logo collapse icon -->
+            <div class="sidebar-collapse">
+                <a href="#" class="sidebar-collapse-icon with-animation">
+                    <!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+                    <i class="entypo-menu"></i>
+                </a>
+            </div>
+            <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+            <div class="sidebar-mobile-menu visible-xs">
+                <a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+                    <i class="entypo-menu"></i>
+                </a>
+            </div>
+        </header>
+        <ul id="main-menu" class="">
+            <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+            <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+            <li ng-repeat="item in main.menu.list">
+                <a ng-href="{{item.href}}">
+                    <i ng-class="item.iconClass"></i>
+                    <span ng-bind="item.text"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+
+        <div class="row">
+            <!-- Profile Info and Notifications -->
+            <div class="col-md-6 col-sm-8 clearfix">
+                <ul class="user-info pull-left pull-none-xsm">
+                    <!-- Profile Info -->
+                    <li class="profile-info dropdown">
+                        <!-- add class "pull-right" if you want to place this from right -->
+                        <span href="#" class="dropdown-toggle">
+                            <img ng-src="{{main.user.avatar.thumb}}" alt="{{main.user.name}}"
+                                 class="img-circle" width="44"/>
+                            {{main.user.name}}
+                        </span>
+                    </li>
+                </ul>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <form role="form" class="form-horizontal form-groups-bordered">
+                            <xd-select data-params="main.cursos" data-change="main.sendCurso" ></xd-select>
+                        </form>
+                        <hr/>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Raw Links -->
+            <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+                <ul class="list-inline links-list pull-right">
+                    <li>
+                        <a href="/logout">
+                            {{main.STR.LOGOUT}}
+                            <i class="entypo-logout right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr/>
+
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb bc-3">
+                    <li>
+                        <a href="/"><i class="entypo-home"></i>Home</a>
+                    </li>
+                    <li class="active">
+                        <strong>{{main.breadCrumb.title}}</strong>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="row">
+            <div data-ng-view
+                 class="col-sm-12 col-md-12 col-lg-12">
+            </div>
+        </div>
+
+        <footer class="main">
+            &copy; 2014
+            <strong>xDuka</strong>
+            Desenvolvido pela
+            <a href="http://xdevel.com.br"
+               target="_blank">xDevel</a>
+        </footer>
+
+    </div>
+</div>
+
+<!-- Bottom Scripts -->
+<% include config-dependencias-common.ejs %>
+<% include config-dependencias-aluno.ejs %>
+
+</body>
+</html>

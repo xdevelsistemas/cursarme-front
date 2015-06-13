@@ -1,0 +1,58 @@
+<div ng-controller="Tasks as tasks"
+     class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+
+        <form name="form_filter" class="form-horizontal form-groups-bordered">
+            <xd-select data-params="tasks.filter" data-change="tasks.sendTask"></xd-select>
+        </form>
+        <hr/>
+
+        <div data-ng-repeat="task in tasks.tasks"
+             class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="panel panel-info" data-collapsed="0">
+                    <!-- panel head -->
+                    <div class="panel-heading">
+                        <div class="panel-title" data-ng-bind="task.subject"></div>
+                        <div class="panel-options">
+                            <!--<a href="#sample-modal" data-toggle="modal" data-target="#sample-modal-dialog-1" class="bg"><i class="entypo-cog"></i></a>-->
+                            <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
+                            <!--<a href="#" data-rel="reload"><i class="entypo-arrows-ccw"></i></a>-->
+                            <!--<a href="#" data-rel="close"><i class="entypo-cancel"></i></a>-->
+                        </div>
+                    </div>
+                    <!-- panel body -->
+                    <div class="panel-body">
+                        <p>
+                            <strong>
+                                <label data-ng-bind-template="{{tasks.STR.FINISH_DATE}}:"></label>
+                                <span data-ng-bind="task.end"></span>
+                                <br>
+                                <label data-ng-bind-template="{{tasks.STR.ABOUT}}:"></label>
+                                <span data-ng-bind="task.about"></span>
+                                <br>
+                            </strong>
+                            <label data-ng-bind-template="{{tasks.STR.START_DATE}}:"></label>
+                            <span data-ng-bind="task.begin"></span>
+                            <br>
+                            <label data-ng-bind-template="{{tasks.STR.TEACHER}}:"></label>
+                            <span data-ng-bind="task.teacher"></span>
+                            <br>
+                            <br/>
+                            <a data-ng-href="{{task.attachment}}">
+                                <button type="button" class="btn btn-blue btn-icon btn-lg">
+                                    <span data-ng-bind-template="{{tasks.STR.DOWNLOAD}} {{tasks.STR.ATTACHMENT}}"></span>
+                                    <i class="entypo-down"></i>
+                                </button>
+                            </a>
+                            <br/>
+                            <label data-ng-bind="task.attachment"></label>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- /ko -->
+        </div>
+
+    </div>
+</div>

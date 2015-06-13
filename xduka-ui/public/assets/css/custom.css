@@ -1,0 +1,120 @@
+/**
+ *
+ * Apply Here your Custom CSS
+ *
+*/
+
+body {
+    color: #000; /*cor padrão sobrepondo a do neon*/
+}
+
+.titleRed {
+    background-color: rgba(228, 11, 11, 0.88);
+    transition: all 400ms ease-in-out 0.1s;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    
+}
+.titleRed:hover {
+    background-color: rgba(227, 8, 8, 0.79);
+    transition: all 400ms ease-in-out 0.1s;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    
+}
+.titleBlue{
+    background-color: #0073b7;
+    transition: all 400ms ease-in-out 0.1s;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    
+}
+.titleBlue:hover{
+    background-color: #005d93;
+    transition: all 400ms ease-in-out 0.1s;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    
+}
+
+.titleRed>#vagasDisponiveisTitle {
+    font-size: 25px;
+    font-weight: bold;
+    /*text-align: center;*/
+    transition: all 400ms ease-in-out 0.2s;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    
+
+}
+/*.titleRed>#vagasDisponiveisValue{
+    text-align: center;
+    transition: all 400ms ease-in-out 0.2s;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+
+}*/
+.titleBlue>#vagasDisponiveisTitle{
+    font-size: 21px;
+    transition: all 400ms ease-in-out 0.2s;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    
+}
+.inLine {
+    display: inline;
+}
+
+.heightFix {
+    height: 42px;
+}
+.moneyDirective {
+    font-size: 15px;
+    font-family: "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
+    font-weight: 400;
+
+}
+
+.linkCursor:hover {
+    cursor:pointer;cursor:hand
+}
+
+.scrollTable{
+    overflow: hidden;
+}
+
+@media (max-width: 769px) {
+    .scrollTable{
+        overflow: scroll;
+    }
+}
+
+.alert-title {
+    font-weight: bold;
+}
+
+.alert-padding {
+    padding-left: 1%;
+    display: table;
+}
+
+.alertContent{
+    -webkit-column-count:3; /* Chrome, Safari, Opera */
+    -moz-column-count:3;    /* Firefox */
+    column-count:3;         /* padrão */
+    overflow: auto;
+}

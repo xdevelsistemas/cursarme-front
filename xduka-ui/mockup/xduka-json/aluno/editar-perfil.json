@@ -1,0 +1,58 @@
+{
+    "info": {
+        "phone": {
+            "label": "Telefone Residencial",
+            "placeholder": "(__) ____-____",
+            "mask": "?(99) 9999-9999",
+            "name": "phone",
+            "model": {
+                "val": "2730193097",
+                "err": ""
+            }
+        },
+        "cel": {
+            "label": "Telefone Celular",
+            "placeholder": "(__) _____-____",
+            "mask": "?(99) 99999-9999",
+            "name": "cel",
+            "model": {
+                "val": "27981132563",
+                "err": ""
+            }
+        },
+        "email": {
+            "label": "E-mail",
+            "name": "email",
+            "placeholder": "Digite seu e-mail",
+            "type": "email",
+            "model": {
+                "val": "clayton@xdevel.com.br",
+                "err": ""
+            }
+        },
+        "sharePic": false
+    },
+    "password": {
+        "current": {
+            "label": "Senha Atual",
+            "placeholder": "Digite aqui a senha atual",
+            "name": "password",
+            "type": "password",
+            "model":{"val": "", "err": ""}
+        },
+        "new": {
+            "label": "Nova Senha",
+            "placeholder": "Digite sua nova senha",
+            "name": "newPassword",
+            "type": "password",
+            "model":{"val": "", "err": ""}
+        },
+        "confirm": {
+            "label": "Confirmar Nova Senha",
+            "placeholder": "Digite a nova senha novamente",
+            "name": "confirmPassword",
+            "type": "password",
+            "model":{"val": "", "err": ""}
+        }
+    }
+}

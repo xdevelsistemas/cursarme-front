@@ -1,0 +1,31 @@
+<div ng-controller="Conteudo as conteudo"
+     class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+
+        <form role="form" class="form-horizontal form-groups-bordered">
+            <xd-select data-params="conteudo.filterPeriodo" data-change="conteudo.sendPeriodo"></xd-select>
+            <xd-select data-params="conteudo.filterDisciplina" data-change="conteudo.sendDisciplina"></xd-select>
+        </form>
+        <hr/>
+        <br/>
+
+        <div>
+            <table class="table table-condensed table-bordered table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>Conteúdo</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td data-ng-bind="conteudo.disciplina.nome"></td>
+                </tr>
+                <tr data-ng-repeat="item in conteudo.disciplina.conteudo">
+                    <td data-ng-bind="item"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

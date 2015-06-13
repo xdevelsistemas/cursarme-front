@@ -1,0 +1,37 @@
+<ng-form name="fieldForm">
+    <div ng-class="{ 'has-error' : params.model.err || (!fieldForm.data.$pristine &&
+                                    fieldForm.data.$invalid)}"
+         class="form-group">
+        <div class="col-md-12">
+            <div class="col-md-12 left">
+                <label ng-bind="params.label"></label>
+            </div>
+
+            <div class="col-md-12">
+                <ui-select class="form-control" name="data"
+                           ng-model="params.model.val"
+                           theme="select2"
+                           on-select="change($item, $model)"
+                           data-ng-disabled="disable || !params.list.length"
+                           ng-required="params.required"
+                           data-validade="{{dValidate}}"
+                           title="{{params.placeholder}}">
+                    <ui-select-match placeholder="{{params.placeholder}}">{{$select.selected.text}}</ui-select-match>
+                    <ui-select-choices repeat="item.id as item in params.list | propsFilter: {text: $select.search, id: $select.search}">
+                        <div ng-bind-html="item.text | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+
+                <p ng-show="params.model.err || (!fieldForm.data.$pristine &&
+                            fieldForm.data.$invalid)"
+                   class="control-label" ng-bind="params.model.err">
+                </p>
+                <!--p data-collapse="params.model.err == ''"
+                   data-ng-bind="params.model.err"
+                   class="control-label"></p-->
+            </div>
+        </div>
+    </div>
+</ng-form>
+
+<xd-input
