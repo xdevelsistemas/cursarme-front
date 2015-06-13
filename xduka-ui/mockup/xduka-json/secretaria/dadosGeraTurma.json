@@ -13,10 +13,12 @@
         "turma": {
           "id": "25AB",
           "text": "25AB",
+          "param": "2012/06",
           "vagas": {
-            "preenchidas": 28,
-            "minima": 18,
-            "totais": 30
+            "preenchidas": 25,
+            "incompletas": 15,
+            "minima": 20,
+            "totais": 39
           }
         }
       }
@@ -34,10 +36,12 @@
         "turma": {
           "id": "20CD",
           "text": "20CD",
+          "param": "2013/06",
           "vagas": {
-            "preenchidas": 22,
-            "minima": 15,
-            "totais": 25
+            "preenchidas": 28,
+            "incompletas": 20,
+            "minima": 20,
+            "totais": 46
           }
         }
       }
@@ -55,10 +59,12 @@
         "turma": {
           "id": "15EF",
           "text": "15EF",
+          "param": "2014/06",
           "vagas": {
-            "preenchidas": 30,
-            "minima": 18,
-            "totais": 30
+            "preenchidas": 35,
+            "incompletas": 9,
+            "minima": 28,
+            "totais": 50
           }
         }
       }
@@ -76,10 +82,12 @@
         "turma": {
           "id": "B12",
           "text": "B12",
+          "param": "2015/06",
           "vagas": {
-            "preenchidas": 12,
-            "minima": 18,
-            "totais": 30
+            "preenchidas": 25,
+            "incompletas": 12,
+            "minima": 22,
+            "totais": 48
           }
         }
       }
