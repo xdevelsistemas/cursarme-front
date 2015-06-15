@@ -2,9 +2,9 @@
     "use strict";
 
     angular.module('app.controllers').controller('FormPreCadastro', [
-        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'tipoTelefone',
+        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'modelStrings', 'lista_cheques', 'dataCheque', 'tipoTelefone',
 
-    function ($scope, breadCrumb, $timeout, $modal, $resource, lista_cheques, dataCheque, tipoTelefone) {
+    function ($scope, breadCrumb, $timeout, $modal, $resource, modelStrings, lista_cheques, dataCheque, tipoTelefone) {
 
         /* jshint validthis: true */
         var vm = this
@@ -38,6 +38,8 @@
         vm.selectCursoArea = false;
         vm.selectCursoCurso = false;
         vm.selectCursoVagas = false;
+
+        vm.STR = modelStrings;
 
         // valida todos os campos
         vm.validaCpf = false;
@@ -230,7 +232,7 @@
         vm.sendInscricao = function() {
             vm._model.listaCheques = vm.lista_cheques.lista;
 
-            var sendInscricaoPromise = $resource('/api/comercial/dados-inscricao').save({}, vm._model).$promise;
+            var sendInscricaoPromise = $resource('/api/comercial/dados-inscricao').save({}, {"model": vm._model, "STR": vm.STR}).$promise;
 
             sendInscricaoPromise
                 .then(function (data) {
