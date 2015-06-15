@@ -2,8 +2,8 @@ module.exports = function (app, passport) {
     var controller = require('../controllers/comercial')();
 
     //dados-comercial
-    app.route('/api/comercial/template-inscricao')
-        .get(controller.showDadosInscricao);
+    app.route('/api/comercial/dados-comercial')
+        .get(controller.showDadosComercial);
 
     //get-unidade
     app.route('/api/comercial/dados-curso')
