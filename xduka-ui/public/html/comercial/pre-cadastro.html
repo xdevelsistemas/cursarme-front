@@ -189,7 +189,8 @@
                 </div-->
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params="pre._model.formaPagamentoInscr" data-change="pre.selectChequeStep1" data-disable="!pre.validaCpf"></xd-select>
+                        <xd-select data-params="pre._model.formaPagamentoInscr" data-change="pre.selectChequeStep1"
+                                   data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
                 <!--BOTAO ADD CHEQUE-->
@@ -212,7 +213,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params="pre._model.descontoInscr" data-change="pre.calcDescInscr" data-disable="!pre.validaCpf"></xd-select>
+                        <xd-select data-params="pre._model.descontoInscr" data-change="pre.descontoAplicInscr"
+                                   data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
 
@@ -291,7 +293,7 @@
                     <div class="col-md-12">
                         <!--<xd-input data-params="pre._model.parcelamento"
                                   data-disable="!pre.validaCpf"></xd-input>-->
-                        <xd-select data-params="pre._model.qtdParcelas"
+                        <xd-select data-params="pre._model.qtdParcelas" data-change="pre.qtdParcelasAplic"
                                    data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
@@ -471,7 +473,7 @@
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-select data-params="pre._model.tipoTelefone" data-disable="!pre.validaCpf"></xd-select>
+                        <xd-select data-params="pre._model.tipoTelefone" data-disable="true"></xd-select>
                     </div>
                 </div>
                 <div class="row">
@@ -680,7 +682,15 @@
             </div>
         </div>
     </div>
-    <script>
-        $.getScript('assets/js/jquery.bootstrap.wizard.min.js')
+
+    <!--    SÓ CARREGA OS ARQUIVOS ABAIXO QUANDO OS DOM ESTIVER COMPLETO      -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.getScript('assets/neon/js/neon-api.js');
+            $.getScript('assets/neon/js/neon-chat.js');
+            $.getScript('assets/neon/js/neon-custom.js');
+            $.getScript('assets/neon/js/neon-demo.js');
+            $.getScript('assets/js/jquery.bootstrap.wizard.min.js')
+        });
     </script>
 </div>

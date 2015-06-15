@@ -131,7 +131,6 @@
             vm.selectCursoArea = true;
             vm.selectCursoCurso = false;
             vm.selectCursoVagas = false;
-            vm._model.valorInscricao.model.val = '';
 
             vm._model.area.list = [];
             vm._model.area.model = {'val': '', 'err': ''};
@@ -144,7 +143,6 @@
         vm.areaChange = function (item, model) {
             vm.selectCursoCurso = true;
             vm.selectCursoVagas = false;
-            vm._model.valorInscricao.model.val = '';
 
             vm._model.curso.list = [];
             vm._model.curso.model = {'val': '', 'err': ''};
@@ -169,6 +167,7 @@
 
             // definindo valor de inscrição
             vm._model.valorInscricao.model.val = item.valorInscricao;
+            vm._model.valorInscricao.model.aux = item.valorInscricao;
             vm._model.valorIntegral.model.val = item.valorIntegral;
             vm._model.valorIntegral.model.aux = item.valorIntegral;
 
@@ -183,12 +182,28 @@
             }, 1);
         };
 
+        vm.descontoAplicInscr = function(item, model) {
+            if (model != 0) {
+                vm._model.valorInscricao.model.val = vm._model.valorInscricao.model.aux - ((vm._model.valorInscricao.model.aux * model) / 100);
+            }else{
+                vm._model.valorInscricao.model.val = vm._model.valorInscricao.model.aux;
+            }
+        };
+
         vm.descontoAplic = function(item, model) {
             if (model != 0) {
                 vm._model.valorIntegral.model.val = vm._model.valorIntegral.model.aux - ((vm._model.valorIntegral.model.aux * model) / 100);
             }else{
                 vm._model.valorIntegral.model.val = vm._model.valorIntegral.model.aux;
             }
+
+            if (vm._model.qtdParcelas.model.val) {
+                vm.qtdParcelasAplic({}, vm._model.qtdParcelas.model.val);
+            }
+        };
+
+        vm.qtdParcelasAplic = function(item, model) {
+            vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
         };
 
         vm.openModalCheque = function () {
@@ -313,6 +328,9 @@
             vm._model.desconto.model.val = "";
             vm._model.qtdParcelas.model.val = "";
             vm._model.melhorData.model.val = "";
+            vm._model.valorInscricao.model.val = '';
+            vm._model.valorIntegral.model.val = '';
+            vm._model.valorParcela.model.val = '';
         }
 
         vm.limpaForm = function(){
