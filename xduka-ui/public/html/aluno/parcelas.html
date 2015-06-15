@@ -1,0 +1,67 @@
+<div ng-controller="Parcelas as parcelas"
+     class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+
+        <div data-ng-repeat="parcela in parcelas.lista"
+             data-collapsed="0"
+             class="panel panel-info panel-shadow">
+            <div class="panel-heading">
+                <div style="width: 93%" class="panel-title">
+                    <table style="background-color: #c5e8f7; width: 100%;"
+                           class="table table-condensed responsive">
+                        <tr>
+                            <td style="font-weight: bold;">Ano Letivo</td>
+                            <td style="font-weight: bold;">Tipo</td>
+                            <td style="font-weight: bold;">Período</td>
+                            <td style="font-weight: bold;">Status</td>
+                        </tr>
+                        <tr>
+                            <td data-ng-bind="parcela.anoLetivo"></td>
+                            <td data-ng-bind="parcela.tipo"></td>
+                            <td data-ng-bind="parcela.periodo"></td>
+                            <td data-ng-bind="parcela.status"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel-options">
+                    <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
+                </div>
+            </div>
+            <div class="panel-body" style="display: block;">
+                <table class="table table-condensed table-bordered table-hover table-striped responsive">
+                    <thead>
+                    <tr>
+                        <th>Parcela</th>
+                        <th>Bruto</th>
+                        <th>Desconto</th>
+                        <th>Acréscimo</th>
+                        <th>Data</th>
+                        <th>Valor</th>
+                        <th>Status</th>
+                        <th>Imprimir</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr data-ng-repeat="item in parcela.lista">
+                        <td data-ng-bind="item.parcela"></td>
+                        <td data-ng-bind="item.bruto"></td>
+                        <td data-ng-bind="item.desconto"></td>
+                        <td data-ng-bind="item.acrescimo"></td>
+                        <td data-ng-bind="item.data"></td>
+                        <td data-ng-bind="item.valor"></td>
+                        <td data-ng-bind="item.status.status"></td>
+                        <td align="center">
+                            <a data-ng-show="item.status.codigo===0"
+                               data-ng-href="{{item.boleto}}"
+                               class="btn btn-lg btn-default">
+                                <i class="entypo-print"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

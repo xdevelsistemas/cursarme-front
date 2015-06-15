@@ -1,0 +1,46 @@
+<div class="scrollTable">
+    <div data-ng-class="{'has-error':!(params.model.err === undefined || params.model.err == '')}"
+     class="form-group">
+    <div class="tableLoading col-md-12 center text-center center-block" style="display: block">
+        <div class="col-md-12">
+            <img src="assets/images/loader-1.gif" alt="Carregando" class="text-center"/>
+        </div>
+        <div class="col-md-12">
+            <p class="text-center">Carregando</p>
+        </div>
+    </div>
+    <div class="divTable col-md-12" style="display: none">
+        <p class="tableOnError text-center text-info" style="display: none">Ops! Conexão lenta. Alguns recursos poderão ser desabilitados para melhor performance.</p>
+        <table id="{{params.name}}" class="xd-table-pre table table-striped table-hover">
+            <thead>
+            <tr>
+                <th ng-if="!!params.naoEhComercial">Ação</th>
+               <th ng-repeat="head in params.head">{{head.text}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="line in params.list">
+                <th ng-if="!!params.naoEhComercial">
+                    <div class="text-center">
+                        <input type="checkbox" ng-model="line.action" ng-checked="!line.validacoes.length" ng-disabled="true"/>
+                    </div>
+                </th>
+                <th ng-bind="line.nome.model.val"></th>
+                <th ng-bind="line.vagas.turma"></th>
+                <th ng-bind="line.curso.model.text"></th>
+                <th ng-bind="line.vagas.preenchidas+'/'+line.vagas.totais"></th>
+                <th ng-bind="line.unidade.model.text"></th>
+                <th ng-if="!!line.validacoes.length">
+                    <span style="font-size: 11px">Incompleto</span>
+                    <button title="Editar Cadastro" class="btn btn-white" onclick="$('#cursorSetp1').click()" ng-click="cond.editFunc();cond.editInscr(line)"><i class="entypo-pencil"></i></button>
+                </th>
+                <th ng-if="!line.validacoes.length">
+                    <span style="font-size: 11px">Completo</span>
+                    <button title="Imprimir Contrato" class="btn btn-info"><i class="entypo-print"></i></button>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>

@@ -1,0 +1,52 @@
+{
+    "filterPeriodo": {
+        "label": "Período",
+        "name": "período",
+        "placeholder": "Selecione um período...",
+        "list": [
+            {
+                "id": "-1",
+                "text": "Todos os períodos"
+            },
+            {
+                "id": "1",
+                "text": "Único"
+            },
+            {
+                "id": "2",
+                "text": "Único dois"
+            }
+        ],
+        "model": {"val": "-1", "err": ""}
+    },
+    "filterDisciplina": {
+        "label": "Disciplina",
+        "name": "Disciplina",
+        "placeholder": "Selecione uma disciplina...",
+        "list": [
+            {
+                "id": "-1",
+                "text": "Todas as disciplinas"
+            },
+            {
+                "id": 1,
+                "text": "Ética e Bioética"
+            },
+            {
+                "id": 2,
+                "text": "Metodologia Científica"
+            },
+            {
+                "id": 3,
+                "text": "Planejamento em Saúde"
+            }
+        ],
+        "model": {"val": "-1", "err": ""}
+    },
+    "disciplina": {
+        "nome": "Ética e Bioética",
+        "conteudo": [
+            "* O Conteúdo ainda não foi registrado pelo professor!"
+        ]
+    }
+}
