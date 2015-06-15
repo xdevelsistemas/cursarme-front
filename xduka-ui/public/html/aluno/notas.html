@@ -1,0 +1,82 @@
+<div ng-controller="Notas as notas"
+     class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+
+        <div>Avaliações</div>
+        <br>
+
+        <table class="table table-bordered responsive table-hover table-striped">
+            <thead>
+            <tr>
+                <th></th>
+                <th data-ng-repeat="periodo in notas.disciplinas[0].periodos"
+                    data-ng-bind="periodo.nome"
+                    colspan="4">
+                </th>
+                <th colspan="5">Resultado</th>
+            </tr>
+            <tr>
+                <th>Disciplina</th>
+                <th data-ng-repeat-start="periodo in notas.disciplinas[0].periodos">
+                    AV1
+                </th>
+                <th>AV2</th>
+                <th>Nota</th>
+                <th data-ng-repeat-end>
+                    Faltas
+                </th>
+                <th>Média</th>
+                <th>REC</th>
+                <th>2HC</th>
+                <th>Média Final</th>
+                <th>Resultado</th>
+            </tr>
+            </thead>
+            <tbody data-ng-repeat="disciplina in notas.disciplinas">
+            <tr>
+                <td data-ng-bind="disciplina.nome">'Nome da Disciplina'</td>
+                <td data-ng-repeat-start="periodo in disciplina.periodos"
+                    data-ng-bind="periodo.av1">xx
+                </td>
+                <td data-ng-bind="periodo.av2">xx</td>
+                <td data-ng-bind="periodo.nota">xx</td>
+                <td data-ng-repeat-end
+                    data-bind="periodo.faltas">xx
+                </td>
+                <td data-ng-bind="periodo.resultado.media">xx</td>
+                <td data-ng-bind="periodo.resultado.rec">xx</td>
+                <td data-ng-bind="periodo.resultado._2ch">xx</td>
+                <td data-ng-bind="periodo.resultado.mediaFinal">xx</td>
+                <td data-ng-bind="periodo.resultado.resultado">xx</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div>Boletim/Histórico</div>
+        <br>
+        <table class="table table-condensed table-bordered table-hover table-striped responsive">
+            <thead>
+            <tr>
+                <th>Período</th>
+                <th>Curso</th>
+                <th>Turma</th>
+                <th>Impressão</th>
+            </tr>
+            </thead>
+            <tbody data-ng-repeat="boletim in notas.boletins">
+            <tr>
+                <td data-ng-bind="boletim.periodo"></td>
+                <td data-ng-bind="boletim.curso"></td>
+                <td data-ng-bind="boletim.turma"></td>
+                <td align="center">
+                    <a data-ng-href="{{boletim.documento}}"
+                       class="btn btn-lg btn-default">
+                        <i class="entypo-print"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div ng-controller="Messages as messages"
+     class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+
+        <ul class="cbp_tmtimeline">
+
+            <li ng-repeat="item in messages.mensagens.list">
+                <time class="cbp_tmtime" datetime="{{item.date+'T'+item.time}}">
+                    <span data-ng-bind="item.time"></span>
+                    <span data-ng-bind="item.date"></span>
+                </time>
+                <div class="cbp_tmicon bg-success"><i class="entypo-feather"></i></div>
+                <div class="cbp_tmlabel">
+                    <h2>
+                        <a href="#" data-ng-bind="item.from"></a>
+                        <span></span>
+                    </h2>
+
+                    <p data-ng-bind="item.text"></p>
+                </div>
+            </li>
+
+        </ul>
+
+    </div>
+</div>

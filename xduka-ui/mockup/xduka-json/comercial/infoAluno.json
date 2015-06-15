@@ -1,0 +1,319 @@
+{
+    "success": true,
+    "object": {
+        "label": "Informações do Aluno",
+        "name": "aluno",
+        "nome": {
+            "label": "Nome",
+            "type": "text",
+            "val": "Teste1",
+            "name": "nome",
+            "help": "Campo obrigatório",
+            "model": {"err": "", "val": ""}
+        },
+        "endereco": {
+            "label": "Edereço",
+            "type": "text",
+            "name": "endereco",
+            "help": "",
+            "model": {"val": ""}
+        },
+        "tipo_telefone": {
+            "label": "Tipo de telefone",
+            "type": "select",
+            "name": "tipo_telefone",
+            "help": "Campo obrigatório",
+            "placeholder": "Selecione uma opção",
+            "list": [
+                {
+                    "id": "res",
+                    "text": "Residencial"
+                },
+                {
+                    "id": "com",
+                    "text": "Comercial"
+                },
+                {
+                    "id": "cel",
+                    "text": "Celular"
+                }
+            ],
+            "model": {"val": ""}
+        },
+        "telefone": {
+            "label": "Telefone",
+            "type": "text",
+            "mask": "(99)9999-9999",
+            "name": "telefone",
+            "help": "Campo obrigatório",
+            
+            "model": {"val": ""}
+        },
+        "email": {
+            "label": "Email",
+            "type": "email",
+            "name": "email",
+            "help": "Campo obrigatório",
+            
+            "model": {"val": ""}
+        },
+        "cidade": {
+            "label": "Cidade",
+            "type": "text",
+            "name": "cidade",
+            "help": "Campo obrigatório",
+            
+            "model": {"val": ""}
+        },
+        "cep": {
+            "label": "CEP",
+            "type": "text",
+            "name": "cep",
+            "help": "Campo obrigatório",
+            "mask": "99.999-999",
+            
+            "model": {"val": ""}
+        },
+        "rg": {
+            "label": "RG",
+            "type": "text",
+            "name": "rg",
+            "help": "Campo obrigatório",
+            
+            "mask": "9.999-999",
+            "model": {"val": ""}
+        },
+        "dataExp": {
+            "label": "Data Expedição",
+            "type": "date",
+            "model": {"val": ""},
+            "name": "dataExp",
+            "help": "",
+            "mask": "99/99/9999",
+            "required": false
+        },
+        "orgaoEmissor": {
+            "label": "Órgão Emissor",
+            "type": "text",
+            "name": "orgaoEmissor",
+            "help": "",
+            "model": {"val": ""}
+        },
+        "cpf": {
+            "label": "CPF",
+            "type": "text",
+            "name": "cpf",
+            "help": "Campo obrigatório",
+            "required": "required",
+            "mask": "999.999.999-99",
+            "model": {"val": ""}
+        },
+        "tituloEleitor": {
+            "label": "Título Eleitor",
+            "type": "text",
+            "name": "tituloEleito",
+            "help": "",
+            "model": {"val": ""}
+        },
+        "zona": {
+            "label": "Zona",
+            "type": "text",
+            "name": "zona",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "secao": {
+            "label": "Seção",
+            "type": "text",
+            "name": "secao",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "ufTitulo": {
+            "label": "UF",
+            "type": "text",
+            "name": "ufTitulo",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "certidaoNc": {
+            "label": "Certidão N C",
+            "type": "text",
+            "name": "certidaoNc",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "folha": {
+            "label": "Folha",
+            "type": "text",
+            "name": "folha",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "livro": {
+            "label": "Livro",
+            "type": "text",
+            "name": "livro",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "cartorio": {
+            "label": "Cartório",
+            "type": "text",
+            "name": "cartorio",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "certificadoRes": {
+            "label": "Certificado Reservista",
+            "type": "text",
+            "name": "certificadoRes",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "registro": {
+            "label": "Registro",
+            "type": "text",
+            "name": "registro",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "ufReservista": {
+            "label": "UF",
+            "type": "text",
+            "name": "ufReservista",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "categoria": {
+            "label": "Categoria",
+            "type": "text",
+            "name": "categoria",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "sexo": {
+            "label": "Sexo",
+            "type": "text",
+            "name": "sexo",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "dataNasc": {
+            "label": "Data Nascimento",
+            "type": "text",
+            "name": "dataNasc",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "raca": {
+            "label": "Raça",
+            "type": "text",
+            "name": "raca",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "estadoCivil": {
+            "label": "Estado Civil",
+            "type": "text",
+            "name": "estadoCivil",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "pai": {
+            "label": "Pai",
+            "type": "text",
+            "name": "pai",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "mae": {
+            "label": "Mãe",
+            "type": "text",
+            "name": "mae",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "avRua": {
+            "label": "Av/Rua",
+            "type": "text",
+            "name": "avRua",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "endNum": {
+            "label": "N",
+            "type": "text",
+            "name": "endNum",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "apt": {
+            "label": "Apt",
+            "type": "text",
+            "name": "apt",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "bairro": {
+            "label": "Bairro",
+            "type": "text",
+            "name": "bairro",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "endUf": {
+            "label": "UF",
+            "type": "text",
+            "name": "endUf",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "nacionalidade": {
+            "label": "Nacionalidade",
+            "type": "text",
+            "name": "nacionalidade",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "naturalidade": {
+            "label": "Naturalidade",
+            "type": "text",
+            "name": "naturalidade",
+            "help": "",
+            
+            "model": {"val": ""}
+        },
+        "natUf": {
+            "label": "UF",
+            "type": "text",
+            "name": "natUf",
+            "help": "",
+            
+            "model": {"val": ""}
+        }
+    }
+}

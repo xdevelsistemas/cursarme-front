@@ -1,0 +1,296 @@
+{
+    "success": true,
+    "object": {
+        "label": "Informações do Aluno",
+        "name": "aluno",
+        "nome": {
+            "label": "Nome",
+            "type": "text",
+            "name": "nome",
+            "help": "Campo obrigatório",
+            "required": true,
+            "model": {"err": "", "val": ""}
+        },
+        "endereco": {
+            "label": "Edereço",
+            "type": "text",
+            "name": "endereco",
+            "help": "Campo obrigatório",
+            "required": true,
+            "model": {"err": "", "val": ""}
+        },
+        "tipo_telefone": {
+            "label": "Tipo de telefone",
+            "type": "select",
+            "name": "tipo_telefone",
+            "help": "Campo obrigatório",
+            "placeholder": "Selecione uma opção",
+            "required": true,
+            "list": [
+                {
+                    "id": "res",
+                    "text": "Residencial"
+                },
+                {
+                    "id": "com",
+                    "text": "Comercial"
+                },
+                {
+                    "id": "cel",
+                    "text": "Celular"
+                }
+            ],
+            "model": {"err": "", "val": ""}
+        },
+        "telefone": {
+            "label": "Telefone",
+            "type": "text",
+            "mask": "(99)9999-9999",
+            "name": "telefone",
+            "help": "Campo obrigatório",
+            "required": true,
+            "model": {"err": "", "val": ""}
+        },
+        "email": {
+            "label": "Email",
+            "type": "email",
+            "name": "email",
+            "help": "Campo obrigatório",
+            "required": true,
+            "model": {"err": "", "val": ""}
+        },
+        "cidade": {
+            "label": "Cidade",
+            "type": "text",
+            "name": "cidade",
+            "help": "Campo obrigatório",
+            "required": true
+        },
+        "cep": {
+            "label": "CEP",
+            "type": "text",
+            "name": "cep",
+            "model": {"err": "", "val": ""},
+            "help": "Campo obrigatório",
+            "mask": "99.999-999",
+            "required": true
+        },
+        "rg": {
+            "label": "RG",
+            "model": {"val": "", "err": ""},
+            "type": "text",
+            "name": "rg",
+            "help": "Campo obrigatório",
+            "required": true,
+            "mask": "9.999-999"
+        },
+        "dataExp": {
+            "label": "Data Expedição",
+            "type": "date",
+            "model": {"err": "", "val": ""},
+            "name": "dataExp",
+            "help": "Campo obrigatório",
+            "mask": "99/99/9999",
+            "required": false
+        },
+        "orgaoEmissor": {
+            "label": "Órgão Emissor",
+            "type": "text",
+            "name": "orgaoEmissor",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "cpf": {
+            "label": "CPF",
+            "model": {"val": "", "err": ""},
+            "type": "text",
+            "name": "cpf",
+            "help": "Campo obrigatório",
+            "required": true,
+            "mask": "999.999.999-99"
+        },
+        "tituloEleitor": {
+            "label": "Título Eleitor",
+            "type": "text",
+            "name": "tituloEleito",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "zona": {
+            "label": "Zona",
+            "type": "text",
+            "name": "zona",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "secao": {
+            "label": "Seção",
+            "type": "text",
+            "name": "secao",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "ufTitulo": {
+            "label": "UF",
+            "type": "text",
+            "name": "ufTitulo",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "certidaoNc": {
+            "label": "Certidão N C",
+            "type": "text",
+            "name": "certidaoNc",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "folha": {
+            "label": "Folha",
+            "type": "text",
+            "name": "folha",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "livro": {
+            "label": "Livro",
+            "type": "text",
+            "name": "livro",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "cartorio": {
+            "label": "Cartório",
+            "type": "text",
+            "name": "cartorio",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "certificadoRes": {
+            "label": "Certificado Reservista",
+            "type": "text",
+            "name": "certificadoRes",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "registro": {
+            "label": "Registro",
+            "type": "text",
+            "name": "registro",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "ufReservista": {
+            "label": "UF",
+            "type": "text",
+            "name": "ufReservista",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "categoria": {
+            "label": "Categoria",
+            "type": "text",
+            "name": "categoria",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "sexo": {
+            "label": "Sexo",
+            "type": "text",
+            "name": "sexo",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "dataNasc": {
+            "label": "Data Nascimento",
+            "type": "text",
+            "name": "dataNasc",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "raca": {
+            "label": "Raça",
+            "type": "text",
+            "name": "raca",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "estadoCivil": {
+            "label": "Estado Civil",
+            "type": "text",
+            "name": "estadoCivil",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "pai": {
+            "label": "Pai",
+            "type": "text",
+            "name": "pai",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "mae": {
+            "label": "Mãe",
+            "type": "text",
+            "name": "mae",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "avRua": {
+            "label": "Av/Rua",
+            "type": "text",
+            "name": "avRua",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "endNum": {
+            "label": "N",
+            "type": "text",
+            "name": "endNum",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "apt": {
+            "label": "Apt",
+            "type": "text",
+            "name": "apt",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "bairro": {
+            "label": "Bairro",
+            "type": "text",
+            "name": "bairro",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "endUf": {
+            "label": "UF",
+            "type": "text",
+            "name": "endUf",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "nacionalidade": {
+            "label": "Nacionalidade",
+            "type": "text",
+            "name": "nacionalidade",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "naturalidade": {
+            "label": "Naturalidade",
+            "type": "text",
+            "name": "naturalidade",
+            "help": "Campo obrigatório",
+            "required": false
+        },
+        "natUf": {
+            "label": "UF",
+            "type": "text",
+            "name": "natUf",
+            "help": "Campo obrigatório",
+            "required": false
+        }
+
+    }
+}
