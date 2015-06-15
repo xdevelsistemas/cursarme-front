@@ -9,7 +9,7 @@ var extend = require('node.extend'),
 module.exports = function() {
     var controller = {};
 
-    controller.showDadosComercial = getDadosComercial;
+    controller.showDadosInscricao = getDadosInscricao;
     controller.showDadosCurso = getDadosCurso;
     controller.showInfoUsuario = getInfoUsuario;
     controller.showModalCheque = getModalCheque;
@@ -20,7 +20,7 @@ module.exports = function() {
     return controller;
 };
 
-function getDadosComercial(req, res) {
+function getDadosInscricao(req, res) {
     res.json(templateInscr);
 }
 

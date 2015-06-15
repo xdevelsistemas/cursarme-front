@@ -256,9 +256,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <!--<xd-input data-params="pre._model.desconto"-->
-                        <!--data-disable="!pre.validaCpf"></xd-input>-->
-                        <xd-select data-params="pre._model.desconto"
+                        <xd-select data-params="pre._model.desconto" data-change="pre.descontoAplic"
                                    disabled="!pre.validaCpf" data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
@@ -300,7 +298,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <xd-input-money data-params="pre._model.valorParcela"
-                                        data-disable="!pre.validaCpf"></xd-input-money>
+                                        data-disable="true"></xd-input-money>
                     </div>
                 </div>
                 <div class="row">
@@ -686,14 +684,3 @@
         $.getScript('assets/js/jquery.bootstrap.wizard.min.js')
     </script>
 </div>
-
-<script type="text/javascript">
-    //    SÓ CARREGA OS ARQUIVOS ABAIXO QUANDO OS DOM ESTIVER COMPLETO
-    $(document).ready(function() {
-
-        $.getScript('assets/neon/js/neon-api.js');
-        $.getScript('assets/neon/js/neon-chat.js');
-        $.getScript('assets/neon/js/neon-custom.js');
-        $.getScript('assets/neon/js/neon-demo.js');
-    });
-</script>

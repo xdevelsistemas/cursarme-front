@@ -8,7 +8,7 @@
 
         /* jshint validthis: true */
         var vm = this
-            , comercialPromise = $resource('/api/comercial/dados-comercial').get().$promise
+            , comercialPromise = $resource('/api/comercial/template-inscricao').get().$promise
             , viewInscrPromise = $resource('/api/comercial/view-inscr').get().$promise;
 
         breadCrumb.title = 'Pré Cadastro';
@@ -51,6 +51,7 @@
             .then(function(data){
                 vm._model = data;
                 $.extend(vm._model.vagas, funcVagas());
+                vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
             })
             .catch(function(erro){
                 console.log("\n" + erro.data + "\n");
@@ -169,6 +170,7 @@
             // definindo valor de inscrição
             vm._model.valorInscricao.model.val = item.valorInscricao;
             vm._model.valorIntegral.model.val = item.valorIntegral;
+            vm._model.valorIntegral.model.aux = item.valorIntegral;
 
             $timeout(function () {
                 if ((vm._model.vagas.totais / vm._model.vagas.preenchidas) < 1.5){
@@ -179,6 +181,14 @@
                     vm._model.vagas.css.titleRed = false
                 }
             }, 1);
+        };
+
+        vm.descontoAplic = function(item, model) {
+            if (model != 0) {
+                vm._model.valorIntegral.model.val = vm._model.valorIntegral.model.aux - ((vm._model.valorIntegral.model.aux * model) / 100);
+            }else{
+                vm._model.valorIntegral.model.val = vm._model.valorIntegral.model.aux;
+            }
         };
 
         vm.openModalCheque = function () {
@@ -201,7 +211,6 @@
         vm.selectPhoneType = function (item, model) {
             vm._model.telefone.mask = tipoTelefone.getMskPhone(model);
         };
-        vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
 
         vm.sendInscricao = function() {
             vm._model.listaCheques = vm.lista_cheques.lista;
@@ -306,13 +315,6 @@
             vm._model.melhorData.model.val = "";
         }
 
-        /*  DESABILITADO PARA TESTE */
-        /*$(function(){
-         $('a').bind('contextmenu', function(e){
-         alert('Função desabilitada para este elemento!');
-         return false;
-         });
-         });*/
         vm.limpaForm = function(){
 
             // escondendo select's de curso
