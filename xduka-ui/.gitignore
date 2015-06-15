@@ -1,5 +1,0 @@
-*.iml
-.idea/
-node_modules/
-public/lib/
-.vagrant/
