@@ -56,7 +56,7 @@
                 </button>
             </div>
             <div class="col-md-3 inLine">
-                <button class="btn btn-primary btn-icon icon-left btn-block btn-lg" ng-click="conf.atualizaInscr()">
+                <button class="btn btn-primary btn-icon icon-left btn-block btn-lg" ng-click="conf.atualizaPartial(0)">
                     Atualizar
                     <i class="icon entypo-cw icon-right"></i>
                 </button>
@@ -375,7 +375,7 @@
                     </button>
                 </div>
                 <div class="col-md-3 col-md-offset-4 inLine">
-                    <button type="button" class="btn btn-green btn-icon icon-left btn-block btn-lg" ng-click="conf.sendTurmas(); conf.atualizaInscr()">
+                    <button type="button" class="btn btn-green btn-icon icon-left btn-block btn-lg" data-dismiss="modal" ng-click="conf.sendTurmas(); conf.atualizaPartial(500)">
                         Salvar <i class="icon entypo-check icon-right"></i>
                     </button>
                 </div>
