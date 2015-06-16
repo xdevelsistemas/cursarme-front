@@ -382,6 +382,21 @@
                     </div>
                 </div>
                 <div class="row">
+
+                    <div class="col-md-4">
+                        <xd-input data-params="pre._model.cpf"
+                                  disable="true"></xd-input>
+                    </div>
+                    <div class="col-md-4">
+                        <xd-select data-params="pre._model.sexo"
+                                   data-disable="!pre.validaCpf"></xd-select>
+                    </div>
+                    <div class="col-md-4">
+                        <xd-input-date data-disable="!pre.validaCpf"data-params="pre._model.dataNasc" data-opened="main.opened"
+                                       date-options="main.dateOptions" data-click="main.open"></xd-input-date>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-4">
                         <xd-input data-params="pre._model.certificadoRes"
                                   data-disable="!pre.validaCpf"></xd-input>
@@ -400,21 +415,7 @@
                         <xd-input data-params="pre._model.categoria"
                                   data-disable="!pre.validaCpf"></xd-input>
                     </div>
-                    <div class="col-md-5">
-                        <xd-input data-params="pre._model.cpf"
-                                  disable="true"></xd-input>
-                    </div>
-                    <div class="col-md-3">
-                        <xd-select data-params="pre._model.sexo"
-                                   data-disable="!pre.validaCpf"></xd-select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">
-                        <xd-input-date data-disable="!pre.validaCpf"data-params="pre._model.dataNasc" data-opened="main.opened"
-                                       date-options="main.dateOptions" data-click="main.open"></xd-input-date>
-                    </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <xd-input data-params="pre._model.raca"
                                   data-disable="!pre.validaCpf"></xd-input>
                     </div>
@@ -422,6 +423,7 @@
                         <xd-input data-params="pre._model.estadoCivil"
                                   data-disable="!pre.validaCpf"></xd-input>
                     </div>
+
                 </div>
                 <div class="row">
                     <div class="col-md-12">
