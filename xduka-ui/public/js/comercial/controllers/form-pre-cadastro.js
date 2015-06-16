@@ -2,13 +2,13 @@
     "use strict";
 
     angular.module('app.controllers').controller('FormPreCadastro', [
-        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'lista_cheques', 'dataCheque', 'tipoTelefone',
+        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'modelStrings', 'lista_cheques', 'dataCheque', 'tipoTelefone',
 
-    function ($scope, breadCrumb, $timeout, $modal, $resource, lista_cheques, dataCheque, tipoTelefone) {
+    function ($scope, breadCrumb, $timeout, $modal, $resource, modelStrings, lista_cheques, dataCheque, tipoTelefone) {
 
         /* jshint validthis: true */
         var vm = this
-            , comercialPromise = $resource('/api/comercial/dados-comercial').get().$promise
+            , comercialPromise = $resource('/api/comercial/template-inscricao').get().$promise
             , viewInscrPromise = $resource('/api/comercial/view-inscr').get().$promise;
 
         breadCrumb.title = 'Pré Cadastro';
@@ -39,6 +39,8 @@
         vm.selectCursoCurso = false;
         vm.selectCursoVagas = false;
 
+        vm.STR = modelStrings;
+
         // valida todos os campos
         vm.validaCpf = false;
 
@@ -51,6 +53,7 @@
             .then(function(data){
                 vm._model = data;
                 $.extend(vm._model.vagas, funcVagas());
+                vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
             })
             .catch(function(erro){
                 console.log("\n" + erro.data + "\n");
@@ -130,7 +133,6 @@
             vm.selectCursoArea = true;
             vm.selectCursoCurso = false;
             vm.selectCursoVagas = false;
-            vm._model.valorInscricao.model.val = '';
 
             vm._model.area.list = [];
             vm._model.area.model = {'val': '', 'err': ''};
@@ -143,7 +145,6 @@
         vm.areaChange = function (item, model) {
             vm.selectCursoCurso = true;
             vm.selectCursoVagas = false;
-            vm._model.valorInscricao.model.val = '';
 
             vm._model.curso.list = [];
             vm._model.curso.model = {'val': '', 'err': ''};
@@ -168,7 +169,9 @@
 
             // definindo valor de inscrição
             vm._model.valorInscricao.model.val = item.valorInscricao;
+            vm._model.valorInscricao.model.aux = item.valorInscricao;
             vm._model.valorIntegral.model.val = item.valorIntegral;
+            vm._model.valorIntegral.model.aux = item.valorIntegral;
 
             $timeout(function () {
                 if ((vm._model.vagas.totais / vm._model.vagas.preenchidas) < 1.5){
@@ -179,6 +182,30 @@
                     vm._model.vagas.css.titleRed = false
                 }
             }, 1);
+        };
+
+        vm.descontoAplicInscr = function(item, model) {
+            if (model != 0) {
+                vm._model.valorInscricao.model.val = vm._model.valorInscricao.model.aux - ((vm._model.valorInscricao.model.aux * model) / 100);
+            }else{
+                vm._model.valorInscricao.model.val = vm._model.valorInscricao.model.aux;
+            }
+        };
+
+        vm.descontoAplic = function(item, model) {
+            if (model != 0) {
+                vm._model.valorIntegral.model.val = vm._model.valorIntegral.model.aux - ((vm._model.valorIntegral.model.aux * model) / 100);
+            }else{
+                vm._model.valorIntegral.model.val = vm._model.valorIntegral.model.aux;
+            }
+
+            if (vm._model.qtdParcelas.model.val) {
+                vm.qtdParcelasAplic({}, vm._model.qtdParcelas.model.val);
+            }
+        };
+
+        vm.qtdParcelasAplic = function(item, model) {
+            vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
         };
 
         vm.openModalCheque = function () {
@@ -201,12 +228,11 @@
         vm.selectPhoneType = function (item, model) {
             vm._model.telefone.mask = tipoTelefone.getMskPhone(model);
         };
-        vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
 
         vm.sendInscricao = function() {
             vm._model.listaCheques = vm.lista_cheques.lista;
 
-            var sendInscricaoPromise = $resource('/api/comercial/dados-inscricao').save({}, vm._model).$promise;
+            var sendInscricaoPromise = $resource('/api/comercial/dados-inscricao').save({}, {"model": vm._model, "STR": vm.STR}).$promise;
 
             sendInscricaoPromise
                 .then(function (data) {
@@ -304,15 +330,11 @@
             vm._model.desconto.model.val = "";
             vm._model.qtdParcelas.model.val = "";
             vm._model.melhorData.model.val = "";
+            vm._model.valorInscricao.model.val = '';
+            vm._model.valorIntegral.model.val = '';
+            vm._model.valorParcela.model.val = '';
         }
 
-        /*  DESABILITADO PARA TESTE */
-        /*$(function(){
-         $('a').bind('contextmenu', function(e){
-         alert('Função desabilitada para este elemento!');
-         return false;
-         });
-         });*/
         vm.limpaForm = function(){
 
             // escondendo select's de curso
