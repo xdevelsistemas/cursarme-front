@@ -8,7 +8,7 @@
 
         /* jshint validthis: true */
         var vm = this
-            , comercialPromise = $resource('/api/comercial/template-inscricao').get().$promise
+            , comercialPromise = $resource('/api/comercial/dados-comercial').get().$promise
             , viewInscrPromise = $resource('/api/comercial/view-inscr').get().$promise;
 
         breadCrumb.title = 'Pré Cadastro';
@@ -51,7 +51,6 @@
             .then(function(data){
                 vm._model = data;
                 $.extend(vm._model.vagas, funcVagas());
-                vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
             })
             .catch(function(erro){
                 console.log("\n" + erro.data + "\n");
@@ -202,6 +201,7 @@
         vm.selectPhoneType = function (item, model) {
             vm._model.telefone.mask = tipoTelefone.getMskPhone(model);
         };
+        vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
 
         vm.sendInscricao = function() {
             vm._model.listaCheques = vm.lista_cheques.lista;
