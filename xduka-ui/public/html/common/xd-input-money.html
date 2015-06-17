@@ -21,7 +21,7 @@
                    ng-required="params.required">
         </div>
         <div class="col-md-12">
-            <p data-collapse="params.model.err == ''"
+            <p ng-hide="params.model.err == ''"
                data-ng-bind="params.model.err"
                class="control-label"></p>
         </div>
