@@ -32,7 +32,7 @@
         vm.lista_cheques = lista_cheques;
 
         //Alerta de campos faltando
-        vm.showAlert = true;
+        vm.showAlert = false;
 
         //xd-select de curso
         vm.selectCursoArea = false;
@@ -439,7 +439,7 @@
             vm.editing = false;
             vm.disableLimpar = false;
             vm.validaCpf = false;
-
+            vm.disableAlert();
             vm.topCollapse();
         };
 
@@ -447,6 +447,7 @@
             vm.limpaForm();
             vm.disableLimpar = false;
             disableBtn();
+            vm.disableAlert();
             vm.editing = false;
 
         };
