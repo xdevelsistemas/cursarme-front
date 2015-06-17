@@ -7,7 +7,7 @@
         };
 
         function getMaskPhone(model) {
-            return model == 'cel' ? '?(99) 9999-99999' : '?(99) 9999-9999';
+            return model == 'cel' ? '?(99) 9 9999-9999' : '?(99) 9999-9999';
         }
     });
 })();
