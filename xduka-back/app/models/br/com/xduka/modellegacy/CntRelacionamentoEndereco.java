@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by clayton on 04/12/14.
  */
 @Entity
-@Table(name = "cntRelacionamentoEndereço", schema = "dbo", catalog = "xDuka")
+@Table(name = "cntRelacionamentoEndereço", schema = "dbo")
 @IdClass(CntRelacionamentoEnderecoPK.class)
 public class CntRelacionamentoEndereco {
     private long relacionamentoEndereçoId;

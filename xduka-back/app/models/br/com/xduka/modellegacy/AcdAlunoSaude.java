@@ -10,7 +10,7 @@ import javax.persistence.IdClass;
  */
 @IdClass(AcdAlunoSaudePK.class)
 @Entity
-@javax.persistence.Table(name = "acdAlunoSaúde", schema = "dbo", catalog = "xDuka")
+@javax.persistence.Table(name = "acdAlunoSaúde", schema = "dbo")
 public class AcdAlunoSaude {
     private int codUnidade;
 

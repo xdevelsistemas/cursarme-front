@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by clayton on 04/12/14.
  */
 @Entity
-@Table(name = "sgrPersonalização", schema = "dbo", catalog = "xDuka")
+@Table(name = "sgrPersonalização", schema = "dbo")
 @IdClass(SgrPersonalizacaoPK.class)
 public class SgrPersonalizacao {
     private int idControle;

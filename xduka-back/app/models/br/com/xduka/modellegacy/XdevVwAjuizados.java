@@ -9,7 +9,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @IdClass(XdevVwAjuizadosPK.class)
-@Table(name = "xdev_vw_ajuizados", schema = "dbo", catalog = "xDuka")
+@Table(name = "xdev_vw_ajuizados", schema = "dbo")
 public class XdevVwAjuizados {
     private int codCurso;
     private String turma;

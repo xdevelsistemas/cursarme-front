@@ -8,7 +8,7 @@ import java.util.List;
  * Created by clayton on 04/12/14.
  */
 @Entity
-@Table(name = "xdev_cbrLoteRemessa", schema = "dbo", catalog = "xDuka")
+@Table(name = "xdev_cbrLoteRemessa", schema = "dbo")
 public class XdevCbrLoteRemessa {
     private int id;
     private String numRemessa;

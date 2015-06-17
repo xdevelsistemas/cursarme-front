@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @IdClass(SgrAberturaOldPK.class)
-@Table(name = "sgrAbertura_OLD", schema = "dbo", catalog = "xDuka")
+@Table(name = "sgrAbertura_OLD", schema = "dbo")
 public class SgrAberturaOld {
     private int idFormulário;
     private int idUsuário;

@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by clayton on 04/12/14.
  */
 @Entity
-@Table(name = "acdTurmaHorário", schema = "dbo", catalog = "xDuka")
+@Table(name = "acdTurmaHorário", schema = "dbo")
 @IdClass(AcdTurmaHorarioPK.class)
 public class AcdTurmaHorario {
     private long turmaHorárioId;

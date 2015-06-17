@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * Created by clayton on 04/12/14.
  */
 @Entity
-@Table(name = "cntQuitaçãoLog", schema = "dbo", catalog = "xDuka")
+@Table(name = "cntQuitaçãoLog", schema = "dbo")
 @IdClass(CntQuitacaoLogPK.class)
 public class CntQuitacaoLog {
     private Timestamp movimentoData;

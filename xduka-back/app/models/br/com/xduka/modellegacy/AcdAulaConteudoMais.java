@@ -9,7 +9,7 @@ import java.sql.Timestamp;
  * Created by clayton on 04/12/14.
  */
 @Entity
-@javax.persistence.Table(name = "acdAulaConteúdoMais", schema = "dbo", catalog = "xDuka")
+@javax.persistence.Table(name = "acdAulaConteúdoMais", schema = "dbo")
 public class AcdAulaConteudoMais {
     private long aulaConteúdoMaisId;
 

@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by clayton on 04/12/14.
  */
 @Entity
-@Table(name = "xdev_cbrItemRemessaEvento", schema = "dbo", catalog = "xDuka")
+@Table(name = "xdev_cbrItemRemessaEvento", schema = "dbo")
 public class XdevCbrItemRemessaEvento {
     private int id;
     private int idItemCobranca;

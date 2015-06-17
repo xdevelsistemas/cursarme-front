@@ -7,7 +7,7 @@ import java.util.List;
  * Created by clayton on 04/12/14.
  */
 @Entity
-@Table(name = "xdev_cbrItemRemessa", schema = "dbo", catalog = "xDuka")
+@Table(name = "xdev_cbrItemRemessa", schema = "dbo")
 public class XdevCbrItemRemessa {
     private int id;
     private long codMovimento;

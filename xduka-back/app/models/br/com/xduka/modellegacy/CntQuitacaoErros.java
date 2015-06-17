@@ -9,7 +9,7 @@ import java.util.Arrays;
  * Created by clayton on 04/12/14.
  */
 @Entity
-@Table(name = "cntQuitaçãoErros", schema = "dbo", catalog = "xDuka")
+@Table(name = "cntQuitaçãoErros", schema = "dbo")
 @IdClass(CntQuitacaoErrosPK.class)
 public class CntQuitacaoErros {
     private int erroId;

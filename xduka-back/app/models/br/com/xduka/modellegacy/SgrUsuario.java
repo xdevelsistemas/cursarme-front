@@ -10,7 +10,7 @@ import java.util.Arrays;
  * Created by clayton on 04/12/14.
  */
 @Entity
-@javax.persistence.Table(name = "sgrUsuário", schema = "dbo", catalog = "xDuka")
+@javax.persistence.Table(name = "sgrUsuário", schema = "dbo")
 public class SgrUsuario {
     private int idUsuário;
 

@@ -8,7 +8,7 @@ import javax.persistence.Id;
  * Created by clayton on 04/12/14.
  */
 @Entity
-@javax.persistence.Table(name = "acdAulaConfiguração", schema = "dbo", catalog = "xDuka")
+@javax.persistence.Table(name = "acdAulaConfiguração", schema = "dbo")
 public class AcdAulaConfiguracao {
     private long aulaConfiguraçãoId;
 

@@ -7,7 +7,7 @@ import java.util.List;
  * Created by clayton on 04/12/14.
  */
 @Entity
-@Table(name = "cntMês", schema = "dbo", catalog = "xDuka")
+@Table(name = "cntMês", schema = "dbo")
 @IdClass(CntMesPK.class)
 public class CntMes {
     private int codUnidade;

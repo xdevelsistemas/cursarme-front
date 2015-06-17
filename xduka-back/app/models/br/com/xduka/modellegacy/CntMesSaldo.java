@@ -7,7 +7,7 @@ import java.math.BigDecimal;
  * Created by clayton on 04/12/14.
  */
 @Entity
-@Table(name = "cntMêsSaldo", schema = "dbo", catalog = "xDuka")
+@Table(name = "cntMêsSaldo", schema = "dbo")
 @IdClass(CntMesSaldoPK.class)
 public class CntMesSaldo {
     private int codUnidade;

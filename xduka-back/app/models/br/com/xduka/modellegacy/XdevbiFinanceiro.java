@@ -12,7 +12,7 @@ import java.sql.Timestamp;
  */
 @IdClass(XdevbiFinanceiroPK.class)
 @Entity
-@javax.persistence.Table(name = "xdevbi_financeiro", schema = "dbo", catalog = "xDuka")
+@javax.persistence.Table(name = "xdevbi_financeiro", schema = "dbo")
 public class XdevbiFinanceiro {
     private BigDecimal abatimento;
 

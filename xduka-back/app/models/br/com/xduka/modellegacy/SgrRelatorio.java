@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * Created by clayton on 04/12/14.
  */
 @Entity
-@Table(name = "sgrRelatório", schema = "dbo", catalog = "xDuka")
+@Table(name = "sgrRelatório", schema = "dbo")
 public class SgrRelatorio {
     private int idRelatório;
     private String codSistema;

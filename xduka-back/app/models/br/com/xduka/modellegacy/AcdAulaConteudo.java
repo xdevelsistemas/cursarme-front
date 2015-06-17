@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @IdClass(AcdAulaConteudoPK.class)
-@javax.persistence.Table(name = "acdAulaConteúdo", schema = "dbo", catalog = "xDuka")
+@javax.persistence.Table(name = "acdAulaConteúdo", schema = "dbo")
 public class AcdAulaConteudo {
     private long aulaConteúdoId;
 
