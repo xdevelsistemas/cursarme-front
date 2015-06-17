@@ -86,7 +86,7 @@ function putDadosInscricaoParcial(req, res) {
         limpaModelErrStep3(dataSent.model);
 
         /*  Transformando data por extenso para data numerica dos cheques enviados  */
-        alteraDataCheque(dataSent, setDataInt);
+        alteraDataCheque(dataSent.model, setDataInt);
 
         /*  --- Resultado recebido do BackEnd (/#Banco de Dados#/)      */
         /*TODO   Alterar: dataSent.model.(...) para a sintaxe real da conversa com o BackEnd   */
@@ -124,7 +124,7 @@ function putDadosInscricaoCompleta(req, res) {
         limpaModelErrStep3(dataSent.model);
 
         /*  Transformando data por extenso para data numerica dos cheques enviados  */
-        alteraDataCheque(dataSent, setDataInt);
+        alteraDataCheque(dataSent.model, setDataInt);
 
         /*  --- Resultado recebido do BackEnd (/#Banco de Dados#/)      */
         /*TODO   Alterar: dataSent.model.(...) para a sintaxe real da conversa com o BackEnd   */
@@ -156,6 +156,39 @@ function putEditInscricao(req, res) {
     res.json(req.body)
 }
 
+function isCep(cep) {
+    return cep.length == 8
+}
+
+function isCpf(cpf) {
+    return cpf.length == 11
+}
+
+function isEmail(email){
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+}
+
+function isDate(date){
+    if (date.length == 10){
+        return /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/gm.test(date.toLocaleDateString())
+    }else{
+        return false
+    }
+}
+
+function isPhone(phone, type) {
+    if (!type) {
+        return false
+    } else {
+        return type == 'cel' ? phone.length == 11 : phone.length == 10
+    }
+}
+
+function isRg(rg) {
+    return rg.length == 7
+}
+
 function setDataExt(a) {
     return new Date(a);
 }
@@ -171,9 +204,9 @@ function alteraDataCheque(obj, func) {
 }
 
 function validaCamposStep1(obj) {
-    return !!obj.cpf.model.val && !obj.cpf.model.err && !!obj.rg.model.val && !!obj.nome.model.val &&
-    !!obj.cidade.model.val && !!obj.cep.model.val && !!obj.telefone.model.val &&
-    !!obj.tipoTelefone.model.val && !!obj.email.model.val && !obj.email.model.err &&
+    return isCpf(obj.cpf.model.val) && !obj.cpf.model.err && isRg(obj.rg.model.val) && !!obj.nome.model.val &&
+    !!obj.cidade.model.val && isCep(obj.cep.model.val) && isPhone(obj.telefone.model.val, obj.tipoTelefone.model.val) &&
+    !!obj.tipoTelefone.model.val && isEmail(obj.email.model.val) && !obj.email.model.err &&
     !!obj.unidade.model.val && !!obj.area.model.val && !!obj.curso.model.val &&
     !!obj.formaPagamentoInscr.model.val && !!obj.descontoInscr.model.val &&
     ((obj.vagas.totais - obj.vagas.preenchidas) > 0);
@@ -185,17 +218,28 @@ function validaCamposStep2(obj) {
 }
 
 function validaCamposStep3(obj) {
-    return !!obj.dataExp.model.val && !obj.dataExp.model.err && !!obj.orgaoEmissor.model.val &&
+    return isDate(obj.dataExp.model.val) && !obj.dataExp.model.err && !!obj.orgaoEmissor.model.val &&
     !!obj.tituloEleitor.model.val && !!obj.zona.model.val && !!obj.secao.model.val &&
     !!obj.ufTitulo.model.val && !!obj.certidaoNc.model.val && !!obj.folha.model.val &&
-    !!obj.livro.model.val && !!obj.cartorio.model.val && !!obj.certificadoRes.model.val &&
-    !!obj.registro.model.val && !!obj.ufReservista.model.val && !!obj.categoria.model.val &&
-    !!obj.sexo.model.val && !!obj.dataNasc.model.val && !obj.dataNasc.model.err &&
+    !!obj.livro.model.val && !!obj.cartorio.model.val && validaSexo(obj) &&
+    isDate(obj.dataNasc.model.val) && !obj.dataNasc.model.err &&
     !!obj.raca.model.val && !!obj.estadoCivil.model.val && !!obj.pai.model.val &&
     !!obj.mae.model.val && !!obj.endNum.model.val && !!obj.apt.model.val &&
     !!obj.nacionalidade.model.val && !!obj.naturalidade.model.val && !!obj.natUf.model.val &&
     !!obj.escolaEm.model.val && !!obj.anoEm.model.val && !!obj.cursoGrad.model.val &&
     !!obj.anoGrad.model.val && !!obj.instituicao.model.val
+}
+
+function validaSexo(obj) {
+    if (!obj.sexo.model.val) {
+        return false
+    } else {
+        if (obj.sexo.model.val == 'f') {
+            return true
+        } else {
+            return !!obj.certificadoRes.model.val && !!obj.registro.model.val && !!obj.ufReservista.model.val && !!obj.categoria.model.val
+        }
+    }
 }
 
 function limpaModelErrStep1(obj) {
@@ -318,199 +362,90 @@ function dadosSentInscr(obj) {
 }
 
 function verificaValidacoesStep1(obj) {
-    !obj.model.cpf.model.val || obj.model.cpf.model.err ?
-        obj.model.cpf.model.err = obj.STR.NOCPF :
-        obj.model.cpf.model.err = "";
+    obj.model.cpf.model.err = !obj.model.cpf.model.val ?
+        obj.STR.FIELD : isCpf(obj.model.cpf.model.val) ? '' : obj.STR.NOCPF;
 
-    !obj.model.email.model.val || obj.model.email.model.err ?
-        obj.model.email.model.err = obj.STR.NOEMAIL :
-        obj.model.email.model.err = "";
+    obj.model.email.model.err = !obj.model.email.model.val ?
+        obj.STR.FIELD : isEmail(obj.model.email.model.val) ? '' : obj.STR.NOEMAIL;
 
-    !obj.model.rg.model.val || obj.model.rg.model.err ?
-        obj.model.rg.model.err = obj.STR.FIELD :
-        obj.model.rg.model.err = "";
+    obj.model.rg.model.err = !obj.model.rg.model.val ?
+        obj.STR.FIELD : isRg(obj.model.rg.model.val) ? '' : obj.STR.NORG;
 
-    !obj.model.nome.model.val || obj.model.nome.model.err ?
-        obj.model.nome.model.err = obj.STR.FIELD :
-        obj.model.nome.model.err = "";
+    obj.model.nome.model.err = obj.model.nome.model.val ? '' : obj.STR.FIELD;
+    obj.model.cidade.model.err = obj.model.cidade.model.val ? '' : obj.STR.FIELD;
 
-    !obj.model.cidade.model.val || obj.model.cidade.model.err ?
-        obj.model.cidade.model.err = obj.STR.FIELD :
-        obj.model.cidade.model.err = "";
+    obj.model.cep.model.err = !obj.model.cep.model.val ?
+        obj.STR.FIELD : isCep(obj.model.cep.model.val) ? '' : obj.STR.NOCEP;
 
-    !obj.model.cep.model.val || obj.model.cep.model.err ?
-        obj.model.cep.model.err = obj.STR.FIELD :
-        obj.model.cep.model.err = "";
+    obj.model.telefone.model.err = !obj.model.telefone.model.val ?
+        obj.STR.FIELD : isPhone(obj.model.telefone.model.val, obj.model.tipoTelefone.model.val) ? '' : obj.STR.NOTEL;
 
-    !obj.model.telefone.model.val || obj.model.telefone.model.err ?
-        obj.model.telefone.model.err = obj.STR.FIELD :
-        obj.model.telefone.model.err = "";
+    obj.model.tipoTelefone.model.err = obj.model.tipoTelefone.model.val ? '' : obj.STR.FIELD;
+    obj.model.unidade.model.err = obj.model.unidade.model.val ? '' : obj.STR.FIELD;
 
-    !obj.model.tipoTelefone.model.val || obj.model.tipoTelefone.model.err ?
-        obj.model.tipoTelefone.model.err = obj.STR.FIELD :
-        obj.model.tipoTelefone.model.err = "";
+    obj.model.area.model.err = !obj.model.area.model.val ?
+        obj.STR.FIELD : (obj.model.vagas.totais - obj.model.vagas.preenchidas) <= 0 ? obj.STR.NOVAGAS : "";
 
-    !obj.model.unidade.model.val || obj.model.unidade.model.err ?
-        obj.model.unidade.model.err = obj.STR.FIELD :
-        obj.model.unidade.model.err = "";
-
-    !obj.model.area.model.val || obj.model.area.model.err ?
-        obj.model.area.model.err = obj.STR.FIELD :
-        obj.model.area.model.err = "";
-
-    !obj.model.curso.model.val || obj.model.curso.model.err ?
-        obj.model.curso.model.err = obj.STR.FIELD :
-        obj.model.curso.model.err = "";
-
-    !obj.model.formaPagamentoInscr.model.val || obj.model.formaPagamentoInscr.model.err ?
-        obj.model.formaPagamentoInscr.model.err = obj.STR.FIELD :
-        obj.model.formaPagamentoInscr.model.err = "";
-
-    !obj.model.descontoInscr.model.val || obj.model.descontoInscr.model.err ?
-        obj.model.descontoInscr.model.err = obj.STR.FIELD :
-        obj.model.descontoInscr.model.err = "";
-
-    (obj.model.vagas.totais - obj.model.vagas.preenchidas) == 0 ?
-        obj.model.curso.model.err = obj.STR.NOVAGAS :
-        obj.model.curso.model.err = "";
+    obj.model.curso.model.err = obj.model.curso.model.val ? '' : obj.STR.FIELD;
+    obj.model.formaPagamentoInscr.model.err = obj.model.formaPagamentoInscr.model.val ? '' : obj.STR.FIELD;
+    obj.model.descontoInscr.model.err = obj.model.descontoInscr.model.val ? '' : obj.STR.FIELD;
 }
 
 function verificaValidacoesStep2(obj) {
-    !obj.model.desconto.model.val || obj.model.desconto.model.err ?
-        obj.model.desconto.model.err = obj.STR.NOCPF :
-        obj.model.desconto.model.err = "";
-
-    !obj.model.formaPagamentoPag.model.val || obj.model.formaPagamentoPag.model.err ?
-        obj.model.formaPagamentoPag.model.err = obj.STR.NOEMAIL :
-        obj.model.formaPagamentoPag.model.err = "";
-
-    !obj.model.qtdParcelas.model.val || obj.model.qtdParcelas.model.err ?
-        obj.model.qtdParcelas.model.err = obj.STR.NOEMAIL :
-        obj.model.qtdParcelas.model.err = "";
-
-    !obj.model.melhorData.model.val || obj.model.melhorData.model.err ?
-        obj.model.melhorData.model.err = obj.STR.NOEMAIL :
-        obj.model.melhorData.model.err = "";
+    obj.model.desconto.model.err = obj.model.desconto.model.val ? '' : obj.STR.FIELD;
+    obj.model.formaPagamentoPag.model.err = obj.model.formaPagamentoPag.model.val ? '' : obj.STR.FIELD;
+    obj.model.qtdParcelas.model.err = obj.model.qtdParcelas.model.val ? '' : obj.STR.FIELD;
+    obj.model.melhorData.model.err = obj.model.melhorData.model.val ? '' : obj.STR.FIELD;
 }
 
 function verificaValidacoesStep3(obj) {
-    !obj.model.dataExp.model.val || obj.model.dataExp.model.err ?
-        obj.model.dataExp.model.err = obj.STR.NOCPF :
-        obj.model.dataExp.model.err = "";
+    obj.model.apt.model.err = obj.model.apt.model.val ? '' : obj.STR.FIELD;
+    obj.model.anoEm.model.err = obj.model.anoEm.model.val ? '' : obj.STR.FIELD;
+    obj.model.anoGrad.model.err = obj.model.anoGrad.model.val ? '' : obj.STR.FIELD;
+    obj.model.cartorio.model.err = obj.model.cartorio.model.val ? '' : obj.STR.FIELD;
+    obj.model.certidaoNc.model.err = obj.model.certidaoNc.model.val ? '' : obj.STR.FIELD;
+    obj.model.cursoGrad.model.err = obj.model.cursoGrad.model.val ? '' : obj.STR.FIELD;
 
-    !obj.model.orgaoEmissor.model.val || obj.model.orgaoEmissor.model.err ?
-        obj.model.orgaoEmissor.model.err = obj.STR.NOEMAIL :
-        obj.model.orgaoEmissor.model.err = "";
+    obj.model.dataExp.model.err = !obj.model.dataExp.model.val ?
+        obj.STR.FIELD : isDate(obj.model.dataExp.model.val) ? '' : obj.STR.NODATA;
 
-    !obj.model.tituloEleitor.model.val || obj.model.tituloEleitor.model.err ?
-        obj.model.tituloEleitor.model.err = obj.STR.NOEMAIL :
-        obj.model.tituloEleitor.model.err = "";
+    obj.model.dataNasc.model.err = !obj.model.dataNasc.model.val ?
+        obj.STR.FIELD : isDate(obj.model.dataNasc.model.val) ? '' : obj.STR.NODATA;
 
-    !obj.model.zona.model.val || obj.model.zona.model.err ?
-        obj.model.zona.model.err = obj.STR.NOEMAIL :
-        obj.model.zona.model.err = "";
+    obj.model.endNum.model.err = obj.model.endNum.model.val ? '' : obj.STR.FIELD;
+    obj.model.escolaEm.model.err = obj.model.escolaEm.model.val ? '' : obj.STR.FIELD;
+    obj.model.estadoCivil.model.err = obj.model.estadoCivil.model.val ? '' : obj.STR.FIELD;
+    obj.model.folha.model.err = obj.model.folha.model.val ? '' : obj.STR.FIELD;
+    obj.model.instituicao.model.err = obj.model.instituicao.model.val ? '' : obj.STR.FIELD;
+    obj.model.orgaoEmissor.model.err = obj.model.orgaoEmissor.model.val ? '' : obj.STR.FIELD;
+    obj.model.livro.model.err = obj.model.livro.model.val ? '' : obj.STR.FIELD;
+    obj.model.mae.model.err = obj.model.mae.model.val ? '' : obj.STR.FIELD;
+    obj.model.nacionalidade.model.err = obj.model.nacionalidade.model.val ? '' : obj.STR.FIELD;
+    obj.model.natUf.model.err = obj.model.natUf.model.val ? '' : obj.STR.FIELD;
+    obj.model.naturalidade.model.err = obj.model.naturalidade.model.val ? '' : obj.STR.FIELD;
+    obj.model.pai.model.err = obj.model.pai.model.val ? '' : obj.STR.FIELD;
+    obj.model.raca.model.err = obj.model.raca.model.val ? '' : obj.STR.FIELD;
+    obj.model.secao.model.err = obj.model.secao.model.val ? '' : obj.STR.FIELD;
 
-    !obj.model.secao.model.val || obj.model.secao.model.err ?
-        obj.model.secao.model.err = obj.STR.NOEMAIL :
-        obj.model.secao.model.err = "";
+    if (!obj.model.sexo.model.val) {
+        obj.model.sexo.model.err = obj.STR.FIELD;
+    } else {
+        if (obj.model.sexo.model.val == 'f') {
+            obj.model.sexo.model.err = '';
+            obj.model.categoria.model.err = '';
+            obj.model.registro.model.err = '';
+            obj.model.certificadoRes.model.err = '';
+            obj.model.ufReservista.model.err = '';
+        } else {
+            obj.model.sexo.model.err = '';
+            obj.model.categoria.model.err = obj.model.categoria.model.val ? '' : obj.STR.FIELD;
+            obj.model.registro.model.err = obj.model.registro.model.val ? '' : obj.STR.FIELD;
+            obj.model.certificadoRes.model.err = obj.model.certificadoRes.model.val ? '' : obj.STR.FIELD;
+            obj.model.ufReservista.model.err = obj.model.ufReservista.model.val ? '' : obj.STR.FIELD;
+        }
+    }
 
-    !obj.model.ufTitulo.model.val || obj.model.ufTitulo.model.err ?
-        obj.model.ufTitulo.model.err = obj.STR.NOEMAIL :
-        obj.model.ufTitulo.model.err = "";
-
-    !obj.model.certidaoNc.model.val || obj.model.certidaoNc.model.err ?
-        obj.model.certidaoNc.model.err = obj.STR.NOEMAIL :
-        obj.model.certidaoNc.model.err = "";
-
-    !obj.model.folha.model.val || obj.model.folha.model.err ?
-        obj.model.folha.model.err = obj.STR.NOEMAIL :
-        obj.model.folha.model.err = "";
-
-    !obj.model.livro.model.val || obj.model.livro.model.err ?
-        obj.model.livro.model.err = obj.STR.NOEMAIL :
-        obj.model.livro.model.err = "";
-
-    !obj.model.cartorio.model.val || obj.model.cartorio.model.err ?
-        obj.model.cartorio.model.err = obj.STR.NOEMAIL :
-        obj.model.cartorio.model.err = "";
-
-    !obj.model.certificadoRes.model.val || obj.model.certificadoRes.model.err ?
-        obj.model.certificadoRes.model.err = obj.STR.NOEMAIL :
-        obj.model.certificadoRes.model.err = "";
-
-    !obj.model.registro.model.val || obj.model.registro.model.err ?
-        obj.model.registro.model.err = obj.STR.NOEMAIL :
-        obj.model.registro.model.err = "";
-
-    !obj.model.ufReservista.model.val || obj.model.ufReservista.model.err ?
-        obj.model.ufReservista.model.err = obj.STR.NOEMAIL :
-        obj.model.ufReservista.model.err = "";
-
-    !obj.model.categoria.model.val || obj.model.categoria.model.err ?
-        obj.model.categoria.model.err = obj.STR.NOEMAIL :
-        obj.model.categoria.model.err = "";
-
-    !obj.model.sexo.model.val || obj.model.sexo.model.err ?
-        obj.model.sexo.model.err = obj.STR.NOEMAIL :
-        obj.model.sexo.model.err = "";
-
-    !obj.model.dataNasc.model.val || obj.model.dataNasc.model.err ?
-        obj.model.dataNasc.model.err = obj.STR.NOEMAIL :
-        obj.model.dataNasc.model.err = "";
-
-    !obj.model.raca.model.val || obj.model.raca.model.err ?
-        obj.model.raca.model.err = obj.STR.NOEMAIL :
-        obj.model.raca.model.err = "";
-
-    !obj.model.estadoCivil.model.val || obj.model.estadoCivil.model.err ?
-        obj.model.estadoCivil.model.err = obj.STR.NOEMAIL :
-        obj.model.estadoCivil.model.err = "";
-
-    !obj.model.pai.model.val || obj.model.pai.model.err ?
-        obj.model.pai.model.err = obj.STR.NOEMAIL :
-        obj.model.pai.model.err = "";
-
-    !obj.model.mae.model.val || obj.model.mae.model.err ?
-        obj.model.mae.model.err = obj.STR.NOEMAIL :
-        obj.model.mae.model.err = "";
-
-    !obj.model.endNum.model.val || obj.model.endNum.model.err ?
-        obj.model.endNum.model.err = obj.STR.NOEMAIL :
-        obj.model.endNum.model.err = "";
-
-    !obj.model.apt.model.val || obj.model.apt.model.err ?
-        obj.model.apt.model.err = obj.STR.NOEMAIL :
-        obj.model.apt.model.err = "";
-
-    !obj.model.nacionalidade.model.val || obj.model.nacionalidade.model.err ?
-        obj.model.nacionalidade.model.err = obj.STR.NOEMAIL :
-        obj.model.nacionalidade.model.err = "";
-
-    !obj.model.naturalidade.model.val || obj.model.naturalidade.model.err ?
-        obj.model.naturalidade.model.err = obj.STR.NOEMAIL :
-        obj.model.naturalidade.model.err = "";
-
-    !obj.model.natUf.model.val || obj.model.natUf.model.err ?
-        obj.model.natUf.model.err = obj.STR.NOEMAIL :
-        obj.model.natUf.model.err = "";
-
-    !obj.model.escolaEm.model.val || obj.model.escolaEm.model.err ?
-        obj.model.escolaEm.model.err = obj.STR.NOEMAIL :
-        obj.model.escolaEm.model.err = "";
-
-    !obj.model.anoEm.model.val || obj.model.anoEm.model.err ?
-        obj.model.anoEm.model.err = obj.STR.NOEMAIL :
-        obj.model.anoEm.model.err = "";
-
-    !obj.model.cursoGrad.model.val || obj.model.cursoGrad.model.err ?
-        obj.model.cursoGrad.model.err = obj.STR.NOEMAIL :
-        obj.model.cursoGrad.model.err = "";
-
-    !obj.model.anoGrad.model.val || obj.model.anoGrad.model.err ?
-        obj.model.anoGrad.model.err = obj.STR.NOEMAIL :
-        obj.model.anoGrad.model.err = "";
-
-    !obj.model.instituicao.model.val || obj.model.instituicao.model.err ?
-        obj.model.instituicao.model.err = obj.STR.NOEMAIL :
-        obj.model.instituicao.model.err = "";
+    obj.model.tituloEleitor.model.err = obj.model.tituloEleitor.model.val ? '' : obj.STR.FIELD;
+    obj.model.ufTitulo.model.err = obj.model.ufTitulo.model.val ? '' : obj.STR.FIELD;
+    obj.model.zona.model.err = obj.model.zona.model.val ? '' : obj.STR.FIELD;
 }

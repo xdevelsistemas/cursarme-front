@@ -263,6 +263,8 @@
                 });
         };
 
+        //TODO função selectSexo() para desabilitar reservistas caso seja feminino
+
         vm.topCollapse = function(){
             $('html, body').animate({scrollTop: 0},'slow');
         };
