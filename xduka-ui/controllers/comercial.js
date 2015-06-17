@@ -161,7 +161,59 @@ function isCep(cep) {
 }
 
 function isCpf(cpf) {
-    return cpf.length == 11
+    if (cpf.length == 11) {
+        try {
+            if (
+                cpf == "00000000000" || cpf == "11111111111" || cpf == "22222222222" || cpf == "33333333333" || cpf == "44444444444" ||
+                cpf == "55555555555" || cpf == "66666666666" || cpf == "77777777777" || cpf == "88888888888" || cpf == "99999999999"
+            ){
+                return false
+            }else{
+                // Valida 1o digito
+                var add, rev;
+                add = 0;
+                for (var i=0; i < 9; i ++)
+                    add += parseInt(cpf.charAt(i)) * (10 - i);
+                rev = 11 - (add % 11);
+                if (rev == 10 || rev == 11)
+                    rev = 0;
+                if (rev != parseInt(cpf.charAt(9))) {
+                    vm._model.cpf.model.err = 'CPF inválido';
+                    vm.validaCpf = false;
+                }else{
+                    // Valida 2o digito
+                    add = 0;
+                    for (i = 0; i < 10; i ++)
+                        add += parseInt(cpf.charAt(i)) * (11 - i);
+                    rev = 11 - (add % 11);
+                    if (rev == 10 || rev == 11)
+                        rev = 0;
+                    if (rev != parseInt(cpf.charAt(10))) {
+                        vm._model.cpf.model.err = 'CPF inválido';
+                        vm.validaCpf = false;
+                    }else{
+                        var verificaCpfPromise = $resource('/api/comercial/verifica-cpf').save({}, {"cpf": cpf}).$promise;
+
+                        verificaCpfPromise
+                            .then(function (data) {
+                                vm._model.cpf.model.err = data.dados.msg;
+                                vm._model.unidade.list = data.dadosCurso.unidade.list;
+                                vm.validaCpf = !data.dados.msg;
+                                if(vm.validaCpf){
+                                    vm.editing = true;
+                                }
+                            })
+                            .catch(function (erro) {
+                                console.log(erro);
+                            })
+                    }
+                }
+
+            }
+        }catch(erro){
+            console.log("Erro:\n" + erro);
+        }
+    }
 }
 
 function isEmail(email){
