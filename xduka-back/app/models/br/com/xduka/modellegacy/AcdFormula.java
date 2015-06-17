@@ -3,13 +3,15 @@ package models.br.com.xduka.modellegacy;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import java.math.BigDecimal;
 
 /**
  * Created by clayton on 04/12/14.
  */
 @Entity
-@javax.persistence.Table(name = "acdFórmula", schema = "dbo", catalog = "xDuka")
+@javax.persistence.Table(name = "acdFórmula", schema = "dbo")
+@IdClass(AcdFormulaPK.class)
 public class AcdFormula {
     private long fórmulaId;
 
