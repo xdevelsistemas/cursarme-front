@@ -24,9 +24,13 @@ module.exports = function (app, passport) {
     app.route('/api/comercial/view-inscr')
         .get(controller.showViewInscr);
 
-    //dados-inscricao
-    app.route('/api/comercial/dados-inscricao')
-        .post(controller.putDadosInscricao);
+    //dados-inscricao-completa
+    app.route('/api/comercial/dados-inscricao-completa')
+        .post(controller.putDadosInscricaoCompleta);
+
+    //dados-inscricao-parcial
+    app.route('/api/comercial/dados-inscricao-parcial')
+        .post(controller.putDadosInscricaoParcial);
 
     return app;
 };

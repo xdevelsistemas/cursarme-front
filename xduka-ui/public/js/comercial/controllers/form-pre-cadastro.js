@@ -43,6 +43,7 @@
 
         // valida todos os campos
         vm.validaCpf = false;
+        vm.validaSexo = false;
 
         // temporarias de dados
         vm.tempItem = {}; /* Guarda um obj para confirmar a edição em caso de uma edição quando um cadastro já está sendo editado */
@@ -126,6 +127,14 @@
                 }catch(erro){
                     console.log("Erro:\n" + erro);
                 }
+            }
+        };
+
+        vm.verificaSexo = function(item, model) {
+            if (model == 'f') {
+                vm.validaSexo = true;
+            } else {
+                vm.validaSexo = false;
             }
         };
 
@@ -229,23 +238,41 @@
             vm._model.telefone.mask = tipoTelefone.getMskPhone(model);
         };
 
-        vm.sendInscricao = function() {
+        vm.sendInscricaoCompleta = function() {
             vm._model.listaCheques = vm.lista_cheques.lista;
 
-            var sendInscricaoPromise = $resource('/api/comercial/dados-inscricao').save({}, {"model": vm._model, "STR": vm.STR}).$promise;
+            var sendInscricaoCompletaPromise = $resource('/api/comercial/dados-inscricao-completa').save({}, {"model": vm._model, "STR": vm.STR}).$promise;
 
-            sendInscricaoPromise
+            sendInscricaoCompletaPromise
                 .then(function (data) {
                     vm._model = data;
-                    //console.log(vm._model);
-                    $.extend(vm._model.vagas, funcVagas());
                     vm.disableLimpar = false;
+                    $.extend(vm._model.vagas, funcVagas());
                     disableBtn()
                 })
                 .catch(function (erro) {
                     console.log("\n" + erro.data + "\n")
                 });
         };
+
+        vm.sendInscricaoParcial = function() {
+            vm._model.listaCheques = vm.lista_cheques.lista;
+
+            var sendInscricaoParcialPromise = $resource('/api/comercial/dados-inscricao-parcial').save({}, {"model": vm._model, "STR": vm.STR}).$promise;
+
+            sendInscricaoParcialPromise
+                .then(function (data) {
+                    vm._model = data;
+                    vm.disableLimpar = false;
+                    $.extend(vm._model.vagas, funcVagas());
+                    disableBtn()
+                })
+                .catch(function (erro) {
+                    console.log("\n" + erro.data + "\n")
+                });
+        };
+
+        //TODO função selectSexo() para desabilitar reservistas caso seja feminino
 
         vm.topCollapse = function(){
             $('html, body').animate({scrollTop: 0},'slow');

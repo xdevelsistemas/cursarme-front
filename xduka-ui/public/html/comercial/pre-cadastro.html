@@ -31,7 +31,7 @@
     </ul>
 
     <div class="tab-content">
-        <div class="alert alert-danger col-md-12" role="alert" ng-show="conf.editing&&conf.showAlert&&(!conf._model.dataExp.model.val||!conf._model.orgaoEmissor.model.val||!conf._model.tituloEleitor.model.val||!conf._model.zona.model.val||!conf._model.secao.model.val||!conf._model.ufTitulo.model.val||!conf._model.certidaoNc.model.val||!conf._model.folha.model.val||!conf._model.livro.model.val||!conf._model.cartorio.model.val||!conf._model.certificadoRes.model.val||!conf._model.registro.model.val||!conf._model.ufReservista.model.val||!conf._model.categoria.model.val||!conf._model.sexo.model.val||!conf._model.dataNasc.model.val||!conf._model.raca.model.val||!conf._model.estadoCivil.model.val||!conf._model.pai.model.val||!conf._model.mae.model.val||!conf._model.avRua.model.val||!conf._model.endNum.model.val||!conf._model.apt.model.val||!conf._model.bairro.model.val||!conf._model.endUf.model.val||!conf._model.nacionalidade.model.val||!conf._model.naturalidade.model.val||!conf._model.natUf.model.val||!conf._model.escolaEm.model.val||!conf._model.anoEm.model.val||!conf._model.cursoGrad.model.val||!conf._model.anoGrad.model.val||!conf._model.instituicao.model.val)">
+        <div class="alert alert-danger col-md-12" role="alert" ng-show="pre.editing&&pre.showAlert&&(!pre._model.dataExp.model.val||!pre._model.orgaoEmissor.model.val||!pre._model.tituloEleitor.model.val||!pre._model.zona.model.val||!pre._model.secao.model.val||!pre._model.ufTitulo.model.val||!pre._model.certidaoNc.model.val||!pre._model.folha.model.val||!pre._model.livro.model.val||!pre._model.cartorio.model.val||!pre._model.certificadoRes.model.val||!pre._model.registro.model.val||!pre._model.ufReservista.model.val||!pre._model.categoria.model.val||!pre._model.sexo.model.val||!pre._model.dataNasc.model.val||!pre._model.raca.model.val||!pre._model.estadoCivil.model.val||!pre._model.pai.model.val||!pre._model.mae.model.val||!pre._model.avRua.model.val||!pre._model.endNum.model.val||!pre._model.apt.model.val||!pre._model.bairro.model.val||!pre._model.endUf.model.val||!pre._model.nacionalidade.model.val||!pre._model.naturalidade.model.val||!pre._model.natUf.model.val||!pre._model.escolaEm.model.val||!pre._model.anoEm.model.val||!pre._model.cursoGrad.model.val||!pre._model.anoGrad.model.val||!pre._model.instituicao.model.val)">
             <button type="button" class="close" aria-label="Close" data-ng-click="pre.disableAlert()"><span aria-hidden="true">&times;</span></button>
             <span class="alert-title">Campos aguardando preenchimento:</span>
             <hr/>
@@ -388,7 +388,7 @@
                                   disable="true"></xd-input>
                     </div>
                     <div class="col-md-4">
-                        <xd-select data-params="pre._model.sexo"
+                        <xd-select data-params="pre._model.sexo" data-change="pre.verificaSexo"
                                    data-disable="!pre.validaCpf"></xd-select>
                     </div>
                     <div class="col-md-4">
@@ -399,21 +399,21 @@
                 <div class="row">
                     <div class="col-md-4">
                         <xd-input data-params="pre._model.certificadoRes"
-                                  data-disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf || pre.validaSexo"></xd-input>
                     </div>
                     <div class="col-md-5">
                         <xd-input data-params="pre._model.registro"
-                                  data-disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf || pre.validaSexo"></xd-input>
                     </div>
                     <div class="col-md-3">
                         <xd-select data-params="pre._model.ufReservista"
-                                   data-disable="!pre.validaCpf"></xd-select>
+                                   data-disable="!pre.validaCpf || pre.validaSexo"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <xd-input data-params="pre._model.categoria"
-                                  data-disable="!pre.validaCpf"></xd-input>
+                                  data-disable="!pre.validaCpf || pre.validaSexo"></xd-input>
                     </div>
                     <div class="col-md-4">
                         <xd-input data-params="pre._model.raca"
@@ -544,7 +544,7 @@
                 </button>
             </li>
             <li class="col-md-3 inLine">
-                <button class="btn btn-green btn-lg btn-icon icon-left btn-block" data-ng-disabled="pre.disableAnterior || (pre._model.cpf.model.val.length != 11) || !!pre._model.cpf.model.err" ng-click="pre.sendInscricao()">
+                <button class="btn btn-green btn-lg btn-icon icon-left btn-block" data-ng-disabled="pre.disableAnterior || (pre._model.cpf.model.val.length != 11) || !!pre._model.cpf.model.err" ng-click="pre.sendInscricaoParcial()">
                     Salvar
                     <i class="entypo-check"></i>
                 </button>
