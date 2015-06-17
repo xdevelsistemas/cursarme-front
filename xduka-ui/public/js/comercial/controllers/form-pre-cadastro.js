@@ -43,6 +43,7 @@
 
         // valida todos os campos
         vm.validaCpf = false;
+        vm.validaSexo = false;
 
         // temporarias de dados
         vm.tempItem = {}; /* Guarda um obj para confirmar a edição em caso de uma edição quando um cadastro já está sendo editado */
@@ -126,6 +127,14 @@
                 }catch(erro){
                     console.log("Erro:\n" + erro);
                 }
+            }
+        };
+
+        vm.verificaSexo = function(item, model) {
+            if (model == 'f') {
+                vm.validaSexo = true;
+            } else {
+                vm.validaSexo = false;
             }
         };
 
