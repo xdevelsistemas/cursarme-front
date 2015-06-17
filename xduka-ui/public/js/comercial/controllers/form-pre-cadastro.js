@@ -201,7 +201,6 @@
         vm.selectPhoneType = function (item, model) {
             vm._model.telefone.mask = tipoTelefone.getMskPhone(model);
         };
-        vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
 
         vm.sendInscricao = function() {
             vm._model.listaCheques = vm.lista_cheques.lista;
@@ -262,6 +261,7 @@
                         vm._model.curso.list = $.grep(vm._model.area.list, function (e) {
                             return e.id == item.area.model.val;
                         })[0].cursos;
+                        vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
                     })
                     .catch(function (erro) {
                         console.log(erro);
