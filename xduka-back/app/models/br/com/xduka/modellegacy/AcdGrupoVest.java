@@ -19,7 +19,7 @@ public class AcdGrupoVest {
     private Double codDiscursiva3;
     private boolean emescam;
     private List<AcdCursoVest> acdCursoVests;
-    private AcdÁreaVest acdÁreaVest;
+    private AcdAreaVest acdAreaVest;
 
     @Basic
     @Column(name = "GrupoVest_ID", nullable = false, insertable = true, updatable = true)
@@ -159,11 +159,11 @@ public class AcdGrupoVest {
 
     @ManyToOne
     @JoinColumns({@JoinColumn(name = "AnoLetivo", referencedColumnName = "AnoLetivo", nullable = false), @JoinColumn(name = "CodUnidade", referencedColumnName = "CodUnidade", nullable = false), @JoinColumn(name = "CodÁrea", referencedColumnName = "CodÁrea", nullable = false)})
-    public AcdÁreaVest getAcdÁreaVest() {
-        return acdÁreaVest;
+    public AcdAreaVest getAcdAreaVest() {
+        return acdAreaVest;
     }
 
-    public void setAcdÁreaVest(AcdÁreaVest acdÁreaVest) {
-        this.acdÁreaVest = acdÁreaVest;
+    public void setAcdAreaVest(AcdAreaVest acdAreaVest) {
+        this.acdAreaVest = acdAreaVest;
     }
 }

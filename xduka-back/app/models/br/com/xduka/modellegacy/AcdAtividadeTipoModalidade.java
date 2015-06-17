@@ -18,7 +18,7 @@ public class AcdAtividadeTipoModalidade {
     private String modalidade;
     private BigDecimal valor;
     private AcdAtividadeTipo acdAtividadeTipo;
-    private CbrDiferençaMotivo cbrDiferençaMotivo;
+    private CbrDiferencaMotivo cbrDiferencaMotivo;
 
     @Basic
     @Column(name = "AtividadeModalidade_ID", nullable = false, insertable = true, updatable = true)
@@ -144,11 +144,11 @@ public class AcdAtividadeTipoModalidade {
 
     @ManyToOne
     @JoinColumns({@JoinColumn(name = "CodUnidade", referencedColumnName = "CodUnidade", nullable = false), @JoinColumn(name = "CodMotivo", referencedColumnName = "CodMotivo", nullable = false)})
-    public CbrDiferençaMotivo getCbrDiferençaMotivo() {
-        return cbrDiferençaMotivo;
+    public CbrDiferencaMotivo getCbrDiferencaMotivo() {
+        return cbrDiferencaMotivo;
     }
 
-    public void setCbrDiferençaMotivo(CbrDiferençaMotivo cbrDiferençaMotivo) {
-        this.cbrDiferençaMotivo = cbrDiferençaMotivo;
+    public void setCbrDiferencaMotivo(CbrDiferencaMotivo cbrDiferencaMotivo) {
+        this.cbrDiferencaMotivo = cbrDiferencaMotivo;
     }
 }

@@ -17,7 +17,7 @@ public class CntAbertura {
     private Timestamp dataFechamento;
     private Integer idUsuárioFechamento;
     private boolean finalizado;
-    private List<CntAberturaQuitação> cntAberturaQuitacoes;
+    private List<CntAberturaQuitacao> cntAberturaQuitacoes;
 
     @Basic
     @Column(name = "Abertura_ID", nullable = false, insertable = true, updatable = true)
@@ -134,11 +134,11 @@ public class CntAbertura {
     }
 
     @OneToMany(mappedBy = "cntAbertura")
-    public List<CntAberturaQuitação> getCntAberturaQuitacoes() {
+    public List<CntAberturaQuitacao> getCntAberturaQuitacoes() {
         return cntAberturaQuitacoes;
     }
 
-    public void setCntAberturaQuitacoes(List<CntAberturaQuitação> cntAberturaQuitacoes) {
+    public void setCntAberturaQuitacoes(List<CntAberturaQuitacao> cntAberturaQuitacoes) {
         this.cntAberturaQuitacoes = cntAberturaQuitacoes;
     }
 }

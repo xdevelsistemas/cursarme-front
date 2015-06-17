@@ -16,7 +16,7 @@ public class CbrAnuidade {
     private String anuidade;
     private String espécie;
     private String espécieDescrição;
-    private List<CbrAnuidadeMês> cbrAnuidadeMêses;
+    private List<CbrAnuidadeMes> cbrAnuidadeMêses;
 
     @Basic
     @Column(name = "Anuidade_ID", nullable = false, insertable = true, updatable = true)
@@ -120,11 +120,11 @@ public class CbrAnuidade {
     }
 
     @OneToMany(mappedBy = "cbrAnuidade")
-    public List<CbrAnuidadeMês> getCbrAnuidadeMêses() {
+    public List<CbrAnuidadeMes> getCbrAnuidadeMêses() {
         return cbrAnuidadeMêses;
     }
 
-    public void setCbrAnuidadeMêses(List<CbrAnuidadeMês> cbrAnuidadeMêses) {
+    public void setCbrAnuidadeMêses(List<CbrAnuidadeMes> cbrAnuidadeMêses) {
         this.cbrAnuidadeMêses = cbrAnuidadeMêses;
     }
 }

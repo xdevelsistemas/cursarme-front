@@ -19,7 +19,7 @@ public class CbrPlanoParcela {
     private Double divisor;
     private Timestamp dataVencimento;
     private Timestamp dataLimite;
-    private CbrMês cbrMêsByMês;
+    private CbrMes cbrMêsByMes;
     private CbrPlano cbrPlano;
 
     @Basic
@@ -162,12 +162,12 @@ public class CbrPlanoParcela {
 
     @ManyToOne
     @JoinColumn(name = "Mês", referencedColumnName = "Mês")
-    public CbrMês getCbrMêsByMês() {
-        return cbrMêsByMês;
+    public CbrMes getCbrMêsByMes() {
+        return cbrMêsByMes;
     }
 
-    public void setCbrMêsByMês(CbrMês cbrMêsByMês) {
-        this.cbrMêsByMês = cbrMêsByMês;
+    public void setCbrMêsByMes(CbrMes cbrMêsByMes) {
+        this.cbrMêsByMes = cbrMêsByMes;
     }
 
     @ManyToOne

@@ -17,7 +17,7 @@ public class SgrUsuarioFeed {
     private String url;
     private Timestamp data;
     private boolean excluído;
-    private SgrUsuárioUnidade sgrUsuárioUnidade;
+    private SgrUsuarioUnidade sgrUsuarioUnidade;
 
     @Id
     @Column(name = "IDUsuário", nullable = false, insertable = true, updatable = true)
@@ -121,11 +121,11 @@ public class SgrUsuarioFeed {
 
     @ManyToOne
     @JoinColumns({@JoinColumn(name = "IDUsuário", referencedColumnName = "IDUsuário", nullable = false), @JoinColumn(name = "CodUnidade", referencedColumnName = "CodUnidade", nullable = false)})
-    public SgrUsuárioUnidade getSgrUsuárioUnidade() {
-        return sgrUsuárioUnidade;
+    public SgrUsuarioUnidade getSgrUsuarioUnidade() {
+        return sgrUsuarioUnidade;
     }
 
-    public void setSgrUsuárioUnidade(SgrUsuárioUnidade sgrUsuárioUnidade) {
-        this.sgrUsuárioUnidade = sgrUsuárioUnidade;
+    public void setSgrUsuarioUnidade(SgrUsuarioUnidade sgrUsuarioUnidade) {
+        this.sgrUsuarioUnidade = sgrUsuarioUnidade;
     }
 }

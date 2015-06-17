@@ -28,7 +28,7 @@
         <class>models.br.com.xduka.modellegacy.AcdCursoVest</class>
         <class>models.br.com.xduka.modellegacy.AcdCursoArea</class>
         <class>models.br.com.xduka.modellegacy.AcdDependencia</class>
-        <class>models.br.com.xduka.modellegacy.AcdDependênciaPeríodo</class>
+        <class>models.br.com.xduka.modellegacy.AcdDependenciaPeriodo</class>
         <class>models.br.com.xduka.modellegacy.AcdDisciplina</class>
         <class>models.br.com.xduka.modellegacy.AcdDisciplinaRequisito</class>
         <class>models.br.com.xduka.modellegacy.AcdDisciplinaTipo</class>
@@ -41,23 +41,23 @@
         <class>models.br.com.xduka.modellegacy.AcdGradePrograma</class>
         <class>models.br.com.xduka.modellegacy.AcdGrupoVest</class>
         <class>models.br.com.xduka.modellegacy.AcdGrupoVestDisciplina</class>
-        <class>models.br.com.xduka.modellegacy.AcdHistórico</class>
+        <class>models.br.com.xduka.modellegacy.AcdHistorico</class>
         <class>models.br.com.xduka.modellegacy.AcdIngressoForma</class>
-        <class>models.br.com.xduka.modellegacy.AcdLínguaEstrangeira</class>
+        <class>models.br.com.xduka.modellegacy.AcdLinguaEstrangeira</class>
         <class>models.br.com.xduka.modellegacy.AcdModalidade</class>
         <class>models.br.com.xduka.modellegacy.AcdModalidadeCurso</class>
-        <class>models.br.com.xduka.modellegacy.AcdNível</class>
+        <class>models.br.com.xduka.modellegacy.AcdNivel</class>
         <class>models.br.com.xduka.modellegacy.AcdOrigem</class>
         <class>models.br.com.xduka.modellegacy.AcdPauta</class>
-        <class>models.br.com.xduka.modellegacy.AcdPautaAvaliação</class>
+        <class>models.br.com.xduka.modellegacy.AcdPautaAvaliacao</class>
         <class>models.br.com.xduka.modellegacy.AcdPautaDescritiva</class>
-        <class>models.br.com.xduka.modellegacy.AcdPautaFrequência</class>
-        <class>models.br.com.xduka.modellegacy.AcdPautaFrequênciaMais</class>
+        <class>models.br.com.xduka.modellegacy.AcdPautaFrequencia</class>
+        <class>models.br.com.xduka.modellegacy.AcdPautaFrequenciaMais</class>
         <class>models.br.com.xduka.modellegacy.AcdPautaLog</class>
         <class>models.br.com.xduka.modellegacy.AcdPautaNota</class>
-        <class>models.br.com.xduka.modellegacy.AcdPeríodo</class>
+        <class>models.br.com.xduka.modellegacy.AcdPeriodo</class>
         <class>models.br.com.xduka.modellegacy.AcdReserva</class>
-        <class>models.br.com.xduka.modellegacy.AcdSituação</class>
+        <class>models.br.com.xduka.modellegacy.AcdSituacao</class>
         <class>models.br.com.xduka.modellegacy.AcdTarefa</class>
         <class>models.br.com.xduka.modellegacy.AcdTarefaLog</class>
         <class>models.br.com.xduka.modellegacy.AcdTarefaTurma</class>
@@ -66,21 +66,21 @@
         <class>models.br.com.xduka.modellegacy.AcdTurmaIntegrantes</class>
         <class>models.br.com.xduka.modellegacy.AcdTurno</class>
         <class>models.br.com.xduka.modellegacy.AcdVaga</class>
-        <class>models.br.com.xduka.modellegacy.AcdÁreaVest</class>
-        <class>models.br.com.xduka.modellegacy.CbrAnoCobrança</class>
+        <class>models.br.com.xduka.modellegacy.AcdAreaVest</class>
+        <class>models.br.com.xduka.modellegacy.CbrAnoCobranca</class>
         <class>models.br.com.xduka.modellegacy.CbrAnuidade</class>
-        <class>models.br.com.xduka.modellegacy.CbrAnuidadeMês</class>
+        <class>models.br.com.xduka.modellegacy.CbrAnuidadeMes</class>
         <class>models.br.com.xduka.modellegacy.CbrCartaInadimplentes</class>
         <class>models.br.com.xduka.modellegacy.CbrContrato</class>
-        <class>models.br.com.xduka.modellegacy.CbrDiferença</class>
-        <class>models.br.com.xduka.modellegacy.CbrDiferençaMotivo</class>
-        <class>models.br.com.xduka.modellegacy.CbrDiferençaMês</class>
-        <class>models.br.com.xduka.modellegacy.CbrMês</class>
+        <class>models.br.com.xduka.modellegacy.CbrDiferenca</class>
+        <class>models.br.com.xduka.modellegacy.CbrDiferencaMotivo</class>
+        <class>models.br.com.xduka.modellegacy.CbrDiferencaMes</class>
+        <class>models.br.com.xduka.modellegacy.CbrMes</class>
         <class>models.br.com.xduka.modellegacy.CbrPlano</class>
         <class>models.br.com.xduka.modellegacy.CbrPlanoParcela</class>
-        <class>models.br.com.xduka.modellegacy.CbrTipoCobrança</class>
+        <class>models.br.com.xduka.modellegacy.CbrTipoCobranca</class>
         <class>models.br.com.xduka.modellegacy.CntAbertura</class>
-        <class>models.br.com.xduka.modellegacy.CntAberturaQuitação</class>
+        <class>models.br.com.xduka.modellegacy.CntAberturaQuitacao</class>
         <class>models.br.com.xduka.modellegacy.CntCaixa</class>
         <class>models.br.com.xduka.modellegacy.CntCheque</class>
         <class>models.br.com.xduka.modellegacy.CntChequeBanco</class>
@@ -116,17 +116,17 @@
         <class>models.br.com.xduka.modellegacy.CntTotalBalanco</class>
         <class>models.br.com.xduka.modellegacy.CntTotalBalancoConta</class>
         <class>models.br.com.xduka.modellegacy.CntUnidade</class>
-        <class>models.br.com.xduka.modellegacy.CntUnidadeUsuário</class>
+        <class>models.br.com.xduka.modellegacy.CntUnidadeUsuario</class>
         <class>models.br.com.xduka.modellegacy.InsCandidato</class>
         <class>models.br.com.xduka.modellegacy.InsCandidatoCurso</class>
-        <class>models.br.com.xduka.modellegacy.InsCandidatoQuestão</class>
+        <class>models.br.com.xduka.modellegacy.InsCandidatoQuestao</class>
         <class>models.br.com.xduka.modellegacy.InsCandidatoResposta</class>
         <class>models.br.com.xduka.modellegacy.InsGabarito</class>
         <class>models.br.com.xduka.modellegacy.InsGabaritoCurso</class>
-        <class>models.br.com.xduka.modellegacy.InsInscrição</class>
-        <class>models.br.com.xduka.modellegacy.InsOpção</class>
-        <class>models.br.com.xduka.modellegacy.InsQuestionário</class>
-        <class>models.br.com.xduka.modellegacy.InsQuestão</class>
+        <class>models.br.com.xduka.modellegacy.InsInscricao</class>
+        <class>models.br.com.xduka.modellegacy.InsOpcao</class>
+        <class>models.br.com.xduka.modellegacy.InsQuestionario</class>
+        <class>models.br.com.xduka.modellegacy.InsQuestao</class>
         <class>models.br.com.xduka.modellegacy.InsSala</class>
         <class>models.br.com.xduka.modellegacy.InsVaga</class>
         <class>models.br.com.xduka.modellegacy.SgrAbertura</class>
@@ -138,9 +138,9 @@
         <class>models.br.com.xduka.modellegacy.SgrFormulario</class>
         <class>models.br.com.xduka.modellegacy.SgrFormularioOld</class>
         <class>models.br.com.xduka.modellegacy.SgrIdentificador</class>
-        <class>models.br.com.xduka.modellegacy.SgrLicença</class>
+        <class>models.br.com.xduka.modellegacy.SgrLicenca</class>
         <class>models.br.com.xduka.modellegacy.SgrLogProcessos</class>
-        <class>models.br.com.xduka.modellegacy.SgrNívelAdm</class>
+        <class>models.br.com.xduka.modellegacy.SgrNivelAdm</class>
         <class>models.br.com.xduka.modellegacy.SgrObjeto</class>
         <class>models.br.com.xduka.modellegacy.SgrObjetoAcesso</class>
         <class>models.br.com.xduka.modellegacy.SgrObjetoUnidade</class>
@@ -148,13 +148,13 @@
         <class>models.br.com.xduka.modellegacy.SgrPersonalizacao</class>
         <class>models.br.com.xduka.modellegacy.SgrRelatorio</class>
         <class>models.br.com.xduka.modellegacy.SgrSistemaDesenvolvimento</class>
-        <class>models.br.com.xduka.modellegacy.SgrSolicitação</class>
+        <class>models.br.com.xduka.modellegacy.SgrSolicitacao</class>
         <class>models.br.com.xduka.modellegacy.SgrUsuario</class>
         <class>models.br.com.xduka.modellegacy.SgrUsuarioFeed</class>
         <class>models.br.com.xduka.modellegacy.SgrUsuarioMensagem</class>
-        <class>models.br.com.xduka.modellegacy.SgrUsuarioNível</class>
-        <class>models.br.com.xduka.modellegacy.SgrUsuárioSistema</class>
-        <class>models.br.com.xduka.modellegacy.SgrUsuárioUnidade</class>
+        <class>models.br.com.xduka.modellegacy.SgrUsuarioNivel</class>
+        <class>models.br.com.xduka.modellegacy.SgrUsuarioSistema</class>
+        <class>models.br.com.xduka.modellegacy.SgrUsuarioUnidade</class>
         <class>models.br.com.xduka.modellegacy.XdevCbrItemRemessa</class>
         <class>models.br.com.xduka.modellegacy.XdevCbrItemRemessaEvento</class>
         <class>models.br.com.xduka.modellegacy.XdevCbrLoteRemessa</class>

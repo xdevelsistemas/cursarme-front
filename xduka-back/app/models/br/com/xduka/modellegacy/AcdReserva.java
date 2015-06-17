@@ -21,7 +21,7 @@ public class AcdReserva {
     private Timestamp dataInscrição;
     private String mensagem;
     private String ip;
-    private AcdPeríodo acdPeríodo;
+    private AcdPeriodo acdPeriodo;
     private AcdTurno acdTurno;
 
     @Basic
@@ -187,12 +187,12 @@ public class AcdReserva {
 
     @ManyToOne
     @JoinColumns({@JoinColumn(name = "CodUnidade", referencedColumnName = "CodUnidade", nullable = false), @JoinColumn(name = "CodCurso", referencedColumnName = "CodCurso" , nullable = false), @JoinColumn(name = "CodPeríodo", referencedColumnName = "CodPeríodo", nullable = false)})
-    public AcdPeríodo getAcdPeríodo() {
-        return acdPeríodo;
+    public AcdPeriodo getAcdPeriodo() {
+        return acdPeriodo;
     }
 
-    public void setAcdPeríodo(AcdPeríodo acdPeríodo) {
-        this.acdPeríodo = acdPeríodo;
+    public void setAcdPeriodo(AcdPeriodo acdPeriodo) {
+        this.acdPeriodo = acdPeriodo;
     }
 
     @ManyToOne
