@@ -101,7 +101,7 @@
                                 vm._model.endUf.model.val = '';
                             } else {
                                 vm.validaCep = false;
-                                vm._model.avRua.model.val = data.logradouro;
+                                vm._model.avRua.model.val = data.logradouro.length <= 1 ? '' : data.logradouro;
                                 vm._model.bairro.model.val = data.bairro;
                                 vm._model.cidade.model.val = data.localidade;
                                 vm._model.endUf.model.val = "UF_" + data.uf;
@@ -179,6 +179,10 @@
 
             vm.verificaSexo = function(item, model) {
                 vm.validaSexo = model == 'f';
+                vm._model.certificadoRes.model.val = '';
+                vm._model.registro.model.val = '';
+                vm._model.categoria.model.val = '';
+                vm._model.ufReservista.model.val = '';
             };
 
             vm.unidadeChange = function (item, model) {
@@ -350,7 +354,6 @@
                             vm.selectCursoCurso = true;
                             vm.selectCursoVagas = true;
 
-                            vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
                             vm._model.unidade.list = data.unidade.list;
 
                             vm._model.area.list = $.grep(vm._model.unidade.list, function (e) {
@@ -385,6 +388,7 @@
 
                             $.extend(true, vm._model, item);
                             vm.getDadosCep(vm._model.cep.model.val);
+                            vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
 
                         })
                         .catch(function (erro) {
