@@ -76,10 +76,10 @@
                         console.log(erro);
                     });
 
-                vm.atualizaInscr = function() {
+                vm.atualizaPartial = function(time) {
                     $timeout(function () {
                         $route.reload();
-                    }, 0); // 0 ms de delay para recarregar a página.
+                    }, time); // delay to reload page.
                 };
 
                 vm.condTable = {
