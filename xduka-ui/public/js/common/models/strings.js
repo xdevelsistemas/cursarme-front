@@ -18,6 +18,7 @@
         NOCONFER: 'As novas senhas não batem!',
         NOCEL: 'Telefone celular inválido',
         NOCEP: 'Cep inválido',
+        NOCEPFOUND: 'Cep não encontrado',
         NOCPF: 'CPF inválido',
         NODATA: 'Data inválida',
         NOEMAIL: 'Email inválido',

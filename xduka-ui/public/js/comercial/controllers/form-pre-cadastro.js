@@ -44,6 +44,13 @@
             vm.validaCpf = false;
             vm.validaSexo = false;
 
+            // valida cep
+            vm.validaCep = false;
+            vm.validaCepAvRua = false;
+            vm.validaCepBairro = false;
+            vm.validaCepCidade = false;
+            vm.validaCepEndUf = false;
+
             // temporarias de dados
             vm.tempItem = {}; /* Guarda um obj para confirmar a edição em caso de uma edição quando um cadastro já está sendo editado */
 
@@ -72,6 +79,45 @@
                 .catch(function(erro) {
                     console.log("\n" + erro.data + "\n");
                 });
+
+
+            vm.getDadosCep = function(cep) {
+                if (cep.length == 8) {
+                    var getCepPromise = $resource('/api/comercial/dados-cep').save({}, {"cep": cep}).$promise;
+
+                    getCepPromise
+                        .then(function (data) {
+                            if (data.erro) {
+                                vm.validaCep = data.erro;
+                                vm.validaCepAvRua = data.erro;
+                                vm.validaCepBairro = data.erro;
+                                vm.validaCepCidade = data.erro;
+                                vm.validaCepEndUf = data.erro;
+
+                                vm._model.cep.model.err = vm.STR.NOCEPFOUND;
+                                vm._model.avRua.model.val = '';
+                                vm._model.bairro.model.val = '';
+                                vm._model.cidade.model.val = '';
+                                vm._model.endUf.model.val = '';
+                            } else {
+                                vm.validaCep = false;
+                                vm._model.avRua.model.val = data.logradouro.length <= 1 ? '' : data.logradouro;
+                                vm._model.bairro.model.val = data.bairro;
+                                vm._model.cidade.model.val = data.localidade;
+                                vm._model.endUf.model.val = "UF_" + data.uf;
+                                vm._model.cep.model.err = '';
+
+                                vm.validaCepAvRua = data.logradouro.length <= 1;
+                                vm.validaCepBairro = !data.bairro;
+                                vm.validaCepCidade = !data.localidade;
+                                vm.validaCepEndUf = !data.uf;
+                            }
+                        })
+                        .catch(function (erro) {
+                            console.log(erro);
+                        });
+                }
+            };
 
             vm.verificaCpf = function (cpf) {
                 if (cpf.length == 11) {
@@ -133,6 +179,10 @@
 
             vm.verificaSexo = function(item, model) {
                 vm.validaSexo = model == 'f';
+                vm._model.certificadoRes.model.val = '';
+                vm._model.registro.model.val = '';
+                vm._model.categoria.model.val = '';
+                vm._model.ufReservista.model.val = '';
             };
 
             vm.unidadeChange = function (item, model) {
@@ -304,7 +354,6 @@
                             vm.selectCursoCurso = true;
                             vm.selectCursoVagas = true;
 
-                            vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
                             vm._model.unidade.list = data.unidade.list;
 
                             vm._model.area.list = $.grep(vm._model.unidade.list, function (e) {
@@ -338,7 +387,8 @@
                             limpaCampoPag();
 
                             $.extend(true, vm._model, item);
-
+                            vm.getDadosCep(vm._model.cep.model.val);
+                            vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
 
                         })
                         .catch(function (erro) {
