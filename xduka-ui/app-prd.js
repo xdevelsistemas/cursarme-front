@@ -16,10 +16,10 @@ var app = express();
 var RedisStore = require('connect-redis')(session);
 
 // configuration ===============================================================
-var configDB = require('./config/dev/database.js'),
-    configRedis = require('./config/dev/redis.js');
+var configDB = require('./config/prd/database.js'),
+    configRedis = require('./config/prd/redis.js');
 
-mongoose.connect(configDB.url); // connect to our database
+mongoose.connect(configDB.url,configDB.options); // connect to our database
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -53,7 +53,7 @@ app.use(session({
 );*/
 
 // required for passport
-require('./config/dev/passport')(passport); // pass passport for configuration
+require('./config/prd/passport')(passport); // pass passport for configuration
 
 app.use(passport.initialize());
 app.use(passport.session({
