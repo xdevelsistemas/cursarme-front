@@ -1,4 +1,5 @@
 var extend = require('node.extend'),
+    request = require('request'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
     dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
     dadosTesteCpf = require('../mockup/xduka-json/comercial/dadosTestesCpf.json'),
@@ -9,6 +10,7 @@ var extend = require('node.extend'),
 module.exports = function() {
     var controller = {};
 
+    controller.showDadosCep = getDadosCep;
     controller.showDadosInscricao = getDadosInscricao;
     controller.showDadosCurso = getDadosCurso;
     controller.showInfoUsuario = getInfoUsuario;
@@ -21,6 +23,17 @@ module.exports = function() {
 
     return controller;
 };
+
+function getDadosCep(req, res) {
+    request('http://cep.correiocontrol.com.br/'+ req.body.cep +'.json', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            if (body[0] == 'c' && body[1] == 'o') res.json({"erro": true});
+            else res.json(JSON.parse(body));
+        }else {
+            res.json({"erro": true});
+        }
+    });
+}
 
 function getDadosInscricao(req, res) {
     res.json(templateInscr);
@@ -38,15 +51,9 @@ function putVerificaCpf(req, res) {
     //var dados = verificaCpf(dadosTesteCpf.verificaCpf, req.body.cpf);
     var dados = {};
 
-    if (parseInt(req.body.cpf) %2 == 0) {
-        dados.cpf = req.body.cpf;
-        dados.msg = "";
-        res.json({"dados": dados, "dadosCurso": dadosCurso});
-    }else{
-        dados.cpf = req.body.cpf;
-        dados.msg = "Pessoa com pendências no financeiro";
-        res.json({"dados": dados, "dadosCurso": {"unidade": {"list": []}}});
-    }
+    dados.cpf = req.body.cpf;
+    dados.msg = "";
+    res.json({"dados": dados, "dadosCurso": dadosCurso});
 }
 
 function verificaCpf(obj, cpf) {
@@ -238,7 +245,8 @@ function alteraDataCheque(obj, func) {
 
 function validaCamposStep1(obj) {
     return isCpf(obj.cpf.model.val) && !obj.cpf.model.err && isRg(obj.rg.model.val) && !!obj.nome.model.val &&
-    !!obj.cidade.model.val && isCep(obj.cep.model.val) && isPhone(obj.telefone.model.val, obj.tipoTelefone.model.val) &&
+    !!obj.cidade.model.val && isCep(obj.cep.model.val) && !obj.cep.model.err &&
+    isPhone(obj.telefone.model.val, obj.tipoTelefone.model.val) &&
     !!obj.tipoTelefone.model.val && isEmail(obj.email.model.val) && !obj.email.model.err &&
     !!obj.unidade.model.val && !!obj.area.model.val && !!obj.curso.model.val &&
     !!obj.formaPagamentoInscr.model.val && !!obj.descontoInscr.model.val &&
@@ -407,8 +415,13 @@ function verificaValidacoesStep1(obj) {
     obj.model.nome.model.err = obj.model.nome.model.val ? '' : obj.STR.FIELD;
     obj.model.cidade.model.err = obj.model.cidade.model.val ? '' : obj.STR.FIELD;
 
-    obj.model.cep.model.err = !obj.model.cep.model.val ?
-        obj.STR.FIELD : isCep(obj.model.cep.model.val) ? '' : obj.STR.NOCEP;
+    if (obj.model.cep.model.err != obj.STR.NOCEPFOUND) {
+        obj.model.cep.model.err = !obj.model.cep.model.val ?
+            obj.STR.FIELD : isCep(obj.model.cep.model.val) ? '' : obj.STR.NOCEP;
+    } else {
+        obj.model.cep.model.err = !obj.model.cep.model.val ?
+            obj.STR.FIELD : obj.STR.NOCEPFOUND;
+    }
 
     obj.model.telefone.model.err = !obj.model.telefone.model.val ?
         obj.STR.FIELD : isPhone(obj.model.telefone.model.val, obj.model.tipoTelefone.model.val) ? '' : obj.STR.NOTEL;

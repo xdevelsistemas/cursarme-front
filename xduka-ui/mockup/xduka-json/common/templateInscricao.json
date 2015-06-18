@@ -251,14 +251,31 @@
   },
   "raca": {
     "label": "Raça",
-    "type": "text",
+    "type": "select",
     "name": "raca",
+    "placeholder": "Selecione...",
+    "list":[
+      {"id": "1", "text": "Branca"},
+      {"id": "2", "text": "Preta"},
+      {"id": "3", "text": "Amarela"},
+      {"id": "4", "text": "Parda"},
+      {"id": "5", "text": "Indígena"}
+    ],
     "model": {"val": "", "err": ""}
   },
   "estadoCivil": {
     "label": "Estado Civil",
-    "type": "text",
+    "type": "select",
     "name": "estadoCivil",
+    "placeholder": "Selecione...",
+    "list":[
+      {"id": "1", "text": "Solteiro(a)"},
+      {"id": "2", "text": "Casado(a)"},
+      {"id": "3", "text": "Divorciado(a)"},
+      {"id": "4", "text": "Viúvo(a)"},
+      {"id": "5", "text": "Separado(a)"},
+      {"id": "6", "text": "Companheiro(a)"}
+    ],
     "model": {"val": "", "err": ""}
   },
   "pai": {

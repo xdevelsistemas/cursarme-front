@@ -1,6 +1,10 @@
 module.exports = function (app, passport) {
     var controller = require('../controllers/comercial')();
 
+    //get-cep
+    app.route('/api/comercial/dados-cep')
+        .post(controller.showDadosCep);
+
     //dados-comercial
     app.route('/api/comercial/template-inscricao')
         .get(controller.showDadosInscricao);
