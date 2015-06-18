@@ -46,7 +46,7 @@
       },
       "cep":{
         "model":{
-          "val":"29170330"
+          "val":"29290000"
         }
       },
       "rg":{
@@ -213,7 +213,7 @@
       "curso":{
         "model":{
           "val":222,
-          "text":"Física"
+          "text":"Economia"
         }
       },
       "vagas":{
@@ -248,7 +248,7 @@
       },
       "valorInscricao":{
         "model":{
-          "val":170
+          "val":161.5
         }
       },
       "formaPagamentoInscr":{
@@ -256,34 +256,39 @@
           "val":1
         }
       },
+      "descontoInscr":{
+        "model":{
+          "val":5
+        }
+      },
       "valorIntegral":{
         "model":{
-          "val":""
+          "val":322
         }
       },
       "desconto":{
         "model":{
-          "val":""
+          "val":8
         }
       },
       "formaPagamentoPag":{
         "model":{
-          "val":""
+          "val":1
         }
       },
       "qtdParcelas":{
         "model":{
-          "val":""
+          "val":5
         }
       },
       "valorParcela":{
         "model":{
-          "val":""
+          "val":64.40
         }
       },
       "melhorData":{
         "model":{
-          "val":""
+          "val":12
         }
       },
       "observacoes":{
@@ -329,7 +334,7 @@
       },
       "cep":{
         "model":{
-          "val":"29170330"
+          "val":"29156030"
         }
       },
       "rg":{
@@ -495,8 +500,8 @@
       },
       "curso":{
         "model":{
-          "val":222,
-          "text" :"Química"
+          "val":111,
+          "text" :"Matemática"
         }
       },
       "vagas":{
@@ -531,7 +536,7 @@
       },
       "valorInscricao":{
         "model":{
-          "val":170
+          "val":161.50
         }
       },
       "formaPagamentoInscr":{
@@ -539,34 +544,39 @@
           "val":2
         }
       },
+      "descontoInscr":{
+        "model":{
+          "val":5
+        }
+      },
       "valorIntegral":{
         "model":{
-          "val":""
+          "val":300
         }
       },
       "desconto":{
         "model":{
-          "val":""
+          "val":10
         }
       },
       "formaPagamentoPag":{
         "model":{
-          "val":""
+          "val":1
         }
       },
       "qtdParcelas":{
         "model":{
-          "val":""
+          "val":3
         }
       },
       "valorParcela":{
         "model":{
-          "val":""
+          "val":90
         }
       },
       "melhorData":{
         "model":{
-          "val":""
+          "val":10
         }
       },
       "observacoes":{
@@ -623,7 +633,7 @@
       },
       "cep":{
         "model":{
-          "val":"29170330"
+          "val":"29175254"
         }
       },
       "rg":{
@@ -790,7 +800,7 @@
       "curso":{
         "model":{
           "val":222,
-          "text":"Matemática"
+          "text":"Economia"
         }
       },
       "vagas":{
@@ -825,7 +835,7 @@
       },
       "valorInscricao":{
         "model":{
-          "val":170
+          "val":153
         }
       },
       "formaPagamentoInscr":{
@@ -833,34 +843,39 @@
           "val":2
         }
       },
+      "descontoInscr":{
+        "model":{
+          "val":10
+        }
+      },
       "valorIntegral":{
         "model":{
-          "val":""
+          "val":322
         }
       },
       "desconto":{
         "model":{
-          "val":""
+          "val":8
         }
       },
       "formaPagamentoPag":{
         "model":{
-          "val":""
+          "val":1
         }
       },
       "qtdParcelas":{
         "model":{
-          "val":""
+          "val":5
         }
       },
       "valorParcela":{
         "model":{
-          "val":""
+          "val":64.40
         }
       },
       "melhorData":{
         "model":{
-          "val":""
+          "val":12
         }
       },
       "observacoes":{
@@ -929,7 +944,7 @@
       },
       "cep":{
         "model":{
-          "val":"29170330"
+          "val":"29170010"
         }
       },
       "rg":{
@@ -1096,7 +1111,7 @@
       "curso":{
         "model":{
           "val":222,
-          "text":"Física"
+          "text":"Economia"
         }
       },
       "vagas":{
@@ -1131,7 +1146,7 @@
       },
       "valorInscricao":{
         "model":{
-          "val":170
+          "val":153
         }
       },
       "formaPagamentoInscr":{
@@ -1139,34 +1154,39 @@
           "val":1
         }
       },
+      "descontoInscr":{
+        "model":{
+          "val":10
+        }
+      },
       "valorIntegral":{
         "model":{
-          "val":""
+          "val":322
         }
       },
       "desconto":{
         "model":{
-          "val":""
+          "val":8
         }
       },
       "formaPagamentoPag":{
         "model":{
-          "val":""
+          "val":1
         }
       },
       "qtdParcelas":{
         "model":{
-          "val":""
+          "val":5
         }
       },
       "valorParcela":{
         "model":{
-          "val":""
+          "val":64.40
         }
       },
       "melhorData":{
         "model":{
-          "val":""
+          "val":12
         }
       },
       "observacoes":{

@@ -21,6 +21,7 @@
                 vm.showAlert = false;
                 vm.tableGerarTurma = {};
                 vm.tempItem = {};
+                vm.validaSexo = false;
 
                 // ==== REQUISIÇÕES ==== //
 
@@ -50,11 +51,12 @@
 
                 geraTurmaPromise
                     .then(function (data) {
-                        var list = [];
+                        var list = [],
+                            turma = {};
                         vm._geraTurma = data;
 
                         for (var i = 0; i < data.list.length; i++) {
-                            var turma = {
+                            turma = {
                                 "ainput": data.list[i].acao,
                                 "bprogress": {
                                     "maxVal": data.list[i].area.turma.vagas.totais,
@@ -237,6 +239,10 @@
                     vm.editing = false;
                     vm.topCollapse();
 
+                };
+
+                vm.verificaSexo = function(item, model) {
+                    vm.validaSexo = model == 'f';
                 };
 
                 vm.topCollapse = function(){
