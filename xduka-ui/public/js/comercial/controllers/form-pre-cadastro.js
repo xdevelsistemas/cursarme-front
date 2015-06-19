@@ -316,8 +316,11 @@
                         vm.disableLimpar = false;
                         $.extend(vm._model.vagas, funcVagas());
                         disableBtn();
-                        vm.limpaForm();
-                        vm.sendSucess = data.success;
+                        if (data.success) {
+                            vm.limpaForm();
+                            vm.sendSucess = data.success;
+                            $timeout(vm.disableSendSucess, 6000);
+                        }
                     })
                     .catch(function (erro) {
                         console.log("\n" + erro.data + "\n")
