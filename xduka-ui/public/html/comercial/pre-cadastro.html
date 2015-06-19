@@ -83,7 +83,7 @@
                 <div class="row">
 
                     <xd-table-pre-cadastro data-cond="pre.condTable" data-params="pre._viewInscr"></xd-table-pre-cadastro>
-                    <p class="text-warning" ng-show="pre.editing">*Cadastro ou edição em andamento ({{!!pre._model.nome.model.val?('Nome: '+pre._model.nome.model.val) : ('CPF: '+pre._model.cpf.model.val)}})</p>
+                    <p class="text-warning" ng-show="pre.editing&&pre.validaCpf">*Cadastro ou edição em andamento ({{!!pre._model.nome.model.val?('Nome: '+pre._model.nome.model.val) : ('CPF: '+pre._model.cpf.model.val)}})</p>
 
                 </div>
             </xd-panel-collapse>
