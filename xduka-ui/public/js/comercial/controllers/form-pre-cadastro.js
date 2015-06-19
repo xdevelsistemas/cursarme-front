@@ -467,6 +467,7 @@
                 vm.editing = false;
                 vm.disableLimpar = false;
                 vm.validaCpf = false;
+                vm.showAlert = false;
 
                 vm.topCollapse();
             };
@@ -595,6 +596,7 @@
                 vm.disableLimpar = false;
                 disableBtn();
                 vm.editing = false;
+                vm.showAlert = false;
 
             };
 
