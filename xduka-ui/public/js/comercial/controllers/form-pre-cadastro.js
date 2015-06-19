@@ -130,6 +130,7 @@
                             cpf == "66666666666" || cpf == "77777777777" || cpf == "88888888888" || cpf == "99999999999"){
                             vm._model.cpf.model.err = 'CPF inválido';
                             vm.validaCpf = false;
+                            vm.editing = false;
                         }else{
                             // Valida 1o digito
                             var add, rev;
@@ -142,6 +143,7 @@
                             if (rev != parseInt(cpf.charAt(9))) {
                                 vm._model.cpf.model.err = 'CPF inválido';
                                 vm.validaCpf = false;
+                                vm.editing = false;
                             }else{
                                 // Valida 2o digito
                                 add = 0;
@@ -153,6 +155,7 @@
                                 if (rev != parseInt(cpf.charAt(10))) {
                                     vm._model.cpf.model.err = 'CPF inválido';
                                     vm.validaCpf = false;
+                                    vm.editing = false;
                                 }else{
                                     var verificaCpfPromise = $resource('/api/comercial/verifica-cpf/:cpf').get({"cpf": cpf}).$promise;
 
@@ -177,6 +180,7 @@
                     }
                 } else {
                     vm.validaCpf = false;
+                    vm.editing = false;
                 }
             };
 
@@ -319,6 +323,8 @@
                         if (data.success) {
                             vm.limpaForm();
                             vm.sendSucess = data.success;
+                            vm.editing = false;
+                            vm.showAlert = false;
                             $timeout(vm.disableSendSucess, 6000);
                         }
                     })
@@ -461,6 +467,7 @@
                 vm.editing = false;
                 vm.disableLimpar = false;
                 vm.validaCpf = false;
+                vm.showAlert = false;
 
                 vm.topCollapse();
             };
@@ -589,6 +596,7 @@
                 vm.disableLimpar = false;
                 disableBtn();
                 vm.editing = false;
+                vm.showAlert = false;
 
             };
 
