@@ -2,11 +2,23 @@
   "verificaCpf": [
     {
       "cpf": "97530997629",
-      "msg": ""
+      "msg": "",
+      "ExAlunosConv": true
     },
     {
-      "cpf": "00000000000",
-      "msg": "Fulano com pendências no financeiro"
+      "cpf": "06667285429",
+      "msg": "",
+      "ExAlunosConv": true
+    },
+    {
+      "cpf": "92034032489",
+      "msg": "",
+      "ExAlunosConv": true
+    },
+    {
+      "cpf": "49988165510",
+      "msg": "",
+      "ExAlunosConv": true
     }
   ]
 }

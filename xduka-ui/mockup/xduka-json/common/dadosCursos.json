@@ -7,7 +7,7 @@
         "areas": [
           {
             "id": 11,
-            "text": "Exatas",
+            "text": "Pós Graduação",
             "turma": [{
               "vagas": {
                 "id": "1A",
@@ -137,7 +137,7 @@
           },
           {
             "id": 22,
-            "text": "Humanas",
+            "text": "Mestrado",
             "turma": [
                 {
                   "vagas": {
@@ -287,7 +287,7 @@
         "areas": [
           {
             "id": 11,
-            "text": "Biomedicina",
+            "text": "Mestrado",
             "turma": [
               {
                 "vagas": {
@@ -419,7 +419,7 @@
           },
           {
             "id": 22,
-            "text": "Tecnologias da Informação",
+            "text": "Pós Graduação",
             "turma": [
               {
                 "vagas": {
@@ -561,7 +561,7 @@
         "areas": [
           {
             "id": 11,
-            "text": "Exatas",
+            "text": "Pós Graduação",
             "turma": [
               {
                 "vagas": {
@@ -697,7 +697,7 @@
           },
           {
             "id": 22,
-            "text": "Humanas",
+            "text": "Mestrado",
             "turma": [
               {
                 "vagas": {
