@@ -25,7 +25,7 @@ module.exports = function() {
 };
 
 function getDadosCep(req, res) {
-    request('http://cep.correiocontrol.com.br/'+ req.body.cep +'.json', function (error, response, body) {
+    request('http://cep.correiocontrol.com.br/'+ req.params.cep +'.json', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             if (body[0] == 'c' && body[1] == 'o') res.json({"erro": true});
             else res.json(JSON.parse(body));
@@ -51,7 +51,7 @@ function putVerificaCpf(req, res) {
     //var dados = verificaCpf(dadosTesteCpf.verificaCpf, req.body.cpf);
     var dados = {};
 
-    dados.cpf = req.body.cpf;
+    dados.cpf = req.params.cpf;
     dados.msg = "";
     res.json({"dados": dados, "dadosCurso": dadosCurso});
 }
@@ -111,7 +111,7 @@ function putDadosInscricaoParcial(req, res) {
 
 
         //TOdo terminar essa parte de extende de dataSent.model e result
-        res.json(extend(true, dataSent.model, result));
+        res.json(extend(true, dataSent.model, result, {"success": true}));
     }else{
         verificaValidacoesStep1(dataSent);
         verificaValidacoesStep2(dataSent);
@@ -249,8 +249,8 @@ function validaCamposStep1(obj) {
     isPhone(obj.telefone.model.val, obj.tipoTelefone.model.val) &&
     !!obj.tipoTelefone.model.val && isEmail(obj.email.model.val) && !obj.email.model.err &&
     !!obj.unidade.model.val && !!obj.area.model.val && !!obj.curso.model.val &&
-    !!obj.formaPagamentoInscr.model.val && !!obj.descontoInscr.model.val &&
-    ((obj.vagas.totais - obj.vagas.preenchidas) > 0);
+    !!obj.formaPagamentoInscr.model.val && ((obj.vagas.totais - obj.vagas.preenchidas) > 0);
+    //&& !!obj.descontoInscr.model.val
 }
 
 function validaCamposStep2(obj) {
@@ -434,7 +434,7 @@ function verificaValidacoesStep1(obj) {
 
     obj.model.curso.model.err = obj.model.curso.model.val ? '' : obj.STR.FIELD;
     obj.model.formaPagamentoInscr.model.err = obj.model.formaPagamentoInscr.model.val ? '' : obj.STR.FIELD;
-    obj.model.descontoInscr.model.err = obj.model.descontoInscr.model.val ? '' : obj.STR.FIELD;
+    //obj.model.descontoInscr.model.err = obj.model.descontoInscr.model.val ? '' : obj.STR.FIELD;
 }
 
 function verificaValidacoesStep2(obj) {

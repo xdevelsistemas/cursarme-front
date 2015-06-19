@@ -2,8 +2,8 @@ module.exports = function (app, passport) {
     var controller = require('../controllers/comercial')();
 
     //get-cep
-    app.route('/api/comercial/dados-cep')
-        .post(controller.showDadosCep);
+    app.route('/api/comercial/dados-cep/:cep')
+        .get(controller.showDadosCep);
 
     //dados-comercial
     app.route('/api/comercial/template-inscricao')
@@ -21,8 +21,8 @@ module.exports = function (app, passport) {
     app.route('/api/comercial/modal-cheque')
         .get(controller.showModalCheque);
 
-    app.route('/api/comercial/verifica-cpf')
-        .post(controller.putVerificaCpf);
+    app.route('/api/comercial/verifica-cpf/:cpf')
+        .get(controller.putVerificaCpf);
 
     //view-inscr
     app.route('/api/comercial/view-inscr')
