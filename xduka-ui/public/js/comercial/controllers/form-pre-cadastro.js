@@ -30,6 +30,9 @@
             vm.editing = false;
             vm.lista_cheques = lista_cheques;
 
+            //alert sucesso
+            vm.sendSucess = false;
+
             //Alerta de campos faltando
             vm.showAlert = false;
 
@@ -312,7 +315,9 @@
                         vm._model = data;
                         vm.disableLimpar = false;
                         $.extend(vm._model.vagas, funcVagas());
-                        disableBtn()
+                        disableBtn();
+                        vm.limpaForm();
+                        vm.sendSucess = data.success;
                     })
                     .catch(function (erro) {
                         console.log("\n" + erro.data + "\n")
@@ -595,7 +600,12 @@
                     vm.disableLimpar = true;
                 },
                 editInscr: vm.editarInscr
-            }
+            };
+
+            vm.disableSendSucess = function(){
+                vm.sendSucess = false;
+            };
+
         }]),
 
         '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'modelStrings', 'lista_cheques', 'dataCheque', 'tipoTelefone'
