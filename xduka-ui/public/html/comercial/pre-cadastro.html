@@ -25,12 +25,18 @@
         <li>
             <a id="cursorSetp3" data-target="#step3" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
                 <span>3</span>
-                Documentação Completa
+                Documentação
             </a>
         </li>
     </ul>
 
     <div class="tab-content">
+        <div class="alert alert-success col-md-12" role="alert" ng-show="pre.sendSucess">
+            <button type="button" class="close" aria-label="Close" data-ng-click="pre.disableSendSucess()"><span aria-hidden="true">&times;</span></button>
+            <div class="alertContent">
+                <p data-ng-bind="pre.STR.SUCESSO"></p>
+            </div>
+        </div>
         <div class="alert alert-danger col-md-12" role="alert" ng-show="pre.editing&&pre.showAlert&&(!pre._model.dataExp.model.val||!pre._model.orgaoEmissor.model.val||!pre._model.tituloEleitor.model.val||!pre._model.zona.model.val||!pre._model.secao.model.val||!pre._model.ufTitulo.model.val||!pre._model.certidaoNc.model.val||!pre._model.folha.model.val||!pre._model.livro.model.val||!pre._model.cartorio.model.val||!pre.validaSexo||!pre._model.sexo.model.val||!pre._model.dataNasc.model.val||!pre._model.raca.model.val||!pre._model.estadoCivil.model.val||!pre._model.pai.model.val||!pre._model.mae.model.val||!pre._model.avRua.model.val||!pre._model.endNum.model.val||!pre._model.apt.model.val||!pre._model.bairro.model.val||!pre._model.endUf.model.val||!pre._model.nacionalidade.model.val||!pre._model.naturalidade.model.val||!pre._model.natUf.model.val||!pre._model.escolaEm.model.val||!pre._model.anoEm.model.val||!pre._model.cursoGrad.model.val||!pre._model.anoGrad.model.val||!pre._model.instituicao.model.val)">
             <button type="button" class="close" aria-label="Close" data-ng-click="pre.disableAlert()"><span aria-hidden="true">&times;</span></button>
             <span class="alert-title">Campos aguardando preenchimento:</span>
@@ -73,12 +79,15 @@
         </div>
 
         <div class="tab-pane active" id="step0">
-            <div class="col-md-12">
-                <xd-panel-collapse title="pre._viewInscr.inscrPanelCollapse.label">
+            <xd-panel-collapse title="pre._viewInscr.inscrPanelCollapse.label">
+                <div class="row">
+
                     <xd-table-pre-cadastro data-cond="pre.condTable" data-params="pre._viewInscr"></xd-table-pre-cadastro>
                     <p class="text-warning" ng-show="pre.editing">*Cadastro ou edição em andamento ({{!!pre._model.nome.model.val?('Nome: '+pre._model.nome.model.val) : ('CPF: '+pre._model.cpf.model.val)}})</p>
-                </xd-panel-collapse>
-            </div>
+
+                </div>
+            </xd-panel-collapse>
+
         </div>
 
         <div class="tab-pane" id="step1">
