@@ -15,6 +15,7 @@
 
             <div ng-if="!!colum.progress&&!!colum.maxVal" class="progress">
                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="35" aria-valuemin="{{colum.minVal||0}}" aria-valuemax="{{colum.maxVal||100}}" style="width: {{colum.percent}}%">
+                    <p ng-show="false">{{colum.percent}}</p>
                     <p style="color: #000">{{colum.text}}</p>
                 </div>
             </div>
