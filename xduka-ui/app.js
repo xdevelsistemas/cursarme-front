@@ -9,15 +9,15 @@ var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
+var redisClient = require('redis');
 var SessionStore = require('connect-mongodb');
 var app = express();
 
 var RedisStore = require('connect-redis')(session);
 
 // configuration ===============================================================
-var configDB = require('./config/dev/database.js'),
-    configRedis = require('./config/dev/redis.js');
+var configDB = require('./config/database.js'),
+    configRedis = require('./config/redis.js');
 
 mongoose.connect(configDB.url); // connect to our database
 
@@ -53,7 +53,7 @@ app.use(session({
 );*/
 
 // required for passport
-require('./config/dev/passport')(passport); // pass passport for configuration
+require('./config/passport')(passport); // pass passport for configuration
 
 app.use(passport.initialize());
 app.use(passport.session({
