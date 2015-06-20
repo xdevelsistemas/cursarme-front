@@ -205,6 +205,11 @@
           "text":"Vitória"
         }
       },
+      "tipoCurso":{
+        "model":{
+          "val":11
+        }
+      },
       "area":{
         "model":{
           "val":11
@@ -491,6 +496,11 @@
         "model":{
           "val":1,
           "text": "Vitória"
+        }
+      },
+      "tipoCurso":{
+        "model":{
+          "val":11
         }
       },
       "area":{
@@ -790,6 +800,11 @@
         "model":{
           "val":1,
           "text":"Vitória"
+        }
+      },
+      "tipoCurso":{
+        "model":{
+          "val":11
         }
       },
       "area":{
@@ -1101,6 +1116,11 @@
         "model":{
           "val":1,
           "text":"Vitória"
+        }
+      },
+      "tipoCurso":{
+        "model":{
+          "val":11
         }
       },
       "area":{

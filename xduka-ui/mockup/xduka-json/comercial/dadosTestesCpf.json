@@ -2,23 +2,19 @@
   "verificaCpf": [
     {
       "cpf": "97530997629",
-      "msg": "",
-      "ExAlunosConv": true
+      "msg": ""
     },
     {
       "cpf": "06667285429",
-      "msg": "",
-      "ExAlunosConv": true
+      "msg": ""
     },
     {
       "cpf": "92034032489",
-      "msg": "",
-      "ExAlunosConv": true
+      "msg": ""
     },
     {
       "cpf": "49988165510",
-      "msg": "",
-      "ExAlunosConv": true
+      "msg": ""
     }
   ]
 }

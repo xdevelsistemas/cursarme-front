@@ -37,6 +37,7 @@
             vm.showAlert = false;
 
             //xd-select de curso
+            vm.selectCursoTipoCurso = false;
             vm.selectCursoArea = false;
             vm.selectCursoCurso = false;
             vm.selectCursoVagas = false;
@@ -164,8 +165,10 @@
                                             vm._model.cpf.model.err = data.dados.msg;
                                             vm._model.unidade.list = data.dadosCurso.unidade.list;
                                             vm.validaCpf = !data.dados.msg;
-                                            if(vm.validaCpf){
-                                                vm.editing = true;
+                                            vm.editing = vm.validaCpf;
+
+                                            if (data.exAlunoConv) {
+                                                vm._model.desconto.model.val = 10;
                                             }
                                         })
                                         .catch(function (erro) {
@@ -193,13 +196,27 @@
             };
 
             vm.unidadeChange = function (item, model) {
+                vm.selectCursoTipoCurso = true;
+                vm.selectCursoArea = false;
+                vm.selectCursoCurso = false;
+                vm.selectCursoVagas = false;
+
+                vm._model.tipoCurso.list = [];
+                vm._model.tipoCurso.model = {'val': '', 'err': ''};
+                vm._model.tipoCurso.list = item.tipoCursos;
+
+                // limpa a sujeira que fica no model.val quando troca de curso
+                limpaCampoPag();
+            };
+
+            vm.tipoCursoChange = function (item, model) {
                 vm.selectCursoArea = true;
                 vm.selectCursoCurso = false;
                 vm.selectCursoVagas = false;
 
                 vm._model.area.list = [];
                 vm._model.area.model = {'val': '', 'err': ''};
-                $.extend(vm._model.area.list, item.areas);
+                vm._model.area.list = item.areas;
 
                 // limpa a sujeira que fica no model.val quando troca de curso
                 limpaCampoPag();
@@ -211,7 +228,7 @@
 
                 vm._model.curso.list = [];
                 vm._model.curso.model = {'val': '', 'err': ''};
-                $.extend(vm._model.curso.list, item.cursos);
+                vm._model.curso.list = item.cursos;
                 $.extend(vm._model.vagas, item.turma[0].vagas);
 
                 // limpa a sujeira que fica no model.val quando troca de curso
@@ -222,10 +239,9 @@
                 vm.selectCursoVagas = true;
 
                 // alimentando valores referentes ao curso selecionado
-                $.extend(vm._model.descontoInscr.list, item.descontoInscr);
-                $.extend(vm._model.desconto.list, item.desconto);
-                $.extend(vm._model.qtdParcelas.list, item.qtdParcelas);
-                $.extend(vm._model.melhorData.list, item.melhorData);
+                vm._model.desconto.list = item.desconto;
+                vm._model.qtdParcelas.list = item.qtdParcelas;
+                vm._model.melhorData.list = item.melhorData;
 
                 // limpa a sujeira que fica no model.val quando troca de curso
                 limpaCampoPag();
@@ -364,14 +380,19 @@
                             vm.disableLimpar = true;
                             vm.validaCpf = true;
 
+                            vm.selectCursoTipoCurso = true;
                             vm.selectCursoArea = true;
                             vm.selectCursoCurso = true;
                             vm.selectCursoVagas = true;
 
                             vm._model.unidade.list = data.unidade.list;
 
-                            vm._model.area.list = $.grep(vm._model.unidade.list, function (e) {
+                            vm._model.tipoCurso.list = $.grep(vm._model.unidade.list, function (e) {
                                 return e.id == item.unidade.model.val;
+                            })[0].tipoCursos;
+
+                            vm._model.area.list = $.grep(vm._model.tipoCurso.list, function (e) {
+                                return e.id == item.tipoCurso.model.val;
                             })[0].areas;
 
                             vm._model.curso.list = $.grep(vm._model.area.list, function (e) {
@@ -380,8 +401,8 @@
 
 
                             // definindo valor de inscrição
-                            vm._model.valorInscricao.model.val = item.valorInscricao.model.val;
-                            vm._model.valorIntegral.model.val = item.valorIntegral.model.val;
+                            //vm._model.valorInscricao.model.val = item.valorInscricao.model.val;
+                            //vm._model.valorIntegral.model.val = item.valorIntegral.model.val;
 
                             curso = $.grep(vm._model.curso.list, function (e) {
                                 return e.id == item.curso.model.val;
@@ -392,7 +413,7 @@
 
                             // alimentando valores referentes ao curso selecionado
                             vm._model.descontoInscr.list = curso.descontoInscr;
-                            vm._model.desconto.list = curso.desconto;
+                            //vm._model.desconto.list = curso.desconto;
                             vm._model.qtdParcelas.list = curso.qtdParcelas;
                             vm._model.melhorData.list = curso.melhorData;
 

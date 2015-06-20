@@ -410,6 +410,15 @@
     "list": [],
     "model": {"val": "", "err": ""}
   },
+  "tipoCurso": {
+    "label": "Tipo Curso",
+    "type": "select",
+    "name": "tipoCurso",
+    "placeholder": "Selecione uma opção",
+    "required": false,
+    "list": [],
+    "model": {"val": "", "err": ""}
+  },
   "area": {
     "label": "Área",
     "type": "select",
@@ -525,12 +534,10 @@
     "required": false
   },
   "desconto": {
-    "label": "Desconto",
-    "type": "select",
+    "label": "Desconto(%)",
+    "type": "text",
     "name": "desconto",
-    "placeholder": "Selecione uma opção",
     "required": false,
-    "list": [],
     "model": {"val": "", "err": ""}
   },
   "formaPagamentoPag": {

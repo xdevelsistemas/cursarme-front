@@ -48,12 +48,17 @@ function getModalCheque(req, res) {
 }
 
 function putVerificaCpf(req, res) {
-    //var dados = verificaCpf(dadosTesteCpf.verificaCpf, req.body.cpf);
-    var dados = {};
+    var dadosVrf = verificaCpf(dadosTesteCpf.verificaCpf, req.params.cpf),
+        dados = {};
 
     dados.cpf = req.params.cpf;
     dados.msg = "";
-    res.json({"dados": dados, "dadosCurso": dadosCurso});
+
+    if (dadosVrf) {
+        res.json({"dados": dados, "dadosCurso": dadosCurso, "exAlunoConv": true});
+    } else {
+        res.json({"dados": dados, "dadosCurso": dadosCurso});
+    }
 }
 
 function verificaCpf(obj, cpf) {
@@ -62,9 +67,10 @@ function verificaCpf(obj, cpf) {
 
     for (var i = 0; i < obj.length; i++) {
         if (obj[i].cpf == cpf) {
-            return obj[i];
+            return true;
         }
     }
+    return false
 }
 
 function getDadosCurso(req, res) {
