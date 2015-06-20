@@ -20,7 +20,6 @@ var configDB = require('./config/database.js'),
     configRedis = require('./config/redis.js');
 
 mongoose.connect(configDB.url); // connect to our database
-redisClient.createClient(configRedis.port,configRedis.host); // connect to redis
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
