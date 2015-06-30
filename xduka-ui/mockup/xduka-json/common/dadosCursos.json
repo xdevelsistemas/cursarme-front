@@ -16,6 +16,7 @@
                   "vagas": {
                     "id": "1A",
                     "text": "1A",
+                    "turma":"Turma A",
                     "preenchidas": 12,
                     "totais": 20
                   }
@@ -583,6 +584,7 @@
                     "vagas": {
                       "id": "3C",
                       "text": "3C",
+                      "turma":"Turma B",
                       "preenchidas": 25,
                       "totais": 30
                     }
@@ -1415,6 +1417,7 @@
                     "vagas": {
                       "id": "5E",
                       "text": "5E",
+                      "turma":"Turma C",
                       "preenchidas": 14,
                       "totais": 22
                     }
