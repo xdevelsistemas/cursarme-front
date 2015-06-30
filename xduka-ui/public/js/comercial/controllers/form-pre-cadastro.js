@@ -2,8 +2,8 @@
     "use strict";
 
     angular.module('app.controllers').controller('FormPreCadastro', [
-        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'modelStrings', 'lista_cheques', 'dataCheque', 'tipoTelefone',
-        function ($scope, breadCrumb, $timeout, $modal, $resource, modelStrings, lista_cheques, dataCheque, tipoTelefone) {
+        '$scope', 'breadCrumb', '$timeout', '$modal', '$route', '$resource', 'modelStrings', 'lista_cheques', 'dataCheque', 'tipoTelefone',
+        function ($scope, breadCrumb, $timeout, $modal, $route, $resource, modelStrings, lista_cheques, dataCheque, tipoTelefone) {
 
             /* jshint validthis: true */
             var vm = this
@@ -233,6 +233,12 @@
 
                 // limpa a sujeira que fica no model.val quando troca de curso
                 limpaCampoPag();
+            };
+
+            vm.atualizaPartial = function(time) {
+                $timeout(function () {
+                    $route.reload();
+                }, time); // delay to reload page.
             };
 
             vm.cursoChange = function (item, model) {
@@ -474,6 +480,7 @@
 
             vm.limpaForm = function(){
                 // escondendo select's de curso
+                vm.selectCursoTipoCurso = false;
                 vm.selectCursoArea = false;
                 vm.selectCursoCurso = false;
                 vm.selectCursoVagas = false;
@@ -513,6 +520,8 @@
                 vm._model.email.model.err = '';
                 vm._model.unidade.model.val = '';
                 vm._model.unidade.model.err = '';
+                vm._model.tipoCurso.model.val = '';
+                vm._model.tipoCurso.model.err = '';
                 vm._model.area.model.val = '';
                 vm._model.area.model.err = '';
                 vm._model.curso.model.val = '';
@@ -638,7 +647,5 @@
                 vm.sendSucess = false;
             };
 
-        }]),
-
-        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'modelStrings', 'lista_cheques', 'dataCheque', 'tipoTelefone'
+        }])
 })();
