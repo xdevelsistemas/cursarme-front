@@ -205,6 +205,11 @@
           "text":"Vitória"
         }
       },
+      "tipoCurso":{
+        "model":{
+          "val":11
+        }
+      },
       "area":{
         "model":{
           "val":11
@@ -218,8 +223,8 @@
       },
       "vagas":{
         "turma":"Turma A",
-        "preenchidas":15,
-        "totais":18
+        "preenchidas": 12,
+        "totais": 20
       },
       "escolaEm":{
         "model":{
@@ -268,7 +273,7 @@
       },
       "desconto":{
         "model":{
-          "val":8
+          "val":10
         }
       },
       "formaPagamentoPag":{
@@ -489,8 +494,13 @@
       },
       "unidade":{
         "model":{
-          "val":1,
-          "text": "Vitória"
+          "val":2,
+          "text": "Cariacica"
+        }
+      },
+      "tipoCurso":{
+        "model":{
+          "val":11
         }
       },
       "area":{
@@ -501,13 +511,13 @@
       "curso":{
         "model":{
           "val":111,
-          "text" :"Matemática"
+          "text" :"Medicina"
         }
       },
       "vagas":{
         "turma":"Turma B",
-        "preenchidas":20,
-        "totais":25
+        "preenchidas": 25,
+        "totais": 30
       },
       "escolaEm":{
         "model":{
@@ -788,8 +798,13 @@
       },
       "unidade":{
         "model":{
-          "val":1,
-          "text":"Vitória"
+          "val":3,
+          "text":"São Mateus"
+        }
+      },
+      "tipoCurso":{
+        "model":{
+          "val":22
         }
       },
       "area":{
@@ -799,14 +814,14 @@
       },
       "curso":{
         "model":{
-          "val":222,
-          "text":"Economia"
+          "val":111,
+          "text":"Matemática"
         }
       },
       "vagas":{
         "turma":"Turma C",
-        "preenchidas":15,
-        "totais":18
+        "preenchidas": 14,
+        "totais": 22
       },
       "escolaEm":{
         "model":{
@@ -855,7 +870,7 @@
       },
       "desconto":{
         "model":{
-          "val":8
+          "val":10
         }
       },
       "formaPagamentoPag":{
@@ -1103,6 +1118,11 @@
           "text":"Vitória"
         }
       },
+      "tipoCurso":{
+        "model":{
+          "val":11
+        }
+      },
       "area":{
         "model":{
           "val":11
@@ -1116,8 +1136,8 @@
       },
       "vagas":{
         "turma":"Turma A",
-        "preenchidas":15,
-        "totais":18
+        "preenchidas":12,
+        "totais":20
       },
       "escolaEm":{
         "model":{
@@ -1166,7 +1186,7 @@
       },
       "desconto":{
         "model":{
-          "val":8
+          "val":10
         }
       },
       "formaPagamentoPag":{

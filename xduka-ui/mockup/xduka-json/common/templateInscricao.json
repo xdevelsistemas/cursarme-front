@@ -410,6 +410,15 @@
     "list": [],
     "model": {"val": "", "err": ""}
   },
+  "tipoCurso": {
+    "label": "Tipo Curso",
+    "type": "select",
+    "name": "tipoCurso",
+    "placeholder": "Selecione uma opção",
+    "required": false,
+    "list": [],
+    "model": {"val": "", "err": ""}
+  },
   "area": {
     "label": "Área",
     "type": "select",
@@ -525,13 +534,11 @@
     "required": false
   },
   "desconto": {
-    "label": "Desconto",
-    "type": "select",
+    "label": "Desconto(%)",
+    "type": "text",
     "name": "desconto",
-    "placeholder": "Selecione uma opção",
     "required": false,
-    "list": [],
-    "model": {"val": "", "err": ""}
+    "model": {"val": "0", "err": ""}
   },
   "formaPagamentoPag": {
     "label": "Forma de pagamento",
@@ -540,10 +547,9 @@
     "required": false,
     "placeholder": "Selecione uma opção",
     "list": [
-      {"id": "1", "text": "Dinheiro", "tpCheque": false},
-      {"id": "2", "text": "Cheque", "tpCheque": true},
-      {"id": "3", "text": "Cartão de Crédito", "tpCheque": false},
-      {"id": "4", "text": "Cartão de Débito", "tpCheque": false}
+      {"id": "1", "text": "Dinheiro", "name": "boleto", "tpCheque": false},
+      {"id": "2", "text": "Cheque", "name": "cheque", "tpCheque": true},
+      {"id": "3", "text": "Cartão", "name": "cartao", "tpCheque": false}
     ],
     "model": {"val": "", "err": ""}
   },
