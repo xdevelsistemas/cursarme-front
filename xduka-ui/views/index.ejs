@@ -82,7 +82,7 @@
 
         <div class="row">
             <!-- Profile Info and Notifications -->
-            <div class="col-md-6 col-sm-8 clearfix">
+            <div class="col-md-4 col-sm-8 clearfix">
                 <ul class="user-info pull-left pull-none-xsm">
                     <!-- Profile Info -->
                     <li class="profile-info dropdown">
@@ -94,20 +94,19 @@
                         </span>
                     </li>
                 </ul>
+            </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <form role="form" class="form-horizontal form-groups-bordered">
-                            <xd-select data-params="main.cursos" data-change="main.sendCurso" ></xd-select>
-                        </form>
-                        <hr/>
-                        <br/>
-                    </div>
+            <div class="col-md-4 col-sm-2 clearfix">
+                <div class="col-sm-12 hidden-lg">
+                    <br/>
                 </div>
+                <form role="form" class="form-horizontal form-groups-bordered">
+                    <xd-select data-params="main.cursos" data-change="main.sendCurso" ></xd-select>
+                </form>
             </div>
 
             <!-- Raw Links -->
-            <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+            <div class="col-md-4 col-sm-2 clearfix hidden-xs">
                 <ul class="list-inline links-list pull-right">
                     <li>
                         <a href="/logout">
