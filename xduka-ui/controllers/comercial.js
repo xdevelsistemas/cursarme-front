@@ -55,9 +55,9 @@ function putVerificaCpf(req, res) {
     dados.msg = "";
 
     if (dadosVrf) {
-        res.json({"dados": dados, "dadosCurso": dadosCurso, "exAlunoConv": true});
+        res.json({"dados": dados, "dadosCurso": dadosCurso, "exAlunoConv": true, "desconto": 10});
     } else {
-        res.json({"dados": dados, "dadosCurso": dadosCurso});
+        res.json({"dados": dados, "dadosCurso": dadosCurso, "exAlunoConv": false, "desconto": 0});
     }
 }
 

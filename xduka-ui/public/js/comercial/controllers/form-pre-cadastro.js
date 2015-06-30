@@ -167,9 +167,7 @@
                                             vm.validaCpf = !data.dados.msg;
                                             vm.editing = vm.validaCpf;
 
-                                            if (data.exAlunoConv) {
-                                                vm._model.desconto.model.val = 10;
-                                            }
+                                            vm._model.desconto.model.aux = data.desconto;
                                         })
                                         .catch(function (erro) {
                                             console.log(erro);
@@ -220,6 +218,11 @@
 
                 // limpa a sujeira que fica no model.val quando troca de curso
                 limpaCampoPag();
+
+                // definindo valores para pagamento
+                vm._model.formaPagamentoPag.valores = item.valores;
+                vm._model.valorInscricao.model.aux = item.valores.inscricao;
+                vm._model.valorIntegral.model.aux = item.valores.integral;
             };
 
             vm.areaChange = function (item, model) {
@@ -235,17 +238,10 @@
                 limpaCampoPag();
             };
 
-            vm.atualizaPartial = function(time) {
-                $timeout(function () {
-                    $route.reload();
-                }, time); // delay to reload page.
-            };
-
             vm.cursoChange = function (item, model) {
                 vm.selectCursoVagas = true;
 
                 // alimentando valores referentes ao curso selecionado
-                vm._model.desconto.list = item.desconto;
                 vm._model.qtdParcelas.list = item.qtdParcelas;
                 vm._model.melhorData.list = item.melhorData;
 
@@ -253,10 +249,9 @@
                 limpaCampoPag();
 
                 // definindo valor de inscrição
-                vm._model.valorInscricao.model.val = item.valorInscricao;
-                vm._model.valorInscricao.model.aux = item.valorInscricao;
-                vm._model.valorIntegral.model.val = item.valorIntegral;
-                vm._model.valorIntegral.model.aux = item.valorIntegral;
+                vm._model.valorInscricao.model.val = vm._model.valorInscricao.model.aux;
+                vm._model.valorIntegral.model.val = vm._model.valorIntegral.model.aux;
+                vm._model.desconto.model.val = vm._model.desconto.model.aux;
 
                 $timeout(function () {
                     if ((vm._model.vagas.totais / vm._model.vagas.preenchidas) < 1.5){
@@ -290,7 +285,15 @@
             };
 
             vm.qtdParcelasAplic = function(item, model) {
-                vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
+                if (model == '1'){
+                    vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.avista;
+                    vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
+                } else {
+                    vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
+                        (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val / 100));
+
+                    vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
+                }
             };
 
             vm.openModalCheque = function () {
@@ -308,6 +311,12 @@
 
             vm.selectChequeStep2 = function (item, model) {
                 vm.btnAddChequeStep2 = item.tpCheque;
+
+                var perc = 100 - ((vm._model.formaPagamentoPag.valores[item.name] * 100) / vm._model.formaPagamentoPag.valores.integral);
+                vm._model.desconto.model.val = vm._model.desconto.model.aux + perc;
+
+                vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
+                    (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val / 100));
             };
 
             vm.selectPhoneType = function (item, model) {
@@ -619,6 +628,12 @@
                 vm._model.anoGrad.model.err = '';
                 vm._model.instituicao.model.val = '';
                 vm._model.instituicao.model.err = '';
+            };
+
+            vm.atualizaPartial = function(time) {
+                $timeout(function () {
+                    $route.reload();
+                }, time); // delay to reload page.
             };
 
             vm.cancelEdit = function(){

@@ -538,7 +538,7 @@
     "type": "text",
     "name": "desconto",
     "required": false,
-    "model": {"val": "", "err": ""}
+    "model": {"val": "0", "err": ""}
   },
   "formaPagamentoPag": {
     "label": "Forma de pagamento",
@@ -547,10 +547,9 @@
     "required": false,
     "placeholder": "Selecione uma opção",
     "list": [
-      {"id": "1", "text": "Dinheiro", "tpCheque": false},
-      {"id": "2", "text": "Cheque", "tpCheque": true},
-      {"id": "3", "text": "Cartão de Crédito", "tpCheque": false},
-      {"id": "4", "text": "Cartão de Débito", "tpCheque": false}
+      {"id": "1", "text": "Dinheiro", "name": "boleto", "tpCheque": false},
+      {"id": "2", "text": "Cheque", "name": "cheque", "tpCheque": true},
+      {"id": "3", "text": "Cartão", "name": "cartao", "tpCheque": false}
     ],
     "model": {"val": "", "err": ""}
   },

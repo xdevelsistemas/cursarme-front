@@ -8,6 +8,14 @@
           {
             "id": 11,
             "text": "Mestrado em Educação",
+            "valores": {
+              "inscricao": 190,
+              "integral": 16380,
+              "boleto": 14400,
+              "cheque": 13500,
+              "cartao": 13680,
+              "avista": 13104
+            },
             "areas": [
               {
                 "id": 11,
@@ -25,8 +33,6 @@
                   {
                     "id": 111,
                     "text": "Matemática",
-                    "valorInscricao": 170,
-                    "valorIntegral": 300,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -83,8 +89,6 @@
                   {
                     "id": 222,
                     "text": "Economia",
-                    "valorInscricao": 170,
-                    "valorIntegral": 350,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -157,8 +161,6 @@
                   {
                     "id": 111,
                     "text": "Direito",
-                    "valorInscricao": 170,
-                    "valorIntegral": 450,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -223,8 +225,6 @@
                   {
                     "id": 222,
                     "text": "História",
-                    "valorInscricao": 170,
-                    "valorIntegral": 350,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -288,7 +288,15 @@
           },
           {
             "id": 22,
-            "text": "Pós Graduação",
+            "text": "Pós Graduação em Educação",
+            "valores": {
+              "inscricao": 190,
+              "integral": 1248,
+              "boleto": 930,
+              "cheque": 883.8,
+              "cartao": 837,
+              "avista": 800
+            },
             "areas": [
               {
                 "id": 11,
@@ -305,8 +313,6 @@
                   {
                     "id": 111,
                     "text": "Matemática",
-                    "valorInscricao": 170,
-                    "valorIntegral": 300,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -363,8 +369,6 @@
                   {
                     "id": 222,
                     "text": "Economia",
-                    "valorInscricao": 170,
-                    "valorIntegral": 350,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -437,8 +441,6 @@
                   {
                     "id": 111,
                     "text": "Direito",
-                    "valorInscricao": 170,
-                    "valorIntegral": 450,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -503,8 +505,6 @@
                   {
                     "id": 222,
                     "text": "História",
-                    "valorInscricao": 170,
-                    "valorIntegral": 350,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -574,7 +574,15 @@
         "tipoCursos": [
           {
             "id": 11,
-            "text": "Pós graduação",
+            "text": "Pós Graduação em Educação",
+            "valores": {
+              "inscricao": 190,
+              "integral": 1248,
+              "boleto": 930,
+              "cheque": 883.8,
+              "cartao": 837,
+              "avista": 800
+            },
             "areas": [
               {
                 "id": 11,
@@ -594,8 +602,6 @@
                   {
                     "id": 111,
                     "text": "Medicina",
-                    "valorInscricao": 170,
-                    "valorIntegral": 600,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -652,8 +658,6 @@
                   {
                     "id": 222,
                     "text": "Biologia",
-                    "valorInscricao": 170,
-                    "valorIntegral": 500,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -726,8 +730,6 @@
                   {
                     "id": 111,
                     "text": "Ciência da Computação",
-                    "valorInscricao": 170,
-                    "valorIntegral": 550,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -788,8 +790,6 @@
                   {
                     "id": 222,
                     "text": "Sistema de Informação",
-                    "valorInscricao": 170,
-                    "valorIntegral": 450,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -850,6 +850,14 @@
           {
             "id": 22,
             "text": "Mestrado em Educação",
+            "valores": {
+              "inscricao": 190,
+              "integral": 16380,
+              "boleto": 14400,
+              "cheque": 13500,
+              "cartao": 13680,
+              "avista": 13104
+            },
             "areas": [
               {
                 "id": 11,
@@ -868,8 +876,6 @@
                   {
                     "id": 111,
                     "text": "Medicina",
-                    "valorInscricao": 170,
-                    "valorIntegral": 600,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -926,8 +932,6 @@
                   {
                     "id": 222,
                     "text": "Biologia",
-                    "valorInscricao": 170,
-                    "valorIntegral": 500,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -1000,8 +1004,6 @@
                   {
                     "id": 111,
                     "text": "Ciência da Computação",
-                    "valorInscricao": 170,
-                    "valorIntegral": 550,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -1062,8 +1064,6 @@
                   {
                     "id": 222,
                     "text": "Sistema de Informação",
-                    "valorInscricao": 170,
-                    "valorIntegral": 450,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -1130,6 +1130,14 @@
           {
             "id": 11,
             "text": "Mestrado em Educação",
+            "valores": {
+              "inscricao": 190,
+              "integral": 16380,
+              "boleto": 14400,
+              "cheque": 13500,
+              "cartao": 13680,
+              "avista": 13104
+            },
             "areas": [
               {
                 "id": 11,
@@ -1148,8 +1156,6 @@
                   {
                     "id": 111,
                     "text": "Matemática",
-                    "valorInscricao": 170,
-                    "valorIntegral": 290,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -1210,8 +1216,6 @@
                   {
                     "id": 222,
                     "text": "Ciências Contábeis",
-                    "valorInscricao": 170,
-                    "valorIntegral": 380,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -1284,8 +1288,6 @@
                   {
                     "id": 111,
                     "text": "Direito",
-                    "valorInscricao": 170,
-                    "valorIntegral": 700,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -1342,8 +1344,6 @@
                   {
                     "id": 222,
                     "text": "Geografia",
-                    "valorInscricao": 170,
-                    "valorIntegral": 400,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -1407,7 +1407,15 @@
           },
           {
             "id": 22,
-            "text": "Pós graduação",
+            "text": "Pós Graduação em Educação",
+            "valores": {
+              "inscricao": 190,
+              "integral": 1248,
+              "boleto": 930,
+              "cheque": 883.8,
+              "cartao": 837,
+              "avista": 800
+            },
             "areas": [
               {
                 "id": 11,
@@ -1427,8 +1435,6 @@
                   {
                     "id": 111,
                     "text": "Matemática",
-                    "valorInscricao": 170,
-                    "valorIntegral": 290,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -1489,8 +1495,6 @@
                   {
                     "id": 222,
                     "text": "Ciências Contábeis",
-                    "valorInscricao": 170,
-                    "valorIntegral": 380,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -1563,8 +1567,6 @@
                   {
                     "id": 111,
                     "text": "Direito",
-                    "valorInscricao": 170,
-                    "valorIntegral": 700,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
@@ -1621,8 +1623,6 @@
                   {
                     "id": 222,
                     "text": "Geografia",
-                    "valorInscricao": 170,
-                    "valorIntegral": 400,
                     "descontoInscr": [
                       {"id": "0", "text": "Sem desconto"},
                       {"id": "5", "text": "5%"},
