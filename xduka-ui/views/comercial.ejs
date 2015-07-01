@@ -78,7 +78,7 @@
             <!-- add class "multiple-expanded" to allow multiple submenus to open -->
             <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
             <li ng-repeat="item in main.menu.list">
-                <a ng-href="{{item.href}}" onclick="$('.sidebar-mobile-menu.visible-xs>.with-animation').click()">
+                <a ng-href="{{item.href}}" ng-click="main.menuAction()">
                     <i ng-class="item.iconClass"></i>
                     <span ng-bind="item.text"></span>
                 </a>
