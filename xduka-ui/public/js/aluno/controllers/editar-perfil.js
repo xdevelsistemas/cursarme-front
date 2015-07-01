@@ -82,7 +82,7 @@
             SendFotoPromise
                 .then(function (data) {
                     console.log(data);
-                    window.open(data.foto.foto);
+                    //window.open(data.foto.foto);
                 })
                 .catch(function(erro) {
                     console.log(erro);
