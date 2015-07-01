@@ -253,7 +253,7 @@
       },
       "valorInscricao":{
         "model":{
-          "val":161.5
+          "val":190
         }
       },
       "formaPagamentoInscr":{
@@ -263,17 +263,17 @@
       },
       "descontoInscr":{
         "model":{
-          "val":5
+          "val":0
         }
       },
       "valorIntegral":{
         "model":{
-          "val":322
+          "val":12762
         }
       },
       "desconto":{
         "model":{
-          "val":10
+          "val":22.09
         }
       },
       "formaPagamentoPag":{
@@ -288,7 +288,7 @@
       },
       "valorParcela":{
         "model":{
-          "val":64.40
+          "val":2552.4
         }
       },
       "melhorData":{
@@ -546,7 +546,7 @@
       },
       "valorInscricao":{
         "model":{
-          "val":161.50
+          "val":190
         }
       },
       "formaPagamentoInscr":{
@@ -556,17 +556,17 @@
       },
       "descontoInscr":{
         "model":{
-          "val":5
+          "val":0
         }
       },
       "valorIntegral":{
         "model":{
-          "val":300
+          "val":930
         }
       },
       "desconto":{
         "model":{
-          "val":10
+          "val":25.5
         }
       },
       "formaPagamentoPag":{
@@ -581,7 +581,7 @@
       },
       "valorParcela":{
         "model":{
-          "val":90
+          "val":310
         }
       },
       "melhorData":{
@@ -850,7 +850,7 @@
       },
       "valorInscricao":{
         "model":{
-          "val":153
+          "val":190
         }
       },
       "formaPagamentoInscr":{
@@ -860,17 +860,17 @@
       },
       "descontoInscr":{
         "model":{
-          "val":10
+          "val":0
         }
       },
       "valorIntegral":{
         "model":{
-          "val":322
+          "val":930
         }
       },
       "desconto":{
         "model":{
-          "val":10
+          "val":25.5
         }
       },
       "formaPagamentoPag":{
@@ -880,12 +880,12 @@
       },
       "qtdParcelas":{
         "model":{
-          "val":5
+          "val":10
         }
       },
       "valorParcela":{
         "model":{
-          "val":64.40
+          "val":93
         }
       },
       "melhorData":{
@@ -979,7 +979,7 @@
       },
       "cpf":{
         "model":{
-          "val":"78612343201"
+          "val":"44158457700"
         }
       },
       "tituloEleitor":{
@@ -1166,7 +1166,7 @@
       },
       "valorInscricao":{
         "model":{
-          "val":153
+          "val":190
         }
       },
       "formaPagamentoInscr":{
@@ -1176,17 +1176,17 @@
       },
       "descontoInscr":{
         "model":{
-          "val":10
+          "val":0
         }
       },
       "valorIntegral":{
         "model":{
-          "val":322
+          "val":14400
         }
       },
       "desconto":{
         "model":{
-          "val":10
+          "val":12.09
         }
       },
       "formaPagamentoPag":{
@@ -1196,12 +1196,12 @@
       },
       "qtdParcelas":{
         "model":{
-          "val":5
+          "val":3
         }
       },
       "valorParcela":{
         "model":{
-          "val":64.40
+          "val":4800
         }
       },
       "melhorData":{

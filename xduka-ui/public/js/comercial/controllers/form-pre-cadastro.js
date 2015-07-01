@@ -286,9 +286,14 @@
 
             vm.qtdParcelasAplic = function(item, model) {
                 if (model == '1'){
+                    var perc = 100 - ((vm._model.formaPagamentoPag.valores.avista * 100) / vm._model.formaPagamentoPag.valores.integral);
+
                     vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.avista;
+                    vm._model.desconto.model.val = vm._model.desconto.model.aux + perc;
+
                     vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
                 } else {
+                    vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
                     vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
                         (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val / 100));
 
@@ -312,8 +317,8 @@
             vm.selectChequeStep2 = function (item, model) {
                 vm.btnAddChequeStep2 = item.tpCheque;
 
-                var perc = 100 - ((vm._model.formaPagamentoPag.valores[item.name] * 100) / vm._model.formaPagamentoPag.valores.integral);
-                vm._model.desconto.model.val = vm._model.desconto.model.aux + perc;
+                vm._model.desconto.model.descPag = 100 - ((vm._model.formaPagamentoPag.valores[item.name] * 100) / vm._model.formaPagamentoPag.valores.integral);
+                vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
 
                 vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
                     (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val / 100));
@@ -390,64 +395,65 @@
 
                     getUnidadePromise
                         .then(function (data) {
+                            var editVerifCpfPromise = $resource('/api/comercial/verifica-cpf/:cpf').get({"cpf": item.cpf.model.val}).$promise;
+
                             vm.editing = true;
                             vm.showAlert = true;
                             vm.disableLimpar = true;
                             vm.validaCpf = true;
 
-                            vm.selectCursoTipoCurso = true;
-                            vm.selectCursoArea = true;
-                            vm.selectCursoCurso = true;
-                            vm.selectCursoVagas = true;
+                            vm._model.desconto.model.aux = data.desconto;
+
+                            //vm.selectCursoTipoCurso = true;
+                            //vm.selectCursoArea = true;
+                            //vm.selectCursoCurso = true;
+                            //vm.selectCursoVagas = true;
 
                             vm._model.unidade.list = data.unidade.list;
 
-                            vm._model.tipoCurso.list = $.grep(vm._model.unidade.list, function (e) {
+                            vm.unidadeChange($.grep(vm._model.unidade.list, function (e) {
                                 return e.id == item.unidade.model.val;
-                            })[0].tipoCursos;
+                            })[0], item.unidade.model.val);
 
-                            vm._model.area.list = $.grep(vm._model.tipoCurso.list, function (e) {
+                            vm.tipoCursoChange($.grep(vm._model.tipoCurso.list, function (e) {
                                 return e.id == item.tipoCurso.model.val;
-                            })[0].areas;
+                            })[0], item.tipoCurso.model.val);
 
-                            vm._model.curso.list = $.grep(vm._model.area.list, function (e) {
+                            vm.areaChange(vm._model.curso.list = $.grep(vm._model.area.list, function (e) {
                                 return e.id == item.area.model.val;
-                            })[0].cursos;
+                            })[0], item.area.model.val);
 
-
-                            // definindo valor de inscrição
-                            //vm._model.valorInscricao.model.val = item.valorInscricao.model.val;
-                            //vm._model.valorIntegral.model.val = item.valorIntegral.model.val;
-
-                            curso = $.grep(vm._model.curso.list, function (e) {
+                            vm.cursoChange($.grep(vm._model.curso.list, function (e) {
                                 return e.id == item.curso.model.val;
-                            })[0];
-
-                            vm._model.valorInscricao.model.aux = curso.valorInscricao;
-                            vm._model.valorIntegral.model.aux = curso.valorIntegral;
-
-                            // alimentando valores referentes ao curso selecionado
-                            vm._model.descontoInscr.list = curso.descontoInscr;
-                            //vm._model.desconto.list = curso.desconto;
-                            vm._model.qtdParcelas.list = curso.qtdParcelas;
-                            vm._model.melhorData.list = curso.melhorData;
-
-
-                            // limpa a sujeira que fica no model.val quando troca de curso
-                            limpaCampoPag();
+                            })[0], item.curso.model.val);
 
                             $.extend(true, vm._model, item);
                             vm.getDadosCep(vm._model.cep.model.val);
                             vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
 
+                            editVerifCpfPromise
+                                .then(function (data2) {
+                                    vm._model.desconto.model.aux = data2.desconto;
+
+                                    vm.selectChequeStep2($.grep(vm._model.formaPagamentoPag.list, function (e) {
+                                        return e.id == vm._model.formaPagamentoPag.model.val;
+                                    })[0], vm._model.formaPagamentoPag.model.val);
+
+                                    vm.qtdParcelasAplic($.grep(vm._model.qtdParcelas.list, function (e) {
+                                        return e.id == vm._model.qtdParcelas.model.val;
+                                    })[0], vm._model.qtdParcelas.model.val);
+                                })
+                                .catch(function (erro) {
+                                    console.log(erro);
+                                });
                         })
                         .catch(function (erro) {
                             console.log(erro);
                         });
 
-                    vm.btnAddChequeStep1 = item.formaPagamentoInscr.model.val == 2;
-                    vm.btnAddChequeStep2 = item.formaPagamentoPag.model.val == 2;
-                    lista_cheques.addAll(item.listaCheques);
+                    vm.btnAddChequeStep1 = vm._model.formaPagamentoInscr.model.val == 2;
+                    vm.btnAddChequeStep2 = vm._model.formaPagamentoPag.model.val == 2;
+                    lista_cheques.addAll(vm._model.listaCheques);
                 }else{
                     $('#confirmEdit').modal('show');
                     vm.tempItem = item;
