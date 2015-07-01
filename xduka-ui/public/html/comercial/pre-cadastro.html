@@ -153,6 +153,15 @@
                         </div>
                     </div>
                 </div>
+                <div class="row" ng-show="pre.selectCursoTipoCurso">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <xd-select data-params="pre._model.tipoCurso" data-change="pre.tipoCursoChange" data-disable="!pre.validaCpf"></xd-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row" ng-show="pre.selectCursoArea">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -212,9 +221,9 @@
                                         Adicionar Cheques
                                         <i class="entypo-credit-card"></i>
                                     </button>
-                                    <p data-collapse="!pre._model.desconto.model.err"
+                                    <!--<p data-collapse="!pre._model.desconto.model.err"
                                        data-ng-bind="pre._model.desconto.model.err"
-                                       class="control-label"></p>
+                                       class="control-label"></p>-->
                                 </div>
                             </div>
                         </div>
@@ -274,12 +283,6 @@
                                    data-change="pre.selectChequeStep2" data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <xd-select data-params="pre._model.desconto" data-change="pre.descontoAplic"
-                                   disabled="!pre.validaCpf" data-disable="!pre.validaCpf"></xd-select>
-                    </div>
-                </div>
                 <!--BOTÃO ADD CHEQUE-->
                 <div class="row" ng-show="pre.btnAddChequeStep2">
                     <div class="col-md-12">
@@ -290,12 +293,17 @@
                                         Adicionar Cheques
                                         <i class="entypo-credit-card"></i>
                                     </button>
-                                    <p data-collapse="!pre._model.desconto.model.err"
+                                    <!--<p data-collapse="!pre._model.desconto.model.err"
                                        data-ng-bind="pre._model.desconto.model.err"
-                                       class="control-label"></p>
+                                       class="control-label"></p>-->
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input data-params="pre._model.desconto" data-disable="true"></xd-input>
                     </div>
                 </div>
                 <div class="row">
@@ -560,7 +568,7 @@
             </li>
 
             <li class="col-md-3 inLine" ng-hide="pre.disableAtualiza">
-                <button class="btn btn-primary btn-icon icon-left btn-block btn-lg">
+                <button class="btn btn-primary btn-icon icon-left btn-block btn-lg" ng-click="pre.atualizaPartial(0)">
                     Atualizar
                     <i class="icon entypo-cw icon-right"></i></button>
             </li>

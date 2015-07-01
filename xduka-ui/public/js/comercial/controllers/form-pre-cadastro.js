@@ -2,8 +2,8 @@
     "use strict";
 
     angular.module('app.controllers').controller('FormPreCadastro', [
-        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'modelStrings', 'lista_cheques', 'dataCheque', 'tipoTelefone',
-        function ($scope, breadCrumb, $timeout, $modal, $resource, modelStrings, lista_cheques, dataCheque, tipoTelefone) {
+        '$scope', 'breadCrumb', '$timeout', '$modal', '$route', '$resource', 'modelStrings', 'lista_cheques', 'dataCheque', 'tipoTelefone',
+        function ($scope, breadCrumb, $timeout, $modal, $route, $resource, modelStrings, lista_cheques, dataCheque, tipoTelefone) {
 
             /* jshint validthis: true */
             var vm = this
@@ -37,6 +37,7 @@
             vm.showAlert = false;
 
             //xd-select de curso
+            vm.selectCursoTipoCurso = false;
             vm.selectCursoArea = false;
             vm.selectCursoCurso = false;
             vm.selectCursoVagas = false;
@@ -164,9 +165,9 @@
                                             vm._model.cpf.model.err = data.dados.msg;
                                             vm._model.unidade.list = data.dadosCurso.unidade.list;
                                             vm.validaCpf = !data.dados.msg;
-                                            if(vm.validaCpf){
-                                                vm.editing = true;
-                                            }
+                                            vm.editing = vm.validaCpf;
+
+                                            vm._model.desconto.model.aux = data.desconto;
                                         })
                                         .catch(function (erro) {
                                             console.log(erro);
@@ -193,16 +194,35 @@
             };
 
             vm.unidadeChange = function (item, model) {
+                vm.selectCursoTipoCurso = true;
+                vm.selectCursoArea = false;
+                vm.selectCursoCurso = false;
+                vm.selectCursoVagas = false;
+
+                vm._model.tipoCurso.list = [];
+                vm._model.tipoCurso.model = {'val': '', 'err': ''};
+                vm._model.tipoCurso.list = item.tipoCursos;
+
+                // limpa a sujeira que fica no model.val quando troca de curso
+                limpaCampoPag();
+            };
+
+            vm.tipoCursoChange = function (item, model) {
                 vm.selectCursoArea = true;
                 vm.selectCursoCurso = false;
                 vm.selectCursoVagas = false;
 
                 vm._model.area.list = [];
                 vm._model.area.model = {'val': '', 'err': ''};
-                $.extend(vm._model.area.list, item.areas);
+                vm._model.area.list = item.areas;
 
                 // limpa a sujeira que fica no model.val quando troca de curso
                 limpaCampoPag();
+
+                // definindo valores para pagamento
+                vm._model.formaPagamentoPag.valores = item.valores;
+                vm._model.valorInscricao.model.aux = item.valores.inscricao;
+                vm._model.valorIntegral.model.aux = item.valores.integral;
             };
 
             vm.areaChange = function (item, model) {
@@ -211,7 +231,7 @@
 
                 vm._model.curso.list = [];
                 vm._model.curso.model = {'val': '', 'err': ''};
-                $.extend(vm._model.curso.list, item.cursos);
+                vm._model.curso.list = item.cursos;
                 $.extend(vm._model.vagas, item.turma[0].vagas);
 
                 // limpa a sujeira que fica no model.val quando troca de curso
@@ -222,19 +242,16 @@
                 vm.selectCursoVagas = true;
 
                 // alimentando valores referentes ao curso selecionado
-                $.extend(vm._model.descontoInscr.list, item.descontoInscr);
-                $.extend(vm._model.desconto.list, item.desconto);
-                $.extend(vm._model.qtdParcelas.list, item.qtdParcelas);
-                $.extend(vm._model.melhorData.list, item.melhorData);
+                vm._model.qtdParcelas.list = item.qtdParcelas;
+                vm._model.melhorData.list = item.melhorData;
 
                 // limpa a sujeira que fica no model.val quando troca de curso
                 limpaCampoPag();
 
                 // definindo valor de inscrição
-                vm._model.valorInscricao.model.val = item.valorInscricao;
-                vm._model.valorInscricao.model.aux = item.valorInscricao;
-                vm._model.valorIntegral.model.val = item.valorIntegral;
-                vm._model.valorIntegral.model.aux = item.valorIntegral;
+                vm._model.valorInscricao.model.val = vm._model.valorInscricao.model.aux;
+                vm._model.valorIntegral.model.val = vm._model.valorIntegral.model.aux;
+                vm._model.desconto.model.val = vm._model.desconto.model.aux;
 
                 $timeout(function () {
                     if ((vm._model.vagas.totais / vm._model.vagas.preenchidas) < 1.5){
@@ -268,7 +285,15 @@
             };
 
             vm.qtdParcelasAplic = function(item, model) {
-                vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
+                if (model == '1'){
+                    vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.avista;
+                    vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
+                } else {
+                    vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
+                        (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val / 100));
+
+                    vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
+                }
             };
 
             vm.openModalCheque = function () {
@@ -286,6 +311,12 @@
 
             vm.selectChequeStep2 = function (item, model) {
                 vm.btnAddChequeStep2 = item.tpCheque;
+
+                var perc = 100 - ((vm._model.formaPagamentoPag.valores[item.name] * 100) / vm._model.formaPagamentoPag.valores.integral);
+                vm._model.desconto.model.val = vm._model.desconto.model.aux + perc;
+
+                vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
+                    (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val / 100));
             };
 
             vm.selectPhoneType = function (item, model) {
@@ -364,14 +395,19 @@
                             vm.disableLimpar = true;
                             vm.validaCpf = true;
 
+                            vm.selectCursoTipoCurso = true;
                             vm.selectCursoArea = true;
                             vm.selectCursoCurso = true;
                             vm.selectCursoVagas = true;
 
                             vm._model.unidade.list = data.unidade.list;
 
-                            vm._model.area.list = $.grep(vm._model.unidade.list, function (e) {
+                            vm._model.tipoCurso.list = $.grep(vm._model.unidade.list, function (e) {
                                 return e.id == item.unidade.model.val;
+                            })[0].tipoCursos;
+
+                            vm._model.area.list = $.grep(vm._model.tipoCurso.list, function (e) {
+                                return e.id == item.tipoCurso.model.val;
                             })[0].areas;
 
                             vm._model.curso.list = $.grep(vm._model.area.list, function (e) {
@@ -380,8 +416,8 @@
 
 
                             // definindo valor de inscrição
-                            vm._model.valorInscricao.model.val = item.valorInscricao.model.val;
-                            vm._model.valorIntegral.model.val = item.valorIntegral.model.val;
+                            //vm._model.valorInscricao.model.val = item.valorInscricao.model.val;
+                            //vm._model.valorIntegral.model.val = item.valorIntegral.model.val;
 
                             curso = $.grep(vm._model.curso.list, function (e) {
                                 return e.id == item.curso.model.val;
@@ -392,7 +428,7 @@
 
                             // alimentando valores referentes ao curso selecionado
                             vm._model.descontoInscr.list = curso.descontoInscr;
-                            vm._model.desconto.list = curso.desconto;
+                            //vm._model.desconto.list = curso.desconto;
                             vm._model.qtdParcelas.list = curso.qtdParcelas;
                             vm._model.melhorData.list = curso.melhorData;
 
@@ -453,6 +489,7 @@
 
             vm.limpaForm = function(){
                 // escondendo select's de curso
+                vm.selectCursoTipoCurso = false;
                 vm.selectCursoArea = false;
                 vm.selectCursoCurso = false;
                 vm.selectCursoVagas = false;
@@ -492,6 +529,8 @@
                 vm._model.email.model.err = '';
                 vm._model.unidade.model.val = '';
                 vm._model.unidade.model.err = '';
+                vm._model.tipoCurso.model.val = '';
+                vm._model.tipoCurso.model.err = '';
                 vm._model.area.model.val = '';
                 vm._model.area.model.err = '';
                 vm._model.curso.model.val = '';
@@ -591,6 +630,12 @@
                 vm._model.instituicao.model.err = '';
             };
 
+            vm.atualizaPartial = function(time) {
+                $timeout(function () {
+                    $route.reload();
+                }, time); // delay to reload page.
+            };
+
             vm.cancelEdit = function(){
                 vm.limpaForm();
                 vm.disableLimpar = false;
@@ -617,7 +662,5 @@
                 vm.sendSucess = false;
             };
 
-        }]),
-
-        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'modelStrings', 'lista_cheques', 'dataCheque', 'tipoTelefone'
+        }])
 })();
