@@ -6,14 +6,9 @@ describe('Controller: FormPreCadastro test', function() {
         module('app');
         inject(function($injector, $controller) {
             $scope = $injector.get('$rootScope').$new();
-            pre = $controller('FormPreCadastro',
-                {
-                    $routeParams: {cep: "29175254"},
-                    "$scope": $scope
-                }
-            );
-            $httpbackend = $injector.get('$httpBackend');
-            $httpbackend.when('GET', '/api/comercial/view-inscr').responde([{}]);
+            //$httpbackend = $injector.get('$httpBackend');
+            pre = $controller('FormPreCadastro', {"$scope": $scope});
+            //$httpbackend.when('GET', '/api/comercial/view-inscr').responde([{}]);
         });
     });
 
@@ -22,7 +17,7 @@ describe('Controller: FormPreCadastro test', function() {
     });
 
     it('-> Buscando pre-cadastros ativos', function() {
-        $httpbackend.flush();
+        //$httpbackend.flush();
         expect(pre._viewInscr.list).toEqual([
                 {
                     "validacoes":[{}],

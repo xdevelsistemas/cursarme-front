@@ -273,7 +273,7 @@
       },
       "desconto":{
         "model":{
-          "val":22.09
+          "val":0.2208791208791209
         }
       },
       "formaPagamentoPag":{
@@ -566,7 +566,7 @@
       },
       "desconto":{
         "model":{
-          "val":25.5
+          "val":0.2548076923076923
         }
       },
       "formaPagamentoPag":{
@@ -870,7 +870,7 @@
       },
       "desconto":{
         "model":{
-          "val":25.5
+          "val":0.2548076923076923
         }
       },
       "formaPagamentoPag":{
@@ -1186,7 +1186,7 @@
       },
       "desconto":{
         "model":{
-          "val":12.09
+          "val":0.1208791208791209
         }
       },
       "formaPagamentoPag":{

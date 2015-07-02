@@ -296,7 +296,7 @@
 
             vm.qtdParcelasAplic = function(item, model) {
                 if (model == '1'){
-                    var perc = 100 - ((vm._model.formaPagamentoPag.valores.avista * 100) / vm._model.formaPagamentoPag.valores.integral);
+                    var perc = 1 - ((vm._model.formaPagamentoPag.valores.avista) / vm._model.formaPagamentoPag.valores.integral);
 
                     vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.avista;
                     vm._model.desconto.model.val = vm._model.desconto.model.aux + perc;
@@ -305,7 +305,7 @@
                 } else {
                     vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
                     vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
-                        (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val / 100));
+                        (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val));
 
                     vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
                 }
@@ -327,11 +327,11 @@
             vm.selectChequeStep2 = function (item, model) {
                 vm.btnAddChequeStep2 = item.tpCheque;
 
-                vm._model.desconto.model.descPag = 100 - ((vm._model.formaPagamentoPag.valores[item.name] * 100) / vm._model.formaPagamentoPag.valores.integral);
+                vm._model.desconto.model.descPag = 1 - ((vm._model.formaPagamentoPag.valores[item.name]) / vm._model.formaPagamentoPag.valores.integral);
                 vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
 
                 vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
-                    (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val / 100));
+                    (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val));
             };
 
             vm.selectPhoneType = function (item, model) {
@@ -404,8 +404,7 @@
             function editarInscr(item){
 
                 if (!vm.editing) {
-                    var getUnidadePromise = $resource('/api/comercial/dados-curso').get().$promise,
-                        curso = {};
+                    var getUnidadePromise = $resource('/api/comercial/dados-curso').get().$promise;
 
                     getUnidadePromise
                         .then(function (data) {
@@ -415,11 +414,6 @@
                             vm.showAlert = true;
                             vm.disableLimpar = true;
                             vm.validaCpf = true;
-
-                            //vm.selectCursoTipoCurso = true;
-                            //vm.selectCursoArea = true;
-                            //vm.selectCursoCurso = true;
-                            //vm.selectCursoVagas = true;
 
                             vm._model.unidade.list = data.unidade.list;
 
@@ -442,6 +436,10 @@
                             $.extend(true, vm._model, item);
                             vm.getDadosCep(vm._model.cep.model.val);
                             vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
+
+                            vm.btnAddChequeStep1 = vm._model.formaPagamentoInscr.model.val == 2;
+                            vm.btnAddChequeStep2 = vm._model.formaPagamentoPag.model.val == 2;
+                            lista_cheques.addAll(vm._model.listaCheques);
 
                             editVerifCpfPromise
                                 .then(function (data2) {
@@ -466,10 +464,6 @@
                                 console.log(erro)
                             }
                         });
-
-                    vm.btnAddChequeStep1 = vm._model.formaPagamentoInscr.model.val == 2;
-                    vm.btnAddChequeStep2 = vm._model.formaPagamentoPag.model.val == 2;
-                    lista_cheques.addAll(vm._model.listaCheques);
                 }else{
                     $('#confirmEdit').modal('show');
                     vm.tempItem = item;
