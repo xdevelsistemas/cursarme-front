@@ -36,7 +36,7 @@ module.exports = function(config) {
         'public/js/comercial/routes/routes.js',
         'public/js/comercial/**/*.js',
         'public/js/common/**/*.js',
-        'test/spec/comercial/**/*Spec.js'
+        'tests/spec/comercial/**/*Spec.js'
     ],
 
 

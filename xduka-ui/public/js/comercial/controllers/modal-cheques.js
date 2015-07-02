@@ -14,7 +14,9 @@
                     vm._model = data;
                 })
                 .catch(function(erro) {
-                    console.log("\nErro: " + erro.data);
+                    if (erro.status == '400') {
+                        console.log(erro);
+                    }
                 });
 
             vm.new_cheque = function(){

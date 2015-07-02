@@ -67,21 +67,25 @@
                     vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
                 })
                 .catch(function(erro){
-                    console.log("\n" + erro.data + "\n");
+                    if (erro.status == '400') {
+                        console.log(erro)
+                    }
                 });
 
             viewInscrPromise
-                .then(function(data2) {
-                    vm._viewInscr = data2;
+                .then(function(data) {
+                    vm._viewInscr = data;
 
-                    for (var i = 0; i < data2.list.length; i++) {
-                        for (var j = 0; j < data2.list[i].listaCheques.length; j++) {
-                            vm._viewInscr.list[i].listaCheques[j].data = new Date(data2.list[i].listaCheques[j].data);
+                    for (var i = 0; i < data.list.length; i++) {
+                        for (var j = 0; j < data.list[i].listaCheques.length; j++) {
+                            vm._viewInscr.list[i].listaCheques[j].data = new Date(data.list[i].listaCheques[j].data);
                         }
                     }
                 })
                 .catch(function(erro) {
-                    console.log("\n" + erro.data + "\n");
+                    if (erro.status == '400') {
+                        console.log(erro)
+                    }
                 });
 
 
@@ -118,7 +122,9 @@
                             }
                         })
                         .catch(function (erro) {
-                            console.log(erro);
+                            if (erro.status == '400') {
+                                console.log(erro)
+                            }
                         });
                 }
             };
@@ -170,14 +176,18 @@
                                             vm._model.desconto.model.aux = data.desconto;
                                         })
                                         .catch(function (erro) {
-                                            console.log(erro);
+                                            if (erro.status == '400') {
+                                                console.log(erro)
+                                            }
                                         })
                                 }
                             }
 
                         }
                     }catch(erro){
-                        console.log("Erro:\n" + erro);
+                        if (erro.status == '400') {
+                            console.log(erro)
+                        }
                     }
                 } else {
                     vm.validaCpf = false;
@@ -325,7 +335,7 @@
             };
 
             vm.selectPhoneType = function (item, model) {
-                vm._model.telefone.mask = tipoTelefone.getMskPhone(model);
+                vm._model.telefone.mask = tipoTelefone.getMaskPhone(model);
             };
 
             vm.sendInscricaoCompleta = function() {
@@ -341,7 +351,9 @@
                         disableBtn()
                     })
                     .catch(function (erro) {
-                        console.log("\n" + erro.data + "\n")
+                        if (erro.status == '400') {
+                            console.log(erro)
+                        }
                     });
             };
 
@@ -365,7 +377,9 @@
                         }
                     })
                     .catch(function (erro) {
-                        console.log("\n" + erro.data + "\n")
+                        if (erro.status == '400') {
+                            console.log(erro)
+                        }
                     });
             };
 
@@ -401,8 +415,6 @@
                             vm.showAlert = true;
                             vm.disableLimpar = true;
                             vm.validaCpf = true;
-
-                            vm._model.desconto.model.aux = data.desconto;
 
                             //vm.selectCursoTipoCurso = true;
                             //vm.selectCursoArea = true;
@@ -444,11 +456,15 @@
                                     })[0], vm._model.qtdParcelas.model.val);
                                 })
                                 .catch(function (erro) {
-                                    console.log(erro);
+                                    if (erro.status == '400') {
+                                        console.log(erro)
+                                    }
                                 });
                         })
                         .catch(function (erro) {
-                            console.log(erro);
+                            if (erro.status == '400') {
+                                console.log(erro)
+                            }
                         });
 
                     vm.btnAddChequeStep1 = vm._model.formaPagamentoInscr.model.val == 2;
