@@ -57,6 +57,28 @@
              { y: '2015/06', a: 47, b: 9 }
              ],*/
 
+            vm.grafico2 = {
+                id: 'testeGraf',
+                x: 'MAIO, JUNHO, JULHO',
+                list: [
+                    {
+                        name: '2015',
+                        values: '20,13,18',
+                        type: 'spline'
+                    },
+                    {
+                        name: '2014',
+                        values: '3,14,28',
+                        type: 'spline'
+                    },
+                    {
+                        name: '2013',
+                        values: '2,17,8',
+                        type: 'spline'
+                    }
+                ]
+            }
+
 
 
         }])
