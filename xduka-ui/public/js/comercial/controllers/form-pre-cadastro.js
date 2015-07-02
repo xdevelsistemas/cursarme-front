@@ -661,12 +661,19 @@
                 editFunc: function(){
                     vm.disableLimpar = true;
                 },
-                editInscr: vm.editarInscr
+                editInscr: vm.editarInscr,
+
+                verificaEdit: verificaEdit
             };
 
             vm.disableSendSucess = function(){
                 vm.sendSucess = false;
             };
+
+            function verificaEdit(data){
+                data = new Date(data); var atual = new Date();
+                return (atual.getDate() == data.getDate() && atual.getMonth() == data.getMonth())
+            }
 
         }])
 })();
