@@ -12,8 +12,8 @@
         },
         "cel": {
             "label": "Telefone Celular",
-            "placeholder": "(__) _____-____",
-            "mask": "?(99) 99999-9999",
+            "placeholder": "(__) _ ____-____",
+            "mask": "?(99) 9 9999-9999",
             "name": "cel",
             "model": {
                 "val": "27981132563",
