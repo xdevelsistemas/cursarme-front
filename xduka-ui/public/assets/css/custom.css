@@ -128,3 +128,19 @@ body {
         padding-top: 0!important;
     }
 }
+
+/* RESET PASSWORD */
+p.infoReset {
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: #fff;
+    padding-top: 6%;
+}
+div.paddingReset {
+    padding: 3%
+}
+div.bottomReset {
+    width: 250px;
+}
