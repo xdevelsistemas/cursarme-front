@@ -12,6 +12,15 @@ module.exports = function (app, passport) {
         res.redirect('/mockup/strings');
     });
 
+    app.get('/resetarsenha',
+        function(req,res){
+            res.render('resetpass',{
+                title: 'Resetar senha',
+                message: ''
+            })
+        }
+    );
+
     // LOGIN ===============================
     app.get('/login',
         function (req, res, next) {
