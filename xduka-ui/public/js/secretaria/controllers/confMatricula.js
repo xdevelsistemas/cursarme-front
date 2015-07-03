@@ -94,8 +94,14 @@
                     editFunc: function(){
                         vm.disableLimpar = true;
                     },
-                    editInscr: vm.editarInscr
+                    editInscr: vm.editarInscr,
+
+                    verificaEdit: verificaEdit
                 };
+
+                function verificaEdit(){
+                    return true
+                }
 
                 vm.selectPhoneType = function (item, model) {
                     vm._model.telefone.mask = tipoTelefone.getMskPhone(model);
