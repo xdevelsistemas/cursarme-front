@@ -274,6 +274,7 @@
       {"id": "3", "text": "Divorciado(a)"},
       {"id": "4", "text": "Viúvo(a)"},
       {"id": "5", "text": "Separado(a)"},
+      {"id": "5", "text": "Separado(a)"},
       {"id": "6", "text": "Companheiro(a)"}
     ],
     "model": {"val": "", "err": ""}
@@ -534,7 +535,7 @@
     "required": false
   },
   "desconto": {
-    "label": "Desconto(%)",
+    "label": "Desconto",
     "type": "text",
     "name": "desconto",
     "required": false,

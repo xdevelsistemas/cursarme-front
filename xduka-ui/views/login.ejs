@@ -38,6 +38,15 @@
                     <div style="background: url('assets/xduka/img/logo.png') center no-repeat; height: 140px; background-size: contain"></div>
                 </a>
 
+                <!-- show any messages that come back with authentication -->
+                <% if (message.length > 0) { %>
+                <div class="alert alert-danger"><%= message %></div>
+                <% } %>
+
+                <div id="msgErro" class="alert alert-danger" style="display: none"></div>
+
+                <div id="msgSuccess" class="alert alert-success" style="display: none"></div>
+
                 <!--<p class="description">Dear user, log in to access the admin area!</p>-->
 
                 <!-- progress bar indicator -->
@@ -109,17 +118,19 @@
 
                 </form>
 
-                <div id="recallSucess" class="col-md-12" style="display: none">
+                <!--<div id="recallSucess" class="col-md-12" style="display: none">
                     <p class="text-sucess">Sucesso! Em breve você receberá um email com os passos necessários para recuperar sua senha.</p>
                 </div>
 
                 <div id="recallEmail404" class="col-md-12" style="display: none">
                     <p style="color: rgb(253, 73, 82)">O endereço de email informado não está cadastrado! Por favor insira o email cadastrado para recuperar sua conta.</p>
-                </div>
+                </div>-->
 
                 <div class="login-bottom-links">
                     <a href="#" class="link" data-bind="event:{click: function(){$root.esqueceuSenha();} }" data-toggle="modal" data-target="#esqueceuSenha">Esqueceu
                         sua senha?</a>
+                    <br/>
+                    <button type="button" class="btn btn-info btn-lg btn-icon icon-left pull-right" onclick="$.passRecall.testandoToken('Aa64fASF5535aasf5457ca')"><i class="entypo-check"></i>Testar token</button>
                     <br/>
                     © 2014 xDuka Desenvolvido por <a href="#"><u>xDevel</u></a>
                 </div>
