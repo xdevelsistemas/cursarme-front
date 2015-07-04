@@ -21,6 +21,16 @@ module.exports = function (app, passport) {
         }
     );
 
+    app.get('/resetarsenha?',
+        function(req,res){
+            res.render('resetpass',{
+                title: 'Resetar senha',
+                message: '',
+                dataUser: req.params.data
+            })
+        }
+    );
+
     // LOGIN ===============================
     app.get('/login',
         function (req, res, next) {
