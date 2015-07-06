@@ -38,15 +38,6 @@
                     <div style="background: url('assets/xduka/img/logo.png') center no-repeat; height: 140px; background-size: contain"></div>
                 </a>
 
-                <!-- show any messages that come back with authentication -->
-                <% if (message.length > 0) { %>
-                <div class="alert alert-danger"><%= message %></div>
-                <% } %>
-
-                <div id="msgErro" class="alert alert-danger" style="display: none"></div>
-
-                <div id="msgSuccess" class="alert alert-success" style="display: none"></div>
-
                 <!--<p class="description">Dear user, log in to access the admin area!</p>-->
 
                 <!-- progress bar indicator -->
@@ -72,10 +63,12 @@
 
                         <!-- show any messages that come back with authentication -->
                         <% if (message.length > 0) { %>
-                        <div class="alert alert-danger text-center" style="width: 320px">
+                        <div id="msgAlert" class="alert alert-danger text-center" style="width: 320px">
                             <p class="text-danger"><i class="entypo-info"></i><%= message %></p>
                         </div>
                         <% } %>
+                        <div id="msgErro" class="alert alert-danger text-center" style="display: none"></div>
+                        <div id="msgSuccess" class="alert alert-success" style="display: none"></div>
 
                         <div class="input-group">
                             <div class="input-group-addon">

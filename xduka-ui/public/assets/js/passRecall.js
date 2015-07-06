@@ -20,9 +20,11 @@ $.passRecall = (function($){
                     url: '/api/resetpassword/' + email,
                     success: function(data) {
                         if (data.msgErro) {
+                            $('#msgAlert').attr({'style': 'display: none'});
                             $('#msgErro').text(data.msgErro).attr({'style': 'display: block'});
                         } else {
                             if (data.msgSuccess) {
+                                $('#msgAlert').attr({'style': 'display: none'});
                                 $('#msgSuccess').text(data.msgSuccess).attr({'style': 'display: block'});
                             }
                         }
