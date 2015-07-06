@@ -1,5 +1,6 @@
 var isLoggedIn = require('../services/isLoggedIn.js');
 var isNotLoggedIn = require('../services/isNotLoggedIn.js');
+
 module.exports = function (app, passport) {
 //    var express = require('express');
 
@@ -12,21 +13,15 @@ module.exports = function (app, passport) {
         res.redirect('/mockup/strings');
     });
 
-    app.get('/resetarsenha',
+    app.get('/resetarsenha/:token',
         function(req,res){
-            res.render('resetpass',{
-                title: 'Resetar senha',
-                message: ''
-            })
-        }
-    );
+            var token = req.params.token,
+                dataRes = {};
 
-    app.get('/resetarsenha?',
-        function(req,res){
             res.render('resetpass',{
                 title: 'Resetar senha',
                 message: '',
-                dataUser: req.params.data
+                dataUser: dataRes
             })
         }
     );
