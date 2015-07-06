@@ -144,3 +144,17 @@ div.paddingReset {
 div.bottomReset {
     width: 250px;
 }
+
+@font-face {
+
+    font-family: "err";
+    src: url("../fonts/GermaniaOne-Regular.ttf") format("truetype");
+
+}
+
+.errNumber {
+    font-family: err!important;
+    padding: 0!important;
+    font-size: 14em!important;
+
+}
