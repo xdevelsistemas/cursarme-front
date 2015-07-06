@@ -43,8 +43,8 @@ $.passRecall = (function($){
         }
     };
 
-    var testandoToken = function (id) {
-        location.href="/api/resetpassword/" + id;
+    var testandoToken = function (token) {
+        location.href="/api/resetpassword/" + token;
         /*$.ajax({
             type: 'GET',
             data: id,
@@ -55,9 +55,22 @@ $.passRecall = (function($){
         });*/
     };
 
+    var novaSenha = function (dados) {
+        /*$.ajax({
+            type: 'POST',
+            data: dados,
+            url: '/api/resetpassword/' + dados.email + '/' + dados.password + '/' + dados.token,
+            success: function(data) {
+                location.href = '/resetarsenha/' + data;
+            }
+         });*/
+        console.log(dados);
+    };
+
     return {
-        isEmail: isEmail,
         enviar: enviar,
+        isEmail: isEmail,
+        novaSenha: novaSenha,
         testandoToken: testandoToken
     }
 })(jQuery);

@@ -33,7 +33,7 @@
                 <div class="col-md-12 text-center">
                     <p class="infoReset">Olá, <%- dataUser.name %><br>preencha os campos abaixo para alterar sua senha</p>
                 </div>
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="/api/resetpassword" method="post">
 
                     <div class="row">
 
@@ -45,16 +45,18 @@
                             </div>
                             <% } %>
 
+                            <input type="hidden" name="dados[token]" value="<%- dataUser.token %>" />
+                            <input type="hidden" name="dados[email]" value="<%- dataUser.email %>" />
                             <div class="col-md-4 col-sm-5 col-xs-12 col-sm-offset-1 col-md-offset-2 paddingReset">
                                 <div class="form-group">
                                     <label for="novaSenha">Nova senha</label>
-                                    <input id="novaSenha" class="form-control" type="password"/>
+                                    <input id="novaSenha" name="newpass[password]" class="form-control" type="password"/>
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-5 col-xs-12 paddingReset">
                                 <div class="form-group">
                                     <label for="novaSenha">Confirmação da nova senha</label>
-                                    <input id="novaSenha" class="form-control" type="password"/>
+                                    <input id="novaSenha" name="newpass[confirm]" class="form-control" type="password"/>
                                 </div>
                             </div>
 
@@ -64,7 +66,7 @@
                     </div>
                     <div class="row">
                         <div class="text-center bottomReset centered center-block">
-                            <button type="button"
+                            <button type="submit"
                                     class="btn btn-blue btn-icon btn-blocK btn-lg btn-block" style="white-space: normal">
                                 Salvar
                                 <i class="entypo-check"></i>
