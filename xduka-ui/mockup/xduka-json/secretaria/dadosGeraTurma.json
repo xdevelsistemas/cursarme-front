@@ -14,6 +14,7 @@
           "id": "25AB",
           "text": "25AB",
           "param": "2012/06",
+          "dataInicio": 1436297309456,
           "vagas": {
             "preenchidas": 25,
             "incompletas": 15,
@@ -37,6 +38,7 @@
           "id": "20CD",
           "text": "20CD",
           "param": "2013/06",
+          "dataInicio": 1436297309456,
           "vagas": {
             "preenchidas": 28,
             "incompletas": 20,
@@ -60,6 +62,7 @@
           "id": "15EF",
           "text": "15EF",
           "param": "2014/06",
+          "dataInicio": 1436297309456,
           "vagas": {
             "preenchidas": 35,
             "incompletas": 9,
@@ -83,6 +86,7 @@
           "id": "B12",
           "text": "B12",
           "param": "2015/06",
+          "dataInicio": 1436297309456,
           "vagas": {
             "preenchidas": 25,
             "incompletas": 12,
