@@ -1,5 +1,6 @@
-var isLoggedIn = require('../services/isLoggedIn.js');
-var isNotLoggedIn = require('../services/isNotLoggedIn.js');
+var isLoggedIn = require('../services/isLoggedIn.js'),
+    isNotLoggedIn = require('../services/isNotLoggedIn.js'),
+    http = require('http');
 
 module.exports = function (app, passport) {
 //    var express = require('express');
@@ -16,7 +17,20 @@ module.exports = function (app, passport) {
     app.get('/resetarsenha/:token',
         function(req,res){
             var token = req.params.token,
-                dataRes = {};
+                dataRes = {},
+                options = {
+                    host: 'localhost',
+                    port: 3000,
+                    path: '/api/ressword/' + token
+                };
+
+            http.get(options, function(resp) {
+                resp.on('data', function(data) {
+                    console.log(data);
+                })
+            }).on("error", function(e){
+                console.log("Error: " + e.message);
+            });
 
             res.render('resetpass',{
                 title: 'Resetar senha',

@@ -44,7 +44,7 @@ $.passRecall = (function($){
     };
 
     var testandoToken = function (token) {
-        location.href="/api/resetpassword/" + token;
+        location.href="/resetarsenha/" + token;
         /*$.ajax({
             type: 'GET',
             data: id,
