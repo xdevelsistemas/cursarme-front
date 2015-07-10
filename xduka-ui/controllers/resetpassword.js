@@ -28,7 +28,7 @@ function getDataUser(req, res) {
             return data.token == token;
         })[0];
     dataUser ?
-        res.redirect('/resetarsenha/' + token, dataUser):
+        res.render('resetpass', {title: 'Resetar senha',message: '', dataUser: dataUser}):
         res.render('login', {title: 'Login', "message": "Token expirado, por favor solicite outra nova senha"});
 }
 
