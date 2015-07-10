@@ -21,22 +21,28 @@ module.exports = function (app, passport) {
                 options = {
                     host: 'localhost',
                     port: 3000,
-                    path: '/api/ressword/' + token
+                    path: '/api/resetpassword/' + token
                 };
 
-            http.get(options, function(resp) {
-                resp.on('data', function(data) {
-                    console.log(data);
-                })
-            }).on("error", function(e){
-                console.log("Error: " + e.message);
-            });
+            var callback = function(response) {
+                response.on('data', function (data) {
+                    dataRes = JSON.parse(data);
+                });
+                response.on('end', function () {
+                    if (dataRes.msgErro && dataRes.msgErro != '') {
+                        res.redirect('/login');
+                    } else {
+                        res.render('resetpass', {
+                            title: 'Resetar senha',
+                            message: '',
+                            dataUser: dataRes
+                        });
+                    }
+                    // your code here if you want to use the results !
+                });
+            };
 
-            res.render('resetpass',{
-                title: 'Resetar senha',
-                message: '',
-                dataUser: dataRes
-            })
+            http.request(options, callback).end();
         }
     );
 

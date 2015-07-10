@@ -15,10 +15,10 @@ function putResetPassword(req, res) {
     var email = req.params.email;
 
     if (isEmail(email)) {
-        res.json({"msgSuccess": "Sucesso! Em breve você receberá um email para " + email + " com os passos necessários para recuperar sua senha."});
+        res.json({"msgSuccess": "Sucesso! Em breve enviaremos um email para " + email + " com os passos necessários para recuperar sua senha.", "msgErro": ""});
         //res.json({"message": "O endereço de email informado não está cadastrado! Por favor insira o email cadastrado para recuperar sua conta."});
     } else {
-        res.json({"message": "Email inválido"});
+        res.json({"msgSuccess": "", "msgErro": "Email inválido"});
     }
 }
 
@@ -29,19 +29,18 @@ function getDataUser(req, res) {
         })[0];
     dataUser ?
         res.json(dataUser):
-        res.render('login', {title: 'Login', "message": "Token expirado, por favor solicite outra nova senha"});
+        res.json({"msgSuccess": "", "msgErro": "Token expirado, por favor solicite outra nova senha"});
 }
 
 function putDataResetPassword(req, res) {
-    var email = req.body.dados.email,
-        pw = req.body.newpass.password,
-        token = req.body.dados.token;
+    var email = req.params.email,
+        pw = req.params.passwd,
+        token = req.params.token;
 
-    /*   Senha enviada com sucesso   */
+    /* msg com sucesso*/
 
-    /*   //   */
-
-    res.render('login', {title: 'Login', "message": "", "msgSuccess": "Senha enviada com sucesso"});
+    res.json({"msgSuccess": "Senha alterada com sucesso.", "msgErro": ""});
+    //res.json({"msgSuccess": "", "msgErro": "Token expirado, solicite novamente outra nova senha."});
 }
 
 function isEmail(email){

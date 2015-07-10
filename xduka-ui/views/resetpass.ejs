@@ -33,7 +33,8 @@
                 <div class="col-md-12 text-center">
                     <p class="infoReset">Olá, <%- dataUser.name %><br>preencha os campos abaixo para alterar sua senha</p>
                 </div>
-                <form class="form-horizontal" action="/api/resetpassword" method="post">
+                <!--<form class="form-horizontal" action="/api/resetpassword" method="post">-->
+                <form class="form-horizontal">
 
                     <div class="row">
 
@@ -45,19 +46,27 @@
                             </div>
                             <% } %>
 
-                            <input type="hidden" name="dados[token]" value="<%- dataUser.token %>" />
-                            <input type="hidden" name="dados[email]" value="<%- dataUser.email %>" />
+                            <div id="divMsgErro" class="alert alert-danger text-center centered center-block" style="width: 320px; display: none">
+                                <p id="msgErro" class="text-danger"><i class="entypo-info"></i></p>
+                            </div>
+
+                            <div id="divMsgSuccess" class="alert alert-success text-center centered center-block" style="width: 320px; display: none">
+                                <p id="msgSuccess" class="text-success"><i class="entypo-info"></i></p>
+                            </div>
+
                             <div class="col-md-4 col-sm-5 col-xs-12 col-sm-offset-1 col-md-offset-2 paddingReset">
                                 <div class="form-group">
                                     <label for="novaSenha">Nova senha</label>
-                                    <input id="novaSenha" name="newpass[password]" class="form-control" type="password"/>
+                                    <input id="novaSenhaPw" name="newpass[password]" class="form-control" type="password"/>
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-5 col-xs-12 paddingReset">
                                 <div class="form-group">
                                     <label for="novaSenha">Confirmação da nova senha</label>
-                                    <input id="novaSenha" name="newpass[confirm]" class="form-control" type="password"/>
+                                    <input id="novaSenhaCp" name="newpass[confirm]" class="form-control" type="password"/>
                                 </div>
+
+                                <p id="recallError" style="display: none" class="error text-danger"></p>
                             </div>
 
                         </div>
@@ -66,8 +75,9 @@
                     </div>
                     <div class="row">
                         <div class="text-center bottomReset centered center-block">
-                            <button type="submit"
-                                    class="btn btn-blue btn-icon btn-blocK btn-lg btn-block" style="white-space: normal">
+                            <button type="button"
+                                    class="btn btn-blue btn-icon btn-blocK btn-lg btn-block" style="white-space: normal"
+                                    onclick="$.passRecall.novaSenha({'pw': $('#novaSenhaPw').val(), 'cp': $('#novaSenhaCp').val(), 'email': '<%- dataUser.email%>', 'token': '<%- dataUser.token%>'})">
                                 Salvar
                                 <i class="entypo-check"></i>
                             </button>

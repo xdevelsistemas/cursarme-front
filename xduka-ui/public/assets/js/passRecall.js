@@ -56,15 +56,45 @@ $.passRecall = (function($){
     };
 
     var novaSenha = function (dados) {
-        /*$.ajax({
-            type: 'POST',
-            data: dados,
-            url: '/api/resetpassword/' + dados.email + '/' + dados.password + '/' + dados.token,
-            success: function(data) {
-                location.href = '/resetarsenha/' + data;
+
+        if (dados.pw != dados.cp) {
+            $('#recallError').attr({'style': 'display: block'});
+            $('#recallError').text('Ops! As novas senhas não são as mesmas.');
+        } else {
+            if (dados.pw.length < 6) {
+                $('#recallError').attr({'style': 'display: block'});
+                $('#recallError').text('Ops! As novas senhas devem ter no mínimo 6 caracteres.');
+            } else {
+                if (dados.pw == dados.cp) {
+                    $('#recallError').attr({'style': 'display: none'});
+                    $.ajax({
+                        type: 'POST',
+                        data: dados,
+                        url: '/api/resetpassword/' + dados.email + '/' + dados.pw + '/' + dados.token,
+                        success: function (data) {
+                            if (data.msgErro != '') {
+                                $('#msgErro').text(data.msgErro);
+                                $('#msgErro').text('oi');
+                                $('#divMsgSuccess').attr({'style': 'display: none'});
+                                $('#divMsgErro').attr({'style': 'display: block'});
+                            } else {
+                                if (data.msgSuccess != '') {
+                                    $('#msgSuccess').text(data.msgSuccess);
+                                    $('#divMsgErro').attr({'style': 'display: none'});
+                                    $('#divMsgSuccess').attr({'style': 'display: block'});
+
+                                    setTimeout(
+                                        function () {
+                                            location.href = '/login';
+                                        }, 3000
+                                    );
+                                }
+                            }
+                        }
+                    });
+                }
             }
-         });*/
-        console.log(dados);
+        }
     };
 
     return {
