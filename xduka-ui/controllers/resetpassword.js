@@ -1,5 +1,4 @@
-var dataPassword = require('../mockup/xduka-json/common/password.json'),
-    emails = {};
+var dataPassword = require('../mockup/xduka-json/common/password.json');
 
 module.exports = function() {
     var controller = {};
