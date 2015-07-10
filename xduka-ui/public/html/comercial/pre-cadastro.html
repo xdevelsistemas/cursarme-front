@@ -28,6 +28,12 @@
                 Documentação
             </a>
         </li>
+        <li>
+            <a id="cursorSetp3" data-target="#step4" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
+                <span>4</span>
+                Comp.
+            </a>
+        </li>
     </ul>
 
     <div class="tab-content">
@@ -341,6 +347,45 @@
 
         <div class="tab-pane" id="step3">
 
+            <xd-panel-collapse title="'Documentação'">
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre.testeInput" data-disable="!pre.validaCpf"></xd-input>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre.testeInput2" data-disable="!pre.validaCpf"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre.testeInput" data-disable="!pre.validaCpf"></xd-input>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre.testeInput" data-disable="!pre.validaCpf"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre.testeInput" data-disable="!pre.validaCpf"></xd-input>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre.testeInput" data-disable="!pre.validaCpf"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre.testeInput" data-disable="!pre.validaCpf"></xd-input>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre.testeInput" data-disable="!pre.validaCpf"></xd-input>
+                    </div>
+                </div>
+            </xd-panel-collapse>
+
+        </div>
+
+        <div class="tab-pane" id="step4">
+
             <xd-panel-collapse title="pre._model.documentacaoPanelCollapse.label">
                 <div class="row">
                     <div class="col-md-12">
@@ -434,11 +479,11 @@
                     </div>
                     <div class="col-md-4">
                         <xd-select data-params="pre._model.raca"
-                                  data-disable="!pre.validaCpf"></xd-select>
+                                   data-disable="!pre.validaCpf"></xd-select>
                     </div>
                     <div class="col-md-4">
                         <xd-select data-params="pre._model.estadoCivil"
-                                  data-disable="!pre.validaCpf"></xd-select>
+                                   data-disable="!pre.validaCpf"></xd-select>
                     </div>
 
                 </div>
@@ -450,7 +495,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                    <xd-input data-params="pre._model.mae"
+                        <xd-input data-params="pre._model.mae"
                                   data-disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
@@ -483,7 +528,7 @@
                     </div>
                     <div class="col-md-3">
                         <xd-select data-params="pre._model.endUf"
-                                  disable="!pre.validaCepEndUf"></xd-select>
+                                   disable="!pre.validaCepEndUf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
@@ -498,7 +543,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <xd-input-email data-params="pre._model.email"
-                                  disable="true"></xd-input-email>
+                                        disable="true"></xd-input-email>
                     </div>
                 </div>
                 <div class="row">

@@ -685,5 +685,16 @@
                 return (atual.getDate() == data.getDate() && atual.getMonth() == data.getMonth())
             }
 
+            vm.testeInput = {
+                type: 'checkbox',
+                label: 'Diploma de graduação ou certificado de conclusão de curso (2 cópias autenticadas)',
+                model: {'val': false, 'err': 'Campo obrigatório'}
+            };
+            vm.testeInput2 = {
+                type: 'checkbox',
+                label: 'Diploma de graduação ou certificado de conclusão de curso (2 cópias autenticadas)',
+                model: {'val': true}
+            };
+
         }])
 })();
