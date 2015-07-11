@@ -11,8 +11,6 @@ $.passRecall = (function($){
     };*/
     var enviar = function(email){
         if (isEmail(email)){
-            //('/api/resetpassword/:email', {"email": email});
-            //location.href="/api/resetpassword/" + email;
 
             $.ajax({
                     type: 'POST',
@@ -45,14 +43,6 @@ $.passRecall = (function($){
 
     var testandoToken = function (token) {
         location.href="/resetarsenha/" + token;
-        /*$.ajax({
-            type: 'GET',
-            data: id,
-            url: '/api/resetpassword/' + id,
-            success: function(data) {
-                location.href = '/resetarsenha/' + data;
-            }
-        });*/
     };
 
     var novaSenha = function (dados) {
@@ -61,39 +51,39 @@ $.passRecall = (function($){
             $('#recallError').attr({'style': 'display: block'});
             $('#recallError').text('Ops! As novas senhas não são as mesmas.');
         } else {
-            if (dados.pw.length < 6) {
-                $('#recallError').attr({'style': 'display: block'});
-                $('#recallError').text('Ops! As novas senhas devem ter no mínimo 6 caracteres.');
-            } else {
-                if (dados.pw == dados.cp) {
-                    $('#recallError').attr({'style': 'display: none'});
-                    $.ajax({
-                        type: 'POST',
-                        data: dados,
-                        url: '/api/resetpassword/' + dados.email + '/' + dados.pw + '/' + dados.token,
-                        success: function (data) {
-                            if (data.msgErro != '') {
-                                $('#msgErro').text(data.msgErro);
-                                $('#msgErro').text('oi');
-                                $('#divMsgSuccess').attr({'style': 'display: none'});
-                                $('#divMsgErro').attr({'style': 'display: block'});
-                            } else {
-                                if (data.msgSuccess != '') {
-                                    $('#msgSuccess').text(data.msgSuccess);
-                                    $('#divMsgErro').attr({'style': 'display: none'});
-                                    $('#divMsgSuccess').attr({'style': 'display: block'});
+        if (dados.pw.length < 6) {
+            $('#recallError').attr({'style': 'display: block'});
+            $('#recallError').text('Ops! As novas senhas devem ter no mínimo 6 caracteres.');
+        } else {
+        if (dados.pw == dados.cp) {
+            $('#recallError').attr({'style': 'display: none'});
+            $.ajax({
+                type: 'POST',
+                data: dados,
+                url: '/api/resetpassword/' + dados.email + '/' + dados.pw + '/' + dados.token,
+                success: function (data) {
+                    if (data.msgErro != '') {
+                        $('#msgErro').text(data.msgErro);
+                        $('#msgErro').text('oi');
+                        $('#divMsgSuccess').attr({'style': 'display: none'});
+                        $('#divMsgErro').attr({'style': 'display: block'});
+                    } else {
+                    if (data.msgSuccess != '') {
+                        $('#msgSuccess').text(data.msgSuccess);
+                        $('#divMsgErro').attr({'style': 'display: none'});
+                        $('#divMsgSuccess').attr({'style': 'display: block'});
 
-                                    setTimeout(
-                                        function () {
-                                            location.href = '/login';
-                                        }, 3000
-                                    );
-                                }
-                            }
-                        }
-                    });
+                        setTimeout(
+                            function () {
+                                location.href = '/login';
+                            }, 3000
+                        );
+                    }
+                    }
                 }
-            }
+            });
+        }
+        }
         }
     };
 

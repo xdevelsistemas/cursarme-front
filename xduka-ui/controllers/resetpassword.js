@@ -33,7 +33,7 @@ function getDataUser(req, res) {
 
 function putDataResetPassword(req, res) {
     var email = req.params.email,
-        pw = req.params.passwd,
+        pw = req.params.password,
         token = req.params.token;
 
     /* msg com sucesso*/

@@ -11,7 +11,7 @@ module.exports = function (app, passport) {
     app.get('/api/resetpassword/:token', controller.getDataUser);
     //
     //3) post /api/resetpassword com parametros   { email : email, password: password, token: token}
-    app.post('/api/resetpassword/:email/:passwd/:token', controller.putDataResetPassword);
+    app.post('/api/resetpassword/:email/:password/:token', controller.putDataResetPassword);
     //
     //
     return app;
