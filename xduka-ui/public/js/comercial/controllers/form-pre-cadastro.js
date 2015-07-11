@@ -58,6 +58,14 @@
             // temporarias de dados
             vm.tempItem = {}; /* Guarda um obj para confirmar a edição em caso de uma edição quando um cadastro já está sendo editado */
 
+            // Habilitar ou desabilitar checks
+            vm.isMestrado = false;
+            vm.isTeologia = false;
+            vm.isPosGrad = false;
+            vm.isContinuada = false;
+            vm.isComplementacao = false;
+
+
             // ==== REQUISIÇÕES ==== //
 
             comercialPromise
@@ -67,21 +75,25 @@
                     vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
                 })
                 .catch(function(erro){
-                    console.log("\n" + erro.data + "\n");
+                    if (erro.status == '400') {
+                        console.log(erro)
+                    }
                 });
 
             viewInscrPromise
-                .then(function(data2) {
-                    vm._viewInscr = data2;
+                .then(function(data) {
+                    vm._viewInscr = data;
 
-                    for (var i = 0; i < data2.list.length; i++) {
-                        for (var j = 0; j < data2.list[i].listaCheques.length; j++) {
-                            vm._viewInscr.list[i].listaCheques[j].data = new Date(data2.list[i].listaCheques[j].data);
+                    for (var i = 0; i < data.list.length; i++) {
+                        for (var j = 0; j < data.list[i].listaCheques.length; j++) {
+                            vm._viewInscr.list[i].listaCheques[j].data = new Date(data.list[i].listaCheques[j].data);
                         }
                     }
                 })
                 .catch(function(erro) {
-                    console.log("\n" + erro.data + "\n");
+                    if (erro.status == '400') {
+                        console.log(erro)
+                    }
                 });
 
 
@@ -118,7 +130,9 @@
                             }
                         })
                         .catch(function (erro) {
-                            console.log(erro);
+                            if (erro.status == '400') {
+                                console.log(erro)
+                            }
                         });
                 }
             };
@@ -170,14 +184,18 @@
                                             vm._model.desconto.model.aux = data.desconto;
                                         })
                                         .catch(function (erro) {
-                                            console.log(erro);
+                                            if (erro.status == '400') {
+                                                console.log(erro)
+                                            }
                                         })
                                 }
                             }
 
                         }
                     }catch(erro){
-                        console.log("Erro:\n" + erro);
+                        if (erro.status == '400') {
+                            console.log(erro)
+                        }
                     }
                 } else {
                     vm.validaCpf = false;
@@ -286,11 +304,16 @@
 
             vm.qtdParcelasAplic = function(item, model) {
                 if (model == '1'){
+                    var perc = 1 - ((vm._model.formaPagamentoPag.valores.avista) / vm._model.formaPagamentoPag.valores.integral);
+
                     vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.avista;
+                    vm._model.desconto.model.val = vm._model.desconto.model.aux + perc;
+
                     vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
                 } else {
+                    vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
                     vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
-                        (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val / 100));
+                        (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val));
 
                     vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
                 }
@@ -312,15 +335,15 @@
             vm.selectChequeStep2 = function (item, model) {
                 vm.btnAddChequeStep2 = item.tpCheque;
 
-                var perc = 100 - ((vm._model.formaPagamentoPag.valores[item.name] * 100) / vm._model.formaPagamentoPag.valores.integral);
-                vm._model.desconto.model.val = vm._model.desconto.model.aux + perc;
+                vm._model.desconto.model.descPag = 1 - ((vm._model.formaPagamentoPag.valores[item.name]) / vm._model.formaPagamentoPag.valores.integral);
+                vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
 
                 vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
-                    (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val / 100));
+                    (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val));
             };
 
             vm.selectPhoneType = function (item, model) {
-                vm._model.telefone.mask = tipoTelefone.getMskPhone(model);
+                vm._model.telefone.mask = tipoTelefone.getMaskPhone(model);
             };
 
             vm.sendInscricaoCompleta = function() {
@@ -336,7 +359,9 @@
                         disableBtn()
                     })
                     .catch(function (erro) {
-                        console.log("\n" + erro.data + "\n")
+                        if (erro.status == '400') {
+                            console.log(erro)
+                        }
                     });
             };
 
@@ -360,7 +385,9 @@
                         }
                     })
                     .catch(function (erro) {
-                        console.log("\n" + erro.data + "\n")
+                        if (erro.status == '400') {
+                            console.log(erro)
+                        }
                     });
             };
 
@@ -374,7 +401,7 @@
                 $timeout(function () {
                     vm.disableAtualiza = $('#step0').attr('class').indexOf('active') == -1;
                     vm.disableAnterior = $('#step0').attr('class').indexOf('active') != -1;
-                    vm.disableProximo = $('#step3').attr('class').indexOf('active') != -1;
+                    vm.disableProximo = $('#step4').attr('class').indexOf('active') != -1;
                 }, 300);
             }
 
@@ -385,69 +412,66 @@
             function editarInscr(item){
 
                 if (!vm.editing) {
-                    var getUnidadePromise = $resource('/api/comercial/dados-curso').get().$promise,
-                        curso = {};
+                    var getUnidadePromise = $resource('/api/comercial/dados-curso').get().$promise;
 
                     getUnidadePromise
                         .then(function (data) {
+                            var editVerifCpfPromise = $resource('/api/comercial/verifica-cpf/:cpf').get({"cpf": item.cpf.model.val}).$promise;
+
                             vm.editing = true;
                             vm.showAlert = true;
                             vm.disableLimpar = true;
                             vm.validaCpf = true;
 
-                            vm.selectCursoTipoCurso = true;
-                            vm.selectCursoArea = true;
-                            vm.selectCursoCurso = true;
-                            vm.selectCursoVagas = true;
-
                             vm._model.unidade.list = data.unidade.list;
 
-                            vm._model.tipoCurso.list = $.grep(vm._model.unidade.list, function (e) {
+                            vm.unidadeChange($.grep(vm._model.unidade.list, function (e) {
                                 return e.id == item.unidade.model.val;
-                            })[0].tipoCursos;
+                            })[0], item.unidade.model.val);
 
-                            vm._model.area.list = $.grep(vm._model.tipoCurso.list, function (e) {
+                            vm.tipoCursoChange($.grep(vm._model.tipoCurso.list, function (e) {
                                 return e.id == item.tipoCurso.model.val;
-                            })[0].areas;
+                            })[0], item.tipoCurso.model.val);
 
-                            vm._model.curso.list = $.grep(vm._model.area.list, function (e) {
+                            vm.areaChange(vm._model.curso.list = $.grep(vm._model.area.list, function (e) {
                                 return e.id == item.area.model.val;
-                            })[0].cursos;
+                            })[0], item.area.model.val);
 
-
-                            // definindo valor de inscrição
-                            //vm._model.valorInscricao.model.val = item.valorInscricao.model.val;
-                            //vm._model.valorIntegral.model.val = item.valorIntegral.model.val;
-
-                            curso = $.grep(vm._model.curso.list, function (e) {
+                            vm.cursoChange($.grep(vm._model.curso.list, function (e) {
                                 return e.id == item.curso.model.val;
-                            })[0];
-
-                            vm._model.valorInscricao.model.aux = curso.valorInscricao;
-                            vm._model.valorIntegral.model.aux = curso.valorIntegral;
-
-                            // alimentando valores referentes ao curso selecionado
-                            vm._model.descontoInscr.list = curso.descontoInscr;
-                            //vm._model.desconto.list = curso.desconto;
-                            vm._model.qtdParcelas.list = curso.qtdParcelas;
-                            vm._model.melhorData.list = curso.melhorData;
-
-
-                            // limpa a sujeira que fica no model.val quando troca de curso
-                            limpaCampoPag();
+                            })[0], item.curso.model.val);
 
                             $.extend(true, vm._model, item);
                             vm.getDadosCep(vm._model.cep.model.val);
                             vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
 
+                            vm.btnAddChequeStep1 = vm._model.formaPagamentoInscr.model.val == 2;
+                            vm.btnAddChequeStep2 = vm._model.formaPagamentoPag.model.val == 2;
+                            lista_cheques.addAll(vm._model.listaCheques);
+
+                            editVerifCpfPromise
+                                .then(function (data2) {
+                                    vm._model.desconto.model.aux = data2.desconto;
+
+                                    vm.selectChequeStep2($.grep(vm._model.formaPagamentoPag.list, function (e) {
+                                        return e.id == vm._model.formaPagamentoPag.model.val;
+                                    })[0], vm._model.formaPagamentoPag.model.val);
+
+                                    vm.qtdParcelasAplic($.grep(vm._model.qtdParcelas.list, function (e) {
+                                        return e.id == vm._model.qtdParcelas.model.val;
+                                    })[0], vm._model.qtdParcelas.model.val);
+                                })
+                                .catch(function (erro) {
+                                    if (erro.status == '400') {
+                                        console.log(erro)
+                                    }
+                                });
                         })
                         .catch(function (erro) {
-                            console.log(erro);
+                            if (erro.status == '400') {
+                                console.log(erro)
+                            }
                         });
-
-                    vm.btnAddChequeStep1 = item.formaPagamentoInscr.model.val == 2;
-                    vm.btnAddChequeStep2 = item.formaPagamentoPag.model.val == 2;
-                    lista_cheques.addAll(item.listaCheques);
                 }else{
                     $('#confirmEdit').modal('show');
                     vm.tempItem = item;
@@ -497,6 +521,7 @@
                 vm.limpaFormStep1();
                 vm.limpaFormStep2();
                 vm.limpaFormStep3();
+                vm.limpaFormStep4();
 
                 // limpando cheques adicionados
                 lista_cheques.clean();
@@ -561,6 +586,23 @@
             };
 
             vm.limpaFormStep3 = function() {
+                vm._model.checkFoto34.model.val = false;
+                vm._model.checkCertidao.model.val = false;
+                vm._model.checkReservista.model.val = false;
+                vm._model.checkComprovanteResidencia.model.val = false;
+                vm._model.checkCpf.model.val = false;
+                vm._model.checkDiplomaGrad.model.val = false;
+                vm._model.checkDiploma2grau.model.val = false;
+                vm._model.checkDiplomaSeminario.model.val = false;
+                vm._model.checkHistoricoGraduacao.model.val = false;
+                vm._model.checkHistoricoSeminario.model.val = false;
+                vm._model.checkTitulo.model.val = false;
+                vm._model.checkRg.model.val = false;
+                vm._model.checkFichaInscr.model.val = false;
+                vm._model.checkTaxaInscr.model.val = false;
+            };
+
+            vm.limpaFormStep4 = function() {
 
                 vm._model.dataExp.model.val = '';
                 vm._model.dataExp.model.err = '';
@@ -655,11 +697,29 @@
                 editFunc: function(){
                     vm.disableLimpar = true;
                 },
-                editInscr: vm.editarInscr
+                editInscr: vm.editarInscr,
+
+                verificaEdit: verificaEdit
             };
 
             vm.disableSendSucess = function(){
                 vm.sendSucess = false;
+            };
+
+            function verificaEdit(data){
+                data = new Date(data); var atual = new Date();
+                return (atual.getDate() == data.getDate() && atual.getMonth() == data.getMonth())
+            }
+
+            vm.testeInput = {
+                type: 'checkbox',
+                label: 'Diploma de graduação ou certificado de conclusão de curso (2 cópias autenticadas)',
+                model: {'val': false, 'err': 'Campo obrigatório'}
+            };
+            vm.testeInput2 = {
+                type: 'checkbox',
+                label: 'Diploma de graduação ou certificado de conclusão de curso (2 cópias autenticadas)',
+                model: {'val': true}
             };
 
         }])

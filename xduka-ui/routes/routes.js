@@ -1,5 +1,6 @@
 var isLoggedIn = require('../services/isLoggedIn.js');
 var isNotLoggedIn = require('../services/isNotLoggedIn.js');
+
 module.exports = function (app, passport) {
 //    var express = require('express');
 
@@ -11,6 +12,33 @@ module.exports = function (app, passport) {
     app.get('/strings', function (req, res) {
         res.redirect('/mockup/strings');
     });
+
+    app.get('/resetarsenha/:token',
+        function(req,res){
+            var token = req.params.token,
+                dataRes = {};
+
+            res.render('resetpass',{
+                title: 'Resetar senha',
+                message: '',
+                dataUser: dataRes
+            })
+        }
+    );
+
+    //404 ================================
+    app.get('/404',
+        function(req,res){
+            res.render('404')
+        }
+    );
+
+    //500 ================================
+    app.get('/500',
+        function(req,res){
+            res.render('500')
+        }
+    );
 
     // LOGIN ===============================
     app.get('/login',

@@ -28,6 +28,12 @@
                 Documentação
             </a>
         </li>
+        <li>
+            <a id="cursorSetp3" data-target="#step4" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
+                <span>4</span>
+                Comp.
+            </a>
+        </li>
     </ul>
 
     <div class="tab-content">
@@ -303,7 +309,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params="pre._model.desconto" data-disable="true"></xd-input>
+                        <xd-input-percent data-params="pre._model.desconto" data-disable="true"></xd-input-percent>
                     </div>
                 </div>
                 <div class="row">
@@ -340,6 +346,69 @@
         </div>
 
         <div class="tab-pane" id="step3">
+
+            <xd-panel-collapse title="'Documentação'">
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre._model.checkFoto34" data-disable="(!pre.isMestrado||!pre.isTeologia||!pre.isPosGrad||!pre.isContinuada||!pre.isComplementacao)"></xd-input-checks>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre._model.checkCertidao" data-disable="(!pre.isMestrado||!pre.isTeologia||!pre.isPosGrad||!pre.isContinuada||!pre.isComplementacao)"></xd-input-checks>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre._model.checkReservista" data-disable="(!pre.isMestrado||!pre.isTeologia||!pre.isPosGrad||!pre.isContinuada||!pre.isComplementacao)"></xd-input-checks>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre._model.checkComprovanteResidencia" data-disable="(!pre.isMestrado||!pre.isTeologia||!pre.isPosGrad||!pre.isContinuada||!pre.isComplementacao)"></xd-input-checks>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre._model.checkCpf" data-disable="(!pre.isMestrado||!pre.isTeologia||!pre.isPosGrad||!pre.isContinuada||!pre.isComplementacao)"></xd-input-checks>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre._model.checkDiplomaGrad" data-disable="(!pre.isMestrado||!pre.isTeologia||!pre.isPosGrad||!pre.isContinuada||!pre.isComplementacao)"></xd-input-checks>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre._model.checkDiploma2grau" data-disable="(!pre.isMestrado||!pre.isTeologia||!pre.isPosGrad||!pre.isContinuada||!pre.isComplementacao)"></xd-input-checks>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre._model.checkDiplomaSeminario" data-disable="(!pre.isMestrado||!pre.isTeologia||!pre.isPosGrad||!pre.isContinuada||!pre.isComplementacao)"></xd-input-checks>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre._model.checkHistoricoGraduacao" data-disable="(!pre.isMestrado||!pre.isTeologia||!pre.isPosGrad||!pre.isContinuada||!pre.isComplementacao)"></xd-input-checks>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre._model.checkHistoricoSeminario" data-disable="(!pre.isMestrado||!pre.isTeologia||!pre.isPosGrad||!pre.isContinuada||!pre.isComplementacao)"></xd-input-checks>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre._model.checkTitulo" data-disable="(!pre.isMestrado||!pre.isTeologia||!pre.isPosGrad||!pre.isContinuada||!pre.isComplementacao)"></xd-input-checks>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre._model.checkRg" data-disable="(!pre.isMestrado||!pre.isTeologia||!pre.isPosGrad||!pre.isContinuada||!pre.isComplementacao)"></xd-input-checks>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre._model.checkFichaInscr" data-disable="(!pre.isMestrado||!pre.isTeologia||!pre.isPosGrad||!pre.isContinuada||!pre.isComplementacao)"></xd-input-checks>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-input-checks data-params="pre._model.checkTaxaInscr" data-disable="(!pre.isMestrado||!pre.isTeologia||!pre.isPosGrad||!pre.isContinuada||!pre.isComplementacao)"></xd-input-checks>
+                    </div>
+                </div>
+            </xd-panel-collapse>
+
+        </div>
+
+        <div class="tab-pane" id="step4">
 
             <xd-panel-collapse title="pre._model.documentacaoPanelCollapse.label">
                 <div class="row">
@@ -434,11 +503,11 @@
                     </div>
                     <div class="col-md-4">
                         <xd-select data-params="pre._model.raca"
-                                  data-disable="!pre.validaCpf"></xd-select>
+                                   data-disable="!pre.validaCpf"></xd-select>
                     </div>
                     <div class="col-md-4">
                         <xd-select data-params="pre._model.estadoCivil"
-                                  data-disable="!pre.validaCpf"></xd-select>
+                                   data-disable="!pre.validaCpf"></xd-select>
                     </div>
 
                 </div>
@@ -450,7 +519,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                    <xd-input data-params="pre._model.mae"
+                        <xd-input data-params="pre._model.mae"
                                   data-disable="!pre.validaCpf"></xd-input>
                     </div>
                 </div>
@@ -483,7 +552,7 @@
                     </div>
                     <div class="col-md-3">
                         <xd-select data-params="pre._model.endUf"
-                                  disable="!pre.validaCepEndUf"></xd-select>
+                                   disable="!pre.validaCepEndUf"></xd-select>
                     </div>
                 </div>
                 <div class="row">
@@ -498,7 +567,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <xd-input-email data-params="pre._model.email"
-                                  disable="true"></xd-input-email>
+                                        disable="true"></xd-input-email>
                     </div>
                 </div>
                 <div class="row">

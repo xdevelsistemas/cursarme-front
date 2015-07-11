@@ -9,11 +9,11 @@ describe('Service: dataCheque test', function() {
         });
     });
 
-    it('dataCheque definido', function() {
+    it('-> dataCheque definido', function() {
         expect(dc).toBeDefined();
     });
 
-    it('Testando inserção e requisição da data', function() {
+    it('-> Testando inserção e requisição da data', function() {
         var data = "2015-06-10T22:08:15.633Z";
 
         expect(dc.setData(data));

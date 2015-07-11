@@ -55,9 +55,9 @@ function putVerificaCpf(req, res) {
     dados.msg = "";
 
     if (dadosVrf) {
-        res.json({"dados": dados, "dadosCurso": dadosCurso, "exAlunoConv": true, "desconto": 10});
+        res.json({"dados": dados, "dadosCurso": dadosCurso, "exAlunoConv": true, "desconto": 0.1});
     } else {
-        res.json({"dados": dados, "dadosCurso": dadosCurso, "exAlunoConv": false, "desconto": 0});
+        res.json({"dados": dados, "dadosCurso": dadosCurso, "exAlunoConv": false, "desconto": 0.0});
     }
 }
 
@@ -102,7 +102,7 @@ function putDadosInscricaoParcial(req, res) {
         alteraDataCheque(dataSent.model, setDataInt);
 
         /*  --- Resultado recebido do BackEnd (/#Banco de Dados#/)      */
-        /*TODO   Alterar: dataSent.model.(...) para a sintaxe real da conversa com o BackEnd   */
+        /*TODO   Alterar: dataSent.model.(...) para a sintaxe real   da conversa com o BackEnd   */
 
 /*-----------------------------------------------------------------------------------------------------------------------*/
 /*  ==============  =========   ==========  =========== ============    =============   ============    =========== =====*/

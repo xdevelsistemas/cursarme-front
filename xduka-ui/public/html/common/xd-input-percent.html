@@ -12,9 +12,9 @@
             <input data-ng-model="params.model.val"
                    title="{{params.label}}"
                    placeholder="{{params.placeholder}}"
-                   type="{{params.type || 'text'}}"
+                   type="{{params.type || text}}"
                    class="form-control heightFix"
-                   ui-mask="{{params.mask}}"
+                   ui-percentage-mask
                    name="{{params.name}}"
                    id="{{'input_'+params.name}}"
                    ng-disabled="disable"

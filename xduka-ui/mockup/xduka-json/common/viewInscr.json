@@ -14,6 +14,7 @@
   "list": [
     {
       "validacoes":[{}],
+      "dataCadastro": 1435869203305,
       "nome":{
         "model":{
           "val":"João das Couves"
@@ -253,7 +254,7 @@
       },
       "valorInscricao":{
         "model":{
-          "val":161.5
+          "val":190
         }
       },
       "formaPagamentoInscr":{
@@ -263,17 +264,17 @@
       },
       "descontoInscr":{
         "model":{
-          "val":5
+          "val":0
         }
       },
       "valorIntegral":{
         "model":{
-          "val":322
+          "val":12762
         }
       },
       "desconto":{
         "model":{
-          "val":10
+          "val":0.2208791208791209
         }
       },
       "formaPagamentoPag":{
@@ -288,7 +289,7 @@
       },
       "valorParcela":{
         "model":{
-          "val":64.40
+          "val":2552.4
         }
       },
       "melhorData":{
@@ -307,6 +308,7 @@
     },
     {
       "validacoes":[{}],
+      "dataCadastro": 1420077600000,
       "nome":{
         "model":{
           "val":"Mariana Ramos"
@@ -546,7 +548,7 @@
       },
       "valorInscricao":{
         "model":{
-          "val":161.50
+          "val":190
         }
       },
       "formaPagamentoInscr":{
@@ -556,17 +558,17 @@
       },
       "descontoInscr":{
         "model":{
-          "val":5
+          "val":0
         }
       },
       "valorIntegral":{
         "model":{
-          "val":300
+          "val":930
         }
       },
       "desconto":{
         "model":{
-          "val":10
+          "val":0.2548076923076923
         }
       },
       "formaPagamentoPag":{
@@ -581,7 +583,7 @@
       },
       "valorParcela":{
         "model":{
-          "val":90
+          "val":310
         }
       },
       "melhorData":{
@@ -611,6 +613,7 @@
     },
     {
       "validacoes":[{}],
+      "dataCadastro": 1420077600000,
       "nome":{
         "model":{
           "val":"Pedro Nascimento"
@@ -850,7 +853,7 @@
       },
       "valorInscricao":{
         "model":{
-          "val":153
+          "val":190
         }
       },
       "formaPagamentoInscr":{
@@ -860,17 +863,17 @@
       },
       "descontoInscr":{
         "model":{
-          "val":10
+          "val":0
         }
       },
       "valorIntegral":{
         "model":{
-          "val":322
+          "val":930
         }
       },
       "desconto":{
         "model":{
-          "val":10
+          "val":0.2548076923076923
         }
       },
       "formaPagamentoPag":{
@@ -880,12 +883,12 @@
       },
       "qtdParcelas":{
         "model":{
-          "val":5
+          "val":10
         }
       },
       "valorParcela":{
         "model":{
-          "val":64.40
+          "val":93
         }
       },
       "melhorData":{
@@ -927,6 +930,7 @@
     },
     {
       "validacoes":[],
+      "dataCadastro": 1420077600000,
       "nome":{
         "model":{
           "val":"Abner dos Santos"
@@ -979,7 +983,7 @@
       },
       "cpf":{
         "model":{
-          "val":"78612343201"
+          "val":"44158457700"
         }
       },
       "tituloEleitor":{
@@ -1166,7 +1170,7 @@
       },
       "valorInscricao":{
         "model":{
-          "val":153
+          "val":190
         }
       },
       "formaPagamentoInscr":{
@@ -1176,17 +1180,17 @@
       },
       "descontoInscr":{
         "model":{
-          "val":10
+          "val":0
         }
       },
       "valorIntegral":{
         "model":{
-          "val":322
+          "val":14400
         }
       },
       "desconto":{
         "model":{
-          "val":10
+          "val":0.1208791208791209
         }
       },
       "formaPagamentoPag":{
@@ -1196,12 +1200,12 @@
       },
       "qtdParcelas":{
         "model":{
-          "val":5
+          "val":3
         }
       },
       "valorParcela":{
         "model":{
-          "val":64.40
+          "val":4800
         }
       },
       "melhorData":{

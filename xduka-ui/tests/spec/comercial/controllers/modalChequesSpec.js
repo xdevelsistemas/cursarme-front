@@ -21,19 +21,27 @@ describe('Controller: ModalCheques test', function() {
         });
     });
 
-    it('ModalCheque definido', function () {
+    it('-> ModalCheque definido', function () {
         expect(modal).toBeDefined();
     });
 
-    it('25/13/2015 não é valida', function() {
+    it('-> 25/13/2015 não é valida', function() {
         expect(modal.isDate('25/13/2015')).toEqual(false);
     });
 
-    it('00/00/2015 não é valido', function() {
+    it('-> 00/00/2015 não é valido', function() {
         expect(modal.isDate('00/00/2015')).toEqual(false);
     });
 
-    it('01/02/2015 é valido', function() {
+    it('-> 01/02/2015 é valido', function() {
         expect(modal.isDate('01/02/2015')).toEqual(true);
+    });
+
+    it('-> 29/02/2015 não é valido', function() {
+        expect(modal.isDate('29/02/2015')).toEqual(false);
+    });
+
+    it('-> 29/02/2016 é valido', function() {
+        expect(modal.isDate('29/02/2016')).toEqual(true);
     });
 });

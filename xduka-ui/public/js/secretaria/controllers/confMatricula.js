@@ -66,6 +66,10 @@
                                     "progress": true
                                 },
                                 "ctext": data.list[i].area.turma.text,
+                                "ddata": {
+                                    date: true,
+                                    int: data.list[i].area.turma.dataInicio
+                                },
                                 "dtext": data.list[i].area.text
                             };
                             turma.ainput.model.val = data.list[i].area.turma.vagas.totais == data.list[i].area.turma.vagas.preenchidas;
@@ -94,8 +98,14 @@
                     editFunc: function(){
                         vm.disableLimpar = true;
                     },
-                    editInscr: vm.editarInscr
+                    editInscr: vm.editarInscr,
+
+                    verificaEdit: verificaEdit
                 };
+
+                function verificaEdit(){
+                    return true
+                }
 
                 vm.selectPhoneType = function (item, model) {
                     vm._model.telefone.mask = tipoTelefone.getMskPhone(model);
@@ -266,7 +276,7 @@
                     },
 
                     /*  Cabeçalho do grid   */
-                    head: ["", "Vagas", "Turma", "Área"]
+                    head: ["", "Vagas", "Turma", "Data de início", "Área"]
                 };
 
                 vm.sendTurmas = function() {

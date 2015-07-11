@@ -274,6 +274,7 @@
       {"id": "3", "text": "Divorciado(a)"},
       {"id": "4", "text": "Viúvo(a)"},
       {"id": "5", "text": "Separado(a)"},
+      {"id": "5", "text": "Separado(a)"},
       {"id": "6", "text": "Companheiro(a)"}
     ],
     "model": {"val": "", "err": ""}
@@ -534,7 +535,7 @@
     "required": false
   },
   "desconto": {
-    "label": "Desconto(%)",
+    "label": "Desconto",
     "type": "text",
     "name": "desconto",
     "required": false,
@@ -583,6 +584,118 @@
     "name": "observacoes",
     "required": false,
     "model": {"val": "", "err": ""}
+  },
+  "checkFoto34": {
+    "label": "Fotos 3x4 Recente",
+    "type": "checkbox",
+    "name": "foto34",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkCertidao": {
+    "label": "Certidão de nascimento/casamento/divórcio (cópia simples)",
+    "type": "checkbox",
+    "name": "checkCertidao",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkReservista": {
+    "label": "Certificados de reservista (cópias simples)",
+    "type": "checkbox",
+    "name": "checkReservista",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkComprovanteResidencia": {
+    "label": "Comprovantes de residência com CEP (cópias simples)",
+    "type": "checkbox",
+    "name": "checkResidencia",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+    "checkCpf": {
+    "label": "CPF cópia simples",
+    "type": "checkbox",
+    "name": "checkCpf",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkDiplomaGrad": {
+    "label": "Diploma ou certificado de conclusão (cópia autenticada)",
+    "type": "checkbox",
+    "name": "checkDipGrad",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkDiploma2grau": {
+    "label": "Diplomas do 2º Grau (2 cópias autenticadas)",
+    "type": "checkbox",
+    "name": "checkDip2grau",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+    "checkDiplomaSeminario": {
+    "label": "Diplomas do Seminário cursado (2 cópias autenticadas)",
+    "type": "checkbox",
+    "name": "checkDipSeminario",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkHistoricoGraduacao": {
+    "label": "Histórico da graduação (cópia autenticada)",
+    "type": "checkbox",
+    "name": "checkHistGrad",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkHistoricoSeminario": {
+    "label": "Históricos do Seminário cursado (2 cópias autenticadas)",
+    "type": "checkbox",
+    "name": "checkHistSeminario",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkTitulo": {
+    "label": "Título e comprovante da última votação (cópias simples)",
+    "type": "checkbox",
+    "name": "checkTitulo",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkRg": {
+    "label": "Cópia do Documento de Identidade (RG), frente e verso",
+    "type": "checkbox",
+    "name": "checkRg",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkFichaInscr": {
+    "label": "Ficha de inscrição devidamente preenchida",
+    "type": "checkbox",
+    "name": "checkInscr",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkTaxaInscr": {
+    "label": "Taxa de Inscrição devidamente paga",
+    "type": "checkbox",
+    "name": "checkTaxaInscr",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
   },
   "listaCheques": []
 }
