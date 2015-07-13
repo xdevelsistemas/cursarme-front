@@ -58,6 +58,14 @@
             // temporarias de dados
             vm.tempItem = {}; /* Guarda um obj para confirmar a edição em caso de uma edição quando um cadastro já está sendo editado */
 
+            // Habilitar ou desabilitar checks
+            vm.isMestrado = false;
+            vm.isTeologia = false;
+            vm.isPosGrad = false;
+            vm.isContinuada = false;
+            vm.isComplementacao = false;
+
+
             // ==== REQUISIÇÕES ==== //
 
             comercialPromise
@@ -393,7 +401,7 @@
                 $timeout(function () {
                     vm.disableAtualiza = $('#step0').attr('class').indexOf('active') == -1;
                     vm.disableAnterior = $('#step0').attr('class').indexOf('active') != -1;
-                    vm.disableProximo = $('#step3').attr('class').indexOf('active') != -1;
+                    vm.disableProximo = $('#step4').attr('class').indexOf('active') != -1;
                 }, 300);
             }
 
@@ -513,6 +521,7 @@
                 vm.limpaFormStep1();
                 vm.limpaFormStep2();
                 vm.limpaFormStep3();
+                vm.limpaFormStep4();
 
                 // limpando cheques adicionados
                 lista_cheques.clean();
@@ -577,6 +586,23 @@
             };
 
             vm.limpaFormStep3 = function() {
+                vm._model.checkFoto34.model.val = false;
+                vm._model.checkCertidao.model.val = false;
+                vm._model.checkReservista.model.val = false;
+                vm._model.checkComprovanteResidencia.model.val = false;
+                vm._model.checkCpf.model.val = false;
+                vm._model.checkDiplomaGrad.model.val = false;
+                vm._model.checkDiploma2grau.model.val = false;
+                vm._model.checkDiplomaSeminario.model.val = false;
+                vm._model.checkHistoricoGraduacao.model.val = false;
+                vm._model.checkHistoricoSeminario.model.val = false;
+                vm._model.checkTitulo.model.val = false;
+                vm._model.checkRg.model.val = false;
+                vm._model.checkFichaInscr.model.val = false;
+                vm._model.checkTaxaInscr.model.val = false;
+            };
+
+            vm.limpaFormStep4 = function() {
 
                 vm._model.dataExp.model.val = '';
                 vm._model.dataExp.model.err = '';
@@ -684,6 +710,17 @@
                 data = new Date(data); var atual = new Date();
                 return (atual.getDate() == data.getDate() && atual.getMonth() == data.getMonth())
             }
+
+            vm.testeInput = {
+                type: 'checkbox',
+                label: 'Diploma de graduação ou certificado de conclusão de curso (2 cópias autenticadas)',
+                model: {'val': false, 'err': 'Campo obrigatório'}
+            };
+            vm.testeInput2 = {
+                type: 'checkbox',
+                label: 'Diploma de graduação ou certificado de conclusão de curso (2 cópias autenticadas)',
+                model: {'val': true}
+            };
 
         }])
 })();

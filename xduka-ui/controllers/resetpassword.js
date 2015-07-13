@@ -36,7 +36,9 @@ function putDataResetPassword(req, res) {
         pw = req.params.password,
         token = req.params.token;
 
-    /* msg com sucesso*/
+    /*   Senha enviada com sucesso   */
+
+    /*   //   */
 
     res.json({"msgSuccess": "Senha alterada com sucesso.", "msgErro": ""});
     //res.json({"msgSuccess": "", "msgErro": "Token expirado, solicite novamente outra nova senha."});
