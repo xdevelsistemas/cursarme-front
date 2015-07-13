@@ -661,8 +661,8 @@
                 vm._model.avRua.model.err = '';
                 vm._model.endNum.model.val = '';
                 vm._model.endNum.model.err = '';
-                vm._model.apt.model.val = '';
-                vm._model.apt.model.err = '';
+                vm._model.complemento.model.val = '';
+                vm._model.complemento.model.err = '';
                 vm._model.bairro.model.val = '';
                 vm._model.bairro.model.err = '';
                 vm._model.endUf.model.val = '';
