@@ -13,6 +13,11 @@
                 "text": "Confirmação de Matrícula",
                 "iconClass": "entypo-docs",
                 "href": "#/secretaria/confirmarMatricula"
+            },
+            {
+                "text": "Alunos",
+                "iconClass": "entypo-users",
+                "href": "#/secretaria/alunos"
             }
         ]
     })
