@@ -198,3 +198,11 @@ div.bottomReset {
     padding-top: 5px;
     font-size: 18px;
 }
+
+.fadeBordered {
+    margin-top: 1%;
+    border: 2px solid rgba(175, 175, 175, 0.54);
+}
+.padding1 {
+    padding: 2px;
+}

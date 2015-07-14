@@ -30,8 +30,8 @@ module.exports = function (app, passport) {
         .get(controller.showTemplateInscricao);
 
     //Alunos
-    app.route('/api/secretaria/alunos')
-        .get(controller.getAlunos);
+    app.route('/api/secretaria/aluno')
+        .get(controller.getAluno);
 
     return app;
 };

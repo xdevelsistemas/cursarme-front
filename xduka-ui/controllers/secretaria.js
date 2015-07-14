@@ -16,12 +16,12 @@ module.exports = function() {
     controller.showTemplateInscricao = getTemplateInscricao;
     controller.putDadosInscricao = putDadosInscricao;
     controller.putDadosTurmas = putDadosTurmas;
-    controller.getAlunos = getAlunos;
+    controller.getAluno = getAluno;
 
     return controller;
 };
 
-function getAlunos(req, res){
+function getAluno(req, res){
     res.json(aluno)
 }
 

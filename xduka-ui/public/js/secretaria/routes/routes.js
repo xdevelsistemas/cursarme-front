@@ -38,9 +38,9 @@ angular.module('app',[
             controllerAs: 'conf'
         });
 // ========= ALUNOS ========= //
-        $routeProvider.when('/secretaria/alunos', {
-            templateUrl: 'html/secretaria/alunos.html',
-            controller: 'alunos',
+        $routeProvider.when('/secretaria/aluno', {
+            templateUrl: 'html/secretaria/aluno.html',
+            controller: 'aluno',
             controllerAs: 'al'
         });
 // ========= OTHERWISE ========= //

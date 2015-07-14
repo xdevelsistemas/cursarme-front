@@ -1,0 +1,106 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- FOTO DO CADASTRO -->
+        <div class="col-md-2 col-sm-5 col-xs-12 text-left" style="padding: 1%">
+            <p class="control-label">Foto 200x150:<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="entypo-trash"></i></button></p>
+            <img ng-src="http://www.westcare.com.br/imagens/especialistas/perfil-sem-foto.jpg" class="img-circle" alt="FOTO" width="100%"/>
+            <br/>&nbsp;
+            <span class="btn btn-default btn-file form-control">
+            Procurar... <input type="file">
+            </span>
+        </div>
+
+        <div class="col-md-10 col-sm-6 col-xs-12 fadeBordered">
+            <div class="row">
+                <div class="col-md-4 padding1">
+                    <xd-input data-params="al._model.dados.matricula"></xd-input>
+                </div>
+                <div class="col-md-8 padding1">
+                    <xd-input data-params="al._model.dados.nome" disable="true"></xd-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 padding1">
+                    <xd-input-date data-params="al._model.dados.dataMatricula" disable="true"></xd-input-date>
+                </div>
+                <div class="col-md-3 padding1">
+                    <xd-select data-params="al._model.dados.sexo"></xd-select>
+                </div>
+                <div class="col-md-3 padding1">
+                    <xd-input-date data-params="al._model.dados.dataNasc" disable="true"></xd-input-date>
+                </div>
+                <div class="col-md-3 padding1">
+                    <xd-input data-params="al._model.dados.rg" disable="true"></xd-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 padding1">
+                    <xd-input data-params="al._model.dados.cpf" disable="true"></xd-input>
+                </div>
+                <div class="col-md-4 padding1">
+                    <xd-input data-params="al._model.dados.telefone" disable="true"></xd-input>
+                </div>
+                <div class="col-md-4 padding1">
+                    <xd-input data-params="al._model.dados.cidadeUf" disable="true"></xd-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 padding1">
+                    <xd-input data-params="al._model.dados.email" disable="true"></xd-input>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2 col-sm-5 col-xs-12 text-left" style="padding: 1%"></div>
+
+        <div class="col-md-10 col-sm-6 col-xs-12 fadeBordered">
+            <div class="row">
+                <div class="col-md-6 padding1">
+                    <xd-select data-params="al._model.dados.cursoTurma" disable="true" ></xd-select>
+                </div>
+                <div class="col-md-4 padding1">
+                    <xd-select data-params="al._model.dados.relatorio" ></xd-select>
+                </div>
+                <div class="col-md-2 padding1 text-center">
+                    <br/>
+                    <button type="button" class="btn btn-white heightFix" title="Imprimir relatório selecionado"><i class="entypo-print"></i></button>
+                    <button type="button" class="btn btn-white heightFix" title="Adicionar"><i class="entypo-plus"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- PARTE DA PESQUISA (PROVAVELMENTE MODAL PREENCHENDO TODA TELA) -->
+<!--
+<div class="row">
+    <div class="col-md-12">
+        <h4>Pesquisar Aluno</h4>
+        <div id="custom-search-input">
+            <div class="input-group col-md-12">
+            <span class="input-group-btn">
+                <button class="btn btn-info btn-lg" type="button">
+                    <i class="glyphicon glyphicon-search center-block text-center"></i>
+                </button>
+            </span>
+                <input type="text" class="form-control input-lg" placeholder="Nome ou Matrícula" />
+            </div>
+        </div>
+    </div>
+</div>
+<hr/>
+<div class="col-md-12 text-center">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 paddingB-3" ng-repeat="aluno in al._model.alunos">
+        <div class="paddingB-3" ng-class="{'btn btn-blue': al.colorIf(aluno),'btn btn-green': !al.colorIf(aluno)}">
+            <div class="text-center">
+                <p class="nomeAluno">{{aluno.nome}}</p>
+                <div class="col-md-12">
+                    <img ng-src="{{aluno.foto}}" class="img-circle" alt="FOTO" width="100%"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
