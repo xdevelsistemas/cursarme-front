@@ -78,6 +78,5 @@
         $routeProvider.otherwise({
             redirectTo: '/'
         });
-
     }]);
 })();

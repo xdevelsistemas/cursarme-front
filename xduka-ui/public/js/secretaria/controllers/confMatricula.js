@@ -108,7 +108,7 @@
                 }
 
                 vm.selectPhoneType = function (item, model) {
-                    vm._model.telefone.mask = tipoTelefone.getMskPhone(model);
+                    vm._model.telefone.mask = tipoTelefone.getMaskPhone(model);
                 };
 
 
@@ -130,8 +130,11 @@
                             .then(function (data) {
                                 vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
                                 vm._model.unidade.list = data.unidade.list;
-                                vm._model.area.list = $.grep(vm._model.unidade.list, function (e) {
+                                vm._model.tipoCurso.list = $.grep(vm._model.unidade.list, function (e) {
                                     return e.id == item.unidade.model.val;
+                                })[0].tipoCursos;
+                                vm._model.area.list = $.grep(vm._model.tipoCurso.list, function (e) {
+                                    return e.id == item.tipoCurso.model.val;
                                 })[0].areas;
                                 vm._model.curso.list = $.grep(vm._model.area.list, function (e) {
                                     return e.id == item.area.model.val;

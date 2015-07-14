@@ -1,5 +1,4 @@
-var dataPassword = require('../mockup/xduka-json/common/password.json'),
-    emails = {};
+var dataPassword = require('../mockup/xduka-json/common/password.json');
 
 module.exports = function() {
     var controller = {};
@@ -15,10 +14,10 @@ function putResetPassword(req, res) {
     var email = req.params.email;
 
     if (isEmail(email)) {
-        res.json({"msgSuccess": "Sucesso! Em breve você receberá um email para " + email + " com os passos necessários para recuperar sua senha."});
+        res.json({"msgSuccess": "Sucesso! Em breve enviaremos um email para " + email + " com os passos necessários para recuperar sua senha.", "msgErro": ""});
         //res.json({"message": "O endereço de email informado não está cadastrado! Por favor insira o email cadastrado para recuperar sua conta."});
     } else {
-        res.json({"message": "Email inválido"});
+        res.json({"msgSuccess": "", "msgErro": "Email inválido"});
     }
 }
 
@@ -28,20 +27,21 @@ function getDataUser(req, res) {
             return data.token == token;
         })[0];
     dataUser ?
-        res.render('resetpass', {title: 'Resetar senha',message: '', dataUser: dataUser}):
-        res.render('login', {title: 'Login', "message": "Token expirado, por favor solicite outra nova senha"});
+        res.json(dataUser):
+        res.json({"msgSuccess": "", "msgErro": "Token expirado, por favor solicite outra nova senha"});
 }
 
 function putDataResetPassword(req, res) {
-    var email = req.body.dados.email,
-        pw = req.body.newpass.password,
-        token = req.body.dados.token;
+    var email = req.params.email,
+        pw = req.params.password,
+        token = req.params.token;
 
     /*   Senha enviada com sucesso   */
 
     /*   //   */
 
-    res.render('login', {title: 'Login', "message": "", "msgSuccess": "Senha enviada com sucesso"});
+    res.json({"msgSuccess": "Senha alterada com sucesso.", "msgErro": ""});
+    //res.json({"msgSuccess": "", "msgErro": "Token expirado, solicite novamente outra nova senha."});
 }
 
 function isEmail(email){
