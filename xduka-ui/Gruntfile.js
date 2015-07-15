@@ -39,10 +39,7 @@ module.exports = function(grunt) {
                 }
             }
         },
-        uglify: {
-            options: {
-                compress: true
-            },
+        concat: {
             bundle_common: {
                 src: [
                     'public/lib/jquery/dist/jquery.js',
@@ -120,11 +117,11 @@ module.exports = function(grunt) {
                     // Models
                     'public/js/aluno/models/menu.js',
 
-                    // Filters 
+                    // Filters
                     'public/js/aluno/filters/__module__.js',
                     'public/js/aluno/filters/interpolate.js',
 
-                    // Services  
+                    // Services
                     'public/js/aluno/services/__module__.js',
                     'public/js/aluno/services/crop-service.js',
                     'public/js/aluno/services/define-curso.js',
@@ -158,20 +155,20 @@ module.exports = function(grunt) {
                     'public/js/comercial/directives/__module__.js',
                     'public/js/comercial/directives/app-version.js',
                     'public/js/comercial/directives/xd-lista-cheques.js',
-                    
+
                     // Models
                     'public/js/comercial/models/__module__.js',
                     'public/js/comercial/models/menu.js',
-                    
+
                     // Services
                     'public/js/comercial/services/__module__.js',
                     'public/js/comercial/services/data-cheque.js',
                     'public/js/comercial/services/lista-cheques.js',
-                    
+
                     // Filters
                     'public/js/comercial/filters/__module__.js',
                     'public/js/comercial/filters/interpolate.js',
-                    
+
                     // Controllers
                     'public/js/comercial/controllers/__module__.js',
                     'public/js/comercial/controllers/main.js',
@@ -208,6 +205,19 @@ module.exports = function(grunt) {
                     'public/js/secretaria/controllers/secretaria.js'
                 ],
                 dest: 'public/dist/assets/js/bundle_secretaria.js'
+            }
+        },
+        uglify: {
+            options: {
+                sourceMap: true
+            },
+            bundle: {
+                files: {
+                    'public/dist/assets/js/bundle_common.js': ['public/dist/assets/js/bundle_common.js'],
+                    'public/dist/assets/js/bundle_aluno.js': ['public/dist/assets/js/bundle_aluno.js'],
+                    'public/dist/assets/js/bundle_comercial.js': ['public/dist/assets/js/bundle_comercial.js'],
+                    'public/dist/assets/js/bundle_secretaria.js': ['public/dist/assets/js/bundle_secretaria.js']
+                }
             }
         }
     });
