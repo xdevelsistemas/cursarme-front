@@ -7,6 +7,14 @@ module.exports = function(grunt) {
                 src: 'public/dist'
             }
         },
+        copy: {
+            project: {
+                expand: true,
+                cwd: './public/assets/css/font-icons/entypo/font',
+                src: ['**'],
+                dest: 'public/dist/assets/font'
+            }
+        },
         cssmin: {
             bundle: {
                 options: {
@@ -222,7 +230,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['clean', 'cssmin', 'uglify']);
+    grunt.registerTask('default', ['clean', 'copy', 'cssmin', 'concat', 'uglify']);
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
