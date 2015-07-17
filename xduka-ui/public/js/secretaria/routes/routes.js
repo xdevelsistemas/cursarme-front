@@ -25,17 +25,23 @@ angular.module('app',[
         $routeProvider.when('/', {
             redirectTo: '/secretaria'
         });
-// ========= PRÉ CADASTRO ========= //
+// ========= DASHBOARD SECRETARIA ========= //
         $routeProvider.when('/secretaria', {
             templateUrl: 'html/secretaria/secretaria.html',
             controller: 'secretaria',
             controllerAs: 'sec'
         });
-// ========= PRÉ CADASTRO ========= //
+// ========= CONFIRMAR MATRICULA ========= //
         $routeProvider.when('/secretaria/confirmarMatricula', {
             templateUrl: 'html/secretaria/confirmar-matricula.html',
             controller: 'confMatricula',
             controllerAs: 'conf'
+        });
+// ========= ALUNOS ========= //
+        $routeProvider.when('/secretaria/aluno', {
+            templateUrl: 'html/secretaria/aluno.html',
+            controller: 'aluno',
+            controllerAs: 'al'
         });
 // ========= OTHERWISE ========= //
         $routeProvider.otherwise({
