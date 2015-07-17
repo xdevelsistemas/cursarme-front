@@ -73,14 +73,14 @@ require('./routes/aluno.js')(app, passport);
 require('./routes/comercial.js')(app, passport);
 require('./routes/resetpassword.js')(app, passport);
 require('./routes/secretaria.js')(app, passport);
-require('./controllers/resetpassword.js')(app, passport);
 
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
-    //next(err);
-    res.render('404')
+    /*next(err);*/
+
+    res.render('404');
 });
 
 /// error handlers
@@ -106,7 +106,6 @@ if (app.get('env') === 'development') {
         });
     });
 }
-
 
 
 module.exports = app;
