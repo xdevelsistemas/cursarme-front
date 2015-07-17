@@ -22,6 +22,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     'public/dist/assets/css/bundle_common.css': [
+                        'http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic',
                         'public/assets/css/custom.css',
                         'public/assets/css/font-icons/entypo/css/entypo.css',
                         'public/assets/css/neon.css',
