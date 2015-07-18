@@ -241,6 +241,13 @@
                 vm._model.formaPagamentoPag.valores = item.valores;
                 vm._model.valorInscricao.model.aux = item.valores.inscricao;
                 vm._model.valorIntegral.model.aux = item.valores.integral;
+
+                // Habilitando checkbox's da documentação
+                vm.isMestrado = item.text.toLowerCase().indexOf("mestrado") != -1;
+                vm.isTeologia = item.text.toLowerCase().indexOf("teologia") != -1;
+                vm.isPosGrad = item.text.toLowerCase().indexOf("pós graduação") != -1;
+                vm.isContinuada = item.text.toLowerCase().indexOf("continuada") != -1;
+                vm.isComplementacao = item.text.toLowerCase().indexOf("complementação") != -1;
             };
 
             vm.areaChange = function (item, model) {
@@ -600,6 +607,12 @@
                 vm._model.checkRg.model.val = false;
                 vm._model.checkFichaInscr.model.val = false;
                 vm._model.checkTaxaInscr.model.val = false;
+                // Desabilitando checkbox's da documentação
+                vm.isMestrado = false;
+                vm.isTeologia = false;
+                vm.isPosGrad = false;
+                vm.isContinuada = false;
+                vm.isComplementacao = false;
             };
 
             vm.limpaFormStep4 = function() {
@@ -648,8 +661,8 @@
                 vm._model.avRua.model.err = '';
                 vm._model.endNum.model.val = '';
                 vm._model.endNum.model.err = '';
-                vm._model.apt.model.val = '';
-                vm._model.apt.model.err = '';
+                vm._model.complemento.model.val = '';
+                vm._model.complemento.model.err = '';
                 vm._model.bairro.model.val = '';
                 vm._model.bairro.model.err = '';
                 vm._model.endUf.model.val = '';

@@ -29,5 +29,9 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/template-inscricao')
         .get(controller.showTemplateInscricao);
 
+    //Alunos
+    app.route('/api/secretaria/aluno')
+        .get(controller.getAluno);
+
     return app;
 };

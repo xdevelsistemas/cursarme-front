@@ -1,0 +1,372 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- FOTO DO CADASTRO -->
+        <div class="col-md-2 col-sm-5 col-xs-12 fadeBordered text-left" style="padding: 1%;margin-top: 20px;">
+            <p class="control-label">Foto 200x150:<button type="button" class="close" aria-hidden="true" ng-click="al.removeFoto()" data-ng-disabled="!al.editing"><i class="entypo-trash"></i></button></p>
+            <img ng-src="{{al._model.foto.model.val||'http://www.westcare.com.br/imagens/especialistas/perfil-sem-foto.jpg'}}" class="img-circle" alt="FOTO" width="100%"/>
+            <br/>&nbsp;
+            <span class="btn btn-default btn-file form-control" data-ng-disabled="!al.editing" onclick="$('#modalFoto').modal('show', {backdrop: 'static'})">
+            Procurar... <input name="fileInput" type="file" id="fileInput" onclick="this.value = null" ng-click="al.clickFoto()" onfocus="!$('#fileInput').val()?$('#modalFoto').modal('hide'):0">
+            </span>
+        </div>
+
+        <div class="col-md-10 col-sm-6 col-xs-12">
+
+
+            <ul class="nav nav-tabs">
+                <li class="linkCursor linkCursor " ng-repeat="nav in al._model.navs" ng-class="{'active': nav.active}" title="{{nav.text}}">
+                    <a data-target="{{nav.target}}" data-toggle="tab">
+                        <span class="hidden-xs hidden-sm">{{nav.text}}</span>
+                        <span class="hidden-md hidden-lg">{{nav.number}}</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <xd-panel-collapse title="'Informações básicas'">
+                        <div class="row">
+                            <div class="col-md-4 padding1">
+                                <xd-input data-params="al._model.matricula" data-disable="true"></xd-input>
+                            </div>
+                            <div class="col-md-8 padding1">
+                                <xd-input data-params="al._model.nome" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 padding1">
+                                <xd-input-date data-params="al._model.dataMatricula" data-disable="!al.editing"></xd-input-date>
+                            </div>
+                            <div class="col-md-3 padding1">
+                                <xd-select data-params="al._model.sexo" data-disable="!al.editing"></xd-select>
+                            </div>
+                            <div class="col-md-3 padding1">
+                                <xd-input-date data-params="al._model.dataNasc" data-disable="!al.editing"></xd-input-date>
+                            </div>
+                            <div class="col-md-3 padding1">
+                                <xd-input data-params="al._model.rg" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 padding1">
+                                <xd-input data-params="al._model.cpf" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="col-md-4 padding1">
+                                <xd-input data-params="al._model.telefone" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="col-md-4 padding1">
+                                <xd-input data-params="al._model.cidadeUf" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 padding1">
+                                <xd-input-email data-params="al._model.email" data-disable="!al.editing"></xd-input-email>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                    <xd-panel-collapse title="'Relatórios'">
+                        <div class="row">
+                            <div class="col-md-5 padding1">
+                                <xd-select data-params="al._model.cursoTurma"></xd-select>
+                            </div>
+                            <div class="col-md-4 padding1">
+                                <xd-select data-params="al._model.relatorio"></xd-select>
+                            </div>
+                            <div class="col-md-3 padding1 text-center">
+                                <br/>
+                                <button type="button" class="btn btn-white heightFix" title="Imprimir relatório selecionado"><i class="entypo-print"></i></button>
+                                <button type="button" class="btn btn-white heightFix" title="Adicionar"><i class="entypo-plus"></i></button>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                </div>
+
+                <div class="tab-pane" id="endereco">
+                    <p>Fulfilled direction use continual set him propriety continued. Saw met
+                        applauded favourite deficient engrossed concealed and her. Concluded boy
+                        perpetual old supposing. Farther related bed and passage comfort civilly.
+                        Dashwoods see frankness objection abilities the. As hastened oh produced prospect
+                        formerly up am. Placing forming nay looking old married few has. Margaret
+                        disposed add screened rendered six say his striking confined.</p>
+
+                    <p>When be draw drew ye. Defective in do recommend suffering. House it seven in
+                        spoil tiled court. Sister others marked fat missed did out use. Alteration
+                        possession dispatched collecting instrument travelling he or on. Snug give made
+                        at spot or late that mr.</p>
+
+                    <p>Luckily friends do ashamed to do suppose. Tried meant mr smile so. Exquisite
+                        behaviour as to middleton perfectly. Chicken no wishing waiting am. Say concerns
+                        dwelling graceful six humoured. Whether mr up savings talking an. Active mutual
+                        nor father mother exeter change six did all.</p>
+
+                    <p>Carriage quitting securing be appetite it declared. High eyes kept so busy
+                        feel call in. Would day nor ask walls known. But preserved advantage are but and
+                        certainty earnestly enjoyment. Passage weather as up am exposed. And natural
+                        related man subject. Eagerness get situation his was delighted.</p>
+                </div>
+
+                <!-- DOCUMENTAÇÃO -->
+                <div class="tab-pane" id="documentacao">
+                    <xd-panel-collapse title="'Informações Gerais'">
+                        <div class="row">
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.cpf" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.rg" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-6">
+                                <xd-input-date data-params="al._model.dataExp" data-disable="!al.editing"></xd-input-date>
+                            </div>
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.orgaoEmissor" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.escolaridade" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.formacao" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-12">
+                                <xd-input data-params="al._model.profissao" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.empresa" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.funcao" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+
+                    <xd-panel-collapse title="'Filiação'">
+                        <div class="row">
+                            <div class="padding1 col-md-12">
+                                <xd-input data-params="al._model.mae" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-12">
+                                <xd-input data-params="al._model.pai" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+
+                    <xd-panel-collapse title="'Certificado Militar'" data-ng-show="al._model.sexo.model.val=='f'">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <xd-select data-params="al._model.statusMilitar" data-disable="!al.editing"></xd-select>
+                            </div>
+                            <div class="col-md-6">
+                                <xd-input data-params="al._model.certificadoRes" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <xd-input data-params="al._model.registro" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="col-md-3">
+                                <xd-input data-params="al._model.ufReservista" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="col-md-4">
+                                <xd-input data-params="al._model.categoria" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+
+                    <xd-panel-collapse title="'Certidão'">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <xd-select data-params="al._model.statusCertidao" data-disable="!al.editing"></xd-select>
+                            </div>
+                            <div class="col-md-4">
+                                <xd-input data-params="al._model.certidaoNc" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="col-md-3">
+                                <xd-input data-params="al._model.livro" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <xd-input data-params="al._model.folha" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="col-md-4">
+                                <xd-input data-params="al._model.certidaoNc" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="col-md-4">
+                                <xd-input data-params="al._model.certidaoCidadeUf" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <xd-input data-params="al._model.tituloEleitor" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="col-md-6">
+                                <xd-input data-params="al._model.zona" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <xd-input data-params="al._model.secao" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="col-md-4">
+                                <xd-select data-params="al._model.ufTitulo" data-disable="!al.editing"></xd-select>
+                            </div>
+                            <div class="col-md-4">
+                                <xd-input data-params="al._model.im" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                    <xd-panel-collapse title="'Outros'">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <xd-input-textarea data-params="al._model.observacoes" data-disable="!al.editing"></xd-input-textarea>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                </div>
+
+                <div class="tab-pane" id="gradeDisc">
+                    <p>Luckily friends do ashamed to do suppose. Tried meant mr smile so. Exquisite
+                        behaviour as to middleton perfectly. Chicken no wishing waiting am. Say concerns
+                        dwelling graceful six humoured. Whether mr up savings talking an. Active mutual
+                        nor father mother exeter change six did all.</p>
+
+                    <p>Carriage quitting securing be appetite it declared. High eyes kept so busy
+                        feel call in. Would day nor ask walls known. But preserved advantage are but and
+                        certainty earnestly enjoyment. Passage weather as up am exposed. And natural
+                        related man subject. Eagerness get situation his was delighted.</p>
+
+                    <p>Fulfilled direction use continual set him propriety continued. Saw met
+                        applauded favourite deficient engrossed concealed and her. Concluded boy
+                        perpetual old supposing. Farther related bed and passage comfort civilly.
+                        Dashwoods see frankness objection abilities the. As hastened oh produced prospect
+                        formerly up am. Placing forming nay looking old married few has. Margaret
+                        disposed add screened rendered six say his striking confined.</p>
+
+                    <p>When be draw drew ye. Defective in do recommend suffering. House it seven in
+                        spoil tiled court. Sister others marked fat missed did out use. Alteration
+                        possession dispatched collecting instrument travelling he or on. Snug give made
+                        at spot or late that mr.</p>
+                </div>
+
+                <div class="tab-pane" id="notas">
+
+                </div>
+
+                <div class="tab-pane" id="historico">
+
+                </div>
+
+                <div class="tab-pane" id="log">
+
+                </div>
+
+                <div class="tab-pane" id="parcelas">
+
+                </div>
+                <div class="center-block text-center centered">
+                    <ul class="pager">
+                        <li class="col-md-4 inLine" style="max-width: 250px">
+                            <button class="btn btn-blue btn-lg btn-icon icon-left btn-block">
+                                Voltar
+                                <i class="entypo-left"></i>
+                            </button>
+                        </li>
+                        <li class="col-md-4 inLine" style="max-width: 250px">
+                            <button class="btn btn-green btn-lg btn-icon icon-left btn-block" data-ng-disabled="!al.editing">
+                                Salvar
+                                <i class="entypo-check"></i>
+                            </button>
+                        </li>
+                        <li class="col-md-4 inLine" data-ng-show="!al.editing" style="max-width: 250px">
+                            <button class="btn btn-warning btn-lg btn-icon icon-left btn-block" data-ng-disabled="al.editing" ng-click="al.editarAluno()">
+                                Editar
+                                <i class="entypo-pencil"></i>
+                            </button>
+                        </li>
+                        <li class="col-md-4 inLine" data-ng-show="al.editing" style="max-width: 250px">
+                            <button class="btn btn-danger btn-lg btn-icon icon-left btn-block" data-ng-disabled="!al.editing" ng-click="al.cancelEdit()">
+                                Cancelar
+                                <i class="entypo-cancel"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- PARTE DA PESQUISA (PROVAVELMENTE MODAL PREENCHENDO TODA TELA) -->
+<!--
+<div class="row">
+    <div class="col-md-12">
+        <h4>Pesquisar Aluno</h4>
+        <div id="custom-search-input">
+            <div class="input-group col-md-12">
+            <span class="input-group-btn">
+                <button class="btn btn-info btn-lg" type="button">
+                    <i class="glyphicon glyphicon-search center-block text-center"></i>
+                </button>
+            </span>
+                <input type="text" class="form-control input-lg" placeholder="Nome ou Matrícula" />
+            </div>
+        </div>
+    </div>
+</div>
+<hr/>
+<div class="col-md-12 text-center">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 paddingB-3" ng-repeat="aluno in al._model.alunos">
+        <div class="paddingB-3" ng-class="{'btn btn-blue': al.colorIf(aluno),'btn btn-green': !al.colorIf(aluno)}">
+            <div class="text-center">
+                <p class="nomeAluno">{{aluno.nome}}</p>
+                <div class="col-md-12">
+                    <img ng-src="{{aluno.foto}}" class="img-circle" alt="FOTO" width="100%"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+
+<form name="formFoto"
+      class="form-horizontal">
+    <div aria-hidden="true" class="modal fade" id="modalFoto">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Cortar Foto</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="cropArea">
+                        <img-crop image="myImage" result-image="myCroppedImage" on-load-error="al.imgCropErr()"></img-crop>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-sm-6 text-center">
+                            <button type="button" class="btn btn-default btn-lg btn-icon icon-left pull-left" data-dismiss="modal"><i class="entypo-back"></i>Voltar</button>
+                        </div>
+                        <div class="col-sm-6 text-center">
+                            <button type="button" class="btn btn-info btn-lg btn-icon icon-left pull-right" data-dismiss="modal" data-ng-click="al.sendFoto()"><i class="entypo-check"></i>Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
