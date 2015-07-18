@@ -8,9 +8,9 @@ WORKDIR /root/xduka-ui
 RUN npm install
 RUN npm install --dev
 RUN npm install bower
-RUN npm install grunt
+RUN npm install -g grunt
 RUN node_modules/bower/bin/bower  --allow-root  install
-RUN node_modules/grunt/bin/grunt
+RUN grunt
 
 
 
