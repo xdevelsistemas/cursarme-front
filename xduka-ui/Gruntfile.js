@@ -7,6 +7,22 @@ module.exports = function(grunt) {
                 src: 'public/dist'
             }
         },
+        //imagemin: {                          // Task
+        //    dynamic: {                         // Another target
+        //        options: {                       // Target options
+        //            optimizationLevel: 3,
+        //            svgoPlugins: [{ removeViewBox: false }],
+        //            use: [mozjpeg()]
+        //        },
+        //        files: [{
+        //            expand: true,                  // Enable dynamic expansion
+        //            cwd: 'public',                   // Src matches are relative to this path
+        //            src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+        //            dest: 'dist/assets/images'                  // Destination path prefix
+        //        }]
+        //    }
+        //},
+
         copy: {
             project: {
                 expand: true,
