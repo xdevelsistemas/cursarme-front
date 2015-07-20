@@ -488,7 +488,5 @@
                 },
                 editInscr: vm.editarInscr
             }
-        }]),
-
-        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'modelStrings', 'lista_cheques', 'dataCheque', 'tipoTelefone'
+        }])
 })();
