@@ -204,7 +204,7 @@
                     vm._model.mae.model.val = '';
                     vm._model.avRua.model.val = '';
                     vm._model.endNum.model.val = '';
-                    vm._model.apt.model.val = '';
+                    vm._model.complemento.model.val = '';
                     vm._model.bairro.model.val = '';
                     vm._model.endUf.model.val = '';
                     vm._model.nacionalidade.model.val = '';

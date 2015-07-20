@@ -1,10 +1,34 @@
 module.exports = function(grunt) {
     'use strict';
 
+    var mozjpeg = require ('imagemin-mozjpeg');
     grunt.initConfig({
         clean: {
             dist: {
                 src: 'public/dist'
+            }
+        },
+        copy: {
+            project: {
+                expand: true,
+                cwd: './public/assets/css/font-icons/entypo/font',
+                src: ['**'],
+                dest: 'public/dist/assets/font'
+            }
+        },
+        imagemin: {
+            dynamic: {                         // Another target
+                options: {                       // Target options
+                    optimizationLevel: 3,
+                    svgoPlugins: [{ removeViewBox: false }],
+                    use: [mozjpeg()]
+                },
+                files: [{
+                    expand: true,                  // Enable dynamic expansion
+                    cwd: 'public/assets',                   // Src matches are relative to this path
+                    src: ['images/**/*.{png,jpg,jpeg,gif}', 'xduka/**/*.{png,jpg,jpeg,gif}'],   // Actual patterns to match
+                    dest: 'public/dist/assets'                  // Destination path prefix
+                }]
             }
         },
         cssmin: {
@@ -35,14 +59,45 @@ module.exports = function(grunt) {
                     'public/dist/assets/css/bundle_comercial.css': [
                         'public/lib/jquery-ui/themes/base/jquery-ui.css',
                         'public/lib/datatables/media/css/jquery.dataTables.min.css'
+                    ],
+                    'public/dist/assets/css/bundle_login.css': [
+                        'public/assets/js/vertical-timeline/css/component.css',
+                        'public/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css',
+                        'public/assets/css/font-icons/entypo/css/entypo.css',
+                        'public/assets/css/neon.css',
+                        'public/assets/css/custom.css',
+                        'public/assets/xduka/css/skin.css'
+                    ],
+                    'public/dist/assets/css/bundle_resetpass.css': [
+                        'public/assets/js/vertical-timeline/css/component.css',
+                        'public/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css',
+                        'public/assets/css/font-icons/entypo/css/entypo.css',
+                        'public/assets/css/neon.css',
+                        'public/assets/css/custom.css',
+                        'public/assets/xduka/css/skin.css'
+                    ],
+                    'public/dist/assets/css/bundle_500.css': [
+                        'public/assets/js/vertical-timeline/css/component.css',
+                        'public/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css',
+                        'public/assets/css/font-icons/entypo/css/entypo.css',
+                        'public/assets/css/neon.css',
+                        'public/assets/css/animate.css',
+                        'public/assets/css/custom.css',
+                        'public/assets/xduka/css/skin.css'
+                    ],
+                    'public/dist/assets/css/bundle_404.css': [
+                        'public/assets/js/vertical-timeline/css/component.css',
+                        'public/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css',
+                        'public/assets/css/font-icons/entypo/css/entypo.css',
+                        'public/assets/css/neon.css',
+                        'public/assets/css/animate.css',
+                        'public/assets/css/custom.css',
+                        'public/assets/xduka/css/skin.css'
                     ]
                 }
             }
         },
-        uglify: {
-            options: {
-                compress: true
-            },
+        concat: {
             bundle_common: {
                 src: [
                     'public/lib/jquery/dist/jquery.js',
@@ -120,11 +175,11 @@ module.exports = function(grunt) {
                     // Models
                     'public/js/aluno/models/menu.js',
 
-                    // Filters 
+                    // Filters
                     'public/js/aluno/filters/__module__.js',
                     'public/js/aluno/filters/interpolate.js',
 
-                    // Services  
+                    // Services
                     'public/js/aluno/services/__module__.js',
                     'public/js/aluno/services/crop-service.js',
                     'public/js/aluno/services/define-curso.js',
@@ -158,20 +213,20 @@ module.exports = function(grunt) {
                     'public/js/comercial/directives/__module__.js',
                     'public/js/comercial/directives/app-version.js',
                     'public/js/comercial/directives/xd-lista-cheques.js',
-                    
+
                     // Models
                     'public/js/comercial/models/__module__.js',
                     'public/js/comercial/models/menu.js',
-                    
+
                     // Services
                     'public/js/comercial/services/__module__.js',
                     'public/js/comercial/services/data-cheque.js',
                     'public/js/comercial/services/lista-cheques.js',
-                    
+
                     // Filters
                     'public/js/comercial/filters/__module__.js',
                     'public/js/comercial/filters/interpolate.js',
-                    
+
                     // Controllers
                     'public/js/comercial/controllers/__module__.js',
                     'public/js/comercial/controllers/main.js',
@@ -208,17 +263,113 @@ module.exports = function(grunt) {
                     'public/js/secretaria/controllers/secretaria.js'
                 ],
                 dest: 'public/dist/assets/js/bundle_secretaria.js'
+            },
+            bundle_login: {
+                src: [
+                    'public/assets/js/jquery-1.10.2.min.js',
+                    'public/assets/js/gsap/main-gsap.js',
+                    'public/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js',
+                    'public/assets/js/bootstrap.min.js',
+                    'public/assets/js/joinable.js',
+                    'public/assets/js/resizeable.js',
+                    'public/assets/js/neon-api.js',
+                    'public/assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js',
+                    'public/assets/js/jvectormap/jquery-jvectormap-europe-merc-en.js',
+                    'public/assets/js/jquery.sparkline.min.js',
+                    'public/assets/js/rickshaw/vendor/d3.v3.js',
+                    'public/assets/js/rickshaw/rickshaw.min.js',
+                    'public/assets/js/raphael-min.js',
+                    'public/assets/js/morris.min.js',
+                    'public/assets/js/jquery.validate.min.js',
+                    'public/assets/js/toastr.js',
+                    'public/assets/js/neon-chat.js',
+                    'public/assets/js/neon-custom.js',
+                    'public/assets/js/neon-demo.js',
+                    'public/assets/js/passRecall.js'
+                ],
+                dest: 'public/dist/assets/js/bundle_login.js'
+            },
+            bundle_resetpass: {
+                src: [
+                    'public/assets/js/jquery-1.10.2.min.js',
+                    'public/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js',
+                    'public/assets/js/bootstrap.min.js',
+                    'public/assets/js/passRecall.js'
+                    ],
+                dest: 'public/dist/assets/js/bundle_resetpass.js'
+            },
+            bundle_500: {
+                src: [
+                    'public/assets/js/jquery-1.10.2.min.js',
+                    'public/assets/js/gsap/main-gsap.js',
+                    'public/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js',
+                    'public/assets/js/bootstrap.min.js',
+                    'public/assets/js/joinable.js',
+                    'public/assets/js/resizeable.js',
+                    'public/assets/js/neon-api.js',
+                    'public/assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js',
+                    'public/assets/js/jvectormap/jquery-jvectormap-europe-merc-en.js',
+                    'public/assets/js/jquery.sparkline.min.js',
+                    'public/assets/js/rickshaw/vendor/d3.v3.js',
+                    'public/assets/js/rickshaw/rickshaw.min.js',
+                    'public/assets/js/raphael-min.js',
+                    'public/assets/js/morris.min.js',
+                    'public/assets/js/toastr.js',
+                    'public/assets/js/neon-chat.js',
+                    'public/assets/js/neon-custom.js',
+                    'public/assets/js/neon-demo.js'
+                ],
+                dest: 'public/dist/assets/js/bundle_500.js'
+            },
+            bundle_404: {
+                src: [
+                    'public/assets/js/jquery-1.10.2.min.js',
+                    'public/assets/js/gsap/main-gsap.js',
+                    'public/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js',
+                    'public/assets/js/bootstrap.min.js',
+                    'public/assets/js/joinable.js',
+                    'public/assets/js/resizeable.js',
+                    'public/assets/js/neon-api.js',
+                    'public/assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js',
+                    'public/assets/js/jvectormap/jquery-jvectormap-europe-merc-en.js',
+                    'public/assets/js/jquery.sparkline.min.js',
+                    'public/assets/js/rickshaw/vendor/d3.v3.js',
+                    'public/assets/js/rickshaw/rickshaw.min.js',
+                    'public/assets/js/raphael-min.js',
+                    'public/assets/js/morris.min.js',
+                    'public/assets/js/toastr.js',
+                    'public/assets/js/neon-chat.js',
+                    'public/assets/js/neon-custom.js',
+                    'public/assets/js/neon-demo.js'
+                ],
+                dest: 'public/dist/assets/js/bundle_404.js'
+            }
+        },
+        uglify: {
+            options: {
+                sourceMap: true
+            },
+            bundle: {
+                files: {
+                    'public/dist/assets/js/bundle_common.js': ['public/dist/assets/js/bundle_common.js'],
+                    'public/dist/assets/js/bundle_aluno.js': ['public/dist/assets/js/bundle_aluno.js'],
+                    'public/dist/assets/js/bundle_comercial.js': ['public/dist/assets/js/bundle_comercial.js'],
+                    'public/dist/assets/js/bundle_secretaria.js': ['public/dist/assets/js/bundle_secretaria.js'],
+                    'public/dist/assets/js/bundle_login.js': ['public/dist/assets/js/bundle_login.js'],
+                    'public/dist/assets/js/bundle_resetpass.js': ['public/dist/assets/js/bundle_resetpass.js'],
+                    'public/dist/assets/js/bundle_500.js': ['public/dist/assets/js/bundle_500.js'],
+                    'public/dist/assets/js/bundle_404.js': ['public/dist/assets/js/bundle_404.js']
+                }
             }
         }
     });
 
-    grunt.registerTask('default', ['clean', 'cssmin', 'uglify']);
+    grunt.registerTask('default', ['clean', 'copy', 'imagemin', 'cssmin', 'concat', 'uglify']);
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-usemin');
-    grunt.loadNpmTasks('grunt-ng-annotate');
 };

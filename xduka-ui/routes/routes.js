@@ -29,6 +29,7 @@ module.exports = function (app, passport) {
                     dataRes = JSON.parse(data);
                 });
                 response.on('end', function () {
+                    // your code here if you want to use the results !
                     if (dataRes.msgErro && dataRes.msgErro != '') {
                         res.redirect('/login');
                     } else {
@@ -38,7 +39,6 @@ module.exports = function (app, passport) {
                             dataUser: dataRes
                         });
                     }
-                    // your code here if you want to use the results !
                 });
             };
 
