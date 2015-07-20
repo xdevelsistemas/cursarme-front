@@ -97,7 +97,7 @@ body {
     overflow: hidden;
 }
 
-@media (max-width: 769px) {
+@media (max-width: 1024px) {
     .scrollTable{
         overflow: scroll;
     }

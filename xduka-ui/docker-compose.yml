@@ -11,3 +11,4 @@ mongodb:
   volumes:
     - "~/dockerdata/mongo:/data/db"
   command: mongod --smallfiles
+
