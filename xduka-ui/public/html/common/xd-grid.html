@@ -26,7 +26,7 @@
 
             <div ng-if="colum.date">
                 <p ng-show="false">{{colum.int}}</p>
-                {{colum.int | date: "dd/MM/yyyy"}}
+                {{colum.int | date: (colum.formatDate||"dd/MM/yyyy")}}
             </div>
 
             <div ng-if="colum.btn">

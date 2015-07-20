@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-cloak>
     <div class="col-md-12">
         <!-- FOTO DO CADASTRO -->
         <div class="col-md-2 col-sm-5 col-xs-12 fadeBordered text-left" style="padding: 1%;margin-top: 20px;">
@@ -23,6 +23,7 @@
             </ul>
 
             <div class="tab-content">
+                <!-- HOME -->
                 <div class="tab-pane active" id="home">
                     <xd-panel-collapse title="'Informações básicas'">
                         <div class="row">
@@ -85,37 +86,37 @@
                 <div class="tab-pane" id="endereco">
                     <xd-panel-collapse title="'Endereço'">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.cep" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.bairro" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-select data-params="al._model.endUf" data-disable="!al.editing"></xd-select>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="padding1 col-md-8">
                                 <xd-input data-params="al._model.avRua" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.endNum" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="padding1 col-md-6">
                                 <xd-input data-params="al._model.complemento" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-6">
+                            <div class="padding1 col-md-6">
                                 <xd-input-email data-params="al._model.email" data-disable="!al.editing"></xd-input-email>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="padding1 col-md-6">
                                 <xd-input data-params="al._model.telefone" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-6">
+                            <div class="padding1 col-md-6">
                                 <xd-select data-params="al._model.tipoTelefone" data-disable="!al.editing"></xd-select>
                             </div>
                         </div>
@@ -179,21 +180,21 @@
 
                     <xd-panel-collapse title="'Certificado Militar'" data-ng-show="al._model.sexo.model.val=='f'">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="padding1 col-md-6">
                                 <xd-select data-params="al._model.statusMilitar" data-disable="!al.editing"></xd-select>
                             </div>
-                            <div class="col-md-6">
+                            <div class="padding1 col-md-6">
                                 <xd-input data-params="al._model.certificadoRes" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="padding1 col-md-5">
                                 <xd-input data-params="al._model.registro" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-3">
+                            <div class="padding1 col-md-3">
                                 <xd-input data-params="al._model.ufReservista" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.categoria" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
@@ -201,50 +202,50 @@
 
                     <xd-panel-collapse title="'Certidão'">
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="padding1 col-md-5">
                                 <xd-select data-params="al._model.statusCertidao" data-disable="!al.editing"></xd-select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.certidaoNc" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-3">
+                            <div class="padding1 col-md-3">
                                 <xd-input data-params="al._model.livro" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.folha" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.certidaoNc" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.certidaoCidadeUf" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="padding1 col-md-6">
                                 <xd-input data-params="al._model.tituloEleitor" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-6">
+                            <div class="padding1 col-md-6">
                                 <xd-input data-params="al._model.zona" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.secao" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-select data-params="al._model.ufTitulo" data-disable="!al.editing"></xd-select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.im" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
                     </xd-panel-collapse>
                     <xd-panel-collapse title="'Outros'">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="padding1 col-md-12">
                                 <xd-input-textarea data-params="al._model.observacoes" data-disable="!al.editing"></xd-input-textarea>
                             </div>
                         </div>
@@ -283,90 +284,102 @@
                 <div class="tab-pane" id="historico">
                     <xd-panel-collapse title="'Monografia'">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="padding1 col-md-12">
                                 <xd-input data-params="al._model.monografia" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="padding1 col-md-8">
                                 <xd-input data-params="al._model.orientador" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.nota" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="padding1 col-md-5">
                                 <xd-input-date data-params="al._model.dataApuracao" data-disable="!al.editing"></xd-input-date>
                             </div>
-                            <div class="col-md-5">
+                            <div class="padding1 col-md-5">
                                 <xd-input-date data-params="al._model.dataColacao" data-disable="!al.editing"></xd-input-date>
                             </div>
                         </div>
                     </xd-panel-collapse>
                     <xd-panel-collapse title="'Informações do Ensino Médio'">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="padding1 col-md-6">
                                 <xd-input data-params="al._model.anoLetivo" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-6">
+                            <div class="padding1 col-md-6">
                                 <xd-input data-params="al._model.anoEm" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="padding1 col-md-12">
                                 <xd-input data-params="al._model.escolaEm" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.municipioEm" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.ufEm" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.cursoEm" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
                     </xd-panel-collapse>
                     <xd-panel-collapse title="'Informações do Curso'">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="padding1 col-md-8">
                                 <xd-input data-params="al._model.instituicao" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.anoGrad" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="padding1 col-md-8">
                                 <xd-input data-params="al._model.cursoGrad" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-4">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.ufGrad" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
                     </xd-panel-collapse>
                     <xd-panel-collapse title="'Outros'">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="padding1 col-md-12">
                                 <xd-input-textarea data-params="al._model.obsGrad" data-disable="!al.editing"></xd-input-textarea>
                             </div>
                         </div>
                     </xd-panel-collapse>
                 </div>
 
+                <!-- LOG -->
                 <div class="tab-pane" id="log">
                     <xd-panel-collapse title="'Log'">
                         <div class="row">
-                            <div class="col-md-12">
-                                <xd-select data-params="al._model.logUser" data-disable="!al.editing"></xd-select>
+                            <div class="padding1 col-md-12">
+                                <xd-select data-params="al._model.logUser"></xd-select>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
-                                <xd-grid data-params="al._model.gridLOg">   </xd-grid>
+                            <div class="padding1 col-md-12">
+                                <div class="col-md-12">
+                                    <div class="col-md-12 scrollTable">
+                                        <xd-grid data-params="al._model.gridLOg"></xd-grid>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                    <xd-panel-collapse title="'Outros'">
+                        <div class="row">
+                            <div class="padding1 col-md-12">
+                                <xd-input-textarea data-params="al._model.obsLog" data-disable="!al.editing"></xd-input-textarea>
                             </div>
                         </div>
                     </xd-panel-collapse>

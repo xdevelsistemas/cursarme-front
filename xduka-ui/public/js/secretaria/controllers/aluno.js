@@ -237,6 +237,25 @@
                                 "name": "observacoes",
                                 "required": false,
                                 "model": {"val": "", "err": ""}
+                            },
+                            obsLog: {
+                                "label": "Observações",
+                                "type": "textarea",
+                                "name": "observacoes",
+                                "required": false,
+                                "model": {"val": "", "err": ""}
+                            },
+                            logUser: {
+                                "label": "Usuário",
+                                "type": "text",
+                                "placeholder": "Selecione...",
+                                "name": "natUf",
+                                "model": {"val": "", "err": ""},
+                                "list": [
+                                    {id: 0, text: '*Todos'},
+                                    {id: 1, text: 'Camila Ferreira'},
+                                    {id: 2, text: 'João da Silva'}
+                                ]
                             }
                         });
                     })
@@ -337,6 +356,34 @@
                         active: false,
                         target: '#parcelas'
                     }
-                ]
+                ];
+                vm._model.gridLOg = {
+                    id: 'logTable',
+                    dataTable: {
+                        "paging":   false,
+                        "ordering": true,
+                        "info":     false,
+                        "filter":   false,
+                        "order": [[ 0, "desc" ]],
+                        "aoColumnDefs": [
+                            { 'bSortable': false, 'aTargets': [ 2 ] }
+                        ]
+
+                    },
+                    class: 'table-hover table-bordered display',
+                    head: ["Data/Hora", "Usuário", "Evento"],
+                    list: [
+                        {
+                            'adata': {date: true, int: 1437423897997, formatDate: 'dd/MM/yyyy h:mm a'},
+                            'buser': 'Camila Ferreira',
+                        'cevento': 'Usuário(a) Camila Ferreira Matrícula Aluno(a): (21321231) ADENILSON BLA BLA BLA BLA NKL NASDKLASDKLASALDASKLDMSAKLDAMKLAMDSMKLA MSDAKD MAKLSMDAKLMSDKLAMDSKAMDKALDMKSAL MDASKLDM KAM AKL MSDKL'
+                        },
+                        {
+                            'adata': {date: true, int: 1437426700808, formatDate: 'dd/MM/yyyy h:mm a'},
+                            'buser': 'João da Silva',
+                            'cevento': 'Usuário(a) João da Silva Matrícula Aluno(a): (343434343) MARIA BLA BLA BLA BLA NKL NASDKLASDKLASALDASKLDMSAKLDAMKLAMDSMKLA MSDAKD MAKLSMDAKLMSDKLAMDSKAMDKALDMKSAL MDASKLDM KAM AKL MSDKL'
+                        }
+                    ]
+                }
             }])
 })();
