@@ -2,8 +2,8 @@
     "use strict";
 
     angular.module('app.controllers').controller('FormPreCadastro', [
-        '$scope', 'breadCrumb', '$timeout', '$modal', '$resource', 'modelStrings', 'lista_cheques', 'dataCheque', 'tipoTelefone',
-        function ($scope, breadCrumb, $timeout, $modal, $resource, modelStrings, lista_cheques, dataCheque, tipoTelefone) {
+        '$scope', 'breadCrumb', '$timeout', '$modal', '$route', '$resource', 'modelStrings', 'lista_cheques', 'dataCheque', 'tipoTelefone',
+        function ($scope, breadCrumb, $timeout, $modal, $route, $resource, modelStrings, lista_cheques, dataCheque, tipoTelefone) {
 
             /* jshint validthis: true */
             var vm = this
@@ -30,10 +30,14 @@
             vm.editing = false;
             vm.lista_cheques = lista_cheques;
 
+            //alert sucesso
+            vm.sendSucess = false;
+
             //Alerta de campos faltando
             vm.showAlert = false;
 
             //xd-select de curso
+            vm.selectCursoTipoCurso = false;
             vm.selectCursoArea = false;
             vm.selectCursoCurso = false;
             vm.selectCursoVagas = false;
@@ -44,8 +48,23 @@
             vm.validaCpf = false;
             vm.validaSexo = false;
 
+            // valida cep
+            vm.validaCep = false;
+            vm.validaCepAvRua = false;
+            vm.validaCepBairro = false;
+            vm.validaCepCidade = false;
+            vm.validaCepEndUf = false;
+
             // temporarias de dados
             vm.tempItem = {}; /* Guarda um obj para confirmar a edição em caso de uma edição quando um cadastro já está sendo editado */
+
+            // Habilitar ou desabilitar checks
+            vm.isMestrado = false;
+            vm.isTeologia = false;
+            vm.isPosGrad = false;
+            vm.isContinuada = false;
+            vm.isComplementacao = false;
+
 
             // ==== REQUISIÇÕES ==== //
 
@@ -56,22 +75,67 @@
                     vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
                 })
                 .catch(function(erro){
-                    console.log("\n" + erro.data + "\n");
+                    if (erro.status == '400') {
+                        console.log(erro)
+                    }
                 });
 
             viewInscrPromise
-                .then(function(data2) {
-                    vm._viewInscr = data2;
+                .then(function(data) {
+                    vm._viewInscr = data;
 
-                    for (var i = 0; i < data2.list.length; i++) {
-                        for (var j = 0; j < data2.list[i].listaCheques.length; j++) {
-                            vm._viewInscr.list[i].listaCheques[j].data = new Date(data2.list[i].listaCheques[j].data);
+                    for (var i = 0; i < data.list.length; i++) {
+                        for (var j = 0; j < data.list[i].listaCheques.length; j++) {
+                            vm._viewInscr.list[i].listaCheques[j].data = new Date(data.list[i].listaCheques[j].data);
                         }
                     }
                 })
                 .catch(function(erro) {
-                    console.log("\n" + erro.data + "\n");
+                    if (erro.status == '400') {
+                        console.log(erro)
+                    }
                 });
+
+
+            vm.getDadosCep = function(cep) {
+                if (cep.length == 8) {
+                    var getCepPromise = $resource('/api/comercial/dados-cep/:cep').get({"cep": cep}).$promise;
+
+                    getCepPromise
+                        .then(function (data) {
+                            if (data.erro) {
+                                vm.validaCep = data.erro;
+                                vm.validaCepAvRua = data.erro;
+                                vm.validaCepBairro = data.erro;
+                                vm.validaCepCidade = data.erro;
+                                vm.validaCepEndUf = data.erro;
+
+                                vm._model.cep.model.err = vm.STR.NOCEPFOUND;
+                                vm._model.avRua.model.val = '';
+                                vm._model.bairro.model.val = '';
+                                vm._model.cidade.model.val = '';
+                                vm._model.endUf.model.val = '';
+                            } else {
+                                vm.validaCep = false;
+                                vm._model.avRua.model.val = data.logradouro.length <= 1 ? '' : data.logradouro;
+                                vm._model.bairro.model.val = data.bairro;
+                                vm._model.cidade.model.val = data.localidade;
+                                vm._model.endUf.model.val = "UF_" + data.uf;
+                                vm._model.cep.model.err = '';
+
+                                vm.validaCepAvRua = data.logradouro.length <= 1;
+                                vm.validaCepBairro = !data.bairro;
+                                vm.validaCepCidade = !data.localidade;
+                                vm.validaCepEndUf = !data.uf;
+                            }
+                        })
+                        .catch(function (erro) {
+                            if (erro.status == '400') {
+                                console.log(erro)
+                            }
+                        });
+                }
+            };
 
             vm.verificaCpf = function (cpf) {
                 if (cpf.length == 11) {
@@ -81,6 +145,7 @@
                             cpf == "66666666666" || cpf == "77777777777" || cpf == "88888888888" || cpf == "99999999999"){
                             vm._model.cpf.model.err = 'CPF inválido';
                             vm.validaCpf = false;
+                            vm.editing = false;
                         }else{
                             // Valida 1o digito
                             var add, rev;
@@ -93,6 +158,7 @@
                             if (rev != parseInt(cpf.charAt(9))) {
                                 vm._model.cpf.model.err = 'CPF inválido';
                                 vm.validaCpf = false;
+                                vm.editing = false;
                             }else{
                                 // Valida 2o digito
                                 add = 0;
@@ -104,48 +170,84 @@
                                 if (rev != parseInt(cpf.charAt(10))) {
                                     vm._model.cpf.model.err = 'CPF inválido';
                                     vm.validaCpf = false;
+                                    vm.editing = false;
                                 }else{
-                                    var verificaCpfPromise = $resource('/api/comercial/verifica-cpf').save({}, {"cpf": cpf}).$promise;
+                                    var verificaCpfPromise = $resource('/api/comercial/verifica-cpf/:cpf').get({"cpf": cpf}).$promise;
 
                                     verificaCpfPromise
                                         .then(function (data) {
                                             vm._model.cpf.model.err = data.dados.msg;
                                             vm._model.unidade.list = data.dadosCurso.unidade.list;
                                             vm.validaCpf = !data.dados.msg;
-                                            if(vm.validaCpf){
-                                                vm.editing = true;
-                                            }
+                                            vm.editing = vm.validaCpf;
+
+                                            vm._model.desconto.model.aux = data.desconto;
                                         })
                                         .catch(function (erro) {
-                                            console.log(erro);
+                                            if (erro.status == '400') {
+                                                console.log(erro)
+                                            }
                                         })
                                 }
                             }
 
                         }
                     }catch(erro){
-                        console.log("Erro:\n" + erro);
+                        if (erro.status == '400') {
+                            console.log(erro)
+                        }
                     }
                 } else {
                     vm.validaCpf = false;
+                    vm.editing = false;
                 }
             };
 
             vm.verificaSexo = function(item, model) {
                 vm.validaSexo = model == 'f';
+                vm._model.certificadoRes.model.val = '';
+                vm._model.registro.model.val = '';
+                vm._model.categoria.model.val = '';
+                vm._model.ufReservista.model.val = '';
             };
 
             vm.unidadeChange = function (item, model) {
+                vm.selectCursoTipoCurso = true;
+                vm.selectCursoArea = false;
+                vm.selectCursoCurso = false;
+                vm.selectCursoVagas = false;
+
+                vm._model.tipoCurso.list = [];
+                vm._model.tipoCurso.model = {'val': '', 'err': ''};
+                vm._model.tipoCurso.list = item.tipoCursos;
+
+                // limpa a sujeira que fica no model.val quando troca de curso
+                limpaCampoPag();
+            };
+
+            vm.tipoCursoChange = function (item, model) {
                 vm.selectCursoArea = true;
                 vm.selectCursoCurso = false;
                 vm.selectCursoVagas = false;
 
                 vm._model.area.list = [];
                 vm._model.area.model = {'val': '', 'err': ''};
-                $.extend(vm._model.area.list, item.areas);
+                vm._model.area.list = item.areas;
 
                 // limpa a sujeira que fica no model.val quando troca de curso
                 limpaCampoPag();
+
+                // definindo valores para pagamento
+                vm._model.formaPagamentoPag.valores = item.valores;
+                vm._model.valorInscricao.model.aux = item.valores.inscricao;
+                vm._model.valorIntegral.model.aux = item.valores.integral;
+
+                // Habilitando checkbox's da documentação
+                vm.isMestrado = item.text.toLowerCase().indexOf("mestrado") != -1;
+                vm.isTeologia = item.text.toLowerCase().indexOf("teologia") != -1;
+                vm.isPosGrad = item.text.toLowerCase().indexOf("pós graduação") != -1;
+                vm.isContinuada = item.text.toLowerCase().indexOf("continuada") != -1;
+                vm.isComplementacao = item.text.toLowerCase().indexOf("complementação") != -1;
             };
 
             vm.areaChange = function (item, model) {
@@ -154,7 +256,7 @@
 
                 vm._model.curso.list = [];
                 vm._model.curso.model = {'val': '', 'err': ''};
-                $.extend(vm._model.curso.list, item.cursos);
+                vm._model.curso.list = item.cursos;
                 $.extend(vm._model.vagas, item.turma[0].vagas);
 
                 // limpa a sujeira que fica no model.val quando troca de curso
@@ -165,19 +267,16 @@
                 vm.selectCursoVagas = true;
 
                 // alimentando valores referentes ao curso selecionado
-                $.extend(vm._model.descontoInscr.list, item.descontoInscr);
-                $.extend(vm._model.desconto.list, item.desconto);
-                $.extend(vm._model.qtdParcelas.list, item.qtdParcelas);
-                $.extend(vm._model.melhorData.list, item.melhorData);
+                vm._model.qtdParcelas.list = item.qtdParcelas;
+                vm._model.melhorData.list = item.melhorData;
 
                 // limpa a sujeira que fica no model.val quando troca de curso
                 limpaCampoPag();
 
                 // definindo valor de inscrição
-                vm._model.valorInscricao.model.val = item.valorInscricao;
-                vm._model.valorInscricao.model.aux = item.valorInscricao;
-                vm._model.valorIntegral.model.val = item.valorIntegral;
-                vm._model.valorIntegral.model.aux = item.valorIntegral;
+                vm._model.valorInscricao.model.val = vm._model.valorInscricao.model.aux;
+                vm._model.valorIntegral.model.val = vm._model.valorIntegral.model.aux;
+                vm._model.desconto.model.val = vm._model.desconto.model.aux;
 
                 $timeout(function () {
                     if ((vm._model.vagas.totais / vm._model.vagas.preenchidas) < 1.5){
@@ -211,7 +310,20 @@
             };
 
             vm.qtdParcelasAplic = function(item, model) {
-                vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
+                if (model == '1'){
+                    var perc = 1 - ((vm._model.formaPagamentoPag.valores.avista) / vm._model.formaPagamentoPag.valores.integral);
+
+                    vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.avista;
+                    vm._model.desconto.model.val = vm._model.desconto.model.aux + perc;
+
+                    vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
+                } else {
+                    vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
+                    vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
+                        (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val));
+
+                    vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
+                }
             };
 
             vm.openModalCheque = function () {
@@ -229,10 +341,16 @@
 
             vm.selectChequeStep2 = function (item, model) {
                 vm.btnAddChequeStep2 = item.tpCheque;
+
+                vm._model.desconto.model.descPag = 1 - ((vm._model.formaPagamentoPag.valores[item.name]) / vm._model.formaPagamentoPag.valores.integral);
+                vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
+
+                vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
+                    (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val));
             };
 
             vm.selectPhoneType = function (item, model) {
-                vm._model.telefone.mask = tipoTelefone.getMskPhone(model);
+                vm._model.telefone.mask = tipoTelefone.getMaskPhone(model);
             };
 
             vm.sendInscricaoCompleta = function() {
@@ -248,7 +366,9 @@
                         disableBtn()
                     })
                     .catch(function (erro) {
-                        console.log("\n" + erro.data + "\n")
+                        if (erro.status == '400') {
+                            console.log(erro)
+                        }
                     });
             };
 
@@ -262,10 +382,19 @@
                         vm._model = data;
                         vm.disableLimpar = false;
                         $.extend(vm._model.vagas, funcVagas());
-                        disableBtn()
+                        disableBtn();
+                        if (data.success) {
+                            vm.limpaForm();
+                            vm.sendSucess = data.success;
+                            vm.editing = false;
+                            vm.showAlert = false;
+                            $timeout(vm.disableSendSucess, 6000);
+                        }
                     })
                     .catch(function (erro) {
-                        console.log("\n" + erro.data + "\n")
+                        if (erro.status == '400') {
+                            console.log(erro)
+                        }
                     });
             };
 
@@ -279,7 +408,7 @@
                 $timeout(function () {
                     vm.disableAtualiza = $('#step0').attr('class').indexOf('active') == -1;
                     vm.disableAnterior = $('#step0').attr('class').indexOf('active') != -1;
-                    vm.disableProximo = $('#step3').attr('class').indexOf('active') != -1;
+                    vm.disableProximo = $('#step4').attr('class').indexOf('active') != -1;
                 }, 300);
             }
 
@@ -290,64 +419,66 @@
             function editarInscr(item){
 
                 if (!vm.editing) {
-                    var getUnidadePromise = $resource('/api/comercial/dados-curso').get().$promise,
-                        curso = {};
+                    var getUnidadePromise = $resource('/api/comercial/dados-curso').get().$promise;
 
                     getUnidadePromise
                         .then(function (data) {
+                            var editVerifCpfPromise = $resource('/api/comercial/verifica-cpf/:cpf').get({"cpf": item.cpf.model.val}).$promise;
+
                             vm.editing = true;
                             vm.showAlert = true;
                             vm.disableLimpar = true;
                             vm.validaCpf = true;
 
-                            vm.selectCursoArea = true;
-                            vm.selectCursoCurso = true;
-                            vm.selectCursoVagas = true;
-
-                            vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
                             vm._model.unidade.list = data.unidade.list;
 
-                            vm._model.area.list = $.grep(vm._model.unidade.list, function (e) {
+                            vm.unidadeChange($.grep(vm._model.unidade.list, function (e) {
                                 return e.id == item.unidade.model.val;
-                            })[0].areas;
+                            })[0], item.unidade.model.val);
 
-                            vm._model.curso.list = $.grep(vm._model.area.list, function (e) {
+                            vm.tipoCursoChange($.grep(vm._model.tipoCurso.list, function (e) {
+                                return e.id == item.tipoCurso.model.val;
+                            })[0], item.tipoCurso.model.val);
+
+                            vm.areaChange(vm._model.curso.list = $.grep(vm._model.area.list, function (e) {
                                 return e.id == item.area.model.val;
-                            })[0].cursos;
+                            })[0], item.area.model.val);
 
-
-                            // definindo valor de inscrição
-                            vm._model.valorInscricao.model.val = item.valorInscricao.model.val;
-                            vm._model.valorIntegral.model.val = item.valorIntegral.model.val;
-
-                            curso = $.grep(vm._model.curso.list, function (e) {
+                            vm.cursoChange($.grep(vm._model.curso.list, function (e) {
                                 return e.id == item.curso.model.val;
-                            })[0];
-
-                            vm._model.valorInscricao.model.aux = curso.valorInscricao;
-                            vm._model.valorIntegral.model.aux = curso.valorIntegral;
-
-                            // alimentando valores referentes ao curso selecionado
-                            vm._model.descontoInscr.list = curso.descontoInscr;
-                            vm._model.desconto.list = curso.desconto;
-                            vm._model.qtdParcelas.list = curso.qtdParcelas;
-                            vm._model.melhorData.list = curso.melhorData;
-
-
-                            // limpa a sujeira que fica no model.val quando troca de curso
-                            limpaCampoPag();
+                            })[0], item.curso.model.val);
 
                             $.extend(true, vm._model, item);
+                            vm.getDadosCep(vm._model.cep.model.val);
+                            vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
 
+                            vm.btnAddChequeStep1 = vm._model.formaPagamentoInscr.model.val == 2;
+                            vm.btnAddChequeStep2 = vm._model.formaPagamentoPag.model.val == 2;
+                            lista_cheques.addAll(vm._model.listaCheques);
 
+                            editVerifCpfPromise
+                                .then(function (data2) {
+                                    vm._model.desconto.model.aux = data2.desconto;
+
+                                    vm.selectChequeStep2($.grep(vm._model.formaPagamentoPag.list, function (e) {
+                                        return e.id == vm._model.formaPagamentoPag.model.val;
+                                    })[0], vm._model.formaPagamentoPag.model.val);
+
+                                    vm.qtdParcelasAplic($.grep(vm._model.qtdParcelas.list, function (e) {
+                                        return e.id == vm._model.qtdParcelas.model.val;
+                                    })[0], vm._model.qtdParcelas.model.val);
+                                })
+                                .catch(function (erro) {
+                                    if (erro.status == '400') {
+                                        console.log(erro)
+                                    }
+                                });
                         })
                         .catch(function (erro) {
-                            console.log(erro);
+                            if (erro.status == '400') {
+                                console.log(erro)
+                            }
                         });
-
-                    vm.btnAddChequeStep1 = item.formaPagamentoInscr.model.val == 2;
-                    vm.btnAddChequeStep2 = item.formaPagamentoPag.model.val == 2;
-                    lista_cheques.addAll(item.listaCheques);
                 }else{
                     $('#confirmEdit').modal('show');
                     vm.tempItem = item;
@@ -388,75 +519,16 @@
             }
 
             vm.limpaForm = function(){
-
                 // escondendo select's de curso
+                vm.selectCursoTipoCurso = false;
                 vm.selectCursoArea = false;
                 vm.selectCursoCurso = false;
                 vm.selectCursoVagas = false;
 
-                /* ALUNO */
-                vm._model.cpf.model.val = '';
-                vm._model.rg.model.val = '';
-                vm._model.nome.model.val = '';
-                vm._model.cidade.model.val = '';
-                vm._model.cep.model.val = '';
-                vm._model.telefone.model.val = '';
-                vm._model.tipoTelefone.model.val = '';
-                vm._model.email.model.val = '';
-                vm._model.dataExp.model.val = '';
-                vm._model.orgaoEmissor.model.val = '';
-                vm._model.tituloEleitor.model.val = '';
-                vm._model.zona.model.val = '';
-                vm._model.secao.model.val = '';
-                vm._model.ufTitulo.model.val = '';
-                vm._model.certidaoNc.model.val = '';
-                vm._model.folha.model.val = '';
-                vm._model.livro.model.val = '';
-                vm._model.cartorio.model.val = '';
-                vm._model.certificadoRes.model.val = '';
-                vm._model.registro.model.val = '';
-                vm._model.ufReservista.model.val = '';
-                vm._model.categoria.model.val = '';
-                vm._model.sexo.model.val = '';
-                vm._model.dataNasc.model.val = '';
-                vm._model.raca.model.val = '';
-                vm._model.estadoCivil.model.val = '';
-                vm._model.pai.model.val = '';
-                vm._model.mae.model.val = '';
-                vm._model.avRua.model.val = '';
-                vm._model.endNum.model.val = '';
-                vm._model.apt.model.val = '';
-                vm._model.bairro.model.val = '';
-                vm._model.endUf.model.val = '';
-                vm._model.nacionalidade.model.val = '';
-                vm._model.naturalidade.model.val = '';
-                vm._model.natUf.model.val = '';
-
-                /* CURSO */
-                vm._model.unidade.model.val = '';
-                vm._model.area.model.val = '';
-                vm._model.curso.model.val = '';
-
-                /* DOCUMENTACAO */
-                vm._model.escolaEm.model.val = '';
-                vm._model.anoEm.model.val = '';
-                vm._model.cursoGrad.model.val = '';
-                vm._model.anoGrad.model.val = '';
-                vm._model.instituicao.model.val = '';
-
-                /* INSCRIÇÃO */
-                vm._model.valorInscricao.model.val = '';
-                vm._model.formaPagamentoInscr.model.val = '';
-
-                /* PAGAMENTO  */
-                vm._model.valorIntegral.model.val = '';
-                vm._model.desconto.model.val = '';
-                vm._model.formaPagamentoPag.model.val = '';
-                vm._model.qtdParcelas.model.val = '';
-                vm._model.valorParcela.model.val = '';
-                vm._model.melhorData.model.val = '';
-                vm._model.observacoes.model.val = '';
-                vm._model.listaCheques = [];
+                vm.limpaFormStep1();
+                vm.limpaFormStep2();
+                vm.limpaFormStep3();
+                vm.limpaFormStep4();
 
                 // limpando cheques adicionados
                 lista_cheques.clean();
@@ -464,8 +536,159 @@
                 vm.editing = false;
                 vm.disableLimpar = false;
                 vm.validaCpf = false;
+                vm.showAlert = false;
 
                 vm.topCollapse();
+            };
+
+            vm.limpaFormStep1 = function() {
+
+                vm._model.cpf.model.val = '';
+                vm._model.cpf.model.err = '';
+                vm._model.rg.model.val = '';
+                vm._model.rg.model.err = '';
+                vm._model.nome.model.val = '';
+                vm._model.nome.model.err = '';
+                vm._model.cidade.model.val = '';
+                vm._model.cidade.model.err = '';
+                vm._model.cep.model.val = '';
+                vm._model.cep.model.err = '';
+                vm._model.telefone.model.val = '';
+                vm._model.telefone.model.err = '';
+                vm._model.tipoTelefone.model.val = '';
+                vm._model.tipoTelefone.model.err = '';
+                vm._model.email.model.val = '';
+                vm._model.email.model.err = '';
+                vm._model.unidade.model.val = '';
+                vm._model.unidade.model.err = '';
+                vm._model.tipoCurso.model.val = '';
+                vm._model.tipoCurso.model.err = '';
+                vm._model.area.model.val = '';
+                vm._model.area.model.err = '';
+                vm._model.curso.model.val = '';
+                vm._model.curso.model.err = '';
+                vm._model.valorInscricao.model.val = '';
+                vm._model.valorInscricao.model.err = '';
+                vm._model.formaPagamentoInscr.model.val = '';
+                vm._model.formaPagamentoInscr.model.err = '';
+            };
+
+            vm.limpaFormStep2 = function() {
+
+                vm._model.valorIntegral.model.val = '';
+                vm._model.valorIntegral.model.err = '';
+                vm._model.desconto.model.val = '';
+                vm._model.desconto.model.err = '';
+                vm._model.formaPagamentoPag.model.val = '';
+                vm._model.formaPagamentoPag.model.err = '';
+                vm._model.qtdParcelas.model.val = '';
+                vm._model.qtdParcelas.model.err = '';
+                vm._model.valorParcela.model.val = '';
+                vm._model.valorParcela.model.err = '';
+                vm._model.melhorData.model.val = '';
+                vm._model.melhorData.model.err = '';
+                vm._model.observacoes.model.val = '';
+                vm._model.observacoes.model.err = '';
+                vm._model.listaCheques = [];
+            };
+
+            vm.limpaFormStep3 = function() {
+                vm._model.checkFoto34.model.val = false;
+                vm._model.checkCertidao.model.val = false;
+                vm._model.checkReservista.model.val = false;
+                vm._model.checkComprovanteResidencia.model.val = false;
+                vm._model.checkCpf.model.val = false;
+                vm._model.checkDiplomaGrad.model.val = false;
+                vm._model.checkDiploma2grau.model.val = false;
+                vm._model.checkDiplomaSeminario.model.val = false;
+                vm._model.checkHistoricoGraduacao.model.val = false;
+                vm._model.checkHistoricoSeminario.model.val = false;
+                vm._model.checkTitulo.model.val = false;
+                vm._model.checkRg.model.val = false;
+                vm._model.checkFichaInscr.model.val = false;
+                vm._model.checkTaxaInscr.model.val = false;
+                // Desabilitando checkbox's da documentação
+                vm.isMestrado = false;
+                vm.isTeologia = false;
+                vm.isPosGrad = false;
+                vm.isContinuada = false;
+                vm.isComplementacao = false;
+            };
+
+            vm.limpaFormStep4 = function() {
+
+                vm._model.dataExp.model.val = '';
+                vm._model.dataExp.model.err = '';
+                vm._model.orgaoEmissor.model.val = '';
+                vm._model.orgaoEmissor.model.err = '';
+                vm._model.tituloEleitor.model.val = '';
+                vm._model.tituloEleitor.model.err = '';
+                vm._model.zona.model.val = '';
+                vm._model.zona.model.err = '';
+                vm._model.secao.model.val = '';
+                vm._model.secao.model.err = '';
+                vm._model.ufTitulo.model.val = '';
+                vm._model.ufTitulo.model.err = '';
+                vm._model.certidaoNc.model.val = '';
+                vm._model.certidaoNc.model.err = '';
+                vm._model.folha.model.val = '';
+                vm._model.folha.model.err = '';
+                vm._model.livro.model.val = '';
+                vm._model.livro.model.err = '';
+                vm._model.cartorio.model.val = '';
+                vm._model.cartorio.model.err = '';
+                vm._model.certificadoRes.model.val = '';
+                vm._model.certificadoRes.model.err = '';
+                vm._model.registro.model.val = '';
+                vm._model.registro.model.err = '';
+                vm._model.ufReservista.model.val = '';
+                vm._model.ufReservista.model.err = '';
+                vm._model.categoria.model.val = '';
+                vm._model.categoria.model.err = '';
+                vm._model.sexo.model.val = '';
+                vm._model.sexo.model.err = '';
+                vm._model.dataNasc.model.val = '';
+                vm._model.dataNasc.model.err = '';
+                vm._model.raca.model.val = '';
+                vm._model.raca.model.err = '';
+                vm._model.estadoCivil.model.val = '';
+                vm._model.estadoCivil.model.err = '';
+                vm._model.pai.model.val = '';
+                vm._model.pai.model.err = '';
+                vm._model.mae.model.val = '';
+                vm._model.mae.model.err = '';
+                vm._model.avRua.model.val = '';
+                vm._model.avRua.model.err = '';
+                vm._model.endNum.model.val = '';
+                vm._model.endNum.model.err = '';
+                vm._model.complemento.model.val = '';
+                vm._model.complemento.model.err = '';
+                vm._model.bairro.model.val = '';
+                vm._model.bairro.model.err = '';
+                vm._model.endUf.model.val = '';
+                vm._model.endUf.model.err = '';
+                vm._model.nacionalidade.model.val = '';
+                vm._model.nacionalidade.model.err = '';
+                vm._model.naturalidade.model.val = '';
+                vm._model.naturalidade.model.err = '';
+                vm._model.natUf.model.val = '';
+                vm._model.natUf.model.err = '';
+                vm._model.escolaEm.model.val = '';
+                vm._model.escolaEm.model.err = '';
+                vm._model.anoEm.model.val = '';
+                vm._model.anoEm.model.err = '';
+                vm._model.cursoGrad.model.val = '';
+                vm._model.cursoGrad.model.err = '';
+                vm._model.anoGrad.model.val = '';
+                vm._model.anoGrad.model.err = '';
+                vm._model.instituicao.model.val = '';
+                vm._model.instituicao.model.err = '';
+            };
+
+            vm.atualizaPartial = function(time) {
+                $timeout(function () {
+                    $route.reload();
+                }, time); // delay to reload page.
             };
 
             vm.cancelEdit = function(){
@@ -473,6 +696,7 @@
                 vm.disableLimpar = false;
                 disableBtn();
                 vm.editing = false;
+                vm.showAlert = false;
 
             };
 
@@ -486,7 +710,30 @@
                 editFunc: function(){
                     vm.disableLimpar = true;
                 },
-                editInscr: vm.editarInscr
+                editInscr: vm.editarInscr,
+
+                verificaEdit: verificaEdit
+            };
+
+            vm.disableSendSucess = function(){
+                vm.sendSucess = false;
+            };
+
+            function verificaEdit(data){
+                data = new Date(data); var atual = new Date();
+                return (atual.getDate() == data.getDate() && atual.getMonth() == data.getMonth())
             }
+
+            vm.testeInput = {
+                type: 'checkbox',
+                label: 'Diploma de graduação ou certificado de conclusão de curso (2 cópias autenticadas)',
+                model: {'val': false, 'err': 'Campo obrigatório'}
+            };
+            vm.testeInput2 = {
+                type: 'checkbox',
+                label: 'Diploma de graduação ou certificado de conclusão de curso (2 cópias autenticadas)',
+                model: {'val': true}
+            };
+
         }])
 })();

@@ -251,14 +251,32 @@
   },
   "raca": {
     "label": "Raça",
-    "type": "text",
+    "type": "select",
     "name": "raca",
+    "placeholder": "Selecione...",
+    "list":[
+      {"id": "1", "text": "Branca"},
+      {"id": "2", "text": "Preta"},
+      {"id": "3", "text": "Amarela"},
+      {"id": "4", "text": "Parda"},
+      {"id": "5", "text": "Indígena"}
+    ],
     "model": {"val": "", "err": ""}
   },
   "estadoCivil": {
     "label": "Estado Civil",
-    "type": "text",
+    "type": "select",
     "name": "estadoCivil",
+    "placeholder": "Selecione...",
+    "list":[
+      {"id": "1", "text": "Solteiro(a)"},
+      {"id": "2", "text": "Casado(a)"},
+      {"id": "3", "text": "Divorciado(a)"},
+      {"id": "4", "text": "Viúvo(a)"},
+      {"id": "5", "text": "Separado(a)"},
+      {"id": "5", "text": "Separado(a)"},
+      {"id": "6", "text": "Companheiro(a)"}
+    ],
     "model": {"val": "", "err": ""}
   },
   "pai": {
@@ -285,8 +303,8 @@
     "name": "endNum",
     "model": {"val": "", "err": ""}
   },
-  "apt": {
-    "label": "Apt",
+  "complemento": {
+    "label": "Complemento",
     "type": "text",
     "name": "apt",
     "model": {"val": "", "err": ""}
@@ -388,6 +406,15 @@
     "type": "select",
     "name": "unidade",
     "select": {"unidade": 0, "area": 0, "curso": 0, "turma": 0},
+    "placeholder": "Selecione uma opção",
+    "required": false,
+    "list": [],
+    "model": {"val": "", "err": ""}
+  },
+  "tipoCurso": {
+    "label": "Tipo Curso",
+    "type": "select",
+    "name": "tipoCurso",
     "placeholder": "Selecione uma opção",
     "required": false,
     "list": [],
@@ -509,12 +536,10 @@
   },
   "desconto": {
     "label": "Desconto",
-    "type": "select",
+    "type": "text",
     "name": "desconto",
-    "placeholder": "Selecione uma opção",
     "required": false,
-    "list": [],
-    "model": {"val": "", "err": ""}
+    "model": {"val": "0", "err": ""}
   },
   "formaPagamentoPag": {
     "label": "Forma de pagamento",
@@ -523,10 +548,9 @@
     "required": false,
     "placeholder": "Selecione uma opção",
     "list": [
-      {"id": "1", "text": "Dinheiro", "tpCheque": false},
-      {"id": "2", "text": "Cheque", "tpCheque": true},
-      {"id": "3", "text": "Cartão de Crédito", "tpCheque": false},
-      {"id": "4", "text": "Cartão de Débito", "tpCheque": false}
+      {"id": "1", "text": "Dinheiro", "name": "boleto", "tpCheque": false},
+      {"id": "2", "text": "Cheque", "name": "cheque", "tpCheque": true},
+      {"id": "3", "text": "Cartão", "name": "cartao", "tpCheque": false}
     ],
     "model": {"val": "", "err": ""}
   },
@@ -560,6 +584,118 @@
     "name": "observacoes",
     "required": false,
     "model": {"val": "", "err": ""}
+  },
+  "checkFoto34": {
+    "label": "Fotos 3x4 Recente",
+    "type": "checkbox",
+    "name": "foto34",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkCertidao": {
+    "label": "Certidão de nascimento/casamento/divórcio (cópia simples)",
+    "type": "checkbox",
+    "name": "checkCertidao",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkReservista": {
+    "label": "Certificados de reservista (cópias simples)",
+    "type": "checkbox",
+    "name": "checkReservista",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkComprovanteResidencia": {
+    "label": "Comprovantes de residência com CEP (cópias simples)",
+    "type": "checkbox",
+    "name": "checkResidencia",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+    "checkCpf": {
+    "label": "CPF cópia simples",
+    "type": "checkbox",
+    "name": "checkCpf",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkDiplomaGrad": {
+    "label": "Diploma ou certificado de conclusão (cópia autenticada)",
+    "type": "checkbox",
+    "name": "checkDipGrad",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkDiploma2grau": {
+    "label": "Diplomas do 2º Grau (2 cópias autenticadas)",
+    "type": "checkbox",
+    "name": "checkDip2grau",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+    "checkDiplomaSeminario": {
+    "label": "Diplomas do Seminário cursado (2 cópias autenticadas)",
+    "type": "checkbox",
+    "name": "checkDipSeminario",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkHistoricoGraduacao": {
+    "label": "Histórico da graduação (cópia autenticada)",
+    "type": "checkbox",
+    "name": "checkHistGrad",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkHistoricoSeminario": {
+    "label": "Históricos do Seminário cursado (2 cópias autenticadas)",
+    "type": "checkbox",
+    "name": "checkHistSeminario",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkTitulo": {
+    "label": "Título e comprovante da última votação (cópias simples)",
+    "type": "checkbox",
+    "name": "checkTitulo",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkRg": {
+    "label": "Cópia do Documento de Identidade (RG), frente e verso",
+    "type": "checkbox",
+    "name": "checkRg",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkFichaInscr": {
+    "label": "Ficha de inscrição devidamente preenchida",
+    "type": "checkbox",
+    "name": "checkInscr",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
+  },
+  "checkTaxaInscr": {
+    "label": "Taxa de Inscrição devidamente paga",
+    "type": "checkbox",
+    "name": "checkTaxaInscr",
+    "required": false,
+    "model": {"val": "", "err": ""}
+
   },
   "listaCheques": []
 }

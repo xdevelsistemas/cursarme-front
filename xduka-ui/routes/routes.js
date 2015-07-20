@@ -1,5 +1,7 @@
-var isLoggedIn = require('../services/isLoggedIn.js');
-var isNotLoggedIn = require('../services/isNotLoggedIn.js');
+var isLoggedIn = require('../services/isLoggedIn.js'),
+    isNotLoggedIn = require('../services/isNotLoggedIn.js'),
+    http = require('http');
+
 module.exports = function (app, passport) {
 //    var express = require('express');
 
@@ -11,6 +13,52 @@ module.exports = function (app, passport) {
     app.get('/strings', function (req, res) {
         res.redirect('/mockup/strings');
     });
+
+    app.get('/resetarsenha/:token',
+        function(req,res){
+            var token = req.params.token,
+                dataRes = {},
+                options = {
+                    host: 'localhost',
+                    port: 3000,
+                    path: '/api/resetpassword/' + token
+                };
+
+            var callback = function(response) {
+                response.on('data', function (data) {
+                    dataRes = JSON.parse(data);
+                });
+                response.on('end', function () {
+                    // your code here if you want to use the results !
+                    if (dataRes.msgErro && dataRes.msgErro != '') {
+                        res.redirect('/login');
+                    } else {
+                        res.render('resetpass', {
+                            title: 'Resetar senha',
+                            message: '',
+                            dataUser: dataRes
+                        });
+                    }
+                });
+            };
+
+            http.request(options, callback).end();
+        }
+    );
+
+    //404 ================================
+    app.get('/404',
+        function(req,res){
+            res.render('404')
+        }
+    );
+
+    //500 ================================
+    app.get('/500',
+        function(req,res){
+            res.render('500')
+        }
+    );
 
     // LOGIN ===============================
     app.get('/login',

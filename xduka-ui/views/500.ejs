@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xDuka | 500</title>
+    <link rel="icon" type="image/png" href="/assets/xduka/img/mini.png">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+
+    <!-- BUNDLE:CSS CONCATENADO E MINIFICADO -->
+    <link rel="stylesheet" href="/dist/assets/css/bundle_500.css">
+</head>
+<body>
+<div class="site-header-container container" id="header1">
+    <div class="site-header text-center">
+        <section class="site-logo" style="padding: 5%">
+            <img id="logo" src="/dist/assets/xduka/img/logo.png" alt="IESES" width="290px" height="100px" class="center-block"/>
+        </section>
+    </div>
+</div>
+<div class="site-header-container container" id="header2" style="display: none">
+    <div class="site-header text-center">
+        <a href="/">
+            <h1 id="after" style="display: none"><i class="entypo-left-circled"></i>Voltar</h1>
+        </a>
+    </div>
+</div>
+<div class="page-error-404" id="500a">
+    <div class="error-symbol">
+        <i class="entypo-cog"></i>
+    </div>
+    <div class="error-text" style="line-height: 0.8!important;">
+        <span class="errNumber">500</span>
+        <p>Erro interno no servidor!</p>
+    </div>
+</div>
+<div class="navbar navbar-fixed-bottom">
+    <img id="gif" src="http://rs906.pbsrc.com/albums/ac267/julianmscl/GIF-uri%20animate/programmer.gif~c200" alt="" width="80px" height="80px" class="center-block" style="display: none"/>
+</div>
+
+<!-- Bottom Scripts -->
+
+<!-- BUNDLE:JS CONCATENADO E MINIFICADO -->
+<script type="text/javascript" src="/dist/assets/js/bundle_500.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $(document.body).addClass('animated fadeIn');
+        setTimeout(function(){
+            $('#logo').addClass('animated hinge');
+            setTimeout(function(){
+                $('#logo').attr({style: 'display: none'});
+                $('#header1').attr({style: 'display: none'});
+                $('#header2').attr({style: 'display: block'});
+                $('#500a').addClass('animated fadeInUpBig');
+                $('#after').attr({style: ''}).addClass('animated rotateInDownRight');
+                $('#gif').attr({style: 'display: block'}).addClass('animated fadeInUp');
+
+            },2000)
+        },3000)
+    })
+</script>
+</body>
+</html>

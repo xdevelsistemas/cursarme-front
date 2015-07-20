@@ -21,6 +21,7 @@
                 vm.showAlert = false;
                 vm.tableGerarTurma = {};
                 vm.tempItem = {};
+                vm.validaSexo = false;
 
                 // ==== REQUISIÇÕES ==== //
 
@@ -50,11 +51,12 @@
 
                 geraTurmaPromise
                     .then(function (data) {
-                        var list = [];
+                        var list = [],
+                            turma = {};
                         vm._geraTurma = data;
 
                         for (var i = 0; i < data.list.length; i++) {
-                            var turma = {
+                            turma = {
                                 "ainput": data.list[i].acao,
                                 "bprogress": {
                                     "maxVal": data.list[i].area.turma.vagas.totais,
@@ -64,6 +66,10 @@
                                     "progress": true
                                 },
                                 "ctext": data.list[i].area.turma.text,
+                                "ddata": {
+                                    date: true,
+                                    int: data.list[i].area.turma.dataInicio
+                                },
                                 "dtext": data.list[i].area.text
                             };
                             turma.ainput.model.val = data.list[i].area.turma.vagas.totais == data.list[i].area.turma.vagas.preenchidas;
@@ -92,11 +98,17 @@
                     editFunc: function(){
                         vm.disableLimpar = true;
                     },
-                    editInscr: vm.editarInscr
+                    editInscr: vm.editarInscr,
+
+                    verificaEdit: verificaEdit
                 };
 
+                function verificaEdit(){
+                    return true
+                }
+
                 vm.selectPhoneType = function (item, model) {
-                    vm._model.telefone.mask = tipoTelefone.getMskPhone(model);
+                    vm._model.telefone.mask = tipoTelefone.getMaskPhone(model);
                 };
 
 
@@ -118,8 +130,11 @@
                             .then(function (data) {
                                 vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
                                 vm._model.unidade.list = data.unidade.list;
-                                vm._model.area.list = $.grep(vm._model.unidade.list, function (e) {
+                                vm._model.tipoCurso.list = $.grep(vm._model.unidade.list, function (e) {
                                     return e.id == item.unidade.model.val;
+                                })[0].tipoCursos;
+                                vm._model.area.list = $.grep(vm._model.tipoCurso.list, function (e) {
+                                    return e.id == item.tipoCurso.model.val;
                                 })[0].areas;
                                 vm._model.curso.list = $.grep(vm._model.area.list, function (e) {
                                     return e.id == item.area.model.val;
@@ -189,7 +204,7 @@
                     vm._model.mae.model.val = '';
                     vm._model.avRua.model.val = '';
                     vm._model.endNum.model.val = '';
-                    vm._model.apt.model.val = '';
+                    vm._model.complemento.model.val = '';
                     vm._model.bairro.model.val = '';
                     vm._model.endUf.model.val = '';
                     vm._model.nacionalidade.model.val = '';
@@ -239,6 +254,10 @@
 
                 };
 
+                vm.verificaSexo = function(item, model) {
+                    vm.validaSexo = model == 'f';
+                };
+
                 vm.topCollapse = function(){
                     $('html, body').animate({scrollTop: 0},'slow');
                 };
@@ -260,7 +279,7 @@
                     },
 
                     /*  Cabeçalho do grid   */
-                    head: ["", "Vagas", "Turma", "Área"]
+                    head: ["", "Vagas", "Turma", "Data de início", "Área"]
                 };
 
                 vm.sendTurmas = function() {

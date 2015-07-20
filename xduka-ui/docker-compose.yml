@@ -1,0 +1,13 @@
+redis:
+  image: xdevelsistemas/debian-env:redis-env
+  ports:
+    - "6379:6379"
+  volumes:
+    - "~/dockerdata/redis:/data"
+mongodb:
+  image: xdevelsistemas/debian-env:mongodb-env
+  ports:
+    - "27017:27017"
+  volumes:
+    - "~/dockerdata/mongo:/data/db"
+  command: mongod --smallfiles

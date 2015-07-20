@@ -9,7 +9,7 @@ var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
+var redisClient = require('redis');
 var SessionStore = require('connect-mongodb');
 var app = express();
 
@@ -71,13 +71,16 @@ require('./routes/routes.js')(app, passport);
 require('./routes/areas.js')(app, passport);
 require('./routes/aluno.js')(app, passport);
 require('./routes/comercial.js')(app, passport);
+require('./routes/resetpassword.js')(app, passport);
 require('./routes/secretaria.js')(app, passport);
 
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
-    next(err);
+    /*next(err);*/
+
+    res.render('404');
 });
 
 /// error handlers
@@ -92,17 +95,17 @@ if (app.get('env') === 'development') {
             error: err
         });
     });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
+}else {
+    // production error handler
+    // no stacktraces leaked to user
+    app.use(function (err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('500', {
+            message: err.message,
+            error: err
+        });
     });
-});
+}
 
 
 module.exports = app;

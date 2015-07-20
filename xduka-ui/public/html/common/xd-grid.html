@@ -15,12 +15,27 @@
 
             <div ng-if="!!colum.progress&&!!colum.maxVal" class="progress">
                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="35" aria-valuemin="{{colum.minVal||0}}" aria-valuemax="{{colum.maxVal||100}}" style="width: {{colum.percent}}%">
+                    <p ng-show="false">{{colum.percent}}</p>
                     <p style="color: #000">{{colum.text}}</p>
                 </div>
             </div>
 
             <div ng-if="!!colum.length">
                 {{colum}}
+            </div>
+
+            <div ng-if="colum.date">
+                <p ng-show="false">{{colum.int}}</p>
+                {{colum.int | date: "dd/MM/yyyy"}}
+            </div>
+
+            <div ng-if="colum.btn">
+                <div ng-repeat="btn in colum.list" class="text-center">
+                    <button type="button" ng-click="btn.click" class="{{btn.class || 'btn btn-default'}}">
+                        {{btn.text||''}}
+                        <i ng-if="!!btn.entypo" class="{{btn.entypo}}"></i>
+                    </button>
+                </div>
             </div>
 
         </td>

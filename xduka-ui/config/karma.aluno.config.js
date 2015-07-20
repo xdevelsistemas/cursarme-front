@@ -36,7 +36,7 @@ module.exports = function(config) {
         'public/js/aluno/routes/routes.js',
         'public/js/aluno/**/*.js',
         'public/js/common/**/*.js',
-        'test/spec/aluno/**/*Spec.js'
+        'tests/spec/aluno/**/*Spec.js'
     ],
 
 

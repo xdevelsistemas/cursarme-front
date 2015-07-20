@@ -21,7 +21,6 @@
         //Home
         $routeProvider.when('/', {
             redirectTo: '/mensagens'
-            //redirectTo: '/cursos'
         });
 
         //Mensagens
@@ -78,6 +77,5 @@
         $routeProvider.otherwise({
             redirectTo: '/'
         });
-
     }]);
 })();

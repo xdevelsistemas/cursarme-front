@@ -3,7 +3,7 @@
 
     angular.module('app.controllers')
         .controller('Main', ['$scope', '$resource', 'breadCrumb', 'modelStrings', 'modelMenu',
-            function($scope, $resource, breadCrumb, modelStrings, modelMenu) {
+        function($scope, $resource, breadCrumb, modelStrings, modelMenu) {
             /* jshint validthis: true */
             var vm = this
                 , infoUserPromise = $resource('/api/comercial/info-usuario').get().$promise;
@@ -28,5 +28,10 @@
                     console.log("Erro:\n" + erro.data + "\n");
                 }
             );
+            vm.menuAction = function(){
+                if (!$('.sidebar-menu').attr('style')){
+                    $('.sidebar-mobile-menu.visible-xs>.with-animation').click()
+                }
+            };
         }]);
 })();

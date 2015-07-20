@@ -3,7 +3,7 @@
 
     angular.module('common.services').factory('tipoTelefone', function() {
         return {
-            getMskPhone: getMaskPhone
+            getMaskPhone: getMaskPhone
         };
 
         function getMaskPhone(model) {

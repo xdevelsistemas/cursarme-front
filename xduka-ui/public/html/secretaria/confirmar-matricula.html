@@ -15,10 +15,10 @@
                 <span class="alert-padding" data-ng-show="!conf._model.folha.model.val">{{conf._model.folha.label}};</span>
                 <span class="alert-padding" data-ng-show="!conf._model.livro.model.val">{{conf._model.livro.label}};</span>
                 <span class="alert-padding" data-ng-show="!conf._model.cartorio.model.val">{{conf._model.cartorio.label}};</span>
-                <span class="alert-padding" data-ng-show="!conf._model.certificadoRes.model.val">{{conf._model.certificadoRes.label}};</span>
-                <span class="alert-padding" data-ng-show="!conf._model.registro.model.val">{{conf._model.registro.label}};</span>
-                <span class="alert-padding" data-ng-show="!conf._model.ufReservista.model.val">{{conf._model.ufReservista.label}} Reservista;</span>
-                <span class="alert-padding" data-ng-show="!conf._model.categoria.model.val">{{conf._model.categoria.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.certificadoRes.model.val && !conf.validaSexo">{{conf._model.certificadoRes.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.registro.model.val && !conf.validaSexo">{{conf._model.registro.label}};</span>
+                <span class="alert-padding" data-ng-show="!conf._model.ufReservista.model.val && !conf.validaSexo">{{conf._model.ufReservista.label}} Reservista;</span>
+                <span class="alert-padding" data-ng-show="!conf._model.categoria.model.val && !conf.validaSexo">{{conf._model.categoria.label}};</span>
                 <span class="alert-padding" data-ng-show="!conf._model.sexo.model.val">{{conf._model.sexo.label}};</span>
                 <span class="alert-padding" data-ng-show="!conf._model.dataNasc.model.val">{{conf._model.dataNasc.label}};</span>
                 <span class="alert-padding" data-ng-show="!conf._model.raca.model.val">{{conf._model.raca.label}};</span>
@@ -137,28 +137,28 @@
             <div class="row">
                 <div class="col-md-4">
                     <xd-input data-params="conf._model.certificadoRes"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              data-disable="!conf.validaCpf || conf.validaSexo"></xd-input>
                 </div>
                 <div class="col-md-5">
                     <xd-input data-params="conf._model.registro"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              data-disable="!conf.validaCpf || conf.validaSexo"></xd-input>
                 </div>
                 <div class="col-md-3">
                     <xd-select data-params="conf._model.ufReservista"
-                               data-disable="!conf.validaCpf"></xd-select>
+                               data-disable="!conf.validaCpf || conf.validaSexo"></xd-select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
                     <xd-input data-params="conf._model.categoria"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              data-disable="!conf.validaCpf || conf.validaSexo"></xd-input>
                 </div>
                 <div class="col-md-5">
                     <xd-input data-params="conf._model.cpf"
                               disable="true"></xd-input>
                 </div>
                 <div class="col-md-3">
-                    <xd-select data-params="conf._model.sexo"
+                    <xd-select data-params="conf._model.sexo" data-change="conf.verificaSexo"
                                data-disable="!conf.validaCpf"></xd-select>
                 </div>
             </div>
@@ -168,12 +168,12 @@
                                    date-options="main.dateOptions" data-click="main.open"></xd-input-date>
                 </div>
                 <div class="col-md-3">
-                    <xd-input data-params="conf._model.raca"
-                              data-disable="!conf.validaCpf"></xd-input>
+                    <xd-select data-params="conf._model.raca"
+                              data-disable="!conf.validaCpf"></xd-select>
                 </div>
                 <div class="col-md-4">
-                    <xd-input data-params="conf._model.estadoCivil"
-                              data-disable="!conf.validaCpf"></xd-input>
+                    <xd-select data-params="conf._model.estadoCivil"
+                              data-disable="!conf.validaCpf"></xd-select>
                 </div>
             </div>
             <div class="row">
@@ -359,13 +359,13 @@
 
 <!-- GERAR TURMA -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gerarTurma" id="gerarTurma" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg ">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Gerar as pautas abaixo</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body scrollTable">
                 <xd-grid data-params="conf.tableGerarTurma"></xd-grid>
             </div>
             <div class="modal-footer">

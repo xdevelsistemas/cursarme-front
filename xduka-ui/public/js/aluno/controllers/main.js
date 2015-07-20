@@ -74,5 +74,11 @@
             vm.imgSalva = cropService.imgTemp;
         }
 
+        vm.menuAction = function(){
+            if (!$('.sidebar-menu').attr('style')){
+                $('.sidebar-mobile-menu.visible-xs>.with-animation').click()
+            }
+        };
+
     }
 })();
