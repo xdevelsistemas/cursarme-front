@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>xDuka | <%= title %></title>
     <link rel="icon" type="image/png" href="assets/xduka/img/mini.png">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
 
-    <!-- BUNDLE:CSS CONCATENADO E MINIFICADO -->
-    <link rel="stylesheet" href="/dist/assets/css/bundle_common.css">
-    <link rel="stylesheet" href="/dist/assets/css/bundle_aluno.css">
+    <!--NEON-->
+    <link rel="stylesheet" href="assets/neon/vertical-timeline/css/component.css">
+    <link rel="stylesheet" href="assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
+    <link rel="stylesheet" href="assets/css/font-icons/entypo/css/entypo.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+    <link rel="stylesheet" href="assets/css/neon.css">
 
     <!--UI-SELECT-->
     <!--
@@ -24,6 +26,15 @@
         document.createElement('ui-select-choices');
     </script>
     <![endif]-->
+    <link rel="stylesheet" href="lib/angular-ui-select/dist/select.css">
+    <link rel="stylesheet" href="lib/select2/select2.css">
+    <link rel="stylesheet" href="lib/select2/select2-bootstrap.css">
+
+    <!--NG-IMG-CROP-->
+    <link rel="stylesheet" type="text/css" href="assets/css/ng-img-crop-custom.css">
+    <!--XDUKA-->
+    <link rel="stylesheet" href="assets/xduka/css/skin.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
 
     <!--SCRIPT-->
     <!--<script src="lib/requirejs/require.js" data-main="js/<%= area %>/main"></script>-->
@@ -39,7 +50,7 @@
             <!-- logo -->
             <div class="logo">
                 <a href="/">
-                    <img src="/dist/assets/xduka/img/logo.png" width="120" alt=""/>
+                    <img src="assets/xduka/img/logo.png" width="120" alt=""/>
                 </a>
             </div>
             <!-- logo collapse icon -->
@@ -145,9 +156,9 @@
     </div>
 </div>
 
-<!-- BUNDLE:JS CONCATENADO E MINIFICADO -->
-<script type="text/javascript" src="/dist/assets/js/bundle_common.js"></script>
-<script type="text/javascript" src="/dist/assets/js/bundle_aluno.js"></script>
+<!-- Bottom Scripts -->
+<% include config-dependencias-common.ejs %>
+<% include config-dependencias-aluno.ejs %>
 
 </body>
 </html>

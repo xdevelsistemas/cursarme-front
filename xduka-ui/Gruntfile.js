@@ -1,34 +1,34 @@
 module.exports = function(grunt) {
     'use strict';
 
-    var mozjpeg = require ('imagemin-mozjpeg');
     grunt.initConfig({
         clean: {
             dist: {
                 src: 'public/dist'
             }
         },
+        //imagemin: {                          // Task
+        //    dynamic: {                         // Another target
+        //        options: {                       // Target options
+        //            optimizationLevel: 3,
+        //            svgoPlugins: [{ removeViewBox: false }],
+        //            use: [mozjpeg()]
+        //        },
+        //        files: [{
+        //            expand: true,                  // Enable dynamic expansion
+        //            cwd: 'public',                   // Src matches are relative to this path
+        //            src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+        //            dest: 'dist/assets/images'                  // Destination path prefix
+        //        }]
+        //    }
+        //},
+
         copy: {
             project: {
                 expand: true,
                 cwd: './public/assets/css/font-icons/entypo/font',
                 src: ['**'],
                 dest: 'public/dist/assets/font'
-            }
-        },
-        imagemin: {
-            dynamic: {                         // Another target
-                options: {                       // Target options
-                    optimizationLevel: 3,
-                    svgoPlugins: [{ removeViewBox: false }],
-                    use: [mozjpeg()]
-                },
-                files: [{
-                    expand: true,                  // Enable dynamic expansion
-                    cwd: 'public/assets',                   // Src matches are relative to this path
-                    src: ['images/**/*.{png,jpg,jpeg,gif}', 'xduka/**/*.{png,jpg,jpeg,gif}'],   // Actual patterns to match
-                    dest: 'public/dist/assets'                  // Destination path prefix
-                }]
             }
         },
         cssmin: {
@@ -368,7 +368,6 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
