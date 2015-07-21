@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                 files: [
                     {expand: true, cwd: '.', src: ['**/*', '!public/**/*'], dest: 'dist'},
                     {expand: true, cwd: 'public/assets/css/font-icons/entypo', src: ['font/**/*'], dest: 'dist/public/assets'},
-                    {expand: true, cwd: 'public/assets', src: ['xduka/img/**/*', 'images/**/*'], dest: 'dist/public/assets'},
+                    {expand: true, cwd: 'public/assets', src: ['xduka/img/**/*', 'images/**/*', 'fonts/**/*'], dest: 'dist/public/assets'},
                     {expand: true, cwd: 'public', src: ['html/**/*'], dest: 'dist/public'}
                 ]
             }
