@@ -118,6 +118,144 @@
                                 label: 'I.M',
                                 model: {val: ''},
                                 type: 'text'
+                            },
+                            monografia: {
+                                label: 'Monografia',
+                                model: {val: ''},
+                                type: 'text'
+                            },
+                            orientador: {
+                                label: 'Orientador',
+                                model: {val: ''},
+                                type: 'text'
+                            },
+                            nota: {
+                                label: 'Nota',
+                                model: {val: ''},
+                                type: 'text'
+                            },
+                            dataApuracao: {
+                                label: 'Data Apuração',
+                                model: {val: ''},
+                                type: 'text',
+                                "name": "dataMatr",
+                                "format": "dd/MM/yyyy"
+                            },
+                            dataColacao: {
+                                label: 'Data Colação',
+                                model: {val: ''},
+                                type: 'text',
+                                "name": "dataMatr",
+                                "format": "dd/MM/yyyy"
+                            },
+                            anoLetivo: {
+                                label: 'Ano Letivo',
+                                model: {val: ''},
+                                type: 'text'
+                            },
+                            municipioEm: {
+                                label: 'Municipio',
+                                model: {val: ''},
+                                type: 'text'
+                            },
+                            ufEm: {
+                                "label": "UF",
+                                "type": "text",
+                                "placeholder": "Selecione...",
+                                "name": "natUf",
+                                "model": {"val": "", "err": ""},
+                                "list": [{"id": "UF_AC", "text": "AC"},
+                                    {"id": "UF_AL", "text": "AL"},
+                                    {"id": "UF_AP", "text": "AP"},
+                                    {"id": "UF_AM", "text": "AM"},
+                                    {"id": "UF_BA", "text": "BA"},
+                                    {"id": "UF_CE", "text": "CE"},
+                                    {"id": "UF_DF", "text": "DF"},
+                                    {"id": "UF_ES", "text": "ES"},
+                                    {"id": "UF_GO", "text": "GO"},
+                                    {"id": "UF_MA", "text": "MA"},
+                                    {"id": "UF_MT", "text": "MT"},
+                                    {"id": "UF_MS", "text": "MS"},
+                                    {"id": "UF_MG", "text": "MG"},
+                                    {"id": "UF_PA", "text": "PA"},
+                                    {"id": "UF_PB", "text": "PB"},
+                                    {"id": "UF_PR", "text": "PR"},
+                                    {"id": "UF_PE", "text": "PE"},
+                                    {"id": "UF_PI", "text": "PI"},
+                                    {"id": "UF_RJ", "text": "RJ"},
+                                    {"id": "UF_RN", "text": "RN"},
+                                    {"id": "UF_RS", "text": "RS"},
+                                    {"id": "UF_RO", "text": "RO"},
+                                    {"id": "UF_SC", "text": "SC"},
+                                    {"id": "UF_RR", "text": "RR"},
+                                    {"id": "UF_SP", "text": "SP"},
+                                    {"id": "UF_SE", "text": "SE"},
+                                    {"id": "UF_TO", "text": "TO"}]
+                            },
+                            cursoEm: {
+                                label: 'Curso',
+                                model: {val: ''},
+                                type: 'text'
+                            },
+                            ufGrad: {
+                                "label": "UF",
+                                "type": "text",
+                                "placeholder": "Selecione...",
+                                "name": "natUf",
+                                "model": {"val": "", "err": ""},
+                                "list": [{"id": "UF_AC", "text": "AC"},
+                                    {"id": "UF_AL", "text": "AL"},
+                                    {"id": "UF_AP", "text": "AP"},
+                                    {"id": "UF_AM", "text": "AM"},
+                                    {"id": "UF_BA", "text": "BA"},
+                                    {"id": "UF_CE", "text": "CE"},
+                                    {"id": "UF_DF", "text": "DF"},
+                                    {"id": "UF_ES", "text": "ES"},
+                                    {"id": "UF_GO", "text": "GO"},
+                                    {"id": "UF_MA", "text": "MA"},
+                                    {"id": "UF_MT", "text": "MT"},
+                                    {"id": "UF_MS", "text": "MS"},
+                                    {"id": "UF_MG", "text": "MG"},
+                                    {"id": "UF_PA", "text": "PA"},
+                                    {"id": "UF_PB", "text": "PB"},
+                                    {"id": "UF_PR", "text": "PR"},
+                                    {"id": "UF_PE", "text": "PE"},
+                                    {"id": "UF_PI", "text": "PI"},
+                                    {"id": "UF_RJ", "text": "RJ"},
+                                    {"id": "UF_RN", "text": "RN"},
+                                    {"id": "UF_RS", "text": "RS"},
+                                    {"id": "UF_RO", "text": "RO"},
+                                    {"id": "UF_SC", "text": "SC"},
+                                    {"id": "UF_RR", "text": "RR"},
+                                    {"id": "UF_SP", "text": "SP"},
+                                    {"id": "UF_SE", "text": "SE"},
+                                    {"id": "UF_TO", "text": "TO"}]
+                            },
+                            obsGrad: {
+                                "label": "Observações",
+                                "type": "textarea",
+                                "name": "observacoes",
+                                "required": false,
+                                "model": {"val": "", "err": ""}
+                            },
+                            obsLog: {
+                                "label": "Observações",
+                                "type": "textarea",
+                                "name": "observacoes",
+                                "required": false,
+                                "model": {"val": "", "err": ""}
+                            },
+                            logUser: {
+                                "label": "Usuário",
+                                "type": "text",
+                                "placeholder": "Selecione...",
+                                "name": "natUf",
+                                "model": {"val": "", "err": ""},
+                                "list": [
+                                    {id: 0, text: '*Todos'},
+                                    {id: 1, text: 'Camila Ferreira'},
+                                    {id: 2, text: 'João da Silva'}
+                                ]
                             }
                         });
                     })
@@ -172,52 +310,80 @@
                 vm._model.navs = [
                     {
                         text: 'Home',
-                        number: '1',
+                        entypo: 'entypo-home',
                         active: true,
                         target: '#home'
                     },
                     {
                         text: 'Endereço',
-                        number: '2',
+                        entypo: 'entypo-address',
                         active: false,
                         target: '#endereco'
                     },
                     {
                         text: 'Documentação',
-                        number: '3',
+                        entypo: 'entypo-vcard',
                         active: false,
                         target: '#documentacao'
                     },
                     {
-                        text: 'Grade/Disciplinas',
-                        number: '4',
+                        text: 'Grade',
+                        entypo: 'entypo-docs',
                         active: false,
                         target: '#gradeDisc'
                     },
                     {
                         text: 'Notas',
-                        number: '5',
+                        entypo: 'entypo-graduation-cap',
                         active: false,
                         target: '#notas'
                     },
                     {
                         text: 'Histórico',
-                        number: '6',
+                        entypo: 'entypo-archive',
                         active: false,
                         target: '#historico'
                     },
                     {
                         text: 'Log',
-                        number: '7',
+                        entypo: 'entypo-book-open',
                         active: false,
                         target: '#log'
                     },
                     {
                         text: 'Parcelas',
-                        number: '8',
+                        entypo: 'entypo-calendar',
                         active: false,
                         target: '#parcelas'
                     }
-                ]
+                ];
+                vm._model.gridLOg = {
+                    id: 'logTable',
+                    dataTable: {
+                        "paging":   false,
+                        "ordering": true,
+                        "info":     false,
+                        "filter":   false,
+                        "order": [[ 0, "desc" ]],
+                        "aoColumnDefs": [
+                            { 'bSortable': false, 'aTargets': [ 2 ] }
+                        ]
+
+                    },
+                    class: 'table-hover table-bordered display',
+                    head: ["Data/Hora", "Usuário", "Evento"],
+                    list: [
+                        {
+                            'adata': {date: true, int: 1437423897997, formatDate: 'dd/MM/yyyy h:mm a'},
+                            'buser': 'Camila Ferreira',
+                        'cevento': 'Usuário(a) Camila Ferreira Matrícula Aluno(a): (21321231) ADENILSON BLA BLA BLA BLA NKL NASDKLASDKLASALDASKLDMSAKLDAMKLAMDSMKLA MSDAKD MAKLSMDAKLMSDKLAMDSKAMDKALDMKSAL MDASKLDM KAM AKL MSDKL'
+                        },
+                        {
+                            'adata': {date: true, int: 1437426700808, formatDate: 'dd/MM/yyyy h:mm a'},
+                            'buser': 'João da Silva',
+                            'cevento': 'Usuário(a) João da Silva Matrícula Aluno(a): (343434343) MARIA BLA BLA BLA BLA NKL NASDKLASDKLASALDASKLDMSAKLDAMKLAMDSMKLA MSDAKD MAKLSMDAKLMSDKLAMDSKAMDKALDMKSAL MDASKLDM KAM AKL MSDKL'
+                        }
+                    ]
+                }
             }])
 })();
