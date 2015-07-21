@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>xDuka | <%= title %></title>
     <link rel="icon" type="image/png" href="/assets/xduka/img/mini.png">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
 
+    <!-- build:css /assets/css/bundle_comercial.min.css -->
     <link rel="stylesheet" href="/lib/jquery-ui/themes/base/jquery-ui.css">
     <!--NEON-->
     <link rel="stylesheet" href="/assets/neon/vertical-timeline/css/component.css">
     <link rel="stylesheet" href="/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
     <link rel="stylesheet" href="/assets/css/font-icons/entypo/css/entypo.css">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
     <link rel="stylesheet" href="/assets/css/neon.css">
 
     <link rel="stylesheet" href="/lib/angular-ui-select/dist/select.css">
@@ -23,6 +24,7 @@
 
     <link rel="stylesheet" href="/lib/datatables/media/css/jquery.dataTables.min.css"/>
     <link rel="stylesheet" href="/assets/css/custom.css"/>
+    <!-- endbuild -->
 
     <!--UI-SELECT-->
     <!--
@@ -37,8 +39,6 @@
         document.createElement('ui-select-choices');
     </script>
     <![endif]-->
-    <!--SCRIPT-->
-    <!--<script src="/lib/requirejs/require.js" data-main="js/<%= area %>/main"></script>-->
 
 </head>
 <body ng-controller="Main as main"
@@ -157,8 +157,8 @@
     </div>
 </div>
 
-<script type="text/javascript" src="/dist/assets/js/bundle_common.js"></script>
-<script type="text/javascript" src="/dist/assets/js/bundle_comercial.js"></script>
+<% include config-dependencias-common.ejs %>
+<% include config-dependencias-comercial.ejs %>
 
 </body>
 </html>
