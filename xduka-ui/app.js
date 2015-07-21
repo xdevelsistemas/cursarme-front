@@ -22,7 +22,12 @@ var configDB = require('./config/database.js'),
 mongoose.connect(configDB.url); // connect to our database
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+if (app.get('env') === 'development') {
+    app.set('views', path.join(__dirname, 'views'));
+}else{
+    app.set('views', path.join(__dirname, 'dist/views'));
+}
+
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 app.use(favicon());
@@ -32,7 +37,11 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser({limit: '50mb'})); // get information from html forms / limite upload de arquivo 50mb
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(express.static(path.join(__dirname, 'public')));
+if (app.get('env') === 'development') {
+    app.use(express.static(path.join(__dirname, 'public')));
+}else{
+    app.use(express.static(path.join(__dirname, 'dist/public')));
+}
 
 app.use(session({
         store: new RedisStore(configRedis),
