@@ -10,8 +10,9 @@
     /* @ngInject */
     function Main($scope, $resource, $timeout, $route, breadCrumb, defineCurso, cropService, modelStrings, modelMenu) {
         /* jshint validthis: true */
-        var vm = this
-            , infoUserPromise = $resource('/api/aluno/infoUsuario').get().$promise;
+        var vm = this,
+            infoUserPromise = $resource('/api/aluno/infoUsuario').get().$promise,
+            infoCursoPromise = $resource('/api/aluno/infoCurso').get().$promise;
 
         vm.breadCrumb = breadCrumb;
 
@@ -28,12 +29,22 @@
         vm.sendCurso = sendCurso;
         vm.sendData = sendData;
 
+        infoCursoPromise.
+            then(
+            function (data) {
+                vm.cursos = data.cursos;
+                defineCurso.setIdCurso(vm.cursos.model.val);
+            })
+            .catch(
+            function (erro) {
+                console.log("Erro:\n" + erro.data + "\n");
+            }
+        );
+
         infoUserPromise.
             then(
                 function (data) {
-                    vm.user = data.usuario;
-                    vm.cursos = data.cursos.cursos;
-                    defineCurso.setIdCurso(vm.cursos.model.val);
+                    vm.user = data;
                 })
             .catch(
                 function (erro) {
