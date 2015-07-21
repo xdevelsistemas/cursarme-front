@@ -7,32 +7,21 @@
             function($scope, $resource, $route, breadCrumb, tipoTelefone, $timeout, modelStrings){
 
                 var vm = this
-                    , template = $resource('/api/comercial/template-inscricao').get().$promise
-                    /* PROMESSA "alunosPromise" TEM QUE SER EDITADA PARA FAZER BUSCA DE UM ALUNO OU MAIS (tipo filter)*/
-                    , alunosPromise = $resource('/api/secretaria/aluno').get().$promise;
+                    , template = $resource('/api/comercial/template-inscricao').get().$promise;
 
                 breadCrumb.title = 'Aluno';
 
                 // ==== MODELOS ==== //
 
+                vm._alunos = [];
                 vm._model = {};
                 vm._temp = {};
+                vm._searchVal = '';
 
                 vm.editing = false;
+                vm.visualizarAluno = false;
 
-                alunosPromise
-                    .then(function (data) {
-                        vm._model.alunos = data.list;
-                        for (var i=0; i < vm._model.alunos.length; i++) {
-                            vm._model.alunos[i].cont = i
-                        }
-                    })
-                    .catch(function (erro) {
-                        console.log(erro);
-                    });
-                vm.colorIf = function(item){
-                    return item.cont%2 == 0
-                };
+
                 template
                     .then(function(data){
                         $.extend(vm._model, data, {
@@ -293,6 +282,10 @@
                     vm._model.foto.model.err = 'Erro!'
                 };
 
+                function topCollapse(){
+                    $('html, body').animate({scrollTop: 0},'slow');
+                }
+
 
                 /* FUNÇÕES DE EDIÇÃO */
                 vm.cancelEdit = function(){
@@ -384,6 +377,47 @@
                             'cevento': 'Usuário(a) João da Silva Matrícula Aluno(a): (343434343) MARIA BLA BLA BLA BLA NKL NASDKLASDKLASALDASKLDMSAKLDAMKLAMDSMKLA MSDAKD MAKLSMDAKLMSDKLAMDSKAMDKALDMKSAL MDASKLDM KAM AKL MSDKL'
                         }
                     ]
+                };
+
+                function search(matNome){
+                    var search = $resource('/api/secretaria/aluno/:matNome').get({matNome: matNome}).$promise;
+                    search
+                        .then(
+                        function (data) {
+                            vm._alunos = data.result;
+                        }
+                    )
+                        .catch(
+                        function (err) {
+                            console.log(err)
+                        }
+                    );
                 }
+
+                /* SEARCH NODE */
+                vm.seachPromise = function(matNome) {
+                    if (matNome.length >= 4) {
+
+                    }else{
+                        vm.auxAlunos = vm._alunos;
+                        vm._alunos = []
+                    }
+                };
+
+                /* VER ALUNO PESQUISADO */
+                vm.moreAluno = function(aluno){
+                    vm.modelAux = vm._model;
+                    $.extend(true,vm._model,aluno);
+                    vm.visualizarAluno = true;
+                    topCollapse()
+                };
+
+                /* VOLTAR MORE ALUNO */
+                vm.moreAlunoVoltar = function(){
+                    vm._model = vm.modelAux;
+                    vm.visualizarAluno = false;
+                    topCollapse()
+                }
+
             }])
 })();
