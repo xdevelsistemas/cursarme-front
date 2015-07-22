@@ -3,15 +3,20 @@ module.exports = function(grunt) {
 
     var mozjpeg = require ('imagemin-mozjpeg');
     grunt.initConfig({
-        clean: ['dist'],
+        clean: ['dist', '.tmp'],
         copy: {
             main: {
-                files: [
-                    {expand: true, cwd: '.', src: ['**/*', '!public/**/*'], dest: 'dist'},
-                    {expand: true, cwd: 'public/assets/css/font-icons/entypo', src: ['font/**/*'], dest: 'dist/public/assets'},
-                    {expand: true, cwd: 'public/assets', src: ['xduka/img/**/*', 'images/**/*', 'fonts/**/*'], dest: 'dist/public/assets'},
-                    {expand: true, cwd: 'public', src: ['html/**/*'], dest: 'dist/public'}
-                ]
+                files: [{
+                    expand: true,
+                    cwd: '.',
+                    src: [
+                        'views/**/*',
+                        'public/html/**/*',
+                        'public/assets/css/font-icons/entypo/font/**/*',
+                        'public/assets/fonts/**/*'
+                    ],
+                    dest: 'dist'
+                }]
             }
         },
         imagemin: {
@@ -23,7 +28,7 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: 'public/assets/',
+                    cwd: 'public/assets',
                     src: ['{images,xduka}/**/*.{png,jpg,gif}'],
                     dest: 'dist/public/assets/images'
                 }]
