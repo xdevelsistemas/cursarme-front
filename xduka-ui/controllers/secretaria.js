@@ -4,7 +4,7 @@ var extend = require('node.extend'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
     viewInscr = require('../mockup/xduka-json/common/viewInscr.json');
-    aluno = require('../mockup/xduka-json/secretaria/alunos.json');
+    alunos = require('../mockup/xduka-json/secretaria/alunos.json');
 
 module.exports = function() {
     var controller = {};
@@ -16,13 +16,28 @@ module.exports = function() {
     controller.showTemplateInscricao = getTemplateInscricao;
     controller.putDadosInscricao = putDadosInscricao;
     controller.putDadosTurmas = putDadosTurmas;
-    controller.getAluno = getAluno;
+    controller.alunoSearch = alunoSearch;
 
     return controller;
 };
 
-function getAluno(req, res){
-    res.json(aluno)
+function alunoSearch(req, res){
+    var result = {};
+
+    result.result = alunos.list.filter(
+        function (value) {
+            return value.matricula.model.val.substring(0,req.params.nomeMat.length).toLocaleLowerCase() == req.params.nomeMat.toLowerCase()
+        }
+    );
+    if (result.result.length == 0){
+        result.result = alunos.list.filter(
+            function (value) {
+                return value.nome.model.val.substring(0,req.params.nomeMat.length).toLocaleLowerCase() == req.params.nomeMat.toLowerCase()
+            }
+        );
+    }
+
+    res.json(result)
 }
 
 function getDadosGeraTurma(req, res) {
