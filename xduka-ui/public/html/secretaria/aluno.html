@@ -1,5 +1,8 @@
-<div class="row" ng-cloak ng-show="al.visualizarAluno">
+<div class="row" ng-cloak>
     <div class="col-md-12">
+        <div class="alert alert-error" ng-show="!!al._erro">
+            <p class="text-danger">{{al._erro}}</p>
+        </div>
         <!-- FOTO DO CADASTRO -->
         <div class="col-md-2 col-sm-5 col-xs-12 fadeBordered text-left" style="padding: 1%;margin-top: 20px;">
             <p class="control-label">Foto 200x150:<button type="button" class="close" aria-hidden="true" ng-click="al.removeFoto()" data-ng-disabled="!al.editing"><i class="entypo-trash"></i></button></p>
@@ -420,41 +423,6 @@
         </div>
     </div>
 </div>
-
-
-<!-- PARTE DA PESQUISA (PROVAVELMENTE MODAL PREENCHENDO TODA TELA) -->
-<div ng-hide="al.visualizarAluno">
-    <div class="row">
-        <div class="col-md-12">
-            <h4>Pesquisar Aluno</h4>
-            <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                <span class="input-group-btn">
-                    <button class="btn btn-info btn-lg" type="button">
-                        <i class="glyphicon glyphicon-search center-block text-center"></i>
-                    </button>
-                </span>
-                    <input type="text" class="form-control input-lg" placeholder="Nome ou Matrícula" ng-model="al._searchVal" ng-change="al.seachPromise(al._searchVal)"/>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr/>
-    <div class="col-md-12 text-center">
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 paddingB-3" ng-repeat="aluno in al._alunos">
-            <div class="paddingB-3 linkCursor" ng-click="al.moreAluno(aluno)">
-                <div class="text-center fadeBordered">
-                    <p class="nomeAluno">{{aluno.nome.model.val}}</p>
-                    <div class="col-md-12">
-                        <img ng-src="{{aluno.foto.model.val}}" class="img-circle" alt="FOTO" width="100%"/>
-                    </div>
-                    <p class="matriculaSearch">Matrícula: {{aluno.matricula.model.val}}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <form name="formFoto"
       class="form-horizontal">
