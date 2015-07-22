@@ -3,8 +3,8 @@
 
 
     angular.module('app.controllers')
-        .controller('aluno', ['$scope', '$resource', '$route', 'breadCrumb', 'tipoTelefone', '$timeout', 'modelStrings',
-            function($scope, $resource, $route, breadCrumb, tipoTelefone, $timeout, modelStrings){
+        .controller('aluno', ['$scope', '$resource', '$route', 'breadCrumb', 'tipoTelefone', '$timeout', 'modelStrings', 'alunoService','$location', '$routeParams',
+            function($scope, $resource, $route, breadCrumb, tipoTelefone, $timeout, modelStrings,alunoService,$location, $routeParams){
 
                 var vm = this
                     , template = $resource('/api/comercial/template-inscricao').get().$promise;
@@ -17,6 +17,7 @@
                 vm._model = {};
                 vm._temp = {};
                 vm._searchVal = '';
+                vm.openSearch = false;
 
                 vm.editing = false;
                 vm.visualizarAluno = false;
@@ -247,6 +248,11 @@
                                 ]
                             }
                         });
+                        if (Object.keys(alunoService.aluno).length==0){
+                            $routeParams.matricula.length > 6?search($routeParams.matricula):vm._erro='Matrícula '+$routeParams.matricula+' inexistente!'
+                        }else{
+                            $.extend(true,vm._model,alunoService.aluno);
+                        }
                     })
                     .catch(function(erro){
                         if (erro.status == '400') {
@@ -384,7 +390,11 @@
                     search
                         .then(
                         function (data) {
-                            vm._alunos = data.result;
+                            if (data.result.length > 0){
+                                $.extend(true,vm._model,data.result[0]);
+                            }else{
+                                vm._erro = 'Aluno não encontrado! Matrícula: '+$routeParams.matricula
+                            }
                         }
                     )
                         .catch(
@@ -394,30 +404,11 @@
                     );
                 }
 
-                /* SEARCH NODE */
-                vm.seachPromise = function(matNome) {
-                    if (matNome.length >= 4) {
-
-                    }else{
-                        vm.auxAlunos = vm._alunos;
-                        vm._alunos = []
-                    }
-                };
-
-                /* VER ALUNO PESQUISADO */
-                vm.moreAluno = function(aluno){
-                    vm.modelAux = vm._model;
-                    $.extend(true,vm._model,aluno);
-                    vm.visualizarAluno = true;
-                    topCollapse()
-                };
-
                 /* VOLTAR MORE ALUNO */
                 vm.moreAlunoVoltar = function(){
-                    vm._model = vm.modelAux;
-                    vm.visualizarAluno = false;
-                    topCollapse()
-                }
+                    alunoService.aluno = {};
+                    $location.path('/');
+                };
 
             }])
 })();
