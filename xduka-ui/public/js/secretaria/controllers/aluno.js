@@ -3,8 +3,12 @@
 
 
     angular.module('app.controllers')
-        .controller('aluno', ['$scope', '$resource', '$route', 'breadCrumb', 'tipoTelefone', '$timeout', 'modelStrings', 'alunoService','$location', '$routeParams',
-            function($scope, $resource, $route, breadCrumb, tipoTelefone, $timeout, modelStrings,alunoService,$location, $routeParams){
+        .controller('aluno', ['$scope', '$resource', '$route', 'breadCrumb', 'tipoTelefone', '$timeout', 'modelStrings', 'alunoService','$location', '$routeParams', 'ngProgressFactory',
+            function($scope, $resource, $route, breadCrumb, tipoTelefone, $timeout, modelStrings,alunoService,$location, $routeParams, ngProgressFactory){
+
+                /* PROGRESS BAR */
+                $scope.progressbar = ngProgressFactory.createInstance();
+                $scope.progressbar.start();
 
                 var vm = this
                     , template = $resource('/api/comercial/template-inscricao').get().$promise;
@@ -13,12 +17,13 @@
 
                 // ==== MODELOS ==== //
 
+                vm.alert = true;
                 vm._alunos = [];
                 vm._model = {};
                 vm._temp = {};
                 vm._searchVal = '';
                 vm.openSearch = false;
-
+                vm.loaded = false;
                 vm.editing = false;
                 vm.visualizarAluno = false;
 
@@ -252,6 +257,7 @@
                             $routeParams.matricula.length > 6?search($routeParams.matricula):vm._erro='Matrícula '+$routeParams.matricula+' inexistente!'
                         }else{
                             $.extend(true,vm._model,alunoService.aluno);
+                            vm.completeBar();
                         }
                     })
                     .catch(function(erro){
@@ -282,7 +288,7 @@
                     vm._model.foto.model.val = $scope.myCroppedImage;
                 };
                 vm.removeFoto = function(){
-                    vm._model.foto.model.val = '';
+                    vm._model.foto.model.val = 'http://www.westcare.com.br/imagens/especialistas/perfil-sem-foto.jpg';
                 };
                 vm.imgCropErr = function(){
                     vm._model.foto.model.err = 'Erro!'
@@ -292,18 +298,21 @@
                     $('html, body').animate({scrollTop: 0},'slow');
                 }
 
-
                 /* FUNÇÕES DE EDIÇÃO */
                 vm.cancelEdit = function(){
-                    vm._model = vm._temp;
+                    vm._model = $.extend(true,{},vm._temp);
                     vm._temp = {};
                     vm.editing = false;
                 };
                 vm.editarAluno = function(){
-                    vm._temp = vm._model;
+                    vm._temp = $.extend(true,{},vm._model);
                     vm.editing = true;
                 };
+                vm.salvar = function(){
+                    /* ROTA DE TRATAMENTO DO NODE */
+                    vm.editing = false;  //SE VALIDAÇÃO OK
 
+                };
 
                 /* NAV (LINKS PARTE DE CIMA) */
                 vm._model.navs = [
@@ -348,12 +357,6 @@
                         entypo: 'entypo-book-open',
                         active: false,
                         target: '#log'
-                    },
-                    {
-                        text: 'Parcelas',
-                        entypo: 'entypo-calendar',
-                        active: false,
-                        target: '#parcelas'
                     }
                 ];
                 vm._model.gridLOg = {
@@ -392,9 +395,11 @@
                         function (data) {
                             if (data.result.length > 0){
                                 $.extend(true,vm._model,data.result[0]);
+                                vm._model.alert = true;
                             }else{
                                 vm._erro = 'Aluno não encontrado! Matrícula: '+$routeParams.matricula
                             }
+                            vm.completeBar();
                         }
                     )
                         .catch(
@@ -409,6 +414,18 @@
                     alunoService.aluno = {};
                     $location.path('/');
                 };
+
+                vm.disableAlert = function(){
+                    vm._model.alert = false;
+                };
+
+
+                vm.completeBar = function(){
+                    $timeout(function () {
+                        $scope.progressbar.complete();
+                        vm.loaded = true;
+                    })
+                }
 
             }])
 })();

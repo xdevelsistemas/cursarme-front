@@ -22,7 +22,8 @@
     "angular-input-masks": "~1.4.2",
     "angular-ui-grid": "~3.0.0-rc.21",
     "datatables": "~1.10.7",
-    "c3-angular": "~0.5.1"
+    "c3-angular": "~0.5.1",
+    "ngprogress": "~1.1.1"
   },
   "homepage": "https://github.com/xdevelsistemas/xDuka",
   "authors": [

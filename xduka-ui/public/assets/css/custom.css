@@ -101,6 +101,10 @@ body {
     .scrollTable{
         overflow: scroll;
     }
+    /* PESQUISA */
+    .xdCustomSearch.open .xdCustomSearch-input {
+        font-size: 3em!important;
+    }
 }
 
 .alert-title {
@@ -226,15 +230,24 @@ div.bottomReset {
     .xdCustomSearch {
         right: 25px!important;
     }
+    .xdCustomSearch.open .xdCustomSearch-input {
+        font-size: 2em!important;
+    }
 }
-
+@media (max-width: 480px) {
+    /* PESQUISA */
+    .xdCustomSearch {
+        right: 10px!important;
+    }
+}
 
 /* PESQUISA */
 
 .xdCustomSearch {
+    border: 1px solid #eee;
     width: 200px;
     min-height: 40px;
-    background: rgba(191, 233, 255, 0.9);
+    background: rgba(255, 255, 255, 0.98);
     position: absolute;
     z-index: 10000;
     top: 25px;
@@ -303,7 +316,7 @@ div.bottomReset {
 }
 
 .xdCustomSearch.open .xdCustomSearch-input {
-    font-size: 7em;
+    font-size: 5em;
 }
 
 .xdCustomSearch-input::-webkit-input-placeholder {
@@ -337,11 +350,17 @@ input[type="search"] {
     outline: none;
 }
 .searchIcon {
+    text-align: right;
     color: rgba(0, 0, 0, 0.37);
     background: transparent;
     font-size: 2.5em !important;
-    -webkit-transition: font-size 0.5s cubic-bezier(0.7,0,0.3,1);
-    transition: font-size 0.5s cubic-bezier(0.7,0,0.3,1);
+    -webkit-transition: font-size, transform 0.5s cubic-bezier(0.7,0,0.3,1);
+    transition: font-size, transform 0.5s cubic-bezier(0.7,0,0.3,1);
+}
+.openSearchIcon {
+    transform: scale(2)!important;
+    -webkit-transition: transform 0.5s cubic-bezier(0.7,0,0.3,1);
+    transition: transform 0.5s cubic-bezier(0.7,0,0.3,1);
 }
 .xdCustomSearch-close {
 
@@ -401,4 +420,27 @@ input[type="search"] {
     transition: opacity 0.3s, transform 0.3s;
     -webkit-transition-delay: 0.5s;
     transition-delay: 0.5s;
+}
+.transparentBlock {
+    width: 100%;
+    border-radius:0px;
+    min-height: 100%;
+    top: 0px!important;
+    right: 0px!important;
+    background: rgba(255, 255, 255, 0.67);
+    position: absolute;
+    z-index: 10000;
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    -webkit-transition-property: min-height, width, top, right, position;
+    transition-property: min-height, width, top, right, position;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+    transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+.transparentBlock.fadeOut {
+    position: static!important;
 }

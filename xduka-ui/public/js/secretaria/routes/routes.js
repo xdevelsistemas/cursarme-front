@@ -16,7 +16,8 @@ angular.module('app',[
     'app.services',
     'app.directives',
     'app.controllers',
-    'gridshore.c3js.chart'
+    'gridshore.c3js.chart',
+    'ngProgress'
 
 ])
 
