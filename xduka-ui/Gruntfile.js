@@ -6,17 +6,20 @@ module.exports = function(grunt) {
         clean: ['dist', '.tmp'],
         copy: {
             main: {
-                files: [{
-                    expand: true,
-                    cwd: '.',
-                    src: [
-                        'views/**/*',
-                        'public/html/**/*',
-                        'public/assets/css/font-icons/entypo/font/**/*',
-                        'public/assets/fonts/**/*'
-                    ],
-                    dest: 'dist'
-                }]
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'public/assets/css/font-icons/entypo',
+                        src: ['font/**/*'],
+                        dest: 'dist/public/assets'
+                    },
+                    {
+                        expand: true,
+                        cwd: '.',
+                        src: ['views/**/*', 'public/assets/fonts/**/*'],
+                        dest: 'dist'
+                    }
+                ]
             }
         },
         imagemin: {
@@ -30,7 +33,7 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: 'public/assets',
                     src: ['{images,xduka}/**/*.{png,jpg,gif}'],
-                    dest: 'dist/public/assets/images'
+                    dest: 'dist/public/assets'
                 }]
             }
         },
@@ -60,7 +63,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['clean', 'copy', 'imagemin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin']);
+    grunt.registerTask('default', ['clean', 'copy', 'imagemin', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin']);
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
