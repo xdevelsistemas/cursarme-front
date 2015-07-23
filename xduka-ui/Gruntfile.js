@@ -3,14 +3,22 @@ module.exports = function(grunt) {
 
     var mozjpeg = require ('imagemin-mozjpeg');
     grunt.initConfig({
-        clean: ['dist'],
+        clean: ['dist', '.tmp'],
         copy: {
             main: {
                 files: [
-                    {expand: true, cwd: '.', src: ['**/*', '!public/**/*'], dest: 'dist'},
-                    {expand: true, cwd: 'public/assets/css/font-icons/entypo', src: ['font/**/*'], dest: 'dist/public/assets'},
-                    {expand: true, cwd: 'public/assets', src: ['xduka/img/**/*', 'images/**/*', 'fonts/**/*'], dest: 'dist/public/assets'},
-                    {expand: true, cwd: 'public', src: ['html/**/*'], dest: 'dist/public'}
+                    {
+                        expand: true,
+                        cwd: 'public/assets/css/font-icons/entypo',
+                        src: ['font/**/*'],
+                        dest: 'dist/public/assets'
+                    },
+                    {
+                        expand: true,
+                        cwd: '.',
+                        src: ['views/**/*', 'public/assets/fonts/**/*'],
+                        dest: 'dist'
+                    }
                 ]
             }
         },
@@ -23,9 +31,9 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: 'public/assets/',
+                    cwd: 'public/assets',
                     src: ['{images,xduka}/**/*.{png,jpg,gif}'],
-                    dest: 'dist/public/assets/images'
+                    dest: 'dist/public/assets'
                 }]
             }
         },
@@ -55,7 +63,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['clean', 'copy', 'imagemin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin']);
+    grunt.registerTask('default', ['clean', 'copy', 'imagemin', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin']);
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
