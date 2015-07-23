@@ -32,12 +32,27 @@ function alunoSearch(req, res){
     if (result.result.length == 0){
         result.result = alunos.list.filter(
             function (value) {
-                return value.nome.model.val.substring(0,req.params.nomeMat.length).toLocaleLowerCase() == req.params.nomeMat.toLowerCase()
+                return removerAcentos(value.nome.model.val.substring(0,req.params.nomeMat.length)).toLocaleLowerCase() == removerAcentos(req.params.nomeMat).toLowerCase()
             }
         );
     }
+    if (result.result.length == 0){
+        result.err = "Nenhum resultado encontrado!"
+    }
+
+    function removerAcentos(str){
+
+        str = str.replace(/[ÀÁÂÃÄÅ]/,"A");
+        str = str.replace(/[àáâãäå]/,"a");
+        str = str.replace(/[ÈÉÊË]/,"E");
+        str = str.replace(/[Ç]/,"C");
+        str = str.replace(/[ç]/,"c");
+
+        return str.replace(/[^a-z0-9]/gi,'');
+    }
 
     res.json(result)
+
 }
 
 function getDadosGeraTurma(req, res) {
