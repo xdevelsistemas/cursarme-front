@@ -5,3 +5,4 @@ public/lib/
 .vagrant/
 dist
 .tmp
+tests/spec/aluno/coverage
