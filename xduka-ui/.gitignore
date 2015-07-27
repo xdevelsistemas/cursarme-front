@@ -6,3 +6,4 @@ public/lib/
 dist
 .tmp
 tests/spec/aluno/coverage
+tests/spec/comercial/coverage
