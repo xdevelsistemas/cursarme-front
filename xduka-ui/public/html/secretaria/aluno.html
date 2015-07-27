@@ -1,4 +1,17 @@
+<div class="transparentBlock animated" ng-class="{'fadeOut': al.loaded}"></div>
 <div class="row" ng-cloak>
+    <div class="col-md-12">
+        <div class="alert alert-danger" role="alert" data-ng-show="al._model.alert&&!!al._model.pendencia.model.val">
+            <button type="button" class="close" aria-label="Close" data-ng-click="al.disableAlert()"><span aria-hidden="true">&times;</span></button>
+            <span class="alert-title">Aluno com pendência:</span>
+            <hr/>
+            <div class="alertContent">
+                <span class="alert-padding">
+                    Valor: <strong ng-bind="al._model.pendencia.model.val"></strong>
+                </span>
+            </div>
+        </div>
+    </div>
     <div class="col-md-12">
         <div class="alert alert-error" ng-show="!!al._erro">
             <p class="text-danger">{{al._erro}}</p>
@@ -6,7 +19,7 @@
         <!-- FOTO DO CADASTRO -->
         <div class="col-md-2 col-sm-5 col-xs-12 fadeBordered text-left" style="padding: 1%;margin-top: 20px;">
             <p class="control-label">Foto 200x150:<button type="button" class="close" aria-hidden="true" ng-click="al.removeFoto()" data-ng-disabled="!al.editing"><i class="entypo-trash"></i></button></p>
-            <img ng-src="{{al._model.foto.model.val||'http://www.westcare.com.br/imagens/especialistas/perfil-sem-foto.jpg'}}" class="img-circle" alt="FOTO" width="100%"/>
+            <img ng-src="{{al._model.foto.model.val}}" class="img-circle" alt="FOTO" width="100%"/>
             <br/>&nbsp;
             <span class="btn btn-default btn-file form-control" data-ng-disabled="!al.editing" onclick="$('#modalFoto').modal('show', {backdrop: 'static'})">
             Procurar... <input name="fileInput" type="file" id="fileInput" onclick="this.value = null" ng-click="al.clickFoto()" onfocus="!$('#fileInput').val()?$('#modalFoto').modal('hide'):0">
@@ -388,9 +401,6 @@
                     </xd-panel-collapse>
                 </div>
 
-                <div class="tab-pane" id="parcelas">
-
-                </div>
                 <div class="center-block text-center centered">
                     <ul class="pager">
                         <li class="col-md-4 inLine" style="max-width: 250px">
@@ -400,7 +410,7 @@
                             </button>
                         </li>
                         <li class="col-md-4 inLine" style="max-width: 250px">
-                            <button class="btn btn-green btn-lg btn-icon icon-left btn-block" data-ng-disabled="!al.editing">
+                            <button class="btn btn-green btn-lg btn-icon icon-left btn-block" data-ng-disabled="!al.editing" ng-click="al.salvar()">
                                 Salvar
                                 <i class="entypo-check"></i>
                             </button>

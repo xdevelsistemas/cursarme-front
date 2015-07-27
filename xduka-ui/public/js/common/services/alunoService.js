@@ -4,7 +4,8 @@
     angular.module('common.services').factory('alunoService', function() {
         return {
             aluno: {},
-            _origem: ''
+            _origem: '',
+            err: ''
         };
     });
 })();

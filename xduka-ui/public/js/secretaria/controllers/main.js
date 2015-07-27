@@ -2,8 +2,13 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('Main', ['$scope', '$resource', 'breadCrumb', 'modelStrings', 'modelMenu', '$location', 'alunoService',
-        function($scope, $resource, breadCrumb, modelStrings, modelMenu, $location, alunoService) {
+        .controller('Main', ['$scope', '$resource', 'breadCrumb', 'modelStrings', 'modelMenu', '$location', 'alunoService', 'ngProgressFactory',
+        function($scope, $resource, breadCrumb, modelStrings, modelMenu, $location, alunoService, ngProgressFactory) {
+
+            /* PROGRESS BAR */
+            $scope.progressbar = ngProgressFactory.createInstance();
+            $scope.progressbar.start();
+
             /* jshint validthis: true */
             var vm = this
                 , infoUserPromise = $resource('/api/comercial/info-usuario').get().$promise;
@@ -13,7 +18,7 @@
             vm.STR = modelStrings;
             vm.menu = modelMenu;
 
-            vm._alunos = [];
+            //vm._alunos = [];
             vm._searchVal = '';
             vm.appName = 'xDuka';
             vm.area = 'Secretaria';
@@ -25,6 +30,7 @@
                 then(
                 function (data) {
                     vm.user = data.usuario;
+                    $scope.progressbar.complete();
                 })
                 .catch(
                 function (erro) {
@@ -47,6 +53,7 @@
             /* SEARCH NODE */
             vm.seachPromise = function(matNome) {
                 if (matNome.length >= 4) {
+                    $scope.progressbar.start();
                     search(matNome)
                 }else{
                     vm.auxAlunos = vm._alunos;
@@ -58,6 +65,7 @@
             vm.moreAluno = function(aluno){
                 vm.openSearch = false;
                 alunoService.aluno = aluno;
+                alunoService.aluno.alert = true;
                 $location.path('/secretaria/aluno/'+aluno.matricula.model.val)
             };
             function search(matNome){
@@ -66,9 +74,12 @@
                     .then(
                     function (data) {
                         if (compareArray(data.result,vm._alunos)){
-
+                            vm._alunos.err = data.err;
+                            $scope.progressbar.complete();
                         }else{
                             vm._alunos = data.result;
+                            vm._alunos.err = data.err;
+                            $scope.progressbar.complete();
                         }
                     }
                 )
