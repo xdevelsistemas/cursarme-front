@@ -5,14 +5,14 @@
     angular.module('app.controllers')
         .controller('Messages', Messages);
 
-    Messages.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso', 'modelStrings'];
+    Messages.$inject = ['$scope', '$resource', 'breadCrumb', 'defineCurso', 'modelStrings', 'serviceMessages'];
 
     /* @ngInject */
-    function Messages($scope, $resource, breadCrumb, defineCurso, modelStrings) {
+    function Messages($scope, $resource, breadCrumb, defineCurso, modelStrings, serviceMessages) {
         /* jshint validthis: true */
 
         var vm = this
-            , msgPromise = $resource('/api/aluno/mensagens/:id').get({id: defineCurso.getIdCurso()}).$promise;
+            , msgPromise = serviceMessages.get({id: defineCurso.getIdCurso()}).$promise;
 
         breadCrumb.title = 'Mensagens';
 
