@@ -444,3 +444,9 @@ input[type="search"] {
 .transparentBlock.fadeOut {
     position: static!important;
 }
+
+.errInputCheck {
+    border: 1px;
+    border-color: red;
+    border-style: solid;
+}
