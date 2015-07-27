@@ -244,12 +244,26 @@
                                 "label": "Usuário",
                                 "type": "text",
                                 "placeholder": "Selecione...",
-                                "name": "natUf",
+                                "name": "userLog",
                                 "model": {"val": "", "err": ""},
                                 "list": [
                                     {id: 0, text: '*Todos'},
                                     {id: 1, text: 'Camila Ferreira'},
                                     {id: 2, text: 'João da Silva'}
+                                ]
+                            },
+                            printBoletim: {
+                                "label": "BOLETIM",
+                                "type": "text",
+                                "placeholder": "Selecione...",
+                                "name": "printBOletim",
+                                "model": {"val": "", "err": ""},
+                                "list": [
+                                    {id: 0, text: 'Completo'},
+                                    {id: 1, text: 'Período 1'},
+                                    {id: 2, text: 'Período 2'},
+                                    {id: 3, text: 'Período 3'},
+                                    {id: 4, text: 'Período 4'}
                                 ]
                             }
                         });
@@ -378,12 +392,78 @@
                         {
                             'adata': {date: true, int: 1437423897997, formatDate: 'dd/MM/yyyy h:mm a'},
                             'buser': 'Camila Ferreira',
-                        'cevento': 'Usuário(a) Camila Ferreira Matrícula Aluno(a): (21321231) ADENILSON BLA BLA BLA BLA NKL NASDKLASDKLASALDASKLDMSAKLDAMKLAMDSMKLA MSDAKD MAKLSMDAKLMSDKLAMDSKAMDKALDMKSAL MDASKLDM KAM AKL MSDKL'
+                            'cevento': 'Usuário(a) Camila Ferreira Matrícula Aluno(a): (21321231) ADENILSON BLA BLA BLA BLA NKL NASDKLASDKLASALDASKLDMSAKLDAMKLAMDSMKLA MSDAKD MAKLSMDAKLMSDKLAMDSKAMDKALDMKSAL MDASKLDM KAM AKL MSDKL'
                         },
                         {
                             'adata': {date: true, int: 1437426700808, formatDate: 'dd/MM/yyyy h:mm a'},
                             'buser': 'João da Silva',
                             'cevento': 'Usuário(a) João da Silva Matrícula Aluno(a): (343434343) MARIA BLA BLA BLA BLA NKL NASDKLASDKLASALDASKLDMSAKLDAMKLAMDSMKLA MSDAKD MAKLSMDAKLMSDKLAMDSKAMDKALDMKSAL MDASKLDM KAM AKL MSDKL'
+                        }
+                    ]
+                };
+                vm._model.gridAvaliacoes = {
+                    class: 'table-hover table-bordered display',
+                    head: ["Disciplina", "AV1","AV2","Nota","Média","REC","2HC", "Média Final", "Resultado"],
+                    list: [
+                        {
+                            "adisc": "Serviços de Saúde: Legislação e Segurança do Trabalho",
+                            "bav1": "10",
+                            "cav2": "10",
+                            "dnota": "9",
+                            "emedia": "4.5",
+                            "frec": "8",
+                            "g2hc": "6.25",
+                            "hmediaf": "6",
+                            "iresult": "APROVADO"
+                        },
+                        {
+                            "adisc": "Políticas Públicas de Saúde no Brasil",
+                            "bav1": "10",
+                            "cav2": "10",
+                            "dnota": "9",
+                            "emedia": "4.5",
+                            "frec": "8",
+                            "g2hc": "6.25",
+                            "hmediaf": "6",
+                            "iresult": "APROVADO"
+                        }
+                    ]
+                };
+                vm._model.gridGrade = {
+                    id: 'gradeDiscTable',
+                    dataTable: {
+                        "paging":   false,
+                        "ordering": true,
+                        "info":     false,
+                        "filter":   true,
+                        "order": [[ 2, "desc" ]],
+                        "language": {
+                            "search": "Pesquisar Grade"
+                        }
+
+                    },
+                    class: 'table-hover table-bordered display',
+                    head: ["Período", "Disciplina", "Carga Horária"],
+                    list: [
+                        {
+                            "aperiodo": "Único",
+                            "bdisciplina": "Políticas Públicas de Saúde no Brasil",
+                            "ccargahoraria": "30"
+                        },
+                        {
+                            "aperiodo": "Único",
+                            "bdisciplina": "Serviços de Saúde: Legislação e Segurança do Trabalho",
+                            "ccargahoraria": "40"
+                        },
+                        {
+                            "aperiodo": "Único",
+                            "bdisciplina": "Vigilância em Saúde",
+                            "ccargahoraria": "30"
+                        },
+                        {
+                            "aperiodo": "Único",
+                            "bdisciplina": "Orientação do Trabalho de Conclusão de Curso",
+                            "ccargahoraria": "80"
                         }
                     ]
                 };
