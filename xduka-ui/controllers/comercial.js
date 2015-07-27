@@ -92,11 +92,12 @@ function putDadosInscricaoParcial(req, res) {
 /*  --- Json tela comercial / inscricao ---   */
     var dataSent = req.body;
 
-    if  (validaCamposStep1(dataSent.model) && validaCamposStep2(dataSent.model)) {
+    if  (validaCamposStep1(dataSent.model) && validaCamposStep2(dataSent.model) && validaCamposStep3(dataSent.model)) {
 
         limpaModelErrStep1(dataSent.model);
         limpaModelErrStep2(dataSent.model);
         limpaModelErrStep3(dataSent.model);
+        limpaModelErrStep4(dataSent.model);
 
         /*  Transformando data por extenso para data numerica dos cheques enviados  */
         alteraDataCheque(dataSent.model, setDataInt);
@@ -121,6 +122,7 @@ function putDadosInscricaoParcial(req, res) {
     }else{
         verificaValidacoesStep1(dataSent);
         verificaValidacoesStep2(dataSent);
+        verificaValidacoesStep3(dataSent);
 
         res.json(dataSent.model);
     }
@@ -130,11 +132,11 @@ function putDadosInscricaoCompleta(req, res) {
     /*  --- Json tela comercial / inscricao ---   */
     var dataSent = req.body;
 
-    if  (validaCamposStep1(dataSent.model) && validaCamposStep2(dataSent.model) && validaCamposStep3(dataSent.model)) {
+    if  (validaCamposStep1(dataSent.model) && validaCamposStep2(dataSent.model) && validaCamposStep4(dataSent.model)) {
 
         limpaModelErrStep1(dataSent.model);
         limpaModelErrStep2(dataSent.model);
-        limpaModelErrStep3(dataSent.model);
+        limpaModelErrStep4(dataSent.model);
 
         /*  Transformando data por extenso para data numerica dos cheques enviados  */
         alteraDataCheque(dataSent.model, setDataInt);
@@ -159,7 +161,7 @@ function putDadosInscricaoCompleta(req, res) {
     }else{
         verificaValidacoesStep1(dataSent);
         verificaValidacoesStep2(dataSent);
-        verificaValidacoesStep3(dataSent);
+        verificaValidacoesStep4(dataSent);
 
         res.json(dataSent.model);
     }
@@ -265,6 +267,46 @@ function validaCamposStep2(obj) {
 }
 
 function validaCamposStep3(obj) {
+    var tipoCurso = {
+        "mestrado": 11,
+        "posGraduacao": 22,
+        "convTeologia": 33,
+        "formContinuada": 44,
+        "compPedagogica": 55
+    };
+
+    if ([tipoCurso.mestrado, tipoCurso.compPedagogica, tipoCurso.posGraduacao].indexOf(obj.tipoCurso.model.val) != -1) {
+        return validaCheckboxComumTodos(obj) && validaCheckboxGraduacao(obj);
+    } else {
+        if (tipoCurso.convTeologia == obj.tipoCurso.model.val) {
+            return validaCheckboxComumTodos(obj) && validaCheckboxSeminario(obj)
+        } else {
+            return validaCheckboxComumTodos(obj);
+        }
+    }
+}
+
+function validaCheckboxComumTodos(obj) {
+    var ehMasc = obj.sexo.model.val == 'm' ? !!obj.checkReservista.model.val: true;
+
+    return !!obj.checkFoto34.model.val && !!obj.checkCertidao.model.val &&
+    ehMasc && !!obj.checkComprovanteResidencia.model.val &&
+    !!obj.checkCpf.model.val && !!obj.checkDiploma2grau.model.val &&
+    !!obj.checkTitulo.model.val && !!obj.checkRg.model.val &&
+    !!obj.checkFichaInscr.model.val && !!obj.checkTaxaInscr.model.val;
+}
+
+function validaCheckboxGraduacao(obj) {
+    return !!obj.checkDiplomaGrad.model.val &&
+    !!obj.checkHistoricoGraduacao.model.val
+}
+
+function validaCheckboxSeminario(obj) {
+    return !!obj.checkDiplomaSeminario.model.val &&
+    !!obj.checkHistoricoSeminario.model.val
+}
+
+function validaCamposStep4(obj) {
     return isDate(obj.dataExp.model.val) && !obj.dataExp.model.err && !!obj.orgaoEmissor.model.val &&
     !!obj.tituloEleitor.model.val && !!obj.zona.model.val && !!obj.secao.model.val &&
     !!obj.ufTitulo.model.val && !!obj.certidaoNc.model.val && !!obj.folha.model.val &&
@@ -315,6 +357,23 @@ function limpaModelErrStep2(obj) {
 }
 
 function limpaModelErrStep3(obj) {
+    obj.checkFoto34.model.err = "";
+    obj.checkCertidao.model.err = "";
+    obj.checkReservista.model.err = "";
+    obj.checkComprovanteResidencia.model.err = "";
+    obj.checkCpf.model.err = "";
+    obj.checkDiplomaGrad.model.err = "";
+    obj.checkDiploma2grau.model.err = "";
+    obj.checkDiplomaSeminario.model.err = "";
+    obj.checkHistoricoGraduacao.model.err = "";
+    obj.checkHistoricoSeminario.model.err = "";
+    obj.checkTitulo.model.err = "";
+    obj.checkRg.model.err = "";
+    obj.checkFichaInscr.model.err = "";
+    obj.checkTaxaInscr.model.err = "";
+}
+
+function limpaModelErrStep4(obj) {
     obj.dataExp.model.err = "";
     obj.orgaoEmissor.model.err = "";
     obj.tituloEleitor.model.err = "";
@@ -451,6 +510,41 @@ function verificaValidacoesStep2(obj) {
 }
 
 function verificaValidacoesStep3(obj) {
+    var tipoCurso = {
+        "mestrado": 11,
+        "posGraduacao": 22,
+        "convTeologia": 33,
+        "formContinuada": 44,
+        "compPedagogica": 55
+    };
+
+    if (obj.model.sexo.model.val == 'm') {
+        obj.model.checkReservista.model.err = !!obj.model.checkReservista.model.val ? '' : obj.STR.DOCOBR;
+    } else {
+        obj.model.checkReservista.model.err = '';
+    }
+    obj.model.checkFoto34.model.err = !!obj.model.checkFoto34.model.val ? '' : obj.STR.DOCOBR;
+    obj.model.checkCertidao.model.err = !!obj.model.checkCertidao.model.val ? '' : obj.STR.DOCOBR;
+    obj.model.checkComprovanteResidencia.model.err = !!obj.model.checkComprovanteResidencia.model.val ? '' : obj.STR.DOCOBR;
+    obj.model.checkCpf.model.err = !!obj.model.checkCpf.model.val ? '' : obj.STR.DOCOBR;
+    obj.model.checkDiploma2grau.model.err = !!obj.model.checkDiploma2grau.model.val ? '' : obj.STR.DOCOBR;
+    obj.model.checkTitulo.model.err = !!obj.model.checkTitulo.model.val ? '' : obj.STR.DOCOBR;
+    obj.model.checkRg.model.err = !!obj.model.checkRg.model.val ? '' : obj.STR.DOCOBR;
+    obj.model.checkFichaInscr.model.err = !!obj.model.checkFichaInscr.model.val ? '' : obj.STR.DOCOBR;
+    obj.model.checkTaxaInscr.model.err = !!obj.model.checkTaxaInscr.model.val ? '' : obj.STR.DOCOBR;
+
+    if ([tipoCurso.mestrado, tipoCurso.compPedagogica, tipoCurso.posGraduacao].indexOf(obj.model.tipoCurso.model.val) != -1) {
+        obj.model.checkDiplomaGrad.model.err = !!obj.model.checkDiplomaGrad.model.val ? '' : obj.STR.DOCOBR;
+        obj.model.checkHistoricoGraduacao.model.err = !!obj.model.checkHistoricoGraduacao.model.val ? '' : obj.STR.DOCOBR;
+    } else {
+        if (tipoCurso.convTeologia == obj.tipoCurso.model.val) {
+            obj.model.checkDiplomaSeminario.model.err = !!obj.model.checkDiplomaSeminario.model.val ? '' : obj.STR.DOCOBR;
+            obj.model.checkHistoricoSeminario.model.err = !!obj.model.checkHistoricoSeminario.model.val ? '' : obj.STR.DOCOBR;
+        }
+    }
+}
+
+function verificaValidacoesStep4(obj) {
     obj.model.apt.model.err = obj.model.apt.model.val ? '' : obj.STR.FIELD;
     obj.model.anoEm.model.err = obj.model.anoEm.model.val ? '' : obj.STR.FIELD;
     obj.model.anoGrad.model.err = obj.model.anoGrad.model.val ? '' : obj.STR.FIELD;
