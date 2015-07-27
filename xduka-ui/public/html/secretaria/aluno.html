@@ -268,32 +268,43 @@
                     </xd-panel-collapse>
                 </div>
 
+                <!-- GRADE/DISCIPLINA -->
                 <div class="tab-pane" id="gradeDisc">
-                    <p>Luckily friends do ashamed to do suppose. Tried meant mr smile so. Exquisite
-                        behaviour as to middleton perfectly. Chicken no wishing waiting am. Say concerns
-                        dwelling graceful six humoured. Whether mr up savings talking an. Active mutual
-                        nor father mother exeter change six did all.</p>
-
-                    <p>Carriage quitting securing be appetite it declared. High eyes kept so busy
-                        feel call in. Would day nor ask walls known. But preserved advantage are but and
-                        certainty earnestly enjoyment. Passage weather as up am exposed. And natural
-                        related man subject. Eagerness get situation his was delighted.</p>
-
-                    <p>Fulfilled direction use continual set him propriety continued. Saw met
-                        applauded favourite deficient engrossed concealed and her. Concluded boy
-                        perpetual old supposing. Farther related bed and passage comfort civilly.
-                        Dashwoods see frankness objection abilities the. As hastened oh produced prospect
-                        formerly up am. Placing forming nay looking old married few has. Margaret
-                        disposed add screened rendered six say his striking confined.</p>
-
-                    <p>When be draw drew ye. Defective in do recommend suffering. House it seven in
-                        spoil tiled court. Sister others marked fat missed did out use. Alteration
-                        possession dispatched collecting instrument travelling he or on. Snug give made
-                        at spot or late that mr.</p>
+                    <xd-panel-collapse title="'Grade/Disciplinas'">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <xd-grid data-params="al._model.gridGrade"></xd-grid>
+                                </div>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
                 </div>
 
+                <!-- NOTAS -->
                 <div class="tab-pane" id="notas">
-
+                    <xd-panel-collapse title="'Boletim'">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <xd-grid data-params="al._model.gridAvaliacoes"></xd-grid>
+                                </div>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                    <xd-panel-collapse title="'Imprimir'">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <xd-select data-params="al._model.printBoletim"></xd-select>
+                                <div class="center center-block text-center">
+                                    <button class="btn btn-default btn-lg btn-icon icon-left" ng-click="al.imprimirBoletim()">
+                                        IMPRMIR
+                                        <i class="entypo-print"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
                 </div>
 
                 <!-- HISTÓRICO -->
