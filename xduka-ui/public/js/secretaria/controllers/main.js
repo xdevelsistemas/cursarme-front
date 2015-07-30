@@ -108,6 +108,10 @@
                 }
                 return true
             }
+            vm.searchkp = function(){
+                vm.searchFocusOff();
+                $('#search').blur();
+            }
 
         }]);
 })();

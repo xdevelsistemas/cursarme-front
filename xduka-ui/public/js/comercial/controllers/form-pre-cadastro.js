@@ -73,6 +73,38 @@
                     vm._model = data;
                     $.extend(vm._model.vagas, funcVagas());
                     vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
+                    /* DESCONTOS ADICIONAIS (CAMPOS) */
+                    vm._model.descontosAdicionais = {
+                        "label": "Descontos disponíveis",
+                        "type": "select",
+                        "name": "descontosDisp",
+                        "placeholder": "Selecione uma opção",
+                        "list": [
+                            {
+                                "id": "desc1",
+                                "text": "Indicação",
+                                "percent": 0.05
+                            },
+                            {
+                                "id": "desc2",
+                                "text": "Bolsa indicações",
+                                "percent": 0.5
+                            },
+                            {
+                                "id": "desc3",
+                                "text": "Outro desconto",
+                                "percent": 0.15
+                            }
+                        ],
+                        "model": {"val": "", "err": ""}
+                    };
+                    vm._model.descricaoDesconto = {
+                        "label": "Descrição do desconto",
+                        "type": "textarea",
+                        "name": "descrDesc",
+                        "rows": 7,
+                        "model": {"val": "", "err": ""}
+                    };
                 })
                 .catch(function(erro){
                     if (erro.status == '400') {
@@ -343,10 +375,13 @@
                 vm.btnAddChequeStep2 = item.tpCheque;
 
                 vm._model.desconto.model.descPag = 1 - ((vm._model.formaPagamentoPag.valores[item.name]) / vm._model.formaPagamentoPag.valores.integral);
-                vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
 
-                vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
-                    (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val));
+                /* SÓ ADOCIONA SE NÃO TIVER DESCONTO ADICIONAL */
+                if(!vm._model.desconto.descontoAdd) {
+                    vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
+                    vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
+                        (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val));
+                }
             };
 
             vm.selectPhoneType = function (item, model) {
@@ -733,6 +768,31 @@
                 type: 'checkbox',
                 label: 'Diploma de graduação ou certificado de conclusão de curso (2 cópias autenticadas)',
                 model: {'val': true}
+            };
+
+
+            vm.addDescontoAdicional = function(){
+
+                vm._model.descricaoDesconto.model.val.length == 0?vm._model.descricaoDesconto.model.err = 'Campo obrigatório!':vm._model.descricaoDesconto.model.err = '';
+                vm._model.descontosAdicionais.model.val.length == 0?vm._model.descontosAdicionais.model.err = 'Campo obrigatório!':vm._model.descontosAdicionais.model.err = '';
+                if(!!vm._model.descricaoDesconto.model.err||!!vm._model.descontosAdicionais.model.err){
+                    return 0
+                }
+
+                /* CRIAR FUNC PARA CALCULAR NOVO DESCONTO */
+
+                vm._model.desconto.descontoAdd = $.grep( vm._model.descontosAdicionais.list, function( n, i ) {
+                    return n.id == vm._model.descontosAdicionais.model.val;
+                })[0].percent;
+
+                vm._model.desconto.model.val = vm._model.desconto.model.aux+vm._model.desconto.descontoAdd;
+                $('#modalDescAdc').modal('toggle');
+
+
+            };
+            vm.cancelarDescontoAdicional = function(){
+                vm._model.desconto.model.val -= vm._model.desconto.descontoAdd;
+                vm._model.desconto.descontoAdd = 0;
             };
 
         }])
