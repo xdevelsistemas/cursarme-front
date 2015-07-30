@@ -1,4 +1,4 @@
-gi(function() {
+/*gi(function() {
     'use strict';
 
     describe('Messages test', function () {
@@ -34,9 +34,9 @@ gi(function() {
                 $httpBackend.whenGET(url_get).respond(msg);
                 dc = $injector.get('defineCurso');
 
-                /*$rootScope = $injector.get('$rootScope');
-                 $scope = $rootScope.$new();
-                 serviceMsg = $injector.get('serviceMessages');*/
+                //$rootScope = $injector.get('$rootScope');
+                //$scope = $rootScope.$new();
+                //serviceMsg = $injector.get('serviceMessages');
             });
         });
 
@@ -49,7 +49,7 @@ gi(function() {
                     '$scope': $scope
                 });
 
-                /*serviceMsg = serviceMessages.get({id: dc.getIdCurso()}).$promise;*/
+               //serviceMsg = serviceMessages.get({id: dc.getIdCurso()}).$promise;
                 $httpBackend.flush();
                 //alert(messages.mensagens);
                 expect(messages.mensagens.idCurso).toEqual(msg.idCurso);
@@ -57,3 +57,4 @@ gi(function() {
         });
     })
 })();
+*/
