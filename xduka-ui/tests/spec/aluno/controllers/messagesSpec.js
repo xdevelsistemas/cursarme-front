@@ -1,4 +1,4 @@
-(function() {
+gi(function() {
     'use strict';
 
     describe('Messages test', function () {
