@@ -52,6 +52,7 @@
                 /*serviceMsg = serviceMessages.get({id: dc.getIdCurso()}).$promise;*/
                 $httpBackend.flush();
                 alert(messages.mensagens);
+                alert(msg);
                 expect(messages.mensagens.idCurso).toEqual(msg.idCurso);
             }))
         });
