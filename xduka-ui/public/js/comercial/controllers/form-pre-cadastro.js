@@ -87,13 +87,13 @@
                             },
                             {
                                 "id": "desc2",
-                                "text": "Bolsa indicações",
-                                "percent": 0.5
+                                "text": "Grupo de pessoas",
+                                "percent": 0.02
                             },
                             {
                                 "id": "desc3",
                                 "text": "Outro desconto",
-                                "percent": 0.15
+                                "percent": 0.005
                             }
                         ],
                         "model": {"val": "", "err": ""}
@@ -376,13 +376,18 @@
 
                 vm._model.desconto.model.descPag = 1 - ((vm._model.formaPagamentoPag.valores[item.name]) / vm._model.formaPagamentoPag.valores.integral);
 
-                /* SÓ ADOCIONA SE NÃO TIVER DESCONTO ADICIONAL */
-                if(!vm._model.desconto.descontoAdd) {
-                    vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
-                    vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
-                        (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val));
-                }
+                /* SÓ ADICIONA SE NÃO TIVER DESCONTO ADICIONAL */
+                vm._model.desconto.model.val  = vm._model.desconto.model.descontoAdd ?
+                     vm._model.desconto.model.descontoAdd + vm._model.desconto.model.descPag:
+                     vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
+
+                alteraValorIntegral();
             };
+
+            function alteraValorIntegral() {
+                vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
+                    (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val));
+            }
 
             vm.selectPhoneType = function (item, model) {
                 vm._model.telefone.mask = tipoTelefone.getMaskPhone(model);
@@ -547,6 +552,8 @@
             function limpaCampoPag() {
                 vm._model.desconto.model.val = "";
                 vm._model.qtdParcelas.model.val = "";
+                vm._model.formaPagamentoInscr.model.val = "";
+                vm._model.formaPagamentoPag.model.val = "";
                 vm._model.melhorData.model.val = "";
                 vm._model.valorInscricao.model.val = '';
                 vm._model.valorIntegral.model.val = '';
@@ -577,7 +584,6 @@
             };
 
             vm.limpaFormStep1 = function() {
-
                 vm._model.cpf.model.val = '';
                 vm._model.cpf.model.err = '';
                 vm._model.rg.model.val = '';
@@ -772,28 +778,37 @@
 
 
             vm.addDescontoAdicional = function(){
+                vm._model.descricaoDesconto.model.err = vm._model.descricaoDesconto.model.val.length == 0 ? 'Campo obrigatório!': '';
+                vm._model.descontosAdicionais.model.err = vm._model.descontosAdicionais.model.val.length == 0 ? 'Campo obrigatório!': '';
 
-                vm._model.descricaoDesconto.model.val.length == 0?vm._model.descricaoDesconto.model.err = 'Campo obrigatório!':vm._model.descricaoDesconto.model.err = '';
-                vm._model.descontosAdicionais.model.val.length == 0?vm._model.descontosAdicionais.model.err = 'Campo obrigatório!':vm._model.descontosAdicionais.model.err = '';
-                if(!!vm._model.descricaoDesconto.model.err||!!vm._model.descontosAdicionais.model.err){
+                if(!!vm._model.descricaoDesconto.model.err || !!vm._model.descontosAdicionais.model.err){
                     return 0
                 }
 
                 /* CRIAR FUNC PARA CALCULAR NOVO DESCONTO */
 
-                vm._model.desconto.descontoAdd = $.grep( vm._model.descontosAdicionais.list, function( n, i ) {
+                vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd ? 0 : vm._model.desconto.model.aux;
+
+                vm._model.desconto.model.descontoAdd = $.grep( vm._model.descontosAdicionais.list, function( n, i ) {
                     return n.id == vm._model.descontosAdicionais.model.val;
                 })[0].percent;
 
-                vm._model.desconto.model.val = vm._model.desconto.model.aux+vm._model.desconto.descontoAdd;
+                vm._model.desconto.model.val += vm._model.desconto.model.descontoAdd;
+
+                alteraValorIntegral();
                 $('#modalDescAdc').modal('toggle');
-
-
             };
+
             vm.cancelarDescontoAdicional = function(){
-                vm._model.desconto.model.val -= vm._model.desconto.descontoAdd;
-                vm._model.desconto.descontoAdd = 0;
+                vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd;
+                vm._model.desconto.model.val += vm._model.desconto.model.aux;
+                alteraValorIntegral();
+                vm._model.desconto.model.descontoAdd = 0;
             };
 
+            function limpaCamposDescantoAdicional() {
+                vm._model.descricaoDesconto.model.val = '';
+                vm._model.descontosAdicionais.model.val = '';
+            }
         }])
 })();
