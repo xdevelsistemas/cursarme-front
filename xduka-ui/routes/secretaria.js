@@ -32,6 +32,9 @@ module.exports = function (app, passport) {
     //Alunos Search
     app.route('/api/secretaria/aluno/:nomeMat')
         .get(controller.alunoSearch);
+    //Alunos Search
+    app.route('/api/secretaria/templateConfig')
+        .get(controller.showConfig);
 
     return app;
 };
