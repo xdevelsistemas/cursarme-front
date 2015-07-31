@@ -44,6 +44,12 @@ angular.module('app',[
             controller: 'aluno',
             controllerAs: 'al'
         });
+// ========= CONFIGURAÇÕES ========= //
+        $routeProvider.when('/secretaria/configuracoes', {
+            templateUrl: 'html/secretaria/configuracoes.html',
+            controller: 'configuracoes',
+            controllerAs: 'config'
+        });
 // ========= OTHERWISE ========= //
         $routeProvider.otherwise({
             redirectTo: '/'
