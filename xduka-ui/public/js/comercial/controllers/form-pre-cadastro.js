@@ -802,8 +802,9 @@
             vm.cancelarDescontoAdicional = function(){
                 vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd;
                 vm._model.desconto.model.val += vm._model.desconto.model.aux;
-                alteraValorIntegral();
                 vm._model.desconto.model.descontoAdd = 0;
+                alteraValorIntegral();
+                limpaCamposDescantoAdicional();
             };
 
             function limpaCamposDescantoAdicional() {
