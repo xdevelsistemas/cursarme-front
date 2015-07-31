@@ -3,11 +3,11 @@
     <div class="col-md-12">
         <div class="alert alert-danger" role="alert" data-ng-show="al._model.alert&&!!al._model.pendencia.model.val">
             <button type="button" class="close" aria-label="Close" data-ng-click="al.disableAlert()"><span aria-hidden="true">&times;</span></button>
-            <span class="alert-title">Aluno com pendência:</span>
+            <span class="alert-title">Aviso:</span>
             <hr/>
             <div class="alertContent">
                 <span class="alert-padding">
-                    Valor: <strong ng-bind="al._model.pendencia.model.val"></strong>
+                    <p ng-bind="al._model.pendencia.model.val"></p>
                 </span>
             </div>
         </div>
@@ -286,7 +286,7 @@
                     <xd-panel-collapse title="'Boletim'">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="col-md-12">
+                                <div class="scrollTable col-md-12">
                                     <xd-grid data-params="al._model.gridAvaliacoes"></xd-grid>
                                 </div>
                             </div>
