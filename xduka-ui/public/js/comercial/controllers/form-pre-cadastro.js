@@ -536,7 +536,7 @@
             function funcVagas() {
                 return {
                     isEnding: function () {
-                        return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
+                        return this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9;
                     },
                     getDisponiveis: function () {
                         return (parseInt(this.totais) - parseInt(this.preenchidas));
