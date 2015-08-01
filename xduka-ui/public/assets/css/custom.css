@@ -101,6 +101,10 @@ body {
     .scrollTable{
         overflow: scroll;
     }
+    /* PESQUISA */
+    .xdCustomSearch.open .xdCustomSearch-input {
+        font-size: 3em!important;
+    }
 }
 
 .alert-title {
@@ -202,6 +206,12 @@ div.bottomReset {
 .fadeBordered {
     margin-top: 1%;
     border: 2px solid rgba(175, 175, 175, 0.54);
+    border-radius: 3%;
+}
+.matriculaSearch{
+    color: #000;
+    padding-top: 5px;
+    font-size: 13px;
 }
 .padding1 {
     padding: 2px;
@@ -216,4 +226,231 @@ div.bottomReset {
         padding-top: 5%;
 
     }
+    /* PESQUISA */
+    .xdCustomSearch {
+        right: 25px!important;
+    }
+    .xdCustomSearch.open .xdCustomSearch-input {
+        font-size: 2em!important;
+    }
+}
+@media (max-width: 480px) {
+    /* PESQUISA */
+    .xdCustomSearch {
+        right: 10px!important;
+    }
+}
+
+/* PESQUISA */
+
+.xdCustomSearch {
+    border: 1px solid #eee;
+    width: 200px;
+    min-height: 40px;
+    background: rgba(255, 255, 255, 0.98);
+    position: absolute;
+    z-index: 10000;
+    top: 25px;
+    right: 125px;
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+    border-radius:7px;
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    -webkit-transition-property: min-height, width, top, right;
+    transition-property: min-height, width, top, right;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+    transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.xdCustomSearch.open {
+    width: 100%;
+    border-radius:0px;
+    min-height: 100%;
+    top: 0px!important;
+    right: 0px!important;
+}
+
+.xdCustomSearch-form {
+    width: 100%;
+    height: 40px;
+    margin: 0 auto;
+    position: relative;
+    -webkit-transition-property: width, height, -webkit-transform;
+    transition-property: width, height, transform;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+    transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.xdCustomSearch.open .xdCustomSearch-form {
+    width: 80%;
+    height: 160px;
+    -webkit-transform: translate3d(0,3em,0);
+    transform: translate3d(0,3em,0);
+}
+
+.xdCustomSearch-input {
+    width: 100%;
+    height: 100%;
+    padding: 0 10% 0 10px;
+    font-weight: 700;
+    border: none;
+    background: transparent;
+    font-size: 0.8em;
+    -webkit-transition: font-size 0.5s cubic-bezier(0.7,0,0.3,1);
+    transition: font-size 0.5s cubic-bezier(0.7,0,0.3,1);
+}
+
+.xdCustomSearch-input::-ms-clear {
+    display: none;
+}
+
+.xdCustomSearch.hideInput .xdCustomSearch-input {
+    color: transparent;
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
+}
+
+.xdCustomSearch.open .xdCustomSearch-input {
+    font-size: 5em;
+}
+
+.xdCustomSearch-input::-webkit-input-placeholder {
+    color: #c2c2c2;
+}
+
+.xdCustomSearch-input:-moz-placeholder {
+    color: #c2c2c2;
+}
+
+.xdCustomSearch-input::-moz-placeholder {
+    color: #c2c2c2;
+}
+
+.xdCustomSearch-input:-ms-input-placeholder {
+    color: #c2c2c2;
+}
+
+
+.gn-search:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+input[type="search"] {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.xdCustomSearch-input:focus,
+.xdCustomSearch-submit:focus {
+    outline: none;
+}
+.searchIcon {
+    text-align: right;
+    color: rgba(0, 0, 0, 0.37);
+    background: transparent;
+    font-size: 2.5em !important;
+    -webkit-transition: font-size, transform 0.5s cubic-bezier(0.7,0,0.3,1);
+    transition: font-size, transform 0.5s cubic-bezier(0.7,0,0.3,1);
+}
+.openSearchIcon {
+    transform: scale(2)!important;
+    -webkit-transition: transform 0.5s cubic-bezier(0.7,0,0.3,1);
+    transition: transform 0.5s cubic-bezier(0.7,0,0.3,1);
+}
+.xdCustomSearch-close {
+
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    overflow: hidden;
+    text-indent: 100%;
+    cursor: pointer;
+    pointer-events: none;
+    opacity: 0;
+    -webkit-transform: scale3d(0,0,1);
+    transform: scale3d(0,0,1);
+}
+.xdCustomSearch.open .xdCustomSearch-close {
+    opacity: 1;
+    pointer-events: auto;
+    -webkit-transform: scale3d(1,1,1);
+    transform: scale3d(1,1,1);
+    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
+    -webkit-transition-delay: 0.5s;
+    transition-delay: 0.5s;
+}
+
+.xdCustomSearch-close::before,
+.xdCustomSearch-close::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    border-radius: 3px;
+    opacity: 0.2;
+    background: #000;
+}
+
+.xdCustomSearch-close:hover.xdCustomSearch-close::before,
+.xdCustomSearch-close:hover.xdCustomSearch-close::after {
+    opacity: 1;
+}
+
+.xdCustomSearch-close::before {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.xdCustomSearch-close::after {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.searchContent {
+    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
+    -webkit-transition-delay: 0.5s;
+    transition-delay: 0.5s;
+}
+.transparentBlock {
+    width: 100%;
+    border-radius:0px;
+    min-height: 100%;
+    top: 0px!important;
+    right: 0px!important;
+    background: rgba(255, 255, 255, 0.67);
+    position: absolute;
+    z-index: 10000;
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    -webkit-transition-property: min-height, width, top, right, position;
+    transition-property: min-height, width, top, right, position;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+    transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+.transparentBlock.fadeOut {
+    position: static!important;
+}
+
+.errInputCheck {
+    border: 1px;
+    border-color: red;
+    border-style: solid;
+}
+.configSecBorder {
+    margin-top: 1%;
+    border: 2px solid rgba(215, 215, 215, 0.54);
 }

@@ -35,6 +35,10 @@ module.exports = function (app, passport) {
     app.route('/api/aluno/horarios/:id')
         .get(controller.showHorarios);
 
+    //Nome e id do curso do usuario
+    app.route('/api/aluno/infoCurso')
+        .get(controller.showInfoCurso);
+
     //Informações do usuario
     app.route('/api/aluno/infoUsuario')
         .get(controller.showInfoUsuario);

@@ -16,7 +16,8 @@ angular.module('app',[
     'app.services',
     'app.directives',
     'app.controllers',
-    'gridshore.c3js.chart'
+    'gridshore.c3js.chart',
+    'ngProgress'
 
 ])
 
@@ -38,10 +39,16 @@ angular.module('app',[
             controllerAs: 'conf'
         });
 // ========= ALUNOS ========= //
-        $routeProvider.when('/secretaria/aluno', {
+        $routeProvider.when('/secretaria/aluno/:matricula', {
             templateUrl: 'html/secretaria/aluno.html',
             controller: 'aluno',
             controllerAs: 'al'
+        });
+// ========= CONFIGURAÇÕES ========= //
+        $routeProvider.when('/secretaria/configuracoes', {
+            templateUrl: 'html/secretaria/configuracoes.html',
+            controller: 'configuracoes',
+            controllerAs: 'config'
         });
 // ========= OTHERWISE ========= //
         $routeProvider.otherwise({

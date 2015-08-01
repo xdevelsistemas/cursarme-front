@@ -15,9 +15,9 @@
                 "href": "#/secretaria/confirmarMatricula"
             },
             {
-                "text": "Aluno",
-                "iconClass": "entypo-user",
-                "href": "#/secretaria/aluno"
+                "text": "Configurações",
+                "iconClass": "entypo-cog",
+                "href": "#/secretaria/configuracoes"
             }
         ]
     })

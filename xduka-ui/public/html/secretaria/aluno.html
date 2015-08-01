@@ -1,9 +1,25 @@
+<div class="transparentBlock animated" ng-class="{'fadeOut': al.loaded}"></div>
 <div class="row" ng-cloak>
     <div class="col-md-12">
+        <div class="alert alert-danger" role="alert" data-ng-show="al._model.alert&&!!al._model.pendencia.model.val">
+            <button type="button" class="close" aria-label="Close" data-ng-click="al.disableAlert()"><span aria-hidden="true">&times;</span></button>
+            <span class="alert-title">Aviso:</span>
+            <hr/>
+            <div class="alertContent">
+                <span class="alert-padding">
+                    <p ng-bind="al._model.pendencia.model.val"></p>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="alert alert-error" ng-show="!!al._erro">
+            <p class="text-danger">{{al._erro}}</p>
+        </div>
         <!-- FOTO DO CADASTRO -->
         <div class="col-md-2 col-sm-5 col-xs-12 fadeBordered text-left" style="padding: 1%;margin-top: 20px;">
             <p class="control-label">Foto 200x150:<button type="button" class="close" aria-hidden="true" ng-click="al.removeFoto()" data-ng-disabled="!al.editing"><i class="entypo-trash"></i></button></p>
-            <img ng-src="{{al._model.foto.model.val||'http://www.westcare.com.br/imagens/especialistas/perfil-sem-foto.jpg'}}" class="img-circle" alt="FOTO" width="100%"/>
+            <img ng-src="{{al._model.foto.model.val}}" class="img-circle" alt="FOTO" width="100%"/>
             <br/>&nbsp;
             <span class="btn btn-default btn-file form-control" data-ng-disabled="!al.editing" onclick="$('#modalFoto').modal('show', {backdrop: 'static'})">
             Procurar... <input name="fileInput" type="file" id="fileInput" onclick="this.value = null" ng-click="al.clickFoto()" onfocus="!$('#fileInput').val()?$('#modalFoto').modal('hide'):0">
@@ -252,32 +268,43 @@
                     </xd-panel-collapse>
                 </div>
 
+                <!-- GRADE/DISCIPLINA -->
                 <div class="tab-pane" id="gradeDisc">
-                    <p>Luckily friends do ashamed to do suppose. Tried meant mr smile so. Exquisite
-                        behaviour as to middleton perfectly. Chicken no wishing waiting am. Say concerns
-                        dwelling graceful six humoured. Whether mr up savings talking an. Active mutual
-                        nor father mother exeter change six did all.</p>
-
-                    <p>Carriage quitting securing be appetite it declared. High eyes kept so busy
-                        feel call in. Would day nor ask walls known. But preserved advantage are but and
-                        certainty earnestly enjoyment. Passage weather as up am exposed. And natural
-                        related man subject. Eagerness get situation his was delighted.</p>
-
-                    <p>Fulfilled direction use continual set him propriety continued. Saw met
-                        applauded favourite deficient engrossed concealed and her. Concluded boy
-                        perpetual old supposing. Farther related bed and passage comfort civilly.
-                        Dashwoods see frankness objection abilities the. As hastened oh produced prospect
-                        formerly up am. Placing forming nay looking old married few has. Margaret
-                        disposed add screened rendered six say his striking confined.</p>
-
-                    <p>When be draw drew ye. Defective in do recommend suffering. House it seven in
-                        spoil tiled court. Sister others marked fat missed did out use. Alteration
-                        possession dispatched collecting instrument travelling he or on. Snug give made
-                        at spot or late that mr.</p>
+                    <xd-panel-collapse title="'Grade/Disciplinas'">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <xd-grid data-params="al._model.gridGrade"></xd-grid>
+                                </div>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
                 </div>
 
+                <!-- NOTAS -->
                 <div class="tab-pane" id="notas">
-
+                    <xd-panel-collapse title="'Boletim'">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="scrollTable col-md-12">
+                                    <xd-grid data-params="al._model.gridAvaliacoes"></xd-grid>
+                                </div>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                    <xd-panel-collapse title="'Imprimir'">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <xd-select data-params="al._model.printBoletim"></xd-select>
+                                <div class="center center-block text-center">
+                                    <button class="btn btn-default btn-lg btn-icon icon-left" ng-click="al.imprimirBoletim()">
+                                        IMPRMIR
+                                        <i class="entypo-print"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
                 </div>
 
                 <!-- HISTÓRICO -->
@@ -385,19 +412,16 @@
                     </xd-panel-collapse>
                 </div>
 
-                <div class="tab-pane" id="parcelas">
-
-                </div>
                 <div class="center-block text-center centered">
                     <ul class="pager">
                         <li class="col-md-4 inLine" style="max-width: 250px">
-                            <button class="btn btn-blue btn-lg btn-icon icon-left btn-block">
+                            <button class="btn btn-blue btn-lg btn-icon icon-left btn-block" ng-click="al.moreAlunoVoltar()">
                                 Voltar
                                 <i class="entypo-left"></i>
                             </button>
                         </li>
                         <li class="col-md-4 inLine" style="max-width: 250px">
-                            <button class="btn btn-green btn-lg btn-icon icon-left btn-block" data-ng-disabled="!al.editing">
+                            <button class="btn btn-green btn-lg btn-icon icon-left btn-block" data-ng-disabled="!al.editing" ng-click="al.salvar()">
                                 Salvar
                                 <i class="entypo-check"></i>
                             </button>
@@ -420,40 +444,6 @@
         </div>
     </div>
 </div>
-
-
-
-<!-- PARTE DA PESQUISA (PROVAVELMENTE MODAL PREENCHENDO TODA TELA) -->
-<!--
-<div class="row">
-    <div class="col-md-12">
-        <h4>Pesquisar Aluno</h4>
-        <div id="custom-search-input">
-            <div class="input-group col-md-12">
-            <span class="input-group-btn">
-                <button class="btn btn-info btn-lg" type="button">
-                    <i class="glyphicon glyphicon-search center-block text-center"></i>
-                </button>
-            </span>
-                <input type="text" class="form-control input-lg" placeholder="Nome ou Matrícula" />
-            </div>
-        </div>
-    </div>
-</div>
-<hr/>
-<div class="col-md-12 text-center">
-    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 paddingB-3" ng-repeat="aluno in al._model.alunos">
-        <div class="paddingB-3" ng-class="{'btn btn-blue': al.colorIf(aluno),'btn btn-green': !al.colorIf(aluno)}">
-            <div class="text-center">
-                <p class="nomeAluno">{{aluno.nome}}</p>
-                <div class="col-md-12">
-                    <img ng-src="{{aluno.foto}}" class="img-circle" alt="FOTO" width="100%"/>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
-
 
 <form name="formFoto"
       class="form-horizontal">

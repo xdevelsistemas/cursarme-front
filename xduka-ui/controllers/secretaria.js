@@ -4,7 +4,8 @@ var extend = require('node.extend'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
     viewInscr = require('../mockup/xduka-json/common/viewInscr.json');
-    aluno = require('../mockup/xduka-json/secretaria/alunos.json');
+    alunos = require('../mockup/xduka-json/secretaria/alunos.json');
+    templateConfig = require('../mockup/xduka-json/secretaria/templateConfig.json');
 
 module.exports = function() {
     var controller = {};
@@ -16,13 +17,48 @@ module.exports = function() {
     controller.showTemplateInscricao = getTemplateInscricao;
     controller.putDadosInscricao = putDadosInscricao;
     controller.putDadosTurmas = putDadosTurmas;
-    controller.getAluno = getAluno;
+    controller.alunoSearch = alunoSearch;
+    controller.showConfig = showConfig;
 
     return controller;
 };
 
-function getAluno(req, res){
-    res.json(aluno)
+function showConfig(req,res){
+    res.json(templateConfig)
+}
+
+function alunoSearch(req, res){
+    var result = {};
+
+    result.result = alunos.list.filter(
+        function (value) {
+            return value.matricula.model.val.substring(0,req.params.nomeMat.length).toLocaleLowerCase() == req.params.nomeMat.toLowerCase()
+        }
+    );
+    if (result.result.length == 0){
+        result.result = alunos.list.filter(
+            function (value) {
+                return removerAcentos(value.nome.model.val.substring(0,req.params.nomeMat.length)).toLocaleLowerCase() == removerAcentos(req.params.nomeMat).toLowerCase()
+            }
+        );
+    }
+    if (result.result.length == 0){
+        result.err = "Nenhum resultado encontrado!"
+    }
+
+    function removerAcentos(str){
+
+        str = str.replace(/[ÀÁÂÃÄÅ]/,"A");
+        str = str.replace(/[àáâãäå]/,"a");
+        str = str.replace(/[ÈÉÊË]/,"E");
+        str = str.replace(/[Ç]/,"C");
+        str = str.replace(/[ç]/,"c");
+
+        return str.replace(/[^a-z0-9]/gi,'');
+    }
+
+    res.json(result)
+
 }
 
 function getDadosGeraTurma(req, res) {

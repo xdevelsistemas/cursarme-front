@@ -29,7 +29,7 @@
             </a>
         </li>
         <li>
-            <a id="cursorSetp3" data-target="#step4" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
+            <a id="cursorSetp4" data-target="#step4" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
                 <span>4</span>
                 Comp.
             </a>
@@ -310,6 +310,23 @@
                 <div class="row">
                     <div class="col-md-12">
                         <xd-input-percent data-params="pre._model.desconto" data-disable="true"></xd-input-percent>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="padding-bottom: 2%">
+                        <div class="col-md-12">
+                            <label for="">Descontos adicionais</label>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-toggle="modal" data-target="#modalDescAdc" data-ng-disabled="!pre.validaCpf">
+                                Adicionar
+                                <i class="entypo-plus"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-icon icon-left btn-lg" ng-show="pre._model.desconto.model.descontoAdd" ng-click="pre.cancelarDescontoAdicional()">
+                                Remover
+                                <i class="entypo-cancel"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -777,4 +794,42 @@
             $.getScript('assets/neon/js/neon-custom.js');
         });
     </script>
+</div>
+
+<!-- MODAL DESCONTOS ADICIONAIS -->
+<div aria-hidden="true" style="display: none;" class="modal fade" id="modalDescAdc">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Adicionar descontos adicionais</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-select data-params="pre._model.descontosAdicionais"
+                                  data-disable="!pre.validaCpf"></xd-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input-textarea data-params="pre._model.descricaoDesconto"
+                                   data-disable="!pre.validaCpf"></xd-input-textarea>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-sm-6 text-center">
+                        <button type="button" class="btn btn-default btn-lg btn-icon icon-left pull-left" data-dismiss="modal"><i class="entypo-left-bold"></i>Voltar</button>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <button type="button" class="btn btn-green btn-lg btn-icon icon-left pull-right" ng-click="pre.addDescontoAdicional()"><i class="entypo-check"></i>Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

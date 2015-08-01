@@ -8,6 +8,7 @@
         ATTACHMENT: 'Anexo',
         CORTAR: 'Cortar',
         DATE: 'Data',
+        DOCOBR: 'Documento obrigatório',
         DOWNLOAD: 'Baixar',
         FIELD: 'Campo obrigatório',
         FILTER_BY_SUBJECT: 'Filtrar por disciplina',

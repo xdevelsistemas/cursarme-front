@@ -23,6 +23,7 @@ module.exports = function() {
     controller.putEditarPerfilSenha = putEditarPerfilSenha;
     controller.showGrade = getGrade;
     controller.showHorarios = getHorarios;
+    controller.showInfoCurso = getInfoCurso;
     controller.showInfoUsuario = getInfoUsuario;
     controller.showMessages = getMessages;
     controller.showNotas = getNotas;
@@ -159,12 +160,12 @@ function getHorarios(req, res) {
     res.json(horarios);
 }
 
+function getInfoCurso(req, res) {
+    res.json(cursos);
+}
+
 function getInfoUsuario(req, res) {
-    var infoUsuario = {
-        "cursos": cursos,
-        "usuario": usuario
-    };
-    res.json(infoUsuario);
+    res.json(usuario);
 }
 
 function getMessages(req, res) {

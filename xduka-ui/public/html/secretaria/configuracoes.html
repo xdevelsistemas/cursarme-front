@@ -1,0 +1,83 @@
+<div class="col-md-12 configSecBorder">
+    <div class="row" style="padding-top: 1%">
+        <div class="col-md-12">
+            <xd-input data-params="config._model.nomeUnidade"></xd-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <xd-input data-params="config._model.nomeEmpresa"></xd-input>
+        </div>
+        <div class="col-md-4">
+            <xd-input data-params="config._model.cnpj"></xd-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <xd-input data-params="config._model.endereco"></xd-input>
+        </div>
+        <div class="col-md-4">
+            <xd-input data-params="config._model.telefone"></xd-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <xd-input data-params="config._model.site"></xd-input>
+        </div>
+        <div class="col-md-6">
+            <xd-input data-params="config._model.email"></xd-input>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <ul class="nav nav-tabs">
+        <li class="linkCursor linkCursor active" title="Adicionar">
+            <a data-target="#adicionar" data-toggle="tab" style="padding: 11px;">
+                <span class="hidden-xs hidden-sm"><i class="entypo-plus-circled"></i>Adicionar</span>
+                <span class="hidden-md hidden-lg"><i class="entypo-plus-circled"></i></span>
+            </a>
+        </li>
+        <li class="linkCursor linkCursor" title="Informações">
+            <a data-target="#info" data-toggle="tab" style="padding: 11px;">
+                <span class="hidden-xs hidden-sm"><i class="entypo-info"></i>Informações</span>
+                <span class="hidden-md hidden-lg"><i class="entypo-info"></i></span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <!-- ADICIONAR -->
+        <div class="tab-pane active" id="adicionar">
+            <xd-panel-collapse title="''"></xd-panel-collapse>
+        </div>
+        <!-- INFORMAÇÕES -->
+        <div class="tab-pane" id="info">
+            <xd-panel-collapse title="'Secretaria'">
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input data-params="config._model.secAutorizacao"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input data-params="config._model.secFolha"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input data-params="config._model.secNumero"></xd-input>
+                    </div>
+                </div>
+            </xd-panel-collapse>
+            <xd-panel-collapse title="'Diretor'">
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input data-params="config._model.dirAutorizacao"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input data-params="config._model.dirFolha"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input data-params="config._model.dirNumero"></xd-input>
+                    </div>
+                </div>
+            </xd-panel-collapse>
+        </div>
+    </div>
+</div>
