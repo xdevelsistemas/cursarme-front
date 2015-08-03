@@ -52,6 +52,10 @@
       {
         "id": "t1",
         "text": "Tipo curso 1"
+      },
+      {
+        "id": "newtipoCurso",
+        "text": "Cadastrar Novo"
       }
     ],
     "model": {"val": "", "err": ""}
@@ -65,6 +69,10 @@
       {
         "id": "t1",
         "text": "Tipo area 1"
+      },
+      {
+        "id": "newtipoArea",
+        "text": "Cadastrar Novo"
       }
     ],
     "model": {"val": "", "err": ""}
@@ -78,6 +86,10 @@
       {
         "id": "t1",
         "text": "Turno 1"
+      },
+      {
+        "id": "newturno",
+        "text": "Cadastrar Novo"
       }
     ],
     "model": {"val": "", "err": ""}
@@ -91,6 +103,10 @@
       {
         "id": "t1",
         "text": "Tipo periodo 1"
+      },
+      {
+        "id": "newtipoPeriodo",
+        "text": "Cadastrar Novo"
       }
     ],
     "model": {"val": "", "err": ""}
@@ -104,6 +120,10 @@
       {
         "id": "m1",
         "text": "Modalidade 1"
+      },
+      {
+        "id": "newmodalidadeTurma",
+        "text": "Cadastrar Novo"
       }
     ],
     "model": {"val": "", "err": ""}
@@ -117,6 +137,10 @@
       {
         "id": "h1",
         "text": "Horário 1"
+      },
+      {
+        "id": "newhorarioEntrada",
+        "text": "Cadastrar Novo"
       }
     ],
     "model": {"val": "", "err": ""}
@@ -130,6 +154,10 @@
       {
         "id": "h1",
         "text": "Horário 1"
+      },
+      {
+        "id": "newhorarioSaida",
+        "text": "Cadastrar Novo"
       }
     ],
     "model": {"val": "", "err": ""}
@@ -143,6 +171,10 @@
       {
         "id": "t1",
         "text": "Tipo tel 1"
+      },
+      {
+        "id": "newtipoTelefone",
+        "text": "Cadastrar Novo"
       }
     ],
     "model": {"val": "", "err": ""}
@@ -156,6 +188,10 @@
       {
         "id": "t1",
         "text": "Tipo situacao 1"
+      },
+      {
+        "id": "newtipoSituacao",
+        "text": "Cadastrar Novo"
       }
     ],
     "model": {"val": "", "err": ""}
