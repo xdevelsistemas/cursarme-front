@@ -10,9 +10,7 @@
 
             /* OBJETOS */
             vm._model = {};
-
-            /* STRINGS MODAL 'NEW' */
-            vm.modalNew = {
+            vm.modalNew = { //CRIADO COM OBJETIVO DE INSERIR NOVOS CAMPOS NOS SELECT'S
                 model: {val: ''},
                 label: '',
                 name: 'newVal',
@@ -35,7 +33,7 @@
                     indice = lst.indexOf(model),
                     dic = {
                         newtipoCurso: 'Tipo de Curso',
-                        newtipoArea: 'Area',
+                        newtipoArea: 'Tipo de Area',
                         newturno: 'Turno',
                         newtipoPeriodo: 'Tipo de Período',
                         newmodalidadeTurma: 'Modalidade Turma',
@@ -52,10 +50,13 @@
             };
 
             vm.cancelNew = function(){
+                vm.modalNew.model.err = '';
                 vm.modalNew.model.val = '';
                 vm.modalNew.label = '';
                 vm.modalNew.atual = '';
             };
+
+            //Função de inserir no xd-select o novo campo cadastrado
             vm.saveNew = function(){
                 var atual = vm.modalNew.atual.substr(3),
                     objNew = {
@@ -63,17 +64,40 @@
                         'text': vm.modalNew.model.val
                     };
 
-                vm._model[atual].list.unshift(objNew);
+                // Validação caso vazio
+                if (vm.modalNew.model.val == ''){
+                    vm.modalNew.model.err = 'O campo está vazio!'
+                }else
+                // Validação caso haja um texto igual no xd-select atual
+                if (!verificaText(vm.modalNew.model.val, vm._model[atual].list)){
+                    vm._model[atual].list.unshift(objNew);
 
-                /* ROTA DE SALVAR NO NODE */
-                //ADICIONAR ROTA DE POST
+                    /*=============================*/
+                    /*   ROTA DE SALVAR NO NODE    */
+                    /* ADICIONAR ROTA DE POST AQUI */
+                    /*=============================*/
 
-                vm.cancelNew();
-                $('#modalNew').modal('toggle');
+                    vm.cancelNew();
+                    $('#modalNew').modal('toggle');
+                }else{
+                    vm.modalNew.model.err = 'Campo já existente! Não adicionado.'
+                }
             };
+
+            //Botão voltar apenas redirecionando
             vm.voltar = function(){
                 $location.path('/');
             };
+
+            // Função que verifica os objetos do xd-select e invalida a inserção caso haja um 'text' igual
+            function verificaText(text,lstObj){
+                for (var i=0; i < lstObj.length; i++){
+                    if (lstObj[i].text.toLowerCase().replace(/\s/ig,'') == text.toLowerCase().replace(/\s/ig,'')){
+                        return true
+                    }
+                }
+                return false
+            }
 
 
         }]
