@@ -82,18 +82,23 @@
                         "list": [
                             {
                                 "id": "desc1",
+                                "text": "Funcionário",
+                                "percent": 1
+                            },
+                            {
+                                "id": "desc2",
+                                "text": "Convênio",
+                                "percent": 0.1
+                            },
+                            {
+                                "id": "desc3",
                                 "text": "Indicação",
                                 "percent": 0.05
                             },
                             {
-                                "id": "desc2",
+                                "id": "desc4",
                                 "text": "Grupo de pessoas",
-                                "percent": 0.02
-                            },
-                            {
-                                "id": "desc3",
-                                "text": "Outro desconto",
-                                "percent": 0.005
+                                "percent": 0.05
                             }
                         ],
                         "model": {"val": "", "err": ""}
