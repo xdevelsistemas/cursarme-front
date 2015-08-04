@@ -65,6 +65,10 @@
             vm.isContinuada = false;
             vm.isComplementacao = false;
 
+            // Habilita passos do desconto
+            vm.disableDescAdd = true;
+            vm.disableQtdParcelas = true;
+
 
             // ==== REQUISIÇÕES ==== //
 
@@ -326,7 +330,7 @@
                 }, 1);
             };
 
-            vm.descontoAplicInscr = function(item, model) {
+            /*vm.descontoAplicInscr = function(item, model) {
                 if (model != 0) {
                     vm._model.valorInscricao.model.val = vm._model.valorInscricao.model.aux - ((vm._model.valorInscricao.model.aux * model) / 100);
                 }else{
@@ -344,7 +348,7 @@
                 if (vm._model.qtdParcelas.model.val) {
                     vm.qtdParcelasAplic({}, vm._model.qtdParcelas.model.val);
                 }
-            };
+            };*/
 
             vm.qtdParcelasAplic = function(item, model) {
                 if (model == '1'){
@@ -361,6 +365,40 @@
 
                     vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
                 }
+            };
+
+
+            vm.addDescontoAdicional = function(){
+                vm._model.descricaoDesconto.model.err = vm._model.descricaoDesconto.model.val.length == 0 ? 'Campo obrigatório!': '';
+                vm._model.descontosAdicionais.model.err = vm._model.descontosAdicionais.model.val.length == 0 ? 'Campo obrigatório!': '';
+
+                if(!!vm._model.descricaoDesconto.model.err || !!vm._model.descontosAdicionais.model.err){
+                    return 0
+                }
+
+                /* CRIAR FUNC PARA CALCULAR NOVO DESCONTO */
+
+                vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd ? 0 : vm._model.desconto.model.aux;
+
+                vm._model.desconto.model.descontoAdd = $.grep( vm._model.descontosAdicionais.list, function( n, i ) {
+                    return n.id == vm._model.descontosAdicionais.model.val;
+                })[0].percent;
+
+                vm._model.desconto.model.val += vm._model.desconto.model.descontoAdd;
+
+                alteraValorIntegral();
+
+                vm.disableQtdParcelas = false;
+                vm._model.qtdParcelas.model.val = '';
+                $('#modalDescAdc').modal('toggle');
+            };
+
+            vm.cancelarDescontoAdicional = function(){
+                vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd;
+                vm._model.desconto.model.val += vm._model.desconto.model.aux;
+                vm._model.desconto.model.descontoAdd = 0;
+                alteraValorIntegral();
+                limpaCamposDescantoAdicional();
             };
 
             vm.openModalCheque = function () {
@@ -385,6 +423,9 @@
                 vm._model.desconto.model.val  = vm._model.desconto.model.descontoAdd ?
                      vm._model.desconto.model.descontoAdd + vm._model.desconto.model.descPag:
                      vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
+
+                vm.disableDescAdd = false;
+                vm.disableQtdParcelas = true;
 
                 alteraValorIntegral();
             };
@@ -779,37 +820,6 @@
                 type: 'checkbox',
                 label: 'Diploma de graduação ou certificado de conclusão de curso (2 cópias autenticadas)',
                 model: {'val': true}
-            };
-
-
-            vm.addDescontoAdicional = function(){
-                vm._model.descricaoDesconto.model.err = vm._model.descricaoDesconto.model.val.length == 0 ? 'Campo obrigatório!': '';
-                vm._model.descontosAdicionais.model.err = vm._model.descontosAdicionais.model.val.length == 0 ? 'Campo obrigatório!': '';
-
-                if(!!vm._model.descricaoDesconto.model.err || !!vm._model.descontosAdicionais.model.err){
-                    return 0
-                }
-
-                /* CRIAR FUNC PARA CALCULAR NOVO DESCONTO */
-
-                vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd ? 0 : vm._model.desconto.model.aux;
-
-                vm._model.desconto.model.descontoAdd = $.grep( vm._model.descontosAdicionais.list, function( n, i ) {
-                    return n.id == vm._model.descontosAdicionais.model.val;
-                })[0].percent;
-
-                vm._model.desconto.model.val += vm._model.desconto.model.descontoAdd;
-
-                alteraValorIntegral();
-                $('#modalDescAdc').modal('toggle');
-            };
-
-            vm.cancelarDescontoAdicional = function(){
-                vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd;
-                vm._model.desconto.model.val += vm._model.desconto.model.aux;
-                vm._model.desconto.model.descontoAdd = 0;
-                alteraValorIntegral();
-                limpaCamposDescantoAdicional();
             };
 
             function limpaCamposDescantoAdicional() {
