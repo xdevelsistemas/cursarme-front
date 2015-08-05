@@ -1,0 +1,34 @@
+<div id="xdSearch" class="xdCustomSearch" ng-class="{'open': params.openSearch}">
+    <form class="xdCustomSearch-form">
+        <div class="input-group">
+                        <span class="input-group-btn searchIcon" ng-class="{'openSearchIcon': params.openSearch}">
+                            <i class="entypo-search"></i>
+                        </span>
+            <input id="{{'searchAl_'+params.name}}" class="xdCustomSearch-input" type="search" placeholder="Matrícula ou nome" ng-focus="params.searchFocus()"
+                   ng-model="params._searchVal" ng-change="params.searchPromise(params._searchVal)" ui-keydown="{esc: 'params.searchkp()'}">
+        </div>
+    </form>
+    <div class="col-md-12 text-center" ng-show="params.openSearch">
+        <hr/>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 paddingB-3 animated" ng-repeat="aluno in params._alunos" ng-class="{'fadeIn': params.openSearch}">
+            <div class="paddingB-3 linkCursor" ng-click="params.moreAluno(aluno)">
+                <div class="text-center fadeBordered">
+                    <p class="nomeAluno">{{aluno.nome.model.val}}</p>
+                    <div class="col-md-12">
+                        <img ng-src="{{aluno.foto.model.val}}" class="img-circle" alt="FOTO" width="100%"/>
+                    </div>
+                    <p class="matriculaSearch">Matrícula: {{aluno.matricula.model.val}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 text-center" ng-show="params.openSearch&&!!params._alunos.err">
+        <div class="col-md-12 animated" ng-class="{'fadeOut': !params._alunos.err, 'fadeIn': !!params._alunos.err}">
+            <div class="col-md-12">
+                <h4 ng-bind="params._alunos.err">
+                </h4>
+            </div>
+        </div>
+    </div>
+    <span class="xdCustomSearch-close" ng-click="params.searchFocusOff()"></span>
+</div>
