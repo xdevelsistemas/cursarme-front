@@ -351,32 +351,44 @@
             };*/
 
             vm.qtdParcelasAplic = function(item, model) {
+                /*  Testando se qtd de parcelas é igual a 1  */
                 if (model == '1'){
-                    var perc = 1 - ((vm._model.formaPagamentoPag.valores.avista) / vm._model.formaPagamentoPag.valores.integral);
-
+                    /*  Calculando o percentual de pagamento à vista  */
+                    vm._model.desconto.model.percentAvista = 1 - ((vm._model.formaPagamentoPag.valores.avista) / vm._model.formaPagamentoPag.valores.integral);
+                    /*  Adicionando ao valor integral o valor à vista do curso */
                     vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.avista;
-                    vm._model.desconto.model.val = vm._model.desconto.model.aux + perc;
+                    /*  Somando com o desconto atual o valor do percentual à vista  */
+                    vm._model.desconto.model.val += vm._model.desconto.model.percentAvista;
+                    /*  Aqui dizendo que que está se usuando o percentual de à vista  */
+                    vm._model.desconto.model.percentAvistaBool = true;
+                    /*  Adicionando o valor integral ao valor da parcela  */
+                    vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val;
 
-                    vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
                 } else {
-                    vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
-                    vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
-                        (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val));
+                    /* Testando se foi adicionado o percentual de valor à vista no desconto  */
+                    if (vm._model.desconto.model.percentAvistaBool) {
+                        vm._model.desconto.model.val -= vm._model.desconto.model.percentAvista;
+                    }
 
+                    alteraValorIntegral();
+                    /* Adicionando ao valor da parcela a divisão do valor integral com a quantidade de parcelas selecionada  */
                     vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
                 }
             };
 
 
             vm.addDescontoAdicional = function(){
+                /*  Verificando se os campos estão vazios  */
                 vm._model.descricaoDesconto.model.err = vm._model.descricaoDesconto.model.val.length == 0 ? 'Campo obrigatório!': '';
                 vm._model.descontosAdicionais.model.err = vm._model.descontosAdicionais.model.val.length == 0 ? 'Campo obrigatório!': '';
 
+                /*  Se estão vazios retorna com 0(zero) e informa com as mensagens acima  */
                 if(!!vm._model.descricaoDesconto.model.err || !!vm._model.descontosAdicionais.model.err){
                     return 0
                 }
 
-                /* CRIAR FUNC PARA CALCULAR NOVO DESCONTO */
+                /* Agora o cálculo com o desconto adicional aparece  */
+                /* CRIAR FUNC PARA CALCULAR NOVO DESCONTO  */
 
                 vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd ? 0 : vm._model.desconto.model.aux;
 
@@ -384,19 +396,34 @@
                     return n.id == vm._model.descontosAdicionais.model.val;
                 })[0].percent;
 
-                vm._model.desconto.model.val += vm._model.desconto.model.descontoAdd;
+                if (vm._model.desconto.model.descontoAdd == 1) {
+                    vm._model.desconto.model.val = 1;
+                    vm._model.qtdParcelas.model.val = 1;
+                    vm.disableQtdParcelas = true;
+                } else {
+                    vm._model.desconto.model.val += vm._model.desconto.model.descontoAdd;
+                    vm.disableQtdParcelas = false;
+                    vm._model.qtdParcelas.model.val = '';
+                }
 
                 alteraValorIntegral();
-
-                vm.disableQtdParcelas = false;
-                vm._model.qtdParcelas.model.val = '';
                 $('#modalDescAdc').modal('toggle');
             };
 
-            vm.cancelarDescontoAdicional = function(){
-                vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd;
-                vm._model.desconto.model.val += vm._model.desconto.model.aux;
+            vm.cancelarDescontoAdicional = function() {
+                if (vm._model.desconto.model.val == 1) {
+                    vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
+                } else {
+                    if (vm._model.desconto.model.descontoAdd && vm._model.desconto.model.descontoAdd != 0) {
+                        vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd;
+                        vm._model.desconto.model.val += vm._model.desconto.model.aux;
+                    }
+                }
+
                 vm._model.desconto.model.descontoAdd = 0;
+                vm.disableQtdParcelas = true;
+                vm._model.qtdParcelas.model.val = '';
+
                 alteraValorIntegral();
                 limpaCamposDescantoAdicional();
             };
@@ -419,14 +446,14 @@
 
                 vm._model.desconto.model.descPag = 1 - ((vm._model.formaPagamentoPag.valores[item.name]) / vm._model.formaPagamentoPag.valores.integral);
 
-                /* SÓ ADICIONA SE NÃO TIVER DESCONTO ADICIONAL */
-                vm._model.desconto.model.val  = vm._model.desconto.model.descontoAdd ?
-                     vm._model.desconto.model.descontoAdd + vm._model.desconto.model.descPag:
-                     vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
+                /* Por agora não terá cálculo com o desconto adicional */
+                vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
 
                 vm.disableDescAdd = false;
                 vm.disableQtdParcelas = true;
+                vm._model.qtdParcelas.model.val = '';
 
+                vm.cancelarDescontoAdicional();
                 alteraValorIntegral();
             };
 
