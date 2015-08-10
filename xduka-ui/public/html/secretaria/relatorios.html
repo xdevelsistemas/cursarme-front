@@ -1,0 +1,33 @@
+<div class="col-md-12">
+    <div class="col-md-12">
+        <h2>Relatórios Secretaria</h2>
+        <hr/>
+        <div class="col-md-12">
+            <xd-panel-collapse title="'Demonstração'">
+                <p>Demo Matriculados</p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-green btn-icon icon-left btn-block btn-lg" ng-click="rel.gerar()" data-toggle="modal" data-target="#modal-pdf">
+                            Gerar <i class="icon entypo-check icon-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </xd-panel-collapse>
+        </div>
+    </div>
+</div>
+<!-- modal render pdf -->
+<div id="modal-pdf" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">PDF Generator</h4>
+            </div>
+            <div class="modal-body">
+                <!-- pdf content -->
+                <object data="{{rel.content}}" type="application/pdf" class="col-md-12" style="height: 500px;background-color: transparent;z-index: 1;"></object>
+            </div>
+        </div>
+    </div>
+</div>
