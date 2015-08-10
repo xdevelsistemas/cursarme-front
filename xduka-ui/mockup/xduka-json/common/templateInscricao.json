@@ -554,6 +554,42 @@
     ],
     "model": {"val": "", "err": ""}
   },
+  "descontosAdicionais": {
+    "label": "Descontos disponíveis",
+    "type": "select",
+    "name": "descontosDisp",
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {
+        "id": "desc1",
+        "text": "Funcionário",
+        "percent": 1
+      },
+      {
+        "id": "desc2",
+        "text": "Convênio",
+        "percent": 0.1
+      },
+      {
+        "id": "desc3",
+        "text": "Indicação",
+        "percent": 0.05
+      },
+      {
+        "id": "desc4",
+        "text": "Grupo de pessoas",
+        "percent": 0.05
+      }
+    ],
+    "model": {"val": "", "err": ""}
+  },
+  "descricaoDesconto": {
+    "label": "Descrição do desconto",
+    "type": "textarea",
+    "name": "descrDesc",
+    "rows": 7,
+    "model": {"val": "", "err": ""}
+  },
   "qtdParcelas": {
     "label": "Quantidade de parcelas",
     "type": "select",

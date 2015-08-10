@@ -77,43 +77,6 @@
                     vm._model = data;
                     $.extend(vm._model.vagas, funcVagas());
                     vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
-                    /* DESCONTOS ADICIONAIS (CAMPOS) */
-                    vm._model.descontosAdicionais = {
-                        "label": "Descontos disponíveis",
-                        "type": "select",
-                        "name": "descontosDisp",
-                        "placeholder": "Selecione uma opção",
-                        "list": [
-                            {
-                                "id": "desc1",
-                                "text": "Funcionário",
-                                "percent": 1
-                            },
-                            {
-                                "id": "desc2",
-                                "text": "Convênio",
-                                "percent": 0.1
-                            },
-                            {
-                                "id": "desc3",
-                                "text": "Indicação",
-                                "percent": 0.05
-                            },
-                            {
-                                "id": "desc4",
-                                "text": "Grupo de pessoas",
-                                "percent": 0.05
-                            }
-                        ],
-                        "model": {"val": "", "err": ""}
-                    };
-                    vm._model.descricaoDesconto = {
-                        "label": "Descrição do desconto",
-                        "type": "textarea",
-                        "name": "descrDesc",
-                        "rows": 7,
-                        "model": {"val": "", "err": ""}
-                    };
                 })
                 .catch(function(erro){
                     if (erro.status == '400') {
@@ -318,6 +281,7 @@
                 vm._model.valorInscricao.model.val = vm._model.valorInscricao.model.aux;
                 vm._model.valorIntegral.model.val = vm._model.valorIntegral.model.aux;
                 vm._model.desconto.model.val = vm._model.desconto.model.aux;
+                alteraValorIntegral();
 
                 $timeout(function () {
                     if ((vm._model.vagas.totais / vm._model.vagas.preenchidas) < 1.5){
@@ -355,25 +319,21 @@
                 if (model == '1'){
                     /*  Calculando o percentual de pagamento à vista  */
                     vm._model.desconto.model.percentAvista = 1 - ((vm._model.formaPagamentoPag.valores.avista) / vm._model.formaPagamentoPag.valores.integral);
-                    /*  Adicionando ao valor integral o valor à vista do curso */
-                    vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.avista;
-                    /*  Somando com o desconto atual o valor do percentual à vista  */
-                    vm._model.desconto.model.val += vm._model.desconto.model.percentAvista;
-                    /*  Aqui dizendo que que está se usuando o percentual de à vista  */
+                    /*  Aqui dizemos que estamos usuando o percentual de à vista  */
                     vm._model.desconto.model.percentAvistaBool = true;
-                    /*  Adicionando o valor integral ao valor da parcela  */
-                    vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val;
-
+                    vm._model.desconto.model.val += vm._model.desconto.model.percentAvista;
                 } else {
                     /* Testando se foi adicionado o percentual de valor à vista no desconto  */
                     if (vm._model.desconto.model.percentAvistaBool) {
+                        /*  Aqui dizemos que estamos tirando o percentual à vista  */
+                        vm._model.desconto.model.percentAvistaBool = false;
                         vm._model.desconto.model.val -= vm._model.desconto.model.percentAvista;
                     }
-
-                    alteraValorIntegral();
-                    /* Adicionando ao valor da parcela a divisão do valor integral com a quantidade de parcelas selecionada  */
-                    vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
                 }
+
+                alteraValorIntegral();
+                /* Adicionando ao valor da parcela a divisão do valor integral com a quantidade de parcelas selecionada  */
+                vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
             };
 
 
@@ -388,25 +348,34 @@
                 }
 
                 /* Agora o cálculo com o desconto adicional aparece  */
-                /* CRIAR FUNC PARA CALCULAR NOVO DESCONTO  */
-
-                vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd ? 0 : vm._model.desconto.model.aux;
+                if (vm._model.desconto.model.descontoAdd) {
+                    vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd;
+                } else {
+                    vm._model.desconto.model.val -= vm._model.desconto.model.aux;
+                }
 
                 vm._model.desconto.model.descontoAdd = $.grep( vm._model.descontosAdicionais.list, function( n, i ) {
                     return n.id == vm._model.descontosAdicionais.model.val;
                 })[0].percent;
 
+                vm._model.descontosAdicionais.model.text = $.grep( vm._model.descontosAdicionais.list, function( n, i ) {
+                    return n.id == vm._model.descontosAdicionais.model.val;
+                })[0].text;
+
                 if (vm._model.desconto.model.descontoAdd == 1) {
                     vm._model.desconto.model.val = 1;
-                    vm._model.qtdParcelas.model.val = 1;
                     vm.disableQtdParcelas = true;
+                    vm._model.qtdParcelas.model.val = 1;
+                    alteraValorIntegral();
+                    vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val;
                 } else {
                     vm._model.desconto.model.val += vm._model.desconto.model.descontoAdd;
                     vm.disableQtdParcelas = false;
                     vm._model.qtdParcelas.model.val = '';
+                    vm._model.valorParcela.model.val = '';
+                    alteraValorIntegral();
                 }
 
-                alteraValorIntegral();
                 $('#modalDescAdc').modal('toggle');
             };
 
@@ -420,10 +389,7 @@
                     }
                 }
 
-                vm._model.desconto.model.descontoAdd = 0;
-                vm.disableQtdParcelas = true;
-                vm._model.qtdParcelas.model.val = '';
-
+                limpaDescAddQtdParcelas();
                 alteraValorIntegral();
                 limpaCamposDescantoAdicional();
             };
@@ -450,16 +416,22 @@
                 vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
 
                 vm.disableDescAdd = false;
-                vm.disableQtdParcelas = true;
-                vm._model.qtdParcelas.model.val = '';
 
-                vm.cancelarDescontoAdicional();
+                limpaDescAddQtdParcelas();
                 alteraValorIntegral();
+                limpaCamposDescantoAdicional();
             };
 
             function alteraValorIntegral() {
                 vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
                     (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val));
+            }
+
+            function limpaDescAddQtdParcelas() {
+                vm._model.desconto.model.descontoAdd = 0;
+                vm.disableQtdParcelas = false;
+                vm._model.qtdParcelas.model.val = '';
+                vm._model.valorParcela.model.val = '';
             }
 
             vm.selectPhoneType = function (item, model) {

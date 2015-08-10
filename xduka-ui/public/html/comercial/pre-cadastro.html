@@ -316,8 +316,16 @@
                         <div class="col-md-12">
                             <label for="">Descontos adicionais</label>
                         </div>
+                        <div class="col-md-12" ng-show="pre._model.desconto.model.descontoAdd">
+                            <div class="col-md-12">
+                                <label>Descontos selecionado: {{ pre._model.descontosAdicionais.model.text }}</label>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Descrição do descontos: {{ pre._model.descricaoDesconto.model.val }}</label>
+                            </div>
+                        </div>
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-toggle="modal" data-target="#modalDescAdc" data-ng-disabled="!pre.validaCpf || pre.disableDescAdd">
+                            <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-toggle="modal" data-target="#modalDescAdc" ng-hide="pre._model.desconto.model.descontoAdd" data-ng-disabled="!pre.validaCpf || pre.disableDescAdd">
                                 Adicionar
                                 <i class="entypo-plus"></i>
                             </button>
