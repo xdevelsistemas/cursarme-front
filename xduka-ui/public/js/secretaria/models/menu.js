@@ -15,6 +15,11 @@
                 "href": "#/secretaria/confirmarMatricula"
             },
             {
+                "text": "Relatórios",
+                "iconClass": "entypo-chart-bar",
+                "href": "#/secretaria/relatorios"
+            },
+            {
                 "text": "Configurações",
                 "iconClass": "entypo-cog",
                 "href": "#/secretaria/configuracoes"

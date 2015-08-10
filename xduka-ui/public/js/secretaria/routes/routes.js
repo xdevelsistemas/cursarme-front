@@ -50,6 +50,12 @@ angular.module('app',[
             controller: 'configuracoes',
             controllerAs: 'config'
         });
+// ========= CONFIGURAÇÕES ========= //
+        $routeProvider.when('/secretaria/relatorios', {
+            templateUrl: 'html/secretaria/relatorios.html',
+            controller: 'relatorios',
+            controllerAs: 'rel'
+        });
 // ========= OTHERWISE ========= //
         $routeProvider.otherwise({
             redirectTo: '/'
