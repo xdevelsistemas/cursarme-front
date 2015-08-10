@@ -65,6 +65,10 @@
             vm.isContinuada = false;
             vm.isComplementacao = false;
 
+            // Habilita passos do desconto
+            vm.disableDescAdd = true;
+            vm.disableQtdParcelas = true;
+
 
             // ==== REQUISIÇÕES ==== //
 
@@ -73,38 +77,6 @@
                     vm._model = data;
                     $.extend(vm._model.vagas, funcVagas());
                     vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
-                    /* DESCONTOS ADICIONAIS (CAMPOS) */
-                    vm._model.descontosAdicionais = {
-                        "label": "Descontos disponíveis",
-                        "type": "select",
-                        "name": "descontosDisp",
-                        "placeholder": "Selecione uma opção",
-                        "list": [
-                            {
-                                "id": "desc1",
-                                "text": "Indicação",
-                                "percent": 0.05
-                            },
-                            {
-                                "id": "desc2",
-                                "text": "Grupo de pessoas",
-                                "percent": 0.02
-                            },
-                            {
-                                "id": "desc3",
-                                "text": "Outro desconto",
-                                "percent": 0.005
-                            }
-                        ],
-                        "model": {"val": "", "err": ""}
-                    };
-                    vm._model.descricaoDesconto = {
-                        "label": "Descrição do desconto",
-                        "type": "textarea",
-                        "name": "descrDesc",
-                        "rows": 7,
-                        "model": {"val": "", "err": ""}
-                    };
                 })
                 .catch(function(erro){
                     if (erro.status == '400') {
@@ -309,6 +281,7 @@
                 vm._model.valorInscricao.model.val = vm._model.valorInscricao.model.aux;
                 vm._model.valorIntegral.model.val = vm._model.valorIntegral.model.aux;
                 vm._model.desconto.model.val = vm._model.desconto.model.aux;
+                alteraValorIntegral();
 
                 $timeout(function () {
                     if ((vm._model.vagas.totais / vm._model.vagas.preenchidas) < 1.5){
@@ -321,7 +294,7 @@
                 }, 1);
             };
 
-            vm.descontoAplicInscr = function(item, model) {
+            /*vm.descontoAplicInscr = function(item, model) {
                 if (model != 0) {
                     vm._model.valorInscricao.model.val = vm._model.valorInscricao.model.aux - ((vm._model.valorInscricao.model.aux * model) / 100);
                 }else{
@@ -339,23 +312,86 @@
                 if (vm._model.qtdParcelas.model.val) {
                     vm.qtdParcelasAplic({}, vm._model.qtdParcelas.model.val);
                 }
-            };
+            };*/
 
             vm.qtdParcelasAplic = function(item, model) {
+                /*  Testando se qtd de parcelas é igual a 1  */
                 if (model == '1'){
-                    var perc = 1 - ((vm._model.formaPagamentoPag.valores.avista) / vm._model.formaPagamentoPag.valores.integral);
-
-                    vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.avista;
-                    vm._model.desconto.model.val = vm._model.desconto.model.aux + perc;
-
-                    vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
+                    /*  Calculando o percentual de pagamento à vista  */
+                    vm._model.desconto.model.percentAvista = 1 - ((vm._model.formaPagamentoPag.valores.avista) / vm._model.formaPagamentoPag.valores.integral);
+                    /*  Aqui dizemos que estamos usuando o percentual de à vista  */
+                    vm._model.desconto.model.percentAvistaBool = true;
+                    vm._model.desconto.model.val += vm._model.desconto.model.percentAvista;
                 } else {
-                    vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
-                    vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
-                        (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val));
-
-                    vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
+                    /* Testando se foi adicionado o percentual de valor à vista no desconto  */
+                    if (vm._model.desconto.model.percentAvistaBool) {
+                        /*  Aqui dizemos que estamos tirando o percentual à vista  */
+                        vm._model.desconto.model.percentAvistaBool = false;
+                        vm._model.desconto.model.val -= vm._model.desconto.model.percentAvista;
+                    }
                 }
+
+                alteraValorIntegral();
+                /* Adicionando ao valor da parcela a divisão do valor integral com a quantidade de parcelas selecionada  */
+                vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
+            };
+
+
+            vm.addDescontoAdicional = function(){
+                /*  Verificando se os campos estão vazios  */
+                vm._model.descricaoDesconto.model.err = vm._model.descricaoDesconto.model.val.length == 0 ? 'Campo obrigatório!': '';
+                vm._model.descontosAdicionais.model.err = vm._model.descontosAdicionais.model.val.length == 0 ? 'Campo obrigatório!': '';
+
+                /*  Se estão vazios retorna com 0(zero) e informa com as mensagens acima  */
+                if(!!vm._model.descricaoDesconto.model.err || !!vm._model.descontosAdicionais.model.err){
+                    return 0
+                }
+
+                /* Agora o cálculo com o desconto adicional aparece  */
+                if (vm._model.desconto.model.descontoAdd) {
+                    vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd;
+                } else {
+                    vm._model.desconto.model.val -= vm._model.desconto.model.aux;
+                }
+
+                vm._model.desconto.model.descontoAdd = $.grep( vm._model.descontosAdicionais.list, function( n, i ) {
+                    return n.id == vm._model.descontosAdicionais.model.val;
+                })[0].percent;
+
+                vm._model.descontosAdicionais.model.text = $.grep( vm._model.descontosAdicionais.list, function( n, i ) {
+                    return n.id == vm._model.descontosAdicionais.model.val;
+                })[0].text;
+
+                if (vm._model.desconto.model.descontoAdd == 1) {
+                    vm._model.desconto.model.val = 1;
+                    vm.disableQtdParcelas = true;
+                    vm._model.qtdParcelas.model.val = 1;
+                    alteraValorIntegral();
+                    vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val;
+                } else {
+                    vm._model.desconto.model.val += vm._model.desconto.model.descontoAdd;
+                    vm.disableQtdParcelas = false;
+                    vm._model.qtdParcelas.model.val = '';
+                    vm._model.valorParcela.model.val = '';
+                    alteraValorIntegral();
+                }
+
+                $('#modalDescAdc').modal('toggle');
+            };
+
+            vm.cancelarDescontoAdicional = function() {
+                if (vm._model.desconto.model.val == 1) {
+                    vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
+                } else {
+                    if (vm._model.desconto.model.descontoAdd && vm._model.desconto.model.descontoAdd != 0) {
+                        vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd;
+                        vm._model.desconto.model.val += vm._model.desconto.model.aux;
+                    }
+                }
+
+                limpaDescAddQtdParcelas();
+                alteraValorIntegral();
+                limpaCamposDescantoAdicional();
             };
 
             vm.openModalCheque = function () {
@@ -376,17 +412,26 @@
 
                 vm._model.desconto.model.descPag = 1 - ((vm._model.formaPagamentoPag.valores[item.name]) / vm._model.formaPagamentoPag.valores.integral);
 
-                /* SÓ ADICIONA SE NÃO TIVER DESCONTO ADICIONAL */
-                vm._model.desconto.model.val  = vm._model.desconto.model.descontoAdd ?
-                     vm._model.desconto.model.descontoAdd + vm._model.desconto.model.descPag:
-                     vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
+                /* Por agora não terá cálculo com o desconto adicional */
+                vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
 
+                vm.disableDescAdd = false;
+
+                limpaDescAddQtdParcelas();
                 alteraValorIntegral();
+                limpaCamposDescantoAdicional();
             };
 
             function alteraValorIntegral() {
                 vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
                     (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val));
+            }
+
+            function limpaDescAddQtdParcelas() {
+                vm._model.desconto.model.descontoAdd = 0;
+                vm.disableQtdParcelas = false;
+                vm._model.qtdParcelas.model.val = '';
+                vm._model.valorParcela.model.val = '';
             }
 
             vm.selectPhoneType = function (item, model) {
@@ -774,37 +819,6 @@
                 type: 'checkbox',
                 label: 'Diploma de graduação ou certificado de conclusão de curso (2 cópias autenticadas)',
                 model: {'val': true}
-            };
-
-
-            vm.addDescontoAdicional = function(){
-                vm._model.descricaoDesconto.model.err = vm._model.descricaoDesconto.model.val.length == 0 ? 'Campo obrigatório!': '';
-                vm._model.descontosAdicionais.model.err = vm._model.descontosAdicionais.model.val.length == 0 ? 'Campo obrigatório!': '';
-
-                if(!!vm._model.descricaoDesconto.model.err || !!vm._model.descontosAdicionais.model.err){
-                    return 0
-                }
-
-                /* CRIAR FUNC PARA CALCULAR NOVO DESCONTO */
-
-                vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd ? 0 : vm._model.desconto.model.aux;
-
-                vm._model.desconto.model.descontoAdd = $.grep( vm._model.descontosAdicionais.list, function( n, i ) {
-                    return n.id == vm._model.descontosAdicionais.model.val;
-                })[0].percent;
-
-                vm._model.desconto.model.val += vm._model.desconto.model.descontoAdd;
-
-                alteraValorIntegral();
-                $('#modalDescAdc').modal('toggle');
-            };
-
-            vm.cancelarDescontoAdicional = function(){
-                vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd;
-                vm._model.desconto.model.val += vm._model.desconto.model.aux;
-                vm._model.desconto.model.descontoAdd = 0;
-                alteraValorIntegral();
-                limpaCamposDescantoAdicional();
             };
 
             function limpaCamposDescantoAdicional() {
