@@ -58,7 +58,7 @@
 
                 var myParams = {
                     "template": {"content": vm.template, "recipe": "phantom-pdf"},
-                    "data": JSON.stringify(vm.data)
+                    "data": vm.data
                 };
 
                 $http.post('https://localhost/api/report',myParams, {responseType:'arraybuffer'})
@@ -77,9 +77,22 @@
                         Turma: vm._viewInscr.list[i].vagas.turma,
                         Curso: vm._viewInscr.list[i].curso.model.text,
                         Unidade: vm._viewInscr.list[i].unidade.model.text
+                    });
+                    vm.data.persons.sort(function compare(a,b) {
+                        if (a.Nome > b.Nome){
+                            return a.Nome > b.Nome
+                        }
+                        if (a.Turma > b.Turma){
+                            return a.Turma > b.Turma
+                        }
+                        if (a.Curso > b.Curso){
+                            return a.Curso > b.Curso
+                        }
+                        if (a.Unidade > b.Unidade){
+                            return a.Unidade > b.Unidade
+                        }
                     })
                 }
-                console.log(JSON.stringify(vm.data))
             }
 
 

@@ -249,7 +249,7 @@ div.bottomReset {
     min-height: 40px;
     background: rgba(255, 255, 255, 0.98);
     position: absolute;
-    z-index: 10000;
+    z-index: 1039;
     top: 25px;
     right: 125px;
     -moz-border-radius:7px;
