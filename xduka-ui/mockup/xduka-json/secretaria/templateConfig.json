@@ -1,0 +1,235 @@
+{
+  "nomeUnidade": {
+    "label": "Nome da unidade",
+    "type": "text",
+    "name": "nomeUnidade",
+    "model": {"val": "IESES Cariacica", "err": ""}
+  },
+  "nomeEmpresa": {
+    "label": "Nome da empresa",
+    "type": "text",
+    "name": "nomeEmpresa",
+    "model": {"val": "Instituto de Ensino Superir IESES", "err": ""}
+  },
+  "cnpj": {
+    "label": "CNPJ",
+    "type": "text",
+    "name": "cnpj",
+    "mask": "99.999.999/9999-99",
+    "model": {"val": "37345123000112", "err": ""}
+  },
+  "endereco": {
+    "label": "Endereço",
+    "type": "text",
+    "name": "endereco",
+    "model": {"val": "Av Expedito Garcia", "err": ""}
+  },
+  "telefone": {
+    "label": "Telefone",
+    "type": "text",
+    "name": "telefone",
+    "mask": "(99) 9999-9999",
+    "model": {"val": "2732130787", "err": ""}
+  },
+  "site": {
+    "label": "Site",
+    "type": "text",
+    "name": "site",
+    "model": {"val": "www.ieses.com", "err": ""}
+  },
+  "email": {
+    "label": "E-mail",
+    "type": "text",
+    "name": "email",
+    "model": {"val": "contato@ieses.com", "err": ""}
+  },
+  "tipoCurso": {
+    "label": "Tipo de Curso",
+    "type": "select",
+    "name": "tipoCurso",
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {
+        "id": "t1",
+        "text": "Tipo curso 1"
+      },
+      {
+        "id": "newtipoCurso",
+        "text": "Cadastrar Novo"
+      }
+    ],
+    "model": {"val": "", "err": ""}
+  },
+  "tipoArea": {
+    "label": "Tipo de Área",
+    "type": "select",
+    "name": "tipoArea",
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {
+        "id": "t1",
+        "text": "Tipo area 1"
+      },
+      {
+        "id": "newtipoArea",
+        "text": "Cadastrar Novo"
+      }
+    ],
+    "model": {"val": "", "err": ""}
+  },
+  "turno": {
+    "label": "Turno",
+    "type": "select",
+    "name": "turno",
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {
+        "id": "t1",
+        "text": "Turno 1"
+      },
+      {
+        "id": "newturno",
+        "text": "Cadastrar Novo"
+      }
+    ],
+    "model": {"val": "", "err": ""}
+  },
+  "tipoPeriodo": {
+    "label": "Tipo de período",
+    "type": "select",
+    "name": "",
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {
+        "id": "t1",
+        "text": "Tipo periodo 1"
+      },
+      {
+        "id": "newtipoPeriodo",
+        "text": "Cadastrar Novo"
+      }
+    ],
+    "model": {"val": "", "err": ""}
+  },
+  "modalidadeTurma": {
+    "label": "Modalidade Turma",
+    "type": "select",
+    "name": "modalidadeTurma",
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {
+        "id": "m1",
+        "text": "Modalidade 1"
+      },
+      {
+        "id": "newmodalidadeTurma",
+        "text": "Cadastrar Novo"
+      }
+    ],
+    "model": {"val": "", "err": ""}
+  },
+  "horarioEntrada": {
+    "label": "Horário de Entrada",
+    "type": "select",
+    "name": "horarioEntrada",
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {
+        "id": "h1",
+        "text": "Horário 1"
+      },
+      {
+        "id": "newhorarioEntrada",
+        "text": "Cadastrar Novo"
+      }
+    ],
+    "model": {"val": "", "err": ""}
+  },
+  "horarioSaida": {
+    "label": "Horário de Saída",
+    "type": "select",
+    "name": "horarioSaida",
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {
+        "id": "h1",
+        "text": "Horário 1"
+      },
+      {
+        "id": "newhorarioSaida",
+        "text": "Cadastrar Novo"
+      }
+    ],
+    "model": {"val": "", "err": ""}
+  },
+  "tipoTelefone": {
+    "label": "Tipo Telefone",
+    "type": "select",
+    "name": "tipoTel",
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {
+        "id": "t1",
+        "text": "Tipo tel 1"
+      },
+      {
+        "id": "newtipoTelefone",
+        "text": "Cadastrar Novo"
+      }
+    ],
+    "model": {"val": "", "err": ""}
+  },
+  "tipoSituacao": {
+    "label": "Tipo de Situação",
+    "type": "select",
+    "name": "tipoSituacao",
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {
+        "id": "t1",
+        "text": "Tipo situacao 1"
+      },
+      {
+        "id": "newtipoSituacao",
+        "text": "Cadastrar Novo"
+      }
+    ],
+    "model": {"val": "", "err": ""}
+  },
+  "secAutorizacao": {
+    "label": "Autorização",
+    "type": "text",
+    "name": "secAutorizacao",
+    "model": {"val": "", "err": ""}
+  },
+  "secFolha": {
+    "label": "Folha",
+    "type": "text",
+    "name": "secFolha",
+    "model": {"val": "", "err": ""}
+  },
+  "secNumero": {
+    "label": "Nº",
+    "type": "text",
+    "name": "secNum",
+    "model": {"val": "", "err": ""}
+  },
+  "dirAutorizacao": {
+    "label": "Autorização",
+    "type": "text",
+    "name": "dirAutorização",
+    "model": {"val": "", "err": ""}
+  },
+  "dirFolha": {
+    "label": "Folha",
+    "type": "text",
+    "name": "dirFolha",
+    "model": {"val": "", "err": ""}
+  },
+  "dirNumero": {
+    "label": "Nº",
+    "type": "text",
+    "name": "dirNum",
+    "model": {"val": "", "err": ""}
+  }
+}

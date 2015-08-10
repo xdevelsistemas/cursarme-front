@@ -450,3 +450,7 @@ input[type="search"] {
     border-color: red;
     border-style: solid;
 }
+.configSecBorder {
+    margin-top: 1%;
+    border: 2px solid rgba(215, 215, 215, 0.54);
+}

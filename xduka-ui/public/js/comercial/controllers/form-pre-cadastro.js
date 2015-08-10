@@ -73,6 +73,38 @@
                     vm._model = data;
                     $.extend(vm._model.vagas, funcVagas());
                     vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
+                    /* DESCONTOS ADICIONAIS (CAMPOS) */
+                    vm._model.descontosAdicionais = {
+                        "label": "Descontos disponíveis",
+                        "type": "select",
+                        "name": "descontosDisp",
+                        "placeholder": "Selecione uma opção",
+                        "list": [
+                            {
+                                "id": "desc1",
+                                "text": "Indicação",
+                                "percent": 0.05
+                            },
+                            {
+                                "id": "desc2",
+                                "text": "Grupo de pessoas",
+                                "percent": 0.02
+                            },
+                            {
+                                "id": "desc3",
+                                "text": "Outro desconto",
+                                "percent": 0.005
+                            }
+                        ],
+                        "model": {"val": "", "err": ""}
+                    };
+                    vm._model.descricaoDesconto = {
+                        "label": "Descrição do desconto",
+                        "type": "textarea",
+                        "name": "descrDesc",
+                        "rows": 7,
+                        "model": {"val": "", "err": ""}
+                    };
                 })
                 .catch(function(erro){
                     if (erro.status == '400') {
@@ -343,11 +375,19 @@
                 vm.btnAddChequeStep2 = item.tpCheque;
 
                 vm._model.desconto.model.descPag = 1 - ((vm._model.formaPagamentoPag.valores[item.name]) / vm._model.formaPagamentoPag.valores.integral);
-                vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
 
+                /* SÓ ADICIONA SE NÃO TIVER DESCONTO ADICIONAL */
+                vm._model.desconto.model.val  = vm._model.desconto.model.descontoAdd ?
+                     vm._model.desconto.model.descontoAdd + vm._model.desconto.model.descPag:
+                     vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
+
+                alteraValorIntegral();
+            };
+
+            function alteraValorIntegral() {
                 vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
                     (vm._model.formaPagamentoPag.valores.integral * (vm._model.desconto.model.val));
-            };
+            }
 
             vm.selectPhoneType = function (item, model) {
                 vm._model.telefone.mask = tipoTelefone.getMaskPhone(model);
@@ -501,7 +541,7 @@
             function funcVagas() {
                 return {
                     isEnding: function () {
-                        return (this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9 ? true : false);
+                        return this.preenchidas / (this.totais == 0 ? 1 : this.totais) >= 0.9;
                     },
                     getDisponiveis: function () {
                         return (parseInt(this.totais) - parseInt(this.preenchidas));
@@ -512,6 +552,8 @@
             function limpaCampoPag() {
                 vm._model.desconto.model.val = "";
                 vm._model.qtdParcelas.model.val = "";
+                vm._model.formaPagamentoInscr.model.val = "";
+                vm._model.formaPagamentoPag.model.val = "";
                 vm._model.melhorData.model.val = "";
                 vm._model.valorInscricao.model.val = '';
                 vm._model.valorIntegral.model.val = '';
@@ -542,7 +584,6 @@
             };
 
             vm.limpaFormStep1 = function() {
-
                 vm._model.cpf.model.val = '';
                 vm._model.cpf.model.err = '';
                 vm._model.rg.model.val = '';
@@ -735,5 +776,40 @@
                 model: {'val': true}
             };
 
+
+            vm.addDescontoAdicional = function(){
+                vm._model.descricaoDesconto.model.err = vm._model.descricaoDesconto.model.val.length == 0 ? 'Campo obrigatório!': '';
+                vm._model.descontosAdicionais.model.err = vm._model.descontosAdicionais.model.val.length == 0 ? 'Campo obrigatório!': '';
+
+                if(!!vm._model.descricaoDesconto.model.err || !!vm._model.descontosAdicionais.model.err){
+                    return 0
+                }
+
+                /* CRIAR FUNC PARA CALCULAR NOVO DESCONTO */
+
+                vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd ? 0 : vm._model.desconto.model.aux;
+
+                vm._model.desconto.model.descontoAdd = $.grep( vm._model.descontosAdicionais.list, function( n, i ) {
+                    return n.id == vm._model.descontosAdicionais.model.val;
+                })[0].percent;
+
+                vm._model.desconto.model.val += vm._model.desconto.model.descontoAdd;
+
+                alteraValorIntegral();
+                $('#modalDescAdc').modal('toggle');
+            };
+
+            vm.cancelarDescontoAdicional = function(){
+                vm._model.desconto.model.val -= vm._model.desconto.model.descontoAdd;
+                vm._model.desconto.model.val += vm._model.desconto.model.aux;
+                vm._model.desconto.model.descontoAdd = 0;
+                alteraValorIntegral();
+                limpaCamposDescantoAdicional();
+            };
+
+            function limpaCamposDescantoAdicional() {
+                vm._model.descricaoDesconto.model.val = '';
+                vm._model.descontosAdicionais.model.val = '';
+            }
         }])
 })();

@@ -10,16 +10,16 @@ var extend = require('node.extend'),
 module.exports = function() {
     var controller = {};
 
+    controller.putDadosInscricaoCompleta = putDadosInscricaoCompleta;
+    controller.putDadosInscricaoParcial = putDadosInscricaoParcial;
+    controller.putEditInscricao = putEditInscricao;
+    controller.putVerificaCpf = putVerificaCpf;
     controller.showDadosCep = getDadosCep;
     controller.showDadosInscricao = getDadosInscricao;
     controller.showDadosCurso = getDadosCurso;
     controller.showInfoUsuario = getInfoUsuario;
     controller.showModalCheque = getModalCheque;
-    controller.putVerificaCpf = putVerificaCpf;
     controller.showViewInscr = getViewInscr;
-    controller.putDadosInscricaoCompleta = putDadosInscricaoCompleta;
-    controller.putDadosInscricaoParcial = putDadosInscricaoParcial;
-    controller.putEditInscricao = putEditInscricao;
 
     return controller;
 };
