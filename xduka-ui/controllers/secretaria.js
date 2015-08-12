@@ -1,10 +1,12 @@
-var extend = require('node.extend'),
+var urlDataBase = '',
+    extend = require('node.extend'),
+    request = require('request'),
     dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
     dadosGeraTurma = require('../mockup/xduka-json/secretaria/dadosGeraTurma.json'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
-    viewInscr = require('../mockup/xduka-json/common/viewInscr.json');
-    alunos = require('../mockup/xduka-json/secretaria/alunos.json');
+    viewInscr = require('../mockup/xduka-json/common/viewInscr.json'),
+    alunos = require('../mockup/xduka-json/secretaria/alunos.json'),
     templateConfig = require('../mockup/xduka-json/secretaria/templateConfig.json');
 
 module.exports = function() {
@@ -212,13 +214,13 @@ function putSaveConfig(req, res) {
 
     if (verificaDadosEmpresa(dadosSent.model)) {
         var sendDados = {
-            "nomeUnidade": {"model": {"val": dadosSent.nomeUnidade.model.val, "err": ""}},
-            "nomeEmpresa": {"model": {"val": dadosSent.nomeEmpresa.model.val, "err": ""}},
-            "cnpj": {"model": {"val": dadosSent.cnpj.model.val, "err": ""}},
-            "endereco": {"model": {"val": dadosSent.endereco.model.val, "err": ""}},
-            "telefone": {"model": {"val": dadosSent.telefone.model.val, "err": ""}},
-            "site": {"model": {"val": dadosSent.site.model.val, "err": ""}},
-            "email": {"model": {"val": dadosSent.email.model.val, "err": ""}},
+            "nomeUnidade": {"model": {"val": dadosSent.nomeUnidade.model.val}},
+            "nomeEmpresa": {"model": {"val": dadosSent.nomeEmpresa.model.val}},
+            "cnpj": {"model": {"val": dadosSent.cnpj.model.val}},
+            "endereco": {"model": {"val": dadosSent.endereco.model.val}},
+            "telefone": {"model": {"val": dadosSent.telefone.model.val}},
+            "site": {"model": {"val": dadosSent.site.model.val}},
+            "email": {"model": {"val": dadosSent.email.model.val}},
             "tipoCurso": {"list": dadosSent.tipoCurso.list},
             "tipoArea": {"list": dadosSent.tipoArea.list},
             "turno": {"list": dadosSent.turno.list},
@@ -228,16 +230,24 @@ function putSaveConfig(req, res) {
             "horarioSaida": {"list": dadosSent.horarioSaida.list},
             "tipoTelefone": {"list": dadosSent.tipoTelefone.list},
             "tipoSituacao": {"list": dadosSent.tipoSituacao.list},
-            "secAutorizacao": {"model": {"val": dadosSent.secAutorizacao.model.val, "err": ""}},
-            "secFolha": {"model": {"val": dadosSent.secFolha.model.val, "err": ""}},
-            "secNumero": {"model": {"val": dadosSent.secNumero.model.val, "err": ""}},
-            "dirAutorizacao": {"model": {"val": dadosSent.dirAutorizacao.model.val, "err": ""}},
-            "dirFolha": {"model": {"val": dadosSent.dirFolha.model.val, "err": ""}},
-            "dirNumero": {"model": {"val": dadosSent.dirNumero.model.val, "err": ""}}
+            "secAutorizacao": {"model": {"val": dadosSent.secAutorizacao.model.val}},
+            "secFolha": {"model": {"val": dadosSent.secFolha.model.val}},
+            "secNumero": {"model": {"val": dadosSent.secNumero.model.val}},
+            "dirAutorizacao": {"model": {"val": dadosSent.dirAutorizacao.model.val}},
+            "dirFolha": {"model": {"val": dadosSent.dirFolha.model.val}},
+            "dirNumero": {"model": {"val": dadosSent.dirNumero.model.val}}
         };
 
         /*  ENVIAR PARA CLAYTON O OBJETO SENDDADOS CRIADO SÓ COM OS DADOS A SEREM SALVOS   */
-
+        /*
+        request(urlDataBase, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                res.json(JSON.parse(body));
+            }else {
+                res.json({"erro": true});
+            }
+        });
+        */
         /*  ===   */
 
         res.json(extend(true, dadosSent, sendDados));
@@ -283,4 +293,9 @@ function validaDadosEmpresa(obj) {
     obj.model.dirAutorizacao.model.err = obj.model.dirAutorizacao.model.val ? '' : obj.STR.FIELD;
     obj.model.dirFolha.model.err = obj.model.dirFolha.model.val ? '' : obj.STR.FIELD;
     obj.model.dirNumero.model.err = obj.model.dirNumero.model.val ? '' : obj.STR.FIELD;
+}
+
+function isEmail(email){
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
 }

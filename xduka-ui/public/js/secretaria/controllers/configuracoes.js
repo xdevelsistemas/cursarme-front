@@ -17,7 +17,7 @@
                 label: '',
                 name: 'newVal',
                 type: 'text',
-                autofocus: 'true',
+                autofocus: true,
                 atual: ''
             };
 
@@ -72,7 +72,11 @@
                 }else
                 // Validação caso haja um texto igual no xd-select atual
                 if (!verificaText(vm.modalNew.model.val, vm._model[atual].list)){
+                    var ultimoElem = vm._model[atual].list.pop(vm._model[atual].list.length-1);
+
                     vm._model[atual].list.unshift(objNew);
+                    vm._model[atual].list.sort(sortObject);
+                    vm._model[atual].list.push(ultimoElem);
 
                     /*=============================*/
                     /*   ROTA DE SALVAR NO NODE    */
@@ -85,6 +89,14 @@
                     vm.modalNew.model.err = 'Campo já existente! Não adicionado.'
                 }
             };
+
+            function sortObject(a,b) {
+                return a.text[0].toLowerCase() < b.text[0].toLowerCase() ?
+                    -1 :
+                    a.text[0].toLowerCase() > b.text[0].toLowerCase() ?
+                        1 :
+                        0;
+            }
 
             //Botão voltar apenas redirecionando
             vm.voltar = function(){
@@ -107,10 +119,20 @@
                 saveDadosPromise
                     .then(function(data) {
                         vm._model = data.model;
+
+                        if (verificaInfo()) {
+                            $($('#info').data("target")).hide();
+                        }
                     })
                     .catch(function(error) {
                         console.log(error.data);
                     })
+            };
+
+            function verificaInfo() {
+                return !!vm._model.dirAutorizacao.model.err || !!vm._model.dirFolha.model.err ||
+                !!vm._model.dirNumero.model.err || !!vm._model.secAutorizacao.model.err ||
+                !!vm._model.secFolha.model.err || !!vm._model.secNumero.model.err;
             }
         }]
     )
