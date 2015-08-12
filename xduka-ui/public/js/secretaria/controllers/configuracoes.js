@@ -1,8 +1,8 @@
 (function(){
     'use strict';
     angular.module('app.controllers')
-        .controller('configuracoes', ['$scope', '$resource', 'breadCrumb', '$timeout','$location',
-            function($scope, $resource, breadCrumb, $timeout, $location){
+        .controller('configuracoes', ['$scope', 'modelStrings', '$resource', 'breadCrumb', '$timeout','$location',
+            function($scope, modelStrings, $resource, breadCrumb, $timeout, $location){
             /*jshint validthis: true*/
             var vm = this
                 ,templateConfig = $resource('/api/secretaria/templateConfig').get().$promise;
@@ -10,6 +10,7 @@
             breadCrumb.title = 'Configurações';
 
             /* OBJETOS */
+            vm.STR = modelStrings;
             vm._model = {};
             vm.modalNew = { //CRIADO COM OBJETIVO DE INSERIR NOVOS CAMPOS NOS SELECT'S
                 model: {val: ''},
@@ -101,11 +102,11 @@
             }
 
             vm.saveDadosConfiguracoes = function() {
-                var saveDadosPromise = $resource('/api/secretaria/save-configuracoes').save({}, vm._model).$promise;
+                var saveDadosPromise = $resource('/api/secretaria/save-configuracoes').save({}, {"model": vm._model, "STR": vm.STR}).$promise;
 
                 saveDadosPromise
                     .then(function(data) {
-                        vm._model = data;
+                        vm._model = data.model;
                     })
                     .catch(function(error) {
                         console.log(error.data);

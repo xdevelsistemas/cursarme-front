@@ -210,36 +210,42 @@ function putDadosTurmas(req, res) {
 function putSaveConfig(req, res) {
     var dadosSent = req.body;
 
-    var sendDados = {
-        "nomeUnidade":{"model":{"val":dadosSent.nomeUnidade.model.val,"err":""}},
-        "nomeEmpresa":{"model":{"val":dadosSent.nomeEmpresa.model.val,"err":""}},
-        "cnpj":{"model":{"val":dadosSent.cnpj.model.val,"err":""}},
-        "endereco":{"model":{"val":dadosSent.endereco.model.val,"err":""}},
-        "telefone":{"model":{"val":dadosSent.telefone.model.val,"err":""}},
-        "site":{"model":{"val":dadosSent.site.model.val,"err":""}},
-        "email":{"model":{"val":dadosSent.email.model.val,"err":""}},
-        "tipoCurso":{"list":dadosSent.tipoCurso.list},
-        "tipoArea":{"list":dadosSent.tipoArea.list},
-        "turno":{"list":dadosSent.turno.list},
-        "tipoPeriodo":{"list":dadosSent.tipoPeriodo.list},
-        "modalidadeTurma":{"list":dadosSent.modalidadeTurma.list},
-        "horarioEntrada":{"list":dadosSent.horarioEntrada.list},
-        "horarioSaida":{"list":dadosSent.horarioSaida.list},
-        "tipoTelefone":{"list":dadosSent.tipoTelefone.list},
-        "tipoSituacao":{"list":dadosSent.tipoSituacao.list},
-        "secAutorizacao":{"model":{"val":dadosSent.secAutorizacao.model.val,"err":""}},
-        "secFolha":{"model":{"val":dadosSent.secFolha.model.val,"err":""}},
-        "secNumero":{"model":{"val":dadosSent.secNumero.model.val,"err":""}},
-        "dirAutorizacao":{"model":{"val":dadosSent.dirAutorizacao.model.val,"err":""}},
-        "dirFolha":{"model":{"val":dadosSent.dirFolha.model.val,"err":""}},
-        "dirNumero":{"model":{"val":dadosSent.dirNumero.model.val,"err":""}}
-    };
+    if (verificaDadosEmpresa(dadosSent.model)) {
+        var sendDados = {
+            "nomeUnidade": {"model": {"val": dadosSent.nomeUnidade.model.val, "err": ""}},
+            "nomeEmpresa": {"model": {"val": dadosSent.nomeEmpresa.model.val, "err": ""}},
+            "cnpj": {"model": {"val": dadosSent.cnpj.model.val, "err": ""}},
+            "endereco": {"model": {"val": dadosSent.endereco.model.val, "err": ""}},
+            "telefone": {"model": {"val": dadosSent.telefone.model.val, "err": ""}},
+            "site": {"model": {"val": dadosSent.site.model.val, "err": ""}},
+            "email": {"model": {"val": dadosSent.email.model.val, "err": ""}},
+            "tipoCurso": {"list": dadosSent.tipoCurso.list},
+            "tipoArea": {"list": dadosSent.tipoArea.list},
+            "turno": {"list": dadosSent.turno.list},
+            "tipoPeriodo": {"list": dadosSent.tipoPeriodo.list},
+            "modalidadeTurma": {"list": dadosSent.modalidadeTurma.list},
+            "horarioEntrada": {"list": dadosSent.horarioEntrada.list},
+            "horarioSaida": {"list": dadosSent.horarioSaida.list},
+            "tipoTelefone": {"list": dadosSent.tipoTelefone.list},
+            "tipoSituacao": {"list": dadosSent.tipoSituacao.list},
+            "secAutorizacao": {"model": {"val": dadosSent.secAutorizacao.model.val, "err": ""}},
+            "secFolha": {"model": {"val": dadosSent.secFolha.model.val, "err": ""}},
+            "secNumero": {"model": {"val": dadosSent.secNumero.model.val, "err": ""}},
+            "dirAutorizacao": {"model": {"val": dadosSent.dirAutorizacao.model.val, "err": ""}},
+            "dirFolha": {"model": {"val": dadosSent.dirFolha.model.val, "err": ""}},
+            "dirNumero": {"model": {"val": dadosSent.dirNumero.model.val, "err": ""}}
+        };
 
-    /*  ENVIAR PARA CLAYTON O OOBJETO SENDdADOS CRIADO SÓ COM OS DADOS A SEREM SALVOS   */
+        /*  ENVIAR PARA CLAYTON O OBJETO SENDDADOS CRIADO SÓ COM OS DADOS A SEREM SALVOS   */
 
-    /*  ===   */
+        /*  ===   */
 
-    res.json(extend(true, dadosSent, sendDados));
+        res.json(extend(true, dadosSent, sendDados));
+    } else {
+        validaDadosEmpresa(dadosSent);
+
+        res.json(dadosSent);
+    }
 }
 
 function setDataExt(a) {
@@ -248,4 +254,33 @@ function setDataExt(a) {
 
 function setDataInt(a) {
     return new Date(a).getTime();
+}
+
+function verificaDadosEmpresa(obj) {
+    return !!obj.nomeUnidade.model.val && !!obj.nomeEmpresa.model.val &&
+    !!obj.cnpj.model.val && !! obj.endereco.model.val &&
+    !!obj.telefone.model.val && !!obj.site.model.val &&
+    !!obj.email.model.val && !!obj.secAutorizacao.model.val &&
+    !!obj.secFolha.model.val && !!obj.secNumero.model.val &&
+    !!obj.dirAutorizacao.model.val && !!obj.dirFolha.model.val &&
+    !!obj.dirNumero.model.val
+}
+
+function validaDadosEmpresa(obj) {
+    obj.model.nomeUnidade.model.err = obj.model.nomeUnidade.model.val ? '' : obj.STR.FIELD;
+    obj.model.nomeEmpresa.model.err = obj.model.nomeEmpresa.model.val ? '' : obj.STR.FIELD;
+    obj.model.cnpj.model.err = obj.model.cnpj.model.val ? '' : obj.STR.FIELD;
+    obj.model.endereco.model.err = obj.model.endereco.model.val ? '' : obj.STR.FIELD;
+    obj.model.telefone.model.err = obj.model.telefone.model.val ? '' : obj.STR.FIELD;
+    obj.model.site.model.err = obj.model.site.model.val ? '' : obj.STR.FIELD;
+
+    obj.model.email.model.err = !obj.model.email.model.val ?
+        obj.STR.FIELD : isEmail(obj.model.email.model.val) ? '' : obj.STR.NOEMAIL;
+
+    obj.model.secAutorizacao.model.err = obj.model.secAutorizacao.model.val ? '' : obj.STR.FIELD;
+    obj.model.secFolha.model.err = obj.model.secFolha.model.val ? '' : obj.STR.FIELD;
+    obj.model.secNumero.model.err = obj.model.secNumero.model.val ? '' : obj.STR.FIELD;
+    obj.model.dirAutorizacao.model.err = obj.model.dirAutorizacao.model.val ? '' : obj.STR.FIELD;
+    obj.model.dirFolha.model.err = obj.model.dirFolha.model.val ? '' : obj.STR.FIELD;
+    obj.model.dirNumero.model.err = obj.model.dirNumero.model.val ? '' : obj.STR.FIELD;
 }
