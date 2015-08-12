@@ -1,60 +1,60 @@
 <html>
-<head>
-    <meta charset="utf8" />
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        header { margin-bottom: 100px; }
-        header h1 { font-size: 2.2em; }
-        header h2 { font-size: 2em; }
-    </style>
-</head>
-<body>
-<header>
-    <div class="row">
-        <div class="col-xs-4">
-            <img src="{{header.logo}}" />
-        </div>
-        <div class="col-xs-8">
-            <h1>{{header.nomeEmpresa}}</h1>
-            <h2>{{header.nomeUnidade}}</h2>
-        </div>
-    </div>
-</header>
+    <head>
+        <meta charset="utf8" />
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            header { margin-bottom: 100px; }
+            header h1 { font-size: 1.5em; }
+            header h2 { font-size: 1.2em; }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="row">
+                <div class="col-xs-3">
+                    <img src="{{header.logo}}" />
+                </div>
+                <div class="col-xs-9">
+                    <h1>{{header.nomeEmpresa}}</h1>
+                    <h2>{{header.nomeUnidade}}</h2>
+                </div>
+            </div>
+        </header>
 
-<section>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Turma</th>
-            <th>Curso</th>
-            <th>Unidade</th>
-        </tr>
-        </thead>
-        <tbody>
-        {{#each content}}
-        <tr>
-            <td>{{Nome}}</td>
-            <td>{{Turma}}</td>
-            <td>{{Curso}}</td>
-            <td>{{Unidade}}</td>
-        </tr>
-        {{/each}}
-        </tbody>
-    </table>
-</section>
+        <section>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Turma</th>
+                    <th>Curso</th>
+                    <th>Unidade</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each content}}
+                <tr>
+                    <td>{{Nome}}</td>
+                    <td>{{Turma}}</td>
+                    <td>{{Curso}}</td>
+                    <td>{{Unidade}}</td>
+                </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </section>
 
-<footer class="navbar-fixed-bottom">
-    <div class="row">
-        <div class="col-xs-12">
-            <p class="text-center">
-                Endereço: {{footer.endereco}} | Telefone: {{footer.telefone}}
-                <br/>
-                {{footer.email}} | {{footer.site}}
-            </p>
-        </div>
-    </div>
-</footer>
-</body>
+        <footer class="navbar-fixed-bottom">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="text-center">
+                        Endereço: {{footer.endereco}} | Telefone: {{footer.telefone}}
+                        <br/>
+                        {{footer.email}} | {{footer.site}}
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>
 
