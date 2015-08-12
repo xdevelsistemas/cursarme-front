@@ -17,6 +17,7 @@ module.exports = function() {
     controller.showTemplateInscricao = getTemplateInscricao;
     controller.putDadosInscricao = putDadosInscricao;
     controller.putDadosTurmas = putDadosTurmas;
+    controller.putSaveConfig = putSaveConfig;
     controller.alunoSearch = alunoSearch;
     controller.showConfig = showConfig;
 
@@ -204,6 +205,41 @@ function putDadosTurmas(req, res) {
     console.log(result); // ???
 
     res.json(dadosSent);
+}
+
+function putSaveConfig(req, res) {
+    var dadosSent = req.body;
+
+    var sendDados = {
+        "nomeUnidade":{"model":{"val":dadosSent.nomeUnidade.model.val,"err":""}},
+        "nomeEmpresa":{"model":{"val":dadosSent.nomeEmpresa.model.val,"err":""}},
+        "cnpj":{"model":{"val":dadosSent.cnpj.model.val,"err":""}},
+        "endereco":{"model":{"val":dadosSent.endereco.model.val,"err":""}},
+        "telefone":{"model":{"val":dadosSent.telefone.model.val,"err":""}},
+        "site":{"model":{"val":dadosSent.site.model.val,"err":""}},
+        "email":{"model":{"val":dadosSent.email.model.val,"err":""}},
+        "tipoCurso":{"list":dadosSent.tipoCurso.list},
+        "tipoArea":{"list":dadosSent.tipoArea.list},
+        "turno":{"list":dadosSent.turno.list},
+        "tipoPeriodo":{"list":dadosSent.tipoPeriodo.list},
+        "modalidadeTurma":{"list":dadosSent.modalidadeTurma.list},
+        "horarioEntrada":{"list":dadosSent.horarioEntrada.list},
+        "horarioSaida":{"list":dadosSent.horarioSaida.list},
+        "tipoTelefone":{"list":dadosSent.tipoTelefone.list},
+        "tipoSituacao":{"list":dadosSent.tipoSituacao.list},
+        "secAutorizacao":{"model":{"val":dadosSent.secAutorizacao.model.val,"err":""}},
+        "secFolha":{"model":{"val":dadosSent.secFolha.model.val,"err":""}},
+        "secNumero":{"model":{"val":dadosSent.secNumero.model.val,"err":""}},
+        "dirAutorizacao":{"model":{"val":dadosSent.dirAutorizacao.model.val,"err":""}},
+        "dirFolha":{"model":{"val":dadosSent.dirFolha.model.val,"err":""}},
+        "dirNumero":{"model":{"val":dadosSent.dirNumero.model.val,"err":""}}
+    };
+
+    /*  ENVIAR PARA CLAYTON O OOBJETO SENDdADOS CRIADO SÓ COM OS DADOS A SEREM SALVOS   */
+
+    /*  ===   */
+
+    res.json(extend(true, dadosSent, sendDados));
 }
 
 function setDataExt(a) {

@@ -1,7 +1,8 @@
 (function(){
     'use strict';
     angular.module('app.controllers')
-        .controller('configuracoes', ['$scope', '$resource', 'breadCrumb', '$timeout','$location', function($scope, $resource, breadCrumb, $timeout,$location){
+        .controller('configuracoes', ['$scope', '$resource', 'breadCrumb', '$timeout','$location',
+            function($scope, $resource, breadCrumb, $timeout, $location){
             /*jshint validthis: true*/
             var vm = this
                 ,templateConfig = $resource('/api/secretaria/templateConfig').get().$promise;
@@ -99,7 +100,17 @@
                 return false
             }
 
+            vm.saveDadosConfiguracoes = function() {
+                var saveDadosPromise = $resource('/api/secretaria/save-configuracoes').save({}, vm._model).$promise;
 
+                saveDadosPromise
+                    .then(function(data) {
+                        vm._model = data;
+                    })
+                    .catch(function(error) {
+                        console.log(error.data);
+                    })
+            }
         }]
     )
 })();
