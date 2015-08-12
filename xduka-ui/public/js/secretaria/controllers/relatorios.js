@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('relatorios', ['$scope', '$resource', 'breadCrumb', '$timeout', '$http', '$sce', function($scope, $resource, breadCrumb, $timeout,$http,$sce){
+        .controller('relatorios', ['$scope', '$resource', 'breadCrumb', '$timeout', '$http', '$sce', 'reportService', function($scope, $resource, breadCrumb, $timeout,$http,$sce,reportService){
 
             var vm = this,
                 dados = $resource('/api/secretaria/view-inscr').get().$promise;
@@ -12,28 +12,8 @@
             vm._viewInscr = {};
             vm.data = {persons: []};
             vm.gerar = gerar;
+            vm.reportSv = reportService; // Service de relatorios (PDF)
             vm.template = '';
-
-
-            //Report
-            vm.template = "<meta charset=\"utf8\">\n"+
-                "<h2>Demonstração</h2>\n"+
-                "<table style=\"width:90%;border-style:solid; text-align:left;\">\n"+
-                "   <tr>\n"+
-                "       <th>Nome</th>\n"+
-                "       <th>Turma</th>\n"+
-                "       <th>Curso</th>\n"+
-                "       <th>Unidade</th>\n"+
-                "    </tr>\n"+
-                "    {{#each persons}}\n"+
-                "        <tr>\n"+
-                "            <td>{{Nome}}</td>\n"+
-                "            <td>{{Turma}}</td>\n"+
-                "            <td>{{Curso}}</td>\n"+
-                "            <td>{{Unidade}}</td>\n"+
-                "        </tr>\n"+
-                "    {{/each}}\n"+
-                "</table>";
 
             dados
                 .then(function (data2) {
@@ -45,29 +25,15 @@
                         }
                     }
 
-                    reportData();
-
-                    vm._viewInscr.naoEhComercial = true;
                 })
                 .catch(function (erro) {
                     console.log("\n" + erro.data + "\n");
                 });
 
-
             function gerar() {
-
-                var myParams = {
-                    "template": {"content": vm.template, "recipe": "phantom-pdf"},
-                    "data": JSON.stringify(vm.data)
-                };
-
-                $http.post('https://localhost/api/report',myParams, {responseType:'arraybuffer'})
-                    .success(function (response) {
-                        var file = new Blob([response], {type: 'application/pdf'});
-                        var fileURL = URL.createObjectURL(file);
-
-                        vm.content = $sce.trustAsResourceUrl(fileURL);
-                    });
+                reportData();
+                reportService.data = vm.data;
+                reportService.gerar('html/common/relatorio.ejs');
             }
 
             function reportData() {
@@ -77,10 +43,31 @@
                         Turma: vm._viewInscr.list[i].vagas.turma,
                         Curso: vm._viewInscr.list[i].curso.model.text,
                         Unidade: vm._viewInscr.list[i].unidade.model.text
+                    });
+                    vm.data.persons.sort(function compare(a,b) {
+                        if (a.Nome > b.Nome){
+                            return a.Nome > b.Nome
+                        }
+                        if (a.Turma > b.Turma){
+                            return a.Turma > b.Turma
+                        }
+                        if (a.Curso > b.Curso){
+                            return a.Curso > b.Curso
+                        }
+                        if (a.Unidade > b.Unidade){
+                            return a.Unidade > b.Unidade
+                        }
                     })
                 }
-                console.log(JSON.stringify(vm.data))
             }
+            vm.geraDec = function () {
+                reportService.data.persons = [{
+                    data: '22/12/2015',
+                    nome: 'João das Couves',
+                    curso: 'Sistemas de Informação'
+                }];
+                reportService.gerar('html/common/template-decDocs.ejs');
+            };
 
 
         }])
