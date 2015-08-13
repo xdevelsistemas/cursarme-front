@@ -9,7 +9,8 @@ var userSchema = mongoose.Schema({
         areas: {
             aluno: Boolean,
             comercial: Boolean,
-            secretaria: Boolean
+            secretaria: Boolean,
+            financeiro: Boolean
         }
     }
 });
