@@ -61,7 +61,6 @@
                     site: vm._templateConfig.site.model.val
                 };
 
-
                 // content head pdf
                 vm.data.content.head = [
                     {text: 'Nome'},
