@@ -32,6 +32,12 @@ angular.module('app',[
             controller: 'dashboard',
             controllerAs: 'dash'
         });
+// ========= DASHBOARD SECRETARIA ========= //
+        $routeProvider.when('/controle-cheques', {
+            templateUrl: 'html/financeiro/control-cheques.html',
+            controller: 'controlCheques',
+            controllerAs: 'cc'
+        });
 // ========= OTHERWISE ========= //
         $routeProvider.otherwise({
             redirectTo: '/'

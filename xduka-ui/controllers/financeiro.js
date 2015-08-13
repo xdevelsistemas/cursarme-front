@@ -1,15 +1,15 @@
 var urlDataBase = '',
     extend = require('node.extend'),
     request = require('request'),
-    test = 'Rota financeiro!';
+    cheques = require('../mockup/xduka-json/financeiro/cheques.json');
 
 module.exports = function() {
     var controller = {};
 
-    controller.test = teste;
+    controller.getCheques = getCheques;
 
     return controller;
 };
-function teste(req,res) {
-    res.send(test);
+function getCheques(req,res) {
+    res.json(cheques)
 }
