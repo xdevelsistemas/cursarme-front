@@ -25,14 +25,13 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Turma</th>
-                    <th>Curso</th>
-                    <th>Unidade</th>
+                    {{#each content.head }}
+                    <th>{{text}}</th>
+                    {{/each}}
                 </tr>
                 </thead>
                 <tbody>
-                {{#each content}}
+                {{#each content.body}}
                 <tr>
                     <td>{{Nome}}</td>
                     <td>{{Turma}}</td>

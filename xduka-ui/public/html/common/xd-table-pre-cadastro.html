@@ -32,8 +32,8 @@
                 <th ng-bind="line.unidade.model.text"></th>
                 <th ng-if="!!line.validacoes.length">
                     <span style="font-size: 11px">Incompleto</span>
-                    <button ng-show="cond.verificaEdit(line.dataCadastro)" title="Editar Cadastro" class="btn btn-white" onclick="$('#cursorSetp1').click()" ng-click="cond.editFunc();cond.editInscr(line)"><i class="entypo-pencil"></i></button>
                     <button title="Imprimir Contrato" class="btn btn-info"><i class="entypo-print"></i></button>
+                    <button ng-show="cond.verificaEdit(line.dataCadastro)" title="Editar Cadastro" class="btn btn-white" onclick="$('#cursorSetp1').click()" ng-click="cond.editFunc();cond.editInscr(line)"><i class="entypo-pencil"></i></button>
                 </th>
                 <th ng-if="!line.validacoes.length">
                     <span style="font-size: 11px">Completo&nbsp;&nbsp;&nbsp;</span>

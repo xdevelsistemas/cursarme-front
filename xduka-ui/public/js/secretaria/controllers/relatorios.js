@@ -12,7 +12,7 @@
 
             vm._viewInscr = {};
             vm._templateConfig = {};
-            vm.data = {content: [], header: [], footer: []};
+            vm.data = {content: {head: [], body:[]}, header: [], footer: []};
             vm.gerar = gerar;
             vm.reportSv = reportService; // Service de relatorios (PDF)
             vm.template = '';
@@ -62,15 +62,24 @@
                     site: vm._templateConfig.site.model.val
                 };
 
-                // content pdf
+
+                // content head pdf
+                vm.data.content.head = [
+                    {text: 'Nome'},
+                    {text: 'Turma'},
+                    {text: 'Curso'},
+                    {text: 'Unidade'}
+                ];
+
+                // content body pdf
                 for (var i = 0; i < vm._viewInscr.list.length;i++){
-                    vm.data.content.push({
+                    vm.data.content.body.push({
                         Nome: vm._viewInscr.list[i].nome.model.val,
                         Turma: vm._viewInscr.list[i].vagas.turma,
                         Curso: vm._viewInscr.list[i].curso.model.text,
                         Unidade: vm._viewInscr.list[i].unidade.model.text
                     });
-                    vm.data.content.sort(function compare(a,b) {
+                    vm.data.content.body.sort(function compare(a,b) {
                         if (a.Nome > b.Nome){
                             return a.Nome > b.Nome
                         }
