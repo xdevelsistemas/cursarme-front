@@ -81,14 +81,25 @@ require('./routes/resetpassword.js')(app, passport);
 require('./routes/secretaria.js')(app, passport);
 
 /// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    /*next(err);*/
+if (app.get('env') === 'development') {
+    app.use(function (req, res, next) {
+        var err = new Error('Not Found');
+        err.status = 404;
 
-    res.render('404');
-});
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
+} else {
+    app.use(function (req, res, next) {
+        var err = new Error('Not Found');
+        err.status = 404;
+        /*next(err);*/
 
+        res.render('404');
+    });
+}
 /// error handlers
 
 // development error handler
