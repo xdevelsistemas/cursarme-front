@@ -81,6 +81,7 @@ require('./routes/common.js')(app, passport);
 require('./routes/financeiro.js')(app, passport);
 require('./routes/resetpassword.js')(app, passport);
 require('./routes/secretaria.js')(app, passport);
+require('./routes/financeiro.js')(app, passport);
 
 /// catch 404 and forward to error handler
 if (app.get('env') === 'development') {

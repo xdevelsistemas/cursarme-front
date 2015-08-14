@@ -34,7 +34,6 @@
                             vm._viewInscr.list[i].listaCheques[j].data = new Date(data2.list[i].listaCheques[j].data);
                         }
                     }
-
                 })
                 .catch(function (erro) {
                     console.log("\n" + erro.data + "\n");
@@ -61,7 +60,6 @@
                     email: vm._templateConfig.email.model.val,
                     site: vm._templateConfig.site.model.val
                 };
-
 
                 // content head pdf
                 vm.data.content.head = [
@@ -96,11 +94,26 @@
                 }
             }
             vm.geraDec = function () {
-                reportService.data.persons = [{
+                // header pdf
+                reportService.data.header = {
+                    logo: vm._templateConfig.logo,
+                    nomeEmpresa: vm._templateConfig.nomeEmpresa.model.val,
+                    nomeUnidade: vm._templateConfig.nomeUnidade.model.val
+                };
+
+                // footer pdf
+                reportService.data.footer = {
+                    endereco: vm._templateConfig.endereco.model.val,
+                    telefone: vm._templateConfig.telefone.model.val,
+                    email: vm._templateConfig.email.model.val,
+                    site: vm._templateConfig.site.model.val
+                };
+
+                reportService.data.content = {
                     data: '22/12/2015',
                     nome: 'João das Couves',
                     curso: 'Sistemas de Informação'
-                }];
+                };
                 reportService.gerar('html/common/template-decDocs.ejs');
             };
 

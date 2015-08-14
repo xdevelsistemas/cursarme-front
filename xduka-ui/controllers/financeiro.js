@@ -1,20 +1,15 @@
-
-var http = require("http");
+var urlDataBase = '',
+    extend = require('node.extend'),
+    request = require('request'),
+    cheques = require('../mockup/xduka-json/financeiro/cheques.json');
 
 module.exports = function() {
     var controller = {};
 
-    controller.putSaveControleCheque = putSaveControleCheque;
+    controller.getCheques = getCheques;
 
     return controller;
 };
-
-function putSaveControleCheque(req, res) {
-    var data = req.body;
-
-    /*  ==  ==  ==  ==  ==  */
-
-    /*  ==  ==  ==  ==  ==  */
-
-    res.json({"status": "ok"});
+function getCheques(req,res) {
+    res.json(cheques)
 }

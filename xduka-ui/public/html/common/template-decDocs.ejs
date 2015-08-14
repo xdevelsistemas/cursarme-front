@@ -1,39 +1,58 @@
-<!doctype html>
-<html lang="pt-br" ng-app="app">
-<head>
-    <meta charset="utf8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<html>
+    <head>
+        <meta charset="utf8" />
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            header { margin-bottom: 100px; }
+            header h1 { font-size: 1.5em; }
+            header h2 { font-size: 1.2em; }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="row">
+                <div class="col-xs-3">
+                    <img src="{{header.logo}}" />
+                </div>
+                <div class="col-xs-9">
+                    <h1>{{header.nomeEmpresa}}</h1>
+                    <h2>{{header.nomeUnidade}}</h2>
+                </div>
+            </div>
+        </header>
 
-</head>
-<body>
-    <h2 class="text-center text-primary">Declaração</h2>
-    {{#each persons}}
-    <p>Declaro que entregarei os documentos faltantes listados abaixo até o dia {{data}}. Fico ciente de que a falta de
-    de qualquer dos documentos poderá acarretar o cancelamento da minha matrícula, nos termos da clausula 12ª do
-    do Contrato de Prestação de serviços Educacionais.</p>
-    <h3><strong>NOME DO ALUNO(A)</strong>: {{nome}}</h3>
-    <h3> <strong>CURSO</strong>: {{curso}}</h3>
-    <br/><br/>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>RELAÇÃO DE DOCUMENTOS FALTANTES</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th>Histórico escolar</th>
-        </tr>
-        <tr>
-            <th>Atestado de conclusão de ensino médio</th>
-        </tr>
-        <tr>
-            <th>Diploma de curso superior</th>
-        </tr>
-        </tbody>
-    </table>
-    {{/each}}
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</body>
+        <section>
+            <h2 class="text-center text-primary">Declaração</h2>
+
+            <p>Declaro que entregarei os documentos faltantes listados abaixo até o dia {{content.data}}. Fico ciente de que a falta de
+                de qualquer dos documentos poderá acarretar o cancelamento da minha matrícula, nos termos da clausula 12ª do
+                do Contrato de Prestação de serviços Educacionais.
+            </p>
+            <br/>
+            <h4><strong>NOME DO ALUNO(A)</strong>: {{content.nome}}</h4>
+            <h4> <strong>CURSO</strong>: {{content.curso}}</h4>
+            <br/><br/>
+
+            <h4>RELAÇÃO DE DOCUMENTOS FALTANTES</h4>
+            <ul>
+                <li>Histórico escolar</li>
+                <li>Atestado de conclusão de ensino médio</li>
+                <li>Diploma de curso superior</li>
+            </ul>
+        </section>
+
+
+
+        <footer class="navbar-fixed-bottom">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="text-center">
+                        Endereço: {{footer.endereco}} | Telefone: {{footer.telefone}}
+                        <br/>
+                        {{footer.email}} | {{footer.site}}
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>

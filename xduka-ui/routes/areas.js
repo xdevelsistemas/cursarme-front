@@ -2,6 +2,7 @@ var isLoggedIn = require('../services/isLoggedIn.js');
 var isAluno = require('../services/isAluno.js');
 var isComercial = require('../services/isComercial.js');
 var isSecretaria = require('../services/isSecretaria.js');
+var isFinanceiro = require('../services/isFinanceiro.js');
 var loginRedirect = require('../services/loginRedirect.js');
 
 module.exports = function (app, passport) {
@@ -25,6 +26,11 @@ module.exports = function (app, passport) {
     // SECRETARIA ========
     app.get('/secretaria', isLoggedIn, isSecretaria, require('../services/isSecretaria.js'), function (req, res) {
         res.render('secretaria', { title: 'Secretaria', area: 'secretaria' });
+    });
+
+    // FINANCEIRO ========
+    app.get('/financeiro', isLoggedIn, isFinanceiro, require('../services/isFinanceiro.js'), function (req, res) {
+        res.render('financeiro', { title: 'Financeiro', area: 'financeiro' });
     });
 
     // App ========

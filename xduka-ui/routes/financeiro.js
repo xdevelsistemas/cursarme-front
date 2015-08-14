@@ -1,9 +1,9 @@
 module.exports = function (app, passport) {
     var controller = require('../controllers/financeiro')();
 
-    //save-controle-cheque
-    app.route('/api/common/save-controle-cheque')
-        .post(controller.putSaveControleCheque);
+    //get-unidade
+    app.route('/api/financeiro/getCheques')
+        .get(controller.getCheques);
 
     return app;
 };

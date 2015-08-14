@@ -5,5 +5,7 @@ module.exports = function (req, res, next) {
         res.redirect('/comercial');
     if (!!req.user.local.areas.secretaria)
         res.redirect('/secretaria');
+    if (!!req.user.local.areas.financeiro)
+        res.redirect('/financeiro');
     return next();
 };
