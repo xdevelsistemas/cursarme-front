@@ -75,7 +75,8 @@
 
                     function searchkp (){
                         scope.params.searchFocusOff();
-                        $('#searchAl_'+scope.params.name).blur();
+                        scope._searchVal = '';
+                        $('#searchAl_'+scope.location).blur().val("");
                     }
 
                     /* SEARCH NODE */
