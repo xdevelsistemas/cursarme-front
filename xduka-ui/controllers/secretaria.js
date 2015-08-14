@@ -6,7 +6,7 @@ var urlDataBase = '',
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
     viewInscr = require('../mockup/xduka-json/common/viewInscr.json'),
-    alunos = require('../mockup/xduka-json/secretaria/alunos.json'),
+    alunos = require('../mockup/xduka-json/common/alunos.json'),
     templateConfig = require('../mockup/xduka-json/secretaria/templateConfig.json');
 
 module.exports = function() {
