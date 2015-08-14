@@ -77,6 +77,8 @@ require('./routes/routes.js')(app, passport);
 require('./routes/areas.js')(app, passport);
 require('./routes/aluno.js')(app, passport);
 require('./routes/comercial.js')(app, passport);
+require('./routes/common.js')(app, passport);
+require('./routes/financeiro.js')(app, passport);
 require('./routes/resetpassword.js')(app, passport);
 require('./routes/secretaria.js')(app, passport);
 
