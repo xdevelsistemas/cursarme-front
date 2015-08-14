@@ -26,17 +26,23 @@ angular.module('app',[
         $routeProvider.when('/', {
             redirectTo: '/financeiro'
         });
-// ========= DASHBOARD SECRETARIA ========= //
+// ========= DASHBOARD FINANCEIRO ========= //
         $routeProvider.when('/financeiro', {
             templateUrl: 'html/financeiro/financeiro.html',
             controller: 'dashboard',
             controllerAs: 'dash'
         });
-// ========= DASHBOARD SECRETARIA ========= //
+// ========= CONTROLE DE CHEQUES ========= //
         $routeProvider.when('/controle-cheques', {
             templateUrl: 'html/financeiro/control-cheques.html',
             controller: 'controlCheques',
             controllerAs: 'cc'
+        });
+// ========= ALUNO FINANCEIRO ========= //
+        $routeProvider.when('/financeiro/aluno/:matricula', {
+            templateUrl: 'html/financeiro/aluno.html',
+            controller: 'alunoFin',
+            controllerAs: 'al'
         });
 // ========= OTHERWISE ========= //
         $routeProvider.otherwise({

@@ -55,7 +55,7 @@
                             },
                             "1data": {date: true, int: vm.cheques[i].data},
                             "2bompara": {date: true, int: vm.cheques[i].bomPara},
-                            "3valor": vm.cheques[i].cheque.valor.toString(),
+                            "3valor": Number(vm.cheques[i].cheque.valor).toFixed(2),
                             "4parcela": vm.cheques[i].parcela.toString(),
                             "5num": vm.cheques[i].cheque.numero,
                             "6banco": vm.cheques[i].cheque.banco.text,

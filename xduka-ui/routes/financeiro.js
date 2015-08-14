@@ -4,6 +4,9 @@ module.exports = function (app, passport) {
     //get-unidade
     app.route('/api/financeiro/getCheques')
         .get(controller.getCheques);
+    //Alunos Search
+    app.route('/api/financeiro/aluno/:nomeMat')
+        .get(controller.alunoSearch);
 
     return app;
 };
