@@ -1,0 +1,477 @@
+<div class="transparentBlock animated" ng-class="{'fadeOut': al.loaded}"></div>
+<div class="row" ng-cloak>
+    <div class="col-md-12">
+        <div class="alert alert-danger" role="alert" data-ng-show="al._model.alert&&!!al._model.pendencia.model.val">
+            <button type="button" class="close" aria-label="Close" data-ng-click="al.disableAlert()"><span aria-hidden="true">&times;</span></button>
+            <span class="alert-title">Aviso:</span>
+            <hr/>
+            <div class="alertContent">
+                <span class="alert-padding">
+                    <p ng-bind="al._model.pendencia.model.val"></p>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="alert alert-error" ng-show="!!al._erro">
+            <p class="text-danger">{{al._erro}}</p>
+        </div>
+        <!-- FOTO DO CADASTRO -->
+        <div class="col-md-2 col-sm-5 col-xs-12 fadeBordered text-left" style="padding: 1%;margin-top: 20px;">
+            <p class="control-label">Foto 200x150:<button type="button" class="close" aria-hidden="true" ng-click="al.removeFoto()" data-ng-disabled="!al.editing"><i class="entypo-trash"></i></button></p>
+            <img ng-src="{{al._model.foto.model.val}}" class="img-circle" alt="FOTO" width="100%"/>
+            <br/>&nbsp;
+            <span class="btn btn-default btn-file form-control" data-ng-disabled="!al.editing" onclick="$('#modalFoto').modal('show', {backdrop: 'static'})">
+            Procurar... <input name="fileInput" type="file" id="fileInput" onclick="this.value = null" ng-click="al.clickFoto()" onfocus="!$('#fileInput').val()?$('#modalFoto').modal('hide'):0">
+            </span>
+        </div>
+
+        <div class="col-md-10 col-sm-6 col-xs-12">
+
+
+            <ul class="nav nav-tabs">
+                <li class="linkCursor linkCursor " ng-repeat="nav in al._model.navs" ng-class="{'active': nav.active}" title="{{nav.text}}">
+                    <a data-target="{{nav.target}}" data-toggle="tab" style="padding: 11px;">
+                        <span class="hidden-xs hidden-sm"><i class="{{nav.entypo}}"></i>{{nav.text}}</span>
+                        <span class="hidden-md hidden-lg"><i class="{{nav.entypo}}"></i></span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <!-- HOME -->
+                <div class="tab-pane active" id="home">
+                    <xd-panel-collapse title="'Informações básicas'">
+                        <div class="row">
+                            <div class="col-md-4 padding1">
+                                <xd-input data-params="al._model.matricula" data-disable="true"></xd-input>
+                            </div>
+                            <div class="col-md-8 padding1">
+                                <xd-input data-params="al._model.nome" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 padding1">
+                                <xd-input-date data-params="al._model.dataMatricula" data-disable="!al.editing"></xd-input-date>
+                            </div>
+                            <div class="col-md-3 padding1">
+                                <xd-select data-params="al._model.sexo" data-disable="!al.editing"></xd-select>
+                            </div>
+                            <div class="col-md-3 padding1">
+                                <xd-input-date data-params="al._model.dataNasc" data-disable="!al.editing"></xd-input-date>
+                            </div>
+                            <div class="col-md-3 padding1">
+                                <xd-input data-params="al._model.rg" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 padding1">
+                                <xd-input data-params="al._model.cpf" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="col-md-4 padding1">
+                                <xd-input data-params="al._model.telefone" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="col-md-4 padding1">
+                                <xd-input data-params="al._model.cidadeUf" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 padding1">
+                                <xd-input-email data-params="al._model.email" data-disable="!al.editing"></xd-input-email>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                    <xd-panel-collapse title="'Relatórios'">
+                        <div class="row">
+                            <div class="col-md-5 padding1">
+                                <xd-select data-params="al._model.cursoTurma"></xd-select>
+                            </div>
+                            <div class="col-md-4 padding1">
+                                <xd-select data-params="al._model.relatorio"></xd-select>
+                            </div>
+                            <div class="col-md-3 padding1 text-center">
+                                <br/>
+                                <button type="button" class="btn btn-white heightFix" title="Imprimir relatório selecionado"><i class="entypo-print"></i></button>
+                                <button type="button" class="btn btn-white heightFix" title="Adicionar"><i class="entypo-plus"></i></button>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                </div>
+
+                <!-- ENDEREÇO -->
+                <div class="tab-pane" id="endereco">
+                    <xd-panel-collapse title="'Endereço'">
+                        <div class="row">
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.cep" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.bairro" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-select data-params="al._model.endUf" data-disable="!al.editing"></xd-select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-8">
+                                <xd-input data-params="al._model.avRua" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.endNum" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.complemento" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-6">
+                                <xd-input-email data-params="al._model.email" data-disable="!al.editing"></xd-input-email>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.telefone" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-6">
+                                <xd-select data-params="al._model.tipoTelefone" data-disable="!al.editing"></xd-select>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                </div>
+
+                <!-- DOCUMENTAÇÃO -->
+                <div class="tab-pane" id="documentacao">
+                    <xd-panel-collapse title="'Informações Gerais'">
+                        <div class="row">
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.cpf" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.rg" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-6">
+                                <xd-input-date data-params="al._model.dataExp" data-disable="!al.editing"></xd-input-date>
+                            </div>
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.orgaoEmissor" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.escolaridade" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.formacao" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-12">
+                                <xd-input data-params="al._model.profissao" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.empresa" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.funcao" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+
+                    <xd-panel-collapse title="'Filiação'">
+                        <div class="row">
+                            <div class="padding1 col-md-12">
+                                <xd-input data-params="al._model.mae" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-12">
+                                <xd-input data-params="al._model.pai" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+
+                    <xd-panel-collapse title="'Certificado Militar'" data-ng-show="al._model.sexo.model.val=='f'">
+                        <div class="row">
+                            <div class="padding1 col-md-6">
+                                <xd-select data-params="al._model.statusMilitar" data-disable="!al.editing"></xd-select>
+                            </div>
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.certificadoRes" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-5">
+                                <xd-input data-params="al._model.registro" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-3">
+                                <xd-input data-params="al._model.ufReservista" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.categoria" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+
+                    <xd-panel-collapse title="'Certidão'">
+                        <div class="row">
+                            <div class="padding1 col-md-5">
+                                <xd-select data-params="al._model.statusCertidao" data-disable="!al.editing"></xd-select>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.certidaoNc" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-3">
+                                <xd-input data-params="al._model.livro" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.folha" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.certidaoNc" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.certidaoCidadeUf" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.tituloEleitor" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.zona" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.secao" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-select data-params="al._model.ufTitulo" data-disable="!al.editing"></xd-select>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.im" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                    <xd-panel-collapse title="'Outros'">
+                        <div class="row">
+                            <div class="padding1 col-md-12">
+                                <xd-input-textarea data-params="al._model.observacoes" data-disable="!al.editing"></xd-input-textarea>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                </div>
+
+                <!-- GRADE/DISCIPLINA -->
+                <div class="tab-pane" id="gradeDisc">
+                    <xd-panel-collapse title="'Grade/Disciplinas'">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <xd-grid data-params="al._model.gridGrade"></xd-grid>
+                                </div>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                </div>
+
+                <!-- NOTAS -->
+                <div class="tab-pane" id="notas">
+                    <xd-panel-collapse title="'Boletim'">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="scrollTable col-md-12">
+                                    <xd-grid data-params="al._model.gridAvaliacoes"></xd-grid>
+                                </div>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                    <xd-panel-collapse title="'Imprimir'">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <xd-select data-params="al._model.printBoletim"></xd-select>
+                                <div class="center center-block text-center">
+                                    <button class="btn btn-default btn-lg btn-icon icon-left" ng-click="al.imprimirBoletim()">
+                                        IMPRMIR
+                                        <i class="entypo-print"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                </div>
+
+                <!-- HISTÓRICO -->
+                <div class="tab-pane" id="historico">
+                    <xd-panel-collapse title="'Monografia'">
+                        <div class="row">
+                            <div class="padding1 col-md-12">
+                                <xd-input data-params="al._model.monografia" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-8">
+                                <xd-input data-params="al._model.orientador" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.nota" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-5">
+                                <xd-input-date data-params="al._model.dataApuracao" data-disable="!al.editing"></xd-input-date>
+                            </div>
+                            <div class="padding1 col-md-5">
+                                <xd-input-date data-params="al._model.dataColacao" data-disable="!al.editing"></xd-input-date>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                    <xd-panel-collapse title="'Informações do Ensino Médio'">
+                        <div class="row">
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.anoLetivo" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-6">
+                                <xd-input data-params="al._model.anoEm" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-12">
+                                <xd-input data-params="al._model.escolaEm" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.municipioEm" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.ufEm" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.cursoEm" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                    <xd-panel-collapse title="'Informações do Curso'">
+                        <div class="row">
+                            <div class="padding1 col-md-8">
+                                <xd-input data-params="al._model.instituicao" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.anoGrad" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-8">
+                                <xd-input data-params="al._model.cursoGrad" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.ufGrad" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                    <xd-panel-collapse title="'Outros'">
+                        <div class="row">
+                            <div class="padding1 col-md-12">
+                                <xd-input-textarea data-params="al._model.obsGrad" data-disable="!al.editing"></xd-input-textarea>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                </div>
+
+                <!-- LOG -->
+                <div class="tab-pane" id="log">
+                    <xd-panel-collapse title="'Log'">
+                        <div class="row">
+                            <div class="padding1 col-md-12">
+                                <xd-select data-params="al._model.logUser"></xd-select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-12">
+                                <div class="col-md-12">
+                                    <div class="col-md-12 scrollTable">
+                                        <xd-grid data-params="al._model.gridLOg"></xd-grid>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                    <xd-panel-collapse title="'Outros'">
+                        <div class="row">
+                            <div class="padding1 col-md-12">
+                                <xd-input-textarea data-params="al._model.obsLog" data-disable="!al.editing"></xd-input-textarea>
+                            </div>
+                        </div>
+                    </xd-panel-collapse>
+                </div>
+
+                <div class="center-block text-center centered">
+                    <ul class="pager">
+                        <li class="col-md-4 inLine" style="max-width: 250px">
+                            <button class="btn btn-blue btn-lg btn-icon icon-left btn-block" ng-click="al.moreAlunoVoltar()">
+                                Voltar
+                                <i class="entypo-left"></i>
+                            </button>
+                        </li>
+                        <li class="col-md-4 inLine" style="max-width: 250px">
+                            <button class="btn btn-green btn-lg btn-icon icon-left btn-block" data-ng-disabled="!al.editing" ng-click="al.salvar()">
+                                Salvar
+                                <i class="entypo-check"></i>
+                            </button>
+                        </li>
+                        <li class="col-md-4 inLine" data-ng-show="!al.editing" style="max-width: 250px">
+                            <button class="btn btn-warning btn-lg btn-icon icon-left btn-block" data-ng-disabled="al.editing" ng-click="al.editarAluno()">
+                                Editar
+                                <i class="entypo-pencil"></i>
+                            </button>
+                        </li>
+                        <li class="col-md-4 inLine" data-ng-show="al.editing" style="max-width: 250px">
+                            <button class="btn btn-danger btn-lg btn-icon icon-left btn-block" data-ng-disabled="!al.editing" ng-click="al.cancelEdit()">
+                                Cancelar
+                                <i class="entypo-cancel"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form name="formFoto"
+      class="form-horizontal">
+    <div aria-hidden="true" class="modal fade" id="modalFoto">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Cortar Foto</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="cropArea">
+                        <img-crop image="myImage" result-image="myCroppedImage" on-load-error="al.imgCropErr()"></img-crop>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-sm-6 text-center">
+                            <button type="button" class="btn btn-default btn-lg btn-icon icon-left pull-left" data-dismiss="modal"><i class="entypo-back"></i>Voltar</button>
+                        </div>
+                        <div class="col-sm-6 text-center">
+                            <button type="button" class="btn btn-info btn-lg btn-icon icon-left pull-right" data-dismiss="modal" data-ng-click="al.sendFoto()"><i class="entypo-check"></i>Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

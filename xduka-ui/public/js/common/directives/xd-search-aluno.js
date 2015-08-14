@@ -36,14 +36,15 @@
 
                     /* VER ALUNO PESQUISADO */
                     function moreAluno (aluno){
+                        console.log('/'+scope.location.toLowerCase()+'/aluno/'+aluno.matricula.model.val);
                         scope.params.openSearch = false;
                         alunoService.aluno = aluno;
                         alunoService.aluno.alert = true;
-                        $location.path('/secretaria/aluno/'+aluno.matricula.model.val)
+                        $location.path('/'+scope.location.toLowerCase()+'/aluno/'+aluno.matricula.model.val)
                     }
 
                     function search(matNome){
-                        var search = $resource('/api/secretaria/aluno/:matNome').get({matNome: matNome}).$promise;
+                        var search = $resource('/api/'+scope.location.toLowerCase()+'/aluno/:matNome').get({matNome: matNome}).$promise;
                         search
                             .then(
                             function (data) {
@@ -96,6 +97,7 @@
                     replace: true,
                     templateUrl: 'html/common/xd-search-aluno.html',
                     scope: {
+                        location: '=',
                         disable: '='
                     },
                     link: link

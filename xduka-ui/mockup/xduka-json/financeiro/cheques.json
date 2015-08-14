@@ -267,7 +267,8 @@
       "placeholder": "Selecione uma opção",
       "list": [
         {"id": 0, "text": "Recusado"},
-        {"id": 1, "text": "Compensado"}
+        {"id": 1, "text": "Compensado"},
+        {"id": 2, "text": "Passado"}
       ],
       "model": {"err": "", "val": ""}
     }
