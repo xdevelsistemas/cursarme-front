@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('common.services').factory('reportService', ['$resource', '$sce', function($resource,$sce) {
+    angular.module('common.services').factory('reportService', ['$http', '$sce', function($http,$sce) {
         var vm = this;
         vm.report = {
             content: {}, //Conteúdo que vai na tag object para formar o PDF
@@ -23,30 +23,26 @@
                 .success( function( data ) {
 
                     vm.report.template = data;
-                    vm.dadosReport = {};
 
-                    vm.dadosReport.myParams = {
+
+                    var myParams = {
                         "template": {"content": vm.report.template, "recipe": "phantom-pdf"},
                         "data": vm.report.data
                     };
-                    vm.dadosReport.responseType = 'arraybuffer';
 
-                    $resource('/api/common/dados-template-report').get(vm.dadosReport).$promise
-                        .then(function(response){
-                            if (response.statusResponse) {
-                                var file = new Blob([response.data], {type: 'application/pdf'});
-                                var fileURL = URL.createObjectURL(file);
+                    $http.post('https://localhost/api/report',myParams, {responseType:'arraybuffer'})
+                        .success(function (response) {
+                            var file = new Blob([response], {type: 'application/pdf'});
+                            var fileURL = URL.createObjectURL(file);
 
-                                vm.report.content = $sce.trustAsResourceUrl(fileURL);
-                            } else {
-                                console.log('Service report error');
-                                console.log(response);
-                            }
+                            vm.report.content = $sce.trustAsResourceUrl(fileURL);
+
                         })
                         .catch(function(err){
                             console.log('Service report error');
                             console.log(err)
                         });
+
                 })
                 .error(function(err){
                     console.log('Service report error (URL TEMPLATE)');
