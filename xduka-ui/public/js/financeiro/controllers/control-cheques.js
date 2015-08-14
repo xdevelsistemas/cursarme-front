@@ -15,7 +15,7 @@
             vm.modalEdit = {};
             vm.saveEdit = saveEdit;
             vm.tableCheques = {
-                id: 'tableGerarTurma',
+                id: 'tableCheques',
                 class: 'table-hover display',
                 dataTable: {
                     "columnDefs": [

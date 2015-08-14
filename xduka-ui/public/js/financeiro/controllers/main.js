@@ -7,6 +7,7 @@
 
                 /* PROGRESS BAR */
                 $scope.progressbar = ngProgressFactory.createInstance();
+                $scope.progressbar.setColor('#45A0CF');
                 $scope.progressbar.start();
 
                 /* jshint validthis: true */
