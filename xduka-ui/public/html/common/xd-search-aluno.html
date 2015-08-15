@@ -4,7 +4,7 @@
                         <span class="input-group-btn searchIcon" ng-class="{'openSearchIcon': params.openSearch}">
                             <i class="entypo-search"></i>
                         </span>
-            <input id="{{'searchAl_'+params.name}}" class="xdCustomSearch-input" type="search" placeholder="Matrícula ou nome" ng-focus="params.searchFocus()"
+            <input id="{{'searchAl_'+location}}" class="xdCustomSearch-input" type="search" placeholder="Matrícula ou nome" ng-focus="params.searchFocus()"
                    ng-model="params._searchVal" ng-change="params.searchPromise(params._searchVal)" ui-keydown="{esc: 'params.searchkp()'}">
         </div>
     </form>

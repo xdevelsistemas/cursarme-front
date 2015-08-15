@@ -2,8 +2,14 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('Main', ['$scope', '$resource', 'breadCrumb', 'modelStrings', 'modelMenu',
-        function($scope, $resource, breadCrumb, modelStrings, modelMenu) {
+        .controller('Main', ['$scope', '$resource', 'breadCrumb', 'modelStrings', 'modelMenu', 'ngProgressFactory',
+        function($scope, $resource, breadCrumb, modelStrings, modelMenu, ngProgressFactory) {
+
+            /* PROGRESS BAR */
+            $scope.progressbar = ngProgressFactory.createInstance();
+            $scope.progressbar.setColor('#45A0CF');
+            $scope.progressbar.start();
+
             /* jshint validthis: true */
             var vm = this
                 , infoUserPromise = $resource('/api/comercial/info-usuario').get().$promise;
@@ -24,6 +30,7 @@
                 then(
                 function (data) {
                     vm.user = data.usuario;
+                    $scope.progressbar.complete();
                 })
                 .catch(
                 function (erro) {
