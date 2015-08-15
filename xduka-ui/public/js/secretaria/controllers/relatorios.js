@@ -69,6 +69,8 @@
                     {text: 'Unidade'}
                 ];
 
+                vm.data.content.body = [];
+
                 // content body pdf
                 for (var i = 0; i < vm._viewInscr.list.length;i++){
                     vm.data.content.body.push({
