@@ -285,7 +285,6 @@
                         <!--<xd-input data-params="pre._model.forma"
                                   data-disable="!pre.validaCpf"></xd-input>-->
                         <xd-select data-params="pre._model.formaPagamentoPag"
-                                   data-disable="!pre.validaCpf"
                                    data-change="pre.selectChequeStep2" data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
@@ -317,8 +316,16 @@
                         <div class="col-md-12">
                             <label for="">Descontos adicionais</label>
                         </div>
+                        <div class="col-md-12" ng-show="pre._model.desconto.model.descontoAdd">
+                            <div class="col-md-12">
+                                <label>Descontos selecionado: {{ pre._model.descontosAdicionais.model.text }}</label>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Descrição do descontos: {{ pre._model.descricaoDesconto.model.val }}</label>
+                            </div>
+                        </div>
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-toggle="modal" data-target="#modalDescAdc" data-ng-disabled="!pre.validaCpf">
+                            <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-toggle="modal" data-target="#modalDescAdc" ng-hide="pre._model.desconto.model.descontoAdd" data-ng-disabled="!pre.validaCpf || pre.disableDescAdd">
                                 Adicionar
                                 <i class="entypo-plus"></i>
                             </button>
@@ -334,7 +341,7 @@
                         <!--<xd-input data-params="pre._model.parcelamento"
                                   data-disable="!pre.validaCpf"></xd-input>-->
                         <xd-select data-params="pre._model.qtdParcelas" data-change="pre.qtdParcelasAplic"
-                                   data-disable="!pre.validaCpf"></xd-select>
+                                   data-disable="!pre.validaCpf || pre.disableQtdParcelas"></xd-select>
                     </div>
                 </div>
                 <div class="row">

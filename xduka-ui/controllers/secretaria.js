@@ -1,10 +1,12 @@
-var extend = require('node.extend'),
+var urlDataBase = '',
+    extend = require('node.extend'),
+    request = require('request'),
     dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
     dadosGeraTurma = require('../mockup/xduka-json/secretaria/dadosGeraTurma.json'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
-    viewInscr = require('../mockup/xduka-json/common/viewInscr.json');
-    alunos = require('../mockup/xduka-json/secretaria/alunos.json');
+    viewInscr = require('../mockup/xduka-json/common/viewInscr.json'),
+    alunos = require('../mockup/xduka-json/common/alunos.json'),
     templateConfig = require('../mockup/xduka-json/secretaria/templateConfig.json');
 
 module.exports = function() {
@@ -17,6 +19,7 @@ module.exports = function() {
     controller.showTemplateInscricao = getTemplateInscricao;
     controller.putDadosInscricao = putDadosInscricao;
     controller.putDadosTurmas = putDadosTurmas;
+    controller.putSaveConfig = putSaveConfig;
     controller.alunoSearch = alunoSearch;
     controller.showConfig = showConfig;
 
@@ -206,10 +209,93 @@ function putDadosTurmas(req, res) {
     res.json(dadosSent);
 }
 
+function putSaveConfig(req, res) {
+    var dadosSent = req.body;
+
+    if (verificaDadosEmpresa(dadosSent.model)) {
+        var sendDados = {
+            "nomeUnidade": {"model": {"val": dadosSent.nomeUnidade.model.val}},
+            "nomeEmpresa": {"model": {"val": dadosSent.nomeEmpresa.model.val}},
+            "cnpj": {"model": {"val": dadosSent.cnpj.model.val}},
+            "endereco": {"model": {"val": dadosSent.endereco.model.val}},
+            "telefone": {"model": {"val": dadosSent.telefone.model.val}},
+            "site": {"model": {"val": dadosSent.site.model.val}},
+            "email": {"model": {"val": dadosSent.email.model.val}},
+            "tipoCurso": {"list": dadosSent.tipoCurso.list},
+            "tipoArea": {"list": dadosSent.tipoArea.list},
+            "turno": {"list": dadosSent.turno.list},
+            "tipoPeriodo": {"list": dadosSent.tipoPeriodo.list},
+            "modalidadeTurma": {"list": dadosSent.modalidadeTurma.list},
+            "horarioEntrada": {"list": dadosSent.horarioEntrada.list},
+            "horarioSaida": {"list": dadosSent.horarioSaida.list},
+            "tipoTelefone": {"list": dadosSent.tipoTelefone.list},
+            "tipoSituacao": {"list": dadosSent.tipoSituacao.list},
+            "secAutorizacao": {"model": {"val": dadosSent.secAutorizacao.model.val}},
+            "secFolha": {"model": {"val": dadosSent.secFolha.model.val}},
+            "secNumero": {"model": {"val": dadosSent.secNumero.model.val}},
+            "dirAutorizacao": {"model": {"val": dadosSent.dirAutorizacao.model.val}},
+            "dirFolha": {"model": {"val": dadosSent.dirFolha.model.val}},
+            "dirNumero": {"model": {"val": dadosSent.dirNumero.model.val}}
+        };
+
+        /*  ENVIAR PARA CLAYTON O OBJETO SENDDADOS CRIADO SÓ COM OS DADOS A SEREM SALVOS   */
+        /*
+        request(urlDataBase, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                res.json(JSON.parse(body));
+            }else {
+                res.json({"erro": true});
+            }
+        });
+        */
+        /*  ===   */
+
+        res.json(extend(true, dadosSent, sendDados));
+    } else {
+        validaDadosEmpresa(dadosSent);
+
+        res.json(dadosSent);
+    }
+}
+
 function setDataExt(a) {
     return new Date(a);
 }
 
 function setDataInt(a) {
     return new Date(a).getTime();
+}
+
+function verificaDadosEmpresa(obj) {
+    return !!obj.nomeUnidade.model.val && !!obj.nomeEmpresa.model.val &&
+    !!obj.cnpj.model.val && !! obj.endereco.model.val &&
+    !!obj.telefone.model.val && !!obj.site.model.val &&
+    !!obj.email.model.val && !!obj.secAutorizacao.model.val &&
+    !!obj.secFolha.model.val && !!obj.secNumero.model.val &&
+    !!obj.dirAutorizacao.model.val && !!obj.dirFolha.model.val &&
+    !!obj.dirNumero.model.val
+}
+
+function validaDadosEmpresa(obj) {
+    obj.model.nomeUnidade.model.err = obj.model.nomeUnidade.model.val ? '' : obj.STR.FIELD;
+    obj.model.nomeEmpresa.model.err = obj.model.nomeEmpresa.model.val ? '' : obj.STR.FIELD;
+    obj.model.cnpj.model.err = obj.model.cnpj.model.val ? '' : obj.STR.FIELD;
+    obj.model.endereco.model.err = obj.model.endereco.model.val ? '' : obj.STR.FIELD;
+    obj.model.telefone.model.err = obj.model.telefone.model.val ? '' : obj.STR.FIELD;
+    obj.model.site.model.err = obj.model.site.model.val ? '' : obj.STR.FIELD;
+
+    obj.model.email.model.err = !obj.model.email.model.val ?
+        obj.STR.FIELD : isEmail(obj.model.email.model.val) ? '' : obj.STR.NOEMAIL;
+
+    obj.model.secAutorizacao.model.err = obj.model.secAutorizacao.model.val ? '' : obj.STR.FIELD;
+    obj.model.secFolha.model.err = obj.model.secFolha.model.val ? '' : obj.STR.FIELD;
+    obj.model.secNumero.model.err = obj.model.secNumero.model.val ? '' : obj.STR.FIELD;
+    obj.model.dirAutorizacao.model.err = obj.model.dirAutorizacao.model.val ? '' : obj.STR.FIELD;
+    obj.model.dirFolha.model.err = obj.model.dirFolha.model.val ? '' : obj.STR.FIELD;
+    obj.model.dirNumero.model.err = obj.model.dirNumero.model.val ? '' : obj.STR.FIELD;
+}
+
+function isEmail(email){
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
 }

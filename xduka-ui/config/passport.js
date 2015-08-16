@@ -65,6 +65,7 @@ module.exports = function (passport) {
                         newUser.local.areas.aluno = !!req.body.aluno;
                         newUser.local.areas.comercial = !!req.body.comercial;
                         newUser.local.areas.secretaria = !!req.body.secretaria;
+                        newUser.local.areas.financeiro = !!req.body.financeiro;
 
                         // save the user
                         newUser.save(function (err) {

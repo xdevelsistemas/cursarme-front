@@ -11,3 +11,10 @@ mongodb:
   volumes:
     - "~/dockerdata/mongo:/data/db"
   command: mongod --smallfiles
+reportjs:
+  image: jsreport/jsreport:latest
+  ports:
+    - "443:2945"
+  volumes:
+    - "~/dockerdata/jsreport:/jsreport"
+  command: bash /home/jsreport/run.sh  --restart always

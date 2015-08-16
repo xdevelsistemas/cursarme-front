@@ -36,5 +36,9 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/templateConfig')
         .get(controller.showConfig);
 
+    //save-configuracoes
+    app.route('/api/secretaria/save-configuracoes')
+        .post(controller.putSaveConfig);
+
     return app;
 };

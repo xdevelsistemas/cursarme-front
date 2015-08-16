@@ -1,0 +1,55 @@
+<div class="col-md-12">
+    <xd-grid data-params="cc.tableCheques"></xd-grid>
+</div>
+<!-- modal render pdf -->
+<div id="editChequeModal" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="cc.cancelEdit()" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Editar Cheque</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <xd-input-date data-params="cc.modalEdit.data"></xd-input-date>
+                    </div>
+                    <div class="col-md-4">
+                        <xd-input-money data-params="cc.modalEdit.valor"></xd-input-money>
+                    </div>
+                    <div class="col-md-4">
+                        <xd-input-date data-params="cc.modalEdit.bomPara"></xd-input-date>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <xd-select data-params="cc.modalEdit.parcela"></xd-select>
+                    </div>
+                    <div class="col-md-4">
+                        <xd-input data-params="cc.modalEdit.num"></xd-input>
+                    </div>
+                    <div class="col-md-4">
+                        <xd-select data-params="cc.modalEdit.banco"></xd-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input data-params="cc.modalEdit.agencia"></xd-input>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-input data-params="cc.modalEdit.destino"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-select data-params="cc.modalEdit.status"></xd-select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cc.cancelEdit()">Cancelar</button>
+                <button type="button" class="btn btn-green" ng-click="cc.saveEdit(cc.modalEdit.pos)">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

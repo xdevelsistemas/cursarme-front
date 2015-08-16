@@ -249,7 +249,7 @@ div.bottomReset {
     min-height: 40px;
     background: rgba(255, 255, 255, 0.98);
     position: absolute;
-    z-index: 10000;
+    z-index: 1039;
     top: 25px;
     right: 125px;
     -moz-border-radius:7px;
@@ -295,7 +295,7 @@ div.bottomReset {
 
 .xdCustomSearch-input {
     width: 100%;
-    height: 100%;
+    height: 4.3em;
     padding: 0 10% 0 10px;
     font-weight: 700;
     border: none;
@@ -316,6 +316,7 @@ div.bottomReset {
 }
 
 .xdCustomSearch.open .xdCustomSearch-input {
+    height: 100%!important;
     font-size: 5em;
 }
 

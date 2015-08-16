@@ -31,17 +31,20 @@
 
                 <p>
                     <strong>Permissões</strong>:
-                <ul>
-                    <% if (!!user.local.areas.aluno) { %>
-                    <li>Aluno</li>
-                    <% } %>
-                    <% if (!!user.local.areas.comercial) { %>
-                    <li>Comercial</li>
-                    <% } %>
-                    <% if (!!user.local.areas.secretaria) { %>
-                    <li>Secretaria</li>
-                    <% } %>
-                </ul>
+                    <ul>
+                        <% if (!!user.local.areas.aluno) { %>
+                        <li>Aluno</li>
+                        <% } %>
+                        <% if (!!user.local.areas.comercial) { %>
+                        <li>Comercial</li>
+                        <% } %>
+                        <% if (!!user.local.areas.secretaria) { %>
+                        <li>Secretaria</li>
+                        <% } %>
+                        <% if (!!user.local.areas.financeiro) { %>
+                        <li>Financeiro</li>
+                        <% } %>
+                    </ul>
                 </p>
             </div>
         </div>
