@@ -1,4 +1,4 @@
-FROM xdevelsistemas/debian-env:node-env
+FROM node:0.12-onbuild
 
 MAINTAINER Clayton Santos da Silva "clayton@xdevel.com.br"
 
