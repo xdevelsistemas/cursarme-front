@@ -3,7 +3,7 @@ FROM xdevelsistemas/debian-env:node-env
 MAINTAINER Clayton Santos da Silva "clayton@xdevel.com.br"
 
 
-RUN apt-get install  && apt-get -y dist-upgrade
+RUN apt-get install  && apt-get -y dist-upgrade && apt-get install bzip2
 #latest npm
 RUN npm install --global npm@latest  
 # add project to build
