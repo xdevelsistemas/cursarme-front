@@ -194,7 +194,7 @@
                         </div>
                     </xd-panel-collapse>
 
-                    <xd-panel-collapse title="'Certificado Militar'" data-ng-show="al._model.sexo.model.val=='f'">
+                    <xd-panel-collapse title="'Certificado Militar'" data-ng-hide="al._model.sexo.model.val=='f'">
                         <div class="row">
                             <div class="padding1 col-md-6">
                                 <xd-select data-params="al._model.statusMilitar" data-disable="!al.editing"></xd-select>

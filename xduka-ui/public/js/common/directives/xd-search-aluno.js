@@ -36,7 +36,6 @@
 
                     /* VER ALUNO PESQUISADO */
                     function moreAluno (aluno){
-                        console.log('/'+scope.location.toLowerCase()+'/aluno/'+aluno.matricula.model.val);
                         scope.params.openSearch = false;
                         alunoService.aluno = aluno;
                         alunoService.aluno.alert = true;
