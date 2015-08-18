@@ -96,6 +96,7 @@
                     })
                 }
             }
+
             vm.geraDec = function () {
                 // header pdf
                 /*reportService.data.header = {
