@@ -2,6 +2,11 @@ var isLoggedIn = require('../services/isLoggedIn.js'),
     isNotLoggedIn = require('../services/isNotLoggedIn.js'),
     http = require('http');
 
+var url = 'https://localhost',
+    username = '',
+    password = '',
+    client = require("jsreport-client")(url, username, password);
+
 module.exports = function (app, passport) {
 //    var express = require('express');
 
@@ -126,6 +131,38 @@ module.exports = function (app, passport) {
         else
             res.send({success: false, errmsg: 'User is not defined.'});
     });
+
+    // REPORT
+    app.get("/report", function(req, res, next) {
+        var dataTemplate = {},
+            options = {
+                host: 'localhost',
+                port: 3000,
+                path: '/api/common/dados-template-header-footer/' + decodeURIComponent(req.query.templateContent)
+            };
+
+        var callback = function(response) {
+            response.on('data', function (data) {
+                dataTemplate = JSON.parse(data);
+            });
+            response.on('end', function () {
+                // your code here if you want to use the results !
+                dataTemplate.template.recipe = "phantom-pdf";
+                dataTemplate.data.content = JSON.parse(decodeURIComponent(req.query.dataContent));
+
+                client.render(dataTemplate, function(err, response) {
+                    if (err) {
+                        return next(err);
+                    }
+                    response.pipe(res);
+                });
+            });
+        };
+
+        http.request(options, callback).end();
+
+    });
+
 
     return app;
 };
