@@ -343,6 +343,12 @@
                         target: '#endereco'
                     },
                     {
+                        text: 'Parcelas',
+                        entypo: 'entypo-calendar',
+                        active: false,
+                        target: '#parcelas'
+                    },
+                    {
                         text: 'Documentação',
                         entypo: 'entypo-vcard',
                         active: false,
@@ -504,6 +510,80 @@
                     $timeout(function () {
                         $scope.progressbar.complete();
                         vm.loaded = true;
+                    })
+                };
+
+                vm._model.gridParcelas = {
+                    class: 'table-hover table-bordered display',
+                    head: ["Nº", "Valor", "Desconto", "Acrescimo", "Vencimento", "Valor pago", "Pagamento", "Jur/Multas", "Caixa", "Status", "C", "A", ""],
+                    list: [
+                        {
+                            'anum': '1',
+                            'bvalor': '315,00',
+                            'cdesconto': '15,00',
+                            'dacrescimo': '0,00',
+                            'evencimento': {date: true, int: 1439866800000, formatDate: 'dd/MM/yyyy'},
+                            'fvalorPago': '300.00',
+                            'gpagamento': {date: true, int: 1439866800000, formatDate: 'dd/MM/yyyy'},
+                            'hjurMultas': '0.00',
+                            'icaixa': 'Banco do Brasil',
+                            'jstatus': 'Quitado',
+                            'kc': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'la': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'medit': {btn: true, list: [
+                                {
+                                    class: 'btn btn-ico',
+                                    entypo: 'entypo-pencil',
+                                    click: editParcela
+                                }
+                            ]}
+                        },
+                        {
+                            'anum': '2',
+                            'bvalor': '315,00',
+                            'cdesconto': '15,00',
+                            'dacrescimo': '0,00',
+                            'evencimento': {date: true, int: 1442545200000, formatDate: 'dd/MM/yyyy'},
+                            'fvalorPago': '0.00',
+                            'gpagamento': {date: true, int: '', formatDate: 'dd/MM/yyyy'},
+                            'hjurMultas': '0.00',
+                            'icaixa': '',
+                            'jstatus': '',
+                            'kc': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'la': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'medit': {btn: true, list: [
+                                {
+                                    class: 'btn btn-ico',
+                                    entypo: 'entypo-pencil'
+                                }
+                            ]}
+                        },
+                        {
+                            'anum': '3',
+                            'bvalor': '315,00',
+                            'cdesconto': '15,00',
+                            'dacrescimo': '0,00',
+                            'evencimento': {date: true, int: 1445137200000, formatDate: 'dd/MM/yyyy'},
+                            'fvalorPago': '0.00',
+                            'gpagamento': {date: true, int: '', formatDate: 'dd/MM/yyyy'},
+                            'hjurMultas': '0.00',
+                            'icaixa': '',
+                            'jstatus': '',
+                            'kc': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'la': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'medit': {btn: true, list: [
+                                {
+                                    class: 'btn btn-ico',
+                                    entypo: 'entypo-pencil'
+                                }
+                            ]}
+                        }
+                    ]
+                };
+                function editParcela(obj){
+                    $('#modalEditParcelas').modal({
+                        backdrop: 'static',
+                        keyboard: false
                     })
                 }
 
