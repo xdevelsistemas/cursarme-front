@@ -98,7 +98,7 @@
             }
             vm.geraDec = function () {
                 // header pdf
-                reportService.data.header = {
+                /*reportService.data.header = {
                     logo: vm._templateConfig.logo,
                     nomeEmpresa: vm._templateConfig.nomeEmpresa.model.val,
                     nomeUnidade: vm._templateConfig.nomeUnidade.model.val
@@ -110,14 +110,15 @@
                     telefone: vm._templateConfig.telefone.model.val,
                     email: vm._templateConfig.email.model.val,
                     site: vm._templateConfig.site.model.val
-                };
+                };*/
 
-                reportService.data.content = {
+                vm.data.content = {
                     data: '22/12/2015',
                     nome: 'João das Couves',
                     curso: 'Sistemas de Informação'
                 };
-                reportService.gerar('html/common/template-decDocs.ejs');
+                //reportService.gerar('html/common/template-decDocs.ejs');
+                window.open("/report?templateContent=" + encodeURIComponent("template-decDocs") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
             };
 
 
