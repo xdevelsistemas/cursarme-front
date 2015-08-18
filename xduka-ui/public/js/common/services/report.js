@@ -35,6 +35,8 @@
                             var file = new Blob([response], {type: 'application/pdf'});
                             var fileURL = URL.createObjectURL(file);
 
+                            console.log(response.toString());
+
                             vm.report.content = $sce.trustAsResourceUrl(fileURL);
 
                         })
