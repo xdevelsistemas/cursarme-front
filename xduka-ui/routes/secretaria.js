@@ -32,6 +32,9 @@ module.exports = function (app, passport) {
     //Alunos Search
     app.route('/api/secretaria/aluno/:nomeMat')
         .get(controller.alunoSearch);
+    //Template aluno
+    app.route('/api/secretaria/templateAluno')
+        .get(controller.getTemplateAl);
     //Alunos Search
     app.route('/api/secretaria/templateConfig')
         .get(controller.showConfig);
