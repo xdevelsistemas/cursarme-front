@@ -37,7 +37,7 @@
 
                             console.log(response.toString());
                             if(fileURL != ""){
-                               // vm.report.content = $sce.trustAsResourceUrl(fileURL);
+                                // vm.report.content = $sce.trustAsResourceUrl(fileURL);
                                 window.open($sce.trustAsResourceUrl(fileURL), '_blank');
                             }
 
