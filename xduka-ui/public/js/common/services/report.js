@@ -36,8 +36,10 @@
                             var fileURL = URL.createObjectURL(file);
 
                             console.log(response.toString());
-
-                            vm.report.content = $sce.trustAsResourceUrl(fileURL);
+                            if(fileURL != ""){
+                               // vm.report.content = $sce.trustAsResourceUrl(fileURL);
+                                window.open($sce.trustAsResourceUrl(fileURL), '_blank');
+                            }
 
                         })
                         .catch(function(err){
