@@ -8,9 +8,10 @@ var urlDataBase = '',
 module.exports = function() {
     var controller = {};
 
-    controller.getCheques = getCheques;
     controller.alunoSearch = alunoSearch;
+    controller.getCheques = getCheques;
     controller.getTemplateAluno = getTemplateAluno;
+    controller.postChequeEdit = postChequeEdit;
 
     return controller;
 };
@@ -54,4 +55,14 @@ function getCheques(req,res) {
 
 function getTemplateAluno(req,res) {
     res.json(templateAluno);
+}
+
+function postChequeEdit(req,res) {
+    var cheque = req.body.cheque;
+
+    /**
+     * TOdo request com requisição ao bd
+     */
+
+    res.json(cheque);
 }
