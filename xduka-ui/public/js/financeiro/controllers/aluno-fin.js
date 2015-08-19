@@ -8,10 +8,11 @@
 
                 /* PROGRESS BAR */
                 $scope.progressbar = ngProgressFactory.createInstance();
+                $scope.progressbar.setColor('#45A0CF');
                 $scope.progressbar.start();
 
                 var vm = this
-                    , template = $resource('/api/comercial/template-inscricao').get().$promise;
+                    , template = $resource('/api/financeiro/templateAluno').get().$promise;
 
                 breadCrumb.title = 'Aluno';
 
@@ -31,215 +32,6 @@
                 template
                     .then(function(data){
                         $.extend(vm._model, data, {
-                            matricula: {
-                                label: 'Matrícula',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            dataMatricula: {
-                                label: 'Data de Matrícula',
-                                model: {val: ''},
-                                type: 'text',
-                                "name": "dataMatr",
-                                "format": "dd/MM/yyyy"
-                            },
-                            foto: {
-                                model: {val: ''}
-                            },
-                            cursoTurma: {
-                                label: 'Curso/Turma',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            relatorio: {
-                                label: ' ',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            cidadeUf: {
-                                label: 'Cidade/UF',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            escolaridade: {
-                                label: 'Escolaridade',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            formacao: {
-                                label: 'Formação',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            profissao: {
-                                label: 'Profissão',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            empresa: {
-                                label: 'Empresa',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            funcao: {
-                                label: 'Função',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            statusMilitar: {
-                                label: 'Status',
-                                model: {val: ''},
-                                list: [
-                                    {id: 'n', text: 'Não apresentou'},
-                                    {id: 's', text: 'Apresentou'}
-                                ],
-                                type: 'select'
-                            },
-                            statusCertidao: {
-                                label: 'Status',
-                                model: {val: ''},
-                                list: [
-                                    {id: 'n', text: 'Não apresentou'},
-                                    {id: 's', text: 'Apresentou'}
-                                ],
-                                type: 'select'
-                            },
-                            certidaoCidadeUf: {
-                                label: 'Cidade/UF',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            im: {
-                                label: 'I.M',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            monografia: {
-                                label: 'Monografia',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            orientador: {
-                                label: 'Orientador',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            nota: {
-                                label: 'Nota',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            dataApuracao: {
-                                label: 'Data Apuração',
-                                model: {val: ''},
-                                type: 'text',
-                                "name": "dataMatr",
-                                "format": "dd/MM/yyyy"
-                            },
-                            dataColacao: {
-                                label: 'Data Colação',
-                                model: {val: ''},
-                                type: 'text',
-                                "name": "dataMatr",
-                                "format": "dd/MM/yyyy"
-                            },
-                            anoLetivo: {
-                                label: 'Ano Letivo',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            municipioEm: {
-                                label: 'Municipio',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            ufEm: {
-                                "label": "UF",
-                                "type": "text",
-                                "placeholder": "Selecione...",
-                                "name": "natUf",
-                                "model": {"val": "", "err": ""},
-                                "list": [{"id": "UF_AC", "text": "AC"},
-                                    {"id": "UF_AL", "text": "AL"},
-                                    {"id": "UF_AP", "text": "AP"},
-                                    {"id": "UF_AM", "text": "AM"},
-                                    {"id": "UF_BA", "text": "BA"},
-                                    {"id": "UF_CE", "text": "CE"},
-                                    {"id": "UF_DF", "text": "DF"},
-                                    {"id": "UF_ES", "text": "ES"},
-                                    {"id": "UF_GO", "text": "GO"},
-                                    {"id": "UF_MA", "text": "MA"},
-                                    {"id": "UF_MT", "text": "MT"},
-                                    {"id": "UF_MS", "text": "MS"},
-                                    {"id": "UF_MG", "text": "MG"},
-                                    {"id": "UF_PA", "text": "PA"},
-                                    {"id": "UF_PB", "text": "PB"},
-                                    {"id": "UF_PR", "text": "PR"},
-                                    {"id": "UF_PE", "text": "PE"},
-                                    {"id": "UF_PI", "text": "PI"},
-                                    {"id": "UF_RJ", "text": "RJ"},
-                                    {"id": "UF_RN", "text": "RN"},
-                                    {"id": "UF_RS", "text": "RS"},
-                                    {"id": "UF_RO", "text": "RO"},
-                                    {"id": "UF_SC", "text": "SC"},
-                                    {"id": "UF_RR", "text": "RR"},
-                                    {"id": "UF_SP", "text": "SP"},
-                                    {"id": "UF_SE", "text": "SE"},
-                                    {"id": "UF_TO", "text": "TO"}]
-                            },
-                            cursoEm: {
-                                label: 'Curso',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            ufGrad: {
-                                "label": "UF",
-                                "type": "text",
-                                "placeholder": "Selecione...",
-                                "name": "natUf",
-                                "model": {"val": "", "err": ""},
-                                "list": [{"id": "UF_AC", "text": "AC"},
-                                    {"id": "UF_AL", "text": "AL"},
-                                    {"id": "UF_AP", "text": "AP"},
-                                    {"id": "UF_AM", "text": "AM"},
-                                    {"id": "UF_BA", "text": "BA"},
-                                    {"id": "UF_CE", "text": "CE"},
-                                    {"id": "UF_DF", "text": "DF"},
-                                    {"id": "UF_ES", "text": "ES"},
-                                    {"id": "UF_GO", "text": "GO"},
-                                    {"id": "UF_MA", "text": "MA"},
-                                    {"id": "UF_MT", "text": "MT"},
-                                    {"id": "UF_MS", "text": "MS"},
-                                    {"id": "UF_MG", "text": "MG"},
-                                    {"id": "UF_PA", "text": "PA"},
-                                    {"id": "UF_PB", "text": "PB"},
-                                    {"id": "UF_PR", "text": "PR"},
-                                    {"id": "UF_PE", "text": "PE"},
-                                    {"id": "UF_PI", "text": "PI"},
-                                    {"id": "UF_RJ", "text": "RJ"},
-                                    {"id": "UF_RN", "text": "RN"},
-                                    {"id": "UF_RS", "text": "RS"},
-                                    {"id": "UF_RO", "text": "RO"},
-                                    {"id": "UF_SC", "text": "SC"},
-                                    {"id": "UF_RR", "text": "RR"},
-                                    {"id": "UF_SP", "text": "SP"},
-                                    {"id": "UF_SE", "text": "SE"},
-                                    {"id": "UF_TO", "text": "TO"}]
-                            },
-                            obsGrad: {
-                                "label": "Observações",
-                                "type": "textarea",
-                                "name": "observacoes",
-                                "required": false,
-                                "model": {"val": "", "err": ""}
-                            },
-                            obsLog: {
-                                "label": "Observações",
-                                "type": "textarea",
-                                "name": "observacoes",
-                                "required": false,
-                                "model": {"val": "", "err": ""}
-                            },
                             logUser: {
                                 "label": "Usuário",
                                 "type": "text",
@@ -341,6 +133,12 @@
                         entypo: 'entypo-address',
                         active: false,
                         target: '#endereco'
+                    },
+                    {
+                        text: 'Parcelas',
+                        entypo: 'entypo-calendar',
+                        active: false,
+                        target: '#parcelas'
                     },
                     {
                         text: 'Documentação',
@@ -505,6 +303,215 @@
                         $scope.progressbar.complete();
                         vm.loaded = true;
                     })
+                };
+
+                vm._model.gridParcelas = {
+                    class: 'table-hover table-bordered display',
+                    head: ["Nº", "Valor", "Desconto", "Acrescimo", "Vencimento", "Valor pago", "Pagamento", "Jur/Multas", "Caixa", "Status", "C", "A", ""],
+                    list: [
+                        {
+                            'anum': '1',
+                            'bvalor': '315,00',
+                            'cdesconto': '15,00',
+                            'dacrescimo': '0,00',
+                            'evencimento': {date: true, int: 1439866800000, formatDate: 'dd/MM/yyyy'},
+                            'fvalorPago': '300.00',
+                            'gpagamento': {date: true, int: 1439866800000, formatDate: 'dd/MM/yyyy'},
+                            'hjurMultas': '0.00',
+                            'icaixa': 'Banco do Brasil',
+                            'jstatus': 'Quitado',
+                            'kc': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'la': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'medit': {btn: true, list: [
+                                {
+                                    class: 'btn btn-ico',
+                                    entypo: 'entypo-pencil',
+                                    click: editParcela
+                                }
+                            ]}
+                        },
+                        {
+                            'anum': '2',
+                            'bvalor': '315,00',
+                            'cdesconto': '15,00',
+                            'dacrescimo': '0,00',
+                            'evencimento': {date: true, int: 1442545200000, formatDate: 'dd/MM/yyyy'},
+                            'fvalorPago': '0.00',
+                            'gpagamento': {date: true, int: '', formatDate: 'dd/MM/yyyy'},
+                            'hjurMultas': '0.00',
+                            'icaixa': '',
+                            'jstatus': '',
+                            'kc': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'la': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'medit': {btn: true, list: [
+                                {
+                                    class: 'btn btn-ico',
+                                    entypo: 'entypo-pencil'
+                                }
+                            ]}
+                        },
+                        {
+                            'anum': '3',
+                            'bvalor': '315,00',
+                            'cdesconto': '15,00',
+                            'dacrescimo': '0,00',
+                            'evencimento': {date: true, int: 1445137200000, formatDate: 'dd/MM/yyyy'},
+                            'fvalorPago': '0.00',
+                            'gpagamento': {date: true, int: '', formatDate: 'dd/MM/yyyy'},
+                            'hjurMultas': '0.00',
+                            'icaixa': '',
+                            'jstatus': '',
+                            'kc': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'la': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'medit': {btn: true, list: [
+                                {
+                                    class: 'btn btn-ico',
+                                    entypo: 'entypo-pencil'
+                                }
+                            ]}
+                        }
+                    ]
+                };
+                vm._model.modalParcela = {
+                    num: {
+                        "label": "Nº",
+                        "type": "text",
+                        "name": "modalNum",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    valorIntegral: {
+                        "label": "Valor Integral",
+                        "type": "text",
+                        "name": "modalValorIntegral",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    vencimento: {
+                        "label": "Data Vencimento",
+                        "type": "text",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        },
+                        "name": "modalDataVenc",
+                        "format": "dd/MM/yyyy"
+                    },
+                    desconto: {
+                        "label": "Desconto",
+                        "type": "text",
+                        "name": "modalDesconto",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    condicionado: {
+                        "label": "Condicionado a data de vencimento",
+                        "type": "checkbox",
+                        "name": "modalCond",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    acrescimo: {
+                        "label": "Acrescimo",
+                        "type": "text",
+                        "name": "modalAcresc",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    valorPagar: {
+                        "label": "Valor a pagar",
+                        "type": "text",
+                        "name": "modalValPagar",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    c: {
+                        "label": "Cancelar",
+                        "type": "text",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        },
+                        "name": "modalCancelarP",
+                        "format": "dd/MM/yyyy"
+                    },
+                    motivoC: {
+                        "label": "Motivo",
+                        "type": "text",
+                        "name": "modalMotivoC",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    pagamento: {
+                        "label": "Data Pagamento",
+                        "type": "text",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        },
+                        "name": "modalPagamento",
+                        "format": "dd/MM/yyyy"
+                    },
+                    a: {
+                        "label": "Ajuizar",
+                        "type": "text",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        },
+                        "name": "modalAjuizar",
+                        "format": "dd/MM/yyyy"
+                    },
+                    motivoA: {
+                        "label": "Motivo",
+                        "type": "text",
+                        "name": "modalMotivoA",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    jurMultas: {
+                        "label": "Juros e Multas",
+                        "type": "text",
+                        "name": "modalJurMultas",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    valorPago: {
+                        "label": "Valor pago",
+                        "type": "text",
+                        "name": "modalValPago",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    }
+                };
+                function editParcela(obj){
+                    $('#modalEditParcelas').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    })
+                }
+                function clearModalEdit() {
+
                 }
 
             }])

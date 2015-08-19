@@ -7,6 +7,9 @@ module.exports = function (app, passport) {
     //Alunos Search
     app.route('/api/financeiro/aluno/:nomeMat')
         .get(controller.alunoSearch);
+    //get template aluno
+    app.route('/api/financeiro/templateAluno')
+        .get(controller.getTemplateAluno);
 
     return app;
 };
