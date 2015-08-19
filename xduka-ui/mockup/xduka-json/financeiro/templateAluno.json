@@ -1,0 +1,1195 @@
+{
+  "foto": {
+    "label": "Foto 200x150",
+    "type": "picture",
+    "name": "foto",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "matricula": {
+    "label": "Matrícula",
+    "type": "text",
+    "name": "matricula",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "nome": {
+    "label": "Nome",
+    "type": "text",
+    "name": "nome",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "dataMatr": {
+    "label": "Data de Matrícula",
+    "type": "text",
+    "model": {
+      "val": "",
+      "err": ""
+    },
+    "name": "dataMatr",
+    "format": "dd/MM/yyyy"
+  },
+  "sexo": {
+    "label": "Sexo",
+    "type": "select",
+    "name": "sexo",
+    "placeholder": "Selecione...",
+    "model": {
+      "val": "",
+      "err": ""
+    },
+    "list": [
+      {
+        "id": "f",
+        "text": "Feminino"
+      },
+      {
+        "id": "m",
+        "text": "Masculino"
+      }
+    ]
+  },
+  "dataNasc": {
+    "label": "Data Nascimento",
+    "type": "text",
+    "name": "dataNasc",
+    "model": {
+      "val": "",
+      "err": ""
+    },
+    "format": "dd/MM/yyyy"
+  },
+  "rg": {
+    "label": "RG",
+    "type": "text",
+    "name": "rg",
+    "mask": "?9.999-999",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "cpf": {
+    "label": "CPF",
+    "type": "text",
+    "name": "cpf",
+    "mask": "?999.999.999-99",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "telefone": {
+    "label": "Telefone",
+    "type": "text",
+    "mask": "?(99) 9999-9999",
+    "name": "telefone",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "cidadeUf": {
+    "label": "Cidade/UF",
+    "type": "text",
+    "name": "cidadeUf",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "email": {
+    "label": "Email",
+    "type": "email",
+    "name": "email",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "cursoTurma": {
+    "label": "Curso/Turma",
+    "type": "select",
+    "name": "cursoTurma",
+    "placeholder": "Selecione...",
+    "list": [],
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "relatorio": {
+    "label": " ",
+    "type": "select",
+    "name": "relatorio",
+    "placeholder": "Selecione...",
+    "list": [],
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "cep": {
+    "label": "CEP",
+    "type": "text",
+    "name": "cep",
+    "mask": "?99.999-999",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "bairro": {
+    "label": "Bairro",
+    "type": "text",
+    "name": "bairro",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "endUf": {
+    "label": "UF",
+    "type": "text",
+    "placeholder": "Selecione...",
+    "name": "endUf",
+    "model": {
+      "val": "",
+      "err": ""
+    },
+    "list": [
+      {
+        "id": "UF_AC",
+        "text": "AC"
+      },
+      {
+        "id": "UF_AL",
+        "text": "AL"
+      },
+      {
+        "id": "UF_AP",
+        "text": "AP"
+      },
+      {
+        "id": "UF_AM",
+        "text": "AM"
+      },
+      {
+        "id": "UF_BA",
+        "text": "BA"
+      },
+      {
+        "id": "UF_CE",
+        "text": "CE"
+      },
+      {
+        "id": "UF_DF",
+        "text": "DF"
+      },
+      {
+        "id": "UF_ES",
+        "text": "ES"
+      },
+      {
+        "id": "UF_GO",
+        "text": "GO"
+      },
+      {
+        "id": "UF_MA",
+        "text": "MA"
+      },
+      {
+        "id": "UF_MT",
+        "text": "MT"
+      },
+      {
+        "id": "UF_MS",
+        "text": "MS"
+      },
+      {
+        "id": "UF_MG",
+        "text": "MG"
+      },
+      {
+        "id": "UF_PA",
+        "text": "PA"
+      },
+      {
+        "id": "UF_PB",
+        "text": "PB"
+      },
+      {
+        "id": "UF_PR",
+        "text": "PR"
+      },
+      {
+        "id": "UF_PE",
+        "text": "PE"
+      },
+      {
+        "id": "UF_PI",
+        "text": "PI"
+      },
+      {
+        "id": "UF_RJ",
+        "text": "RJ"
+      },
+      {
+        "id": "UF_RN",
+        "text": "RN"
+      },
+      {
+        "id": "UF_RS",
+        "text": "RS"
+      },
+      {
+        "id": "UF_RO",
+        "text": "RO"
+      },
+      {
+        "id": "UF_SC",
+        "text": "SC"
+      },
+      {
+        "id": "UF_RR",
+        "text": "RR"
+      },
+      {
+        "id": "UF_SP",
+        "text": "SP"
+      },
+      {
+        "id": "UF_SE",
+        "text": "SE"
+      },
+      {
+        "id": "UF_TO",
+        "text": "TO"
+      }
+    ]
+  },
+  "avRua": {
+    "label": "Av/Rua",
+    "type": "text",
+    "name": "avRua",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "endNum": {
+    "label": "N",
+    "type": "text",
+    "name": "endNum",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "complemento": {
+    "label": "Complemento",
+    "type": "text",
+    "name": "complemento",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "telefone": {
+    "label": "Telefone",
+    "type": "text",
+    "mask": "?(99) 9999-9999",
+    "name": "telefone",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "tipoTelefone": {
+    "label": "Tipo de telefone",
+    "type": "select",
+    "name": "tipoTelefone",
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {
+        "id": "res",
+        "text": "Residencial"
+      },
+      {
+        "id": "com",
+        "text": "Comercial"
+      },
+      {
+        "id": "cel",
+        "text": "Celular"
+      }
+    ],
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "dataExp": {
+    "label": "Data Expedição",
+    "type": "text",
+    "model": {
+      "val": "",
+      "err": ""
+    },
+    "name": "dataExp",
+    "format": "dd/MM/yyyy"
+  },
+  "orgaoEmissor": {
+    "label": "Órgão Emissor",
+    "type": "text",
+    "name": "orgaoEmissor",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "escolaridade": {
+    "label": "Escolaridade",
+    "type": "text",
+    "name": "escolaridade",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "formacao": {
+    "label": "Formação",
+    "type": "text",
+    "name": "formacao",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "profissao": {
+    "label": "Profissão",
+    "type": "text",
+    "name": "profissao",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "empresa": {
+    "label": "Empresa",
+    "type": "text",
+    "name": "empresa",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "funcao": {
+    "label": "Função",
+    "type": "text",
+    "name": "funcao",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "mae": {
+    "label": "Mãe",
+    "type": "text",
+    "name": "mae",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "pai": {
+    "label": "Pai",
+    "type": "text",
+    "name": "pai",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "statusMilitar": {
+    "label": "Status",
+    "model": {
+      "val": "",
+      "err": ""
+    },
+    "name": "statusMilitar",
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {
+        "id": "n",
+        "text": "Não apresentou"
+      },
+      {
+        "id": "s",
+        "text": "Apresentou"
+      }
+    ],
+    "type": "select"
+  },
+  "certificadoRes": {
+    "label": "Certificado Reservista",
+    "type": "text",
+    "name": "certificadoRes",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "registro": {
+    "label": "Registro",
+    "type": "text",
+    "name": "registro",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "ufReservista": {
+    "label": "UF",
+    "type": "text",
+    "placeholder": "Selecione...",
+    "name": "ufReservista",
+    "model": {
+      "val": "",
+      "err": ""
+    },
+    "list": [
+      {
+        "id": "UF_AC",
+        "text": "AC"
+      },
+      {
+        "id": "UF_AL",
+        "text": "AL"
+      },
+      {
+        "id": "UF_AP",
+        "text": "AP"
+      },
+      {
+        "id": "UF_AM",
+        "text": "AM"
+      },
+      {
+        "id": "UF_BA",
+        "text": "BA"
+      },
+      {
+        "id": "UF_CE",
+        "text": "CE"
+      },
+      {
+        "id": "UF_DF",
+        "text": "DF"
+      },
+      {
+        "id": "UF_ES",
+        "text": "ES"
+      },
+      {
+        "id": "UF_GO",
+        "text": "GO"
+      },
+      {
+        "id": "UF_MA",
+        "text": "MA"
+      },
+      {
+        "id": "UF_MT",
+        "text": "MT"
+      },
+      {
+        "id": "UF_MS",
+        "text": "MS"
+      },
+      {
+        "id": "UF_MG",
+        "text": "MG"
+      },
+      {
+        "id": "UF_PA",
+        "text": "PA"
+      },
+      {
+        "id": "UF_PB",
+        "text": "PB"
+      },
+      {
+        "id": "UF_PR",
+        "text": "PR"
+      },
+      {
+        "id": "UF_PE",
+        "text": "PE"
+      },
+      {
+        "id": "UF_PI",
+        "text": "PI"
+      },
+      {
+        "id": "UF_RJ",
+        "text": "RJ"
+      },
+      {
+        "id": "UF_RN",
+        "text": "RN"
+      },
+      {
+        "id": "UF_RS",
+        "text": "RS"
+      },
+      {
+        "id": "UF_RO",
+        "text": "RO"
+      },
+      {
+        "id": "UF_SC",
+        "text": "SC"
+      },
+      {
+        "id": "UF_RR",
+        "text": "RR"
+      },
+      {
+        "id": "UF_SP",
+        "text": "SP"
+      },
+      {
+        "id": "UF_SE",
+        "text": "SE"
+      },
+      {
+        "id": "UF_TO",
+        "text": "TO"
+      }
+    ]
+  },
+  "categoria": {
+    "label": "Categoria",
+    "type": "text",
+    "name": "categoria",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "statusCertidao": {
+    "label": "Status",
+    "type": "text",
+    "placeholder": "Selecione...",
+    "name": "statusCertidao",
+    "model": {
+      "val": "",
+      "err": ""
+    },
+    "list": [
+      {
+        "id": "n",
+        "text": "Não apresentou"
+      },
+      {
+        "id": "s",
+        "text": "Apresentou"
+      }
+    ]
+  },
+  "certidaoNc": {
+    "label": "Certidão N C",
+    "type": "text",
+    "name": "certidaoNc",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "livro": {
+    "label": "Livro",
+    "type": "text",
+    "name": "livro",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "folha": {
+    "label": "Folha",
+    "type": "text",
+    "name": "folha",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "cartorio": {
+    "label": "Cartório",
+    "type": "text",
+    "name": "cartorio",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "certidaoCidadeUf": {
+    "label": "Cidade/UF",
+    "type": "text",
+    "name": "certidaoCidadeUf",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "tituloEleito": {
+    "label": "Título Eleitor",
+    "type": "text",
+    "name": "tituloEleito",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "zona": {
+    "label": "Zona",
+    "type": "text",
+    "name": "zona",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "secao": {
+    "label": "Seção",
+    "type": "text",
+    "name": "secao",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "ufTitulo": {
+    "label": "UF",
+    "type": "text",
+    "name": "ufTitulo",
+    "placeholder": "Selecione...",
+    "model": {
+      "val": "",
+      "err": ""
+    },
+    "list": [
+      {
+        "id": "UF_AC",
+        "text": "AC"
+      },
+      {
+        "id": "UF_AL",
+        "text": "AL"
+      },
+      {
+        "id": "UF_AP",
+        "text": "AP"
+      },
+      {
+        "id": "UF_AM",
+        "text": "AM"
+      },
+      {
+        "id": "UF_BA",
+        "text": "BA"
+      },
+      {
+        "id": "UF_CE",
+        "text": "CE"
+      },
+      {
+        "id": "UF_DF",
+        "text": "DF"
+      },
+      {
+        "id": "UF_ES",
+        "text": "ES"
+      },
+      {
+        "id": "UF_GO",
+        "text": "GO"
+      },
+      {
+        "id": "UF_MA",
+        "text": "MA"
+      },
+      {
+        "id": "UF_MT",
+        "text": "MT"
+      },
+      {
+        "id": "UF_MS",
+        "text": "MS"
+      },
+      {
+        "id": "UF_MG",
+        "text": "MG"
+      },
+      {
+        "id": "UF_PA",
+        "text": "PA"
+      },
+      {
+        "id": "UF_PB",
+        "text": "PB"
+      },
+      {
+        "id": "UF_PR",
+        "text": "PR"
+      },
+      {
+        "id": "UF_PE",
+        "text": "PE"
+      },
+      {
+        "id": "UF_PI",
+        "text": "PI"
+      },
+      {
+        "id": "UF_RJ",
+        "text": "RJ"
+      },
+      {
+        "id": "UF_RN",
+        "text": "RN"
+      },
+      {
+        "id": "UF_RS",
+        "text": "RS"
+      },
+      {
+        "id": "UF_RO",
+        "text": "RO"
+      },
+      {
+        "id": "UF_SC",
+        "text": "SC"
+      },
+      {
+        "id": "UF_RR",
+        "text": "RR"
+      },
+      {
+        "id": "UF_SP",
+        "text": "SP"
+      },
+      {
+        "id": "UF_SE",
+        "text": "SE"
+      },
+      {
+        "id": "UF_TO",
+        "text": "TO"
+      }
+    ]
+  },
+  "im": {
+    "label": "I.M",
+    "type": "text",
+    "name": "im",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "observacoes": {
+    "label": "Observações",
+    "type": "textarea",
+    "name": "observacoes",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "monografia": {
+    "label": "Monografia",
+    "type": "text",
+    "name": "monografia",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "orientador": {
+    "label": "Orientador",
+    "type": "text",
+    "name": "orientador",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "nota": {
+    "label": "Nota",
+    "type": "text",
+    "name": "nota",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "dataApuracao": {
+    "label": "Data Apuração",
+    "type": "text",
+    "model": {
+      "val": "",
+      "err": ""
+    },
+    "name": "dataApuracao",
+    "format": "dd/MM/yyyy"
+  },
+  "dataColacao": {
+    "label": "Data Colação",
+    "type": "text",
+    "model": {
+      "val": "",
+      "err": ""
+    },
+    "name": "dataColacao",
+    "format": "dd/MM/yyyy"
+  },
+  "anoLetivo": {
+    "label": "Ano Letivo",
+    "type": "text",
+    "name": "anoLetivo",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "anoEm": {
+    "label": "Ano de Conclusão",
+    "type": "text",
+    "name": "anoEm",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "escolaEm": {
+    "label": "Escola que cursou Ensino Médio",
+    "type": "text",
+    "name": "escolaEm",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "municipioEm": {
+    "label": "Municipio",
+    "type": "text",
+    "name": "municipioEm",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "ufEm": {
+    "label": "UF",
+    "type": "text",
+    "placeholder": "Selecione...",
+    "name": "ufEm",
+    "model": {
+      "val": "",
+      "err": ""
+    },
+    "list": [
+      {
+        "id": "UF_AC",
+        "text": "AC"
+      },
+      {
+        "id": "UF_AL",
+        "text": "AL"
+      },
+      {
+        "id": "UF_AP",
+        "text": "AP"
+      },
+      {
+        "id": "UF_AM",
+        "text": "AM"
+      },
+      {
+        "id": "UF_BA",
+        "text": "BA"
+      },
+      {
+        "id": "UF_CE",
+        "text": "CE"
+      },
+      {
+        "id": "UF_DF",
+        "text": "DF"
+      },
+      {
+        "id": "UF_ES",
+        "text": "ES"
+      },
+      {
+        "id": "UF_GO",
+        "text": "GO"
+      },
+      {
+        "id": "UF_MA",
+        "text": "MA"
+      },
+      {
+        "id": "UF_MT",
+        "text": "MT"
+      },
+      {
+        "id": "UF_MS",
+        "text": "MS"
+      },
+      {
+        "id": "UF_MG",
+        "text": "MG"
+      },
+      {
+        "id": "UF_PA",
+        "text": "PA"
+      },
+      {
+        "id": "UF_PB",
+        "text": "PB"
+      },
+      {
+        "id": "UF_PR",
+        "text": "PR"
+      },
+      {
+        "id": "UF_PE",
+        "text": "PE"
+      },
+      {
+        "id": "UF_PI",
+        "text": "PI"
+      },
+      {
+        "id": "UF_RJ",
+        "text": "RJ"
+      },
+      {
+        "id": "UF_RN",
+        "text": "RN"
+      },
+      {
+        "id": "UF_RS",
+        "text": "RS"
+      },
+      {
+        "id": "UF_RO",
+        "text": "RO"
+      },
+      {
+        "id": "UF_SC",
+        "text": "SC"
+      },
+      {
+        "id": "UF_RR",
+        "text": "RR"
+      },
+      {
+        "id": "UF_SP",
+        "text": "SP"
+      },
+      {
+        "id": "UF_SE",
+        "text": "SE"
+      },
+      {
+        "id": "UF_TO",
+        "text": "TO"
+      }
+    ]
+  },
+  "cursoEm": {
+    "label": "Curso",
+    "type": "text",
+    "name": "cursoEm",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "instituicao": {
+    "label": "Nome da instituição onde graduou",
+    "type": "text",
+    "name": "instituicao",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "anoGrad": {
+    "label": "Ano de Conclusão",
+    "type": "text",
+    "name": "anoGrad",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "cursoGrad": {
+    "label": "Curso de Graduação",
+    "type": "text",
+    "name": "cursoGrad",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "ufGraf": {
+    "label": "UF",
+    "type": "text",
+    "placeholder": "Selecione...",
+    "name": "ufGraf",
+    "model": {
+      "val": "",
+      "err": ""
+    },
+    "list": [
+      {
+        "id": "UF_AC",
+        "text": "AC"
+      },
+      {
+        "id": "UF_AL",
+        "text": "AL"
+      },
+      {
+        "id": "UF_AP",
+        "text": "AP"
+      },
+      {
+        "id": "UF_AM",
+        "text": "AM"
+      },
+      {
+        "id": "UF_BA",
+        "text": "BA"
+      },
+      {
+        "id": "UF_CE",
+        "text": "CE"
+      },
+      {
+        "id": "UF_DF",
+        "text": "DF"
+      },
+      {
+        "id": "UF_ES",
+        "text": "ES"
+      },
+      {
+        "id": "UF_GO",
+        "text": "GO"
+      },
+      {
+        "id": "UF_MA",
+        "text": "MA"
+      },
+      {
+        "id": "UF_MT",
+        "text": "MT"
+      },
+      {
+        "id": "UF_MS",
+        "text": "MS"
+      },
+      {
+        "id": "UF_MG",
+        "text": "MG"
+      },
+      {
+        "id": "UF_PA",
+        "text": "PA"
+      },
+      {
+        "id": "UF_PB",
+        "text": "PB"
+      },
+      {
+        "id": "UF_PR",
+        "text": "PR"
+      },
+      {
+        "id": "UF_PE",
+        "text": "PE"
+      },
+      {
+        "id": "UF_PI",
+        "text": "PI"
+      },
+      {
+        "id": "UF_RJ",
+        "text": "RJ"
+      },
+      {
+        "id": "UF_RN",
+        "text": "RN"
+      },
+      {
+        "id": "UF_RS",
+        "text": "RS"
+      },
+      {
+        "id": "UF_RO",
+        "text": "RO"
+      },
+      {
+        "id": "UF_SC",
+        "text": "SC"
+      },
+      {
+        "id": "UF_RR",
+        "text": "RR"
+      },
+      {
+        "id": "UF_SP",
+        "text": "SP"
+      },
+      {
+        "id": "UF_SE",
+        "text": "SE"
+      },
+      {
+        "id": "UF_TO",
+        "text": "TO"
+      }
+    ]
+  },
+  "obsGrad": {
+    "label": "Observações",
+    "type": "textarea",
+    "name": "obsGrad",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  },
+  "obsLog": {
+    "label": "Observações",
+    "type": "textarea",
+    "name": "obsLog",
+    "model": {
+      "val": "",
+      "err": ""
+    }
+  }
+}
