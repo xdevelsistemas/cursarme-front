@@ -24,6 +24,10 @@
                 {{colum}}
             </div>
 
+            <div ng-if="colum.type=='text'">
+                {{colum.text}}
+            </div>
+
             <div ng-if="colum.date">
                 <p ng-show="false">{{colum.int}}</p>
                 {{colum.int | date: (colum.formatDate||"dd/MM/yyyy")}}
@@ -31,7 +35,7 @@
 
             <div ng-if="colum.btn">
                 <div ng-repeat="btn in colum.list" class="text-center">
-                    <button type="button" ng-click="btn.click(btn.args)" class="{{btn.class || 'btn btn-default'}}">
+                    <button type="button" ng-click="btn.click(btn.args,line)" class="{{btn.class || 'btn btn-default'}}">
                         {{btn.text||''}}
                         <i ng-if="!!btn.entypo" class="{{btn.entypo}}"></i>
                     </button>
