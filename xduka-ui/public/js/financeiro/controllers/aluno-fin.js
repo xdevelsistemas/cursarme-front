@@ -30,6 +30,8 @@
                 vm.alert = true;
                 vm.editing = false;
                 vm.loaded = false;
+                vm.modelStrings = modelStrings;
+                vm.msgPendencia = '';
                 vm.openSearch = false;
                 vm.salvarParcela = salvarParcela;
                 vm.visualizarAluno = false;
@@ -617,6 +619,7 @@
                         function (data) {
                             if (data.result.length > 0){
                                 $.extend(true,vm._model,data.result[0]);
+                                vm.msgPendencia = vm.modelStrings.PENDENCIA+' R$'+vm._model.pendencia.model.val;
                                 vm._model.alert = true;
                             }else{
                                 vm._erro = 'Aluno não encontrado! Matrícula: '+$routeParams.matricula

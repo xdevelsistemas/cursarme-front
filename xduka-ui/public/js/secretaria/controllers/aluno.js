@@ -22,6 +22,7 @@
                 vm._model = {};
                 vm._temp = {};
                 vm._searchVal = '';
+                vm.modelStrings = modelStrings;
                 vm.openSearch = false;
                 vm.loaded = false;
                 vm.editing = false;

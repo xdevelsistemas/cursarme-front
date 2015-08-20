@@ -27,6 +27,7 @@
         NORG: 'RG inválido',
         NOTEL: 'Telefone ou Tipo de telefone inválido',
         NOVAGAS: "Não há mais vagas na área selecionada!",
+        PENDENCIA: "Aluno com pendência!",
         REQUIRIDO: 'Este campo não pode ficar vazio',
         START_DATE: 'Data de início',
         SALVAR: 'Salvar',
