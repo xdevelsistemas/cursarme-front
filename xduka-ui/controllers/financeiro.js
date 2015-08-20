@@ -58,11 +58,14 @@ function getTemplateAluno(req,res) {
 }
 
 function postChequeEdit(req,res) {
-    var cheque = req.body.cheque;
+    var cheque = req.body.cheque,
+        pos = req.body.pos;
 
     /**
-     * TOdo request com requisição ao bd
+     * TOdo request com requisição ao backend
      */
 
-    res.json(cheque);
+    cheques.list[pos] = cheque;
+
+    res.json(cheques);
 }

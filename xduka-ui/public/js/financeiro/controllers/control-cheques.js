@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('controlCheques', ['$scope', '$resource', 'breadCrumb', function($scope, $resource, breadCrumb) {
+        .controller('controlCheques', ['$scope', '$resource', '$timeout', '$route', 'breadCrumb',
+            function($scope, $resource, $timeout, $route, breadCrumb) {
 
             /* jshint validthis: true */
             var vm = this
@@ -100,14 +101,16 @@
                 //
                 //  TODO FUNÇÃO DE POST DE SALVAMENTO AQUI
 
-                var chequeEditPromise = $resource('/api/financeiro/chequeEdit').save({}, {"cheque": vm.cheques[pos]}).$promise;
+                var chequeEditPromise = $resource('/api/financeiro/chequeEdit').save({}, pos).$promise;
+                //var chequeEditPromise = $resource('/api/financeiro/chequeEdit').save({}, {"pos": pos, "cheque": vm.cheques[pos]}).$promise;
 
                 chequeEditPromise
                     .then(function(data) {
-                        vm.cheques[pos] = data;
+                        console.log("Success resource");
+                        console.log(data);
 
                         atualizaTable();
-                        cancelEdit()
+                        cancelEdit();
                     })
                     .catch(function(error) {
                         // TODO TRATAR POSSÍVEL ERROR NA EDIÇÃO DO CHEQUE
@@ -120,7 +123,11 @@
 
             function atualizaTable() {
                 /* TODO ATUALIZAR TABELA AO SALVAR */
-                preencheTabelaCheques();
+                // To refresh the page
+                $timeout(function () {
+                    // 0 ms delay to reload the page.
+                    $route.reload();
+                }, 0);
             }
 
             function cancelEdit() {
@@ -136,7 +143,5 @@
                 vm.modalEdit.pos = undefined;
                 $('#editChequeModal').modal('toggle')
             }
-
-
         }]);
 })();
