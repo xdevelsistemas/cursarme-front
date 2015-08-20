@@ -349,7 +349,7 @@
                                     class: 'btn btn-ico',
                                     entypo: 'entypo-pencil',
                                     click: editParcela,
-                                    args: 0
+                                    args: 1
                                 }
                             ]}
                         },
@@ -371,7 +371,7 @@
                                     class: 'btn btn-ico',
                                     entypo: 'entypo-pencil',
                                     click: editParcela,
-                                    args: 0
+                                    args: 2
                                 }
                             ]}
                         },
@@ -393,7 +393,7 @@
                                     class: 'btn btn-ico',
                                     entypo: 'entypo-pencil',
                                     click: editParcela,
-                                    args: 0
+                                    args: 3
                                 }
                             ]}
                         },
@@ -415,7 +415,7 @@
                                     class: 'btn btn-ico',
                                     entypo: 'entypo-pencil',
                                     click: editParcela,
-                                    args: 0
+                                    args: 4
                                 }
                             ]}
                         }
