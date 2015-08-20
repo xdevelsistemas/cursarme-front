@@ -11,6 +11,11 @@
                 $scope.progressbar.setColor('#45A0CF');
                 $scope.progressbar.start();
 
+                //IMG CROP
+                $scope.myImage='';
+                $scope.myCroppedImage='';
+                angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
                 var vm = this
                     , template = $resource('/api/financeiro/templateAluno').get().$promise;
 
@@ -18,17 +23,35 @@
 
                 // ==== MODELOS ==== //
 
-                vm.alert = true;
                 vm._alunos = [];
                 vm._model = {};
-                vm._temp = {};
                 vm._searchVal = '';
-                vm.openSearch = false;
-                vm.loaded = false;
+                vm._temp = {};
+                vm.alert = true;
                 vm.editing = false;
+                vm.loaded = false;
+                vm.openSearch = false;
+                vm.salvarParcela = salvarParcela;
                 vm.visualizarAluno = false;
 
+                /* VOLTAR MORE ALUNO */
+                vm.completeBar = completeBar;
+                vm.disableAlert = disableAlert;
+                vm.moreAlunoVoltar = moreAlunoVoltar;
 
+                /* IMG CROP CUSTOM */
+                vm.clickFoto = clickFoto;
+                vm.imgCropErr = imgCropErr;
+                vm.removeFoto = removeFoto;
+                vm.sendFoto = sendFoto;
+
+                /* FUNÇÕES DE EDIÇÃO */
+                vm.cancelEdit = cancelEdit;
+                vm.editarAluno = editarAluno;
+                vm.salvar = salvar;
+
+
+                // PROMISES
                 template
                     .then(function(data){
                         $.extend(vm._model, data, {
@@ -72,53 +95,6 @@
                         }
                     });
 
-                //IMG CROP
-                $scope.myImage='';
-                $scope.myCroppedImage='';
-                var handleFileSelect=function(evt) {
-                    var file=evt.currentTarget.files[0];
-                    var reader = new FileReader();
-                    reader.onload = function (evt) {
-                        $scope.$apply(function($scope){
-                            $scope.myImage=evt.target.result;
-                            vm.fotoModel = $scope.myImage
-                        });
-                    };
-                    reader.readAsDataURL(file);
-                };
-                angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
-                vm.clickFoto = function(){
-                    $scope.myImage = ''
-                };
-                vm.sendFoto = function(){
-                    vm._model.foto.model.val = $scope.myCroppedImage;
-                };
-                vm.removeFoto = function(){
-                    vm._model.foto.model.val = 'http://www.westcare.com.br/imagens/especialistas/perfil-sem-foto.jpg';
-                };
-                vm.imgCropErr = function(){
-                    vm._model.foto.model.err = 'Erro!'
-                };
-
-                function topCollapse(){
-                    $('html, body').animate({scrollTop: 0},'slow');
-                }
-
-                /* FUNÇÕES DE EDIÇÃO */
-                vm.cancelEdit = function(){
-                    vm._model = $.extend(true,{},vm._temp);
-                    vm._temp = {};
-                    vm.editing = false;
-                };
-                vm.editarAluno = function(){
-                    vm._temp = $.extend(true,{},vm._model);
-                    vm.editing = true;
-                };
-                vm.salvar = function(){
-                    /* ROTA DE TRATAMENTO DO NODE */
-                    vm.editing = false;  //SE VALIDAÇÃO OK
-
-                };
 
                 /* NAV (LINKS PARTE DE CIMA) */
                 vm._model.navs = [
@@ -264,45 +240,6 @@
                             "ccargahoraria": "80"
                         }
                     ]
-                };
-
-                function search(matNome){
-                    var search = $resource('/api/secretaria/aluno/:matNome').get({matNome: matNome}).$promise;
-                    search
-                        .then(
-                        function (data) {
-                            if (data.result.length > 0){
-                                $.extend(true,vm._model,data.result[0]);
-                                vm._model.alert = true;
-                            }else{
-                                vm._erro = 'Aluno não encontrado! Matrícula: '+$routeParams.matricula
-                            }
-                            vm.completeBar();
-                        }
-                    )
-                        .catch(
-                        function (err) {
-                            console.log(err)
-                        }
-                    );
-                }
-
-                /* VOLTAR MORE ALUNO */
-                vm.moreAlunoVoltar = function(){
-                    alunoService.aluno = {};
-                    $location.path('/');
-                };
-
-                vm.disableAlert = function(){
-                    vm._model.alert = false;
-                };
-
-
-                vm.completeBar = function(){
-                    $timeout(function () {
-                        $scope.progressbar.complete();
-                        vm.loaded = true;
-                    })
                 };
 
                 vm._model.gridParcelas = {
@@ -553,26 +490,52 @@
                         }
                     }
                 };
-                //todo funcionar o salvamento
-                vm.salvarParcela = function(){
-                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].anum = vm._model.modalParcela.num.model.val;
-                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].bvalor = vm._model.modalParcela.valorIntegral.model.val;
-                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].evencimento.int = vm._model.modalParcela.vencimento.model.val.getTime();
-                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].cdesconto.text = vm._model.modalParcela.desconto.model.val;
-                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].cdesconto.condicionado = vm._model.modalParcela.condicionado.model.val; //ENTENDER
-                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].dacrescimo = vm._model.modalParcela.acrescimo.model.val;
-                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].kc.model.val = !!vm._model.modalParcela.c.model.val;
-                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].kc.model.date = vm._model.modalParcela.c.model.val;
-                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].kc.motivoC = vm._model.modalParcela.motivoC.model.val;
-                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].gpagamento.int = !!vm._model.modalParcela.pagamento.model.val?vm._model.modalParcela.pagamento.model.val.getTime():'';
-                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].la.model.val = !!vm._model.modalParcela.a.model.val;
-                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].la.model.date = vm._model.modalParcela.a.model.val;
-                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].la.motivoA = vm._model.modalParcela.motivoA.model.val;
-                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].hjurMultas = vm._model.modalParcela.jurMultas.model.val;
-                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].fvalorPago = vm._model.modalParcela.valorPago.model.val;
-                    clearModalEdit();
 
-                };
+                /* FUNÇÕES */
+                function cancelEdit(){
+                    vm._model = $.extend(true,{},vm._temp);
+                    vm._temp = {};
+                    vm.editing = false;
+                }
+
+                function clearModalEdit() {
+                    vm._model.modalParcela.num.model.val = '';
+                    vm._model.modalParcela.valorIntegral.model.val = '';
+                    vm._model.modalParcela.vencimento.model.val = '';
+                    vm._model.modalParcela.desconto.model.val = '';
+                    vm._model.modalParcela.condicionado.model.val = '';
+                    vm._model.modalParcela.acrescimo.model.val = '';
+                    vm._model.modalParcela.valorPagar.model.val = '';
+                    vm._model.modalParcela.c.model.val = '';
+                    vm._model.modalParcela.motivoC.model.val = '';
+                    vm._model.modalParcela.pagamento.model.val = '';
+                    vm._model.modalParcela.a.model.val = '';
+                    vm._model.modalParcela.motivoA.model.val = '';
+                    vm._model.modalParcela.jurMultas.model.val = '';
+                    vm._model.modalParcela.valorPago.model.val = '';
+                    vm._model.modalParcela.pos = -1;
+                    $('#modalEditParcelas').modal('toggle')
+                }
+
+                function clickFoto() {
+                    $scope.myImage = ''
+                }
+
+                function completeBar(){
+                    $timeout(function () {
+                        $scope.progressbar.complete();
+                        vm.loaded = true;
+                    })
+                }
+
+                function disableAlert(){
+                    vm._model.alert = false;
+                }
+
+                function editarAluno(){
+                    vm._temp = $.extend(true,{},vm._model);
+                    vm.editing = true;
+                }
 
                 function editParcela(pos,line){
                     vm._model.modalParcela.num.model.val = line.anum;
@@ -595,23 +558,85 @@
                         keyboard: false
                     })
                 }
-                function clearModalEdit() {
-                    vm._model.modalParcela.num.model.val = '';
-                    vm._model.modalParcela.valorIntegral.model.val = '';
-                    vm._model.modalParcela.vencimento.model.val = '';
-                    vm._model.modalParcela.desconto.model.val = '';
-                    vm._model.modalParcela.condicionado.model.val = '';
-                    vm._model.modalParcela.acrescimo.model.val = '';
-                    vm._model.modalParcela.valorPagar.model.val = '';
-                    vm._model.modalParcela.c.model.val = '';
-                    vm._model.modalParcela.motivoC.model.val = '';
-                    vm._model.modalParcela.pagamento.model.val = '';
-                    vm._model.modalParcela.a.model.val = '';
-                    vm._model.modalParcela.motivoA.model.val = '';
-                    vm._model.modalParcela.jurMultas.model.val = '';
-                    vm._model.modalParcela.valorPago.model.val = '';
-                    vm._model.modalParcela.pos = -1;
-                    $('#modalEditParcelas').modal('toggle')
+
+                function handleFileSelect(evt) {
+                    var file=evt.currentTarget.files[0];
+                    var reader = new FileReader();
+                    reader.onload = function (evt) {
+                        $scope.$apply(function($scope){
+                            $scope.myImage=evt.target.result;
+                            vm.fotoModel = $scope.myImage
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                function imgCropErr(){
+                    vm._model.foto.model.err = 'Erro!'
+                }
+
+                function moreAlunoVoltar(){
+                    alunoService.aluno = {};
+                    $location.path('/');
+                }
+
+                function removeFoto(){
+                    vm._model.foto.model.val = 'http://www.westcare.com.br/imagens/especialistas/perfil-sem-foto.jpg';
+                }
+
+                function salvar(){
+                    /* ROTA DE TRATAMENTO DO NODE */
+                    vm.editing = false;  //SE VALIDAÇÃO OK
+
+                }
+
+                function salvarParcela(){
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].anum = vm._model.modalParcela.num.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].bvalor = vm._model.modalParcela.valorIntegral.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].evencimento.int = vm._model.modalParcela.vencimento.model.val.getTime();
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].cdesconto.text = vm._model.modalParcela.desconto.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].cdesconto.condicionado = vm._model.modalParcela.condicionado.model.val; //ENTENDER
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].dacrescimo = vm._model.modalParcela.acrescimo.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].kc.model.val = !!vm._model.modalParcela.c.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].kc.model.date = vm._model.modalParcela.c.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].kc.motivoC = vm._model.modalParcela.motivoC.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].gpagamento.int = !!vm._model.modalParcela.pagamento.model.val?vm._model.modalParcela.pagamento.model.val.getTime():'';
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].la.model.val = !!vm._model.modalParcela.a.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].la.model.date = vm._model.modalParcela.a.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].la.motivoA = vm._model.modalParcela.motivoA.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].hjurMultas = vm._model.modalParcela.jurMultas.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].fvalorPago = vm._model.modalParcela.valorPago.model.val;
+                    clearModalEdit();
+
+                }
+
+                function search(matNome){
+                    var search = $resource('/api/secretaria/aluno/:matNome').get({matNome: matNome}).$promise;
+                    search
+                        .then(
+                        function (data) {
+                            if (data.result.length > 0){
+                                $.extend(true,vm._model,data.result[0]);
+                                vm._model.alert = true;
+                            }else{
+                                vm._erro = 'Aluno não encontrado! Matrícula: '+$routeParams.matricula
+                            }
+                            vm.completeBar();
+                        }
+                    )
+                        .catch(
+                        function (err) {
+                            console.log(err)
+                        }
+                    );
+                }
+
+                function sendFoto() {
+                    vm._model.foto.model.val = $scope.myCroppedImage;
+                }
+
+                function topCollapse(){
+                    $('html, body').animate({scrollTop: 0},'slow');
                 }
 
             }])
