@@ -6,13 +6,18 @@
         "list": [
             {
                 "text": "Dashboard",
-                "iconClass": "entypo-docs",
+                "iconClass": "entypo-gauge",
                 "href": "#/financeiro"
             },
             {
                 "text": "Controle de Cheques",
-                "iconClass": "entypo-docs",
+                "iconClass": "entypo-tag",
                 "href": "#/controle-cheques"
+            },
+            {
+                "text": "Mensagem para Boletos",
+                "iconClass": "entypo-comment",
+                "href": "#/mensagem-boletos"
             }
         ]
     })
