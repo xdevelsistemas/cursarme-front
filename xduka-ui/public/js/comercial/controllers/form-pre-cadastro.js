@@ -350,7 +350,7 @@
                 vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
             }
 
-            function addDescontoAdicional(){
+            function addDescontoAdicional(_edit){
                 /*  Verificando se os campos estão vazios  */
                 vm._model.descricaoDesconto.model.err = vm._model.descricaoDesconto.model.val.length == 0 ? 'Campo obrigatório!': '';
                 vm._model.descontosAdicionais.model.err = vm._model.descontosAdicionais.model.val.length == 0 ? 'Campo obrigatório!': '';
@@ -389,7 +389,9 @@
                     alteraValorIntegral();
                 }
 
-                $('#modalDescAdc').modal('toggle');
+                if (!_edit) {
+                    $('#modalDescAdc').modal('toggle');
+                }
             }
 
             function cancelarDescontoAdicional() {
@@ -563,12 +565,14 @@
                             if(item.descontosAdicionais.model.val && item.descricaoDesconto.model.val != '') {
                                 vm._model.descontosAdicionais.model = item.descontosAdicionais.model;
                                 vm._model.descricaoDesconto.model = item.descricaoDesconto.model;
-                                vm.addDescontoAdicional();
+                                vm.addDescontoAdicional(true); // Edição == True!!
                             }
 
                             vm.qtdParcelasAplic($.grep(vm._model.qtdParcelas.list, function (e) {
                                 return e.id == item.qtdParcelas.model.val;
                             })[0], item.qtdParcelas.model.val);
+
+                            $.extend(true, vm._model, item);
                         })
                         .catch(function (erro) {
                             if (erro.status == '400') {
