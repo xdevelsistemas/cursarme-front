@@ -7,7 +7,7 @@
             <hr/>
             <div class="alertContent">
                 <span class="alert-padding">
-                    <p ng-bind="al._model.pendencia.model.val"></p>
+                    <p ng-bind="al.msgPendencia"></p>
                 </span>
             </div>
         </div>
@@ -549,8 +549,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="">Cancelar</button>
-                <button type="button" class="btn btn-green" ng-click="">Salvar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="al.cancelEditParcela()">Cancelar</button>
+                <button type="button" class="btn btn-green" ng-click="al.salvarParcela()">Salvar</button>
             </div>
         </div>
     </div>

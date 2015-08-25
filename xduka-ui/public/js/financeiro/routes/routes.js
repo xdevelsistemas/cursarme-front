@@ -44,6 +44,12 @@ angular.module('app',[
             controller: 'alunoFin',
             controllerAs: 'al'
         });
+// ========= ALUNO FINANCEIRO ========= //
+        $routeProvider.when('/mensagem-boletos', {
+            templateUrl: 'html/financeiro/msg-boletos.html',
+            controller: 'msgBoletos',
+            controllerAs: 'mb'
+        });
 // ========= OTHERWISE ========= //
         $routeProvider.otherwise({
             redirectTo: '/'
