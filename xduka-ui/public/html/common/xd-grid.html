@@ -34,12 +34,12 @@
             </div>
 
             <div ng-if="colum.btn">
-                <div ng-repeat="btn in colum.list" class="text-center">
-                    <button type="button" ng-click="btn.click(btn.args,line)" class="{{btn.class || 'btn btn-default'}}">
+                <span ng-repeat="btn in colum.list" class="text-center">
+                    <button type="button" ng-click="btn.click(btn.args,line)" class="{{btn.class || 'btn btn-default'}}" title="{{btn.title||btn.text}}">
                         {{btn.text||''}}
                         <i ng-if="!!btn.entypo" class="{{btn.entypo}}"></i>
                     </button>
-                </div>
+                </span>
             </div>
 
         </td>
