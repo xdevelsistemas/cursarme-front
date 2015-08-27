@@ -47,7 +47,7 @@ body .page-container .sidebar-menu #main-menu li ul > li {
 }
 
 body .page-container .sidebar-menu #main-menu li ul > li > a {
-    background-color: #003471
+    background-color: #EFF9FF
 }
 
 body .page-container .sidebar-menu #main-menu li.active > a {
@@ -55,7 +55,7 @@ body .page-container .sidebar-menu #main-menu li.active > a {
 }
 
 body .page-container .sidebar-menu #main-menu li ul > li > a {
-    background-color: #002f65
+    background-color: #EFF9FF
 }
 
 body .page-container .sidebar-menu .logo-env > div.sidebar-collapse a,

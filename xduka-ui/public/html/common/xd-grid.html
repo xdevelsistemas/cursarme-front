@@ -10,7 +10,7 @@
         <td ng-repeat="colum in line">
 
             <div ng-if="!!colum.input&&!!colum.label">
-                <input type="{{colum.type||'checkbox'}}" ng-model="colum.model.val" data-ng-disabled="colum.disable"/><label>{{colum.label}}</label>
+                <input name="colum.name" type="{{colum.type||'checkbox'}}" ng-model="colum.model.val" data-ng-disabled="colum.disable"/><label>{{colum.label}}</label>
             </div>
 
             <div ng-if="!!colum.progress&&!!colum.maxVal" class="progress">
@@ -34,12 +34,12 @@
             </div>
 
             <div ng-if="colum.btn">
-                <div ng-repeat="btn in colum.list" class="text-center">
-                    <button type="button" ng-click="btn.click(btn.args,line)" class="{{btn.class || 'btn btn-default'}}">
+                <span ng-repeat="btn in colum.list" class="text-center">
+                    <button type="button" ng-click="btn.click(btn.args,line)" class="{{btn.class || 'btn btn-default'}}" title="{{btn.title||btn.text}}">
                         {{btn.text||''}}
                         <i ng-if="!!btn.entypo" class="{{btn.entypo}}"></i>
                     </button>
-                </div>
+                </span>
             </div>
 
         </td>
