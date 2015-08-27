@@ -18,6 +18,11 @@
                 "text": "Mensagem para Boletos",
                 "iconClass": "entypo-comment",
                 "href": "#/mensagem-boletos"
+            },
+            {
+                "text": "Valores dos Cursos",
+                "iconClass": "glyphicon glyphicon-usd",
+                "href": "#/valores-cursos"
             }
         ]
     })

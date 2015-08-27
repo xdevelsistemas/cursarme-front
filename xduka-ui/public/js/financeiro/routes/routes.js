@@ -50,6 +50,12 @@ angular.module('app',[
             controller: 'msgBoletos',
             controllerAs: 'mb'
         });
+// ========= ALUNO FINANCEIRO ========= //
+        $routeProvider.when('/valores-cursos', {
+            templateUrl: 'html/financeiro/valores-cursos.html',
+            controller: 'valoresCursos',
+            controllerAs: 'vc'
+        });
 // ========= OTHERWISE ========= //
         $routeProvider.otherwise({
             redirectTo: '/'
