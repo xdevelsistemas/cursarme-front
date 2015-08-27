@@ -5,13 +5,20 @@
     angular.module('app.controllers')
         .controller('Main', Main);
 
-    Main.$inject = ['$scope', '$resource', '$timeout','$route','breadCrumb', 'defineCurso', 'cropService', 'modelStrings','modelMenu'];
+    Main.$inject = ['$scope', '$resource', '$timeout','$route','breadCrumb', 'defineCurso', 'cropService', 'modelStrings','modelMenu','ngProgressFactory'];
 
     /* @ngInject */
-    function Main($scope, $resource, $timeout, $route, breadCrumb, defineCurso, cropService, modelStrings, modelMenu) {
+    function Main($scope, $resource, $timeout, $route, breadCrumb, defineCurso, cropService, modelStrings, modelMenu, ngProgressFactory) {
+
+        /* PROGRESS BAR */
+        $scope.progressbar = ngProgressFactory.createInstance();
+        $scope.progressbar.setColor('#45A0CF');
+        $scope.progressbar.start();
+
         /* jshint validthis: true */
-        var vm = this
-            , infoUserPromise = $resource('/api/aluno/infoUsuario').get().$promise;
+        var vm = this,
+            infoUserPromise = $resource('/api/aluno/infoUsuario').get().$promise,
+            infoCursoPromise = $resource('/api/aluno/infoCurso').get().$promise;
 
         vm.breadCrumb = breadCrumb;
 
@@ -28,12 +35,23 @@
         vm.sendCurso = sendCurso;
         vm.sendData = sendData;
 
+        infoCursoPromise.
+            then(
+            function (data) {
+                vm.cursos = data.cursos;
+                defineCurso.setIdCurso(vm.cursos.model.val);
+                $scope.progressbar.complete();
+            })
+            .catch(
+            function (erro) {
+                console.log("Erro:\n" + erro.data + "\n");
+            }
+        );
+
         infoUserPromise.
             then(
                 function (data) {
-                    vm.user = data.usuario;
-                    vm.cursos = data.cursos.cursos;
-                    defineCurso.setIdCurso(vm.cursos.model.val);
+                    vm.user = data;
                 })
             .catch(
                 function (erro) {

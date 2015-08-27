@@ -14,14 +14,14 @@
         'app.filters',
         'app.services',
         'app.directives',
-        'app.controllers'
+        'app.controllers',
+        'ngProgress'
 
     ]).config(['$routeProvider', function ($routeProvider) {
 
         //Home
         $routeProvider.when('/', {
             redirectTo: '/mensagens'
-            //redirectTo: '/cursos'
         });
 
         //Mensagens

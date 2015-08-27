@@ -29,5 +29,19 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/template-inscricao')
         .get(controller.showTemplateInscricao);
 
+    //Alunos Search
+    app.route('/api/secretaria/aluno/:nomeMat')
+        .get(controller.alunoSearch);
+    //Template aluno
+    app.route('/api/secretaria/templateAluno')
+        .get(controller.getTemplateAl);
+    //Alunos Search
+    app.route('/api/secretaria/templateConfig')
+        .get(controller.showConfig);
+
+    //save-configuracoes
+    app.route('/api/secretaria/save-configuracoes')
+        .post(controller.putSaveConfig);
+
     return app;
 };

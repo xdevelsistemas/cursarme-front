@@ -22,7 +22,10 @@ var configDB = require('./config/database.js'),
 mongoose.connect(configDB.url); // connect to our database
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.get('env') === 'development' ?
+    app.set('views', path.join(__dirname, 'views')):
+    app.set('views', path.join(__dirname, 'dist/views'));
+
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 app.use(favicon());
@@ -32,7 +35,10 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser({limit: '50mb'})); // get information from html forms / limite upload de arquivo 50mb
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('env') === 'development' ?
+    app.use(express.static(path.join(__dirname, 'public'))):
+    app.use(express.static(path.join(__dirname, 'dist/public')));
 
 app.use(session({
         store: new RedisStore(configRedis),
@@ -71,19 +77,43 @@ require('./routes/routes.js')(app, passport);
 require('./routes/areas.js')(app, passport);
 require('./routes/aluno.js')(app, passport);
 require('./routes/comercial.js')(app, passport);
+require('./routes/common.js')(app, passport);
+require('./routes/financeiro.js')(app, passport);
 require('./routes/resetpassword.js')(app, passport);
 require('./routes/secretaria.js')(app, passport);
+require('./routes/financeiro.js')(app, passport);
 
 /// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    /*next(err);*/
+if (app.get('env') === 'development') {
+    app.use(function (req, res, next) {
+        var err = new Error('Not Found');
+        err.status = 404;
 
-    res.render('404');
-});
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
+} else {
+    app.use(function (req, res, next) {
+        var err = new Error('Not Found');
+        err.status = 404;
+        /*next(err);*/
 
+        res.render('404');
+    });
+}
 /// error handlers
+
+// development error handler
+// will print stacktrace
+app.use(function (err, req, res, next) {
+    res.status(err.status || 400);
+    res.render('error', {
+        message: err.message,
+        error: err
+    });
+});
 
 // development error handler
 // will print stacktrace

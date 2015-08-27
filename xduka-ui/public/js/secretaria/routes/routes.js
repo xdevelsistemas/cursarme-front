@@ -16,7 +16,8 @@ angular.module('app',[
     'app.services',
     'app.directives',
     'app.controllers',
-    'gridshore.c3js.chart'
+    'gridshore.c3js.chart',
+    'ngProgress'
 
 ])
 
@@ -25,17 +26,35 @@ angular.module('app',[
         $routeProvider.when('/', {
             redirectTo: '/secretaria'
         });
-// ========= PRÉ CADASTRO ========= //
+// ========= DASHBOARD SECRETARIA ========= //
         $routeProvider.when('/secretaria', {
             templateUrl: 'html/secretaria/secretaria.html',
             controller: 'secretaria',
             controllerAs: 'sec'
         });
-// ========= PRÉ CADASTRO ========= //
+// ========= CONFIRMAR MATRICULA ========= //
         $routeProvider.when('/secretaria/confirmarMatricula', {
             templateUrl: 'html/secretaria/confirmar-matricula.html',
             controller: 'confMatricula',
             controllerAs: 'conf'
+        });
+// ========= ALUNOS ========= //
+        $routeProvider.when('/secretaria/aluno/:matricula', {
+            templateUrl: 'html/secretaria/aluno.html',
+            controller: 'aluno',
+            controllerAs: 'al'
+        });
+// ========= CONFIGURAÇÕES ========= //
+        $routeProvider.when('/secretaria/configuracoes', {
+            templateUrl: 'html/secretaria/configuracoes.html',
+            controller: 'configuracoes',
+            controllerAs: 'config'
+        });
+// ========= CONFIGURAÇÕES ========= //
+        $routeProvider.when('/secretaria/relatorios', {
+            templateUrl: 'html/secretaria/relatorios.html',
+            controller: 'relatorios',
+            controllerAs: 'rel'
         });
 // ========= OTHERWISE ========= //
         $routeProvider.otherwise({

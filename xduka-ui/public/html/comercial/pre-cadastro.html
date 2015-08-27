@@ -29,7 +29,7 @@
             </a>
         </li>
         <li>
-            <a id="cursorSetp3" data-target="#step4" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
+            <a id="cursorSetp4" data-target="#step4" class="linkCursor" data-toggle="tab" ng-click="pre.disableBtn()">
                 <span>4</span>
                 Comp.
             </a>
@@ -37,8 +37,8 @@
     </ul>
 
     <div class="tab-content">
-        <div class="alert alert-success col-md-12" role="alert" ng-show="pre.sendSucess">
-            <button type="button" class="close" aria-label="Close" data-ng-click="pre.disableSendSucess()"><span aria-hidden="true">&times;</span></button>
+        <div class="alert alert-success col-md-12" role="alert" ng-show="pre.sendSuccess">
+            <button type="button" class="close" aria-label="Close" data-ng-click="pre.disableSendSuccess()"><span aria-hidden="true">&times;</span></button>
             <div class="alertContent">
                 <p data-ng-bind="pre.STR.SUCESSO"></p>
             </div>
@@ -285,7 +285,6 @@
                         <!--<xd-input data-params="pre._model.forma"
                                   data-disable="!pre.validaCpf"></xd-input>-->
                         <xd-select data-params="pre._model.formaPagamentoPag"
-                                   data-disable="!pre.validaCpf"
                                    data-change="pre.selectChequeStep2" data-disable="!pre.validaCpf"></xd-select>
                     </div>
                 </div>
@@ -313,11 +312,36 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-md-12" style="padding-bottom: 2%">
+                        <div class="col-md-12">
+                            <label for="">Descontos adicionais</label>
+                        </div>
+                        <div class="col-md-12" ng-show="pre._model.desconto.model.descontoAdd">
+                            <div class="col-md-12">
+                                <label>Descontos selecionado: {{ pre._model.descontosAdicionais.model.text }}</label>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Descrição do descontos: {{ pre._model.descricaoDesconto.model.val }}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-primary btn-icon icon-left btn-lg" data-toggle="modal" data-target="#modalDescAdc" ng-hide="pre._model.desconto.model.descontoAdd" data-ng-disabled="!pre.validaCpf || pre.disableDescAdd">
+                                Adicionar
+                                <i class="entypo-plus"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-icon icon-left btn-lg" ng-show="pre._model.desconto.model.descontoAdd" ng-click="pre.cancelarDescontoAdicional()">
+                                Remover
+                                <i class="entypo-cancel"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-12">
                         <!--<xd-input data-params="pre._model.parcelamento"
                                   data-disable="!pre.validaCpf"></xd-input>-->
                         <xd-select data-params="pre._model.qtdParcelas" data-change="pre.qtdParcelasAplic"
-                                   data-disable="!pre.validaCpf"></xd-select>
+                                   data-disable="!pre.validaCpf || pre.disableQtdParcelas"></xd-select>
                     </div>
                 </div>
                 <div class="row">
@@ -524,7 +548,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <xd-input data-params="pre._model.avRua"
                                   disable="!pre.validaCepAvRua"></xd-input>
                     </div>
@@ -536,7 +560,7 @@
                         <xd-input data-params="pre._model.complemento"
                                   data-disable="!pre.validaCpf"></xd-input>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <xd-input data-params="pre._model.cep"  data-change="pre.getDadosCep"
                                   disable="!pre.validaCep"></xd-input>
                     </div>
@@ -777,4 +801,42 @@
             $.getScript('assets/neon/js/neon-custom.js');
         });
     </script>
+</div>
+
+<!-- MODAL DESCONTOS ADICIONAIS -->
+<div aria-hidden="true" style="display: none;" class="modal fade" id="modalDescAdc">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Adicionar descontos adicionais</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-select data-params="pre._model.descontosAdicionais"
+                                  data-disable="!pre.validaCpf"></xd-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input-textarea data-params="pre._model.descricaoDesconto"
+                                   data-disable="!pre.validaCpf"></xd-input-textarea>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-sm-6 text-center">
+                        <button type="button" class="btn btn-default btn-lg btn-icon icon-left pull-left" data-dismiss="modal"><i class="entypo-left-bold"></i>Voltar</button>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <button type="button" class="btn btn-green btn-lg btn-icon icon-left pull-right" ng-click="pre.addDescontoAdicional(false)"><i class="entypo-check"></i>Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
