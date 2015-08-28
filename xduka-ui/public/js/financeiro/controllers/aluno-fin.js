@@ -8,238 +8,55 @@
 
                 /* PROGRESS BAR */
                 $scope.progressbar = ngProgressFactory.createInstance();
+                $scope.progressbar.setColor('#45A0CF');
                 $scope.progressbar.start();
 
+                //IMG CROP
+                $scope.myImage='';
+                $scope.myCroppedImage='';
+                angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
                 var vm = this
-                    , template = $resource('/api/comercial/template-inscricao').get().$promise;
+                    , template = $resource('/api/financeiro/templateAluno').get().$promise;
 
                 breadCrumb.title = 'Aluno';
 
                 // ==== MODELOS ==== //
 
-                vm.alert = true;
                 vm._alunos = [];
                 vm._model = {};
-                vm._temp = {};
                 vm._searchVal = '';
-                vm.openSearch = false;
-                vm.loaded = false;
+                vm._temp = {};
+                vm.alert = true;
                 vm.editing = false;
+                vm.loaded = false;
+                vm.modelStrings = modelStrings;
+                vm.msgPendencia = '';
+                vm.openSearch = false;
+                vm.salvarParcela = salvarParcela;
                 vm.visualizarAluno = false;
 
+                /* VOLTAR MORE ALUNO */
+                vm.completeBar = completeBar;
+                vm.disableAlert = disableAlert;
+                vm.moreAlunoVoltar = moreAlunoVoltar;
 
+                /* IMG CROP CUSTOM */
+                vm.clickFoto = clickFoto;
+                vm.imgCropErr = imgCropErr;
+                vm.removeFoto = removeFoto;
+                vm.sendFoto = sendFoto;
+
+                /* FUNÇÕES DE EDIÇÃO */
+                vm.cancelEdit = cancelEdit;
+                vm.editarAluno = editarAluno;
+                vm.salvar = salvar;
+
+
+                // PROMISES
                 template
                     .then(function(data){
                         $.extend(vm._model, data, {
-                            matricula: {
-                                label: 'Matrícula',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            dataMatricula: {
-                                label: 'Data de Matrícula',
-                                model: {val: ''},
-                                type: 'text',
-                                "name": "dataMatr",
-                                "format": "dd/MM/yyyy"
-                            },
-                            foto: {
-                                model: {val: ''}
-                            },
-                            cursoTurma: {
-                                label: 'Curso/Turma',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            relatorio: {
-                                label: ' ',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            cidadeUf: {
-                                label: 'Cidade/UF',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            escolaridade: {
-                                label: 'Escolaridade',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            formacao: {
-                                label: 'Formação',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            profissao: {
-                                label: 'Profissão',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            empresa: {
-                                label: 'Empresa',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            funcao: {
-                                label: 'Função',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            statusMilitar: {
-                                label: 'Status',
-                                model: {val: ''},
-                                list: [
-                                    {id: 'n', text: 'Não apresentou'},
-                                    {id: 's', text: 'Apresentou'}
-                                ],
-                                type: 'select'
-                            },
-                            statusCertidao: {
-                                label: 'Status',
-                                model: {val: ''},
-                                list: [
-                                    {id: 'n', text: 'Não apresentou'},
-                                    {id: 's', text: 'Apresentou'}
-                                ],
-                                type: 'select'
-                            },
-                            certidaoCidadeUf: {
-                                label: 'Cidade/UF',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            im: {
-                                label: 'I.M',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            monografia: {
-                                label: 'Monografia',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            orientador: {
-                                label: 'Orientador',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            nota: {
-                                label: 'Nota',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            dataApuracao: {
-                                label: 'Data Apuração',
-                                model: {val: ''},
-                                type: 'text',
-                                "name": "dataMatr",
-                                "format": "dd/MM/yyyy"
-                            },
-                            dataColacao: {
-                                label: 'Data Colação',
-                                model: {val: ''},
-                                type: 'text',
-                                "name": "dataMatr",
-                                "format": "dd/MM/yyyy"
-                            },
-                            anoLetivo: {
-                                label: 'Ano Letivo',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            municipioEm: {
-                                label: 'Municipio',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            ufEm: {
-                                "label": "UF",
-                                "type": "text",
-                                "placeholder": "Selecione...",
-                                "name": "natUf",
-                                "model": {"val": "", "err": ""},
-                                "list": [{"id": "UF_AC", "text": "AC"},
-                                    {"id": "UF_AL", "text": "AL"},
-                                    {"id": "UF_AP", "text": "AP"},
-                                    {"id": "UF_AM", "text": "AM"},
-                                    {"id": "UF_BA", "text": "BA"},
-                                    {"id": "UF_CE", "text": "CE"},
-                                    {"id": "UF_DF", "text": "DF"},
-                                    {"id": "UF_ES", "text": "ES"},
-                                    {"id": "UF_GO", "text": "GO"},
-                                    {"id": "UF_MA", "text": "MA"},
-                                    {"id": "UF_MT", "text": "MT"},
-                                    {"id": "UF_MS", "text": "MS"},
-                                    {"id": "UF_MG", "text": "MG"},
-                                    {"id": "UF_PA", "text": "PA"},
-                                    {"id": "UF_PB", "text": "PB"},
-                                    {"id": "UF_PR", "text": "PR"},
-                                    {"id": "UF_PE", "text": "PE"},
-                                    {"id": "UF_PI", "text": "PI"},
-                                    {"id": "UF_RJ", "text": "RJ"},
-                                    {"id": "UF_RN", "text": "RN"},
-                                    {"id": "UF_RS", "text": "RS"},
-                                    {"id": "UF_RO", "text": "RO"},
-                                    {"id": "UF_SC", "text": "SC"},
-                                    {"id": "UF_RR", "text": "RR"},
-                                    {"id": "UF_SP", "text": "SP"},
-                                    {"id": "UF_SE", "text": "SE"},
-                                    {"id": "UF_TO", "text": "TO"}]
-                            },
-                            cursoEm: {
-                                label: 'Curso',
-                                model: {val: ''},
-                                type: 'text'
-                            },
-                            ufGrad: {
-                                "label": "UF",
-                                "type": "text",
-                                "placeholder": "Selecione...",
-                                "name": "natUf",
-                                "model": {"val": "", "err": ""},
-                                "list": [{"id": "UF_AC", "text": "AC"},
-                                    {"id": "UF_AL", "text": "AL"},
-                                    {"id": "UF_AP", "text": "AP"},
-                                    {"id": "UF_AM", "text": "AM"},
-                                    {"id": "UF_BA", "text": "BA"},
-                                    {"id": "UF_CE", "text": "CE"},
-                                    {"id": "UF_DF", "text": "DF"},
-                                    {"id": "UF_ES", "text": "ES"},
-                                    {"id": "UF_GO", "text": "GO"},
-                                    {"id": "UF_MA", "text": "MA"},
-                                    {"id": "UF_MT", "text": "MT"},
-                                    {"id": "UF_MS", "text": "MS"},
-                                    {"id": "UF_MG", "text": "MG"},
-                                    {"id": "UF_PA", "text": "PA"},
-                                    {"id": "UF_PB", "text": "PB"},
-                                    {"id": "UF_PR", "text": "PR"},
-                                    {"id": "UF_PE", "text": "PE"},
-                                    {"id": "UF_PI", "text": "PI"},
-                                    {"id": "UF_RJ", "text": "RJ"},
-                                    {"id": "UF_RN", "text": "RN"},
-                                    {"id": "UF_RS", "text": "RS"},
-                                    {"id": "UF_RO", "text": "RO"},
-                                    {"id": "UF_SC", "text": "SC"},
-                                    {"id": "UF_RR", "text": "RR"},
-                                    {"id": "UF_SP", "text": "SP"},
-                                    {"id": "UF_SE", "text": "SE"},
-                                    {"id": "UF_TO", "text": "TO"}]
-                            },
-                            obsGrad: {
-                                "label": "Observações",
-                                "type": "textarea",
-                                "name": "observacoes",
-                                "required": false,
-                                "model": {"val": "", "err": ""}
-                            },
-                            obsLog: {
-                                "label": "Observações",
-                                "type": "textarea",
-                                "name": "observacoes",
-                                "required": false,
-                                "model": {"val": "", "err": ""}
-                            },
                             logUser: {
                                 "label": "Usuário",
                                 "type": "text",
@@ -280,53 +97,6 @@
                         }
                     });
 
-                //IMG CROP
-                $scope.myImage='';
-                $scope.myCroppedImage='';
-                var handleFileSelect=function(evt) {
-                    var file=evt.currentTarget.files[0];
-                    var reader = new FileReader();
-                    reader.onload = function (evt) {
-                        $scope.$apply(function($scope){
-                            $scope.myImage=evt.target.result;
-                            vm.fotoModel = $scope.myImage
-                        });
-                    };
-                    reader.readAsDataURL(file);
-                };
-                angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
-                vm.clickFoto = function(){
-                    $scope.myImage = ''
-                };
-                vm.sendFoto = function(){
-                    vm._model.foto.model.val = $scope.myCroppedImage;
-                };
-                vm.removeFoto = function(){
-                    vm._model.foto.model.val = 'http://www.westcare.com.br/imagens/especialistas/perfil-sem-foto.jpg';
-                };
-                vm.imgCropErr = function(){
-                    vm._model.foto.model.err = 'Erro!'
-                };
-
-                function topCollapse(){
-                    $('html, body').animate({scrollTop: 0},'slow');
-                }
-
-                /* FUNÇÕES DE EDIÇÃO */
-                vm.cancelEdit = function(){
-                    vm._model = $.extend(true,{},vm._temp);
-                    vm._temp = {};
-                    vm.editing = false;
-                };
-                vm.editarAluno = function(){
-                    vm._temp = $.extend(true,{},vm._model);
-                    vm.editing = true;
-                };
-                vm.salvar = function(){
-                    /* ROTA DE TRATAMENTO DO NODE */
-                    vm.editing = false;  //SE VALIDAÇÃO OK
-
-                };
 
                 /* NAV (LINKS PARTE DE CIMA) */
                 vm._model.navs = [
@@ -341,6 +111,12 @@
                         entypo: 'entypo-address',
                         active: false,
                         target: '#endereco'
+                    },
+                    {
+                        text: 'Parcelas',
+                        entypo: 'entypo-calendar',
+                        active: false,
+                        target: '#parcelas'
                     },
                     {
                         text: 'Documentação',
@@ -468,6 +244,374 @@
                     ]
                 };
 
+                vm._model.gridParcelas = {
+                    class: 'table-hover table-bordered display',
+                    head: ["Nº", "Valor", "Desconto", "Acrescimo", "Vencimento", "Valor pago", "Pagamento", "Jur/Multas", "Caixa", "Status", "C", "A", ""],
+                    list: [
+                        {
+                            'anum': '1',
+                            'bvalor': '315,00',
+                            'cdesconto': {type: 'text', text:'15,00', condicionado: true},
+                            'dacrescimo': '0,00',
+                            'evencimento': {date: true, int: 1439866800000, formatDate: 'dd/MM/yyyy'},
+                            'fvalorPago': '300.00',
+                            'gpagamento': {date: true, int: 1439866800000, formatDate: 'dd/MM/yyyy'},
+                            'hjurMultas': '0.00',
+                            'icaixa': 'Banco do Brasil',
+                            'jstatus': 'Quitado',
+                            'kc': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'la': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'medit': {btn: true, list: [
+                                {
+                                    class: 'btn btn-ico',
+                                    entypo: 'entypo-pencil',
+                                    click: editParcela,
+                                    args: 0
+                                }
+                            ]}
+                        },
+                        {
+                            'anum': '2',
+                            'bvalor': '315,00',
+                            'cdesconto': {type: 'text', text:'15,00', condicionado: true},
+                            'dacrescimo': '0,00',
+                            'evencimento': {date: true, int: 1439866800000, formatDate: 'dd/MM/yyyy'},
+                            'fvalorPago': '0.00',
+                            'gpagamento': {date: true, int: '', formatDate: 'dd/MM/yyyy'},
+                            'hjurMultas': '0.00',
+                            'icaixa': 'Banco do Brasil',
+                            'jstatus': 'Quitado',
+                            'kc': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'la': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'medit': {btn: true, list: [
+                                {
+                                    class: 'btn btn-ico',
+                                    entypo: 'entypo-pencil',
+                                    click: editParcela,
+                                    args: 1
+                                }
+                            ]}
+                        },
+                        {
+                            'anum': '3',
+                            'bvalor': '315,00',
+                            'cdesconto': {type: 'text', text:'15,00', condicionado: true},
+                            'dacrescimo': '0,00',
+                            'evencimento': {date: true, int: 1439866800000, formatDate: 'dd/MM/yyyy'},
+                            'fvalorPago': '0.00',
+                            'gpagamento': {date: true, int: '', formatDate: 'dd/MM/yyyy'},
+                            'hjurMultas': '0.00',
+                            'icaixa': 'Banco do Brasil',
+                            'jstatus': 'Quitado',
+                            'kc': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'la': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'medit': {btn: true, list: [
+                                {
+                                    class: 'btn btn-ico',
+                                    entypo: 'entypo-pencil',
+                                    click: editParcela,
+                                    args: 2
+                                }
+                            ]}
+                        },
+                        {
+                            'anum': '4',
+                            'bvalor': '315,00',
+                            'cdesconto': {type: 'text', text:'15,00', condicionado: true},
+                            'dacrescimo': '0,00',
+                            'evencimento': {date: true, int: 1439866800000, formatDate: 'dd/MM/yyyy'},
+                            'fvalorPago': '0.00',
+                            'gpagamento': {date: true, int: '', formatDate: 'dd/MM/yyyy'},
+                            'hjurMultas': '0.00',
+                            'icaixa': 'Banco do Brasil',
+                            'jstatus': 'Quitado',
+                            'kc': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'la': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'medit': {btn: true, list: [
+                                {
+                                    class: 'btn btn-ico',
+                                    entypo: 'entypo-pencil',
+                                    click: editParcela,
+                                    args: 3
+                                }
+                            ]}
+                        },
+                        {
+                            'anum': '5',
+                            'bvalor': '315,00',
+                            'cdesconto': {type: 'text', text:'15,00', condicionado: true},
+                            'dacrescimo': '0,00',
+                            'evencimento': {date: true, int: 1439866800000, formatDate: 'dd/MM/yyyy'},
+                            'fvalorPago': '0.00',
+                            'gpagamento': {date: true, int: '', formatDate: 'dd/MM/yyyy'},
+                            'hjurMultas': '0.00',
+                            'icaixa': 'Banco do Brasil',
+                            'jstatus': 'Quitado',
+                            'kc': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'la': {input: true, label: ' ', model: {val: ''}, disable: true},
+                            'medit': {btn: true, list: [
+                                {
+                                    class: 'btn btn-ico',
+                                    entypo: 'entypo-pencil',
+                                    click: editParcela,
+                                    args: 4
+                                }
+                            ]}
+                        }
+                    ]
+                };
+                vm._model.modalParcela = {
+                    num: {
+                        "label": "Nº",
+                        "type": "text",
+                        "name": "modalNum",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    valorIntegral: {
+                        "label": "Valor Integral",
+                        "type": "text",
+                        "name": "modalValorIntegral",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    vencimento: {
+                        "label": "Data Vencimento",
+                        "type": "text",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        },
+                        "name": "modalDataVenc",
+                        "format": "dd/MM/yyyy"
+                    },
+                    desconto: {
+                        "label": "Desconto",
+                        "type": "text",
+                        "name": "modalDesconto",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    condicionado: {
+                        "label": "Condicionado a data de vencimento",
+                        "type": "checkbox",
+                        "name": "modalCond",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    acrescimo: {
+                        "label": "Acrescimo",
+                        "type": "text",
+                        "name": "modalAcresc",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    valorPagar: {
+                        "label": "Valor a pagar",
+                        "type": "text",
+                        "name": "modalValPagar",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    c: {
+                        "label": "Cancelar",
+                        "type": "text",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        },
+                        "name": "modalCancelarP",
+                        "format": "dd/MM/yyyy"
+                    },
+                    motivoC: {
+                        "label": "Motivo",
+                        "type": "text",
+                        "name": "modalMotivoC",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    pagamento: {
+                        "label": "Data Pagamento",
+                        "type": "text",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        },
+                        "name": "modalPagamento",
+                        "format": "dd/MM/yyyy"
+                    },
+                    a: {
+                        "label": "Ajuizar",
+                        "type": "text",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        },
+                        "name": "modalAjuizar",
+                        "format": "dd/MM/yyyy"
+                    },
+                    motivoA: {
+                        "label": "Motivo",
+                        "type": "text",
+                        "name": "modalMotivoA",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    jurMultas: {
+                        "label": "Juros e Multas",
+                        "type": "text",
+                        "name": "modalJurMultas",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    },
+                    valorPago: {
+                        "label": "Valor pago",
+                        "type": "text",
+                        "name": "modalValPago",
+                        "model": {
+                            "val": "",
+                            "err": ""
+                        }
+                    }
+                };
+
+                /* FUNÇÕES */
+                function cancelEdit(){
+                    vm._model = $.extend(true,{},vm._temp);
+                    vm._temp = {};
+                    vm.editing = false;
+                }
+
+                function clearModalEdit() {
+                    vm._model.modalParcela.num.model.val = '';
+                    vm._model.modalParcela.valorIntegral.model.val = '';
+                    vm._model.modalParcela.vencimento.model.val = '';
+                    vm._model.modalParcela.desconto.model.val = '';
+                    vm._model.modalParcela.condicionado.model.val = '';
+                    vm._model.modalParcela.acrescimo.model.val = '';
+                    vm._model.modalParcela.valorPagar.model.val = '';
+                    vm._model.modalParcela.c.model.val = '';
+                    vm._model.modalParcela.motivoC.model.val = '';
+                    vm._model.modalParcela.pagamento.model.val = '';
+                    vm._model.modalParcela.a.model.val = '';
+                    vm._model.modalParcela.motivoA.model.val = '';
+                    vm._model.modalParcela.jurMultas.model.val = '';
+                    vm._model.modalParcela.valorPago.model.val = '';
+                    vm._model.modalParcela.pos = -1;
+                    $('#modalEditParcelas').modal('toggle')
+                }
+
+                function clickFoto() {
+                    $scope.myImage = ''
+                }
+
+                function completeBar(){
+                    $timeout(function () {
+                        $scope.progressbar.complete();
+                        vm.loaded = true;
+                    })
+                }
+
+                function disableAlert(){
+                    vm._model.alert = false;
+                }
+
+                function editarAluno(){
+                    vm._temp = $.extend(true,{},vm._model);
+                    vm.editing = true;
+                }
+
+                function editParcela(pos,line){
+                    vm._model.modalParcela.num.model.val = line.anum;
+                    vm._model.modalParcela.valorIntegral.model.val = line.bvalor;
+                    vm._model.modalParcela.vencimento.model.val = new Date(line.evencimento.int);
+                    vm._model.modalParcela.desconto.model.val = line.cdesconto.text;
+                    vm._model.modalParcela.condicionado.model.val = !!line.cdesconto.condicionado?line.cdesconto.condicionado:false;
+                    vm._model.modalParcela.acrescimo.model.val = line.dacrescimo;
+                    vm._model.modalParcela.valorPagar.model.val = ((parseFloat(line.bvalor)-parseFloat(line.cdesconto.text))+parseFloat(line.dacrescimo)+parseFloat(line.hjurMultas)-parseFloat(line.fvalorPago));
+                    vm._model.modalParcela.c.model.val = !!line.kc.model.val?line.kc.model.date:'';
+                    vm._model.modalParcela.motivoC.model.val = !!line.kc.motivoC?line.kc.motivoC:'';
+                    vm._model.modalParcela.pagamento.model.val = !!line.gpagamento.int?new Date(line.gpagamento.int):'';
+                    vm._model.modalParcela.a.model.val = !!line.la.model.val?line.la.model.date:'';
+                    vm._model.modalParcela.motivoA.model.val = !!line.la.motivoA?line.la.motivoA:'';
+                    vm._model.modalParcela.jurMultas.model.val = line.hjurMultas;
+                    vm._model.modalParcela.valorPago.model.val = line.fvalorPago;
+                    vm._model.modalParcela.pos = pos;
+                    $('#modalEditParcelas').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    })
+                }
+
+                function handleFileSelect(evt) {
+                    var file=evt.currentTarget.files[0];
+                    var reader = new FileReader();
+                    reader.onload = function (evt) {
+                        $scope.$apply(function($scope){
+                            $scope.myImage=evt.target.result;
+                            vm.fotoModel = $scope.myImage
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                function imgCropErr(){
+                    vm._model.foto.model.err = 'Erro!'
+                }
+
+                function moreAlunoVoltar(){
+                    alunoService.aluno = {};
+                    $location.path('/');
+                }
+
+                function removeFoto(){
+                    vm._model.foto.model.val = 'http://www.westcare.com.br/imagens/especialistas/perfil-sem-foto.jpg';
+                }
+
+                function salvar(){
+                    /* ROTA DE TRATAMENTO DO NODE */
+                    vm.editing = false;  //SE VALIDAÇÃO OK
+
+                }
+
+                function salvarParcela(){
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].anum = vm._model.modalParcela.num.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].bvalor = vm._model.modalParcela.valorIntegral.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].evencimento.int = vm._model.modalParcela.vencimento.model.val.getTime();
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].cdesconto.text = vm._model.modalParcela.desconto.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].cdesconto.condicionado = vm._model.modalParcela.condicionado.model.val; //ENTENDER
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].dacrescimo = vm._model.modalParcela.acrescimo.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].kc.model.val = !!vm._model.modalParcela.c.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].kc.model.date = vm._model.modalParcela.c.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].kc.motivoC = vm._model.modalParcela.motivoC.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].gpagamento.int = !!vm._model.modalParcela.pagamento.model.val?vm._model.modalParcela.pagamento.model.val.getTime():'';
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].la.model.val = !!vm._model.modalParcela.a.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].la.model.date = vm._model.modalParcela.a.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].la.motivoA = vm._model.modalParcela.motivoA.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].hjurMultas = vm._model.modalParcela.jurMultas.model.val;
+                    vm._model.gridParcelas.list[vm._model.modalParcela.pos].fvalorPago = vm._model.modalParcela.valorPago.model.val;
+                    clearModalEdit();
+
+                }
+
                 function search(matNome){
                     var search = $resource('/api/secretaria/aluno/:matNome').get({matNome: matNome}).$promise;
                     search
@@ -475,6 +619,7 @@
                         function (data) {
                             if (data.result.length > 0){
                                 $.extend(true,vm._model,data.result[0]);
+                                vm.msgPendencia = vm.modelStrings.PENDENCIA+' R$'+vm._model.pendencia.model.val;
                                 vm._model.alert = true;
                             }else{
                                 vm._erro = 'Aluno não encontrado! Matrícula: '+$routeParams.matricula
@@ -489,22 +634,12 @@
                     );
                 }
 
-                /* VOLTAR MORE ALUNO */
-                vm.moreAlunoVoltar = function(){
-                    alunoService.aluno = {};
-                    $location.path('/');
-                };
+                function sendFoto() {
+                    vm._model.foto.model.val = $scope.myCroppedImage;
+                }
 
-                vm.disableAlert = function(){
-                    vm._model.alert = false;
-                };
-
-
-                vm.completeBar = function(){
-                    $timeout(function () {
-                        $scope.progressbar.complete();
-                        vm.loaded = true;
-                    })
+                function topCollapse(){
+                    $('html, body').animate({scrollTop: 0},'slow');
                 }
 
             }])

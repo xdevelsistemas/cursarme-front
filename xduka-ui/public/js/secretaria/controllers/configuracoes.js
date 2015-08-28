@@ -91,9 +91,9 @@
             };
 
             function sortObject(a,b) {
-                return a.text[0].toLowerCase() < b.text[0].toLowerCase() ?
+                return a.text.toLowerCase() < b.text.toLowerCase() ?
                     -1 :
-                    a.text[0].toLowerCase() > b.text[0].toLowerCase() ?
+                    a.text.toLowerCase() > b.text.toLowerCase() ?
                         1 :
                         0;
             }

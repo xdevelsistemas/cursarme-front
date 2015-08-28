@@ -40,6 +40,8 @@
 
             //Funções
             function preencheTabelaCheques() {
+                vm.tableCheques.list = [];
+
                 for (var i = 0; i < vm.cheques.length; i++){
                     vm.tableCheques.list.push(
                         {
@@ -97,13 +99,28 @@
                 vm.cheques[pos].status = vm.modalEdit.status.list[vm.modalEdit.status.model.val];
                 //
                 //  TODO FUNÇÃO DE POST DE SALVAMENTO AQUI
-                //
-                atualizaTable();
-                cancelEdit()
+
+                var chequeEditPromise = $resource('/api/financeiro/chequeEdit').save({}, {"cheque": vm.cheques[pos]}).$promise;
+
+                chequeEditPromise
+                    .then(function(data) {
+                        vm.cheques[pos] = data;
+
+                        atualizaTable();
+                        cancelEdit()
+                    })
+                    .catch(function(error) {
+                        // TODO TRATAR POSSÍVEL ERROR NA EDIÇÃO DO CHEQUE
+                        console.log("Error área financeiro");
+                        console.log("controller control-cheques");
+                        console.log("function saveEdit");
+                        console.log(error);
+                    });
             }
 
             function atualizaTable() {
                 /* TODO ATUALIZAR TABELA AO SALVAR */
+                preencheTabelaCheques();
             }
 
             function cancelEdit() {

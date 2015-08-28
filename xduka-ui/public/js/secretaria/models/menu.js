@@ -24,6 +24,19 @@
                 "iconClass": "entypo-cog",
                 "href": "#/secretaria/configuracoes"
             }
+        ],
+        "listLevels": [
+            {
+                "text": "Pedagógico",
+                "iconClass": "entypo-book-open",
+                "levels": [
+                    {
+                        "text": "Pauta",
+                        "iconClass": "entypo-clipboard",
+                        "href": "#/secretaria/pauta"
+                    }
+                ]
+            }
         ]
     })
 })();

@@ -8,6 +8,7 @@ var urlDataBase = '',
     viewInscr = require('../mockup/xduka-json/common/viewInscr.json'),
     alunos = require('../mockup/xduka-json/common/alunos.json'),
     templateConfig = require('../mockup/xduka-json/secretaria/templateConfig.json');
+    templateAluno = require('../mockup/xduka-json/secretaria/templateAluno.json');
 
 module.exports = function() {
     var controller = {};
@@ -21,12 +22,17 @@ module.exports = function() {
     controller.putDadosTurmas = putDadosTurmas;
     controller.putSaveConfig = putSaveConfig;
     controller.alunoSearch = alunoSearch;
+    controller.getTemplateAl = getTemplateAl;
     controller.showConfig = showConfig;
 
     return controller;
 };
 
-function showConfig(req,res){
+function getTemplateAl(req,res) {
+    res.json(templateAluno)
+}
+
+function showConfig(req,res) {
     res.json(templateConfig)
 }
 

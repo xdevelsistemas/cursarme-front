@@ -6,13 +6,28 @@
         "list": [
             {
                 "text": "Dashboard",
-                "iconClass": "entypo-docs",
+                "iconClass": "entypo-gauge",
                 "href": "#/financeiro"
             },
             {
                 "text": "Controle de Cheques",
-                "iconClass": "entypo-docs",
+                "iconClass": "entypo-tag",
                 "href": "#/controle-cheques"
+            },
+            {
+                "text": "Mensagem para Boletos",
+                "iconClass": "entypo-comment",
+                "href": "#/mensagem-boletos"
+            },
+            {
+                "text": "Valores dos Cursos",
+                "iconClass": "glyphicon glyphicon-usd",
+                "href": "#/valores-cursos"
+            },
+            {
+                "text": "Cadastro de Caixa",
+                "iconClass": "entypo-plus",
+                "href": "#/cadastro-caixa"
             }
         ]
     })

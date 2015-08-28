@@ -2,13 +2,16 @@ var urlDataBase = '',
     extend = require('node.extend'),
     request = require('request'),
     cheques = require('../mockup/xduka-json/financeiro/cheques.json'),
-    alunos = require('../mockup/xduka-json/common/alunos.json');
+    alunos = require('../mockup/xduka-json/common/alunos.json'),
+    templateAluno = require('../mockup/xduka-json/financeiro/templateAluno.json');
 
 module.exports = function() {
     var controller = {};
 
-    controller.getCheques = getCheques;
     controller.alunoSearch = alunoSearch;
+    controller.getCheques = getCheques;
+    controller.getTemplateAluno = getTemplateAluno;
+    controller.postChequeEdit = postChequeEdit;
 
     return controller;
 };
@@ -48,4 +51,18 @@ function alunoSearch(req,res){
 
 function getCheques(req,res) {
     res.json(cheques)
+}
+
+function getTemplateAluno(req,res) {
+    res.json(templateAluno);
+}
+
+function postChequeEdit(req,res) {
+    var cheque = req.body.cheque;
+
+    /**
+     * TOdo request com requisição ao bd
+     */
+
+    res.json(cheque);
 }
