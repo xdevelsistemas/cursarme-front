@@ -58,27 +58,87 @@
         <!-- FREQUÊNCIA -->
         <div class="tab-pane" id="frequencia">
             <div class="row">
-                <div class="col-md-12">
-                    <xd-grid data-params="pt.tableFreq"></xd-grid>
+                <div class="col-md-6" style="padding-right: 0">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th ng-repeat="title in pt.tableFreqFixa.head" ng-bind="title.text" ng-class="title.class"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="line in pt.tableFreqFixa.list">
+                            <th ng-repeat="col in line" ng-bind="col"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6" style="padding-left: 0; overflow: scroll; overflow-y: auto;" data-ng-hide="pt.verTodos">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th ng-repeat="title in pt.tableFreqDatasSimp.head" ng-bind="title"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="line in pt.tableFreqDatasSimp.list">
+                            <th ng-repeat="col in line" ng-bind="col"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6" style="padding-left: 0; overflow: scroll; overflow-y: auto;" data-ng-show="pt.verTodos">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th ng-repeat="title in pt.tableFreqDatasComp.head" ng-bind="title" class="col-md-2"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="line in pt.tableFreqDatasComp.list">
+                            <th ng-repeat="col in line" ng-bind="col"></th>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <div class="col-md-3 pull-left">
-                        <button type="button" class="btn btn-white heightFix" ng-click=""><i class="entypo-left"></i></button>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <h2 class="text-info">Adicionar</h2>
+                        </div>
                     </div>
-
-                    <div class="col-md-3 pull-right">
-                        <button type="button" class="btn btn-white heightFix pull-right" ng-click=""><i class="entypo-right"></i></button>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <h2 class="text-info">Visualizar</h2>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 col-md-offset-2">
+                <div class="col-md-3">
                     <xd-input-date data-params="pt._model.addData"></xd-input-date>
                 </div>
-                <div class="col-md-4 center-block">
+                <div class="col-md-2">
+                    <xd-input data-params="pt._model.addAulas"></xd-input>
+                </div>
+                <div class="col-md-1 noPadLeft">
+                    <div class="form-group noPadLeft">
+                        <div class="col-md-12 noPadLeft">
+                            <div class="col-md-12 left noPadLeft">
+                                <label>
+                                </label>
+                            </div>
 
+                            <div class="col-md-12 noPadLeft">
+                                <button type="button" class="btn btn-blue heightFix" ng-click="pt.addFreq()"><i class="glyphicon glyphicon-plus" style="font-size: 1.3em"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
                         <div class="col-md-12">
                             <div class="col-md-12 left">
@@ -87,14 +147,17 @@
                             </div>
 
                             <div class="col-md-12">
-                                <button type="button" class="btn btn-blue heightFix" ng-click=""><i class="entypo-list-add"></i>Duplicar</button>
-                                <span>&nbsp;&nbsp;ou&nbsp;&nbsp;</span>
-                                <button type="button" class="btn btn-blue heightFix" ng-click=""><i class="entypo-plus"></i>Adicionar</button>
+                                <button class="btn btn-primary btn-lg btn-icon icon-left" ng-click="pt.visualizarFreq()" data-ng-hide="pt.verTodos">
+                                    Ver todos
+                                    <i class="entypo-eye"></i>
+                                </button>
+                                <button class="btn btn-primary btn-lg btn-icon icon-left" ng-click="pt.visualizarFreq()" data-ng-show="pt.verTodos">
+                                    Simplificado
+                                    <i class="entypo-eye"></i>
+                                </button>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
@@ -168,6 +231,78 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="pt.cancelEditConteudo()">Cancelar</button>
                 <button type="button" class="btn btn-green" ng-click="pt.saveEditConteudo()">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- EDITAR CONTEUDO -->
+<div class="modal fade" id="modalAddFreq" tabindex="-1" role="dialog" aria-labelledby="Cadastrar Novo">
+    <div class="modal-lg modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="pt.cancelEditConteudo()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel2">Adicionar Frequência</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-7">
+                        <xd-input-checks data-params="pt._model.duplicar" data-change="pt.duplicarFreq"></xd-input-checks>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Aluno</th>
+                                <th ng-bind="pt._model.addData.model.val.toLocaleString().substr(0,11)"></th>
+                            </tr>
+                            </thead>
+                            <form>
+                            <tbody>
+                            <tr ng-repeat="aluno in pt._alunos">
+                                <th ng-bind="aluno"></th>
+                                <th>
+                                    <div class="col-xs-3">
+                                        <label>P</label>
+                                        <input type="radio" name="{{'presenca_'+aluno}}" ng-model="pt._modelAlunos[aluno]" value="p"/>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <label>F</label>
+                                        <input type="radio" name="{{'presenca_'+aluno}}" ng-model="pt._modelAlunos[aluno]" value="f"/>
+                                    </div>
+                                </th>
+                            </tr>
+                            </tbody>
+                            </form>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="text-info">
+                            Conteúdo
+                        </h4>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-xs-12 col-md-4">
+                        <xd-input-date data-params="pt._model.addConteudoData" disable="true"></xd-input-date>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <xd-input data-params="pt._model.addConteudoTitulo"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input-textarea data-params="pt._model.addConteudoTArea"></xd-input-textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="">Cancelar</button>
+                <button type="button" class="btn btn-green" ng-click="">Salvar</button>
             </div>
         </div>
     </div>
