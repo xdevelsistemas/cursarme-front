@@ -23,6 +23,11 @@
                 "text": "Valores dos Cursos",
                 "iconClass": "glyphicon glyphicon-usd",
                 "href": "#/valores-cursos"
+            },
+            {
+                "text": "Cadastro de Caixa",
+                "iconClass": "entypo-plus",
+                "href": "#/cadastro-caixa"
             }
         ]
     })
