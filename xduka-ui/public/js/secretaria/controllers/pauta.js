@@ -9,6 +9,8 @@
             breadCrumb.title = 'Pauta';
 
             vm._bkp = {};
+            vm._alunos = ["João das Couves","Mariana","Maria","Abner"];
+            vm._modelAlunos = {};
             vm._model = {
 
                 "professor": {
@@ -52,11 +54,18 @@
                     "model": {"val": "", "err": ""}
                 },
                 "addData": {
-                    "label": "",
+                    "label": "Data",
                     "type": "text",
-                    "model": {"val": "", "err": ""},
+                    "model": {"val": new Date(), "err": ""},
                     "name": "addData",
                     "format": "dd/MM/yyyy"
+                },
+                "addAulas": {
+                    "label": "Aulas",
+                    "type": "text",
+                    "mask": "9",
+                    "name": "addAulas",
+                    "model": {"val": "1", "err": ""}
                 },
                 "addConteudoTitulo": {
                     "label": "Título",
@@ -67,7 +76,7 @@
                 "addConteudoData": {
                     "label": "Data",
                     "type": "text",
-                    "model": {"val": "", "err": ""},
+                    "model": {"val": new Date(), "err": ""},
                     "name": "addConteudoData",
                     "format": "dd/MM/yyyy"
                 },
@@ -77,98 +86,118 @@
                     "name": "addConteudoTArea",
                     "rows": 7,
                     "model": {"val": "", "err": ""}
+                },
+                "duplicar": {
+                    "label": "Duplicar anterior",
+                    "type": "checkbox",
+                    "name": "duplicar",
+                    "model": {"val": "", "err": ""}
+
                 }
 
             };
+            vm.addFreq = addFreq;
             vm.cancelEditConteudo = cancelEditConteudo;
+            vm.duplicarFreq = duplicarFreq;
             vm.editingPos = -1;
-            vm.rodapeFreq = {
-                "anum": "",
-                "baluno": "",
-                "cfaltas": "",
-                "d01042015": {
-                    input: true,
-                    label: ' ',
-                    type: 'radio',
-                    name: 'duplicar',
-                    model: {val: ''}
-                },
-                "d01052015": {
-                    input: true,
-                    label: ' ',
-                    type: 'radio',
-                    name: 'duplicar',
-                    model: {val: ''}
-                }
-            };
             vm.saveEditConteudo = saveEditConteudo;
+            vm.saveFreq = saveFreq;
             vm.saveNewConteudo = saveNewConteudo;
-            vm.tableFreq = {
-                /* ID importante se for usar dataTable*/
-                id: 'tableFreq',
-
-                /* Se irá sar dataTable*/
-                dataTable: {
-                    /*  elementos desabilitados ou habilitados dataTable*/
-                    "paging":   true,
-                    "ordering": false,
-                    "info":     true,
-                    "filter":   true,
-                    "order": [[ 0, "asc" ]]
-                },
-                /* CLASSES CSS QUE A TABELA IRÁ UTILIZAR*/
-                class: 'table table-hover',
-
+            vm.tableFreqFixa = {
                 /*  Cabeçalho do grid   */
-                head: ["", "Aluno", "Faltas", "01/04/2015", "05/04/2015", "08/04/2015", "12/04/2015", "13/04/2015", "14/04/2015", "15/04/2015"],
+                head: [{text: "", class: "col-sx-1"}, {text: "Aluno", class: "col-md-10"}, {text: "Faltas", class: "col-xs-1"}],
                 list: [
                     {
                         "anum": "1",
                         "baluno": "João das Couves",
-                        "cfaltas": "1",
-                        "d01042015": "P",
-                        "d01052015": "P",
-                        "d08052015": "P",
-                        "d12052015": "F",
-                        "d13052015": "F",
-                        "d14052015": "F",
-                        "d15052015": "F"
+                        "cfaltas": "1"
                     },
                     {
                         "anum": "2",
                         "baluno": "Mariana",
-                        "cfaltas": "1",
-                        "d01042015": "F",
-                        "d01052015": "P",
-                        "d08052015": "P",
-                        "d12052015": "P",
-                        "d13052015": "F",
-                        "d14052015": "F",
-                        "d15052015": "F"
+                        "cfaltas": "1"
                     },
                     {
                         "anum": "3",
                         "baluno": "Maria",
-                        "cfaltas": "1",
-                        "d01042015": "F",
-                        "d01052015": "P",
-                        "d08052015": "P",
-                        "d12052015": "P",
-                        "d13052015": "F",
-                        "d14052015": "F",
-                        "d15052015": "F"
+                        "cfaltas": "1"
                     },
                     {
                         "anum": "4",
                         "baluno": "Abner",
-                        "cfaltas": "0",
-                        "d01042015": "P",
-                        "d01052015": "P",
-                        "d08052015": "P",
-                        "d12052015": "P",
-                        "d13052015": "F",
-                        "d14052015": "F",
-                        "d15052015": "F"
+                        "cfaltas": "0"
+                    }
+                ]
+            };
+            vm.tableFreqDatasComp = {
+                /*  Cabeçalho do grid   */
+                head: [new Date('08/25/2015').toLocaleString().substr(0,11),new Date('08/26/2015').toLocaleString().substr(0,11),new Date('08/27/2015').toLocaleString().substr(0,11),new Date('08/28/2015').toLocaleString().substr(0,11),new Date('08/29/2015').toLocaleString().substr(0,11),new Date('08/30/2015').toLocaleString().substr(0,11),new Date('08/31/2015').toLocaleString().substr(0,11),new Date('09/01/2015').toLocaleString().substr(0,11)],
+                list: [
+                    {
+                        "ajoao": "p",
+                        "bjoao": "p",
+                        "cjoao": "f",
+                        "djoao": "p",
+                        "ejoao": "p",
+                        "fjoao": "p",
+                        "gjoao": "p",
+                        "hjoao": "p"
+                    },
+                    {
+                        "amariana": "p",
+                        "bmariana": "f",
+                        "cmariana": "p",
+                        "dmariana": "p",
+                        "emariana": "p",
+                        "fmariana": "p",
+                        "gmariana": "p",
+                        "hmariana": "p"
+                    },
+                    {
+                        "amaria": "p",
+                        "bmaria": "p",
+                        "cmaria": "f",
+                        "dmaria": "p",
+                        "emaria": "p",
+                        "fmaria": "p",
+                        "gmaria": "p",
+                        "hmaria": "p"
+                    },
+                    {
+                        "aabner": "p",
+                        "babner": "p",
+                        "cabner": "p",
+                        "dabner": "p",
+                        "eabner": "p",
+                        "fabner": "p",
+                        "gabner": "p",
+                        "habner": "p"
+                    }
+                ]
+            };
+            vm.tableFreqDatasSimp = {
+                /*  Cabeçalho do grid   */
+                head: [new Date().toLocaleString().substr(0,11),new Date('08/29/2015').toLocaleString().substr(0,11),new Date('08/30/2015').toLocaleString().substr(0,11)],
+                list: [
+                    {
+                        "ajoao": "p",
+                        "bjoao": "p",
+                        "cjoao": "f"
+                    },
+                    {
+                        "amariana": "p",
+                        "bmariana": "f",
+                        "cmariana": "p"
+                    },
+                    {
+                        "amaria": "p",
+                        "bmaria": "p",
+                        "cmaria": "f"
+                    },
+                    {
+                        "aabner": "p",
+                        "babner": "p",
+                        "cabner": "p"
                     }
                 ]
             };
@@ -213,25 +242,6 @@
                     }
                 ]
             };
-
-            function atualizaRodapeFreq() {
-                var lkey;
-                for (lkey in vm.tableFreq.list[0]) {
-                    if (lkey == "anum" || lkey == "baluno" || lkey == "cfaltas") {
-                        vm.rodapeFreq[lkey] = ""
-                    }else{
-                        vm.rodapeFreq[lkey] = {
-                            input: true,
-                            label: ' ',
-                            type: 'radio',
-                            name: 'duplicar',
-                            model: {val: ''}
-                        }
-                    }
-                }
-            }
-            atualizaRodapeFreq();
-            vm.tableFreq.list.push(vm.rodapeFreq);
 
             vm.tableConteudoAdicionado = {
 
@@ -282,6 +292,16 @@
                 ]
 
             };
+            vm.verTodos = false;
+            vm.visualizarFreq = visualizarFreq;
+
+            function addFreq() {
+                vm._model.addConteudoData.model.val = vm._model.addData.model.val.toLocaleString().substr(0,11);
+                $('#modalAddFreq').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                })
+            }
 
             function editCenteudo(args,line){
                 vm._bkp = $.extend(true,{},vm._model);
@@ -299,6 +319,25 @@
                 vm._model = $.extend(true,{},vm._bkp);
             }
 
+            function duplicarFreq(val) { // Duplica de acordo com o primeiro da lista simplificada
+                var aluno, i, lstKeys;
+                if(val){
+                    for (aluno in vm._alunos){
+                        for (i in vm.tableFreqDatasSimp.list){
+                            lstKeys = Object.keys(vm.tableFreqDatasSimp.list[i]);
+                            vm._modelAlunos[vm._alunos[aluno]] = vm.tableFreqDatasSimp.list[i][lstKeys[0]];
+                        }
+                    }
+                }else{
+                    for (aluno in vm._alunos){
+                        for (i in vm.tableFreqDatasSimp.list){
+                            lstKeys = Object.keys(vm.tableFreqDatasSimp.list[i]);
+                            vm._modelAlunos[vm._alunos[aluno]] = '';
+                        }
+                    }
+                }
+            }
+
             function removeCenteudo(args,line) {
                 vm.tableConteudoAdicionado.list.splice(vm.tableConteudoAdicionado.list.indexOf(line),1);
                 //vm.tableConteudoAdicionado.list.splice(pos,1)
@@ -310,6 +349,10 @@
                 vm.tableConteudoAdicionado.list[vm.editingPos].cconteudo = vm._model.addConteudoTArea.model.val;
                 vm._model = $.extend(true,{},vm._bkp);
                 $('#modalEditConteudo').modal('toggle');
+            }
+
+            function saveFreq() {
+                //todo
             }
 
             function saveNewConteudo() {
@@ -350,8 +393,9 @@
                 vm._model.addConteudoTArea.model.val = '';
 
             }
-
-
+            function visualizarFreq() {
+                vm.verTodos = !vm.verTodos;
+            }
 
         }])
 })();
