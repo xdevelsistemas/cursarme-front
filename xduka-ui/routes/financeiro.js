@@ -29,5 +29,9 @@ module.exports = function (app, passport) {
     app.route('/api/financeiro/template-cadastro-caixa')
         .get(controller.showTemplateCadastroCaixa);
 
+    //template-valores-cursos
+    app.route('/api/financeiro/template-valores-cursos')
+        .get(controller.showTemplateValoresCursos);
+
     return app;
 };

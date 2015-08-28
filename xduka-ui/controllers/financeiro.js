@@ -6,6 +6,7 @@ var urlDataBase = '',
     alunos = require('../mockup/xduka-json/common/alunos.json'),
     templateAluno = require('../mockup/xduka-json/financeiro/templateAluno.json'),
     templateCadastroCaixa = require('../mockup/xduka-json/financeiro/templateCadastroCaixa.json');
+    templateValoresCursos = require('../mockup/xduka-json/financeiro/templateValoresCursos.json');
 
 module.exports = function() {
     var controller = {};
@@ -15,6 +16,7 @@ module.exports = function() {
     controller.showCheques = getCheques;
     controller.showTemplateAluno = getTemplateAluno;
     controller.showTemplateCadastroCaixa = getTemplateCadastroCaixa;
+    controller.showTemplateValoresCursos = getTemplateValoresCursos;
     controller.putChequeEdit = postChequeEdit;
     controller.putDadosCadastroCaixa = postDadosCadastroCaixa;
 
@@ -71,15 +73,19 @@ function postDadosCadastroCaixa(req,res) {
         "cobs": dataSent.model.obs.model.val
     });
 
-    res.json({"list": dadosCadastroCaixa.list})
+    res.json({"list": dadosCadastroCaixa.list});
 }
 
 function getTemplateCadastroCaixa(req,res) {
-    res.json(templateCadastroCaixa)
+    res.json(templateCadastroCaixa);
+}
+
+function getTemplateValoresCursos(req,res) {
+    res.json(templateValoresCursos);
 }
 
 function getCheques(req,res) {
-    res.json(cheques)
+    res.json(cheques);
 }
 
 function getTemplateAluno(req,res) {
