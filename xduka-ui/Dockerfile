@@ -14,4 +14,4 @@ RUN grunt
 
 
 EXPOSE 3000
-CMD ["forever","-w","bin/www-prd"]
+CMD ["forever","-w","bin/www"]
