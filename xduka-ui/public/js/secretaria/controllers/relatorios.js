@@ -20,6 +20,7 @@
             vm.gerarDecmat = gerarDecmat;
             vm.gerarDecCursoLivre = gerarDecCursoLivre;
             vm.gerarMestrado = gerarMestrado;
+            vm.gerarDecFreq = gerarDecFreq;
 
 
 
@@ -227,6 +228,22 @@
                     data_fim: '18/05/2017'
                 };
                 window.open("/report?templateContent=" + encodeURIComponent("dec-matricula-aluno") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
+            };
+
+            function gerarDecFreq() {
+                vm.data.content = {
+                    nome: 'João das Couves',
+                    cpf: '123.123.123-31',
+                    curso: 'Complementação Pedagógica',
+                    matricula: '1412SI312',
+                    encontro: 'semanais',
+                    hora1: '07:30',
+                    hora2: '09:30',
+                    data_ini: '18/08/2015',
+                    data_fim: '18/05/2017'
+                };
+                window.open("/report?templateContent=" + encodeURIComponent("dec-frequencia-aluno") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
+
             };
 
             function gerarDecCursoLivre() {
