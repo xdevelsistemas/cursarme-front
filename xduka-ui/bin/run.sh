@@ -1,3 +1,3 @@
 #!/bin/bash
-forever start www
+forever start bin/www
 forever --fifo logs 0
