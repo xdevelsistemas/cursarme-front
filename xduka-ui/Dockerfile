@@ -1,25 +1,41 @@
-FROM node:0.12-onbuild
-
-MAINTAINER Clayton Santos da Silva "clayton@xdevel.com.br"
+FROM centos:7
 
 
-RUN apt-get install  && apt-get -y dist-upgrade && apt-get install bzip2
+# Add EPEL repository
+RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
+    yum clean all && \
+    rpm --rebuilddb
+
+ENV	LANG en_US.UTF-8
+ENV	LC_ALL en_US.UTF-8
+
+#install npm
+RUN yum -y install nodejs npm && \
+#install awscli
+    yum install -y python-pip git && \
+    pip install awscli
+
+#install phantomjs + casperjs + bower + grunt-cli +  forever
+RUN node -v && \
+    npm install -g phantomjs && \
+    npm install -g casperjs && \
+    npm install -g bower && \
+    npm install -g grunt-cli
+
 #latest npm
-RUN npm install --global npm@latest  
+RUN npm install --global npm@latest
 # add project to build
 ADD . /root/xduka-ui
 WORKDIR /root/xduka-ui
 
 
-RUN npm install && \  
+RUN npm install && \
     npm install --dev && \
-    npm install bower && \
-    npm install -g grunt-cli && \
-    node_modules/bower/bin/bower  --allow-root  install
+    bower  --allow-root  install
 RUN grunt
 
 
 
 
 EXPOSE 3000
-CMD ["node","bin/www-prd"]
+CMD ["forever","-w","bin/www-prd"]
