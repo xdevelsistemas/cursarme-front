@@ -62,6 +62,12 @@ angular.module('app',[
             controller: 'cadastroCaixa',
             controllerAs: 'cadc'
         });
+// ========= CAMPANHAS PROMOCIONAIS ========= //
+        $routeProvider.when('/campanhas-promocionais', {
+            templateUrl: 'html/financeiro/campanhas-promocionais.html',
+            controller: 'campanhasPromocionais',
+            controllerAs: 'cp'
+        });
 // ========= OTHERWISE ========= //
         $routeProvider.otherwise({
             redirectTo: '/'

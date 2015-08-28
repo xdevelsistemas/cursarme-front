@@ -28,6 +28,11 @@
                 "text": "Cadastro de Caixa",
                 "iconClass": "entypo-plus",
                 "href": "#/cadastro-caixa"
+            },
+            {
+                "text": "Campanhas Promocionais",
+                "iconClass": "entypo-megaphone",
+                "href": "#/campanhas-promocionais"
             }
         ]
     })
