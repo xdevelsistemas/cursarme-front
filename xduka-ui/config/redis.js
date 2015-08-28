@@ -3,7 +3,7 @@ var redisClient = require('redis');
 // get enviroment variables
 var redis_host = process.env.REDIS_HOST;
 var redis_port = process.env.REDIS_PORT;
-var redis_db = process.env.REDIS_DB;
+var redis_db = parseInt(process.env.REDIS_DB,10);
 
 
 module.exports = {
