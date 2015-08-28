@@ -10,7 +10,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: 'public/assets/css/font-icons/entypo',
-                        src: ['font/**/*'],
+                        src: ['font/**/*',],
                         dest: 'dist/public/assets'
                     },
                     {
@@ -18,6 +18,12 @@ module.exports = function(grunt) {
                         cwd: '.',
                         src: ['views/**/*', 'public/assets/fonts/**/*'],
                         dest: 'dist'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'public/assets',
+                        src: ['{images,xduka}/**/*.{png,jpg,gif}'],
+                        dest: 'dist/public/assets'
                     }
                 ]
             }
@@ -63,7 +69,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['clean', 'copy', 'imagemin', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin']);
+    grunt.registerTask('default', ['clean', 'copy', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin']);
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');

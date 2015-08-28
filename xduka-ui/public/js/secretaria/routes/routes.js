@@ -56,6 +56,12 @@ angular.module('app',[
             controller: 'relatorios',
             controllerAs: 'rel'
         });
+// ========= CONFIGURAÇÕES ========= //
+        $routeProvider.when('/secretaria/pauta', {
+            templateUrl: 'html/secretaria/pauta.html',
+            controller: 'pauta',
+            controllerAs: 'pt'
+        });
 // ========= OTHERWISE ========= //
         $routeProvider.otherwise({
             redirectTo: '/'
