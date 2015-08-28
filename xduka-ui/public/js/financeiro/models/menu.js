@@ -18,6 +18,21 @@
                 "text": "Mensagem para Boletos",
                 "iconClass": "entypo-comment",
                 "href": "#/mensagem-boletos"
+            },
+            {
+                "text": "Valores dos Cursos",
+                "iconClass": "glyphicon glyphicon-usd",
+                "href": "#/valores-cursos"
+            },
+            {
+                "text": "Cadastro de Caixa",
+                "iconClass": "entypo-plus",
+                "href": "#/cadastro-caixa"
+            },
+            {
+                "text": "Campanhas Promocionais",
+                "iconClass": "entypo-megaphone",
+                "href": "#/campanhas-promocionais"
             }
         ]
     })

@@ -50,6 +50,24 @@ angular.module('app',[
             controller: 'msgBoletos',
             controllerAs: 'mb'
         });
+// ========= VALORES CURSOS ========= //
+        $routeProvider.when('/valores-cursos', {
+            templateUrl: 'html/financeiro/valores-cursos.html',
+            controller: 'valoresCursos',
+            controllerAs: 'vc'
+        });
+// ========= CADASTRO DE CAIXA ========= //
+        $routeProvider.when('/cadastro-caixa', {
+            templateUrl: 'html/financeiro/cadastro-caixa.html',
+            controller: 'cadastroCaixa',
+            controllerAs: 'cadc'
+        });
+// ========= CAMPANHAS PROMOCIONAIS ========= //
+        $routeProvider.when('/campanhas-promocionais', {
+            templateUrl: 'html/financeiro/campanhas-promocionais.html',
+            controller: 'campanhasPromocionais',
+            controllerAs: 'cp'
+        });
 // ========= OTHERWISE ========= //
         $routeProvider.otherwise({
             redirectTo: '/'
