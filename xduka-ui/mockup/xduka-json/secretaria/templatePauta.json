@@ -1,69 +1,95 @@
 {
-  "professor": {
-    "label": "Professor",
-    "type": "select",
-    "name": "prof",
-    "placeholder": "Selecione uma opção",
-    "list": [
-    ],
-    "model": {"val": "", "err": ""}
-  },
-  "curso": {
-    "label": "Curso",
-    "type": "select",
-    "name": "curso",
-    "placeholder": "Selecione uma opção",
-    "list": [
-      {
-        "id": "1",
-        "text": "Curso 1"
+  "template": {
+    "professor": {
+      "label": "Professor",
+      "type": "select",
+      "name": "prof",
+      "placeholder": "Selecione uma opção",
+      "list": [
+      ],
+      "model": {
+        "val": "",
+        "err": ""
       }
-    ],
-    "model": {"val": "", "err": ""}
-  },
-  "turma": {
-    "label": "Turma",
-    "type": "select",
-    "name": "turma",
-    "placeholder": "Selecione uma opção",
-    "list": [
-    ],
-    "model": {"val": "", "err": ""}
-  },
-  "disciplina": {
-    "label": "Professor",
-    "type": "select",
-    "name": "prof",
-    "placeholder": "Selecione uma opção",
-    "list": [
-    ],
-    "model": {"val": "", "err": ""}
-  },
-  "addData": {
-    "label": "",
-    "type": "text",
-    "model": {"val": "", "err": ""},
-    "name": "addData",
-    "format": "dd/MM/yyyy"
-  },
-  "addConteudoTitulo": {
-    "label": "Título",
-    "type": "text",
-    "name": "titulo",
-    "model": {"val": "", "err": ""}
-  },
-  "addConteudoData": {
-    "label": "Data",
-    "type": "text",
-    "model": {"val": "", "err": ""},
-    "name": "addConteudoData",
-    "format": "dd/MM/yyyy"
-  },
-  "addConteudoTArea": {
-    "label": "",
-    "type": "textarea",
-    "name": "addConteudoTArea",
-    "rows": 7,
-    "model": {"val": "", "err": ""}
+    },
+    "curso": {
+      "label": "Curso",
+      "type": "select",
+      "name": "curso",
+      "placeholder": "Selecione uma opção",
+      "list": [
+        {
+          "id": "1",
+          "text": "Curso 1"
+        }
+      ],
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "turma": {
+      "label": "Turma",
+      "type": "select",
+      "name": "turma",
+      "placeholder": "Selecione uma opção",
+      "list": [
+      ],
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "disciplina": {
+      "label": "Professor",
+      "type": "select",
+      "name": "prof",
+      "placeholder": "Selecione uma opção",
+      "list": [
+      ],
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "addData": {
+      "label": "",
+      "type": "text",
+      "model": {
+        "val": "",
+        "err": ""
+      },
+      "name": "addData",
+      "format": "dd/MM/yyyy"
+    },
+    "addConteudoTitulo": {
+      "label": "Título",
+      "type": "text",
+      "name": "titulo",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "addConteudoData": {
+      "label": "Data",
+      "type": "text",
+      "model": {
+        "val": "",
+        "err": ""
+      },
+      "name": "addConteudoData",
+      "format": "dd/MM/yyyy"
+    },
+    "addConteudoTArea": {
+      "label": "Conteúdo",
+      "type": "textarea",
+      "name": "addConteudoTArea",
+      "rows": 7,
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    }
   }
 }

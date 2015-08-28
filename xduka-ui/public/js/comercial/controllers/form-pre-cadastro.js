@@ -130,8 +130,10 @@
                     }
                 })
                 .catch(function(erro) {
+                    // TOdo tratar erro
                     if (erro.status == '400') {
-                        console.log(erro)
+                        console.log("Erro 400");
+                        console.log(erro);
                     }
                 });
 

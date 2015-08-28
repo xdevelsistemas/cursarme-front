@@ -1,0 +1,29 @@
+{
+  "list": [
+    {
+      "anome": "Bradesco",
+      "btipo": "Boleto",
+      "cobs": "Alunos"
+    },
+    {
+      "anome": "Visa",
+      "btipo": "Cartão de Crédito",
+      "cobs": ""
+    },
+    {
+      "anome": "Mastercard",
+      "btipo": "Cartão de Crédito",
+      "cobs": ""
+    },
+    {
+      "anome": "Cheque",
+      "btipo": "",
+      "cobs": "Alunos"
+    },
+    {
+      "anome": "Acordo",
+      "btipo": "Advocacia",
+      "cobs": "Alunos"
+    }
+  ]
+}

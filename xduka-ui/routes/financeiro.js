@@ -7,15 +7,27 @@ module.exports = function (app, passport) {
 
     //get-unidade
     app.route('/api/financeiro/getCheques')
-        .get(controller.getCheques);
+        .get(controller.showCheques);
 
     //get template aluno
     app.route('/api/financeiro/templateAluno')
-        .get(controller.getTemplateAluno);
+        .get(controller.showTemplateAluno);
 
     //get template aluno
     app.route('/api/financeiro/chequeEdit')
-        .post(controller.postChequeEdit);
+        .post(controller.putChequeEdit);
+
+    //dados-cadastro-caixa
+    app.route('/api/financeiro/save-dados-cadastro-caixa')
+        .post(controller.putDadosCadastroCaixa);
+
+    //dados-cadastro-caixa
+    app.route('/api/financeiro/dados-cadastro-caixa')
+        .get(controller.showDadosCadastroCaixa);
+
+    //template-cadastro-caixa
+    app.route('/api/financeiro/template-cadastro-caixa')
+        .get(controller.showTemplateCadastroCaixa);
 
     return app;
 };

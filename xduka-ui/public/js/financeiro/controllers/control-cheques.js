@@ -98,22 +98,22 @@
                 vm.cheques[pos].destino = vm.modalEdit.destino.model.val;
                 //TODO MELHORAR O SALVAMENTO DO STATUS ABAIXO
                 vm.cheques[pos].status = vm.modalEdit.status.list[vm.modalEdit.status.model.val];
-                //
-                //  TODO FUNÇÃO DE POST DE SALVAMENTO AQUI
 
-                var chequeEditPromise = $resource('/api/financeiro/chequeEdit').save({}, pos).$promise;
-                //var chequeEditPromise = $resource('/api/financeiro/chequeEdit').save({}, {"pos": pos, "cheque": vm.cheques[pos]}).$promise;
+                // possível sintaxe para causar erro 400
+                //var chequeEditPromise = $resource('/api/financeiro/chequeEdit').save({}, pos).$promise;
+                var chequeEditPromise = $resource('/api/financeiro/chequeEdit').save({}, {"pos": pos, "cheque": vm.cheques[pos]}).$promise;
 
                 chequeEditPromise
                     .then(function(data) {
                         console.log("Success resource");
                         console.log(data);
 
-                        atualizaTable();
                         cancelEdit();
+                        atualizaTable();
                     })
                     .catch(function(error) {
                         // TODO TRATAR POSSÍVEL ERROR NA EDIÇÃO DO CHEQUE
+                        // TOdo tela de resposta com um "Tipo de dado incorreto."
                         console.log("Error área financeiro");
                         console.log("controller control-cheques");
                         console.log("function saveEdit");

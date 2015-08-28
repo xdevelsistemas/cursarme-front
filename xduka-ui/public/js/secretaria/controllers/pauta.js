@@ -36,6 +36,46 @@
                     model: {val: ''}
                 }
             };
+            vm.tableFreq = {
+                /* ID importante se for usar dataTable*/
+                id: 'tableFreq',
+
+                /* Se irá sar dataTable*/
+                dataTable: {
+                    /*  elementos desabilitados ou habilitados dataTable*/
+                    "paging":   true,
+                    "ordering": false,
+                    "info":     true,
+                    "filter":   true,
+                    "order": [[ 0, "asc" ]]
+                },
+                /* CLASSES CSS QUE A TABELA IRÁ UTILIZAR*/
+                class: 'table table-hover',
+
+                /*  Cabeçalho do grid   */
+                head: ["", "Aluno", "Faltas", "01/04/2015", "05/04/2015", "08/04/2015", "12/04/2015", "13/04/2015", "14/04/2015", "15/04/2015"],
+                list: []
+            };
+            vm.tableNotas = {
+                /* ID importante se for usar dataTable*/
+                id: 'tableNotas',
+                /* CLASSES CSS QUE A TABELA IRÁ UTILIZAR*/
+                class: 'table-hover display',
+
+                /* Se irá sar dataTable*/
+                dataTable: {
+                    /*  elementos desabilitados ou habilitados dataTable*/
+                    "paging":   true,
+                    "ordering": true,
+                    "info":     true,
+                    "filter":   true,
+                    "order": [[ 0, "asc" ]]
+                },
+
+                /*  Cabeçalho do grid   */
+                head: ["", "Matrícula", "Aluno", "Situação", "Nota1", "Nota2", "Faltas", "Média"],
+                list: []
+            };
 
             // VARIÁVEIS TIPO FUNÇÃO
             vm.cancelEditConteudo = cancelEditConteudo;
@@ -45,7 +85,7 @@
             // REQUISIÇÕES
             templatePautaPromise
                 .then(function(data) {
-                    vm.model = data;
+                    vm._model = data.template;
                 })
                 .catch(function(error) {
 
@@ -53,26 +93,7 @@
 
             dadosFreqPautaPromise
                 .then(function(data) {
-                    vm.tableFreq = {
-                        /* ID importante se for usar dataTable*/
-                        id: 'tableFreq',
-
-                        /* Se irá sar dataTable*/
-                        dataTable: {
-                            /*  elementos desabilitados ou habilitados dataTable*/
-                            "paging":   true,
-                            "ordering": false,
-                            "info":     true,
-                            "filter":   true,
-                            "order": [[ 0, "asc" ]]
-                        },
-                        /* CLASSES CSS QUE A TABELA IRÁ UTILIZAR*/
-                        class: 'table table-hover',
-
-                        /*  Cabeçalho do grid   */
-                        head: ["", "Aluno", "Faltas", "01/04/2015", "05/04/2015", "08/04/2015", "12/04/2015", "13/04/2015", "14/04/2015", "15/04/2015"],
-                        list: data.list
-                    };
+                    vm.tableFreq.list = data.list;
 
                     atualizaRodapeFreq();
                     vm.tableFreq.list.push(vm.rodapeFreq);
@@ -83,26 +104,7 @@
 
             dadosNotasPautaPromise
                 .then(function(data) {
-                    vm.tableNotas = {
-                        /* ID importante se for usar dataTable*/
-                        id: 'tableNotas',
-                        /* CLASSES CSS QUE A TABELA IRÁ UTILIZAR*/
-                        class: 'table-hover display',
-
-                        /* Se irá sar dataTable*/
-                        dataTable: {
-                            /*  elementos desabilitados ou habilitados dataTable*/
-                            "paging":   true,
-                            "ordering": true,
-                            "info":     true,
-                            "filter":   true,
-                            "order": [[ 0, "asc" ]]
-                        },
-
-                        /*  Cabeçalho do grid   */
-                        head: ["", "Matrícula", "Aluno", "Situação", "Nota1", "Nota2", "Faltas", "Média"],
-                        list: data.list
-                    };
+                    vm.tableNotas.list = data.list;
                 })
                 .catch(function(error) {
 
