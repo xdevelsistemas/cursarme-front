@@ -14,7 +14,7 @@ mongodb:
 reportjs:
   image: jsreport/jsreport:latest
   ports:
-    - "443:2945"
+    - "5050:2945"
   volumes:
     - "~/dockerdata/jsreport:/jsreport"
   command: bash /home/jsreport/run.sh  --restart always
