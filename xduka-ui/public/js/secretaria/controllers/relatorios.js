@@ -4,16 +4,20 @@
     angular.module('app.controllers')
         .controller('relatorios', ['$scope', '$resource', 'breadCrumb', '$timeout', '$http', '$sce', 'reportService', function($scope, $resource, breadCrumb, $timeout, $http, $sce, reportService){
 
+            breadCrumb.title = 'Relatórios';
+
+
             var vm = this,
                 dados = $resource('/api/secretaria/view-inscr').get().$promise,
                 dados_geral = $resource('/api/secretaria/templateConfig').get().$promise;
-
-            breadCrumb.title = 'Relatórios';
 
             vm._viewInscr = {};
             vm._templateConfig = {};
             vm.data = {content: {head: [], body:[]}, header: [], footer: []};
             vm.gerar = gerar;
+            vm.gerarCompPedagogica = gerarCompPedagogica;
+            vm.gerarDecHorario = gerarDecHorario;
+
             vm.reportSv = reportService; // Service de relatorios (PDF)
             vm.template = '';
 
@@ -39,29 +43,68 @@
                     console.log("\n" + erro.data + "\n");
                 });
 
+
+
             function gerar() {
                 reportData();
-                //reportService.data = vm.data;
-                //reportService.gerar('html/common/relatorio.ejs');
                 window.open("/report?templateContent=" + encodeURIComponent("relatorio") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
             }
 
+            function gerarCompPedagogica() {
+                reportDataCP();
+                window.open("/report?templateContent=" + encodeURIComponent("comp-pedagogica") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
+            }
+
+            function reportDataCP() {
+                // content head pdf
+                vm.data.content.head = [
+                    {text: 'Nome'},
+                    {text: '3 fotos 3x4'},
+                    {text: 'Carteira de Identidade'},
+                    {text: 'CPF'},
+                    {text: 'Titulo Eleitoral'},
+                    {text: 'Comprovante da Ultima Eleição'},
+                    {text: 'Certidão de Reservista'},
+                    {text: 'Certidão de Nascimento ou Casamento'},
+                    {text: 'Comprovante de Residência'},
+                    {text: 'Diploma do Ensino Médio'},
+                    {text: 'Histórico do Ensino Médio'},
+                    {text: 'Diploma de Graduação'},
+                    {text: 'Histórico de Graduação'},
+                    {text: 'Certidão de Conclusão'}
+                ];
+
+                vm.data.content.body = [];
+
+                // content body pdf
+                for (var i = 0; i < 10;i++){
+                    vm.data.content.body.push({
+                        Nome: 'João das Couves',
+                        foto: 'X',
+                        c_id: '',
+                        cpf: 'X',
+                        tit_eleit: '',
+                        comp_eleit: 'X',
+                        cert_reserv: 'X',
+                        cert_cas: '',
+                        comp_res: 'X',
+                        dip_em: '',
+                        hist_em: 'X',
+                        dip_grad: '',
+                        hist_grad: 'X',
+                        cert_conclu: 'X'
+                    });
+                    vm.data.content.body.sort(function compare(a,b) {
+                        if (a.Nome > b.Nome){
+                            return a.Nome > b.Nome
+                        }
+                    })
+                }
+            }
+
+
+
             function reportData() {
-                // header pdf
-                /*vm.data.header = {
-                    logo: vm._templateConfig.logo,
-                    nomeEmpresa: vm._templateConfig.nomeEmpresa.model.val,
-                    nomeUnidade: vm._templateConfig.nomeUnidade.model.val
-                };
-
-                // footer pdf
-                vm.data.footer = {
-                    endereco: vm._templateConfig.endereco.model.val,
-                    telefone: vm._templateConfig.telefone.model.val,
-                    email: vm._templateConfig.email.model.val,
-                    site: vm._templateConfig.site.model.val
-                };*/
-
                 // content head pdf
                 vm.data.content.head = [
                     {text: 'Nome'},
@@ -98,28 +141,29 @@
             }
 
             vm.geraDec = function () {
-                // header pdf
-                /*reportService.data.header = {
-                    logo: vm._templateConfig.logo,
-                    nomeEmpresa: vm._templateConfig.nomeEmpresa.model.val,
-                    nomeUnidade: vm._templateConfig.nomeUnidade.model.val
-                };
-
-                // footer pdf
-                reportService.data.footer = {
-                    endereco: vm._templateConfig.endereco.model.val,
-                    telefone: vm._templateConfig.telefone.model.val,
-                    email: vm._templateConfig.email.model.val,
-                    site: vm._templateConfig.site.model.val
-                };*/
-
                 vm.data.content = {
                     data: '22/12/2015',
                     nome: 'João das Couves',
                     curso: 'Sistemas de Informação'
                 };
-                //reportService.gerar('html/common/template-decDocs.ejs');
                 window.open("/report?templateContent=" + encodeURIComponent("template-decDocs") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
+            };
+
+
+            function gerarDecHorario() {
+                vm.data.content = {
+                    nome: 'João das Couves',
+                    cpf: '123.123.123-54',
+                    disciplina: 'Cálculo 2',
+                    professor: 'Bruno teste',
+                    curso: 'Sistemas de Informação',
+                    dia: '14',
+                    mes: 'Novembro',
+                    ano: '2015',
+                    hora1: '7:30',
+                    hora2: '9:30'
+                };
+                window.open("/report?templateContent=" + encodeURIComponent("dec-horario-aluno") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
             };
 
 
