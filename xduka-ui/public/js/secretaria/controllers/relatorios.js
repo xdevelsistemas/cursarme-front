@@ -17,6 +17,10 @@
             vm.gerar = gerar;
             vm.gerarCompPedagogica = gerarCompPedagogica;
             vm.gerarDecHorario = gerarDecHorario;
+            vm.gerarDecmat = gerarDecmat;
+            vm.gerarDecCursoLivre = gerarDecCursoLivre;
+
+
 
             vm.reportSv = reportService; // Service de relatorios (PDF)
             vm.template = '';
@@ -166,6 +170,61 @@
                 window.open("/report?templateContent=" + encodeURIComponent("dec-horario-aluno") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
             };
 
+            function gerarDecmat() {
+                vm.data.content = {
+                    nome: 'João das Couves',
+                    rg: '2.141-654 - ES',
+                    curso: 'Sistemas de Informação',
+                    matricula: '1412SI312',
+                    encontro: 'semanais',
+                    data_ini: '18/08/2015',
+                    data_fim: '18/05/2017'
+                };
+                window.open("/report?templateContent=" + encodeURIComponent("dec-matricula-aluno") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
+            };
+
+            function gerarDecCursoLivre() {
+                vm.data.content = {
+                    nome: 'João das Couves',
+                    curso: 'Sistemas de Informação',
+                    caga_horaria: '2500',
+                    dia_ini: '01',
+                    mes_ini: 'Novembro',
+                    ano_ini: '2013',
+                    dia_fim: '01',
+                    mes_fim: 'Novembro',
+                    ano_fim: '2016',
+                    content_curso: [
+                        { text: "DESENVOLVIMENTO INFANTIL" },
+                        { text: "RECÉM NASCIDO" },
+                        { text: "PRIMEIRO ANO" },
+                        { text: "SEGUNDO ANO" },
+                        { text: "DO TERCEIRO AO QUINTO ANO" },
+                        { text: "SINAIS DE ALERTA NO DESENVOLVIMENTO INFANTIL" },
+                        { text: "DESENVOLVIMENTO PSICOSEXUAL DA CRIANÇA" },
+                        { text: "FASES DO DESENVOLVIMENTO" },
+                        { text: "CARACTERÍSTICAS DO DESENVOLVIMENTO COGNITIVO" },
+                        { text: "REAÇÕES AGRESSIVAS NA INFÂNCIA" },
+                        { text: "AS BRINCADEIRAS NOS DOIS PRIMEIROS ANOS" },
+                        { text: "AS BRINCADEIRAS E A CRIANÇA DE 3, 4 E 5 ANOS" },
+                        { text: "BRINQUEDOS E BRINCADEIRAS" },
+                        { text: "CONSIDERAÇÕES SOBRE OS BRINQUEDOS PEDAGÓGICOS" },
+                        { text: "CLASSIFICAÇÃO DE BRINQUEDOS" },
+                        { text: "O DESENHO E O DESENVOLVIMENTO DAS CRIANÇAS" },
+                        { text: "ORIGEM DA EDUCAÇÃO INFANTIL NO MUNDO" },
+                        { text: "EDUCAÇÃO INFANTIL NO BRASIL" },
+                        { text: "O QUE É EDUCAÇÃO INFANTIL? OS OBJETIVOS DO TRABALHO PEDAGÓGICO COM CRIANÇAS DE 0 A 6 ANOS" },
+                        { text: "OBJETIVOS NA EDUCAÇÃO INFANTIL" },
+                        { text: "CURRÍCULO VIVO: A ORGANIZAÇÃO DO TRABALHO PEDAGÓGICO NA EDUCAÇÃO INFANTIL" },
+                        { text: "ROTINA NA EDUCAÇÃO INFANTIL" },
+                        { text: "AVALIAÇÃO NA EDUCAÇÃO INFANTIL: O ADULTO COMO UM DOS MEDIADORES DO DESENVOLVIMENTO INFANTIL" }
+                    ]
+
+
+
+                };
+                window.open("/report?templateContent=" + encodeURIComponent("dec-curso-livre") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
+            };
 
         }])
 })();
