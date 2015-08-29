@@ -5,11 +5,11 @@ machine:
     - docker
 dependencies:
   override:
-    pwd:
-      xduka-ui
     - sudo pip install awscli
     - docker info
     - docker build -t claytonsilva/xduka-ui .
+      pwd:
+        xduka-ui
 test:
   override:
     - docker run -d -p 80:3000 claytonsilva/xduka-ui; sleep 10
