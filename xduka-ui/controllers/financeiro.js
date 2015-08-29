@@ -3,6 +3,7 @@ var urlDataBase = '',
     request = require('request'),
     cheques = require('../mockup/xduka-json/financeiro/cheques.json'),
     dadosCadastroCaixa = require('../mockup/xduka-json/financeiro/dadosCadastroCaixa.json'),
+    dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
     dadosUnidades = require('../mockup/xduka-json/financeiro/dadosUnidades.json'),
     alunos = require('../mockup/xduka-json/common/alunos.json'),
     templateAluno = require('../mockup/xduka-json/financeiro/templateAluno.json'),
@@ -15,6 +16,7 @@ module.exports = function() {
     controller.alunoSearch = alunoSearch;
     controller.showCheques = getCheques;
     controller.showDadosCadastroCaixa = getDadosCadastroCaixa;
+    controller.showDadosTipoCurso = getDadosTipoCurso;
     controller.showDadosUnidades = getDadosUnidades;
     controller.showTemplateAluno = getTemplateAluno;
     controller.showTemplateCadastroCaixa = getTemplateCadastroCaixa;
@@ -61,6 +63,14 @@ function alunoSearch(req,res){
 
 function getDadosCadastroCaixa(req,res) {
     res.json(dadosCadastroCaixa)
+}
+
+function getDadosTipoCurso(req,res) {
+    var idUnidade = req.params.id;
+
+    var list = verificaUnidade(dadosCurso.unidade.list, idUnidade);
+
+    res.json({"list": list});
 }
 
 function getDadosUnidades(req,res) {
@@ -120,4 +130,12 @@ function postChequeEdit(req,res) {
     cheques.list[pos] = cheque;
 
     res.json(cheques);
+}
+
+function verificaUnidade(obj, unidade) {
+    for (var i = 0; i < obj.length; i++) {
+        if (obj[i].id == unidade) {
+            return obj[i].tipoCursos;
+        }
+    }
 }

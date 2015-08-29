@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('Main', ['$scope', '$resource', 'breadCrumb', 'modelStrings', 'modelMenu', '$location', 'ngProgressFactory',
-            function($scope, $resource, breadCrumb, modelStrings, modelMenu, $location, ngProgressFactory) {
+        .controller('Main', ['$scope', '$resource', 'breadCrumb', 'defineUnidade', 'modelStrings', 'modelMenu', '$timeout', '$route', '$location', 'ngProgressFactory',
+            function($scope, $resource, breadCrumb, defineUnidade, modelStrings, modelMenu, $timeout, $route, $location, ngProgressFactory) {
 
                 /* PROGRESS BAR */
                 $scope.progressbar = ngProgressFactory.createInstance();
@@ -47,6 +47,7 @@
                     then(
                     function (data) {
                         vm._unidade = data.unidade;
+                        defineUnidade.setIdUnidade(vm._unidade.model.val);
                     })
                     .catch(
                     function (error) {
@@ -62,16 +63,14 @@
                 }
 
                 function sendUnidade(item, model) {
-                    //var promise = $http.post('/api/aluno/curso-selecionado/:idCurso', {"idCurso": vm.curso.id});
-
-                    /*if( vm.onChange != item ) {
+                    if( vm.onChange != item ) {
                         vm.onChange = item;
-                        defineCurso.setIdCurso(model);
+                        defineUnidade.setIdUnidade(model);
 
                         $timeout(function () {
                             $route.reload();
                         }, 0); // 0 ms de delay para recarregar a página.
-                    }*/
+                    }
                 }
             }]);
 })();

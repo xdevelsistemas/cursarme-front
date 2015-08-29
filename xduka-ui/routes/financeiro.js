@@ -14,6 +14,10 @@ module.exports = function (app, passport) {
         .get(controller.showDadosCadastroCaixa);
 
     //dados-cadastro-caixa
+    app.route('/api/financeiro/dados-tipo-curso/:id')
+        .get(controller.showDadosTipoCurso);
+
+    //dados-cadastro-caixa
     app.route('/api/financeiro/dados-unidades')
         .get(controller.showDadosUnidades);
 

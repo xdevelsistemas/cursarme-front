@@ -2,12 +2,13 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('valoresCursos', ['$scope', '$resource', 'breadCrumb', 'modelStrings',
-            function($scope, $resource, breadCrumb, modelStrings) {
+        .controller('valoresCursos', ['$scope', '$resource', 'breadCrumb', 'modelStrings', 'defineUnidade',
+            function($scope, $resource, breadCrumb, modelStrings, defineUnidade) {
 
             /* jshint validthis: true */
             var vm = this,
-                templateValoresCursosPromise = $resource('/api/financeiro/template-valores-cursos').get().$promise;
+                templateValoresCursosPromise = $resource('/api/financeiro/template-valores-cursos').get().$promise,
+                dadosTipoCursoPromise = $resource('/api/financeiro/dados-tipo-curso/:id').get({id: defineUnidade.getIdUnidade()}).$promise;
 
             // VARIÁVEIS COMUNS
             vm.breadCrumb = breadCrumb;
@@ -27,7 +28,15 @@
                     vm._model = data.template;
                 })
                 .catch(function(error) {
-                    //TOdo tratar error
+                    // TOdo tratar error
+                });
+
+            dadosTipoCursoPromise
+                .then(function(data) {
+                    vm._model.tipoCurso.list = data.list;
+                })
+                .catch(function(error) {
+                    // TOdo tratar error
                 });
 
             function addFormaPagamento() {
@@ -40,7 +49,7 @@
                 if(!!vm._model.addNome.model.err || !!vm._model.addValor.model.err || vm._model.addParcelamento.model.err){
                     return 0
                 }
-                
+
                 var novaForma = {
                     id: vm._model.addNome.model.val,
                     text: vm._model.addNome.model.val,
