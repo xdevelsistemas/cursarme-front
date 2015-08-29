@@ -10,7 +10,7 @@
                    name="{{params.name}}"
                    id="{{'input_'+params.name}}"
                    ng-disabled="disable"
-                   ng-change="change()"
+                   ng-change="change(params.model.val)"
                    ng-required="params.required"
                    style="float: left; width: 5%">
             <label for="{{'input_'+params.name}}" style="width: 95%">&nbsp;{{params.label}}</label>

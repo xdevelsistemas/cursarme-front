@@ -9,7 +9,6 @@ var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var redisClient = require('redis');
 var SessionStore = require('connect-mongodb');
 var app = express();
 
@@ -47,28 +46,12 @@ app.use(session({
     })
 );
 
-// session secret using mongodb
-/*app.use(session({
-        secret: 'ilovescotchscotchyscotchscotch',
-        store: new SessionStore({
-            url: configDB.url,
-            maxAge: 300000
-        }),
-        cookie: { maxAge: 900000 }
-    })
-);*/
 
 // required for passport
 require('./config/passport')(passport); // pass passport for configuration
 
 app.use(passport.initialize());
-app.use(passport.session({
-    store: new SessionStore({
-        url: configDB.url,
-        maxAge: 300000
-    }),
-    cookie: { maxAge: 900000 } // expire session in 15 min or 900 seconds
-})); // persistent login sessions
+app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================

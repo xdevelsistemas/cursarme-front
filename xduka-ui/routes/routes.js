@@ -1,11 +1,8 @@
 var isLoggedIn = require('../services/isLoggedIn.js'),
     isNotLoggedIn = require('../services/isNotLoggedIn.js'),
+    reportClient = require('../config/report.js'),
     http = require('http');
 
-var url = 'https://localhost',
-    username = '',
-    password = '',
-    client = require("jsreport-client")(url, username, password);
 
 module.exports = function (app, passport) {
 //    var express = require('express');
@@ -25,7 +22,7 @@ module.exports = function (app, passport) {
                 dataRes = {},
                 options = {
                     host: 'localhost',
-                    port: 3000,
+                    port: function(){return process.env.PORT || 3000}(),
                     path: '/api/resetpassword/' + token
                 };
 
@@ -135,11 +132,7 @@ module.exports = function (app, passport) {
     // REPORT
     app.get("/report", function(req, res, next) {
         var dataTemplate = {},
-            options = {
-                host: 'localhost',
-                port: 3000,
-                path: '/api/common/dados-template-header-footer/' + decodeURIComponent(req.query.templateContent)
-            };
+            options = reportClient.options(req.query.templateContent);
 
         var callback = function(response) {
             response.on('data', function (data) {
@@ -150,7 +143,7 @@ module.exports = function (app, passport) {
                 dataTemplate.template.recipe = "phantom-pdf";
                 dataTemplate.data.content = JSON.parse(decodeURIComponent(req.query.dataContent));
 
-                client.render(dataTemplate, function(err, response) {
+                reportClient.client.render(dataTemplate, function(err, response) {
                     if (err) {
                         return next(err);
                     }

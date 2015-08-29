@@ -1,0 +1,97 @@
+<html>
+<head>
+    <meta charset="utf8" />
+    <style>
+        /* general */
+        body { margin: 0px; padding: 0px; font-size: 14px; line-height: 1.42857;}
+        div { position: relative; }
+        /* grid system */
+        .row { width: 100%; height: auto; }
+        .col-xs-1 {  width: 6.333333333%; height: auto; margin:0 1%; float: left; }
+        .col-xs-2 {  width: 14.666666667%; height: auto; margin:0 1%; float: left; }
+        .col-xs-3 {  width: 23%; height: auto; margin:0 1%; float: left; }
+        .col-xs-4 {  width: 31.333333333%; height: auto; margin:0 1%; float: left; }
+        .col-xs-5 {  width: 39,666666667%; height: auto; margin:0 1%; float: left; }
+        .col-xs-6 {  width: 48%; height: auto; margin:0 1%; float: left; }
+        .col-xs-7 {  width: 56.333333333%; height: auto; margin:0 1%; float: left; }
+        .col-xs-8 {  width: 64.666666667%; height: auto; margin:0 1%; float: left; }
+        .col-xs-9 { width: 73%; height: auto; margin:0 1%; float: left; }
+        .col-xs-10 {  width: 81.333333333%; height: auto; margin:0 1%; float: left; }
+        .col-xs-11 {  width: 89.666666667%; height: auto; margin:0 1%; float: left; }
+        .col-xs-12 { width: 98%; height: auto; margin:0 1%;}
+        /* header*/
+        header { position: relative; padding-bottom: 100px; }
+        img.img-logo { width:100%; }
+        header h1 { padding-left: 3%; font-size: 1.1em; }
+        header h2 { padding-left: 3%; font-size: 0.8em; }
+        /* footer */
+        .text-center{ text-align: center; }
+        .navbar-fixed-bottom { position: absolute; top: auto; bottom: 0px; width: 100%;}
+        .navbar-fixed-bottom p { font-size: 12px; }
+        /* table */
+        table { width: 100%; max-width: 100%; margin-bottom: 20px; background-color: transparent; border-spacing: 0px; border-collapse: collapse; box-sizing: border-box; }
+        .table > thead:first-child > tr:first-child > th{ border-top: 0px none; }
+        .table-bordered { border: 1px solid #DDD; }
+        .table-bordered > thead > tr > th { border-bottom-width: 2px; border: 1px solid #DDD; }
+        .table > thead > tr > th { padding: 8px; line-height: 1.42857; }
+        .table-bordered > tbody > tr > td { border: 1px solid #DDD; }
+        .table > tbody > tr > td { padding: 8px; line-height: 1.42857; vertical-align: top; border-top: 1px solid #DDD; }
+        p.big { margin:30px; line-height:30px; }
+        .center { text-align: center; }
+        .assinatura { padding-top: 200px; }
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="row">
+        <div class="col-xs-3">
+            <img src="{{header.logo}}" class="img-logo"/>
+        </div>
+        <div class="col-xs-9">
+            <h1>{{header.nomeEmpresa}}</h1>
+            <h2>{{header.nomeUnidade}}</h2>
+        </div>
+    </div>
+</header>
+
+<section>
+    <h1 class="text-center text-primary">Declaração de horario</h1>
+
+    <p class="big">
+
+        Declaro, para os devidos fins, que o (a) Sr(a). <b>{{content.nome}}</b>, inscrito (a)  no
+
+        CPF sob o nº <b>{{content.cpf}}</b> esteve presente nesta Instituição para assistir a aula
+
+        referente a seguinte disciplina: <b>{{content.disciplina}}</b> ministrada pelo (a) professor (a)
+
+        <b>{{content.professor}}</b>, do curso de <b>{{content.curso}}</b> no dia <b>{{content.dia}} de {{content.mes}} de
+
+        {{content.ano}}</b>, das <b>{{content.hora1}}</b> as <b>{{content.hora2}}</b> horas.
+    </p>
+
+
+
+    <p class="big assinatura center">
+        __________________________________
+        <br/>
+        Secretária acadêmica
+    </p>
+</section>
+
+
+
+<footer class="navbar-fixed-bottom">
+    <div class="row">
+        <div class="col-xs-12">
+            <p class="text-center">
+                Endereço: {{footer.endereco}} | Telefone: {{footer.telefone}}
+                <br/>
+                {{footer.email}} | {{footer.site}}
+            </p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
