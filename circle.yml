@@ -24,10 +24,10 @@ deployment:
   aws:
     branch: publicacao
     commands:
-    - npm install
-    - npm install --dev
-    - bower install
-    - grunt
+    - (cd xduka-ui && npm install)
+    - (cd xduka-ui && npm install --dev)
+    - (cd xduka-ui && bower install)
+    - (cd xduka-ui && grunt)
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
     - docker push claytonsilva/xduka-ui
     - ssh core@beta.xduka.com.br sudo systemctl restart xduka-ui.service
