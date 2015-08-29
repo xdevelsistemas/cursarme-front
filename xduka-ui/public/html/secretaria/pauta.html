@@ -76,7 +76,7 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th ng-repeat="title in pt.tableFreqDatasSimp.head" ng-bind="title"></th>
+                            <th ng-repeat="title in pt.tableFreqDatasSimp.head track by $index" ng-bind="title"></th>
                         </tr>
                         </thead>
                         <tbody>

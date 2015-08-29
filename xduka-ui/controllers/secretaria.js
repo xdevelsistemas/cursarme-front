@@ -37,9 +37,9 @@ module.exports = function() {
 function getDadosFreqPauta(req, res) {
     var i;
 
-    for(i = 0; i < dadosFreqPauta.list.length; i++) {
-        dadosFreqPauta.list[i].anum = dadosFreqPauta.list[i].anum.toString();
-        dadosFreqPauta.list[i].cfaltas = dadosFreqPauta.list[i].cfaltas.toString();
+    for(i = 0; i < dadosFreqPauta.tableFreqFixa.list.length; i++) {
+        dadosFreqPauta.tableFreqFixa.list[i].anum = dadosFreqPauta.tableFreqFixa.list[i].anum.toString();
+        dadosFreqPauta.tableFreqFixa.list[i].cfaltas = dadosFreqPauta.tableFreqFixa.list[i].cfaltas.toString();
     }
     res.json(dadosFreqPauta);
 }

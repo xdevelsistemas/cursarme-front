@@ -52,13 +52,17 @@
         "err": ""
       }
     },
+    "addAulas": {
+      "label": "Aulas",
+      "type": "text",
+      "mask": "9",
+      "name": "addAulas",
+      "model": {"val": "1", "err": ""}
+    },
     "addData": {
       "label": "",
       "type": "text",
-      "model": {
-        "val": "",
-        "err": ""
-      },
+      "model": {"val": "", "err": ""},
       "name": "addData",
       "format": "dd/MM/yyyy"
     },
@@ -74,10 +78,7 @@
     "addConteudoData": {
       "label": "Data",
       "type": "text",
-      "model": {
-        "val": "",
-        "err": ""
-      },
+      "model": {"val": "", "err": ""},
       "name": "addConteudoData",
       "format": "dd/MM/yyyy"
     },
@@ -90,6 +91,12 @@
         "val": "",
         "err": ""
       }
+    },
+    "duplicar": {
+      "label": "Duplicar anterior",
+      "type": "checkbox",
+      "name": "duplicar",
+      "model": {"val": "", "err": ""}
     }
   }
 }
