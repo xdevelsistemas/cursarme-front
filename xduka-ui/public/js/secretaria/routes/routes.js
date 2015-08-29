@@ -56,11 +56,17 @@ angular.module('app',[
             controller: 'relatorios',
             controllerAs: 'rel'
         });
-// ========= CONFIGURAÇÕES ========= //
+// ========= PAUTA ========= //
         $routeProvider.when('/secretaria/pauta', {
             templateUrl: 'html/secretaria/pauta.html',
             controller: 'pauta',
             controllerAs: 'pt'
+        });
+// ========= ADICIONAR CURSO ========= //
+        $routeProvider.when('/secretaria/adicionar-curso', {
+            templateUrl: 'html/secretaria/adicionar-curso.html',
+            controller: 'adicionarCurso',
+            controllerAs: 'ac'
         });
 // ========= OTHERWISE ========= //
         $routeProvider.otherwise({

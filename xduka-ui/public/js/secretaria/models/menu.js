@@ -34,6 +34,11 @@
                         "text": "Pauta",
                         "iconClass": "entypo-clipboard",
                         "href": "#/secretaria/pauta"
+                    },
+                    {
+                        "text": "Adicionar Curso",
+                        "iconClass": "entypo-plus",
+                        "href": "#/secretaria/adicionar-curso"
                     }
                 ]
             }
