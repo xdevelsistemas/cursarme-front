@@ -50,7 +50,7 @@ angular.module('app',[
             controller: 'configuracoes',
             controllerAs: 'config'
         });
-// ========= CONFIGURAÇÕES ========= //
+// ========= RELATÓRIOS ========= //
         $routeProvider.when('/secretaria/relatorios', {
             templateUrl: 'html/secretaria/relatorios.html',
             controller: 'relatorios',
@@ -67,6 +67,12 @@ angular.module('app',[
             templateUrl: 'html/secretaria/adicionar-curso.html',
             controller: 'adicionarCurso',
             controllerAs: 'ac'
+        });
+// ========= ADICIONAR DISCIPLINA ========= //
+        $routeProvider.when('/secretaria/adicionar-disciplina', {
+            templateUrl: 'html/secretaria/adicionar-disciplina.html',
+            controller: 'adicionarDisciplina',
+            controllerAs: 'ad'
         });
 // ========= OTHERWISE ========= //
         $routeProvider.otherwise({

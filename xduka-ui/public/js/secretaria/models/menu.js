@@ -39,6 +39,11 @@
                         "text": "Adicionar Curso",
                         "iconClass": "entypo-plus",
                         "href": "#/secretaria/adicionar-curso"
+                    },
+                    {
+                        "text": "Adicionar Disciplina",
+                        "iconClass": "entypo-plus",
+                        "href": "#/secretaria/adicionar-disciplina"
                     }
                 ]
             }
