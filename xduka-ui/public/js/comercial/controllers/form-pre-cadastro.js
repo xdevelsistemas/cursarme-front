@@ -12,66 +12,101 @@
 
             breadCrumb.title = 'Pré Cadastro';
 
-            // ==== MODELOS ==== //
-
+            // VARIÁVEIS COMUNS
+            // Modelo
             vm._model = {};
-
             // Botões de pre-cadastro
             vm.btnAddChequeStep1 = false;
             vm.btnAddChequeStep2 = false;
-            vm.confirmEdit = confirmEdit;
-            vm.disableAlert = disableAlert;
             vm.disableAtualiza = false;
             vm.disableAnterior = true;
-            vm.disableBtn = disableBtn;
             vm.disableLimpar = false;
             vm.disableProximo = false;
-            vm.editarInscr = editarInscr;
+            // Habilita passos do desconto
+            vm.disableDescAdd = true;
+            vm.disableQtdParcelas = true;
+            // Edição de cadastro
             vm.editing = false;
             vm.lista_cheques = lista_cheques;
-
-            //alert sucesso
-            vm.sendSucess = false;
-
-            //Alerta de campos faltando
-            vm.showAlert = false;
-
+            // Habilitar ou desabilitar checks
+            vm.isComplementacao = false;
+            vm.isContinuada = false;
+            vm.isMestrado = false;
+            vm.isPosGrad = false;
+            vm.isTeologia = false;
             //xd-select de curso
             vm.selectCursoTipoCurso = false;
             vm.selectCursoArea = false;
             vm.selectCursoCurso = false;
             vm.selectCursoVagas = false;
-
+            //alert sucesso
+            vm.sendSuccess = false;
+            //Alerta de campos faltando
+            vm.showAlert = false;
+            //Common model string
             vm.STR = modelStrings;
-
             // valida todos os campos
             vm.validaCpf = false;
             vm.validaSexo = false;
-
             // valida cep
             vm.validaCep = false;
             vm.validaCepAvRua = false;
             vm.validaCepBairro = false;
             vm.validaCepCidade = false;
             vm.validaCepEndUf = false;
-
             // temporarias de dados
             vm.tempItem = {}; /* Guarda um obj para confirmar a edição em caso de uma edição quando um cadastro já está sendo editado */
 
-            // Habilitar ou desabilitar checks
-            vm.isMestrado = false;
-            vm.isTeologia = false;
-            vm.isPosGrad = false;
-            vm.isContinuada = false;
-            vm.isComplementacao = false;
-
-            // Habilita passos do desconto
-            vm.disableDescAdd = true;
-            vm.disableQtdParcelas = true;
-
+            // VARIÁVEIS TIPO FUNÇÕES
+            //
+            vm.addDescontoAdicional = addDescontoAdicional;
+            // Select area
+            vm.areaChange = areaChange;
+            //
+            vm.atualizaPartial = atualizaPartial;
+            //
+            vm.cancelarDescontoAdicional = cancelarDescontoAdicional;
+            vm.cancelEdit = cancelEdit;
+            //
+            vm.confirmEdit = confirmEdit;
+            // Select curso
+            vm.cursoChange = cursoChange;
+            //
+            vm.disableAlert = disableAlert;
+            vm.disableBtn = disableBtn;
+            vm.disableSendSuccess = disableSendSuccess;
+            // Edição de cadastro
+            vm.editarInscr = editarInscr;
+            //
+            vm.getDadosCep = getDadosCep;
+            // Limpa forms
+            vm.limpaForm = limpaForm;
+            vm.limpaFormStep1 = limpaFormStep1;
+            vm.limpaFormStep2 = limpaFormStep2;
+            vm.limpaFormStep3 = limpaFormStep3;
+            vm.limpaFormStep4 = limpaFormStep4;
+            //
+            vm.openModalCheque = openModalCheque;
+            // Desconto por qtd parcelas
+            vm.qtdParcelasAplic = qtdParcelasAplic;
+            //
+            vm.selectChequeStep1 = selectChequeStep1;
+            vm.selectChequeStep2 = selectChequeStep2;
+            vm.selectPhoneType = selectPhoneType;
+            // Envio dos dados de cadastro/edicao
+            vm.sendInscricaoCompleta = sendInscricaoCompleta;
+            vm.sendInscricaoParcial = sendInscricaoParcial;
+            //select tipo curso
+            vm.tipoCursoChange = tipoCursoChange;
+            //
+            vm.topCollapse = topCollapse;
+            // select unidade
+            vm.unidadeChange = unidadeChange;
+            //
+            vm.verificaCpf = verificaCpf;
+            vm.verificaSexo = verificaSexo;
 
             // ==== REQUISIÇÕES ==== //
-
             comercialPromise
                 .then(function(data){
                     vm._model = data;
@@ -95,13 +130,14 @@
                     }
                 })
                 .catch(function(erro) {
+                    // TOdo tratar erro
                     if (erro.status == '400') {
-                        console.log(erro)
+                        console.log("Erro 400");
+                        console.log(erro);
                     }
                 });
 
-
-            vm.getDadosCep = function(cep) {
+            function getDadosCep(cep) {
                 if (cep.length == 8) {
                     var getCepPromise = $resource('/api/comercial/dados-cep/:cep').get({"cep": cep}).$promise;
 
@@ -139,9 +175,9 @@
                             }
                         });
                 }
-            };
+            }
 
-            vm.verificaCpf = function (cpf) {
+            function verificaCpf(cpf) {
                 if (cpf.length == 11) {
                     try {
                         if (cpf == "00000000000" || cpf == "11111111111" || cpf == "22222222222" ||
@@ -205,17 +241,17 @@
                     vm.validaCpf = false;
                     vm.editing = false;
                 }
-            };
+            }
 
-            vm.verificaSexo = function(item, model) {
+            function verificaSexo(item, model) {
                 vm.validaSexo = model == 'f';
                 vm._model.certificadoRes.model.val = '';
                 vm._model.registro.model.val = '';
                 vm._model.categoria.model.val = '';
                 vm._model.ufReservista.model.val = '';
-            };
+            }
 
-            vm.unidadeChange = function (item, model) {
+            function unidadeChange(item, model) {
                 vm.selectCursoTipoCurso = true;
                 vm.selectCursoArea = false;
                 vm.selectCursoCurso = false;
@@ -227,9 +263,9 @@
 
                 // limpa a sujeira que fica no model.val quando troca de curso
                 limpaCampoPag();
-            };
+            }
 
-            vm.tipoCursoChange = function (item, model) {
+            function tipoCursoChange(item, model) {
                 vm.selectCursoArea = true;
                 vm.selectCursoCurso = false;
                 vm.selectCursoVagas = false;
@@ -252,9 +288,9 @@
                 vm.isPosGrad = item.text.toLowerCase().indexOf("pós graduação") != -1;
                 vm.isContinuada = item.text.toLowerCase().indexOf("continuada") != -1;
                 vm.isComplementacao = item.text.toLowerCase().indexOf("complementação") != -1;
-            };
+            }
 
-            vm.areaChange = function (item, model) {
+            function areaChange(item, model) {
                 vm.selectCursoCurso = true;
                 vm.selectCursoVagas = false;
 
@@ -265,9 +301,9 @@
 
                 // limpa a sujeira que fica no model.val quando troca de curso
                 limpaCampoPag();
-            };
+            }
 
-            vm.cursoChange = function (item, model) {
+            function cursoChange(item, model) {
                 vm.selectCursoVagas = true;
 
                 // alimentando valores referentes ao curso selecionado
@@ -292,29 +328,9 @@
                         vm._model.vagas.css.titleRed = false
                     }
                 }, 1);
-            };
+            }
 
-            /*vm.descontoAplicInscr = function(item, model) {
-                if (model != 0) {
-                    vm._model.valorInscricao.model.val = vm._model.valorInscricao.model.aux - ((vm._model.valorInscricao.model.aux * model) / 100);
-                }else{
-                    vm._model.valorInscricao.model.val = vm._model.valorInscricao.model.aux;
-                }
-            };
-
-            vm.descontoAplic = function(item, model) {
-                if (model != 0) {
-                    vm._model.valorIntegral.model.val = vm._model.valorIntegral.model.aux - ((vm._model.valorIntegral.model.aux * model) / 100);
-                }else{
-                    vm._model.valorIntegral.model.val = vm._model.valorIntegral.model.aux;
-                }
-
-                if (vm._model.qtdParcelas.model.val) {
-                    vm.qtdParcelasAplic({}, vm._model.qtdParcelas.model.val);
-                }
-            };*/
-
-            vm.qtdParcelasAplic = function(item, model) {
+            function qtdParcelasAplic(item, model) {
                 /*  Testando se qtd de parcelas é igual a 1  */
                 if (model == '1'){
                     /*  Calculando o percentual de pagamento à vista  */
@@ -334,13 +350,12 @@
                 alteraValorIntegral();
                 /* Adicionando ao valor da parcela a divisão do valor integral com a quantidade de parcelas selecionada  */
                 vm._model.valorParcela.model.val = vm._model.valorIntegral.model.val / model;
-            };
+            }
 
-
-            vm.addDescontoAdicional = function(){
+            function addDescontoAdicional(_edit){
                 /*  Verificando se os campos estão vazios  */
-                vm._model.descricaoDesconto.model.err = vm._model.descricaoDesconto.model.val.length == 0 ? 'Campo obrigatório!': '';
-                vm._model.descontosAdicionais.model.err = vm._model.descontosAdicionais.model.val.length == 0 ? 'Campo obrigatório!': '';
+                vm._model.descricaoDesconto.model.err = vm._model.descricaoDesconto.model.val.length == 0 ? vm.STR.FIELD: '';
+                vm._model.descontosAdicionais.model.err = vm._model.descontosAdicionais.model.val.length == 0 ? vm.STR.FIELD: '';
 
                 /*  Se estão vazios retorna com 0(zero) e informa com as mensagens acima  */
                 if(!!vm._model.descricaoDesconto.model.err || !!vm._model.descontosAdicionais.model.err){
@@ -376,10 +391,12 @@
                     alteraValorIntegral();
                 }
 
-                $('#modalDescAdc').modal('toggle');
-            };
+                if (!_edit) {
+                    $('#modalDescAdc').modal('toggle');
+                }
+            }
 
-            vm.cancelarDescontoAdicional = function() {
+            function cancelarDescontoAdicional() {
                 if (vm._model.desconto.model.val == 1) {
                     vm._model.desconto.model.val = vm._model.desconto.model.aux + vm._model.desconto.model.descPag;
                 } else {
@@ -392,22 +409,22 @@
                 limpaDescAddQtdParcelas();
                 alteraValorIntegral();
                 limpaCamposDescantoAdicional();
-            };
+            }
 
-            vm.openModalCheque = function () {
+            function openModalCheque() {
                 var modalInstance = $modal.open({
                     templateUrl: '../html/comercial/modal-cheques.html',
                     controller: 'ModalCheques',
                     controllerAs: 'cheq',
                     size: 'lg'
                 });
-            };
+            }
 
-            vm.selectChequeStep1 = function (item, model) {
+            function selectChequeStep1(item, model) {
                 vm.btnAddChequeStep1 = item.tpCheque;
-            };
+            }
 
-            vm.selectChequeStep2 = function (item, model) {
+            function selectChequeStep2(item, model) {
                 vm.btnAddChequeStep2 = item.tpCheque;
 
                 vm._model.desconto.model.descPag = 1 - ((vm._model.formaPagamentoPag.valores[item.name]) / vm._model.formaPagamentoPag.valores.integral);
@@ -420,7 +437,7 @@
                 limpaDescAddQtdParcelas();
                 alteraValorIntegral();
                 limpaCamposDescantoAdicional();
-            };
+            }
 
             function alteraValorIntegral() {
                 vm._model.valorIntegral.model.val = vm._model.formaPagamentoPag.valores.integral -
@@ -434,11 +451,11 @@
                 vm._model.valorParcela.model.val = '';
             }
 
-            vm.selectPhoneType = function (item, model) {
+            function selectPhoneType(item, model) {
                 vm._model.telefone.mask = tipoTelefone.getMaskPhone(model);
-            };
+            }
 
-            vm.sendInscricaoCompleta = function() {
+            function sendInscricaoCompleta() {
                 vm._model.listaCheques = vm.lista_cheques.lista;
 
                 var sendInscricaoCompletaPromise = $resource('/api/comercial/dados-inscricao-completa').save({}, {"model": vm._model, "STR": vm.STR}).$promise;
@@ -455,9 +472,9 @@
                             console.log(erro)
                         }
                     });
-            };
+            }
 
-            vm.sendInscricaoParcial = function() {
+            function sendInscricaoParcial() {
                 vm._model.listaCheques = vm.lista_cheques.lista;
 
                 var sendInscricaoParcialPromise = $resource('/api/comercial/dados-inscricao-parcial').save({}, {"model": vm._model, "STR": vm.STR}).$promise;
@@ -470,10 +487,10 @@
                         disableBtn();
                         if (data.success) {
                             vm.limpaForm();
-                            vm.sendSucess = data.success;
+                            vm.sendSuccess = data.success;
                             vm.editing = false;
                             vm.showAlert = false;
-                            $timeout(vm.disableSendSucess, 6000);
+                            $timeout(vm.disableSendSuccess, 6000);
                         }
                     })
                     .catch(function (erro) {
@@ -481,13 +498,13 @@
                             console.log(erro)
                         }
                     });
-            };
+            }
 
             //TODO função selectSexo() para desabilitar reservistas caso seja feminino
 
-            vm.topCollapse = function(){
+            function topCollapse(){
                 $('html, body').animate({scrollTop: 0},'slow');
-            };
+            }
 
             function disableBtn(){
                 $timeout(function () {
@@ -502,20 +519,20 @@
             }
 
             function editarInscr(item){
-
                 if (!vm.editing) {
-                    var getUnidadePromise = $resource('/api/comercial/dados-curso').get().$promise;
+                    var buscaCpfPromise = $resource('/api/comercial/verifica-cpf/:cpf').get({"cpf": item.cpf.model.val}).$promise;
 
-                    getUnidadePromise
+                    buscaCpfPromise
                         .then(function (data) {
-                            var editVerifCpfPromise = $resource('/api/comercial/verifica-cpf/:cpf').get({"cpf": item.cpf.model.val}).$promise;
+                            $.extend(true, vm._model, item);
 
-                            vm.editing = true;
-                            vm.showAlert = true;
                             vm.disableLimpar = true;
-                            vm.validaCpf = true;
+                            vm.validaCpf = !data.dados.msg;
+                            vm.editing = vm.validaCpf;
+                            vm._model.cpf.model.err = data.dados.msg;
+                            vm._model.unidade.list = data.dadosCurso.unidade.list;
 
-                            vm._model.unidade.list = data.unidade.list;
+                            vm._model.desconto.model.aux = data.desconto;
 
                             vm.unidadeChange($.grep(vm._model.unidade.list, function (e) {
                                 return e.id == item.unidade.model.val;
@@ -533,48 +550,37 @@
                                 return e.id == item.curso.model.val;
                             })[0], item.curso.model.val);
 
+                            vm.getDadosCep(item.cep.model.val);
+                            vm.selectPhoneType({}, item.tipoTelefone.model.val);
+
+                            vm.selectChequeStep1($.grep(vm._model.formaPagamentoInscr.list, function (e) {
+                                return e.id == item.formaPagamentoInscr.model.val;
+                            })[0], item.formaPagamentoInscr.model.val);
+
+                            vm.selectChequeStep2($.grep(vm._model.formaPagamentoPag.list, function (e) {
+                                return e.id == item.formaPagamentoPag.model.val;
+                            })[0], item.formaPagamentoPag.model.val);
+
+                            lista_cheques.addAll(item.listaCheques);
+                            vm.lista_cheques = lista_cheques;
+
+                            if(item.descontosAdicionais.model.val && item.descricaoDesconto.model.val != '') {
+                                vm._model.descontosAdicionais.model = item.descontosAdicionais.model;
+                                vm._model.descricaoDesconto.model = item.descricaoDesconto.model;
+                                vm.addDescontoAdicional(true); // Edição == True!!
+                            }
+
+                            vm.qtdParcelasAplic($.grep(vm._model.qtdParcelas.list, function (e) {
+                                return e.id == item.qtdParcelas.model.val;
+                            })[0], item.qtdParcelas.model.val);
+
                             $.extend(true, vm._model, item);
-                            vm.getDadosCep(vm._model.cep.model.val);
-                            vm.selectPhoneType({}, vm._model.tipoTelefone.model.val);
-
-                            vm.btnAddChequeStep1 = vm._model.formaPagamentoInscr.model.val == 2;
-                            vm.btnAddChequeStep2 = vm._model.formaPagamentoPag.model.val == 2;
-                            lista_cheques.addAll(vm._model.listaCheques);
-
-                            editVerifCpfPromise
-                                .then(function (data2) {
-                                    vm._model.desconto.model.aux = data2.desconto;
-
-                                    vm.selectChequeStep2($.grep(vm._model.formaPagamentoPag.list, function (e) {
-                                        return e.id == vm._model.formaPagamentoPag.model.val;
-                                    })[0], vm._model.formaPagamentoPag.model.val);
-
-                                    vm.qtdParcelasAplic($.grep(vm._model.qtdParcelas.list, function (e) {
-                                        return e.id == vm._model.qtdParcelas.model.val;
-                                    })[0], vm._model.qtdParcelas.model.val);
-                                })
-                                .catch(function (erro) {
-                                    if (erro.status == '400') {
-                                        console.log(erro)
-                                    }
-                                });
                         })
                         .catch(function (erro) {
                             if (erro.status == '400') {
                                 console.log(erro)
                             }
                         });
-                }else{
-                    $('#confirmEdit').modal('show');
-                    vm.tempItem = item;
-                    /*if(window.confirm('Há um cadastro atual em edição/cadastro, deseja ignorá-lo?')){
-                     vm.editing = false;
-                     vm.disableBtn();
-                     vm.limpaForm();
-                     $('#cursorSetp0').click()
-                     }else{
-                     vm.disableBtn();
-                     }*/
                 }
             }
 
@@ -605,7 +611,7 @@
                 vm._model.valorParcela.model.val = '';
             }
 
-            vm.limpaForm = function(){
+            function limpaForm(){
                 // escondendo select's de curso
                 vm.selectCursoTipoCurso = false;
                 vm.selectCursoArea = false;
@@ -626,9 +632,9 @@
                 vm.showAlert = false;
 
                 vm.topCollapse();
-            };
+            }
 
-            vm.limpaFormStep1 = function() {
+            function limpaFormStep1() {
                 vm._model.cpf.model.val = '';
                 vm._model.cpf.model.err = '';
                 vm._model.rg.model.val = '';
@@ -657,10 +663,9 @@
                 vm._model.valorInscricao.model.err = '';
                 vm._model.formaPagamentoInscr.model.val = '';
                 vm._model.formaPagamentoInscr.model.err = '';
-            };
+            }
 
-            vm.limpaFormStep2 = function() {
-
+            function limpaFormStep2() {
                 vm._model.valorIntegral.model.val = '';
                 vm._model.valorIntegral.model.err = '';
                 vm._model.desconto.model.val = '';
@@ -676,9 +681,9 @@
                 vm._model.observacoes.model.val = '';
                 vm._model.observacoes.model.err = '';
                 vm._model.listaCheques = [];
-            };
+            }
 
-            vm.limpaFormStep3 = function() {
+            function limpaFormStep3() {
                 vm._model.checkFoto34.model.val = false;
                 vm._model.checkCertidao.model.val = false;
                 vm._model.checkReservista.model.val = false;
@@ -699,10 +704,9 @@
                 vm.isPosGrad = false;
                 vm.isContinuada = false;
                 vm.isComplementacao = false;
-            };
+            }
 
-            vm.limpaFormStep4 = function() {
-
+            function limpaFormStep4() {
                 vm._model.dataExp.model.val = '';
                 vm._model.dataExp.model.err = '';
                 vm._model.orgaoEmissor.model.val = '';
@@ -769,22 +773,22 @@
                 vm._model.anoGrad.model.err = '';
                 vm._model.instituicao.model.val = '';
                 vm._model.instituicao.model.err = '';
-            };
+            }
 
-            vm.atualizaPartial = function(time) {
+            function atualizaPartial(time) {
                 $timeout(function () {
                     $route.reload();
                 }, time); // delay to reload page.
-            };
+            }
 
-            vm.cancelEdit = function(){
+            function cancelEdit(){
                 vm.limpaForm();
                 vm.disableLimpar = false;
                 disableBtn();
                 vm.editing = false;
                 vm.showAlert = false;
 
-            };
+            }
 
             vm.condTable = {
                 boolean: function(elem){
@@ -801,9 +805,9 @@
                 verificaEdit: verificaEdit
             };
 
-            vm.disableSendSucess = function(){
-                vm.sendSucess = false;
-            };
+            function disableSendSuccess(){
+                vm.sendSuccess = false;
+            }
 
             function verificaEdit(data){
                 data = new Date(data); var atual = new Date();
@@ -815,6 +819,7 @@
                 label: 'Diploma de graduação ou certificado de conclusão de curso (2 cópias autenticadas)',
                 model: {'val': false, 'err': 'Campo obrigatório'}
             };
+
             vm.testeInput2 = {
                 type: 'checkbox',
                 label: 'Diploma de graduação ou certificado de conclusão de curso (2 cópias autenticadas)',

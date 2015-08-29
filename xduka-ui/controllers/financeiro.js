@@ -2,16 +2,28 @@ var urlDataBase = '',
     extend = require('node.extend'),
     request = require('request'),
     cheques = require('../mockup/xduka-json/financeiro/cheques.json'),
+    dadosCadastroCaixa = require('../mockup/xduka-json/financeiro/dadosCadastroCaixa.json'),
+    dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
+    dadosUnidades = require('../mockup/xduka-json/financeiro/dadosUnidades.json'),
     alunos = require('../mockup/xduka-json/common/alunos.json'),
-    templateAluno = require('../mockup/xduka-json/financeiro/templateAluno.json');
+    templateAluno = require('../mockup/xduka-json/financeiro/templateAluno.json'),
+    templateCadastroCaixa = require('../mockup/xduka-json/financeiro/templateCadastroCaixa.json');
+    templateValoresCursos = require('../mockup/xduka-json/financeiro/templateValoresCursos.json');
 
 module.exports = function() {
     var controller = {};
 
     controller.alunoSearch = alunoSearch;
-    controller.getCheques = getCheques;
-    controller.getTemplateAluno = getTemplateAluno;
-    controller.postChequeEdit = postChequeEdit;
+    controller.showCheques = getCheques;
+    controller.showDadosCadastroCaixa = getDadosCadastroCaixa;
+    controller.showDadosTipoCurso = getDadosTipoCurso;
+    controller.showDadosUnidades = getDadosUnidades;
+    controller.showTemplateAluno = getTemplateAluno;
+    controller.showTemplateCadastroCaixa = getTemplateCadastroCaixa;
+    controller.showTemplateValoresCursos = getTemplateValoresCursos;
+    controller.putChequeEdit = postChequeEdit;
+    controller.putDadosCadastroCaixa = postDadosCadastroCaixa;
+    controller.putValoresCurso = postValoresCurso;
 
     return controller;
 };
@@ -49,8 +61,58 @@ function alunoSearch(req,res){
     res.json(result)
 }
 
+function getDadosCadastroCaixa(req,res) {
+    res.json(dadosCadastroCaixa)
+}
+
+function getDadosTipoCurso(req,res) {
+    var idUnidade = req.params.id;
+
+    var list = verificaUnidade(dadosCurso.unidade.list, idUnidade);
+
+    res.json({"list": list});
+}
+
+function getDadosUnidades(req,res) {
+    res.json(dadosUnidades)
+}
+
+function postDadosCadastroCaixa(req,res) {
+    var dataSent = req.body;
+
+    /**
+     * TOdo request para o beckend
+     */
+
+    dadosCadastroCaixa.list.push({
+        "aNome": dataSent.model.nomeCaixa.model.val||dataSent.model.nomeBanco.model.val,
+        "btipo": 'Indefinido',
+        "cobs": dataSent.model.obs.model.val
+    });
+
+    res.json({"list": dadosCadastroCaixa.list});
+}
+
+function postValoresCurso(req,res) {
+    var dataSent = req.body;
+
+    /**
+     * TOdo request para o beckend
+     */
+
+    res.json({"status": "OK"});
+}
+
+function getTemplateCadastroCaixa(req,res) {
+    res.json(templateCadastroCaixa);
+}
+
+function getTemplateValoresCursos(req,res) {
+    res.json(templateValoresCursos);
+}
+
 function getCheques(req,res) {
-    res.json(cheques)
+    res.json(cheques);
 }
 
 function getTemplateAluno(req,res) {
@@ -58,11 +120,22 @@ function getTemplateAluno(req,res) {
 }
 
 function postChequeEdit(req,res) {
-    var cheque = req.body.cheque;
+    var cheque = req.body.cheque,
+        pos = req.body.pos;
 
     /**
-     * TOdo request com requisição ao bd
+     * TOdo request com requisição ao backend
      */
 
-    res.json(cheque);
+    cheques.list[pos] = cheque;
+
+    res.json(cheques);
+}
+
+function verificaUnidade(obj, unidade) {
+    for (var i = 0; i < obj.length; i++) {
+        if (obj[i].id == unidade) {
+            return obj[i].tipoCursos;
+        }
+    }
 }

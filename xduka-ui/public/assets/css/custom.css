@@ -455,3 +455,6 @@ input[type="search"] {
     margin-top: 1%;
     border: 2px solid rgba(215, 215, 215, 0.54);
 }
+.noPadLeft {
+    padding-left: 0;
+}

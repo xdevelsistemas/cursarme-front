@@ -50,17 +50,29 @@ angular.module('app',[
             controller: 'configuracoes',
             controllerAs: 'config'
         });
-// ========= CONFIGURAÇÕES ========= //
+// ========= RELATÓRIOS ========= //
         $routeProvider.when('/secretaria/relatorios', {
             templateUrl: 'html/secretaria/relatorios.html',
             controller: 'relatorios',
             controllerAs: 'rel'
         });
-// ========= CONFIGURAÇÕES ========= //
+// ========= PAUTA ========= //
         $routeProvider.when('/secretaria/pauta', {
             templateUrl: 'html/secretaria/pauta.html',
             controller: 'pauta',
             controllerAs: 'pt'
+        });
+// ========= ADICIONAR CURSO ========= //
+        $routeProvider.when('/secretaria/adicionar-curso', {
+            templateUrl: 'html/secretaria/adicionar-curso.html',
+            controller: 'adicionarCurso',
+            controllerAs: 'ac'
+        });
+// ========= ADICIONAR DISCIPLINA ========= //
+        $routeProvider.when('/secretaria/adicionar-disciplina', {
+            templateUrl: 'html/secretaria/adicionar-disciplina.html',
+            controller: 'adicionarDisciplina',
+            controllerAs: 'ad'
         });
 // ========= OTHERWISE ========= //
         $routeProvider.otherwise({
