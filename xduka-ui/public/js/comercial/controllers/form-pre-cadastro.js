@@ -354,8 +354,8 @@
 
             function addDescontoAdicional(_edit){
                 /*  Verificando se os campos estão vazios  */
-                vm._model.descricaoDesconto.model.err = vm._model.descricaoDesconto.model.val.length == 0 ? 'Campo obrigatório!': '';
-                vm._model.descontosAdicionais.model.err = vm._model.descontosAdicionais.model.val.length == 0 ? 'Campo obrigatório!': '';
+                vm._model.descricaoDesconto.model.err = vm._model.descricaoDesconto.model.val.length == 0 ? vm.STR.FIELD: '';
+                vm._model.descontosAdicionais.model.err = vm._model.descontosAdicionais.model.val.length == 0 ? vm.STR.FIELD: '';
 
                 /*  Se estão vazios retorna com 0(zero) e informa com as mensagens acima  */
                 if(!!vm._model.descricaoDesconto.model.err || !!vm._model.descontosAdicionais.model.err){

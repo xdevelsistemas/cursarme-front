@@ -3,6 +3,7 @@ var urlDataBase = '',
     request = require('request'),
     cheques = require('../mockup/xduka-json/financeiro/cheques.json'),
     dadosCadastroCaixa = require('../mockup/xduka-json/financeiro/dadosCadastroCaixa.json'),
+    dadosUnidades = require('../mockup/xduka-json/financeiro/dadosUnidades.json'),
     alunos = require('../mockup/xduka-json/common/alunos.json'),
     templateAluno = require('../mockup/xduka-json/financeiro/templateAluno.json'),
     templateCadastroCaixa = require('../mockup/xduka-json/financeiro/templateCadastroCaixa.json');
@@ -12,13 +13,15 @@ module.exports = function() {
     var controller = {};
 
     controller.alunoSearch = alunoSearch;
-    controller.showDadosCadastroCaixa = getDadosCadastroCaixa;
     controller.showCheques = getCheques;
+    controller.showDadosCadastroCaixa = getDadosCadastroCaixa;
+    controller.showDadosUnidades = getDadosUnidades;
     controller.showTemplateAluno = getTemplateAluno;
     controller.showTemplateCadastroCaixa = getTemplateCadastroCaixa;
     controller.showTemplateValoresCursos = getTemplateValoresCursos;
     controller.putChequeEdit = postChequeEdit;
     controller.putDadosCadastroCaixa = postDadosCadastroCaixa;
+    controller.putValoresCurso = postValoresCurso;
 
     return controller;
 };
@@ -60,6 +63,10 @@ function getDadosCadastroCaixa(req,res) {
     res.json(dadosCadastroCaixa)
 }
 
+function getDadosUnidades(req,res) {
+    res.json(dadosUnidades)
+}
+
 function postDadosCadastroCaixa(req,res) {
     var dataSent = req.body;
 
@@ -74,6 +81,16 @@ function postDadosCadastroCaixa(req,res) {
     });
 
     res.json({"list": dadosCadastroCaixa.list});
+}
+
+function postValoresCurso(req,res) {
+    var dataSent = req.body;
+
+    /**
+     * TOdo request para o beckend
+     */
+
+    res.json({"status": "OK"});
 }
 
 function getTemplateCadastroCaixa(req,res) {
