@@ -5,6 +5,8 @@ machine:
     - docker
 dependencies:
   override:
+    pwd:
+      xduka-ui
     - sudo pip install awscli
     - docker info
     - docker build -t claytonsilva/xduka-ui .
