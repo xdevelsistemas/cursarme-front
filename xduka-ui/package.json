@@ -3,7 +3,7 @@
   "version": "1.0.0beta",
   "private": true,
   "scripts": {
-    "start": "bash bin/run.sh"
+    "start": "node bin/www"
   },
   "dependencies": {
     "bcrypt-nodejs": "latest",
