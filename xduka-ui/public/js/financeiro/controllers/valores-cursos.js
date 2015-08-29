@@ -2,129 +2,54 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('valoresCursos', ['$scope', '$resource', 'breadCrumb', function($scope, $resource, breadCrumb) {
+        .controller('valoresCursos', ['$scope', '$resource', 'breadCrumb', 'modelStrings', 'defineUnidade',
+            function($scope, $resource, breadCrumb, modelStrings, defineUnidade) {
 
             /* jshint validthis: true */
-            var vm = this;
+            var vm = this,
+                templateValoresCursosPromise = $resource('/api/financeiro/template-valores-cursos').get().$promise,
+                dadosTipoCursoPromise = $resource('/api/financeiro/dados-tipo-curso/:id').get({id: defineUnidade.getIdUnidade()}).$promise;
 
+            // VARIÁVEIS COMUNS
             vm.breadCrumb = breadCrumb;
             vm.breadCrumb.title = 'Valores Cursos';
+            vm._model = {};
+            vm.STR = modelStrings;
 
-            vm._model = {
-                "tipoCurso": {
-                    "label": "Tipo de Curso",
-                    "type": "select",
-                    "name": "tipoCurso",
-                    "placeholder": "Selecione uma opção",
-                    "list": [],
-                    "model": {"val": "", "err": ""}
-                },
-                "areaCurso": {
-                    "label": "Área",
-                    "type": "select",
-                    "name": "areaCurso",
-                    "placeholder": "Selecione uma opção",
-                    "list": [],
-                    "model": {"val": "", "err": ""}
-                },
-                "curso": {
-                    "label": "Curso",
-                    "type": "select",
-                    "name": "curso",
-                    "placeholder": "Selecione uma opção",
-                    "list": [],
-                    "model": {"val": "", "err": ""}
-                },
-                "periodoVigencia": {
-                    "label": "Período de Vigência",
-                    "type": "text",
-                    "model": {"val": "", "err": ""},
-                    "name": "periodoVigencia",
-                    "format": "dd/MM/yyyy"
-                },
-                "ate": {
-                    "label": "Até",
-                    "type": "text",
-                    "model": {"val": "", "err": ""},
-                    "name": "ate",
-                    "format": "dd/MM/yyyy"
-                },
-                "valorIntegral": {
-                    "label": "Valor Integral",
-                    "type": "text",
-                    "name": "valorIntegral",
-                    "required": false,
-                    "mask": "?",
-                    "model": {"val": "", "err": ""}
-                },
-                "valorInscr": {
-                    "label": "Valor Inscrição",
-                    "type": "text",
-                    "name": "valorInscr",
-                    "required": false,
-                    "mask": "?",
-                    "model": {"val": "", "err": ""}
-                },
-                "valorAvista": {
-                    "label": "Valor a Vista",
-                    "type": "text",
-                    "name": "valorAvista",
-                    "required": false,
-                    "mask": "?",
-                    "model": {"val": "", "err": ""}
-                },
-                "parcelaMax": {
-                    "label": "Valor Máximo de Parcelamento",
-                    "type": "text",
-                    "val": "",
-                    "name": "parcelaMax",
-                    "model": {"val": "", "err": ""}
-                },
-                "formaPagamento": {
-                    "label": "Forma de Pagamento",
-                    "type": "select",
-                    "name": "formaPagamento",
-                    "placeholder": "Selecione uma opção",
-                    "list": [],
-                    "model": {"val": "", "err": ""}
-                },
-                "valorParcela": {
-                    "label": "Valor da Parcela",
-                    "type": "text",
-                    "name": "valorParcela",
-                    "required": false,
-                    "mask": "?",
-                    "model": {"val": "", "err": ""}
-                },
-                "addNome": {
-                    "label": "Nome",
-                    "type": "text",
-                    "val": "",
-                    "name": "addNome",
-                    "model": {"val": "", "err": ""}
-                },
-                "addValor": {
-                    "label": "Valor",
-                    "type": "text",
-                    "name": "addValor",
-                    "required": false,
-                    "mask": "?",
-                    "model": {"val": "", "err": ""}
-                },
-                "addParcelamento": {
-                    "label": "Parcelamento",
-                    "type": "text",
-                    "val": "",
-                    "name": "addParcelamento",
-                    "model": {"val": "", "err": ""}
-                }
-            };
+            // VARIÁVEIS TIPO FUNÇÕES
             vm.addFormaPagamento = addFormaPagamento;
             vm.changeFormaPagamento = changeFormaPagamento;
             vm.clear = clear;
             vm.clearModalAddForma = clearModalAddForma;
+            vm.saveValoresCurso = saveValoresCurso;
+
+            templateValoresCursosPromise
+                .then(function(data) {
+                    vm._model = data.template;
+                })
+                .catch(function(error) {
+                    // TOdo tratar error
+                });
+
+            dadosTipoCursoPromise
+                .then(function(data) {
+                    vm._model.tipoCurso.list = data.list;
+                })
+                .catch(function(error) {
+                    // TOdo tratar error
+                });
 
             function addFormaPagamento() {
+                /*  Verificando se os campos estão vazios  */
+                vm._model.addNome.model.err = vm._model.addNome.model.val.length == 0 ? vm.STR.FIELD: '';
+                vm._model.addValor.model.err = vm._model.addValor.model.val.length == 0 ? vm.STR.FIELD: '';
+                vm._model.addParcelamento.model.err = vm._model.addParcelamento.model.val.length == 0 ? vm.STR.FIELD: '';
+
+                /*  Se estão vazios retorna com 0(zero) e informa com as mensagens acima  */
+                if(!!vm._model.addNome.model.err || !!vm._model.addValor.model.err || vm._model.addParcelamento.model.err){
+                    return 0
+                }
+
                 var novaForma = {
                     id: vm._model.addNome.model.val,
                     text: vm._model.addNome.model.val,
@@ -160,6 +85,20 @@
                 vm._model.addNome.model.val = '';
                 vm._model.addValor.model.val= '';
                 vm._model.addParcelamento.model.val= '';
+            }
+
+            function saveValoresCurso() {
+                var saveValoresCursoPromise = $resource('/api/financeiro/save-valores-curso').save({}, {"model": vm._model, "STR": vm.STR}).$promise;
+
+                saveValoresCursoPromise
+                    .then(function(data) {
+                        // TOdo tela com resposta como um "Valores cadastrado com sucesso".
+                        vm.clear();
+                        vm._model.formaPagamento.list = [];
+                    })
+                    .catch(function(error) {
+                        // TOdo tratar error
+                    })
             }
 
         }]);

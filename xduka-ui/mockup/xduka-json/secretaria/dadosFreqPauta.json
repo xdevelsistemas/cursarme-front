@@ -1,0 +1,94 @@
+{
+  "tableFreqFixa": {
+    "list": [
+      {
+        "anum": 1,
+        "baluno": "João das Couves",
+        "cfaltas": 1
+      },
+      {
+        "anum": 2,
+        "baluno": "Mariana",
+        "cfaltas": 1
+      },
+      {
+        "anum": 3,
+        "baluno": "Maria",
+        "cfaltas": 1
+      },
+      {
+        "anum": 4,
+        "baluno": "Abner",
+        "cfaltas": 0
+      }
+    ]
+  },
+  "tableFreqDatasComp": {
+    "list": [
+      {
+        "ajoao": "p",
+        "bjoao": "p",
+        "cjoao": "f",
+        "djoao": "p",
+        "ejoao": "p",
+        "fjoao": "p",
+        "gjoao": "p",
+        "hjoao": "p"
+      },
+      {
+        "amariana": "p",
+        "bmariana": "f",
+        "cmariana": "p",
+        "dmariana": "p",
+        "emariana": "p",
+        "fmariana": "p",
+        "gmariana": "p",
+        "hmariana": "p"
+      },
+      {
+        "amaria": "p",
+        "bmaria": "p",
+        "cmaria": "f",
+        "dmaria": "p",
+        "emaria": "p",
+        "fmaria": "p",
+        "gmaria": "p",
+        "hmaria": "p"
+      },
+      {
+        "aabner": "p",
+        "babner": "p",
+        "cabner": "p",
+        "dabner": "p",
+        "eabner": "p",
+        "fabner": "p",
+        "gabner": "p",
+        "habner": "p"
+      }
+    ]
+  },
+  "tableFreqDatasSimp": {
+    "list": [
+      {
+        "ajoao": "p",
+        "bjoao": "p",
+        "cjoao": "f"
+      },
+      {
+        "amariana": "p",
+        "bmariana": "f",
+        "cmariana": "p"
+      },
+      {
+        "amaria": "p",
+        "bmaria": "p",
+        "cmaria": "f"
+      },
+      {
+        "aabner": "p",
+        "babner": "p",
+        "cabner": "p"
+      }
+    ]
+  }
+}

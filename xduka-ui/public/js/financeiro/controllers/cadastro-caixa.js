@@ -2,104 +2,20 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('cadastroCaixa', ['$scope', '$resource', 'breadCrumb', function($scope, $resource, breadCrumb) {
+        .controller('cadastroCaixa', ['$scope', '$resource', 'breadCrumb', 'modelStrings',
+            function($scope, $resource, breadCrumb, modelStrings) {
 
             /* jshint validthis: true */
-            var vm = this;
+            var vm = this,
+                dadosCadastroCaixa = $resource('/api/financeiro/dados-cadastro-caixa').get().$promise,
+                templateCadastroCaixa = $resource('/api/financeiro/template-cadastro-caixa').get().$promise;
 
             vm.breadCrumb = breadCrumb;
             vm.breadCrumb.title = 'Cadastro de Caixa';
+            vm.STR = modelStrings;
 
-            vm._model = {
-                "inputNomeCaixa": {
-                    "label": "Nome do Caixa",
-                    "type": "text",
-                    "val": "",
-                    "name": "inputNomeCaixa",
-                    "model": {"val": "", "err": ""}
-                },
-                "selectNomeCaixa": {
-                    "label": "Nome do Caixa",
-                    "type": "select",
-                    "name": "selectNomeCaixa",
-                    "placeholder": "Selecione uma opção",
-                    "model": {"val": "", "err": ""},
-                    "list": []
-                },
-                "agencia": {
-                    "label": "Agência",
-                    "type": "text",
-                    "val": "",
-                    "name": "agencia",
-                    "model": {"val": "", "err": ""}
-                },
-                "contaBancaria": {
-                    "label": "Conta Bancária",
-                    "type": "text",
-                    "val": "",
-                    "name": "contaBancaria",
-                    "model": {"val": "", "err": ""}
-                },
-                "codCedente": {
-                    "label": "Cod. Cedente",
-                    "type": "text",
-                    "val": "",
-                    "name": "codCedente",
-                    "model": {"val": "", "err": ""}
-                },
-                "tipoCarteira": {
-                    "label": "Tipo Carteira",
-                    "type": "text",
-                    "val": "",
-                    "name": "tipoCarteira",
-                    "model": {"val": "", "err": ""}
-                },
-                "obs": {
-                    "label": "Obs",
-                    "type": "textarea",
-                    "name": "obs",
-                    "rows": 7,
-                    "model": {"val": "", "err": ""}
-                },
-                "numCartao": {
-                    "label": "Número Cartão",
-                    "type": "text",
-                    "val": "",
-                    "name": "numCartao",
-                    "model": {"val": "", "err": ""}
-                },
-                "nome": {
-                    "label": "Nome",
-                    "type": "text",
-                    "val": "",
-                    "name": "nome",
-                    "model": {"val": "", "err": ""}
-                },
-                "validadeCartao": {
-                    "label": "Validade Cartão",
-                    "type": "text",
-                    "val": "",
-                    "name": "validadeCartao",
-                    "mask": "99/99",
-                    "model": {"val": "", "err": ""}
-                },
-                "codSeguranca": {
-                    "label": "Cód. Segurança",
-                    "type": "text",
-                    "val": "",
-                    "name": "codSeguranca",
-                    "mask": "999",
-                    "model": {"val": "", "err": ""}
-                }
-            };
-
-            vm.addCaixa = addCaixa;
-            vm.cancelar = cancelar;
-            vm.continuar = continuar;
-            vm.detectarBandeira = detectarBandeira;
-            vm.limpar = limpar;
-            vm.salvar = salvar;
-            vm.voltar = voltar;
+            // VARIÁVEIS COMUNS
+            vm._model = {};
             vm.editing = false;
             vm.showTable = true;
             vm.srcCartao = '';
@@ -115,34 +31,33 @@
                 },
                 class: 'table-hover table-bordered display',
                 head: ["Nome", "Tipo", "Obs"],
-                list: [
-                    {
-                        "anome": "Bradesco",
-                        "btipo": "Boleto",
-                        "cobs": "Alunos"
-                    },
-                    {
-                        "anome": "Visa",
-                        "btipo": "Cartão de Crédito",
-                        "cobs": ""
-                    },
-                    {
-                        "anome": "Mastercard",
-                        "btipo": "Cartão de Crédito",
-                        "cobs": ""
-                    },
-                    {
-                        "anome": "Cheque",
-                        "btipo": "",
-                        "cobs": "Alunos"
-                    },
-                    {
-                        "anome": "Acordo",
-                        "btipo": "Advocacia",
-                        "cobs": "Alunos"
-                    }
-                ]
+                list: []
             };
+
+            // VARIÁVEIS TIPO FUNÇÃO
+            vm.addCaixa = addCaixa;
+            vm.cancelar = cancelar;
+            vm.continuar = continuar;
+            vm.detectarBandeira = detectarBandeira;
+            vm.limpar = limpar;
+            vm.salvar = salvar;
+            vm.voltar = voltar;
+
+            templateCadastroCaixa
+                .then(function (data) {
+                    vm._model = data.template;
+                })
+                .catch(function (error) {
+                    // TOdo tratar error;
+                });
+
+            dadosCadastroCaixa
+                .then(function(data) {
+                    vm.tableCaixa.list = data.list;
+                })
+                .catch(function(error) {
+                    // TOdo tratar error
+                });
 
             function addCaixa() {
                 vm.editing = true;
@@ -187,25 +102,30 @@
 
             function limpar() {
                 var i;
+
                 for (i in vm._model) {
                     vm._model[i].model.val = "";
                 }
+
                 vm.srcCartao = "";
             }
 
             function salvar() {
                 //todo post de salvamento
-                var novoCaixa = {
-                    "aNome": vm._model.inputNomeCaixa.model.val||vm._model.selectNomeCaixa.model.val,
-                    "btipo": 'Indefinido',
-                    "cobs": vm._model.obs.model.val
-                };
+                var saveCadastroCaixa = $resource('/api/financeiro/save-dados-cadastro-caixa').save({}, {"model": vm._model, "STR": vm.STR}).$promise;
 
-                vm.tableCaixa.list.push(novoCaixa);
+                saveCadastroCaixa
+                    .then(function(data) {
+                        //TOdo tela de resposta com um "salvo com sucesso."
+                        vm.tableCaixa.list = data.list;
 
-                vm.editing = false;
-                limpar();
-                voltar();
+                        vm.editing = false;
+                        limpar();
+                        voltar();
+                    })
+                    .catch(function (error) {
+                        //TOdo tratar error
+                    });
             }
 
             function topCollapse() {
@@ -216,7 +136,5 @@
                 vm.showTable = true;
                 topCollapse();
             }
-
-
         }]);
 })();

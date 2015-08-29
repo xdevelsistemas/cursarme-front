@@ -32,9 +32,11 @@ module.exports = function (app, passport) {
     //Alunos Search
     app.route('/api/secretaria/aluno/:nomeMat')
         .get(controller.alunoSearch);
+
     //Template aluno
     app.route('/api/secretaria/templateAluno')
-        .get(controller.getTemplateAl);
+        .get(controller.showTemplateAl);
+
     //Alunos Search
     app.route('/api/secretaria/templateConfig')
         .get(controller.showConfig);
@@ -42,6 +44,18 @@ module.exports = function (app, passport) {
     //save-configuracoes
     app.route('/api/secretaria/save-configuracoes')
         .post(controller.putSaveConfig);
+
+    //dados-freq-pauta
+    app.route('/api/secretaria/dados-freq-pauta')
+        .get(controller.showDadosFreqPauta);
+
+    //dados-notas-pauta
+    app.route('/api/secretaria/dados-notas-pauta')
+        .get(controller.showDadosNotasPauta);
+
+    //template-pauta
+    app.route('/api/secretaria/template-pauta')
+        .get(controller.showTemplatePauta);
 
     return app;
 };
