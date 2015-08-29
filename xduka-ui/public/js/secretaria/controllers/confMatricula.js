@@ -29,7 +29,7 @@
                 vm.tableGerarTurma = {};
 
                 //alert sucesso
-                vm.sendSucess = false;
+                vm.sendSuccess = false;
 
                 //Alerta de campos faltando
                 vm.showAlert = false;
