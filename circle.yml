@@ -7,7 +7,6 @@ dependencies:
   override:
     - sudo pip install awscli
     - docker info
-    - docker pull -t claytonsilva/xduka-ui ./xduka-ui
     - docker build -t claytonsilva/xduka-ui ./xduka-ui
 test:
   override:
