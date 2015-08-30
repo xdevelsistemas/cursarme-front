@@ -10,7 +10,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: 'public/assets/css/font-icons/entypo',
-                        src: ['font/**/*',],
+                        src: ['font/**/*'],
                         dest: 'dist/public/assets'
                     },
                     {
