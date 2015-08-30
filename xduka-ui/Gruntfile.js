@@ -65,7 +65,9 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true,
-                    src: ['dist/views/**/*','dist/public/assets/css/**/*','dist/public/html/**/*.html']
+                    src: ['dist/views/**/*',
+                          //'dist/public/assets/css/**/*',
+                          'dist/public/html/**/*.html']
                 }]
             }
         },
