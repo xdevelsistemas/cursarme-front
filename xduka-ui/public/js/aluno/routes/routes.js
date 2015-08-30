@@ -17,7 +17,13 @@
         'app.controllers',
         'ngProgress'
 
-    ]).config(['$routeProvider', function ($routeProvider) {
+    ])
+    .config(['$httpProvider', function($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }
+    ])
+    .config(['$routeProvider', function ($routeProvider) {
 
         //Home
         $routeProvider.when('/', {
@@ -78,5 +84,7 @@
         $routeProvider.otherwise({
             redirectTo: '/'
         });
-    }]);
+    }])
 })();
+
+

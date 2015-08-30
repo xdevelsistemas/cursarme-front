@@ -20,56 +20,60 @@ angular.module('app',[
     'ngProgress'
 
 ])
-
-.config(['$routeProvider', function ($routeProvider) {
-// ========= HOME ========= //
-        $routeProvider.when('/', {
-            redirectTo: '/financeiro'
-        });
-// ========= DASHBOARD FINANCEIRO ========= //
-        $routeProvider.when('/financeiro', {
-            templateUrl: 'html/financeiro/financeiro.html',
-            controller: 'dashboard',
-            controllerAs: 'dash'
-        });
-// ========= CONTROLE DE CHEQUES ========= //
-        $routeProvider.when('/controle-cheques', {
-            templateUrl: 'html/financeiro/control-cheques.html',
-            controller: 'controlCheques',
-            controllerAs: 'cc'
-        });
-// ========= ALUNO FINANCEIRO ========= //
-        $routeProvider.when('/financeiro/aluno/:matricula', {
-            templateUrl: 'html/financeiro/aluno.html',
-            controller: 'alunoFin',
-            controllerAs: 'al'
-        });
-// ========= ALUNO FINANCEIRO ========= //
-        $routeProvider.when('/mensagem-boletos', {
-            templateUrl: 'html/financeiro/msg-boletos.html',
-            controller: 'msgBoletos',
-            controllerAs: 'mb'
-        });
-// ========= VALORES CURSOS ========= //
-        $routeProvider.when('/valores-cursos', {
-            templateUrl: 'html/financeiro/valores-cursos.html',
-            controller: 'valoresCursos',
-            controllerAs: 'vc'
-        });
-// ========= CADASTRO DE CAIXA ========= //
-        $routeProvider.when('/cadastro-caixa', {
-            templateUrl: 'html/financeiro/cadastro-caixa.html',
-            controller: 'cadastroCaixa',
-            controllerAs: 'cadc'
-        });
-// ========= CAMPANHAS PROMOCIONAIS ========= //
-        $routeProvider.when('/campanhas-promocionais', {
-            templateUrl: 'html/financeiro/campanhas-promocionais.html',
-            controller: 'campanhasPromocionais',
-            controllerAs: 'cp'
-        });
-// ========= OTHERWISE ========= //
-        $routeProvider.otherwise({
-            redirectTo: '/'
-        });
+    .config(['$httpProvider', function($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }
+    ])
+    .config(['$routeProvider', function ($routeProvider) {
+    // ========= HOME ========= //
+            $routeProvider.when('/', {
+                redirectTo: '/financeiro'
+            });
+    // ========= DASHBOARD FINANCEIRO ========= //
+            $routeProvider.when('/financeiro', {
+                templateUrl: 'html/financeiro/financeiro.html',
+                controller: 'dashboard',
+                controllerAs: 'dash'
+            });
+    // ========= CONTROLE DE CHEQUES ========= //
+            $routeProvider.when('/controle-cheques', {
+                templateUrl: 'html/financeiro/control-cheques.html',
+                controller: 'controlCheques',
+                controllerAs: 'cc'
+            });
+    // ========= ALUNO FINANCEIRO ========= //
+            $routeProvider.when('/financeiro/aluno/:matricula', {
+                templateUrl: 'html/financeiro/aluno.html',
+                controller: 'alunoFin',
+                controllerAs: 'al'
+            });
+    // ========= ALUNO FINANCEIRO ========= //
+            $routeProvider.when('/mensagem-boletos', {
+                templateUrl: 'html/financeiro/msg-boletos.html',
+                controller: 'msgBoletos',
+                controllerAs: 'mb'
+            });
+    // ========= VALORES CURSOS ========= //
+            $routeProvider.when('/valores-cursos', {
+                templateUrl: 'html/financeiro/valores-cursos.html',
+                controller: 'valoresCursos',
+                controllerAs: 'vc'
+            });
+    // ========= CADASTRO DE CAIXA ========= //
+            $routeProvider.when('/cadastro-caixa', {
+                templateUrl: 'html/financeiro/cadastro-caixa.html',
+                controller: 'cadastroCaixa',
+                controllerAs: 'cadc'
+            });
+    // ========= CAMPANHAS PROMOCIONAIS ========= //
+            $routeProvider.when('/campanhas-promocionais', {
+                templateUrl: 'html/financeiro/campanhas-promocionais.html',
+                controller: 'campanhasPromocionais',
+                controllerAs: 'cp'
+            });
+    // ========= OTHERWISE ========= //
+            $routeProvider.otherwise({
+                redirectTo: '/'
+            });
     }]);
