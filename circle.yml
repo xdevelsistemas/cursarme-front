@@ -26,4 +26,4 @@ deployment:
       - (cd xduka-ui && grunt production)
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push claytonsilva/xduka-ui
-      - ssh core@beta.xduka.com.br sudo systemctl restart xduka-ui.service
+      - ssh core@beta.xduka.com.br docker pull claytonsilva/xduka-ui && sudo systemctl restart xduka-ui.service
