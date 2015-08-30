@@ -24,6 +24,7 @@ deployment:
       - (cd xduka-ui && npm install --dev)
       - (cd xduka-ui && bower install)
       - (cd xduka-ui && grunt production)
+      - (cd xduka-ui/dist/public && aws s3 sync . s3://static.beta.cursar.me/ --acl=public-read --delete --cache-control="max-age=86400")
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push claytonsilva/xduka-ui
       - ssh core@beta.xduka.com.br docker pull claytonsilva/xduka-ui
