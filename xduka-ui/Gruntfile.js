@@ -70,6 +70,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', ['clean', 'copy', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin']);
+    grunt.registerTask('production', ['clean', 'copy','imagemin', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin']);
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
