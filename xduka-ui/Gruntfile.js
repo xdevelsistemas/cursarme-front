@@ -57,6 +57,18 @@ module.exports = function(grunt) {
                 }]
             }
         },
+        cdnify: {
+            beta: {
+                options: {
+                    base: 'http://static.beta.cursar.me.s3-website-sa-east-1.amazonaws.com',
+                    cc: true
+                },
+                files: [{
+                    expand: true,
+                    src: ['dist/views/**/*','dist/public/assets/css/**/*','dist/public/html/**/*.html']
+                }]
+            }
+        },
         usemin: {
             html: 'dist/views/**/*.ejs'
         },
@@ -69,8 +81,8 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['clean', 'copy', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin']);
-    grunt.registerTask('production', ['clean', 'copy','imagemin', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin']);
+    grunt.registerTask('default', ['clean', 'copy', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin', 'cdnify']);
+    grunt.registerTask('production', ['clean' , 'copy','imagemin', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin' , 'cdnify']);
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -81,4 +93,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-ng-annotate');
     grunt.loadNpmTasks('grunt-usemin');
+    grunt.loadNpmTasks('grunt-rev');
+    grunt.loadNpmTasks('grunt-cdnify');
 };
