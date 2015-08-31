@@ -39,7 +39,7 @@ module.exports = function(grunt) {
                         expand: true,
                         cwd: '.tmp',
                         src: ['dist/**/*'],
-                        dest: 'dist/'
+                        dest: '.'
                     }
                 ]
             }
