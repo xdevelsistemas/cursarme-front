@@ -92,8 +92,8 @@ module.exports = function(grunt) {
                     mode: 'gzip'
                 },
                 expand: true,
-                src: ['dist/public/assets/css/**/*.css'
-                    //'dist/public/assets/js/**/*.js',
+                src: ['dist/public/assets/css/**/*.css',
+                      'dist/public/assets/js/**/*.js'
                     //'dist/public/html/**/*.html'
                 ],
                 dest: '.tmp'
