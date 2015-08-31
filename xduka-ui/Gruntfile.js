@@ -101,17 +101,17 @@ module.exports = function(grunt) {
             }
         },
         usemin: {
-            html: 'dist/views/**/*.ejs',
-            options: {
-                blockReplacements: {
-                    css: function (block) {
-                        return '<link rel="stylesheet" href="' + block.dest + '">';
-                    },
-                    js: function (block) {
-                        return '<script async type="text/javascript" src="' + block.dest + '"></script>';
-                    }
-                }
-            }
+            html: 'dist/views/**/*.ejs'
+            // options: {
+            //     blockReplacements: {
+            //         css: function (block) {
+            //             return '<link rel="stylesheet" href="' + block.dest + '">';
+            //         },
+            //         js: function (block) {
+            //             return '<script async type="text/javascript" src="' + block.dest + '"></script>';
+            //         }
+            //     }
+            // }
         },
         useminPrepare: {
             options: {
