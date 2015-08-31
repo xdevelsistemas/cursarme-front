@@ -93,7 +93,7 @@ module.exports = function(grunt) {
                 },
                 expand: true,
                 src: ['dist/public/assets/css/**/*.css',
-                    'dist/public/assets/js/**/*.js',
+                    //'dist/public/assets/js/**/*.js',
                     'dist/public/html/**/*.html'],
                 dest: '.tmp'
             }
