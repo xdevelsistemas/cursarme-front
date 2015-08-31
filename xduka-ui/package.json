@@ -8,6 +8,7 @@
   "dependencies": {
     "bcrypt-nodejs": "latest",
     "body-parser": "~1.0.0",
+    "compression": "^1.5.2",
     "connect-flash": "~0.1.1",
     "connect-mongodb": "^1.1.5",
     "connect-redis": "^2.2.0",
