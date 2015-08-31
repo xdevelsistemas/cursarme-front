@@ -23,6 +23,7 @@
         NOCPF: 'CPF inválido',
         NODATA: 'Data inválida',
         NOEMAIL: 'Email inválido',
+        NOFORMPAG: 'Adicione formas para pagamento',
         NOPHONE: 'Telefone residencial inválido',
         NORG: 'RG inválido',
         NOTEL: 'Telefone ou Tipo de telefone inválido',

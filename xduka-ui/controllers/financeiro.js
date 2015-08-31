@@ -96,11 +96,17 @@ function postDadosCadastroCaixa(req,res) {
 function postValoresCurso(req,res) {
     var dataSent = req.body;
 
-    /**
-     * TOdo request para o beckend
-     */
+    if (verificaDadosValoresCurso(dataSent.model)) {
 
-    res.json({"status": "OK"});
+        /**
+         * TOdo request para o beckend
+         */
+
+        res.json({"status": true});
+    } else {
+        validaDadosValoresCurso(dataSent);
+        res.json({"status": false, "model": dataSent.model});
+    }
 }
 
 function getTemplateCadastroCaixa(req,res) {
@@ -138,4 +144,24 @@ function verificaUnidade(obj, unidade) {
             return obj[i].tipoCursos;
         }
     }
+}
+
+function validaDadosValoresCurso(obj) {
+    obj.model.tipoCurso.model.err = !!obj.model.tipoCurso.model.val ? '' : obj.STR.FIELD;
+    obj.model.areaCurso.model.err = !!obj.model.areaCurso.model.val ? '' : obj.STR.FIELD;
+    obj.model.curso.model.err = !!obj.model.curso.model.val ? '' : obj.STR.FIELD;
+    obj.model.periodoVigencia.model.err = !!obj.model.periodoVigencia.model.val ? '' : obj.STR.FIELD;
+    obj.model.ate.model.err = !!obj.model.ate.model.val ? '' : obj.STR.FIELD;
+    obj.model.valorIntegral.model.err = !!obj.model.valorIntegral.model.val ? '' : obj.STR.FIELD;
+    obj.model.valorInscr.model.err = !!obj.model.valorInscr.model.val ? '' : obj.STR.FIELD;
+    obj.model.valorAvista.model.err = !!obj.model.valorAvista.model.val ? '' : obj.STR.FIELD;
+    obj.model.formaPagamento.model.err = obj.model.formaPagamento.list.length!=0 ? '' : obj.STR.NOFORMPAG;
+}
+
+function verificaDadosValoresCurso(obj) {
+    return !!obj.tipoCurso.model.val && !!obj.areaCurso.model.val &&
+        !!obj.curso.model.val && !!obj.periodoVigencia.model.val &&
+        !!obj.ate.model.val && !!obj.valorIntegral.model.val &&
+        !!obj.valorInscr.model.val && !!obj.valorAvista.model.val &&
+        !!obj.formaPagamento.model.val
 }
