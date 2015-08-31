@@ -3,7 +3,13 @@ module.exports = function(grunt) {
 
     var mozjpeg = require ('imagemin-mozjpeg');
     grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
         clean: ['dist', '.tmp'],
+        uglify: {
+            options: {
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            }
+        },
         copy: {
             main: {
                 files: [
@@ -24,6 +30,16 @@ module.exports = function(grunt) {
                         cwd: 'public/assets',
                         src: ['{images,xduka}/**/*.{png,jpg,gif}'],
                         dest: 'dist/public/assets'
+                    }
+                ]
+            },
+            restoreCompress: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '.tmp',
+                        src: ['dist/**/*'],
+                        dest: 'dist/'
                     }
                 ]
             }
@@ -66,9 +82,20 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     src: ['dist/views/**/*',
-                          //'dist/public/assets/css/**/*',
                           'dist/public/html/**/*.html']
                 }]
+            }
+        },
+        compress: {
+            main: {
+                options: {
+                    mode: 'gzip'
+                },
+                expand: true,
+                src: ['dist/public/assets/css/**/*.css',
+                    'dist/public/assets/js/**/*.js',
+                    'dist/public/html/**/*.html'],
+                dest: '.tmp'
             }
         },
         usemin: {
@@ -83,8 +110,8 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['clean', 'copy', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin', 'cdnify']);
-    grunt.registerTask('production', ['clean' , 'copy','imagemin', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin' , 'cdnify']);
+    grunt.registerTask('default', ['clean', 'copy:main', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin', 'cdnify', 'compress', 'copy:restoreCompress']);
+    grunt.registerTask('production', ['clean' , 'copy:main','imagemin', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin' , 'cdnify', 'compress', 'copy:restoreCompress']);
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -97,4 +124,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-usemin');
     grunt.loadNpmTasks('grunt-rev');
     grunt.loadNpmTasks('grunt-cdnify');
+    grunt.loadNpmTasks('grunt-contrib-compress');
 };
