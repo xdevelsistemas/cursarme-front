@@ -36,6 +36,10 @@
         .table > thead > tr > th { padding: 8px; line-height: 1.42857; }
         .table-bordered > tbody > tr > td { border: 1px solid #DDD; }
         .table > tbody > tr > td { padding: 8px; line-height: 1.42857; vertical-align: top; border-top: 1px solid #DDD; }
+        p.big { margin:30px; line-height:30px; }
+        .center { text-align: center; }
+        .assinatura { padding-top: 200px; }
+
     </style>
 </head>
 <body>
@@ -52,38 +56,32 @@
 </header>
 
 <section>
+    <h1 class="text-center text-primary">Declaração de Frequência</h1>
 
-    <h1>Complementação Pedagógica - Turma  {{#each content.body}} {{turma}}{{/each}}</h1>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            {{#each content.head }}
-            <th>{{text}}</th>
-            {{/each}}
-        </tr>
-        </thead>
-        <tbody>
-        {{#each content.body}}
-        <tr>
-            <td>{{Nome}}</td>
-            <td>{{foto}}</td>
-            <td>{{c_id}}</td>
-            <td>{{cpf}}</td>
-            <td>{{tit_eleit}}</td>
-            <td>{{comp_eleit}}</td>
-            <td>{{cert_reserv}}</td>
-            <td>{{cert_cas}}</td>
-            <td>{{comp_res}}</td>
-            <td>{{dip_em}}</td>
-            <td>{{hist_em}}</td>
-            <td>{{dip_grad}}</td>
-            <td>{{hist_grad}}</td>
-            <td>{{cert_conclu}}</td>
-        </tr>
-        {{/each}}
-        </tbody>
-    </table>
+    <p class="big">
+
+        Declaro, para os devidos fins, que o (a) Sr(a). <b>{{content.nome}}</b>,
+
+        inscrita no CPF sob o N.º <b>{{content.cpf}}</b> encontra-se devidamente frequentando o
+
+        curso de <b>{{content.curso}}</b>, sob o número de matrícula <b>{{content.matricula}}</b>. Curso
+
+        com encontros <b>{{content.encontro}}</b>, de <b>{{content.hora1}}</b> às <b>{{content.hora2}}</b> horas, tendo inicio
+
+        <b>{{content.data_ini}}</b> e término previsto para <b>{{content.data_fim}}</b>.
+
+    </p>
+
+
+
+    <p class="big assinatura center">
+        __________________________________
+        <br/>
+        Secretária acadêmica
+    </p>
 </section>
+
+
 
 <footer class="navbar-fixed-bottom">
     <div class="row">

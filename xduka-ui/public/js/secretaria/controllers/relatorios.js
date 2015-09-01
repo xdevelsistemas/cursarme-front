@@ -19,6 +19,8 @@
             vm.gerarDecHorario = gerarDecHorario;
             vm.gerarDecmat = gerarDecmat;
             vm.gerarDecCursoLivre = gerarDecCursoLivre;
+            vm.gerarMestrado = gerarMestrado;
+            vm.gerarDecFreq = gerarDecFreq;
 
 
 
@@ -79,6 +81,7 @@
                 ];
 
                 vm.data.content.body = [];
+                vm.data.content.body.push({ turma: 'SIN15/1' });
 
                 // content body pdf
                 for (var i = 0; i < 10;i++){
@@ -106,9 +109,53 @@
                 }
             }
 
+            function gerarMestrado() {
+                // content head pdf
+                vm.data.content.head = [
+                    {text: 'Nome'},
+                    {text: '5 fotos 3x4'},
+                    {text: 'Carteira de Identidade'},
+                    {text: 'CPF'},
+                    {text: 'Titulo Eleitoral'},
+                    {text: 'Comprovante da Ultima Eleição'},
+                    {text: 'Certidão de Reservista'},
+                    {text: 'Certidão de Nascimento ou Casamento'},
+                    {text: 'Comprovante de Residência'},
+                    {text: 'Diploma de Graduação'},
+                    {text: 'Histórico de Graduação'},
+                    {text: 'Certidão de Conclusão'}
+                ];
 
+                vm.data.content.body = [];
+                vm.data.content.body.push({ turma: 'SIN15/1' });
 
-            function reportData() {
+                // content body pdf
+                for (var i = 0; i < 10;i++){
+                    vm.data.content.body.push({
+                        Nome: 'João das Couves',
+                        foto: 'X',
+                        c_id: '',
+                        cpf: 'X',
+                        tit_eleit: '',
+                        comp_eleit: 'X',
+                        cert_reserv: 'X',
+                        cert_cas: '',
+                        comp_res: 'X',
+                        dip_grad: '',
+                        hist_grad: 'X',
+                        cert_conclu: 'X',
+                    });
+                    vm.data.content.body.sort(function compare(a,b) {
+                        if (a.Nome > b.Nome){
+                            return a.Nome > b.Nome
+                        }
+                    })
+                }
+                window.open("/report?templateContent=" + encodeURIComponent("mestrado") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
+
+            }
+
+            function gerarDecHorario() {
                 // content head pdf
                 vm.data.content.head = [
                     {text: 'Nome'},
@@ -181,6 +228,22 @@
                     data_fim: '18/05/2017'
                 };
                 window.open("/report?templateContent=" + encodeURIComponent("dec-matricula-aluno") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
+            };
+
+            function gerarDecFreq() {
+                vm.data.content = {
+                    nome: 'João das Couves',
+                    cpf: '123.123.123-31',
+                    curso: 'Complementação Pedagógica',
+                    matricula: '1412SI312',
+                    encontro: 'semanais',
+                    hora1: '07:30',
+                    hora2: '09:30',
+                    data_ini: '18/08/2015',
+                    data_fim: '18/05/2017'
+                };
+                window.open("/report?templateContent=" + encodeURIComponent("dec-frequencia-aluno") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
+
             };
 
             function gerarDecCursoLivre() {

@@ -141,6 +141,7 @@ module.exports = function (app, passport) {
             response.on('end', function () {
                 // your code here if you want to use the results !
                 dataTemplate.template.recipe = "phantom-pdf";
+                dataTemplate.phantom = { header: "olha o header aqui", footer: "olha o footer aqui" };
                 dataTemplate.data.content = JSON.parse(decodeURIComponent(req.query.dataContent));
 
                 reportClient.client.render(dataTemplate, function(err, response) {
