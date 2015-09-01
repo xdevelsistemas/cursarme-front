@@ -1,32 +1,66 @@
 var urlDataBase = '',
     extend = require('node.extend'),
     request = require('request'),
+    alunos = require('../mockup/xduka-json/common/alunos.json'),
     dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
     dadosGeraTurma = require('../mockup/xduka-json/secretaria/dadosGeraTurma.json'),
+    dadosFreqPauta = require('../mockup/xduka-json/secretaria/dadosFreqPauta.json'),
+    dadosNotasPauta = require('../mockup/xduka-json/secretaria/dadosNotasPauta.json'),
+    templateAluno = require('../mockup/xduka-json/secretaria/templateAluno.json'),
+    templateConfig = require('../mockup/xduka-json/secretaria/templateConfig.json'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
+    templatePauta = require('../mockup/xduka-json/secretaria/templatePauta.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
-    viewInscr = require('../mockup/xduka-json/common/viewInscr.json'),
-    alunos = require('../mockup/xduka-json/common/alunos.json'),
-    templateConfig = require('../mockup/xduka-json/secretaria/templateConfig.json');
-    templateAluno = require('../mockup/xduka-json/secretaria/templateAluno.json');
+    viewInscr = require('../mockup/xduka-json/common/viewInscr.json');
 
 module.exports = function() {
     var controller = {};
 
+    controller.alunoSearch = alunoSearch;
+    controller.showConfig = showConfig;
     controller.showDadosCurso = getDadosCurso;
     controller.showDadosGeraTurma = getDadosGeraTurma;
+    controller.showDadosFreqPauta = getDadosFreqPauta;
+    controller.showDadosNotasPauta = getDadosNotasPauta;
     controller.showInfoUsuario = getInfoUsuario;
+    controller.showTemplateAl = getTemplateAl;
     controller.showViewInscr = getViewInscr;
     controller.showTemplateInscricao = getTemplateInscricao;
+    controller.showTemplatePauta = getTemplatePauta;
     controller.putDadosInscricao = putDadosInscricao;
     controller.putDadosTurmas = putDadosTurmas;
     controller.putSaveConfig = putSaveConfig;
-    controller.alunoSearch = alunoSearch;
-    controller.getTemplateAl = getTemplateAl;
-    controller.showConfig = showConfig;
 
     return controller;
 };
+
+function getDadosFreqPauta(req, res) {
+    var i;
+
+    for(i = 0; i < dadosFreqPauta.tableFreqFixa.list.length; i++) {
+        dadosFreqPauta.tableFreqFixa.list[i].anum = dadosFreqPauta.tableFreqFixa.list[i].anum.toString();
+        dadosFreqPauta.tableFreqFixa.list[i].cfaltas = dadosFreqPauta.tableFreqFixa.list[i].cfaltas.toString();
+    }
+    res.json(dadosFreqPauta);
+}
+
+function getDadosNotasPauta(req, res) {
+    var i;
+
+    for(i = 0; i < dadosNotasPauta.list.length; i++) {
+        dadosNotasPauta.list[i].anum = dadosNotasPauta.list[i].anum.toString();
+        dadosNotasPauta.list[i].enotaUm = dadosNotasPauta.list[i].enotaUm.toString();
+        dadosNotasPauta.list[i].fnotaDois = dadosNotasPauta.list[i].fnotaDois.toString();
+        dadosNotasPauta.list[i].gfaltas = dadosNotasPauta.list[i].gfaltas.toString();
+        dadosNotasPauta.list[i].hmedia = dadosNotasPauta.list[i].hmedia.toString();
+    }
+
+    res.json(dadosNotasPauta);
+}
+
+function getTemplatePauta(req, res) {
+    res.json(templatePauta);
+}
 
 function getTemplateAl(req,res) {
     res.json(templateAluno)
@@ -244,7 +278,7 @@ function putSaveConfig(req, res) {
             "dirNumero": {"model": {"val": dadosSent.dirNumero.model.val}}
         };
 
-        /*  ENVIAR PARA CLAYTON O OBJETO SENDDADOS CRIADO SÓ COM OS DADOS A SEREM SALVOS   */
+        /*  ENVIAR PARA BD O OBJETO SENDDADOS CRIADO SÓ COM OS DADOS A SEREM SALVOS   */
         /*
         request(urlDataBase, function (error, response, body) {
             if (!error && response.statusCode == 200) {

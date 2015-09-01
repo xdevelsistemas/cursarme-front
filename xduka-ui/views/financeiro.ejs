@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="/assets/xduka/img/mini.png">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
 
-
+    <!-- build:css /assets/css/bundle_financeiro.min.css -->
     <link rel="stylesheet" href="/lib/jquery-ui/themes/base/jquery-ui.css">
     <!--NEON-->
     <link rel="stylesheet" href="/assets/neon/vertical-timeline/css/component.css">
@@ -107,15 +107,15 @@
                         </span>
                     </li>
                 </ul>
-<!--
-                <div class="row">
-                    <div class="col-md-6">
-                        <form role="form" class="form-horizontal form-groups-bordered">
-                            <xd-select data-params="main.cursos" data-change="main.sendCurso" ></xd-select>
-                        </form>
+
+                <div class="col-md-8 col-sm-8 clearfix">
+                    <div class="col-sm-12 hidden-lg">
                         <br/>
                     </div>
-                </div>-->
+                    <form role="form" class="form-horizontal form-groups-bordered">
+                        <xd-select data-params="main._unidade" data-change="main.sendUnidade" ></xd-select>
+                    </form>
+                </div>
             </div>
 
             <!-- SEARCH BAR -->

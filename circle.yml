@@ -1,0 +1,31 @@
+machine:
+  node:
+    version: 0.10.32
+  services:
+    - docker
+dependencies:
+  override:
+    - sudo pip install awscli
+    - docker info
+    - docker build -t claytonsilva/xduka-ui ./xduka-ui
+test:
+  override:
+    - docker run -d --name mongodb  xdevelsistemas/debian-env:mongodb-env
+    - docker run -d --name redis  xdevelsistemas/debian-env:redis-env
+    - docker run -d  --name jsreport  jsreport/jsreport:latest bash /home/jsreport/run.sh  --restart always
+    - docker run -d -e "REPORTJS_URL=https://jsreport:2945" -e "REPORTJS_USERNAME=''" -e "REPORTJS_PASSWORD=''" -e "XDUKA_USER=xduka" -e "NODE_ENV=production"  -e "XDUKA_PASS=" -e "REDIS_HOST=redis" -e "REDIS_PORT=6379" -e "REDIS_DB=0" -e "XDUKA_URL=mongodb://mongodb:27017/xduka"  -p 80:3000 --link mongodb:mongodb --link jsreport:jsreport --link redis:redis  claytonsilva/xduka-ui; sleep 10
+    - curl --retry 10 --retry-delay 5 -v http://localhost:80
+deployment:
+  prod:
+    branch: publicacao
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - (cd xduka-ui && npm install)
+      - (cd xduka-ui && npm install --dev)
+      - (cd xduka-ui && bower install)
+      - (cd xduka-ui && grunt production)
+      - (bash s3cmd.sh)
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push claytonsilva/xduka-ui
+      - ssh core@beta.xduka.com.br docker pull claytonsilva/xduka-ui
+      - ssh core@beta.xduka.com.br sudo systemctl restart xduka-ui.service

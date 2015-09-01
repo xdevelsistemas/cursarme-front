@@ -2,15 +2,22 @@ module.exports = function(grunt) {
     'use strict';
 
     var mozjpeg = require ('imagemin-mozjpeg');
+    var cdnrepo = 'http://static.beta.cursar.me.s3-website-sa-east-1.amazonaws.com';
     grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
         clean: ['dist', '.tmp'],
+        uglify: {
+            options: {
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            }
+        },
         copy: {
             main: {
                 files: [
                     {
                         expand: true,
                         cwd: 'public/assets/css/font-icons/entypo',
-                        src: ['font/**/*',],
+                        src: ['font/**/*'],
                         dest: 'dist/public/assets'
                     },
                     {
@@ -24,6 +31,16 @@ module.exports = function(grunt) {
                         cwd: 'public/assets',
                         src: ['{images,xduka}/**/*.{png,jpg,gif}'],
                         dest: 'dist/public/assets'
+                    }
+                ]
+            },
+            restoreCompress: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '.tmp',
+                        src: ['dist/**/*'],
+                        dest: '.'
                     }
                 ]
             }
@@ -57,8 +74,44 @@ module.exports = function(grunt) {
                 }]
             }
         },
+        cdnify: {
+            beta: {
+                options: {
+                    base: 'http://static.beta.cursar.me.s3-website-sa-east-1.amazonaws.com',
+                    cc: true
+                },
+                files: [{
+                    expand: true,
+                    src: ['dist/views/**/*',
+                          'dist/public/html/**/*.html']
+                }]
+            }
+        },
+        compress: {
+            main: {
+                options: {
+                    mode: 'gzip'
+                },
+                expand: true,
+                src: ['dist/public/assets/css/**/*.css',
+                      'dist/public/assets/js/**/*.js'
+                    //'dist/public/html/**/*.html'
+                ],
+                dest: '.tmp'
+            }
+        },
         usemin: {
             html: 'dist/views/**/*.ejs'
+            // options: {
+            //     blockReplacements: {
+            //         css: function (block) {
+            //             return '<link rel="stylesheet" href="' + block.dest + '">';
+            //         },
+            //         js: function (block) {
+            //             return '<script async type="text/javascript" src="' + block.dest + '"></script>';
+            //         }
+            //     }
+            // }
         },
         useminPrepare: {
             options: {
@@ -69,7 +122,8 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', ['clean', 'copy', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin']);
+    grunt.registerTask('default', ['clean', 'copy:main', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin', 'cdnify' ,   'compress', 'copy:restoreCompress']);
+    grunt.registerTask('production', ['clean' , 'copy:main','imagemin', 'htmlmin', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin' , 'cdnify'  , 'compress', 'copy:restoreCompress']);
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -80,4 +134,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-ng-annotate');
     grunt.loadNpmTasks('grunt-usemin');
+    grunt.loadNpmTasks('grunt-rev');
+    grunt.loadNpmTasks('grunt-cdnify');
+    grunt.loadNpmTasks('grunt-contrib-compress');
 };

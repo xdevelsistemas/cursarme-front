@@ -1,0 +1,24 @@
+{
+  "unidade": {
+    "label": "Unidade",
+    "type": "select",
+    "name": "unidade",
+    "placeholder": "Selecione uma opção",
+    "required": false,
+    "list": [
+      {
+        "id": 1,
+        "text": "Unidade Vitória"
+      },
+      {
+        "id": 2,
+        "text": "Unidade Cariacica"
+      },
+      {
+        "id": 3,
+        "text": "Unidade São Mateus"
+      }
+    ],
+    "model": {"val": 1, "err": ""}
+  }
+}

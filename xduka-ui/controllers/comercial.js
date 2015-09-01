@@ -313,7 +313,7 @@ function validaCamposStep4(obj) {
     !!obj.livro.model.val && !!obj.cartorio.model.val && validaSexo(obj) &&
     isDate(obj.dataNasc.model.val) && !obj.dataNasc.model.err &&
     !!obj.raca.model.val && !!obj.estadoCivil.model.val && !!obj.pai.model.val &&
-    !!obj.mae.model.val && !!obj.endNum.model.val && !!obj.apt.model.val &&
+    !!obj.mae.model.val && !!obj.endNum.model.val && !!obj.complemento.model.val &&
     !!obj.nacionalidade.model.val && !!obj.naturalidade.model.val && !!obj.natUf.model.val &&
     !!obj.escolaEm.model.val && !!obj.anoEm.model.val && !!obj.cursoGrad.model.val &&
     !!obj.anoGrad.model.val && !!obj.instituicao.model.val
@@ -395,7 +395,7 @@ function limpaModelErrStep4(obj) {
     obj.pai.model.err = "";
     obj.mae.model.err = "";
     obj.endNum.model.err = "";
-    obj.apt.model.err = "";
+    obj.complemento.model.err = "";
     obj.nacionalidade.model.err = "";
     obj.naturalidade.model.err = "";
     obj.natUf.model.err = "";
@@ -439,7 +439,7 @@ function dadosSentInscr(obj) {
         "mae":{"model":{"val":obj.mae.model.val}},
         "avRua":{"model":{"val":obj.avRua.model.val}},
         "endNum":{"model":{"val":obj.endNum.model.val}},
-        "apt":{"model":{"val":obj.apt.model.val}},
+        "complemento":{"model":{"val":obj.complemento.model.val}},
         "bairro":{"model":{"val":obj.bairro.model.val}},
         "endUf":{"model":{"val":obj.endUf.model.val}},
         "nacionalidade":{"model":{"val":obj.nacionalidade.model.val}},
@@ -545,7 +545,7 @@ function verificaValidacoesStep3(obj) {
 }
 
 function verificaValidacoesStep4(obj) {
-    obj.model.apt.model.err = obj.model.apt.model.val ? '' : obj.STR.FIELD;
+    obj.model.complemento.model.err = obj.model.complemento.model.val ? '' : obj.STR.FIELD;
     obj.model.anoEm.model.err = obj.model.anoEm.model.val ? '' : obj.STR.FIELD;
     obj.model.anoGrad.model.err = obj.model.anoGrad.model.val ? '' : obj.STR.FIELD;
     obj.model.cartorio.model.err = obj.model.cartorio.model.val ? '' : obj.STR.FIELD;

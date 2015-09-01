@@ -9,7 +9,7 @@ var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var SessionStore = require('connect-mongodb');
+var compression = require('compression')
 var app = express();
 
 var RedisStore = require('connect-redis')(session);
@@ -19,6 +19,15 @@ var configDB = require('./config/database.js'),
     configRedis = require('./config/redis.js');
 
 mongoose.connect(configDB.url); // connect to our database
+
+
+
+//enable cors
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "" + process.env.STATIC_HOST + "" );
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 // view engine setup
 app.get('env') === 'development' ?
@@ -54,6 +63,10 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
+
+//html compression - compress all requests
+app.use(compression());
+
 // routes ======================================================================
 // load our routes and pass in our app and fully configured passport
 require('./routes/routes.js')(app, passport);
@@ -87,6 +100,28 @@ if (app.get('env') === 'development') {
     });
 }
 /// error handlers
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+    app.use(function (err, req, res, next) {
+        res.status(err.status || 400);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
+}else {
+    // production error handler
+    // no stacktraces leaked to user
+    app.use(function (err, req, res, next) {
+        res.status(err.status || 400);
+        res.render('400', {
+            message: err.message,
+            error: err
+        });
+    });
+}
 
 // development error handler
 // will print stacktrace

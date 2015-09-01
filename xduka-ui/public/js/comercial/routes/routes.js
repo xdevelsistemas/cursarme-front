@@ -19,25 +19,29 @@ angular.module('app',[
     'ngProgress'
 
 ])
-
-.config(['$routeProvider', function ($routeProvider) {
-// ========= HOME ========= //
-        $routeProvider.when('/', {
-            redirectTo: '/pre-cadastro'
-        });
-// ========= PRÉ CADASTRO ========= //
-        $routeProvider.when('/pre-cadastro', {
-            templateUrl: 'html/comercial/pre-cadastro.html',
-            controller: 'FormPreCadastro',
-            controllerAs: 'pre'
-        });
-// ========= FORMS EXAMPLE ========= //
-        $routeProvider.when('/forms-example', {
-            templateUrl: 'html/forms-example.html',
-            controller: 'formsExample'
-        });
-// ========= OTHERWISE ========= //
-        $routeProvider.otherwise({
-            redirectTo: '/'
-        });
+    .config(['$httpProvider', function($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }
+    ])
+    .config(['$routeProvider', function ($routeProvider) {
+    // ========= HOME ========= //
+            $routeProvider.when('/', {
+                redirectTo: '/pre-cadastro'
+            });
+    // ========= PRÉ CADASTRO ========= //
+            $routeProvider.when('/pre-cadastro', {
+                templateUrl: 'html/comercial/pre-cadastro.html',
+                controller: 'FormPreCadastro',
+                controllerAs: 'pre'
+            });
+    // ========= FORMS EXAMPLE ========= //
+            $routeProvider.when('/forms-example', {
+                templateUrl: 'html/forms-example.html',
+                controller: 'formsExample'
+            });
+    // ========= OTHERWISE ========= //
+            $routeProvider.otherwise({
+                redirectTo: '/'
+            });
     }]);
