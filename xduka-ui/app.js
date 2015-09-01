@@ -11,12 +11,14 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var compression = require('compression')
 var app = express();
+var http = require('http');
 
 var RedisStore = require('connect-redis')(session);
 
 // configuration ===============================================================
 var configDB = require('./config/database.js'),
-    configRedis = require('./config/redis.js');
+    configRedis = require('./config/redis.js'),
+    proxies = require('./config/proxies.js');
 
 mongoose.connect(configDB.url); // connect to our database
 
@@ -78,6 +80,13 @@ require('./routes/financeiro.js')(app, passport);
 require('./routes/resetpassword.js')(app, passport);
 require('./routes/secretaria.js')(app, passport);
 require('./routes/financeiro.js')(app, passport);
+
+
+//jsreport route
+require('./routes/proxyRoutes')(app, passport, proxies.jsreport.http_host, proxies.jsreport.http_port, "/", proxies.jsreport.prefix, http, express, proxies.jsreport.prefix);
+
+
+
 
 /// catch 404 and forward to error handler
 if (app.get('env') === 'development') {

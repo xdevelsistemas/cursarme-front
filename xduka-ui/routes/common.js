@@ -5,5 +5,11 @@ module.exports = function (app, passport) {
     app.route('/api/common/dados-template-header-footer/:template')
         .get(controller.showTemplateHeaderFooter);
 
+
+    app.route('/api/common/report')
+        .post(controller.putGeraRelatorio);
+
+
+
     return app;
 };

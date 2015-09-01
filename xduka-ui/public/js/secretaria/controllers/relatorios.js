@@ -53,7 +53,11 @@
 
             function gerar() {
                 reportData();
+
+
                 window.open("/report?templateContent=" + encodeURIComponent("relatorio") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
+
+
             }
 
             function gerarCompPedagogica() {
@@ -197,7 +201,13 @@
                     nome: 'João das Couves',
                     curso: 'Sistemas de Informação'
                 };
-                window.open("/report?templateContent=" + encodeURIComponent("template-decDocs") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
+
+                $http.post('/api/common/report', { templateContent: "template-decDocs", dataContent: vm.data.content }).
+                    then(function(response) {
+                        console.log("response: " + response);
+                    }, function(err) {
+                        console.log("Erro " + err);
+                    });
             };
 
 

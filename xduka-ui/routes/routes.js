@@ -131,29 +131,6 @@ module.exports = function (app, passport) {
 
     // REPORT
     app.get("/report", function(req, res, next) {
-        var dataTemplate = {},
-            options = reportClient.options(req.query.templateContent);
-
-        var callback = function(response) {
-            response.on('data', function (data) {
-                dataTemplate = JSON.parse(data);
-            });
-            response.on('end', function () {
-                // your code here if you want to use the results !
-                dataTemplate.template.recipe = "phantom-pdf";
-                dataTemplate.phantom = { header: "olha o header aqui", footer: "olha o footer aqui" };
-                dataTemplate.data.content = JSON.parse(decodeURIComponent(req.query.dataContent));
-
-                reportClient.client.render(dataTemplate, function(err, response) {
-                    if (err) {
-                        return next(err);
-                    }
-                    response.pipe(res);
-                });
-            });
-        };
-
-        http.request(options, callback).end();
 
 
     });
