@@ -9,7 +9,7 @@ var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var SessionStore = require('connect-mongodb');
+var compression = require('compression')
 var app = express();
 
 var RedisStore = require('connect-redis')(session);
@@ -62,6 +62,10 @@ require('./config/passport')(passport); // pass passport for configuration
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
+
+
+//html compression - compress all requests
+app.use(compression());
 
 // routes ======================================================================
 // load our routes and pass in our app and fully configured passport
