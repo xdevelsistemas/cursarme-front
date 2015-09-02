@@ -1,5 +1,6 @@
 var reportjsClient = require("jsreport-client"),
-    url = 'http://localhost:3000/jsreport/',
+    //url = process.env.REPORTJS_URL,
+    url = 'http://localhost:3000',
     username = process.env.REPORTJS_USERNAME,
     password = process.env.REPORTJS_PASSWORD;
 

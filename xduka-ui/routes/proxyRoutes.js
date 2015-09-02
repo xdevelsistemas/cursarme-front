@@ -2,7 +2,6 @@ var verificaAutenticacao = require('../services/isLoggedIn.js');
 
 module.exports = function (app, passport, backend_host, backend_port, backend_path_prefix, standard_prefix, http, express, path) {
 
-    // Proxy request
     function get_from_proxy(request, response) {
 
         // if a path prefix is set, remove the existing one
@@ -51,10 +50,8 @@ module.exports = function (app, passport, backend_host, backend_port, backend_pa
             proxy_request.write(JSON.stringify(request.body))
         }
 
-
         proxy_request.end();
     }
-
 
     // Handle of path rests through proxy
     app.route(path + '*').all(verificaAutenticacao,function (req, res, next) {

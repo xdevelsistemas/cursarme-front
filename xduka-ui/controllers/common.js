@@ -29,17 +29,15 @@ function showTemplateHeaderFooter(req, res) {
 function putGeraRelatorio(req, res) {
 
     var dataTemplate = {},
-        options = reportClient.options(req.body.templateContent);
+        options = reportClient.options(req.query.templateContent);
 
     var callback = function(response) {
         response.on('data', function (data) {
             dataTemplate = JSON.parse(data);
         });
-        response.on('end', function () {
-            // your code here if you want to use the results !
+        response.on('end', function() {
             dataTemplate.template.recipe = "phantom-pdf";
-            dataTemplate.phantom = { header: "olha o header aqui", footer: "olha o footer aqui" };
-            dataTemplate.data.content = req.body.dataContent;
+            dataTemplate.data.content = "";
 
             reportClient.client.render(dataTemplate, function(err, response) {
                 if (err) {
@@ -53,5 +51,36 @@ function putGeraRelatorio(req, res) {
     http.request(options, callback).end();
 
 
+
+
+
+
+
+    /*
+        var dataTemplate = {},
+            options = reportClient.options(req.query.templateContent);
+
+        var callback = function(response) {
+            response.on('data', function (data) {
+                dataTemplate = JSON.parse(data);
+            });
+            response.on('end', function() {
+                // your code here if you want to use the results !
+                dataTemplate.template.recipe = "phantom-pdf";
+                dataTemplate.phantom = { header: "olha o header aqui", footer: "olha o footer aqui" };
+                dataTemplate.data.content = req.query.dataContent;
+
+                reportClient.client.render(dataTemplate, function(err, response) {
+                    if (err) {
+                        return next(err);
+                    }
+                    response.pipe(res);
+                });
+            });
+        };
+
+        http.request(options, callback).end();
+
+    */
 
 }

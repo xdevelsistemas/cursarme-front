@@ -196,13 +196,16 @@
             }
 
             vm.geraDec = function () {
+                /*
                 vm.data.content = {
                     data: '22/12/2015',
                     nome: 'João das Couves',
                     curso: 'Sistemas de Informação'
                 };
 
-                $http.post('/api/common/report', { templateContent: "template-decDocs", dataContent: vm.data.content }).
+                */
+                var template = 'template-decDocs';
+                $http.get('/api/common/report?templateContent='+template).
                     then(function(response) {
                         console.log("response: " + response);
                     }, function(err) {

@@ -1,6 +1,5 @@
 var isLoggedIn = require('../services/isLoggedIn.js'),
     isNotLoggedIn = require('../services/isNotLoggedIn.js'),
-    reportClient = require('../config/report.js'),
     http = require('http');
 
 
@@ -129,12 +128,4 @@ module.exports = function (app, passport) {
             res.send({success: false, errmsg: 'User is not defined.'});
     });
 
-    // REPORT
-    app.get("/report", function(req, res, next) {
-
-
-    });
-
-
-    return app;
 };

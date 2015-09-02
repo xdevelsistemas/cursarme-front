@@ -83,7 +83,7 @@ require('./routes/financeiro.js')(app, passport);
 
 
 //jsreport route
-require('./routes/proxyRoutes')(app, passport, proxies.jsreport.http_host, proxies.jsreport.http_port, "/", proxies.jsreport.prefix, http, express, proxies.jsreport.prefix);
+require('./routes/proxyRoutes')(app, passport, proxies.jsreport.http_host, proxies.jsreport.http_port, "/api/report", proxies.jsreport.prefix, http, express, proxies.jsreport.prefix);
 
 
 

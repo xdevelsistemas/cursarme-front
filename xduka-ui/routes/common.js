@@ -7,7 +7,7 @@ module.exports = function (app, passport) {
 
 
     app.route('/api/common/report')
-        .post(controller.putGeraRelatorio);
+        .get(controller.putGeraRelatorio);
 
 
 
