@@ -11,7 +11,7 @@
       }
     },
     "nomeBanco": {
-      "label": "Nome do Caixa",
+      "label": "Nome do Banco",
       "type": "select",
       "name": "nomeBanco",
       "placeholder": "Selecione uma opção",

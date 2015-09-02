@@ -15,33 +15,35 @@
 <div class="col-md-12" ng-hide="cadc.showTable">
     <div class="row">
         <div class="col-md-12">
-            <xd-input data-params="cadc._model.nomeCaixa"></xd-input>
+            <xd-input data-params="cadc._model.nomeCaixa" data-disable="cadc.disableNomeCaixa"
+                    data-change="cadc.changeNomeCaixa"></xd-input>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <xd-select data-params="cadc._model.nomeBanco"></xd-select>
+            <xd-select data-params="cadc._model.nomeBanco" data-disable="cadc.disableNomeBanco"
+                       data-change="cadc.changeNomeBanco"></xd-select>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <xd-input data-params="cadc._model.agencia"></xd-input>
+            <xd-input data-params="cadc._model.agencia" data-disable="cadc.disableEscolhaBanco"></xd-input>
         </div>
         <div class="col-md-6">
-            <xd-input data-params="cadc._model.contaBancaria"></xd-input>
+            <xd-input data-params="cadc._model.contaBancaria" data-disable="cadc.disableEscolhaBanco"></xd-input>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <xd-input data-params="cadc._model.codCedente"></xd-input>
+            <xd-input data-params="cadc._model.codCedente" data-disable="cadc.disableEscolhaBanco"></xd-input>
         </div>
         <div class="col-md-6">
-            <xd-input data-params="cadc._model.tipoCarteira"></xd-input>
+            <xd-input data-params="cadc._model.tipoCarteira" data-disable="cadc.disableEscolhaBanco"></xd-input>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <xd-input-textarea data-params="cadc._model.obs"></xd-input-textarea>
+            <xd-input-textarea data-params="cadc._model.obs" data-disable="cadc.disableEscolhaBanco"></xd-input-textarea>
         </div>
     </div>
     <br/>

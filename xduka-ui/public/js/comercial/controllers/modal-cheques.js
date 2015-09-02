@@ -13,9 +13,10 @@
                 .then(function(data) {
                     vm._model = data;
                 })
-                .catch(function(erro) {
-                    if (erro.status == '400') {
-                        console.log(erro);
+                .catch(function(error) {
+                    // TOdo tratar error
+                    if (error.status == '400') {
+                        console.log(error);
                     }
                 });
 

@@ -30,7 +30,7 @@ module.exports = function (app, passport) {
         .post(controller.putDadosCadastroCaixa);
 
     //dados-valores-curso
-    app.route('/api/financeiro/save-valores-curso')
+    app.route('/api/financeiro/save-valores-curso/:id')
         .post(controller.putValoresCurso);
 
     //get template aluno

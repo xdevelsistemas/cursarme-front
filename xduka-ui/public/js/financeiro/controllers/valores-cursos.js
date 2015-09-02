@@ -148,12 +148,12 @@
             }
 
             function saveValoresCurso() {
-                var saveValoresCursoPromise = $resource('/api/financeiro/save-valores-curso').save({}, {"model": vm._model, "STR": vm.STR}).$promise;
+                var saveValoresCursoPromise = $resource('/api/financeiro/save-valores-curso/:id').save({"id": defineUnidade.getIdUnidade()}, {"model": vm._model, "STR": vm.STR}).$promise;
 
                 saveValoresCursoPromise
                     .then(function(data) {
                         //response
-                        if (data.status) {
+                        if (data.success) {
                             // TOdo tela com resposta como um "Valores cadastrado com sucesso".
                             vm.disableArea = true;
                             vm.disableCurso = true;
