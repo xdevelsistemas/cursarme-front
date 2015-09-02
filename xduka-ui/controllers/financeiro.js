@@ -194,7 +194,7 @@ function verificaDadosValoresCurso(obj) {
 function validaDadosCadastroCaixa(obj) {
     if (obj.escolhaBanco) {
         obj.model.nomeCaixa.model.err = !!obj.model.nomeCaixa.model.val ? "" : obj.STR.FIELD;
-        obj.model.nomeBanco.model.err = "";
+        if (!obj.disNomeBanco) obj.model.nomeBanco.model.err = !!obj.model.nomeBanco.model.val ? "" : obj.STR.FIELD;
         obj.model.agencia.model.err = "";
         obj.model.contaBancaria.model.err = "";
         obj.model.codCedente.model.err = "";

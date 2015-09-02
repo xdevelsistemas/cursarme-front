@@ -79,6 +79,7 @@
                 vm.disableNomeBanco = false;
                 vm.disableNomeCaixa = true;
                 vm.disableEscolhaBanco = false;
+                vm._model.nomeCaixa.model = {"val": "", "err": ""};
             }
 
             function changeNomeCaixa(item, model) {
@@ -96,11 +97,17 @@
 
             function limpaCamposBancoFin() {
                 vm._model.nomeBanco.model.val = '';
+                vm._model.nomeBanco.model.err = '';
                 vm._model.agencia.model.val = '';
+                vm._model.agencia.model.err = '';
                 vm._model.contaBancaria.model.val = '';
+                vm._model.contaBancaria.model.err = '';
                 vm._model.codCedente.model.val = '';
+                vm._model.codCedente.model.err = '';
                 vm._model.tipoCarteira.model.val = '';
+                vm._model.tipoCarteira.model.err = '';
                 vm._model.obs.model.val = '';
+                vm._model.obs.model.err = '';
             }
 
             function continuar() {
@@ -138,6 +145,7 @@
 
                 for (i in vm._model) {
                     vm._model[i].model.val = "";
+                    vm._model[i].model.err = "";
                 }
 
                 vm.srcCartao = "";
@@ -148,9 +156,11 @@
             }
 
             function salvar() {
-                //todo post de salvamento
                 var saveCadastroCaixa = $resource('/api/financeiro/save-dados-cadastro-caixa')
-                    .save({}, {"model": vm._model, "escolhaBanco": vm.disableEscolhaBanco, "STR": vm.STR}).$promise;
+                    .save({}, {
+                        "model": vm._model, "escolhaBanco": vm.disableEscolhaBanco,
+                        "disNomeBanco": vm.disableNomeBanco,"STR": vm.STR
+                    }).$promise;
 
                 saveCadastroCaixa
                     .then(function(data) {
