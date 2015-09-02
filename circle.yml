@@ -29,5 +29,6 @@ deployment:
       - (bash s3cmd.sh)
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push claytonsilva/xduka-ui
+      - ssh core@beta.xduka.com.br docker rmi $(docker images | grep "^<none>" | awk '{print $3}')
       - ssh core@beta.xduka.com.br docker pull claytonsilva/xduka-ui
       - ssh core@beta.xduka.com.br sudo systemctl restart xduka-ui.service
