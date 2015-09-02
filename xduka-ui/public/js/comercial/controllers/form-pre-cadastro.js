@@ -830,5 +830,10 @@
                 vm._model.descricaoDesconto.model.val = '';
                 vm._model.descontosAdicionais.model.val = '';
             }
+
+            vm.formPreCadastro = {
+
+            };
+
         }])
 })();
