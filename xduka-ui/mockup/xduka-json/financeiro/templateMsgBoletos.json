@@ -1,0 +1,70 @@
+{
+  "template": {
+    "tipoCurso": {
+      "label": "Tipo Curso",
+      "type": "select",
+      "name": "tipoCurso",
+      "placeholder": "Selecione uma opção",
+      "required": false,
+      "list": [],
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "curso": {
+      "label": "Curso",
+      "type": "select",
+      "name": "curso",
+      "placeholder": "Selecione uma opção",
+      "required": false,
+      "list": [],
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "turma": {
+      "label": "Turma",
+      "type": "select",
+      "name": "turma",
+      "placeholder": "Selecione uma opção",
+      "required": false,
+      "list": [],
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "compensacao": {
+      "label": "Compensação",
+      "type": "textarea",
+      "name": "compensacao",
+      "rows": 7,
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "sacado": {
+      "label": "Sacado",
+      "type": "textarea",
+      "name": "sacado",
+      "rows": 7,
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "atraso": {
+      "label": "Atraso",
+      "type": "textarea",
+      "name": "atraso",
+      "rows": 7,
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    }
+  }
+}

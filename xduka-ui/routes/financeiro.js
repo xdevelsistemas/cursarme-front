@@ -13,11 +13,15 @@ module.exports = function (app, passport) {
     app.route('/api/financeiro/dados-cadastro-caixa')
         .get(controller.showDadosCadastroCaixa);
 
-    //dados-cadastro-caixa
+    //dados-tipo-curso
     app.route('/api/financeiro/dados-tipo-curso/:id')
         .get(controller.showDadosTipoCurso);
 
-    //dados-cadastro-caixa
+    //dados-tipo-curso-msg-boletos
+    app.route('/api/financeiro/dados-tipo-curso-msg-boletos/:id')
+        .get(controller.showDadosTipoCursoMsgBoletos);
+
+    //dados-unidade
     app.route('/api/financeiro/dados-unidades')
         .get(controller.showDadosUnidades);
 
@@ -25,9 +29,13 @@ module.exports = function (app, passport) {
     app.route('/api/financeiro/getCheques')
         .get(controller.showCheques);
 
-    //dados-cadastro-caixa
+    //save-dados-cadastro-caixa
     app.route('/api/financeiro/save-dados-cadastro-caixa')
         .post(controller.putDadosCadastroCaixa);
+
+    //save-dados-mensagem-boletos
+    app.route('/api/financeiro/save-mensagem-boletos')
+        .post(controller.putMsgBoletos);
 
     //dados-valores-curso
     app.route('/api/financeiro/save-valores-curso/:id')
@@ -41,9 +49,9 @@ module.exports = function (app, passport) {
     app.route('/api/financeiro/template-cadastro-caixa')
         .get(controller.showTemplateCadastroCaixa);
 
-    //template-valores-cursos
-    app.route('/api/financeiro/template-valores-cursos')
-        .get(controller.showTemplateValoresCursos);
+    //template-mensagem-boletos
+    app.route('/api/financeiro/template-mensagem-boletos')
+        .get(controller.showTemplateMsgBoletos);
 
     //template-valores-cursos
     app.route('/api/financeiro/template-valores-cursos')
