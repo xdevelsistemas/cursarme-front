@@ -12,8 +12,10 @@ dependencies:
     - docker build -t claytonsilva/xduka-ui ./xduka-ui
 test:
   override:
+    - docker run -d --name mongodb  xdevelsistemas/debian-env:mongodb-env
+    - docker run -d --name redis  xdevelsistemas/debian-env:redis-env
     - docker run -d  --name jsreport  jsreport/jsreport:latest bash /home/jsreport/run.sh  --restart always
-    - docker run -d  --add-host=docker:10.180.0.1 -e "REPORTJS_URL=https://jsreport:2945" -e "REPORTJS_USERNAME=''" -e "REPORTJS_PASSWORD=''" -e "XDUKA_USER=xduka" -e "NODE_ENV=production"  -e "XDUKA_PASS=" -e "REDIS_HOST=docker" -e "REDIS_PORT=6379" -e "REDIS_DB=0" -e "XDUKA_URL=mongodb://docker:27017/xduka"  -p 80:3000  --link jsreport:jsreport  claytonsilva/xduka-ui; sleep 10
+    - docker run -d -e "REPORTJS_URL=https://jsreport:2945" -e "REPORTJS_USERNAME=''" -e "REPORTJS_PASSWORD=''" -e "XDUKA_USER=xduka" -e "NODE_ENV=production"  -e "XDUKA_PASS=" -e "REDIS_HOST=redis" -e "REDIS_PORT=6379" -e "REDIS_DB=0" -e "XDUKA_URL=mongodb://mongodb:27017/xduka"  -p 80:3000 --link mongodb:mongodb --link jsreport:jsreport --link redis:redis  claytonsilva/xduka-ui; sleep 10
     - curl --retry 10 --retry-delay 5 -v http://localhost:80
 deployment:
   prod:
