@@ -20,7 +20,7 @@ deployment:
     branch: publicacao
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - (cd xduka-ui && npm install)
+      #- (cd xduka-ui && npm install)
       - (cd xduka-ui && npm install --dev)
       - (cd xduka-ui && bower install)
       - (cd xduka-ui && grunt production)
