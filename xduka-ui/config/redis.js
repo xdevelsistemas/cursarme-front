@@ -13,7 +13,7 @@ module.exports = {
     db: redis_db,
     ttl: (60000 * 24 * 30),
     redisClient: function() {
-        var r = redisClient.createClient(redis_port, redis_host).auth(redis_auth);
+        var r = redisClient.createClient(redis_port, redis_host);
         if (redis_auth)
             r.auth(redis_auth);
         return r;
