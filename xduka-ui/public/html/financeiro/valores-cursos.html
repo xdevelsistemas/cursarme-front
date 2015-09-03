@@ -10,39 +10,39 @@
 <br/><br/>
 <div class="row">
     <div class="col-md-6 col-sm-12">
-        <xd-select data-params="vc._model.tipoCurso"></xd-select>
+        <xd-select data-params="vc._model.tipoCurso" data-change="vc.changeTipoCurso"></xd-select>
     </div>
     <div class="col-md-6 col-sm-12">
-        <xd-select data-params="vc._model.areaCurso"></xd-select>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6 col-sm-12">
-        <xd-select data-params="vc._model.curso"></xd-select>
+        <xd-select data-params="vc._model.areaCurso" data-change="vc.changeArea" data-disable="vc.disableTipoCurso"></xd-select>
     </div>
 </div>
 <div class="row">
     <div class="col-md-6 col-sm-12">
-        <xd-input-date data-params="vc._model.periodoVigencia"></xd-input-date>
-    </div>
-    <div class="col-md-6 col-sm-12">
-        <xd-input-date data-params="vc._model.ate"></xd-input-date>
+        <xd-select data-params="vc._model.curso" data-change="vc.changeCurso" data-disable="vc.disableArea"></xd-select>
     </div>
 </div>
 <div class="row">
     <div class="col-md-6 col-sm-12">
-        <xd-input-money data-params="vc._model.valorIntegral"></xd-input-money>
+        <xd-input-date data-params="vc._model.periodoVigencia" data-disable="vc.disableCurso"></xd-input-date>
     </div>
     <div class="col-md-6 col-sm-12">
-        <xd-input-money data-params="vc._model.valorAvista"></xd-input-money>
+        <xd-input-date data-params="vc._model.ate" data-disable="vc.disableCurso"></xd-input-date>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <xd-input-money data-params="vc._model.valorIntegral" data-disable="vc.disableCurso"></xd-input-money>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <xd-input-money data-params="vc._model.valorAvista" data-disable="vc.disableCurso"></xd-input-money>
     </div>
 </div>
 <div class="row">
     <div class="col-md-6">
-        <xd-input-money data-params="vc._model.valorInscr"></xd-input-money>
+        <xd-input-money data-params="vc._model.valorInscr" data-disable="vc.disableCurso"></xd-input-money>
     </div>
     <div class="col-md-4">
-        <xd-input data-params="vc._model.parcelaMax" disable="true"></xd-input>
+        <xd-input data-params="vc._model.parcelaMax" data-disable="true"></xd-input>
     </div>
 </div>
 <div class="row">
@@ -50,11 +50,11 @@
         <xd-select data-params="vc._model.formaPagamento" data-change="vc.changeFormaPagamento"></xd-select>
     </div>
     <div class="col-md-4">
-        <xd-input-money data-params="vc._model.valorParcela" disable="true"></xd-input-money>
+        <xd-input-money data-params="vc._model.valorParcela" data-disable="true"></xd-input-money>
     </div>
     <div class="col-md-4">
         <label><br/><br/><br/></label>
-        <span><button class="btn btn-white heightFix" data-toggle="modal" data-target="#modalAddForma"><i class="entypo-plus"></i>Nova Forma</button></span>
+        <span><button class="btn btn-white heightFix" data-toggle="modal" data-target="#modalAddForma" data-ng-disabled="vc.disableCurso"><i class="entypo-plus"></i>Nova Forma</button></span>
     </div>
 </div>
 <br/>

@@ -228,8 +228,7 @@
                     hora2: '9:30'
                 };
                 window.open("/report?templateContent=" + encodeURIComponent("dec-horario-aluno") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
-            };
-
+            }
             function gerarDecmat() {
                 vm.data.content = {
                     nome: 'João das Couves',
@@ -241,8 +240,7 @@
                     data_fim: '18/05/2017'
                 };
                 window.open("/report?templateContent=" + encodeURIComponent("dec-matricula-aluno") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
-            };
-
+            }
             function gerarDecFreq() {
                 vm.data.content = {
                     nome: 'João das Couves',
@@ -257,8 +255,7 @@
                 };
                 window.open("/report?templateContent=" + encodeURIComponent("dec-frequencia-aluno") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
 
-            };
-
+            }
             function gerarDecCursoLivre() {
                 vm.data.content = {
                     nome: 'João das Couves',
@@ -300,7 +297,6 @@
 
                 };
                 window.open("/report?templateContent=" + encodeURIComponent("dec-curso-livre") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
-            };
-
+            }
         }])
 })();

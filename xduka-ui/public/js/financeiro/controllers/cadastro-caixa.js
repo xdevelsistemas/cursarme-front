@@ -16,6 +16,9 @@
 
             // VARIÁVEIS COMUNS
             vm._model = {};
+            vm.disableEscolhaBanco = true;
+            vm.disableNomeBanco = false;
+            vm.disableNomeCaixa = false;
             vm.editing = false;
             vm.showTable = true;
             vm.srcCartao = '';
@@ -37,6 +40,8 @@
             // VARIÁVEIS TIPO FUNÇÃO
             vm.addCaixa = addCaixa;
             vm.cancelar = cancelar;
+            vm.changeNomeBanco = changeNomeBanco;
+            vm.changeNomeCaixa = changeNomeCaixa;
             vm.continuar = continuar;
             vm.detectarBandeira = detectarBandeira;
             vm.limpar = limpar;
@@ -68,6 +73,41 @@
             function cancelar() {
                 limpar();
                 vm.editing = false;
+            }
+
+            function changeNomeBanco(item, model) {
+                vm.disableNomeBanco = false;
+                vm.disableNomeCaixa = true;
+                vm.disableEscolhaBanco = false;
+                vm._model.nomeCaixa.model = {"val": "", "err": ""};
+            }
+
+            function changeNomeCaixa(item, model) {
+                if (vm._model.nomeCaixa.model.val.length != 0) {
+                    vm.disableNomeBanco = true;
+                    vm.disableNomeCaixa = false;
+                } else {
+                    vm.disableNomeBanco = false;
+                    vm.disableNomeCaixa = false;
+                }
+
+                limpaCamposBancoFin();
+                vm.disableEscolhaBanco = true;
+            }
+
+            function limpaCamposBancoFin() {
+                vm._model.nomeBanco.model.val = '';
+                vm._model.nomeBanco.model.err = '';
+                vm._model.agencia.model.val = '';
+                vm._model.agencia.model.err = '';
+                vm._model.contaBancaria.model.val = '';
+                vm._model.contaBancaria.model.err = '';
+                vm._model.codCedente.model.val = '';
+                vm._model.codCedente.model.err = '';
+                vm._model.tipoCarteira.model.val = '';
+                vm._model.tipoCarteira.model.err = '';
+                vm._model.obs.model.val = '';
+                vm._model.obs.model.err = '';
             }
 
             function continuar() {
@@ -105,23 +145,35 @@
 
                 for (i in vm._model) {
                     vm._model[i].model.val = "";
+                    vm._model[i].model.err = "";
                 }
 
                 vm.srcCartao = "";
+
+                vm.disableNomeBanco = false;
+                vm.disableNomeCaixa = false;
+                vm.disableEscolhaBanco = true;
             }
 
             function salvar() {
-                //todo post de salvamento
-                var saveCadastroCaixa = $resource('/api/financeiro/save-dados-cadastro-caixa').save({}, {"model": vm._model, "STR": vm.STR}).$promise;
+                var saveCadastroCaixa = $resource('/api/financeiro/save-dados-cadastro-caixa')
+                    .save({}, {
+                        "model": vm._model, "escolhaBanco": vm.disableEscolhaBanco,
+                        "disNomeBanco": vm.disableNomeBanco,"STR": vm.STR
+                    }).$promise;
 
                 saveCadastroCaixa
                     .then(function(data) {
                         //TOdo tela de resposta com um "salvo com sucesso."
-                        vm.tableCaixa.list = data.list;
+                        if (data.success) {
+                            vm.tableCaixa.list = data.list;
 
-                        vm.editing = false;
-                        limpar();
-                        voltar();
+                            vm.editing = false;
+                            limpar();
+                            voltar();
+                        } else {
+                            $.extend(true, vm._model, data.model);
+                        }
                     })
                     .catch(function (error) {
                         //TOdo tratar error

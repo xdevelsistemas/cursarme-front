@@ -1,0 +1,492 @@
+{
+  "unidade": {
+    "list": [
+      {
+        "id": 1,
+        "text": "Unidade Vitória",
+        "tipoCursos": [
+          {
+            "id": 11,
+            "text": "Mestrado em Educação",
+            "cursos": [
+            {
+              "id": 111,
+              "text": "Matemática",
+              "turmas": [
+                {
+                  "id": 1111,
+                  "text": "Turma A1"
+                },
+                {
+                  "id": 2222,
+                  "text": "Turma A2"
+                },
+                {
+                  "id": 3333,
+                  "text": "Turma A3"
+                }
+              ]
+            },
+            {
+              "id": 222,
+              "text": "Economia",
+              "turmas": [
+                {
+                  "id": 1111,
+                  "text": "Turma B1"
+                },
+                {
+                  "id": 2222,
+                  "text": "Turma B2"
+                },
+                {
+                  "id": 3333,
+                  "text": "Turma B3"
+                }
+              ]
+            },
+            {
+              "id": 333,
+              "text": "Direito",
+              "turmas": [
+                {
+                  "id": 1111,
+                  "text": "Turma C1"
+                },
+                {
+                  "id": 2222,
+                  "text": "Turma C2"
+                },
+                {
+                  "id": 3333,
+                  "text": "Turma C3"
+                }
+              ]
+            },
+            {
+              "id": 444,
+              "text": "História",
+              "turmas": [
+                {
+                  "id": 1111,
+                  "text": "Turma D1"
+                },
+                {
+                  "id": 2222,
+                  "text": "Turma D2"
+                },
+                {
+                  "id": 3333,
+                  "text": "Turma D3"
+                }
+              ]
+            }
+          ]
+          },
+          {
+            "id": 22,
+            "text": "Pós Graduação em Educação",
+            "cursos": [
+              {
+                "id": 111,
+                "text": "Matemática",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma E1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma E2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma E3"
+                  }
+                ]
+              },
+              {
+                "id": 222,
+                "text": "Economia",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma F1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma F2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma F3"
+                  }
+                ]
+              },
+              {
+                "id": 333,
+                "text": "Direito",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma G1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma G2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma G3"
+                  }
+                ]
+              },
+              {
+                "id": 444,
+                "text": "História",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma H1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma H2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma H3"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "text": "Unidade Cariacica",
+        "tipoCursos": [
+          {
+            "id": 11,
+            "text": "Pós Graduação em Educação",
+            "cursos": [
+              {
+                "id": 111,
+                "text": "Medicina",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma I1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma I2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma I3"
+                  }
+                ]
+              },
+              {
+                "id": 222,
+                "text": "Biologia",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma J1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma J2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma J3"
+                  }
+                ]
+              },
+              {
+                "id": 333,
+                "text": "Ciência da Computação",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma K1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma K2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma K3"
+                  }
+                ]
+              },
+              {
+                "id": 444,
+                "text": "Sistema de Informação",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma L1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma L2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma L3"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 22,
+            "text": "Mestrado em Educação",
+            "cursos": [
+              {
+                "id": 111,
+                "text": "Medicina",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma M1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma M2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma M3"
+                  }
+                ]
+              },
+              {
+                "id": 222,
+                "text": "Biologia",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma N1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma N2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma N3"
+                  }
+                ]
+              },
+              {
+                "id": 333,
+                "text": "Ciência da Computação",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma O1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma O2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma O3"
+                  }
+                ]
+              },
+              {
+                "id": 444,
+                "text": "Sistema de Informação",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma P1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma P2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma P3"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Unidade São Mateus",
+        "tipoCursos": [
+          {
+            "id": 11,
+            "text": "Mestrado em Educação",
+            "cursos": [
+              {
+                "id": 111,
+                "text": "Matemática",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma Q1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma Q2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma Q3"
+                  }
+                ]
+              },
+              {
+                "id": 222,
+                "text": "Ciências Contábeis",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma R1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma R2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma R3"
+                  }
+                ]
+              },
+              {
+                "id": 333,
+                "text": "Direito",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma S1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma S2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma S3"
+                  }
+                ]
+              },
+              {
+                "id": 444,
+                "text": "Geografia",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma T1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma T2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma T3"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 22,
+            "text": "Pós Graduação em Educação",
+            "cursos": [
+              {
+                "id": 111,
+                "text": "Matemática",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma U1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma U2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma U3"
+                  }
+                ]
+              },
+              {
+                "id": 222,
+                "text": "Ciências Contábeis",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma V1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma V2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma V3"
+                  }
+                ]
+              },
+              {
+                "id": 333,
+                "text": "Direito",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma W1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma W2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma W3"
+                  }
+                ]
+              },
+              {
+                "id": 444,
+                "text": "Geografia",
+                "turmas": [
+                  {
+                    "id": 1111,
+                    "text": "Turma X1"
+                  },
+                  {
+                    "id": 2222,
+                    "text": "Turma X2"
+                  },
+                  {
+                    "id": 3333,
+                    "text": "Turma X3"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

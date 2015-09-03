@@ -1,6 +1,7 @@
 var extend = require('node.extend'),
     request = require('request'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
+    dadosBancoFinaceiro = require('../mockup/xduka-json/common/dadosBancoFinanceiro.json'),
     dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
     dadosTesteCpf = require('../mockup/xduka-json/comercial/dadosTestesCpf.json'),
     modalCheque = require('../mockup/xduka-json/comercial/modalCheque.json'),
@@ -44,6 +45,7 @@ function getInfoUsuario(req, res) {
 }
 
 function getModalCheque(req, res) {
+    modalCheque.banco.list = dadosBancoFinaceiro.list;
     res.json(modalCheque);
 }
 
