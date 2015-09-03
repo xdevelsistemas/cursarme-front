@@ -84,6 +84,13 @@ angular.module('app',[
                 controller: 'adicionarDisciplina',
                 controllerAs: 'ad'
             });
+
+    // ========= ENVIAR CIRCULAR ========= //
+            $routeProvider.when('/secretaria/enviar-circular', {
+                templateUrl: 'html/secretaria/enviar-circular.html',
+                controller: 'enviarCircular',
+                controllerAs: 'ec'
+            });
     // ========= OTHERWISE ========= //
             $routeProvider.otherwise({
                 redirectTo: '/'

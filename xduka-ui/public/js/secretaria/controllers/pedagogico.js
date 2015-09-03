@@ -27,6 +27,12 @@
                     "icon": "entypo-plus",
                     "href": "#/secretaria/adicionar-disciplina",
                     "description": "Novas disciplinas"
+                },
+                {
+                    "text": "Enviar Circular",
+                    "icon": "glyphicon glyphicon-send",
+                    "href": "#/secretaria/enviar-circular",
+                    "description": "Enviar circular aos alunos"
                 }
             ];
 
