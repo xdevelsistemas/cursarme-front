@@ -13,6 +13,10 @@ module.exports = function (app, passport) {
     app.route('/api/financeiro/dados-cadastro-caixa')
         .get(controller.showDadosCadastroCaixa);
 
+    //dados-campanhas-promocionais
+    app.route('/api/financeiro/dados-campanhas-promocionais/:id')
+        .get(controller.showDadosCampPromo);
+
     //dados-tipo-curso
     app.route('/api/financeiro/dados-tipo-curso/:id')
         .get(controller.showDadosTipoCurso);
@@ -28,6 +32,10 @@ module.exports = function (app, passport) {
     //get-unidade
     app.route('/api/financeiro/getCheques')
         .get(controller.showCheques);
+
+    //save-campanhas-promocionais
+    app.route('/api/financeiro/save-campanhas-promocionais')
+        .post(controller.putCampPromo);
 
     //save-dados-cadastro-caixa
     app.route('/api/financeiro/save-dados-cadastro-caixa')
@@ -48,6 +56,10 @@ module.exports = function (app, passport) {
     //template-cadastro-caixa
     app.route('/api/financeiro/template-cadastro-caixa')
         .get(controller.showTemplateCadastroCaixa);
+
+    //template-campanhas-promocionais
+    app.route('/api/financeiro/template-campanhas-promocionais')
+        .get(controller.showTemplateCampPromo);
 
     //template-mensagem-boletos
     app.route('/api/financeiro/template-mensagem-boletos')

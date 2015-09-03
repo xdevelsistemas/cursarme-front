@@ -2,138 +2,52 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('campanhasPromocionais', ['$scope', '$resource', 'breadCrumb', function($scope, $resource, breadCrumb) {
+        .controller('campanhasPromocionais', ['$scope', '$resource', 'breadCrumb', 'modelStrings', 'defineUnidade',
+            function($scope, $resource, breadCrumb, modelStrings, defineUnidade) {
 
             /* jshint validthis: true */
-            var vm = this;
+            var vm = this,
+                dadosCampPromoPromise = $resource('/api/financeiro/dados-campanhas-promocionais/:id').get({"id": defineUnidade.getIdUnidade()}).$promise,
+                templateCampPromoPromise = $resource('/api/financeiro/template-campanhas-promocionais').get().$promise;
 
+            // VARIÁVEIS COMUNS
+            vm._model = {};
             vm.breadCrumb = breadCrumb;
             vm.breadCrumb.title = 'Campanhas Promocionais';
+            vm.showAdd = false;
+            vm.STR = modelStrings;
 
-            vm._model = {
-                "tipoCurso": {
-                    "label": "Tipo de Curso",
-                    "type": "select",
-                    "name": "tipoCurso",
-                    "placeholder": "Selecione uma opção",
-                    "list": [
-                        {id: 1, text: 'tipo curso 1'}
-                    ],
-                    "model": {"val": "", "err": ""}
-                },
-                "taxaInscr": {
-                    "label": "Taxa de Inscrição",
-                    "type": "text",
-                    
-                    "name": "taxaInscr",
-                    "model": {"val": "", "err": ""}
-                },
-                "qtdParcelaMax": {
-                    "label": "Quantidade máxima de parcelas",
-                    "type": "text",
-                    "name": "qtdParcelaMax",
-                    "model": {"val": "", "err": ""}
-                },
-                "valorIntegral": {
-                    "label": "Valor Integral",
-                    "type": "text",
-                    "name": "valorIntegral",
-                    "model": {"val": "", "err": ""}
-                },
-                "desconto": {
-                    "label": "Desconto",
-                    "type": "text",
-                    "name": "desconto",
-                    "model": {"val": "", "err": ""}
-                },
-                "valorAvista": {
-                    "label": "Valor a vista",
-                    "type": "text",
-                    "name": "valorAvista",
-                    "model": {"val": "", "err": ""}
-                },
-                "formaPagamento": {
-                    "label": "Forma de Pagamento",
-                    "type": "select",
-                    "name": "formaPagamento",
-                    "placeholder": "Selecione uma opção",
-                    "list": [
-                        {id: 11, text: 'Forma de pg 1'}
-                    ],
-                    "model": {"val": "", "err": ""}
-                },
-                "descontoFormaPg": {
-                    "label": "Desconto Forma de Pagamento",
-                    "type": "text",
-                    "name": "descontoFormaPg",
-                    "model": {"val": "", "err": ""}
-                },
-                "valorFormaPg": {
-                    "label": "Valor Forma de Pagamento",
-                    "type": "text",
-                    "name": "valorFormaPg",
-                    "model": {"val": "", "err": ""}
-                },
-                "addTipoCurso": {
-                    "label": "Tipo de Curso",
-                    "type": "select",
-                    "name": "addTipoCurso",
-                    "placeholder": "Selecione uma opção",
-                    "list": [
-                        {id: 1, text: 'tipo curso 1'}
-                    ],
-                    "model": {"val": "", "err": ""}
-                },
-                "addInicio": {
-                    "label": "Início",
-                    "type": "text",
-                    "model": {"val": "", "err": ""},
-                    "name": "addInicio",
-                    "format": "dd/MM/yyyy"
-                },
-                "addFim": {
-                    "label": "Fim",
-                    "type": "text",
-                    "model": {"val": "", "err": ""},
-                    "name": "addFim",
-                    "format": "dd/MM/yyyy"
-                },
-                "addInscrPromo": {
-                    "label": "Inscrição Promocional",
-                    "type": "text",
-                    "name": "addInscrPromo",
-                    "model": {"val": "", "err": ""}
-                },
-                "addValorCursoPromo": {
-                    "label": "Valor Curso Promocional",
-                    "type": "text",
-                    "name": "addValorCursoPromo",
-                    "model": {"val": "", "err": ""}
-                },
-                "addFormaPagamento": {
-                    "label": "Forma de Pagamento",
-                    "type": "select",
-                    "name": "addFormaPagamento",
-                    "placeholder": "Selecione uma opção",
-                    "list": [
-                        {id: 11, text: 'Forma de pg 1'}
-                    ],
-                    "model": {"val": "", "err": ""}
-                },
-                "addDescontoFormaPg": {
-                    "label": "Desconto Forma de Pagamento Promocional",
-                    "type": "text",
-                    "name": "addDescontoFormaPg",
-                    "model": {"val": "", "err": ""}
-                }
-            };
+            // VARIÁVIES TIPO FUNÇÃO
             vm.adicionar = adicionar;
             vm.cancelar = cancelar;
+            vm.changeFormaPag = changeFormaPag;
+            vm.changeTipoCurso = changeTipoCurso;
             vm.limpar = limpar;
             vm.limparAdd = limparAdd;
             vm.salvar = salvar;
-            vm.showAdd = false;
 
+            // Requisições
+            templateCampPromoPromise
+                .then(function(data) {
+                    vm._model = data.template;
+
+                    // uma promise dentro da outra
+                    // para evitar que dê erro na hora de renderizar
+                    // a página e o list de tipo de curso não seja reconhecido.
+                    dadosCampPromoPromise
+                        .then(function(data) {
+                            vm._model.tipoCurso.list = data.list;
+                            vm._model.addTipoCurso.list = data.list;
+                        })
+                        .catch(function(error) {
+                            // TOdo tratar error
+                        });
+                })
+                .catch(function(error) {
+                    // TOdo tratar error
+                });
+
+            // FUNÇÕES
             function adicionar() {
                 vm.showAdd = true;
                 topCollapse();
@@ -145,8 +59,18 @@
                 topCollapse();
             }
 
-            function limpar() {
+            function changeFormaPag(item, model) {
+                vm._model.descontoFormaPg.model.val = item.descontoFormaPg;
+                vm._model.valorFormaPg.model.val = item.valorFormaPg;
+            }
 
+            function changeTipoCurso(item, model) {
+                $.extend(true, vm._model, item.campanha);
+                //vm._model.formaPagamento.list = item.campanha.formaPagamento.list;
+
+            }
+
+            function limpar() {
                 vm._model.tipoCurso.model.val = '';
                 vm._model.taxaInscr.model.val = '';
                 vm._model.qtdParcelaMax.model.val = '';
@@ -156,30 +80,42 @@
                 vm._model.formaPagamento.model.val = '';
                 vm._model.descontoFormaPg.model.val = '';
                 vm._model.valorFormaPg.model.val = '';
-
             }
 
             function limparAdd() {
-
                 vm._model.addTipoCurso.model.val = '';
+                vm._model.addTipoCurso.model.err = '';
                 vm._model.addInicio.model.val = '';
+                vm._model.addInicio.model.err = '';
                 vm._model.addFim.model.val = '';
+                vm._model.addFim.model.err = '';
                 vm._model.addInscrPromo.model.val = '';
+                vm._model.addInscrPromo.model.err = '';
                 vm._model.addValorCursoPromo.model.val = '';
+                vm._model.addValorCursoPromo.model.err = '';
                 vm._model.addFormaPagamento.model.val = '';
+                vm._model.addFormaPagamento.model.err = '';
                 vm._model.addDescontoFormaPg.model.val = '';
-
+                vm._model.addDescontoFormaPg.model.err = '';
             }
 
             function salvar() {
-                //todo post salvamento
-                cancelar();
+                var saveCampPromoPromise = $resource('/api/financeiro/save-campanhas-promocionais').save({}, {
+                    "model": vm._model, "STR": vm.STR
+                }).$promise;
 
+                saveCampPromoPromise
+                    .then(function(data) {
+                        $.extend(true, vm._model, data.model);
+                        if (data.success) cancelar();
+                    })
+                    .catch(function(error) {
+                        // TOdo tratar error
+                    });
             }
 
             function topCollapse() {
                 $('html, body').animate({scrollTop: 0},'slow');
             }
-
         }]);
 })();

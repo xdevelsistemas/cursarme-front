@@ -4,12 +4,14 @@ var urlDataBase = '',
     cheques = require('../mockup/xduka-json/financeiro/cheques.json'),
     dadosBancoFinanceiro = require('../mockup/xduka-json/common/dadosBancoFinanceiro.json'),
     dadosCadastroCaixa = require('../mockup/xduka-json/financeiro/dadosCadastroCaixa.json'),
+    dadosCampPromo = require('../mockup/xduka-json/common/dadosCampPromo.json'),
     dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
     dadosCursoMsgBoletos = require('../mockup/xduka-json/common/dadosCursosMsgBoletos.json'),
     dadosUnidades = require('../mockup/xduka-json/financeiro/dadosUnidades.json'),
     alunos = require('../mockup/xduka-json/common/alunos.json'),
     templateAluno = require('../mockup/xduka-json/financeiro/templateAluno.json'),
     templateCadastroCaixa = require('../mockup/xduka-json/financeiro/templateCadastroCaixa.json');
+    templateCampPromo = require('../mockup/xduka-json/financeiro/templateCampPromo.json');
     templateMsgBoletos = require('../mockup/xduka-json/financeiro/templateMsgBoletos.json');
     templateValoresCursos = require('../mockup/xduka-json/financeiro/templateValoresCursos.json');
 
@@ -19,14 +21,17 @@ module.exports = function() {
     controller.alunoSearch = alunoSearch;
     controller.showCheques = getCheques;
     controller.showDadosCadastroCaixa = getDadosCadastroCaixa;
+    controller.showDadosCampPromo = getDadosCampPromo;
     controller.showDadosTipoCurso = getDadosTipoCurso;
     controller.showDadosTipoCursoMsgBoletos = getDadosTipoCursoMsgBoletos;
     controller.showDadosUnidades = getDadosUnidades;
     controller.showTemplateAluno = getTemplateAluno;
     controller.showTemplateCadastroCaixa = getTemplateCadastroCaixa;
+    controller.showTemplateCampPromo = getTemplateCampPromo;
     controller.showTemplateMsgBoletos = getTemplateMsgBoletos;
     controller.showTemplateValoresCursos = getTemplateValoresCursos;
     controller.putChequeEdit = postChequeEdit;
+    controller.putCampPromo = postCampPromo;
     controller.putDadosCadastroCaixa = postDadosCadastroCaixa;
     controller.putMsgBoletos = postMsgBoletos;
     controller.putValoresCurso = postValoresCurso;
@@ -71,6 +76,12 @@ function getDadosCadastroCaixa(req,res) {
     res.json(dadosCadastroCaixa)
 }
 
+function getDadosCampPromo(req,res) {
+    var idUnidade = req.params.id;
+
+    res.json({"list": verificaUnidade(dadosCampPromo.unidade.list, idUnidade)});
+}
+
 function getDadosTipoCurso(req,res) {
     var idUnidade = req.params.id;
 
@@ -84,7 +95,45 @@ function getDadosTipoCursoMsgBoletos(req,res) {
 }
 
 function getDadosUnidades(req,res) {
-    res.json(dadosUnidades)
+    res.json(dadosUnidades);
+}
+
+function postChequeEdit(req,res) {
+    var cheque = req.body.cheque,
+        pos = req.body.pos;
+
+    /**
+     * TOdo request com requisição ao backend
+     */
+
+    cheques.list[pos] = cheque;
+
+    res.json(cheques);
+}
+
+function postCampPromo(req,res) {
+    var dataSent = req.body;
+
+    if (verificaDadosCampPromo(dataSent.model)) {
+        var dataSend = {
+            "addTipoCurso": {"model": {"val": 11,"err": ""}},
+            "addInicio": {"model": {"val": "2015-09-04T03:00:00.000Z","err": ""}},
+            "addFim": {"model": {"val": "2015-10-10T03:00:00.000Z","err": ""}},
+            "addInscrPromo": {"model": {"val": 16380,"err": ""}},
+            "addValorCursoPromo": {"model": {"val": 15050,"err": ""}},
+            "addFormaPagamento": {"list": [{  "id": "11",  "text": "Forma de pg 1"}],"model": {"val": "11","err": ""}},
+            "addDescontoFormaPg": {"model": {"val": 1330,"err": ""}}
+        };
+
+        /**
+         * TOdo request para o backend / enviar dados da campanha promocional
+         */
+
+        res.json({"success": true, "model": dataSent.model});
+    } else {
+        validaDadosCampPromo(dataSent);
+        res.json({"success": false, "model": dataSent.model});
+    }
 }
 
 function postDadosCadastroCaixa(req,res) {
@@ -164,6 +213,10 @@ function getTemplateCadastroCaixa(req,res) {
     res.json(templateCadastroCaixa);
 }
 
+function getTemplateCampPromo(req,res) {
+    res.json(templateCampPromo);
+}
+
 function getTemplateMsgBoletos(req,res) {
     res.json(templateMsgBoletos);
 }
@@ -178,19 +231,6 @@ function getCheques(req,res) {
 
 function getTemplateAluno(req,res) {
     res.json(templateAluno);
-}
-
-function postChequeEdit(req,res) {
-    var cheque = req.body.cheque,
-        pos = req.body.pos;
-
-    /**
-     * TOdo request com requisição ao backend
-     */
-
-    cheques.list[pos] = cheque;
-
-    res.json(cheques);
 }
 
 function verificaUnidade(obj, unidade) {
@@ -259,4 +299,21 @@ function verificaDadosCadastroCaixa(obj, bool) {
 
     return escolhaBanco && !!obj.numCartao.model.val && !!obj.nome.model.val &&
         !!obj.validadeCartao.model.val && !!obj.codSeguranca.model.val;
+}
+
+function validaDadosCampPromo(obj) {
+    obj.model.addTipoCurso.model.err = !!obj.model.addTipoCurso.model.val ? "" : obj.STR.FIELD;
+    obj.model.addInicio.model.err = !!obj.model.addInicio.model.val ? "" : obj.STR.FIELD;
+    obj.model.addFim.model.err = !!obj.model.addFim.model.val ? "" : obj.STR.FIELD;
+    obj.model.addInscrPromo.model.err = !!obj.model.addInscrPromo.model.val ? "" : obj.STR.FIELD;
+    obj.model.addValorCursoPromo.model.err = !!obj.model.addValorCursoPromo.model.val ? "" : obj.STR.FIELD;
+    obj.model.addFormaPagamento.model.err = !!obj.model.addFormaPagamento.model.val ? "" : obj.STR.FIELD;
+    obj.model.addDescontoFormaPg.model.err = !!obj.model.addDescontoFormaPg.model.val ? "" : obj.STR.FIELD;
+}
+
+function verificaDadosCampPromo(obj) {
+    return !!obj.addTipoCurso.model.val && !!obj.addInicio.model.val &&
+        !!obj.addFim.model.val && !!obj.addInscrPromo.model.val &&
+        !!obj.addValorCursoPromo.model.val && !!obj.addFormaPagamento.model.val &&
+        !!obj.addDescontoFormaPg.model.val
 }
