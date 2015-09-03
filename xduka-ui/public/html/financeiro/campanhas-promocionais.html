@@ -10,7 +10,7 @@
 <div data-ng-hide="cp.showAdd">
     <div class="row">
         <div class="col-md-5">
-            <xd-select data-params="cp._model.tipoCurso"></xd-select>
+            <xd-select data-params="cp._model.tipoCurso" data-change="cp.changeTipoCurso"></xd-select>
         </div>
         <div class="col-md-3">
             <xd-input-money data-params="cp._model.taxaInscr" disable="true"></xd-input-money>
@@ -24,7 +24,7 @@
             <xd-input-money data-params="cp._model.valorIntegral" disable="true"></xd-input-money>
         </div>
         <div class="col-md-4">
-            <xd-input data-params="cp._model.desconto" disable="true"></xd-input>
+            <xd-input-percent data-params="cp._model.desconto" disable="true"></xd-input-percent>
         </div>
         <div class="col-md-4">
             <xd-input-money data-params="cp._model.valorAvista" disable="true"></xd-input-money>
@@ -32,7 +32,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <xd-select data-params="cp._model.formaPagamento"></xd-select>
+            <xd-select data-params="cp._model.formaPagamento" data-change="cp.changeFormaPag"></xd-select>
         </div>
         <div class="col-md-4">
             <xd-input-money data-params="cp._model.descontoFormaPg" disable="true"></xd-input-money>
@@ -63,10 +63,10 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <xd-input data-params="cp._model.addInscrPromo"></xd-input>
+            <xd-input-money data-params="cp._model.addInscrPromo"></xd-input-money>
         </div>
         <div class="col-md-6">
-            <xd-input data-params="cp._model.addValorCursoPromo"></xd-input>
+            <xd-input-money data-params="cp._model.addValorCursoPromo"></xd-input-money>
         </div>
     </div>
     <div class="row">
@@ -74,7 +74,7 @@
             <xd-select data-params="cp._model.addFormaPagamento"></xd-select>
         </div>
         <div class="col-md-6">
-            <xd-select data-params="cp._model.addDescontoFormaPg"></xd-select>
+            <xd-input-money data-params="cp._model.addDescontoFormaPg"></xd-input-money>
         </div>
     </div>
 </div>
