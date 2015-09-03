@@ -60,6 +60,12 @@ angular.module('app',[
                 controller: 'relatorios',
                 controllerAs: 'rel'
             });
+    // ========= RELATÓRIOS ========= //
+            $routeProvider.when('/pedagogico', {
+                templateUrl: 'html/secretaria/pedagogico.html',
+                controller: 'pedagogico',
+                controllerAs: 'ped'
+            });
     // ========= PAUTA ========= //
             $routeProvider.when('/secretaria/pauta', {
                 templateUrl: 'html/secretaria/pauta.html',

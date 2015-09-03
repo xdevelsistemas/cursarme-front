@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <h2 class="text-info">
+                Opções Pedagógico
+            </h2>
+        </div>
+    </div>
+</div>
+<hr/>
+<div class="row">
+    <a href="{{option.href}}" ng-repeat="option in ped.options">
+        <div class="col-md-4">
+            <div class="tile-stats tile-blue linkCursor">
+                <div class="icon">
+                    <i ng-class="option.icon"></i>
+                </div>
+                <h3 style="font-size: 2.5em" ng-bind="option.text"></h3>
+                <p style="padding-top: 10px" ng-bind="option.description">
+                </p>
+            </div>
+        </div>
+    </a>
+</div>
