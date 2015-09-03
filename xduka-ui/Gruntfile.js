@@ -31,6 +31,12 @@ module.exports = function(grunt) {
                         cwd: 'public/assets',
                         src: ['{images,xduka}/**/*.{png,jpg,gif}'],
                         dest: 'dist/public/assets'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'public/assets',
+                        src: ['js/neon-custom.js'],
+                        dest: 'dist/public/assets'
                     }
                 ]
             },
