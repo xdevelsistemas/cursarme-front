@@ -13,59 +13,83 @@
 
             vm._viewInscr = {};
             vm._templateConfig = {};
+
+
+            vm._selectTest = {
+                "label": "Select Teste",
+                "type": "select",
+                "name": "selectTest",
+                "placeholder": "Selecione uma opção",
+                "list": [
+                    {
+                        "id": "0",
+                        "text": "Demo Matriculados",
+                        "value": "relatorio"
+                    },
+                    {
+                        "id": "1",
+                        "text": "Demo Declaração",
+                        "value": "template-decDocs"
+                    },
+                    {
+                        "id": "2",
+                        "text": "Demo Complementação Pedagógica",
+                        "value": "comp-pedagogica"
+                    },
+                    {
+                        "id": "3",
+                        "text": "Demo Mestrado",
+                        "value": "mestrado"
+                    },
+                    {
+                        "id": "4",
+                        "text": "Demo de horario",
+                        "value": "dec-horario-aluno"
+                    },
+                    {
+                        "id": "5",
+                        "text": "Demo Declaração de matrícula",
+                        "value": "dec-matricula-aluno"
+                    },
+                    {
+                        "id": "6",
+                        "text": "Demo Declaração de frequência",
+                        "value": "dec-frequencia-aluno"
+                    },
+                    {
+                        "id": "7",
+                        "text": "Demo de curso livre",
+                        "value": "dec-curso-livre"
+                    }
+                ],
+                "model": {"val": "", "err": ""}
+            };
+
+
+
+
+
+
             vm.data = {content: {head: [], body:[]}, header: [], footer: []};
             vm.gerar = gerar;
-            vm.gerarCompPedagogica = gerarCompPedagogica;
-            vm.gerarDecHorario = gerarDecHorario;
-            vm.gerarDecmat = gerarDecmat;
-            vm.gerarDecCursoLivre = gerarDecCursoLivre;
-            vm.gerarMestrado = gerarMestrado;
-            vm.gerarDecFreq = gerarDecFreq;
-
-
 
             vm.reportSv = reportService; // Service de relatorios (PDF)
             vm.template = '';
 
-            dados_geral
-                .then(function (dados_geral2) {
-                    vm._templateConfig = dados_geral2;
-                })
-                .catch(function (erro) {
-                    console.log("\n" + erro.data + "\n");
-                });
-
-            dados
-                .then(function (data2) {
-                    vm._viewInscr = data2;
-
-                    for (var i = 0; i < data2.list.length; i++) {
-                        for (var j = 0; j < data2.list[i].listaCheques.length; j++) {
-                            vm._viewInscr.list[i].listaCheques[j].data = new Date(data2.list[i].listaCheques[j].data);
-                        }
-                    }
-                })
-                .catch(function (erro) {
-                    console.log("\n" + erro.data + "\n");
-                });
 
 
+            function gerar(item, model) {
 
-            function gerar() {
-                reportData();
+                var template = item.value;
+                var data = item.id;
 
-
-                window.open("/report?templateContent=" + encodeURIComponent("relatorio") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
-
+                //$http.post('/api/common/report', { templateContent: template, data: '1' })
+                window.open('/report?templateContent='+template+'&data='+data ,'_blank');
 
             }
+
 
             function gerarCompPedagogica() {
-                reportDataCP();
-                window.open("/report?templateContent=" + encodeURIComponent("comp-pedagogica") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
-            }
-
-            function reportDataCP() {
                 // content head pdf
                 vm.data.content.head = [
                     {text: 'Nome'},
@@ -111,7 +135,10 @@
                         }
                     })
                 }
+
+                window.open("/report?templateContent=" + encodeURIComponent("comp-pedagogica") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
             }
+
 
             function gerarMestrado() {
                 // content head pdf
@@ -195,24 +222,6 @@
                 }
             }
 
-            vm.geraDec = function () {
-                /*
-                vm.data.content = {
-                    data: '22/12/2015',
-                    nome: 'João das Couves',
-                    curso: 'Sistemas de Informação'
-                };
-
-                */
-                var template = 'template-decDocs';
-                $http.get('/api/common/report?templateContent='+template).
-                    then(function(response) {
-                        console.log("response: " + response);
-                    }, function(err) {
-                        console.log("Erro " + err);
-                    });
-            };
-
 
             function gerarDecHorario() {
                 vm.data.content = {
@@ -229,6 +238,7 @@
                 };
                 window.open("/report?templateContent=" + encodeURIComponent("dec-horario-aluno") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
             }
+
             function gerarDecmat() {
                 vm.data.content = {
                     nome: 'João das Couves',
@@ -241,6 +251,7 @@
                 };
                 window.open("/report?templateContent=" + encodeURIComponent("dec-matricula-aluno") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
             }
+
             function gerarDecFreq() {
                 vm.data.content = {
                     nome: 'João das Couves',
@@ -254,8 +265,8 @@
                     data_fim: '18/05/2017'
                 };
                 window.open("/report?templateContent=" + encodeURIComponent("dec-frequencia-aluno") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
-
             }
+
             function gerarDecCursoLivre() {
                 vm.data.content = {
                     nome: 'João das Couves',
@@ -292,11 +303,9 @@
                         { text: "ROTINA NA EDUCAÇÃO INFANTIL" },
                         { text: "AVALIAÇÃO NA EDUCAÇÃO INFANTIL: O ADULTO COMO UM DOS MEDIADORES DO DESENVOLVIMENTO INFANTIL" }
                     ]
-
-
-
                 };
                 window.open("/report?templateContent=" + encodeURIComponent("dec-curso-livre") + "&dataContent=" + encodeURIComponent(JSON.stringify(vm.data.content)) + "","_blank");
             }
-        }])
+
+        }]);
 })();

@@ -1,6 +1,7 @@
 var isLoggedIn = require('../services/isLoggedIn.js'),
     isNotLoggedIn = require('../services/isNotLoggedIn.js'),
-    http = require('http');
+    reportClient = require('../config/report.js'),
+    http =  require('http');
 
 
 module.exports = function (app, passport) {
@@ -126,6 +127,84 @@ module.exports = function (app, passport) {
         }
         else
             res.send({success: false, errmsg: 'User is not defined.'});
+    });
+
+
+    // REPORT
+    app.get('/report', function (req, res) {
+
+        var dataTemplate = {},
+            options = reportClient.options(req.query.templateContent),
+
+            data_content = [
+                {
+
+                },
+                {
+                    'data': '22/12/2015',
+                    'nome': 'João das Couves',
+                    'curso': 'Sistemas de Informação'
+                },
+                {
+                    'head': [
+                        {text: 'Nome'},
+                        {text: '5 fotos 3x4'},
+                        {text: 'Carteira de Identidade'},
+                        {text: 'CPF'},
+                        {text: 'Titulo Eleitoral'},
+                        {text: 'Comprovante da Ultima Eleição'},
+                        {text: 'Certidão de Reservista'},
+                        {text: 'Certidão de Nascimento ou Casamento'},
+                        {text: 'Comprovante de Residência'},
+                        {text: 'Diploma de Graduação'},
+                        {text: 'Histórico de Graduação'},
+                        {text: 'Certidão de Conclusão'}
+                    ],
+                    'body': [
+                        {
+                            Nome: 'João das Couves',
+                            foto: 'X',
+                            c_id: '',
+                            cpf: 'X',
+                            tit_eleit: '',
+                            comp_eleit: 'X',
+                            cert_reserv: 'X',
+                            cert_cas: '',
+                            comp_res: 'X',
+                            dip_grad: '',
+                            hist_grad: 'X',
+                            cert_conclu: 'X'
+                        }
+                    ]
+                }
+            ];
+
+
+
+
+        var callback = function(response) {
+            response.on('data', function (data) {
+                dataTemplate = JSON.parse(data);
+            });
+            response.on('end', function() {
+                dataTemplate.template.recipe = "phantom-pdf";
+                dataTemplate.data.content = data_content[req.query.data];
+
+                reportClient.client.render(dataTemplate, function(err, response) {
+                    if (err) {
+                        return next(err);
+                    }
+
+                    response.pipe(res);
+
+
+                });
+            });
+        };
+
+        http.request(options, callback).end();
+
+
     });
 
 };

@@ -5,54 +5,11 @@
         <div class="col-md-12">
             <xd-panel-collapse title="'Demonstração'">
                 <div class="row">
-                    <div class="col-md-4">
-                        <p>Demo Matriculados</p>
-                        <button type="button" class="btn btn-green btn-icon icon-left btn-block btn-lg" ng-click="rel.gerar()">
-                            Gerar <i class="icon entypo-check icon-right"></i>
-                        </button>
-                    </div>
-                    <div class="col-md-4">
-                        <p>Demo Declaração</p>
-                        <button type="button" class="btn btn-green btn-icon icon-left btn-block btn-lg" ng-click="rel.geraDec()">
-                            Gerar <i class="icon entypo-check icon-right"></i>
-                        </button>
-                    </div>
-                    <div class="col-md-4">
-                        <p>Demo Complementação Pedagógica</p>
-                        <button type="button" class="btn btn-green btn-icon icon-left btn-block btn-lg" ng-click="rel.gerarCompPedagogica()">
-                            Gerar <i class="icon entypo-check icon-right"></i>
-                        </button>
-                    </div>
-                    <div class="col-md-4">
-                        <p>Demo Declaração de horario</p>
-                        <button type="button" class="btn btn-green btn-icon icon-left btn-block btn-lg" ng-click="rel.gerarDecHorario()">
-                            Gerar <i class="icon entypo-check icon-right"></i>
-                        </button>
-                    </div>
-                    <div class="col-md-4">
-                        <p>Demo Declaração de matrícula</p>
-                        <button type="button" class="btn btn-green btn-icon icon-left btn-block btn-lg" ng-click="rel.gerarDecmat()">
-                            Gerar <i class="icon entypo-check icon-right"></i>
-                        </button>
-                    </div>
-                    <div class="col-md-4">
-                        <p>Demo Declaração de curso livre</p>
-                        <button type="button" class="btn btn-green btn-icon icon-left btn-block btn-lg" ng-click="rel.gerarDecCursoLivre()">
-                            Gerar <i class="icon entypo-check icon-right"></i>
-                        </button>
-                    </div>
-                    <div class="col-md-4">
-                        <p>Demo Mestrado</p>
-                        <button type="button" class="btn btn-green btn-icon icon-left btn-block btn-lg" ng-click="rel.gerarMestrado()">
-                            Gerar <i class="icon entypo-check icon-right"></i>
-                        </button>
-                    </div>
-                    <div class="col-md-4">
-                        <p>Demo Declaração de frequência</p>
-                        <button type="button" class="btn btn-green btn-icon icon-left btn-block btn-lg" ng-click="rel.gerarDecFreq()">
-                            Gerar <i class="icon entypo-check icon-right"></i>
-                        </button>
-                    </div>
+
+
+                    <xd-select data-params="rel._selectTest" data-change="rel.gerar"></xd-select>
+
+
                 </div>
             </xd-panel-collapse>
         </div>
