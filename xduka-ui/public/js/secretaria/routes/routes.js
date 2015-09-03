@@ -84,12 +84,18 @@ angular.module('app',[
                 controller: 'adicionarDisciplina',
                 controllerAs: 'ad'
             });
-
     // ========= ENVIAR CIRCULAR ========= //
             $routeProvider.when('/secretaria/enviar-circular', {
                 templateUrl: 'html/secretaria/enviar-circular.html',
                 controller: 'enviarCircular',
                 controllerAs: 'ec'
+            });
+
+    // ========= ENVIAR CIRCULAR ========= //
+            $routeProvider.when('/secretaria/material-complementar', {
+                templateUrl: 'html/secretaria/material-complementar.html',
+                controller: 'materialComplementar',
+                controllerAs: 'mc'
             });
     // ========= OTHERWISE ========= //
             $routeProvider.otherwise({
