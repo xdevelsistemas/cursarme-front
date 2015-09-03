@@ -17,8 +17,7 @@ var RedisStore = require('connect-redis')(session);
 
 // configuration ===============================================================
 var configDB = require('./config/database.js'),
-    configRedis = require('./config/redis.js'),
-    proxies = require('./config/proxies.js');
+    configRedis = require('./config/redis.js');
 
 mongoose.connect(configDB.url); // connect to our database
 
@@ -80,11 +79,6 @@ require('./routes/financeiro.js')(app, passport);
 require('./routes/resetpassword.js')(app, passport);
 require('./routes/secretaria.js')(app, passport);
 require('./routes/financeiro.js')(app, passport);
-
-
-//jsreport route
-require('./routes/proxyRoutes')(app, passport, proxies.jsreport.http_host, proxies.jsreport.http_port, "/api/report", proxies.jsreport.prefix, http, express, proxies.jsreport.prefix);
-
 
 
 
