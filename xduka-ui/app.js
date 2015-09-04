@@ -9,7 +9,7 @@ var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var compression = require('compression')
+var compression = require('compression');
 var app = express();
 
 var RedisStore = require('connect-redis')(session);

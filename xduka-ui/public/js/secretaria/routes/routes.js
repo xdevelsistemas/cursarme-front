@@ -60,6 +60,12 @@ angular.module('app',[
                 controller: 'relatorios',
                 controllerAs: 'rel'
             });
+    // ========= RELATÓRIOS ========= //
+            $routeProvider.when('/pedagogico', {
+                templateUrl: 'html/secretaria/pedagogico.html',
+                controller: 'pedagogico',
+                controllerAs: 'ped'
+            });
     // ========= PAUTA ========= //
             $routeProvider.when('/secretaria/pauta', {
                 templateUrl: 'html/secretaria/pauta.html',
@@ -77,6 +83,19 @@ angular.module('app',[
                 templateUrl: 'html/secretaria/adicionar-disciplina.html',
                 controller: 'adicionarDisciplina',
                 controllerAs: 'ad'
+            });
+    // ========= ENVIAR CIRCULAR ========= //
+            $routeProvider.when('/secretaria/enviar-circular', {
+                templateUrl: 'html/secretaria/enviar-circular.html',
+                controller: 'enviarCircular',
+                controllerAs: 'ec'
+            });
+
+    // ========= ENVIAR CIRCULAR ========= //
+            $routeProvider.when('/secretaria/material-complementar', {
+                templateUrl: 'html/secretaria/material-complementar.html',
+                controller: 'materialComplementar',
+                controllerAs: 'mc'
             });
     // ========= OTHERWISE ========= //
             $routeProvider.otherwise({

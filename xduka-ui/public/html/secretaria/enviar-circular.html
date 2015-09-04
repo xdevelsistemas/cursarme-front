@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <h2>Enviar Circular</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<br/><br/>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <xd-select data-params="ec._model.curso"></xd-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <xd-select data-params="ec._model.turma"></xd-select>
+        </div>
+        <div class="col-md-8">
+            <xd-select data-params="ec._model.disciplina"></xd-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <xd-input data-params="ec._model.titulo"></xd-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <xd-input data-params="ec._model.numero"></xd-input>
+        </div>
+        <div class="col-md-5">
+            <xd-input-date data-params="ec._model.data"></xd-input-date>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <xd-input-textarea data-params="ec._model.texto"></xd-input-textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <span class="btn btn-info btn-file">
+                                <span class="fileinput-new" style="font-size: 1.5em">Anexar</span>
+                                <span class="fileinput-exists" style="font-size: 1.5em">Alterar</span>
+                                <input type="file" name="...">
+                            </span>
+                            <span class="fileinput-filename"></span>
+                            <a class="close fileinput-exists linkCursor" data-dismiss="fileinput" style="float: none">&times;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 pull-right">
+        <div class="col-md-5 pull-right">
+            <button class="btn btn-warning btn-icon icon-left btn-lg btn-block" ng-click="ec.limpar()"
+                    data-ng-disabled="ec._model.curso.model.val == '' &&
+                                      ec._model.turma.model.val == '' &&
+                                      ec._model.disciplina.model.val == '' &&
+                                      ec._model.titulo.model.val == '' &&
+                                      ec._model.numero.model.val == '' &&
+                                      ec._model.data.model.val == '' &&
+                                      ec._model.anexo.model.val == '' &&
+                                      ec._model.texto.model.val == ''">
+                Limpar
+                <i class="icon entypo-cup icon-right"></i></button>
+        </div>
+        <div class="col-md-5 pull-right">
+            <button class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="ec.salvar()">
+                Slvar
+                <i class="entypo-check"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+    $('#anexo').fileinput();
+</script>
