@@ -33,6 +33,12 @@
                     "icon": "glyphicon glyphicon-send",
                     "href": "#/secretaria/enviar-circular",
                     "description": "Enviar circular aos alunos"
+                },
+                {
+                    "text": "Material Complementar",
+                    "icon": "glyphicon glyphicon-file",
+                    "href": "#/secretaria/material-complementar",
+                    "description": "Enviar materiais referente ao curso"
                 }
             ];
 
