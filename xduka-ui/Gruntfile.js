@@ -100,24 +100,13 @@ module.exports = function(grunt) {
                 },
                 expand: true,
                 src: ['dist/public/assets/css/**/*.css',
-                      'dist/public/assets/js/**/*.js'
-                    //'dist/public/html/**/*.html'
-                ],
+                      'dist/public/assets/js/**/*.js',
+                      'dist/public/assets/js/neon-custom.js'],
                 dest: '.tmp'
             }
         },
         usemin: {
             html: 'dist/views/**/*.ejs'
-            // options: {
-            //     blockReplacements: {
-            //         css: function (block) {
-            //             return '<link rel="stylesheet" href="' + block.dest + '">';
-            //         },
-            //         js: function (block) {
-            //             return '<script async type="text/javascript" src="' + block.dest + '"></script>';
-            //         }
-            //     }
-            // }
         },
         useminPrepare: {
             options: {
