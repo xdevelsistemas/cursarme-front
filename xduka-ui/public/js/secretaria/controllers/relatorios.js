@@ -6,14 +6,12 @@
 
             breadCrumb.title = 'Relatórios';
 
-            var vm = this,
-                dados = $resource('/api/secretaria/view-inscr').get().$promise,
-                dados_geral = $resource('/api/secretaria/templateConfig').get().$promise;
+            var vm = this;
 
             vm._viewInscr = {};
             vm._templateConfig = {};
             vm._selectPdf = {
-                "label": "Relatórios PDF",
+                "label": "",
                 "type": "select",
                 "name": "selectPdf",
                 "placeholder": "Selecione um relatório",
@@ -52,22 +50,20 @@
                         "id": "6",
                         "text": "Demo de curso livre",
                         "value": "dec-curso-livre"
-                    }
-                ],
+                    },
+                    {
+                        "id": "7",
+                        "text": "Demo Pauta de Frequência",
+                        "value": "pauta-frequencia"
+                    }                ],
                 "model": {"val": "", "err": ""}
             };
-
-
-            vm.data = {content: {head: [], body:[]}, header: [], footer: []};
             vm.gerarPdf = gerarPdf;
 
-            vm.reportSv = reportService; // Service de relatorios (PDF)
-            vm.template = '';
 
             function gerarPdf(item, model) {
                 var template = item.value;
                 var data = item.id;
-                //$http.post('/api/common/report', { templateContent: template, data: '1' })
                 window.open('/report?templateContent='+template+'&data='+data ,'_blank');
 
             }

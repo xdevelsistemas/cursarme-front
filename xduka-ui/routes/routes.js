@@ -135,7 +135,6 @@ module.exports = function (app, passport) {
 
         var dataTemplate = {},
             options = reportClient.options(req.query.templateContent),
-
             data_content = [
                 {
                     head: [
@@ -263,10 +262,18 @@ module.exports = function (app, passport) {
                         { text: "ROTINA NA EDUCAÇÃO INFANTIL" },
                         { text: "AVALIAÇÃO NA EDUCAÇÃO INFANTIL: O ADULTO COMO UM DOS MEDIADORES DO DESENVOLVIMENTO INFANTIL" }
                     ]
+                },
+                {
+                    head: [
+                        {text: 'Aluno'},
+                        {text: 'Assinatura'},
+                    ],
+                    body: [
+                        { Nome: 'João das Couves' },
+                        { Nome: 'Pedro das Alfaces' }
+                    ]
                 }
             ];
-
-
 
 
         var callback = function(response) {
@@ -283,7 +290,6 @@ module.exports = function (app, passport) {
                     }
 
                     response.pipe(res);
-
 
                 });
             });
