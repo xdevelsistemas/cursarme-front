@@ -2,10 +2,12 @@ var urlDataBase = '',
     extend = require('node.extend'),
     request = require('request'),
     alunos = require('../mockup/xduka-json/common/alunos.json'),
+    dadosAddCurso = require('../mockup/xduka-json/common/dadosAddCurso.json'),
     dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
     dadosCursoPauta = require('../mockup/xduka-json/secretaria/dadosCursoPauta.json'),
     dadosGeraTurma = require('../mockup/xduka-json/secretaria/dadosGeraTurma.json'),
     dadosPauta = require('../mockup/xduka-json/secretaria/dadosPauta.json'),
+    templateAddCurso = require('../mockup/xduka-json/secretaria/templateAddCurso.json'),
     templateAluno = require('../mockup/xduka-json/secretaria/templateAluno.json'),
     templateConfig = require('../mockup/xduka-json/secretaria/templateConfig.json'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
@@ -18,11 +20,13 @@ module.exports = function() {
 
     controller.alunoSearch = alunoSearch;
     controller.showConfig = showConfig;
+    controller.showDadosAddCurso = getDadosAddCurso;
     controller.showDadosCurso = getDadosCurso;
     controller.showDadosCursoPauta = getDadosCursoPauta;
     controller.showDadosGeraTurma = getDadosGeraTurma;
     controller.showDadosPauta = getDadosPauta;
     controller.showInfoUsuario = getInfoUsuario;
+    controller.showTemplateAddCurso = getTemplateAddCurso;
     controller.showTemplateAl = getTemplateAl;
     controller.showViewInscr = getViewInscr;
     controller.showTemplateInscricao = getTemplateInscricao;
@@ -65,6 +69,10 @@ function pegaDadosPauta(obj, id) {
 
 function getTemplatePauta(req, res) {
     res.json(templatePauta);
+}
+
+function getTemplateAddCurso(req,res) {
+    res.json(templateAddCurso)
 }
 
 function getTemplateAl(req,res) {
@@ -111,6 +119,10 @@ function alunoSearch(req, res){
 
 function getDadosGeraTurma(req, res) {
     res.json(dadosGeraTurma);
+}
+
+function getDadosAddCurso(req, res) {
+    res.json(dadosAddCurso);
 }
 
 function getDadosCurso(req, res) {

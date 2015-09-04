@@ -1,0 +1,72 @@
+{
+  "list": [
+    {
+      "id": 1,
+      "text": "Mestrado em Educação",
+      "areas": [
+        {
+          "id":11,
+          "text": "Exatas",
+          "turnos": [
+            {
+              "id": 111,
+              "text": "Matutino"
+            },
+            {
+              "id": 222,
+              "text": "Vespertino"
+            }
+          ]
+        },
+        {
+          "id":22,
+          "text": "Humanas",
+          "turnos": [
+            {
+              "id": 111,
+              "text": "Matutino"
+            },
+            {
+              "id": 222,
+              "text": "Noturno"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "text": "Pós Graduação em Educação",
+      "areas": [
+        {
+          "id":11,
+          "text": "Exatas",
+          "turnos": [
+            {
+              "id": 111,
+              "text": "Vespertino"
+            },
+            {
+              "id": 222,
+              "text": "Noturno"
+            }
+          ]
+        },
+        {
+          "id":22,
+          "text": "Biomedicina",
+          "turnos": [
+            {
+              "id": 111,
+              "text": "Matutino"
+            },
+            {
+              "id": 222,
+              "text": "Vespertino"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

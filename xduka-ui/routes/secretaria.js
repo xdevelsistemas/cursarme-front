@@ -2,6 +2,10 @@ module.exports = function (app, passport) {
     var controller = require('../controllers/secretaria')();
 
     //
+    app.route('/api/secretaria/dados-add-curso')
+        .get(controller.showDadosAddCurso);
+
+    //
     app.route('/api/secretaria/dados-curso')
         .get(controller.showDadosCurso);
 
@@ -40,6 +44,10 @@ module.exports = function (app, passport) {
     //Alunos Search
     app.route('/api/secretaria/aluno/:nomeMat')
         .get(controller.alunoSearch);
+
+    //Template aluno
+    app.route('/api/secretaria/template-add-curso')
+        .get(controller.showTemplateAddCurso);
 
     //Template aluno
     app.route('/api/secretaria/templateAluno')
