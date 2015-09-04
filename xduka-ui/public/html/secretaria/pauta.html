@@ -1,7 +1,7 @@
 <div class="col-md-12 configSecBorder" style="padding-top: 15px">
     <div class="row">
         <div class="col-md-12">
-            <xd-input data-params="pt._model.professor" data-disable="true"></xd-input>
+            <xd-select data-params="pt._model.professor"></xd-select>
         </div>
     </div>
     <div class="row">
@@ -228,17 +228,17 @@
         </div>
     </div>
 </div>
-<!-- SAVE FREQUENCIA -->
+<!-- ADICIONAR FREQUÊNCIA -->
 <div class="modal fade" id="modalAddFreq" tabindex="-1" role="dialog" aria-labelledby="Cadastrar Novo">
     <div class="modal-lg modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="pt.cancelEditConteudo()"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel2">Adicionar Frequência</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-4 col-md-offset-7">
+                    <div class="col-md-5 col-md-offset-6">
                         <xd-input-checks data-params="pt._model.duplicar" data-change="pt.duplicarFreq"></xd-input-checks>
                     </div>
                 </div>
@@ -248,22 +248,16 @@
                             <thead>
                             <tr>
                                 <th>Aluno</th>
-                                <th ng-bind="pt._model.addData.model.val.toLocaleString().substr(0,11)"></th>
+                                <th ng-bind="pt._model.addData.model.val.toLocaleString().substr(0,11)+' Faltas'"></th>
                             </tr>
                             </thead>
                             <form>
                             <tbody>
-                            <tr ng-repeat="aluno in pt._alunos track by $index">
-                                <th ng-bind="aluno"></th>
+                            <tr ng-repeat="aluno in pt._alunos">
+                                <th ng-bind="aluno.nome"></th>
                                 <th>
-                                    <div class="col-xs-3">
-                                        <label>P</label>
-                                        <input type="radio" name="{{'presenca_'+aluno}}" ng-model="pt._modelAlunos[aluno]" value="p"/>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <label>F</label>
-                                        <input type="radio" name="{{'presenca_'+aluno}}" ng-model="pt._modelAlunos[aluno]" value="f"/>
-                                    </div>
+                                    <!-- TODO ADICIONAR NOVO MODEL -->
+                                    <input type="checkbox" name="{{'presenca_'+aluno}}" ng-model="pt._modelAlunos[aluno.id]" />
                                 </th>
                             </tr>
                             </tbody>
