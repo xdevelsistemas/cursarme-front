@@ -1,13 +1,21 @@
 module.exports = function (app, passport) {
     var controller = require('../controllers/secretaria')();
 
-    //get-unidade
+    //
     app.route('/api/secretaria/dados-curso')
         .get(controller.showDadosCurso);
+
+    //
+    app.route('/api/secretaria/dados-curso-pauta')
+        .get(controller.showDadosCursoPauta);
 
     //dados-gera-turma
     app.route('/api/secretaria/dados-gera-turma')
         .get(controller.showDadosGeraTurma);
+
+    //
+    app.route('/api/secretaria/dados-pauta/:id')
+        .get(controller.showDadosPauta);
 
     //info-usuario
     app.route('/api/secretaria/info-usuario')
@@ -44,14 +52,6 @@ module.exports = function (app, passport) {
     //save-configuracoes
     app.route('/api/secretaria/save-configuracoes')
         .post(controller.putSaveConfig);
-
-    //dados-freq-pauta
-    app.route('/api/secretaria/dados-freq-pauta')
-        .get(controller.showDadosFreqPauta);
-
-    //dados-notas-pauta
-    app.route('/api/secretaria/dados-notas-pauta')
-        .get(controller.showDadosNotasPauta);
 
     //template-pauta
     app.route('/api/secretaria/template-pauta')
