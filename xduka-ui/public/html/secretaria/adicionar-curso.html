@@ -20,13 +20,13 @@
                     <xd-input data-params="ac._model.codigoCurso"></xd-input>
                 </div>
                 <div class="col-md-3">
-                    <xd-select data-params="ac._model.tipo"></xd-select>
+                    <xd-select data-params="ac._model.tipo" data-change="ac.changeTipo"></xd-select>
                 </div>
                 <div class="col-md-3">
-                    <xd-select data-params="ac._model.area"></xd-select>
+                    <xd-select data-params="ac._model.area" data-change="ac.changeArea" data-disable="ac.disableArea"></xd-select>
                 </div>
                 <div class="col-md-3">
-                    <xd-select data-params="ac._model.turno"></xd-select>
+                    <xd-select data-params="ac._model.turno" data-disable="ac.disableArea"></xd-select>
                 </div>
             </div>
             <div class="row">

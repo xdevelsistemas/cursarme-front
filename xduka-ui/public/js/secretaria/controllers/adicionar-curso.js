@@ -4,124 +4,13 @@
     angular.module('app.controllers')
         .controller('adicionarCurso', ['$scope', '$resource', 'breadCrumb', '$timeout', function($scope, $resource, breadCrumb, $timeout){
 
-            var vm = this;
+            var vm = this,
+                dadosAddCurso = $resource('/api/secretaria/dados-add-curso').get().$promise,
+                templateAddCurso = $resource('/api/secretaria/template-add-curso').get().$promise;
 
+            //VARIÁVEIS COMUNS
             breadCrumb.title = 'Adicionar Curso';
-
-            vm._model = {
-                "curso": {
-                    "label": "Curso",
-                    "type": "text",
-                    "val": "Teste1",
-                    "name": "curso",
-                    "model": {"val": "", "err": ""}
-                },
-                "codigoCurso": {
-                    "label": "Código",
-                    "type": "text",
-                    "val": "Teste1",
-                    "name": "codigoCurso",
-                    "model": {"val": "", "err": ""}
-                },
-                "tipo": {
-                    "label": "Tipo",
-                    "type": "select",
-                    "name": "tipo",
-                    "placeholder": "Selecione...",
-                    "model": {"val": "", "err": ""},
-                    "list": []
-                },
-                "area": {
-                    "label": "Área",
-                    "type": "select",
-                    "name": "area",
-                    "placeholder": "Selecione...",
-                    "model": {"val": "", "err": ""},
-                    "list": []
-                },
-                "turno": {
-                    "label": "Turno",
-                    "type": "select",
-                    "name": "turno",
-                    "placeholder": "Selecione...",
-                    "model": {"val": "", "err": ""},
-                    "list": []
-                },
-                "vagasTurma": {
-                    "label": "Vagas/Turma",
-                    "type": "text",
-                    "val": "Teste1",
-                    "name": "vagasTurma",
-                    "model": {"val": "", "err": ""}
-                },
-                "cargaHoraria": {
-                    "label": "Carga Horária",
-                    "type": "text",
-                    "val": "Teste1",
-                    "name": "cargaHoraria",
-                    "model": {"val": "", "err": ""}
-                },
-                "nome": {
-                    "label": "Nome",
-                    "type": "select",
-                    "name": "nome",
-                    "placeholder": "Selecione...",
-                    "model": {"val": "", "err": ""},
-                    "list": []
-                },
-                "codigo": {
-                    "label": "Código",
-                    "type": "text",
-                    "val": "Teste1",
-                    "name": "codigo",
-                    "model": {"val": "", "err": ""}
-                },
-                "habilitacao": {
-                    "label": "Habilitação",
-                    "type": "text",
-                    "val": "Teste1",
-                    "name": "habilitacao",
-                    "model": {"val": "", "err": ""}
-                },
-                "autorizacao": {
-                    "label": "Autorização",
-                    "type": "text",
-                    "val": "Teste1",
-                    "name": "autorizacao",
-                    "model": {"val": "", "err": ""}
-                },
-                "reconhecimento": {
-                    "label": "Reconhecimento",
-                    "type": "text",
-                    "val": "Teste1",
-                    "name": "reconhecimento",
-                    "model": {"val": "", "err": ""}
-                },
-                "obsAval": {
-                    "label": "Obs. de Avaliação",
-                    "type": "text",
-                    "name": "obsAval",
-                    "model": {"val": "", "err": ""}
-                },
-                "modalCriterio": {
-                    "label": "Critério",
-                    "type": "text",
-                    "name": "modalCriterio",
-                    "model": {"val": "", "err": ""}
-                },
-                "modalObs": {
-                    "label": "Obs",
-                    "type": "text",
-                    "name": "modalObs",
-                    "model": {"val": "", "err": ""}
-                }
-            };
-            vm.adicionarCriterio = adicionarCriterio;
-            vm.adicionarCurso = adicionarCurso;
-            vm.fecharCriterios = fecharCriterios;
-            vm.limpar = limpar;
-            vm.modalCriterios = modalCriterios;
-            vm.salvarCriterios = salvarCriterios;
+            vm._model = {};
             vm.tableCriterios = {
                 class: "table table-striped table-hover table-bordered",
                 head: ["Critério", "Obs",""],
@@ -136,6 +25,33 @@
                     }]
                 }
             };
+
+            //VARIÁVEIS TIPO FUNÇÃO
+            vm.adicionarCriterio = adicionarCriterio;
+            vm.adicionarCurso = adicionarCurso;
+            vm.changeArea = changeArea;
+            vm.changeTipo = changeTipo;
+            vm.fecharCriterios = fecharCriterios;
+            vm.limpar = limpar;
+            vm.modalCriterios = modalCriterios;
+            vm.salvarCriterios = salvarCriterios;
+
+            //Requisições
+            templateAddCurso
+                .then(function(data) {
+                    vm._model = data.template;
+
+                    dadosAddCurso
+                        .then(function(dataA) {
+                            vm._model.tipo.list = dataA.list;
+                        })
+                        .catch(function(error) {
+                            // TOdo tratar error
+                        });
+                })
+                .catch(function(error) {
+                    // TOdo tratar error
+                });
 
             function adicionarCriterio() {
                 if(vm._model.modalCriterio.model.val.length > 0){
@@ -156,6 +72,32 @@
                 //todo post _model e validações
             }
 
+            function changeArea(item, model) {
+                disableModelTurno();
+
+                vm.disableTurno = false;
+                vm._model.turno.list = item.turnos;
+            }
+
+            function changeTipo(item, model) {
+                disableModelArea();
+                disableModelTurno();
+
+                vm.disableArea = false;
+                vm.disableTurno = true;
+                vm._model.area.list = item.areas;
+            }
+
+            function disableModelArea() {
+                vm._model.area.list = [];
+                vm._model.area.model.val = "";
+            }
+
+            function disableModelTurno() {
+                vm._model.turno.list = [];
+                vm._model.turno.model.val = "";
+            }
+
             function fecharCriterios() {
                 vm._model.modalCriterio.model.val = '';
                 vm._model.modalCriterio.model.err = '';
@@ -163,7 +105,6 @@
             }
 
             function limpar() {
-
                 vm._model.curso.model.val = '';
                 vm._model.codigoCurso.model.val = '';
                 vm._model.tipo.model.val = '';
@@ -180,7 +121,6 @@
                 vm._model.modalCriterio.model.val = '';
                 vm._model.modalObs.model.val = '';
                 vm.tableCriterios.list = [];
-
             }
 
             function modalCriterios() {

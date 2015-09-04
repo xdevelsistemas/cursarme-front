@@ -6,20 +6,20 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <xd-select data-params="pt._model.curso"></xd-select>
+            <xd-select data-params="pt._model.curso" data-change="pt.changeCurso"></xd-select>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
-            <xd-select data-params="pt._model.turma"></xd-select>
+            <xd-select data-params="pt._model.turma" data-change="pt.changeTurma" data-disable="pt.disableTurma"></xd-select>
         </div>
         <div class="col-md-8">
-            <xd-select data-params="pt._model.disciplina"></xd-select>
+            <xd-select data-params="pt._model.disciplina" data-change="pt.changeDisciplina" data-disable="pt.disableDisciplina"></xd-select>
         </div>
     </div>
 </div>
 <hr/>
-<div class="col-md-12">
+<div class="col-md-12" ng-show="pt.disableTables">
     <ul class="nav nav-tabs">
         <li class="linkCursor linkCursor active" title="Notas">
             <a data-target="#notas" data-toggle="tab" style="padding: 11px;">
@@ -289,7 +289,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="">Cancelar</button>
-                <button type="button" class="btn btn-green" ng-click="">Salvar</button>
+                <button type="button" class="btn btn-green" ng-click="pt.saveFreq()">Salvar</button>
             </div>
         </div>
     </div>

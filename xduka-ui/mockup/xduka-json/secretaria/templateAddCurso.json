@@ -1,0 +1,155 @@
+{
+  "template": {
+    "curso": {
+      "label": "Curso",
+      "type": "text",
+      "val": "Teste1",
+      "name": "curso",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "codigoCurso": {
+      "label": "Código",
+      "type": "text",
+      "val": "Teste1",
+      "name": "codigoCurso",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "tipo": {
+      "label": "Tipo",
+      "type": "select",
+      "name": "tipo",
+      "placeholder": "Selecione...",
+      "model": {
+        "val": "",
+        "err": ""
+      },
+      "list": []
+    },
+    "area": {
+      "label": "Área",
+      "type": "select",
+      "name": "area",
+      "placeholder": "Selecione...",
+      "model": {
+        "val": "",
+        "err": ""
+      },
+      "list": []
+    },
+    "turno": {
+      "label": "Turno",
+      "type": "select",
+      "name": "turno",
+      "placeholder": "Selecione...",
+      "model": {
+        "val": "",
+        "err": ""
+      },
+      "list": []
+    },
+    "vagasTurma": {
+      "label": "Vagas/Turma",
+      "type": "text",
+      "val": "Teste1",
+      "name": "vagasTurma",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "cargaHoraria": {
+      "label": "Carga Horária",
+      "type": "text",
+      "val": "Teste1",
+      "name": "cargaHoraria",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "nome": {
+      "label": "Nome",
+      "type": "select",
+      "name": "nome",
+      "placeholder": "Selecione...",
+      "model": {
+        "val": "",
+        "err": ""
+      },
+      "list": []
+    },
+    "codigo": {
+      "label": "Código",
+      "type": "text",
+      "val": "Teste1",
+      "name": "codigo",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "habilitacao": {
+      "label": "Habilitação",
+      "type": "text",
+      "val": "Teste1",
+      "name": "habilitacao",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "autorizacao": {
+      "label": "Autorização",
+      "type": "text",
+      "val": "Teste1",
+      "name": "autorizacao",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "reconhecimento": {
+      "label": "Reconhecimento",
+      "type": "text",
+      "val": "Teste1",
+      "name": "reconhecimento",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "obsAval": {
+      "label": "Obs. de Avaliação",
+      "type": "text",
+      "name": "obsAval",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "modalCriterio": {
+      "label": "Critério",
+      "type": "text",
+      "name": "modalCriterio",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "modalObs": {
+      "label": "Obs",
+      "type": "text",
+      "name": "modalObs",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    }
+  }
+}

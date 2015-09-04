@@ -2,10 +2,12 @@ var urlDataBase = '',
     extend = require('node.extend'),
     request = require('request'),
     alunos = require('../mockup/xduka-json/common/alunos.json'),
+    dadosAddCurso = require('../mockup/xduka-json/common/dadosAddCurso.json'),
     dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
+    dadosCursoPauta = require('../mockup/xduka-json/secretaria/dadosCursoPauta.json'),
     dadosGeraTurma = require('../mockup/xduka-json/secretaria/dadosGeraTurma.json'),
-    dadosFreqPauta = require('../mockup/xduka-json/secretaria/dadosFreqPauta.json'),
-    dadosNotasPauta = require('../mockup/xduka-json/secretaria/dadosNotasPauta.json'),
+    dadosPauta = require('../mockup/xduka-json/secretaria/dadosPauta.json'),
+    templateAddCurso = require('../mockup/xduka-json/secretaria/templateAddCurso.json'),
     templateAluno = require('../mockup/xduka-json/secretaria/templateAluno.json'),
     templateConfig = require('../mockup/xduka-json/secretaria/templateConfig.json'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
@@ -18,11 +20,13 @@ module.exports = function() {
 
     controller.alunoSearch = alunoSearch;
     controller.showConfig = showConfig;
+    controller.showDadosAddCurso = getDadosAddCurso;
     controller.showDadosCurso = getDadosCurso;
+    controller.showDadosCursoPauta = getDadosCursoPauta;
     controller.showDadosGeraTurma = getDadosGeraTurma;
-    controller.showDadosFreqPauta = getDadosFreqPauta;
-    controller.showDadosNotasPauta = getDadosNotasPauta;
+    controller.showDadosPauta = getDadosPauta;
     controller.showInfoUsuario = getInfoUsuario;
+    controller.showTemplateAddCurso = getTemplateAddCurso;
     controller.showTemplateAl = getTemplateAl;
     controller.showViewInscr = getViewInscr;
     controller.showTemplateInscricao = getTemplateInscricao;
@@ -34,32 +38,41 @@ module.exports = function() {
     return controller;
 };
 
-function getDadosFreqPauta(req, res) {
-    var i;
+function getDadosPauta(req, res) {
+    var idDisc = req.params.id,
+        i, j,
+        objPauta = pegaDadosPauta(dadosPauta.disciplinas, idDisc);
 
-    for(i = 0; i < dadosFreqPauta.tableFreqFixa.list.length; i++) {
-        dadosFreqPauta.tableFreqFixa.list[i].anum = dadosFreqPauta.tableFreqFixa.list[i].anum.toString();
-        dadosFreqPauta.tableFreqFixa.list[i].cfaltas = dadosFreqPauta.tableFreqFixa.list[i].cfaltas.toString();
+    for(i = 0; i < objPauta.tableFreqFixa.list.length; i++) {
+        objPauta.tableFreqFixa.list[i].anum = objPauta.tableFreqFixa.list[i].anum.toString();
+        objPauta.tableFreqFixa.list[i].cfaltas = objPauta.tableFreqFixa.list[i].cfaltas.toString();
     }
-    res.json(dadosFreqPauta);
+
+    for(j = 0; j < objPauta.tableNotas.list.length; j++) {
+        objPauta.tableNotas.list[j].anum = objPauta.tableNotas.list[j].anum.toString();
+        objPauta.tableNotas.list[j].enotaUm = objPauta.tableNotas.list[j].enotaUm.toString();
+        objPauta.tableNotas.list[j].fnotaDois = objPauta.tableNotas.list[j].fnotaDois.toString();
+        objPauta.tableNotas.list[j].gfaltas = objPauta.tableNotas.list[j].gfaltas.toString();
+        objPauta.tableNotas.list[j].hmedia = objPauta.tableNotas.list[j].hmedia.toString();
+    }
+
+    res.json(objPauta);
 }
 
-function getDadosNotasPauta(req, res) {
-    var i;
-
-    for(i = 0; i < dadosNotasPauta.list.length; i++) {
-        dadosNotasPauta.list[i].anum = dadosNotasPauta.list[i].anum.toString();
-        dadosNotasPauta.list[i].enotaUm = dadosNotasPauta.list[i].enotaUm.toString();
-        dadosNotasPauta.list[i].fnotaDois = dadosNotasPauta.list[i].fnotaDois.toString();
-        dadosNotasPauta.list[i].gfaltas = dadosNotasPauta.list[i].gfaltas.toString();
-        dadosNotasPauta.list[i].hmedia = dadosNotasPauta.list[i].hmedia.toString();
+function pegaDadosPauta(obj, id) {
+    for (var i = 0; i < obj.length; i++) {
+        if (obj[i].id == id) {
+            return obj[i].pauta;
+        }
     }
-
-    res.json(dadosNotasPauta);
 }
 
 function getTemplatePauta(req, res) {
     res.json(templatePauta);
+}
+
+function getTemplateAddCurso(req,res) {
+    res.json(templateAddCurso)
 }
 
 function getTemplateAl(req,res) {
@@ -108,8 +121,16 @@ function getDadosGeraTurma(req, res) {
     res.json(dadosGeraTurma);
 }
 
+function getDadosAddCurso(req, res) {
+    res.json(dadosAddCurso);
+}
+
 function getDadosCurso(req, res) {
     res.json(dadosCurso);
+}
+
+function getDadosCursoPauta(req, res) {
+    res.json(dadosCursoPauta);
 }
 
 function getTemplateInscricao(req, res) {
