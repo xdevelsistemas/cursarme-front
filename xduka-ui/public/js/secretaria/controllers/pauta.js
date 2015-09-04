@@ -14,10 +14,21 @@
 
             // VARIÁVEIS COMUNS
             //controles de dados
-            vm._alunos = ["João das Couves","Mariana","Maria","Abner"];
+            vm._alunos = [
+                {id: 1, nome: "João das Couves"},
+                {id: 2, nome: "Mariana"},
+                {id: 3, nome: "Maria"},
+                {id: 4, nome: "Abner"}
+            ];
             vm._bkp = {};
             vm._model = {};
-            vm._modelAlunos = {};
+            vm._modelAlunos = {
+                //CHAVES == ID DO ALUNO
+                1: '',
+                2: '',
+                3: '',
+                4: ''
+            };
             //visualização na tela
             vm.editingPos = -1;
             vm.verTodos = false;
@@ -196,7 +207,6 @@
                 });
 
             function addFreq() {
-                vm._model.addConteudoData.model.val = vm._model.addData.model.val.toLocaleString().substr(0,11);
                 $('#modalAddFreq').modal({
                     backdrop: 'static',
                     keyboard: false
@@ -207,22 +217,16 @@
                 vm._model = $.extend(true,{},vm._bkp);
             }
 
-            function duplicarFreq(val) { // Duplica de acordo com o primeiro da lista simplificada
-                var aluno, i, lstKeys;
-                if(val){
-                    for (aluno in vm._alunos){
-                        for (i in vm.tableFreqDatasSimp.list){
-                            lstKeys = Object.keys(vm.tableFreqDatasSimp.list[i]);
-                            vm._modelAlunos[vm._alunos[aluno]] = vm.tableFreqDatasSimp.list[i][lstKeys[0]];
-                        }
+            function duplicarFreq(val) {
+                //todo duplicar frequência
+                if (val) {
+                    vm._modelAlunos.bkp = $.extend(true, {}, vm._modelAlunos);
+                    for (var i = 0; i < vm._alunos.length; i++) {
+                        vm._modelAlunos[vm._alunos[i].id] = i % 2 == 0
                     }
                 }else{
-                    for (aluno in vm._alunos){
-                        for (i in vm.tableFreqDatasSimp.list){
-                            lstKeys = Object.keys(vm.tableFreqDatasSimp.list[i]);
-                            vm._modelAlunos[vm._alunos[aluno]] = '';
-                        }
-                    }
+                    vm._modelAlunos = $.extend(true, {}, vm._modelAlunos.bkp);
+                    vm._modelAlunos.bkp = {};
                 }
             }
 
