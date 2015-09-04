@@ -3,7 +3,7 @@
         {
             "anoLetivo": "Único",
             "tipo": "Mensalidade",
-            "periodo": "PGSCcÊnE - Único",
+            "curso": "PGSCcÊnE",
             "status": "Em dia",
             "lista": [
                 {
@@ -180,7 +180,7 @@
         {
             "anoLetivo": "Único",
             "tipo": "Mensalidade",
-            "periodo": "PGSCcÊnE - Único",
+            "curso": "PGSCcÊnE",
             "status": "Em dia",
             "lista": [
                 {
