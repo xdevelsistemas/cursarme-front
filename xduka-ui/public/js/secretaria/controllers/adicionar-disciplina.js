@@ -12,29 +12,12 @@
             vm._model = {};
             vm.cadastrarNovo = cadastrarNovo;
             vm.cancelar = cancelar;
+            vm.cancelEditar = cancelEditar;
             vm.editing = false;
+            vm.editingModal = false;
+            vm.editingObj = {};
             vm.modalEditarDisciplinas = modalEditarDisciplinas;
             vm.modalSalvar = modalSalvar;
-            vm.tableDisciplinas = {
-                class: 'table table-hover table-striped table-bordered',
-                head: ["Nome", "Carga Horária", "Valor", "Tipo", ""],
-                list: [], //todo get das disciplinas cadastradas no banco
-                btns: {
-                    btn: true,
-                    list: [{
-                        text: "",
-                        click: editarDisciplina,
-                        class: "btn btn-primary btn-sm",
-                        entypo: "entypo-pencil"
-                    },
-                    {
-                        text: "",
-                        click: removeDisciplina,
-                        class: "btn btn-danger btn-sm",
-                        entypo: "entypo-cancel"
-                    }]
-                }
-            };
             vm.salvar = salvar;
 
             templateAddDisciplina
@@ -44,34 +27,40 @@
                 .catch(function(error) {
                     // TOdo tratar error
                 });
+            vm.salvarEditDisc = salvarEditDisc;
+            vm.selectDiscModal = selectDiscModal;
 
             function cadastrarNovo(item,model) {
                 if (model=='0'){
                     vm._model.addNome.label = item.label;
                     vm._model.addNome.ref = item.ref;
                     $('#modalCadastrarNovo').modal('show');
-                }else{
-                    vm.editing = true;
                 }
             }
 
             function cancelar() {
-                vm._model.nome.model.val = '';
-                vm._model.cargaHoraria.model.val = '';
-                vm._model.valor.model.val = '';
-                vm._model.tipo.model.val = '';
+                vm._model = $.extend(true,{}, vm._bkp);
                 vm.editing = false;
+                vm.editingObj = {};
+                vm.editingModal = false;
             }
 
-            function editarDisciplina(args,event) {
-                /*todo conteudo da tabela selecionado ir para o model.val equivalente
-                (ex: vm._model.editarNome.model.val = vm.tableDisciplinas.list[0].anome*/
+            function cancelEditar() {
+                vm._model.editarNome.model.val = '';
+                vm._model.editarSelectNome.model.val = '';
+                vm.editingObj = {};
+                vm.editingModal = false;
+                $('#modalEditDisc').modal('toggle');
             }
 
             function modalEditarDisciplinas() {
                 var i;
-                for(i = 0; i < vm.tableDisciplinas.list.length ; i++){ //PREENCHENDO AS LINHAS DA TABELA COM BOTÕES DE EDITAR E REMOVER
-                    vm.tableDisciplinas.list[i].ebtn = vm.tableDisciplinas.btns;
+                for (i = 0; i < vm._model.nome.list.length; i++) { //adicionando disciplinas cadastradas no select do modal
+                    //todo molhorar semântica
+                    if( vm._model.nome.list[i] != vm._model.nome.list[vm._model.nome.list.length-1] &&
+                        vm._model.editarSelectNome.list.indexOf(vm._model.nome.list[i]) == -1){
+                        vm._model.editarSelectNome.list.push(vm._model.nome.list[i])
+                    }
                 }
                 $('#modalEditDisc').modal({
                     backdrop: 'static',
@@ -82,11 +71,12 @@
             function modalSalvar() {
                 if(vm._model.addNome.model.val.length){
                     vm._model.addNome.model.err = '';
-                    vm._model[vm._model.addNome.ref].list.push({
+                    vm._model[vm._model.addNome.ref].list.unshift({
                         id: new Date().getTime()+vm._model.addNome.model.val,
                         text: vm._model.addNome.model.val
                     });
                     vm._model.addNome.model.val = '';
+                    vm.editing = true;
                     $('#modalCadastrarNovo').modal('toggle');
                 }else{
                     vm._model.addNome.model.err = 'Campo obrigatório!';
@@ -99,6 +89,23 @@
 
             function salvar() {
                 //todo post salvamento
+            }
+
+            function salvarEditDisc() {
+                //todo salvamento não funcionando
+                if(vm._model.editarNome.model.val != ''){
+                    vm._model.editarNome.model.err = '';
+                    vm._model.nome.list[vm._model.nome.list.indexOf(vm.editingObj)] = vm._model.editarNome.model.val;
+                    $('#modalEditDisc').modal('toggle');
+                }else{
+                    vm._model.editarNome.model.err = 'Campo obrigatório!';
+                }
+            }
+
+            function selectDiscModal(obj) {
+                vm.editingObj = obj;
+                vm._model.editarNome.model.val = obj.text;
+                vm.editingModal = true;
             }
 
         }])

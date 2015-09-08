@@ -13,17 +13,6 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-4">
-        <xd-select data-params="ad._model.cargaHoraria" data-change="ad.cadastrarNovo"></xd-select>
-    </div>
-    <div class="col-md-4">
-        <xd-select data-params="ad._model.valor" data-change="ad.cadastrarNovo"></xd-select>
-    </div>
-    <div class="col-md-4">
-        <xd-select data-params="ad._model.tipo" data-change="ad.cadastrarNovo"></xd-select>
-    </div>
-</div>
-<div class="row">
     <div class="col-md-6 pull-right">
         <div class="col-md-4 pull-right" data-ng-show="ad.editing">
             <button class="btn btn-danger btn-icon icon-left btn-lg btn-block" ng-click="ad.cancelar()"
@@ -73,7 +62,7 @@
         </div>
     </div>
 </div>
-<!-- Critérios de Avaliação -->
+<!-- Editar Disciplinas -->
 <div class="modal fade" id="modalEditDisc" tabindex="-1" role="dialog" aria-labelledby="Cadastrar Novo">
     <div class="modal-lg modal-dialog" role="document">
         <div class="modal-content">
@@ -85,19 +74,24 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-grid data-params="ad.tableDisciplinas"></xd-grid>
+                        <xd-select data-params="ad._model.editarSelectNome" data-change="ad.selectDiscModal"></xd-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input data-params="ad._model.editarNome" data-disable="!ad.editingModal"></xd-input>
                     </div>
                 </div>
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-blue btn-lg btn-icon icon-left" ng-click="ac.adicionarCriterio()">
-                    Adicionar
-                    <i class="entypo-plus"></i>
-                </button>
-                <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ac.salvarCriterios()">
+                <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ad.salvarEditDisc()">
                     Salvar
                     <i class="entypo-check"></i>
+                </button>
+                <button class="btn btn-danger btn-lg btn-icon icon-left" ng-click="ad.cancelEditar()">
+                    Cancelar
+                    <i class="entypo-cancel"></i>
                 </button>
             </div>
         </div>
