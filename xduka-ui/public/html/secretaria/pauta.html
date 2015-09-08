@@ -5,28 +5,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-10">
-            <xd-select data-params="pt._model.curso"></xd-select>
-        </div>
-        <div class="col-md-2 text-center">
-            <label>&nbsp;</label>
-            <div class="row">
-                <button type="button" class="btn btn-white heightFix" title="Pesquisar Curso" ng-click=""><i class="entypo-search"></i></button>
-                <button type="button" class="btn btn-white heightFix" title="Inversão" ng-click=""><i class="glyphicon glyphicon-retweet"></i></button>
-            </div>
+        <div class="col-md-12">
+            <xd-select data-params="pt._model.curso" data-change="pt.changeCurso"></xd-select>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
-            <xd-select data-params="pt._model.turma"></xd-select>
+            <xd-select data-params="pt._model.turma" data-change="pt.changeTurma" data-disable="pt.disableTurma"></xd-select>
         </div>
         <div class="col-md-8">
-            <xd-select data-params="pt._model.disciplina"></xd-select>
+            <xd-select data-params="pt._model.disciplina" data-change="pt.changeDisciplina" data-disable="pt.disableDisciplina"></xd-select>
         </div>
     </div>
 </div>
 <hr/>
-<div class="col-md-12">
+<div class="col-md-12" ng-show="pt.disableTables">
     <ul class="nav nav-tabs">
         <li class="linkCursor linkCursor active" title="Notas">
             <a data-target="#notas" data-toggle="tab" style="padding: 11px;">
@@ -235,17 +228,17 @@
         </div>
     </div>
 </div>
-<!-- EDITAR CONTEUDO -->
+<!-- ADICIONAR FREQUÊNCIA -->
 <div class="modal fade" id="modalAddFreq" tabindex="-1" role="dialog" aria-labelledby="Cadastrar Novo">
     <div class="modal-lg modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="pt.cancelEditConteudo()"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel2">Adicionar Frequência</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-4 col-md-offset-7">
+                    <div class="col-md-5 col-md-offset-6">
                         <xd-input-checks data-params="pt._model.duplicar" data-change="pt.duplicarFreq"></xd-input-checks>
                     </div>
                 </div>
@@ -255,22 +248,16 @@
                             <thead>
                             <tr>
                                 <th>Aluno</th>
-                                <th ng-bind="pt._model.addData.model.val.toLocaleString().substr(0,11)"></th>
+                                <th ng-bind="pt._model.addData.model.val.toLocaleString().substr(0,11)+' Faltas'"></th>
                             </tr>
                             </thead>
                             <form>
                             <tbody>
                             <tr ng-repeat="aluno in pt._alunos">
-                                <th ng-bind="aluno"></th>
+                                <th ng-bind="aluno.nome"></th>
                                 <th>
-                                    <div class="col-xs-3">
-                                        <label>P</label>
-                                        <input type="radio" name="{{'presenca_'+aluno}}" ng-model="pt._modelAlunos[aluno]" value="p"/>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <label>F</label>
-                                        <input type="radio" name="{{'presenca_'+aluno}}" ng-model="pt._modelAlunos[aluno]" value="f"/>
-                                    </div>
+                                    <!-- TODO ADICIONAR NOVO MODEL -->
+                                    <input type="checkbox" name="{{'presenca_'+aluno}}" ng-model="pt._modelAlunos[aluno.id]" />
                                 </th>
                             </tr>
                             </tbody>
@@ -302,7 +289,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="">Cancelar</button>
-                <button type="button" class="btn btn-green" ng-click="">Salvar</button>
+                <button type="button" class="btn btn-green" ng-click="pt.saveFreq()">Salvar</button>
             </div>
         </div>
     </div>

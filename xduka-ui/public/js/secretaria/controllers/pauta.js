@@ -5,23 +5,36 @@
         .controller('pauta', ['$scope', '$resource', 'breadCrumb', '$timeout', function($scope, $resource, breadCrumb, $timeout){
 
             var vm = this,
-                dadosConteudoDadoPautaPromise = $resource('/api/secretaria/dados-conteudo-dado-pauta').get().$promise,
-                dadosFreqPautaPromise = $resource('/api/secretaria/dados-freq-pauta').get().$promise,
-                dadosNotasPautaPromise = $resource('/api/secretaria/dados-notas-pauta').get().$promise,
+                dadosCursoPautaPromise = $resource('/api/secretaria/dados-curso-pauta').get().$promise,
                 templatePautaPromise = $resource('/api/secretaria/template-pauta').get().$promise;
 
             breadCrumb.title = 'Pauta';
 
             // VARIÁVEIS COMUNS
             //controles de dados
-            vm._alunos = ["João das Couves","Mariana","Maria","Abner"];
+            vm._alunos = [
+                {id: 1, nome: "João das Couves"},
+                {id: 2, nome: "Mariana"},
+                {id: 3, nome: "Maria"},
+                {id: 4, nome: "Abner"}
+            ];
             vm._bkp = {};
             vm._model = {};
-            vm._modelAlunos = {};
+            vm._modelAlunos = {
+                //CHAVES == ID DO ALUNO
+                1: '',
+                2: '',
+                3: '',
+                4: ''
+            };
             //visualização na tela
+            vm.disableDisciplina = true;
+            vm.disableTables = false;
+            vm.disableTurma = true;
+            //
             vm.editingPos = -1;
             vm.verTodos = false;
-            //dados para xdGrid
+            // xd-grid
             vm.tableConteudoAdicionado = {
                 /* ID importante se for usar dataTable*/
                 id: 'tableConteudoAdd',
@@ -37,49 +50,22 @@
                     "order": [[ 0, "desc" ]]
                 },
                 /*  Cabeçalho do grid   */
-                head: ["Data", "Título", "Conteúdo",""],
-                list: [
-                    {
-                        "adata": {
-                            date: true,
-                            int: new Date().getTime()
-                        },
-                        "btitulo": "Conteúdo 01",
-                        "cconteudo": "Émile Durkheim, Karl Marx e Marx Weber. Citações sobre Auguste Comte e sua importância.",
-                        "dbtn": {
-                            btn: true,
-                            list: [
-                                {
-                                    click: editCenteudo,
-                                    title: 'Editar',
-                                    entypo: 'entypo-pencil',
-                                    class: 'btn btn-white'
-                                },
-                                {
-                                    click: removeCenteudo,
-                                    title: 'Remover',
-                                    entypo: 'entypo-cancel',
-                                    class: 'btn btn-white'
-                                }
-                            ]
-
-                        }
-                    }
-                ]
+                head: [],
+                list: []
             };
             vm.tableFreqFixa = {
                 /*  Cabeçalho do grid   */
-                head: [{text: "", class: "col-sx-1"}, {text: "Aluno", class: "col-md-10"}, {text: "Faltas", class: "col-xs-1"}],
+                head: [],
                 list: []
             };
             vm.tableFreqDatasComp = {
                 /*  Cabeçalho do grid   */
-                head: [new Date('08/25/2015').toLocaleString().substr(0,11),new Date('08/26/2015').toLocaleString().substr(0,11),new Date('08/27/2015').toLocaleString().substr(0,11),new Date('08/28/2015').toLocaleString().substr(0,11),new Date('08/29/2015').toLocaleString().substr(0,11),new Date('08/30/2015').toLocaleString().substr(0,11),new Date('08/31/2015').toLocaleString().substr(0,11),new Date('09/01/2015').toLocaleString().substr(0,11)],
+                head: [],
                 list: []
             };
             vm.tableFreqDatasSimp = {
                 /*  Cabeçalho do grid   */
-                head: [new Date().toLocaleString().substr(0,11),new Date('08/29/2015').toLocaleString().substr(0,11),new Date('08/30/2015').toLocaleString().substr(0,11)],
+                head: [],
                 list: []
             };
             vm.tableNotas = {
@@ -97,13 +83,16 @@
                     "order": [[ 0, "asc" ]]
                 },
                 /*  Cabeçalho do grid   */
-                head: ["", "Matrícula", "Aluno", "Situação", "Nota1", "Nota2", "Faltas", "Média"],
+                head: [],
                 list: []
             };
 
             // VARIÁVEIS TIPO FUNÇÃO
             vm.addFreq = addFreq;
             vm.cancelEditConteudo = cancelEditConteudo;
+            vm.changeCurso = changeCurso;
+            vm.changeTurma = changeTurma;
+            vm.changeDisciplina = changeDisciplina;
             vm.duplicarFreq = duplicarFreq;
             vm.saveEditConteudo = saveEditConteudo;
             vm.saveFreq = saveFreq;
@@ -116,87 +105,29 @@
                     vm._model = data.template;
                     vm._model.addData.model.val = new Date();
                     vm._model.addConteudoData.model.val = new Date();
+
+                    //
+                    dadosCursoPautaPromise
+                        .then(function(data) {
+                            vm._model.curso.list = data.list;
+                        })
+                        .catch(function(error) {
+                            // TOdo tratar error
+                        });
                 })
                 .catch(function(error) {
                     // TOdo tratar error
                 });
 
-            dadosFreqPautaPromise
-                .then(function(data) {
-                    vm.tableFreqFixa.list = data.tableFreqFixa.list;
-                    vm.tableFreqDatasComp.list = data.tableFreqDatasComp.list;
-                    vm.tableFreqDatasSimp.list = data.tableFreqDatasSimp.list;
-                })
-                .catch(function(error) {
-                    // TOdo tratar error
-                });
+            function geraDataTxt(list) {
+                var listDate = [];
 
-            dadosNotasPautaPromise
-                .then(function(data) {
-                    vm.tableNotas.list = data.list;
-                })
-                .catch(function(error) {
-                    // TOdo tratar error
-                });
+                list.forEach(function(el){listDate.push(new Date(el).toLocaleDateString());});
 
-            dadosConteudoDadoPautaPromise
-                .then(function(data) {
-                    vm.tableConteudoAdicionado = {
-
-                        /* ID importante se for usar dataTable*/
-                        id: 'tableConteudoAdd',
-                        /* CLASSES CSS QUE A TABELA IRÁ UTILIZAR*/
-                        class: 'table-hover display',
-
-                        /* Se irá sar dataTable*/
-                        dataTable: {
-                            /*  elementos desabilitados ou habilitados dataTable*/
-                            "paging": true,
-                            "ordering": false,
-                            "info": false,
-                            "filter": true,
-                            "order": [[0, "desc"]]
-                        },
-
-                        /*  Cabeçalho do grid   */
-                        head: ["Data", "Título", "Conteúdo", ""],
-                        list: [
-                            {
-                                "adata": {
-                                    date: true,
-                                    int: new Date().getTime()
-                                },
-                                "btitulo": "Conteúdo 01",
-                                "cconteudo": "Émile Durkheim, Karl Marx e Marx Weber. Citações sobre Auguste Comte e sua importância.",
-                                "dbtn": {
-                                    btn: true,
-                                    list: [
-                                        {
-                                            click: editCenteudo,
-                                            title: 'Editar',
-                                            entypo: 'entypo-pencil',
-                                            class: 'btn btn-white'
-                                        },
-                                        {
-                                            click: removeCenteudo,
-                                            title: 'Remover',
-                                            entypo: 'entypo-cancel',
-                                            class: 'btn btn-white'
-                                        }
-                                    ]
-
-                                }
-                            }
-                        ]
-
-                    };
-                })
-                .catch(function (error) {
-                    //TOdo tratar error
-                });
+                return listDate
+            }
 
             function addFreq() {
-                vm._model.addConteudoData.model.val = vm._model.addData.model.val.toLocaleString().substr(0,11);
                 $('#modalAddFreq').modal({
                     backdrop: 'static',
                     keyboard: false
@@ -207,26 +138,105 @@
                 vm._model = $.extend(true,{},vm._bkp);
             }
 
-            function duplicarFreq(val) { // Duplica de acordo com o primeiro da lista simplificada
-                var aluno, i, lstKeys;
-                if(val){
-                    for (aluno in vm._alunos){
-                        for (i in vm.tableFreqDatasSimp.list){
-                            lstKeys = Object.keys(vm.tableFreqDatasSimp.list[i]);
-                            vm._modelAlunos[vm._alunos[aluno]] = vm.tableFreqDatasSimp.list[i][lstKeys[0]];
+            function changeCurso(item, model) {
+                vm._model.turma.list = [];
+                vm._model.turma.model.val = "";
+                vm._model.disciplina.list = [];
+                vm._model.disciplina.model.val = "";
+
+                vm.disableTurma = false;
+                vm.disableDisciplina = true;
+                vm.disableTables = false;
+
+                vm._model.turma.list = item.turmas;
+            }
+
+            function changeTurma(item, model) {
+                vm._model.disciplina.list = [];
+                vm._model.disciplina.model.val = "";
+
+                vm.disableDisciplina = false;
+                vm.disableTables = false;
+
+                vm._model.disciplina.list = item.disciplinas;
+            }
+
+            function changeDisciplina(item, model) {
+                var dadosPautaPromise = $resource('/api/secretaria/dados-pauta/:id').get({"id": model}).$promise;
+
+                dadosPautaPromise
+                    .then(function(data) {
+                        // vm._aluno
+                        data.tableFreqFixa.list.forEach(function(obj) {
+                            vm._alunos.push(obj.baluno);
+                        });
+                        //
+                        // Tabela de Frequência
+                        vm.tableFreqFixa.list = data.tableFreqFixa.list;
+                        vm.tableFreqFixa.head = data.tableFreqFixa.head;
+                        //
+                        vm.tableFreqDatasComp.list = data.tableFreqDatasComp.list;
+                        vm.tableFreqDatasComp.head = geraDataTxt(data.tableFreqDatasComp.head);
+                        //
+                        vm.tableFreqDatasSimp.list = data.tableFreqDatasSimp.list;
+                        vm.tableFreqDatasSimp.head = geraDataTxt(data.tableFreqDatasSimp.head);
+                        //
+                        // Tabelas de Notas
+                        vm.tableNotas.list = data.tableNotas.list;
+                        vm.tableNotas.head = data.tableNotas.head;
+                        //
+                        // Tabela de Conteúdos Aplicados
+                        vm.tableConteudoAdicionado.list = data.tableConteudoAdicionado.list;
+                        vm.tableConteudoAdicionado.head = data.tableConteudoAdicionado.head;
+
+                        for (var i = 0; i < vm.tableConteudoAdicionado.list.length; i++) {
+                            vm.tableConteudoAdicionado.list[i].adata = {
+                                date: true,
+                                int: new Date().getTime()
+                            };
+                            vm.tableConteudoAdicionado.list[i].dbtn = {
+                                btn: true,
+                                list: [
+                                    {
+                                        click: editConteudo,
+                                        title: 'Editar',
+                                        entypo: 'entypo-pencil',
+                                        class: 'btn btn-white'
+                                    },
+                                    {
+                                        click: removeConteudo,
+                                        title: 'Remover',
+                                        entypo: 'entypo-cancel',
+                                        class: 'btn btn-white'
+                                    }
+                                ]
+                            }
                         }
+                    })
+                    .catch(function(error) {
+                        // TOdo tratar error
+                    });
+
+                $("#notas").addClass("active");
+
+                vm.disableTables = true;
+            }
+
+            function duplicarFreq(val) {
+                //todo duplicar frequência
+                if (val) {
+                    vm._modelAlunos.bkp = $.extend(true, {}, vm._modelAlunos);
+                    for (var i = 0; i < vm._alunos.length; i++) {
+                        vm._modelAlunos[vm._alunos[i].id] = i % 2 == 0
                     }
                 }else{
-                    for (aluno in vm._alunos){
-                        for (i in vm.tableFreqDatasSimp.list){
-                            lstKeys = Object.keys(vm.tableFreqDatasSimp.list[i]);
-                            vm._modelAlunos[vm._alunos[aluno]] = '';
-                        }
-                    }
+                    vm._modelAlunos = $.extend(true, {}, vm._modelAlunos.bkp);
+                    vm._modelAlunos.bkp = {};
                 }
             }
 
-            function editCenteudo(args,line){
+            function editConteudo(args,line){
+                // TOdo resource para save das dados
                 vm._bkp = $.extend(true,{},vm._model);
                 vm._model.addConteudoData.model.val = new Date(line.adata.int);
                 vm._model.addConteudoTitulo.model.val = line.btitulo;
@@ -238,7 +248,7 @@
                 });
             }
 
-            function removeCenteudo(args,line) {
+            function removeConteudo(args,line) {
                 vm.tableConteudoAdicionado.list.splice(vm.tableConteudoAdicionado.list.indexOf(line),1);
                 //vm.tableConteudoAdicionado.list.splice(pos,1)
             }
@@ -252,7 +262,8 @@
             }
 
             function saveFreq() {
-                //todo
+                // TOdo save dos dados de frequencia / `chamada`
+                console.log(vm._modelAlunos);
             }
 
             function saveNewConteudo() {
@@ -266,13 +277,13 @@
                         btn: true,
                         list: [
                             {
-                                click: editCenteudo,
+                                click: editConteudo,
                                 title: 'Editar',
                                 entypo: 'entypo-pencil',
                                 class: 'btn btn-white'
                             },
                             {
-                                click: removeCenteudo,
+                                click: removeConteudo,
                                 title: 'Remover',
                                 entypo: 'entypo-cancel',
                                 class: 'btn btn-white'

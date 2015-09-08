@@ -4,9 +4,6 @@
       "label": "Professor",
       "type": "select",
       "name": "prof",
-      "placeholder": "Selecione uma opção",
-      "list": [
-      ],
       "model": {
         "val": "",
         "err": ""
@@ -17,12 +14,7 @@
       "type": "select",
       "name": "curso",
       "placeholder": "Selecione uma opção",
-      "list": [
-        {
-          "id": "1",
-          "text": "Curso 1"
-        }
-      ],
+      "list": [],
       "model": {
         "val": "",
         "err": ""
@@ -33,20 +25,18 @@
       "type": "select",
       "name": "turma",
       "placeholder": "Selecione uma opção",
-      "list": [
-      ],
+      "list": [],
       "model": {
         "val": "",
         "err": ""
       }
     },
     "disciplina": {
-      "label": "Professor",
+      "label": "Disciplina",
       "type": "select",
-      "name": "prof",
+      "name": "disciplina",
       "placeholder": "Selecione uma opção",
-      "list": [
-      ],
+      "list": [],
       "model": {
         "val": "",
         "err": ""

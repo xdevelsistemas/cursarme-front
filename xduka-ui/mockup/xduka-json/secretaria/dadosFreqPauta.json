@@ -26,68 +26,68 @@
   "tableFreqDatasComp": {
     "list": [
       {
-        "ajoao": "p",
-        "bjoao": "p",
-        "cjoao": "f",
-        "djoao": "p",
-        "ejoao": "p",
-        "fjoao": "p",
-        "gjoao": "p",
-        "hjoao": "p"
+        "ajoao": false,
+        "bjoao": false,
+        "cjoao": true,
+        "djoao": false,
+        "ejoao": false,
+        "fjoao": false,
+        "gjoao": false,
+        "hjoao": false
       },
       {
-        "amariana": "p",
-        "bmariana": "f",
-        "cmariana": "p",
-        "dmariana": "p",
-        "emariana": "p",
-        "fmariana": "p",
-        "gmariana": "p",
-        "hmariana": "p"
+        "amariana": false,
+        "bmariana": true,
+        "cmariana": false,
+        "dmariana": false,
+        "emariana": false,
+        "fmariana": false,
+        "gmariana": false,
+        "hmariana": false
       },
       {
-        "amaria": "p",
-        "bmaria": "p",
-        "cmaria": "f",
-        "dmaria": "p",
-        "emaria": "p",
-        "fmaria": "p",
-        "gmaria": "p",
-        "hmaria": "p"
+        "amaria": false,
+        "bmaria": false,
+        "cmaria": true,
+        "dmaria": false,
+        "emaria": false,
+        "fmaria": false,
+        "gmaria": false,
+        "hmaria": false
       },
       {
-        "aabner": "p",
-        "babner": "p",
-        "cabner": "p",
-        "dabner": "p",
-        "eabner": "p",
-        "fabner": "p",
-        "gabner": "p",
-        "habner": "p"
+        "aabner": false,
+        "babner": false,
+        "cabner": false,
+        "dabner": false,
+        "eabner": false,
+        "fabner": false,
+        "gabner": false,
+        "habner": false
       }
     ]
   },
   "tableFreqDatasSimp": {
     "list": [
       {
-        "ajoao": "p",
-        "bjoao": "p",
-        "cjoao": "f"
+        "ajoao": false,
+        "bjoao": false,
+        "cjoao": true
       },
       {
-        "amariana": "p",
-        "bmariana": "f",
-        "cmariana": "p"
+        "amariana": false,
+        "bmariana": true,
+        "cmariana": false
       },
       {
-        "amaria": "p",
-        "bmaria": "p",
-        "cmaria": "f"
+        "amaria": false,
+        "bmaria": false,
+        "cmaria": true
       },
       {
-        "aabner": "p",
-        "babner": "p",
-        "cabner": "p"
+        "aabner": false,
+        "babner": false,
+        "cabner": false
       }
     ]
   }
