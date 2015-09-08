@@ -16,6 +16,18 @@
                     "description": "Controle de pautas"
                 },
                 {
+                    "text": "Enviar Circular",
+                    "icon": "glyphicon glyphicon-send",
+                    "href": "#/secretaria/enviar-circular",
+                    "description": "Enviar circular aos alunos"
+                },
+                {
+                    "text": "Material Complementar",
+                    "icon": "glyphicon glyphicon-file",
+                    "href": "#/secretaria/material-complementar",
+                    "description": "Enviar materiais referente ao curso"
+                },
+                {
                     "text": "Adicionar Curso",
                     "icon": "entypo-plus",
                     "href": "#/secretaria/adicionar-curso",
@@ -27,18 +39,6 @@
                     "icon": "entypo-plus",
                     "href": "#/secretaria/adicionar-disciplina",
                     "description": "Novas disciplinas"
-                },
-                {
-                    "text": "Enviar Circular",
-                    "icon": "glyphicon glyphicon-send",
-                    "href": "#/secretaria/enviar-circular",
-                    "description": "Enviar circular aos alunos"
-                },
-                {
-                    "text": "Material Complementar",
-                    "icon": "glyphicon glyphicon-file",
-                    "href": "#/secretaria/material-complementar",
-                    "description": "Enviar materiais referente ao curso"
                 }
             ];
 

@@ -2,71 +2,71 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('enviarCircular', ['$scope', '$resource', 'breadCrumb', '$timeout', function($scope, $resource, breadCrumb, $timeout){
+        .controller('enviarCircular', ['$scope', '$resource', 'breadCrumb', '$timeout', 'modelStrings',
+            function($scope, $resource, breadCrumb, $timeout, modelStrings){
 
-            var vm = this;
+            var vm = this,
+                dadosEnviarCircular = $resource('/api/secretaria/dados-enviar-circular').get().$promise,
+                templateEnviarCircular = $resource('/api/secretaria/template-enviar-circular').get().$promise;
 
+            // VARIÁVEIS COMUNS
             breadCrumb.title = 'Enviar Circular';
+            vm._model = {}; //todo pegar arquivo anexado e enviar para o node
+            vm.disableTurma = true;
+            vm.disableDisciplina = true;
+            vm.STR = modelStrings;
 
-            vm._model = {
-                "curso": {
-                    "label": "Curso",
-                    "type": "select",
-                    "name": "curso",
-                    "placeholder": "Selecione...",
-                    "model": {"val": "", "err": ""},
-                    "list": []
-                },
-                "turma": {
-                    "label": "Turma",
-                    "type": "select",
-                    "name": "turma",
-                    "placeholder": "Selecione...",
-                    "model": {"val": "", "err": ""},
-                    "list": []
-                },
-                "disciplina": {
-                    "label": "Disciplina",
-                    "type": "select",
-                    "name": "disciplina",
-                    "placeholder": "Selecione...",
-                    "model": {"val": "", "err": ""},
-                    "list": []
-                },
-                "titulo": {
-                    "label": "Título",
-                    "type": "text",
-                    "name": "titulo",
-                    "model": {"val": "", "err": ""}
-                },
-                "numero": {
-                    "label": "Número",
-                    "type": "text",
-                    "name": "numero",
-                    "model": {"val": "", "err": ""}
-                },
-                "data": {
-                    "label": "Data",
-                    "type": "text",
-                    "model": {"val": "", "err": ""},
-                    "name": "data",
-                    "format": "dd/MM/yyyy"
-                },
-                "texto": {
-                    "label": "Texto",
-                    "type": "textarea",
-                    "name": "texto",
-                    "rows": 7,
-                    "model": {"val": "", "err": ""}
-                },
-                "anexo": {
-                    "model": {"val": ""} //todo pegar arquivo anexado e enviar para o node
-                }
-            };
-
+            // VARÍVEIS TIPO FUNÇÃO
+            vm.changeCurso = changeCurso;
+            vm.changeTurma = changeTurma;
             vm.limpar = limpar;
             vm.salvar = salvar;
 
+            // Requisições
+            templateEnviarCircular
+                .then(function(data) {
+                    vm._model = data.template;
+
+                    //
+                    dadosEnviarCircular
+                        .then(function(dataA) {
+                            vm._model.curso.list = dataA.list;
+                        })
+                        .catch(function(error) {
+                            // TOdo tratar error
+                        });
+                })
+                .catch(function(error) {
+                    // TOdo tratar error
+                });
+
+            function changeCurso(item, model) {
+                disableModelTurma();
+                disableModelDisciplina();
+
+                vm._model.turma.list = item.turmas;
+
+                vm.disableTurma = false;
+                vm.disableDisciplina = true;
+            }
+
+            function changeTurma(item, model) {
+                disableModelDisciplina();
+
+                vm._model.disciplina.list = item.disciplinas;
+
+                vm.disableDisciplina = false;
+            }
+
+            function disableModelTurma() {
+                vm._model.turma.list = [];
+                vm._model.turma.model.val = "";
+            }
+
+            function disableModelDisciplina() {
+                vm._model.disciplina.list = [];
+                vm._model.disciplina.model.val = "";
+            }
 
             function limpar() {
                 vm._model.curso.model.val = '';
@@ -80,7 +80,22 @@
 
             function salvar() {
                 //todo post salvamento
-                limpar();
+
+                var saveEnviarCircular = $resource('/api/secretaria/save-enviar-circular').save({}, {
+                    "model": vm._model, "STR": vm.STR
+                }).$promise;
+
+                saveEnviarCircular
+                    .then(function(data) {
+                        if (data.success) {
+                            limpar();
+                        } else {
+                            $.extend(true, vm._model, data.model);
+                        }
+                    })
+                    .catch(function(error) {
+                        // TOdo tratar error
+                    })
             }
         }])
 })();

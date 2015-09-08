@@ -4,83 +4,12 @@
     angular.module('app.controllers')
         .controller('adicionarDisciplina', ['$scope', '$resource', 'breadCrumb', '$timeout', function($scope, $resource, breadCrumb, $timeout){
 
-            var vm = this;
+            var vm = this,
+                templateAddDisciplina = $resource('/api/secretaria/template-add-disciplina').get().$promise;
 
             breadCrumb.title = 'Adicionar Disciplina';
 
-            vm._model = {
-                "nome": {
-                    "label": "Nome",
-                    "type": "select",
-                    "name": "nome",
-                    "placeholder": "Selecione uma opção",
-                    "list": [
-                        {id: '0', text:'Cadastrar Novo', label: 'Digite o Nome da disciplina', ref: 'nome'}
-                    ],
-                    "model": {"val": "", "err": ""}
-                },
-                "cargaHoraria": {
-                    "label": "Carga Horária",
-                    "type": "select",
-                    "name": "cargaHoraria",
-                    "placeholder": "Selecione uma opção",
-                    "list": [
-                        {id: '0', text:'Cadastrar Novo', label: 'Digite a Carga Horária da disciplina', ref: 'cargaHoraria'}
-                    ],
-                    "model": {"val": "", "err": ""}
-                },
-                "valor": {
-                    "label": "Valor",
-                    "type": "select",
-                    "name": "valor",
-                    "placeholder": "Selecione uma opção",
-                    "list": [
-                        {id: '0', text:'Cadastrar Novo', label: 'Digite o Valor da disciplina', ref: 'valor'}
-                    ],
-                    "model": {"val": "", "err": ""}
-                },
-                "tipo": {
-                    "label": "Tipo",
-                    "type": "select",
-                    "name": "tipo",
-                    "placeholder": "Selecione uma opção",
-                    "list": [
-                        {id: '0', text:'Cadastrar Novo', label: 'Digite o Tipo da disciplina', ref: 'tipo'}
-                    ],
-                    "model": {"val": "", "err": ""}
-                },
-                "addNome": {
-                    "label": "",
-                    "type": "text",
-                    "name": "addNome",
-                    "model": {"val": "", "err": ""},
-                    "ref": ""
-                },
-                "editarNome": {
-                    "label": "Nome",
-                    "type": "text",
-                    "name": "editarNome",
-                    "model": {"val": "", "err": ""}
-                },
-                "editarCargaHoraria": {
-                    "label": "Carga Horária",
-                    "type": "text",
-                    "name": "editarCargaHoraria",
-                    "model": {"val": "", "err": ""}
-                },
-                "editarValor": {
-                    "label": "Valor",
-                    "type": "text",
-                    "name": "editarValor",
-                    "model": {"val": "", "err": ""}
-                },
-                "editarTipo": {
-                    "label": "Tipo",
-                    "type": "text",
-                    "name": "editarTipo",
-                    "model": {"val": "", "err": ""}
-                }
-            };
+            vm._model = {};
             vm.cadastrarNovo = cadastrarNovo;
             vm.cancelar = cancelar;
             vm.editing = false;
@@ -107,6 +36,14 @@
                 }
             };
             vm.salvar = salvar;
+
+            templateAddDisciplina
+                .then(function(data) {
+                    vm._model = data.template;
+                })
+                .catch(function(error) {
+                    // TOdo tratar error
+                });
 
             function cadastrarNovo(item,model) {
                 if (model=='0'){

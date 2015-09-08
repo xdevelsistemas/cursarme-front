@@ -4,12 +4,15 @@ var urlDataBase = '',
     alunos = require('../mockup/xduka-json/common/alunos.json'),
     dadosAddCurso = require('../mockup/xduka-json/common/dadosAddCurso.json'),
     dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
-    dadosCursoPauta = require('../mockup/xduka-json/secretaria/dadosCursoPauta.json'),
-    dadosGeraTurma = require('../mockup/xduka-json/secretaria/dadosGeraTurma.json'),
-    dadosPauta = require('../mockup/xduka-json/secretaria/dadosPauta.json'),
+    dadosCursoPauta = require('../mockup/xduka-json/common/dadosCursoPauta.json'),
+    dadosEnviarCircular = require('../mockup/xduka-json/common/dadosEnviarCircular.json'),
+    dadosGeraTurma = require('../mockup/xduka-json/common/dadosGeraTurma.json'),
+    dadosPauta = require('../mockup/xduka-json/common/dadosPauta.json'),
     templateAddCurso = require('../mockup/xduka-json/secretaria/templateAddCurso.json'),
+    templateAddDisciplina = require('../mockup/xduka-json/secretaria/templateAddDisciplina.json'),
     templateAluno = require('../mockup/xduka-json/secretaria/templateAluno.json'),
     templateConfig = require('../mockup/xduka-json/secretaria/templateConfig.json'),
+    templateEnviarCircular = require('../mockup/xduka-json/secretaria/templateEnviarCircular.json'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
     templatePauta = require('../mockup/xduka-json/secretaria/templatePauta.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
@@ -23,17 +26,21 @@ module.exports = function() {
     controller.showDadosAddCurso = getDadosAddCurso;
     controller.showDadosCurso = getDadosCurso;
     controller.showDadosCursoPauta = getDadosCursoPauta;
+    controller.showDadosEnviarCircular = getDadosEnviarCircular;
     controller.showDadosGeraTurma = getDadosGeraTurma;
     controller.showDadosPauta = getDadosPauta;
     controller.showInfoUsuario = getInfoUsuario;
     controller.showTemplateAddCurso = getTemplateAddCurso;
+    controller.showTemplateAddDisciplina = getTemplateAddDisciplina;
     controller.showTemplateAl = getTemplateAl;
-    controller.showViewInscr = getViewInscr;
+    controller.showTemplateEnviarCircular = getTemplateEnviarCircular;
     controller.showTemplateInscricao = getTemplateInscricao;
     controller.showTemplatePauta = getTemplatePauta;
+    controller.showViewInscr = getViewInscr;
     controller.putDadosInscricao = putDadosInscricao;
     controller.putDadosTurmas = putDadosTurmas;
     controller.putSaveConfig = putSaveConfig;
+    controller.putEnviarCircular = postEnviarCircular;
 
     return controller;
 };
@@ -65,18 +72,6 @@ function pegaDadosPauta(obj, id) {
             return obj[i].pauta;
         }
     }
-}
-
-function getTemplatePauta(req, res) {
-    res.json(templatePauta);
-}
-
-function getTemplateAddCurso(req,res) {
-    res.json(templateAddCurso)
-}
-
-function getTemplateAl(req,res) {
-    res.json(templateAluno)
 }
 
 function showConfig(req,res) {
@@ -131,6 +126,30 @@ function getDadosCurso(req, res) {
 
 function getDadosCursoPauta(req, res) {
     res.json(dadosCursoPauta);
+}
+
+function getDadosEnviarCircular(req, res) {
+    res.json(dadosEnviarCircular);
+}
+
+function getTemplatePauta(req, res) {
+    res.json(templatePauta);
+}
+
+function getTemplateAddCurso(req,res) {
+    res.json(templateAddCurso)
+}
+
+function getTemplateAddDisciplina(req,res) {
+    res.json(templateAddDisciplina)
+}
+
+function getTemplateAl(req,res) {
+    res.json(templateAluno)
+}
+
+function getTemplateEnviarCircular(req, res) {
+    res.json(templateEnviarCircular);
 }
 
 function getTemplateInscricao(req, res) {
@@ -319,6 +338,22 @@ function putSaveConfig(req, res) {
     }
 }
 
+function postEnviarCircular(req, res) {
+    var dataSent = req.body;
+
+    if (verificaDadosEnviarCircular(dataSent.model)) {
+
+        /**
+         * TOdo request para o backend / dados de enviar circular
+         */
+
+        res.json({"success": true, "model": dataSent.model});
+    } else {
+        validaDadosEnviarCircular(dataSent);
+        res.json({"success": false, "model": dataSent.model});
+    }
+}
+
 function setDataExt(a) {
     return new Date(a);
 }
@@ -354,6 +389,24 @@ function validaDadosEmpresa(obj) {
     obj.model.dirAutorizacao.model.err = obj.model.dirAutorizacao.model.val ? '' : obj.STR.FIELD;
     obj.model.dirFolha.model.err = obj.model.dirFolha.model.val ? '' : obj.STR.FIELD;
     obj.model.dirNumero.model.err = obj.model.dirNumero.model.val ? '' : obj.STR.FIELD;
+}
+
+function verificaDadosEnviarCircular(obj) {
+    return !!obj.curso.model.val && !!obj.turma.model.val &&
+        !!obj.disciplina.model.val && !!obj.titulo.model.val &&
+        !!obj.numero.model.val && !!obj.data.model.val &&
+        !!obj.texto.model.val && !!obj.anexo.model.val
+}
+
+function validaDadosEnviarCircular(obj) {
+    obj.model.curso.model.err = !!obj.model.curso.model.val ? '' : obj.STR.FIELD;
+    obj.model.turma.model.err = !!obj.model.turma.model.val ? '' : obj.STR.FIELD;
+    obj.model.disciplina.model.err = !!obj.model.disciplina.model.val ? '' : obj.STR.FIELD;
+    obj.model.titulo.model.err = !!obj.model.titulo.model.val ? '' : obj.STR.FIELD;
+    obj.model.numero.model.err = !!obj.model.numero.model.val ? '' : obj.STR.FIELD;
+    obj.model.data.model.err = !!obj.model.data.model.val ? '' : obj.STR.FIELD;
+    obj.model.texto.model.err = !!obj.model.texto.model.val ? '' : obj.STR.FIELD;
+    obj.model.anexo.model.err = !!obj.model.anexo.model.val ? '' : obj.STR.FIELD;
 }
 
 function isEmail(email){

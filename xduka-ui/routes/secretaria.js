@@ -10,6 +10,10 @@ module.exports = function (app, passport) {
         .get(controller.showDadosCurso);
 
     //
+    app.route('/api/secretaria/dados-enviar-circular')
+        .get(controller.showDadosEnviarCircular);
+
+    //
     app.route('/api/secretaria/dados-curso-pauta')
         .get(controller.showDadosCursoPauta);
 
@@ -46,12 +50,20 @@ module.exports = function (app, passport) {
         .get(controller.alunoSearch);
 
     //Template aluno
+    app.route('/api/secretaria/template-add-disciplina')
+        .get(controller.showTemplateAddDisciplina);
+
+    //Template aluno
     app.route('/api/secretaria/template-add-curso')
         .get(controller.showTemplateAddCurso);
 
     //Template aluno
     app.route('/api/secretaria/templateAluno')
         .get(controller.showTemplateAl);
+
+    //Template aluno
+    app.route('/api/secretaria/template-enviar-circular')
+        .get(controller.showTemplateEnviarCircular);
 
     //Alunos Search
     app.route('/api/secretaria/templateConfig')
@@ -64,6 +76,10 @@ module.exports = function (app, passport) {
     //template-pauta
     app.route('/api/secretaria/template-pauta')
         .get(controller.showTemplatePauta);
+
+    //
+    app.route('/api/secretaria/save-enviar-circular')
+        .post(controller.putEnviarCircular);
 
     return app;
 };
