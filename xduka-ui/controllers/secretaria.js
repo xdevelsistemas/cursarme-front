@@ -3,6 +3,7 @@ var urlDataBase = '',
     request = require('request'),
     alunos = require('../mockup/xduka-json/common/alunos.json'),
     dadosAddCurso = require('../mockup/xduka-json/common/dadosAddCurso.json'),
+    dadosAddDisciplina = require('../mockup/xduka-json/common/dadosAddDisciplina.json'),
     dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
     dadosCursoPauta = require('../mockup/xduka-json/common/dadosCursoPauta.json'),
     dadosEnviarCircular = require('../mockup/xduka-json/common/dadosEnviarCircular.json'),
@@ -37,9 +38,10 @@ module.exports = function() {
     controller.showTemplateInscricao = getTemplateInscricao;
     controller.showTemplatePauta = getTemplatePauta;
     controller.showViewInscr = getViewInscr;
-    controller.putDadosInscricao = putDadosInscricao;
-    controller.putDadosTurmas = putDadosTurmas;
-    controller.putSaveConfig = putSaveConfig;
+    controller.putDadosInscricao = postDadosInscricao;
+    controller.putDadosTurmas = postDadosTurmas;
+    controller.putSaveDisciplinas = postSaveDisciplinas;
+    controller.putSaveConfig = postSaveConfig;
     controller.putEnviarCircular = postEnviarCircular;
 
     return controller;
@@ -137,15 +139,15 @@ function getTemplatePauta(req, res) {
 }
 
 function getTemplateAddCurso(req,res) {
-    res.json(templateAddCurso)
+    res.json(templateAddCurso);
 }
 
 function getTemplateAddDisciplina(req,res) {
-    res.json(templateAddDisciplina)
+    res.json({"template": templateAddDisciplina.template, "dadosAddDisciplina": dadosAddDisciplina.list});
 }
 
 function getTemplateAl(req,res) {
-    res.json(templateAluno)
+    res.json(templateAluno);
 }
 
 function getTemplateEnviarCircular(req, res) {
@@ -171,7 +173,7 @@ function getViewInscr(req, res) {
     res.json(viewInscr);
 }
 
-function putDadosInscricao(req, res) {
+function postDadosInscricao(req, res) {
 /*  --- Json tela comercial / matricula ---   */
     var dataSent = req.body;
 
@@ -271,7 +273,7 @@ function putDadosInscricao(req, res) {
     }
 }
 
-function putDadosTurmas(req, res) {
+function postDadosTurmas(req, res) {
     var dadosSent = req.body;
 
     var result = [];
@@ -282,14 +284,24 @@ function putDadosTurmas(req, res) {
         }
     }
 
-/*      Enviar para Clayton o result (que contém uma lista de id's de turmas a serem geradas)   */
+/*      TOdo Enviar para backend o result (que contém uma lista de id's de turmas a serem geradas)   */
 
     console.log(result); // ???
 
     res.json(dadosSent);
 }
 
-function putSaveConfig(req, res) {
+function postSaveDisciplinas(req, res) {
+    var dadosSent = req.body;
+
+    var result = {"list": dadosSent.model.nome.list.slice(0, dadosSent.model.nome.list.length-1)};
+
+    // Todo enviar dados para p backend | disciplinas adicionadas/editadas
+
+    res.json({"success": true, "model": dadosSent.model});
+}
+
+function postSaveConfig(req, res) {
     var dadosSent = req.body;
 
     if (verificaDadosEmpresa(dadosSent.model)) {

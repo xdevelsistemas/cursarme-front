@@ -73,6 +73,10 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/save-configuracoes')
         .post(controller.putSaveConfig);
 
+    //save-dados-disciplinas
+    app.route('/api/secretaria/save-dados-disciplinas')
+        .post(controller.putSaveDisciplinas);
+
     //template-pauta
     app.route('/api/secretaria/template-pauta')
         .get(controller.showTemplatePauta);

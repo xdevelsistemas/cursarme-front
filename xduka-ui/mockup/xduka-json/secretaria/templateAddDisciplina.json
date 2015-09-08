@@ -6,117 +6,30 @@
       "name": "nome",
       "placeholder": "Selecione uma opção",
       "list": [
-        {
-          "id": "0",
-          "text": "Cadastrar Novo",
-          "label": "Digite o Nome da disciplina",
-          "ref": "nome"
-        }
+        {"id": "0", "text": "Cadastrar Novo", "label": "Digite o Nome da disciplina", "ref": "nome"}
       ],
-      "model": {
-        "val": "",
-        "err": ""
-      }
-    },
-    "cargaHoraria": {
-      "label": "Carga Horária",
-      "type": "select",
-      "name": "cargaHoraria",
-      "placeholder": "Selecione uma opção",
-      "list": [
-        {
-          "id": "0",
-          "text": "Cadastrar Novo",
-          "label": "Digite a Carga Horária da disciplina",
-          "ref": "cargaHoraria"
-        }
-      ],
-      "model": {
-        "val": "",
-        "err": ""
-      }
-    },
-    "valor": {
-      "label": "Valor",
-      "type": "select",
-      "name": "valor",
-      "placeholder": "Selecione uma opção",
-      "list": [
-        {
-          "id": "0",
-          "text": "Cadastrar Novo",
-          "label": "Digite o Valor da disciplina",
-          "ref": "valor"
-        }
-      ],
-      "model": {
-        "val": "",
-        "err": ""
-      }
-    },
-    "tipo": {
-      "label": "Tipo",
-      "type": "select",
-      "name": "tipo",
-      "placeholder": "Selecione uma opção",
-      "list": [
-        {
-          "id": "0",
-          "text": "Cadastrar Novo",
-          "label": "Digite o Tipo da disciplina",
-          "ref": "tipo"
-        }
-      ],
-      "model": {
-        "val": "",
-        "err": ""
-      }
+      "model": {"val": "", "err": ""}
     },
     "addNome": {
       "label": "",
       "type": "text",
       "name": "addNome",
-      "model": {
-        "val": "",
-        "err": ""
-      },
+      "model": {"val": "", "err": ""},
       "ref": ""
     },
+    "editarSelectNome": {
+      "label": "Disciplinas cadastradas",
+      "type": "select",
+      "name": "nome",
+      "placeholder": "Selecione uma opção",
+      "list": [],
+      "model": {"val": "", "err": ""}
+    },
     "editarNome": {
-      "label": "Nome",
+      "label": "Novo Nome",
       "type": "text",
       "name": "editarNome",
-      "model": {
-        "val": "",
-        "err": ""
-      }
-    },
-    "editarCargaHoraria": {
-      "label": "Carga Horária",
-      "type": "text",
-      "name": "editarCargaHoraria",
-      "model": {
-        "val": "",
-        "err": ""
-      }
-    },
-    "editarValor": {
-      "label": "Valor",
-      "type": "text",
-      "name": "editarValor",
-      "model": {
-        "val": "",
-        "err": ""
-      }
-    },
-    "editarTipo": {
-      "label": "Tipo",
-      "type": "text",
-      "name": "editarTipo",
-      "model": {
-        "val": "",
-        "err": ""
-      }
+      "model": {"val": "", "err": ""}
     }
   }
 }
