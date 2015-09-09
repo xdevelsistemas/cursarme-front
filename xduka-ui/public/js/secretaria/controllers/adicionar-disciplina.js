@@ -21,21 +21,26 @@
             vm.cadastrarNovo = cadastrarNovo;
             vm.cancelar = cancelar;
             vm.cancelEditar = cancelEditar;
-            vm.modalEditarDisciplinas = modalEditarDisciplinas;
             vm.modalSalvar = modalSalvar;
             vm.salvar = salvar;
             vm.selectDiscModal = selectDiscModal;
+            vm.tableNome = {
+                "id": "tableNome",
+                "dataTable": {},
+                "head": ["Nome", ""],
+                "list": []
+            };
 
             // Requisições
             templateAddDisciplina
                 .then(function(data) {
                     vm._model = data.template;
 
-                    var list = vm._model.nome.list[0];
-                    vm._model.nome.list = data.dadosAddDisciplina;
-                    vm._model.nome.list.push(list);
-
                     vm._bkp = $.extend(true, {}, vm._model);
+                    vm.tableNome.list = data.dadosAddDisciplina;
+                    for(var i = 0; i < vm.tableNome.list.length; i++){
+                        vm.tableNome.list[i].bbtn.list[0].click = tableClick;
+                    }
                 })
                 .catch(function(error) {
                     // TOdo tratar error
@@ -44,9 +49,10 @@
             // Funções
 
             function alteraEditDisc() {
+                //todo
                 if(vm._model.editarNome.model.val != ''){
-                    if(vm._model.editarNome.model.val != vm._model.nome.list[vm._model.nome.list.indexOf(vm.editingObj)].text) {
-                        vm._model.nome.list[vm._model.nome.list.indexOf(vm.editingObj)].text = vm._model.editarNome.model.val;
+                    if(vm._model.editarNome.model.val != vm.tableNome.list[vm.tableNome.list.indexOf(vm.editingObj)].text) {
+                        vm.tableNome.list[vm.tableNome.list.indexOf(vm.editingObj)].text = vm._model.editarNome.model.val;
                         $('#modalEditDisc').modal('toggle');
                         limpaCamposModalEdit();
                         vm.editing = true;
@@ -80,15 +86,6 @@
                 $('#modalEditDisc').modal('toggle');
             }
 
-            function modalEditarDisciplinas() {
-                vm._model.editarSelectNome.list = vm._model.nome.list.slice(0, vm._model.nome.list.length-1);
-
-                $('#modalEditDisc').modal({
-                    backdrop: 'static',
-                    keyboard: false
-                })
-            }
-
             function modalSalvar() {
                 if(vm._model.addNome.model.val.length){
                     var ultimoElem = vm._model.nome.list.pop(vm._model.nome.list.length-1);
@@ -118,7 +115,6 @@
             }
 
             function limpaCamposModalEdit() {
-                vm._model.editarSelectNome.model.val = "";
                 vm._model.editarNome.model.val = "";
                 vm._model.editarNome.model.err = '';
                 vm.editingModal = false;
@@ -150,6 +146,14 @@
                 vm.editingObj = obj;
                 vm._model.editarNome.model.val = obj.text;
                 vm.editingModal = true;
+            }
+
+            function tableClick(args, line) {
+                vm._model.editarNome.model.val = line.anome;
+                $('#modalEditDisc').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                })
             }
 
         }])
