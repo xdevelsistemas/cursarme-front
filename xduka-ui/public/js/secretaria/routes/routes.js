@@ -17,8 +17,8 @@ angular.module('app',[
     'app.directives',
     'app.controllers',
     'gridshore.c3js.chart',
-    'ngProgress'
-
+    'ngProgress',
+    'angularFileUpload'
 ])
     .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;

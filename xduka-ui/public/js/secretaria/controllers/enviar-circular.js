@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('enviarCircular', ['$scope', '$resource', 'breadCrumb', '$timeout', 'modelStrings',
-            function($scope, $resource, breadCrumb, $timeout, modelStrings){
+        .controller('enviarCircular', ['$scope', '$resource', 'breadCrumb', '$timeout', 'modelStrings', 'FileUploader',
+            function($scope, $resource, breadCrumb, $timeout, modelStrings, FileUploader){
 
             var vm = this,
                 dadosEnviarCircular = $resource('/api/secretaria/dados-enviar-circular').get().$promise,
@@ -21,6 +21,7 @@
             vm.changeTurma = changeTurma;
             vm.limpar = limpar;
             vm.salvar = salvar;
+            vm.uploader = new FileUploader();
 
             // Requisições
             templateEnviarCircular
@@ -97,5 +98,7 @@
                         // TOdo tratar error
                     })
             }
+
+            console.info('uploader', vm.uploader);
         }])
 })();
