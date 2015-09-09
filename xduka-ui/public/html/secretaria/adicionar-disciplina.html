@@ -15,7 +15,7 @@
 <div class="row">
     <div class="col-md-6 pull-right">
         <div class="col-md-4 pull-right" data-ng-show="ad.editing">
-            <button class="btn btn-danger btn-icon icon-left btn-lg btn-block" ng-click="ad.cancelar()"
+            <button class="btn btn-danger btn-icon icon-left btn-lg btn-block" ng-click="ad.cancelar(ad._bkp)"
                     data-ng-disabled="">
                 Cancelar
                 <i class="icon entypo-cancel icon-right"></i></button>
@@ -55,7 +55,7 @@
                     <i class="entypo-plus"></i>
                 </button>
                 <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ad.modalSalvar()">
-                    Salvar
+                    Adicionar
                     <i class="entypo-check"></i>
                 </button>
             </div>
@@ -85,8 +85,8 @@
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ad.salvarEditDisc()">
-                    Salvar
+                <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ad.alteraEditDisc()" data-ng-disabled="!ad._model.editarSelectNome.model.val">
+                    Alterar
                     <i class="entypo-check"></i>
                 </button>
                 <button class="btn btn-danger btn-lg btn-icon icon-left" ng-click="ad.cancelEditar()">

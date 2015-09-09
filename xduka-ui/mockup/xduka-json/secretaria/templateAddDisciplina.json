@@ -1,0 +1,35 @@
+{
+  "template": {
+    "nome": {
+      "label": "Nome",
+      "type": "select",
+      "name": "nome",
+      "placeholder": "Selecione uma opção",
+      "list": [
+        {"id": "0", "text": "Cadastrar Novo", "label": "Digite o Nome da disciplina", "ref": "nome"}
+      ],
+      "model": {"val": "", "err": ""}
+    },
+    "addNome": {
+      "label": "",
+      "type": "text",
+      "name": "addNome",
+      "model": {"val": "", "err": ""},
+      "ref": ""
+    },
+    "editarSelectNome": {
+      "label": "Disciplinas cadastradas",
+      "type": "select",
+      "name": "nome",
+      "placeholder": "Selecione uma opção",
+      "list": [],
+      "model": {"val": "", "err": ""}
+    },
+    "editarNome": {
+      "label": "Novo Nome",
+      "type": "text",
+      "name": "editarNome",
+      "model": {"val": "", "err": ""}
+    }
+  }
+}
