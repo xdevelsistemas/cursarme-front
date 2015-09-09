@@ -18,7 +18,6 @@ angular.module('app',[
     'app.controllers',
     'gridshore.c3js.chart',
     'ngProgress'
-
 ])
     .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
