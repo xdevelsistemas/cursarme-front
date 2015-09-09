@@ -1,15 +1,5 @@
 {
   "template": {
-    "nome": {
-      "label": "Nome",
-      "type": "select",
-      "name": "nome",
-      "placeholder": "Selecione uma opção",
-      "list": [
-        {"id": "0", "text": "Cadastrar Novo", "label": "Digite o Nome da disciplina", "ref": "nome"}
-      ],
-      "model": {"val": "", "err": ""}
-    },
     "addNome": {
       "label": "",
       "type": "text",
