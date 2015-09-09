@@ -1,11 +1,11 @@
 {
   "template": {
     "addNome": {
-      "label": "",
+      "label": "Digite o Nome da disciplina",
       "type": "text",
       "name": "addNome",
       "model": {"val": "", "err": ""},
-      "ref": ""
+      "ref": "nome"
     },
     "editarSelectNome": {
       "label": "Disciplinas cadastradas",

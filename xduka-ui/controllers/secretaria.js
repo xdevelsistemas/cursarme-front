@@ -294,11 +294,11 @@ function postDadosTurmas(req, res) {
 function postSaveDisciplinas(req, res) {
     var dadosSent = req.body;
 
-    var result = {"list": dadosSent.model.nome.list.slice(0, dadosSent.model.nome.list.length-1)};
+    var result = {"list": dadosSent.tableNome.list};
 
     // Todo enviar dados para p backend | disciplinas adicionadas/editadas
 
-    res.json({"success": true, "model": dadosSent.model});
+    res.json({"success": true, "tableNome": dadosSent.tableNome});
 }
 
 function postSaveConfig(req, res) {
