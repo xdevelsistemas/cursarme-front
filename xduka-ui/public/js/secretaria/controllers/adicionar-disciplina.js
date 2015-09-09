@@ -36,11 +36,12 @@
                 .then(function(data) {
                     vm._model = data.template;
 
-                    vm._bkp = $.extend(true, {}, vm._model);
                     vm.tableNome.list = data.dadosAddDisciplina;
                     for(var i = 0; i < vm.tableNome.list.length; i++){
                         vm.tableNome.list[i].bbtn.list[0].click = tableClick;
                     }
+
+                    vm._bkp = $.extend(true, {}, vm.tableNome);
                 })
                 .catch(function(error) {
                     // TOdo tratar error
@@ -51,10 +52,11 @@
             function alteraEditDisc() {
                 //todo
                 if(vm._model.editarNome.model.val != ''){
-                    if(vm._model.editarNome.model.val != vm.tableNome.list[vm.tableNome.list.indexOf(vm.editingObj)].text) {
-                        vm.tableNome.list[vm.tableNome.list.indexOf(vm.editingObj)].text = vm._model.editarNome.model.val;
+                    if(vm._model.editarNome.model.val != vm.tableNome.list[vm.tableNome.list.indexOf(vm.editingObj)].anome) {
+                        vm.tableNome.list[vm.tableNome.list.indexOf(vm.editingObj)].anome = vm._model.editarNome.model.val;
                         $('#modalEditDisc').modal('toggle');
                         limpaCamposModalEdit();
+                        vm.editingObj = {};
                         vm.editing = true;
 
                     } else {
@@ -65,16 +67,12 @@
                 }
             }
 
-            function cadastrarNovo(item,model) {
-                if (model=='0'){
-                    vm._model.addNome.label = item.label;
-                    vm._model.addNome.ref = item.ref;
-                    $('#modalCadastrarNovo').modal('show');
-                }
+            function cadastrarNovo() {
+                $('#modalCadastrarNovo').modal('show');
             }
 
             function cancelar(tmp) {
-                vm._model = $.extend(true,{}, tmp);
+                vm.tableNome = $.extend(true,{}, tmp);
                 vm.editing = false;
                 vm.editingObj = {};
                 vm.editingModal = false;
@@ -88,14 +86,20 @@
 
             function modalSalvar() {
                 if(vm._model.addNome.model.val.length){
-                    var ultimoElem = vm._model.nome.list.pop(vm._model.nome.list.length-1);
-
-                    vm._model.nome.list.unshift({
-                        id: "disciplina"+new Date().getTime(),
-                        text: vm._model.addNome.model.val
+                    vm.tableNome.list.unshift({
+                        "anome": vm._model.addNome.model.val,
+                        "bbtn": {
+                            "btn": true,
+                            "list": [{
+                                "text": "",
+                                "entypo": "entypo-pencil",
+                                "class": "btn btn-white",
+                                "title": "Editar",
+                                "click": tableClick
+                            }]
+                        }
                     });
-                    vm._model.nome.list.sort(sortObject);
-                    vm._model.nome.list.push(ultimoElem);
+                    vm.tableNome.list.sort(sortObject);
 
                     vm._model.addNome.model.val = '';
                     vm._model.addNome.model.err = '';
@@ -107,9 +111,9 @@
             }
 
             function sortObject(a,b) {
-                return a.text.toLowerCase() < b.text.toLowerCase() ?
+                return a.anome.toLowerCase() < b.anome.toLowerCase() ?
                     -1 :
-                    a.text.toLowerCase() > b.text.toLowerCase() ?
+                    a.anome.toLowerCase() > b.anome.toLowerCase() ?
                         1 :
                         0;
             }
@@ -126,15 +130,14 @@
 
             function salvar() {
                 var saveDisciplinasPromise = $resource('/api/secretaria/save-dados-disciplinas').save({}, {
-                    "model": vm._model
+                    "tableNome": vm.tableNome
                 }).$promise;
 
                 saveDisciplinasPromise
                     .then(function(data) {
                         if (data.success) {
                             // TOdo mostrar uma msg de sucesso
-                            cancelar(data.model);
-                            vm._model.nome.model.val = "";
+                            cancelar(data.tableNome);
                         }
                     })
                     .catch(function(error) {
@@ -150,6 +153,8 @@
 
             function tableClick(args, line) {
                 vm._model.editarNome.model.val = line.anome;
+                vm.editingObj = line;
+
                 $('#modalEditDisc').modal({
                     backdrop: 'static',
                     keyboard: false
