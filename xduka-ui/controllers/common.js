@@ -4,7 +4,7 @@ var fs = require('fs'),
     request = require("request"),
     headerFooter = require('../mockup/xduka-json/common/templateReport.json');
 
-module.exports = function() {
+    module.exports = function() {
     var controller = {};
 
     controller.showTemplateHeaderFooter = showTemplateHeaderFooter;

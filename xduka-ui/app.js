@@ -11,6 +11,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var compression = require('compression');
 var app = express();
+var http = require('http');
 
 var RedisStore = require('connect-redis')(session);
 
@@ -78,6 +79,8 @@ require('./routes/financeiro.js')(app, passport);
 require('./routes/resetpassword.js')(app, passport);
 require('./routes/secretaria.js')(app, passport);
 require('./routes/financeiro.js')(app, passport);
+
+
 
 /// catch 404 and forward to error handler
 if (app.get('env') === 'development') {
