@@ -11,6 +11,8 @@
             //VARIÁVEIS COMUNS
             breadCrumb.title = 'Adicionar Curso';
             vm._model = {};
+            vm.editing = false;
+            vm.objEditing = {};
             vm.tableCriterios = {
                 class: "table table-striped table-hover table-bordered",
                 head: ["Critério", "Obs",""],
@@ -25,12 +27,46 @@
                     }]
                 }
             };
+            vm.tableCursos = {
+                id: 'tabelaCursos',
+                class: 'table table-striped table-hover table-bordered',
+                dataTable: {
+                    "ordering": false
+                },
+                head: ['Curso', 'Código', 'Tipo', 'Área', 'Turno', 'Vagas', 'Carga Horária', 'Período', ''],
+                list: [
+                    {
+                        "acurso": "Informárica na Educação",
+                        "bcodigo": "1231",
+                        "ctipo": "Mestrado em Educação",
+                        "darea": "Exatas",
+                        "eturno": "Matutino",
+                        "fvagas": "20",
+                        "gcarga": "30 Horas",
+                        "hperiodo": "Único",
+                        "ibtn": {
+                            btn: true,
+                            list: [
+                                {
+                                    text: '',
+                                    class: 'btn btn-white',
+                                    title: 'Editar',
+                                    click: editar,
+                                    entypo: 'entypo-pencil'
+                                }
+                            ]
+                        }
+                    }
+                ]
+            };
 
             //VARIÁVEIS TIPO FUNÇÃO
             vm.adicionarCriterio = adicionarCriterio;
             vm.adicionarCurso = adicionarCurso;
+            vm.cancelar = cancelar;
             vm.changeArea = changeArea;
             vm.changeTipo = changeTipo;
+            vm.editar = editar;
             vm.fecharCriterios = fecharCriterios;
             vm.limpar = limpar;
             vm.modalCriterios = modalCriterios;
@@ -69,7 +105,13 @@
             }
 
             function adicionarCurso() {
-                //todo post _model e validações
+                limpar();
+                vm.editing = true;
+            }
+
+            function cancelar() {
+                limpar();
+                vm.editing = false;
             }
 
             function changeArea(item, model) {
@@ -98,6 +140,19 @@
                 vm._model.turno.model.val = "";
             }
 
+            function editar(args, obj) {
+                vm.objEditing = obj;
+                vm._model.curso.model.val = obj.acurso;
+                vm._model.codigo.model.val = obj.bcodigo;
+                vm._model.tipo.model.val = obj.ctipo;
+                vm._model.area.model.val = obj.darea;
+                vm._model.turno.model.val = obj.eturno;
+                vm._model.vagasTurma.model.val = obj.fvagas;
+                vm._model.cargaHoraria.model.val = obj.gcarga;
+                vm._model.periodo.model.val = obj.hperiodo;
+                vm.editing = true;
+            }
+
             function fecharCriterios() {
                 vm._model.modalCriterio.model.val = '';
                 vm._model.modalCriterio.model.err = '';
@@ -112,8 +167,6 @@
                 vm._model.turno.model.val = '';
                 vm._model.vagasTurma.model.val = '';
                 vm._model.cargaHoraria.model.val = '';
-                vm._model.nome.model.val = '';
-                vm._model.codigo.model.val = '';
                 vm._model.habilitacao.model.val = '';
                 vm._model.autorizacao.model.val = '';
                 vm._model.reconhecimento.model.val = '';
