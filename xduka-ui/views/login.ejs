@@ -75,7 +75,7 @@
                                    autocomplete="off"
                                    data-validate="required"
                                    data-message-required="Este é um campo obrigatório."
-                                   data-message-minlength="Digite pelo menos 8 caracteres."/>
+                                   data-message-minlength="Digite pelo menos 8 caracteres." autofocus="autofocus"/>
                         </div>
 
                     </div>
@@ -196,6 +196,9 @@
         $(".login-form").css({
             top: 0, opacity: 1});
         $(".login-form .form-group").css({opacity: 1});
+    });
+    $(Document).ready(function(){
+        $('#username').focus()
     });
 </script>
 
