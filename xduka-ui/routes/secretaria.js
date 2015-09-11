@@ -85,13 +85,21 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/save-dados-disciplinas')
         .post(controller.putSaveDisciplinas);
 
-    //save-dados-disciplinas
+    //
     app.route('/api/secretaria/save-frequencia-alunos')
         .post(controller.putSaveFreqAlunos);
 
-    //save-dados-disciplinas
+    //
     app.route('/api/secretaria/save-novo-conteudo')
         .post(controller.putSaveNovoConteudo);
+
+    //
+    app.route('/api/secretaria/save-edit-conteudo')
+        .post(controller.putSaveEditConteudo);
+
+    //
+    app.route('/api/secretaria/remove-conteudo')
+        .post(controller.putRemoveConteudo);
 
     return app;
 };

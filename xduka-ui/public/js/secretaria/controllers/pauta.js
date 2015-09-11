@@ -229,14 +229,37 @@
             }
 
             function removeConteudo(args,line) {
-                vm.tableConteudoAdicionado.list.splice(vm.tableConteudoAdicionado.list.indexOf(line),1);
-                //vm.tableConteudoAdicionado.list.splice(pos,1)
+                vm.editingPos = vm.tableConteudoAdicionado.list.indexOf(line);
+                var removeConteudoPromise = $resource('/api/secretaria/remove-conteudo').save({}, {
+                    "conteudo": line, "editingPos": vm.editingPos
+                }).$promise;
+
+                removeConteudoPromise
+                    .then(function(data) {
+                        vm.tableConteudoAdicionado = data.tableConteudoAdicionado;
+                    })
+                    .catch(function(error) {
+                        // TOdo tratar error
+                    });
             }
 
             function saveEditConteudo() {
-                vm.tableConteudoAdicionado.list[vm.editingPos].adata.int = new Date(vm._model.addConteudoData.model.val).getTime();
-                vm.tableConteudoAdicionado.list[vm.editingPos].btitulo = vm._model.addConteudoTitulo.model.val;
-                vm.tableConteudoAdicionado.list[vm.editingPos].cconteudo = vm._model.addConteudoTArea.model.val;
+                var objConteudoEdit = {
+                    "adata": {"int": new Date(vm._model.addConteudoData.model.val).getTime()},
+                    "btitulo": vm._model.addConteudoTitulo.model.val,
+                    "cconteudo": vm._model.addConteudoTArea.model.val
+                };
+                var saveEditConteudoPromise = $resource('/api/secretaria/save-edit-conteudo').save({}, {
+                    "editingPos": vm.editingPos, "objConteudoEdit": objConteudoEdit
+                }).$promise;
+
+                saveEditConteudoPromise
+                    .then(function(data) {
+                        $.extend(true, vm.tableConteudoAdicionado, data.tableConteudoAdicionado);
+                    })
+                    .catch(function(error) {
+                        // TOdo tratar error
+                    });
                 vm.cancelEditConteudo();
                 $('#modalEditConteudo').modal('toggle');
             }
@@ -259,7 +282,11 @@
                             vm.tableFreqFixa = data.table.tableFreqFixa;
                             vm.tableFreqDatasComp = data.table.tableFreqDatasComp;
                             vm.tableFreqDatasSimp = data.table.tableFreqDatasSimp;
+
                             vm.tableConteudoAdicionado = data.table.tableConteudoAdicionado;
+                            vm.tableConteudoAdicionado.list[vm.tableConteudoAdicionado.list.length-1].dbtn.list[0].click = editConteudo;
+                            vm.tableConteudoAdicionado.list[vm.tableConteudoAdicionado.list.length-1].dbtn.list[1].click = removeConteudo;
+
                             //
                             vm.tableFreqDatasComp.head = geraDataTxt(data.table.tableFreqDatasComp.head);
                             vm.tableFreqDatasSimp.head = geraDataTxt(data.table.tableFreqDatasSimp.head);
@@ -287,13 +314,11 @@
                         btn: true,
                         list: [
                             {
-                                click: editConteudo,
                                 title: 'Editar',
                                 entypo: 'entypo-pencil',
                                 class: 'btn btn-white'
                             },
                             {
-                                click: removeConteudo,
                                 title: 'Remover',
                                 entypo: 'entypo-cancel',
                                 class: 'btn btn-white'
@@ -306,11 +331,13 @@
                 newContent.btitulo = vm._model.addConteudoTitulo.model.val;
                 newContent.cconteudo = vm._model.addConteudoTArea.model.val;
 
-                var saveFreqPromise = $resource('/api/secretaria/save-novo-conteudo').save({}, {"newContent": newContent}).$promise;
+                var novoConteudoPromise = $resource('/api/secretaria/save-novo-conteudo').save({}, {"newContent": newContent}).$promise;
 
-                saveFreqPromise
+                novoConteudoPromise
                     .then(function(data) {
                         vm.tableConteudoAdicionado = data.tableConteudoAdicionado;
+                        vm.tableConteudoAdicionado.list[vm.tableConteudoAdicionado.list.length-1].dbtn.list[0].click = editConteudo;
+                        vm.tableConteudoAdicionado.list[vm.tableConteudoAdicionado.list.length-1].dbtn.list[1].click = removeConteudo;
                     })
                     .catch(function(error) {
                         // TOdo tratar error
@@ -318,7 +345,6 @@
 
                 //Clear form
                 cancelEditConteudo();
-
             }
 
             function visualizarFreq() {

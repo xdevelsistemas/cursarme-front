@@ -44,8 +44,10 @@ module.exports = function() {
     controller.putSaveDisciplinas = postSaveDisciplinas;
     controller.putSaveConfig = postSaveConfig;
     controller.putSaveFreqAlunos = postSaveFreqAlunos;
+    controller.putSaveEditConteudo = postSaveEditConteudo;
     controller.putSaveNovoConteudo = postSaveNovoConteudo;
     controller.putEnviarCircular = postEnviarCircular;
+    controller.putRemoveConteudo = postRemoveConteudo;
 
     return controller;
 };
@@ -523,10 +525,26 @@ function postSaveFreqAlunos(req, res) {
     }
 }
 
+function postSaveEditConteudo(req, res) {
+    var dataSent = req.body;
+
+    extend(true, dadosTablesPauta.tableConteudoAdicionado.list[dataSent.editingPos], dataSent.objConteudoEdit);
+
+    res.json({"success": true, "tableConteudoAdicionado": dadosTablesPauta.tableConteudoAdicionado});
+}
+
 function postSaveNovoConteudo(req, res) {
     var dataSent = req.body;
 
     dadosTablesPauta.tableConteudoAdicionado.list.push(dataSent.newContent);
+
+    res.json({"success": true, "tableConteudoAdicionado": dadosTablesPauta.tableConteudoAdicionado, "newContent": dataSent.newContent});
+}
+
+function postRemoveConteudo(req, res) {
+    var dataSent = req.body;
+
+    dadosTablesPauta.tableConteudoAdicionado.list.splice(dataSent.editingPos, 1);
 
     res.json({"success": true, "tableConteudoAdicionado": dadosTablesPauta.tableConteudoAdicionado});
 }
