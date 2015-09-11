@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('pauta', ['$scope', '$resource', 'breadCrumb', '$timeout', function($scope, $resource, breadCrumb, $timeout){
+        .controller('pauta', ['$scope', '$resource', 'breadCrumb', '$timeout','dataUser','modelStrings',
+            function($scope, $resource, breadCrumb, $timeout, dataUser, modelStrings){
 
             var vm = this,
                 dadosCursoPautaPromise = $resource('/api/secretaria/dados-curso-pauta').get().$promise,
@@ -12,21 +13,11 @@
 
             // VARIÁVEIS COMUNS
             //controles de dados
-            vm._alunos = [
-                {id: 1, nome: "João das Couves"},
-                {id: 2, nome: "Mariana"},
-                {id: 3, nome: "Maria"},
-                {id: 4, nome: "Abner"}
-            ];
+            vm._alunos = [];
             vm._bkp = {};
             vm._model = {};
-            vm._modelAlunos = {
-                //CHAVES == ID DO ALUNO
-                1: '',
-                2: '',
-                3: '',
-                4: ''
-            };
+            vm._modelAlunos = {};
+            vm.STR = modelStrings;
             //visualização na tela
             vm.disableDisciplina = true;
             vm.disableTables = false;
@@ -103,8 +94,8 @@
             templatePautaPromise
                 .then(function(data) {
                     vm._model = data.template;
+                    vm._model.professor.model.val = dataUser.getNameUser();
                     vm._model.addData.model.val = new Date();
-                    vm._model.addConteudoData.model.val = new Date();
 
                     //
                     dadosCursoPautaPromise
@@ -128,6 +119,7 @@
             }
 
             function addFreq() {
+                vm._model.addConteudoData.model.val = vm._model.addData.model.val;
                 $('#modalAddFreq').modal({
                     backdrop: 'static',
                     keyboard: false
@@ -166,11 +158,6 @@
 
                 dadosPautaPromise
                     .then(function(data) {
-                        // vm._aluno
-                        data.tableFreqFixa.list.forEach(function(obj) {
-                            vm._alunos.push(obj.baluno);
-                        });
-                        //
                         // Tabela de Frequência
                         vm.tableFreqFixa.list = data.tableFreqFixa.list;
                         vm.tableFreqFixa.head = data.tableFreqFixa.head;
@@ -184,33 +171,19 @@
                         // Tabelas de Notas
                         vm.tableNotas.list = data.tableNotas.list;
                         vm.tableNotas.head = data.tableNotas.head;
+
+                        // vm._aluno
+                        vm.tableNotas.list.forEach(function(obj) {
+                            vm._alunos.push({"id": obj.bmat,"nome": obj.caluno});
+                        });
                         //
                         // Tabela de Conteúdos Aplicados
                         vm.tableConteudoAdicionado.list = data.tableConteudoAdicionado.list;
                         vm.tableConteudoAdicionado.head = data.tableConteudoAdicionado.head;
 
                         for (var i = 0; i < vm.tableConteudoAdicionado.list.length; i++) {
-                            vm.tableConteudoAdicionado.list[i].adata = {
-                                date: true,
-                                int: new Date().getTime()
-                            };
-                            vm.tableConteudoAdicionado.list[i].dbtn = {
-                                btn: true,
-                                list: [
-                                    {
-                                        click: editConteudo,
-                                        title: 'Editar',
-                                        entypo: 'entypo-pencil',
-                                        class: 'btn btn-white'
-                                    },
-                                    {
-                                        click: removeConteudo,
-                                        title: 'Remover',
-                                        entypo: 'entypo-cancel',
-                                        class: 'btn btn-white'
-                                    }
-                                ]
-                            }
+                            vm.tableConteudoAdicionado.list[i].dbtn.list[0].click = editConteudo;
+                            vm.tableConteudoAdicionado.list[i].dbtn.list[1].click = removeConteudo;
                         }
                     })
                     .catch(function(error) {
@@ -263,16 +236,44 @@
 
             function saveFreq() {
                 // TOdo save dos dados de frequencia / `chamada`
+
                 console.log(vm._modelAlunos);
+
+                var saveFreqPromise = $resource('/api/secretaria/save-frequencia-alunos').save({}, {
+                    "model": vm._model,
+                    "STR": vm.STR,
+                    "freqAlunos": vm._modelAlunos,
+                    "tableNotas": vm.tableNotas,
+                    "tableFreqFixa": vm.tableFreqFixa,
+                    "tableFreqDatasComp": vm.tableFreqDatasComp,
+                    "tableFreqDatasSimp": vm.tableFreqDatasSimp,
+                    "tableConteudoAdicionado": vm.tableConteudoAdicionado
+                }).$promise;
+
+                saveFreqPromise
+                    .then(function(data) {
+                        if (data.success) {
+                            vm.tableNotas = data.table.tableNotas;
+                            vm.tableFreqFixa = data.table.tableFreqFixa;
+                            vm.tableFreqDatasComp = data.table.tableFreqDatasComp;
+                            vm.tableFreqDatasSimp = data.table.tableFreqDatasSimp;
+                            vm.tableConteudoAdicionado = data.table.tableConteudoAdicionado;
+                        } else {
+                            $.extend(true, vm._model, data.model);
+                        }
+                    })
+                    .catch(function(error) {
+                        // TOdo tratar error
+                    });
             }
 
             function saveNewConteudo() {
                 var newContent = {
-                    adata: {
+                    "adata": {
                         date: true
                     },
-                    btitulo: '',
-                    cconteudo: '',
+                    "btitulo": '',
+                    "cconteudo": '',
                     "dbtn": {
                         btn: true,
                         list: [

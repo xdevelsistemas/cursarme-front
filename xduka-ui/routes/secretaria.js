@@ -69,6 +69,10 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/templateConfig')
         .get(controller.showConfig);
 
+    //template-pauta
+    app.route('/api/secretaria/template-pauta')
+        .get(controller.showTemplatePauta);
+
     //save-configuracoes
     app.route('/api/secretaria/save-configuracoes')
         .post(controller.putSaveConfig);
@@ -77,9 +81,9 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/save-dados-disciplinas')
         .post(controller.putSaveDisciplinas);
 
-    //template-pauta
-    app.route('/api/secretaria/template-pauta')
-        .get(controller.showTemplatePauta);
+    //save-dados-disciplinas
+    app.route('/api/secretaria/save-frequencia-alunos')
+        .post(controller.putSaveFreqAlunos);
 
     //
     app.route('/api/secretaria/save-enviar-circular')

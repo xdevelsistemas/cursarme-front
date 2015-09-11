@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('Main', ['$scope', '$resource', 'breadCrumb', 'modelStrings', 'modelMenu', '$location', 'alunoService', 'ngProgressFactory',
-        function($scope, $resource, breadCrumb, modelStrings, modelMenu, $location, alunoService, ngProgressFactory) {
+        .controller('Main', ['$scope', '$resource', 'breadCrumb', 'modelStrings', 'modelMenu', '$location', 'alunoService', 'ngProgressFactory', 'dataUser',
+        function($scope, $resource, breadCrumb, modelStrings, modelMenu, $location, alunoService, ngProgressFactory, dataUser) {
 
             /* PROGRESS BAR */
             $scope.progressbar = ngProgressFactory.createInstance();
@@ -32,6 +32,7 @@
                 then(
                 function (data) {
                     vm.user = data.usuario;
+                    dataUser.setNameUser(vm.user.name);
                     $scope.progressbar.complete();
                 })
                 .catch(

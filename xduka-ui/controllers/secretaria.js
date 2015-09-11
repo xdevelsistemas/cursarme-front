@@ -42,6 +42,7 @@ module.exports = function() {
     controller.putDadosTurmas = postDadosTurmas;
     controller.putSaveDisciplinas = postSaveDisciplinas;
     controller.putSaveConfig = postSaveConfig;
+    controller.putSaveFreqAlunos = postSaveFreqAlunos;
     controller.putEnviarCircular = postEnviarCircular;
 
     return controller;
@@ -274,13 +275,13 @@ function postDadosInscricao(req, res) {
 }
 
 function postDadosTurmas(req, res) {
-    var dadosSent = req.body;
+    var dataSent = req.body;
 
     var result = [];
 
-    for (var i = 0; i < dadosSent.list.length; i++) {
-        if (dadosSent.list[i].acao.model.val) {
-            result.push(dadosSent.list[i].area.turma.id)
+    for (var i = 0; i < dataSent.list.length; i++) {
+        if (dataSent.list[i].acao.model.val) {
+            result.push(dataSent.list[i].area.turma.id)
         }
     }
 
@@ -288,46 +289,46 @@ function postDadosTurmas(req, res) {
 
     console.log(result); // ???
 
-    res.json(dadosSent);
+    res.json(dataSent);
 }
 
 function postSaveDisciplinas(req, res) {
-    var dadosSent = req.body;
+    var dataSent = req.body;
 
-    var result = {"list": dadosSent.tableNome.list};
+    var result = {"list": dataSent.tableNome.list};
 
     // Todo enviar dados para p backend | disciplinas adicionadas/editadas
 
-    res.json({"success": true, "tableNome": dadosSent.tableNome});
+    res.json({"success": true, "tableNome": dataSent.tableNome});
 }
 
 function postSaveConfig(req, res) {
-    var dadosSent = req.body;
+    var dataSent = req.body;
 
-    if (verificaDadosEmpresa(dadosSent.model)) {
+    if (verificaDadosEmpresa(dataSent.model)) {
         var sendDados = {
-            "nomeUnidade": {"model": {"val": dadosSent.nomeUnidade.model.val}},
-            "nomeEmpresa": {"model": {"val": dadosSent.nomeEmpresa.model.val}},
-            "cnpj": {"model": {"val": dadosSent.cnpj.model.val}},
-            "endereco": {"model": {"val": dadosSent.endereco.model.val}},
-            "telefone": {"model": {"val": dadosSent.telefone.model.val}},
-            "site": {"model": {"val": dadosSent.site.model.val}},
-            "email": {"model": {"val": dadosSent.email.model.val}},
-            "tipoCurso": {"list": dadosSent.tipoCurso.list},
-            "tipoArea": {"list": dadosSent.tipoArea.list},
-            "turno": {"list": dadosSent.turno.list},
-            "tipoPeriodo": {"list": dadosSent.tipoPeriodo.list},
-            "modalidadeTurma": {"list": dadosSent.modalidadeTurma.list},
-            "horarioEntrada": {"list": dadosSent.horarioEntrada.list},
-            "horarioSaida": {"list": dadosSent.horarioSaida.list},
-            "tipoTelefone": {"list": dadosSent.tipoTelefone.list},
-            "tipoSituacao": {"list": dadosSent.tipoSituacao.list},
-            "secAutorizacao": {"model": {"val": dadosSent.secAutorizacao.model.val}},
-            "secFolha": {"model": {"val": dadosSent.secFolha.model.val}},
-            "secNumero": {"model": {"val": dadosSent.secNumero.model.val}},
-            "dirAutorizacao": {"model": {"val": dadosSent.dirAutorizacao.model.val}},
-            "dirFolha": {"model": {"val": dadosSent.dirFolha.model.val}},
-            "dirNumero": {"model": {"val": dadosSent.dirNumero.model.val}}
+            "nomeUnidade": {"model": {"val": dataSent.nomeUnidade.model.val}},
+            "nomeEmpresa": {"model": {"val": dataSent.nomeEmpresa.model.val}},
+            "cnpj": {"model": {"val": dataSent.cnpj.model.val}},
+            "endereco": {"model": {"val": dataSent.endereco.model.val}},
+            "telefone": {"model": {"val": dataSent.telefone.model.val}},
+            "site": {"model": {"val": dataSent.site.model.val}},
+            "email": {"model": {"val": dataSent.email.model.val}},
+            "tipoCurso": {"list": dataSent.tipoCurso.list},
+            "tipoArea": {"list": dataSent.tipoArea.list},
+            "turno": {"list": dataSent.turno.list},
+            "tipoPeriodo": {"list": dataSent.tipoPeriodo.list},
+            "modalidadeTurma": {"list": dataSent.modalidadeTurma.list},
+            "horarioEntrada": {"list": dataSent.horarioEntrada.list},
+            "horarioSaida": {"list": dataSent.horarioSaida.list},
+            "tipoTelefone": {"list": dataSent.tipoTelefone.list},
+            "tipoSituacao": {"list": dataSent.tipoSituacao.list},
+            "secAutorizacao": {"model": {"val": dataSent.secAutorizacao.model.val}},
+            "secFolha": {"model": {"val": dataSent.secFolha.model.val}},
+            "secNumero": {"model": {"val": dataSent.secNumero.model.val}},
+            "dirAutorizacao": {"model": {"val": dataSent.dirAutorizacao.model.val}},
+            "dirFolha": {"model": {"val": dataSent.dirFolha.model.val}},
+            "dirNumero": {"model": {"val": dataSent.dirNumero.model.val}}
         };
 
         /*  ENVIAR PARA BD O OBJETO SENDDADOS CRIADO SÓ COM OS DADOS A SEREM SALVOS   */
@@ -342,11 +343,66 @@ function postSaveConfig(req, res) {
         */
         /*  ===   */
 
-        res.json(extend(true, dadosSent, sendDados));
+        res.json(extend(true, dataSent, sendDados));
     } else {
-        validaDadosEmpresa(dadosSent);
+        validaDadosEmpresa(dataSent);
 
-        res.json(dadosSent);
+        res.json(dataSent);
+    }
+}
+
+function postSaveFreqAlunos(req, res) {
+    var dataSent = req.body;
+
+    if (verificaDadosAula(dataSent.model)) {
+
+        /**
+         * TOdo request para o backend / dados de frequências dos alunos
+         */
+
+        var i, j, alunos = [];
+
+        for (i = 0; i < dataSent.tableNotas.list.length; i++) {
+            if (dataSent.freqAlunos[dataSent.tableNotas.list[i].bmat]) {
+                dataSent.tableNotas.list[i].gfaltas = parseInt(dataSent.tableNotas.list[i].gfaltas);
+                dataSent.tableNotas.list[i].gfaltas += parseInt(dataSent.model.addAulas.model.val);
+                dataSent.tableNotas.list[i].gfaltas = dataSent.tableNotas.list[i].gfaltas.toString();
+                alunos.push(dataSent.tableNotas.list[i].caluno);
+            }
+        }
+
+        // TABLE NOTAS
+        for (i = 0; i < dataSent.tableFreqFixa.list.length; i++) {
+            if (dataSent.tableFreqFixa.list[i].baluno in alunos) {
+                dataSent.tableFreqFixa.list[i].cfaltas = parseInt(dataSent.tableFreqFixa.list[i].cfaltas);
+                dataSent.tableFreqFixa.list[i].cfaltas += parseInt(dataSent.model.addAulas.model.val);
+                dataSent.tableFreqFixa.list[i].cfaltas = dataSent.tableFreqFixa.list[i].cfaltas.toString();
+            }
+        }
+
+        // TABLE FREQUÊNCIA SIMPLES
+        for (i = 0; i < dataSent.tableFreqDatasSimp.list.length; i++) {
+            for (j = 0; dataSent.tableFreqDatasSimp.head.length-1; j++) {
+                dataSent.tableFreqDatasSimp.list[i][dataSent.tableFreqDatasSimp.head[j].toString()] =
+                    dataSent.tableFreqDatasSimp.list[i][dataSent.tableFreqDatasSimp.head[j+1].toString()];
+            }
+        }
+        dataSent.tableFreqDatasSimp.head.splice(0, 1);
+        dataSent.tableFreqDatasSimp.head.push(new Date(dataSent.model.addConteudoData.model.val).getTime());
+
+        // TABLE FREQUÊNCIA COMPLETA
+        dataSent.tableFreqDatasComp.head.push(new Date(dataSent.model.addConteudoData.model.val).getTime());
+        for (i = 0; i < dataSent.tableFreqDatasComp.list.length; i++) {
+            dataSent.tableFreqDatasComp.list[i][new Date(dataSent.model.addConteudoData.model.val).getTime().toString()] =;
+                in alunos ? "p" : "f";
+        }
+
+
+
+        res.json({"success": true, "table": dataSent});
+    } else {
+        validaDadosAula(dataSent);
+        res.json({"success": false, "model": dataSent.model});
     }
 }
 
@@ -424,4 +480,14 @@ function validaDadosEnviarCircular(obj) {
 function isEmail(email){
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
+}
+
+function validaDadosAula(obj) {
+    obj.model.addConteudoTitulo.model.err = !!obj.model.addConteudoTitulo.model.val ? "" : obj.STR.FIELD;
+    obj.model.addConteudoTArea.model.err = !!obj.model.addConteudoTArea.model.val ? "" : obj.STR.FIELD;
+}
+
+function verificaDadosAula(obj) {
+    return !obj.addConteudoTitulo.model.val && !obj.addConteudoTArea.model.val ||
+        !!obj.addConteudoTitulo.model.val && !!obj.addConteudoTArea.model.val
 }
