@@ -1,7 +1,7 @@
 <div class="col-md-12 configSecBorder" style="padding-top: 15px">
     <div class="row">
         <div class="col-md-12">
-            <xd-select data-params="pt._model.professor"></xd-select>
+            <xd-input data-params="pt._model.professor" data-disable="true"></xd-input>
         </div>
     </div>
     <div class="row">
@@ -55,12 +55,12 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th ng-repeat="title in pt.tableFreqFixa.head" ng-bind="title.text" ng-class="title.class"></th>
+                            <th ng-repeat="title in pt.tableFreqFixa.head track by $index" ng-bind="title.text" ng-class="title.class"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="line in pt.tableFreqFixa.list">
-                            <th ng-repeat="col in line" ng-bind="col"></th>
+                        <tr ng-repeat="line in pt.tableFreqFixa.list track by $index">
+                            <th ng-repeat="col in line track by $index" ng-bind="col"></th>
                         </tr>
                         </tbody>
                     </table>
@@ -73,8 +73,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="line in pt.tableFreqDatasSimp.list">
-                            <th ng-repeat="col in line" ng-bind="col"></th>
+                        <tr ng-repeat="line in pt.tableFreqDatasSimp.list track by $index">
+                            <th ng-repeat="col in line track by $index" ng-bind="col"></th>
                         </tr>
                         </tbody>
                     </table>
@@ -83,12 +83,12 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th ng-repeat="title in pt.tableFreqDatasComp.head" ng-bind="title" class="col-md-2"></th>
+                            <th ng-repeat="title in pt.tableFreqDatasComp.head track by $index" ng-bind="title" class="col-md-2"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="line in pt.tableFreqDatasComp.list">
-                            <th ng-repeat="col in line" ng-bind="col"></th>
+                        <tr ng-repeat="line in pt.tableFreqDatasComp.list track by $index">
+                            <th ng-repeat="col in line track by $index" ng-bind="col"></th>
                         </tr>
                         </tbody>
                     </table>
@@ -248,12 +248,12 @@
                             <thead>
                             <tr>
                                 <th>Aluno</th>
-                                <th ng-bind="pt._model.addData.model.val.toLocaleString().substr(0,11)+' Faltas'"></th>
+                                <th ng-bind="pt._model.addData.model.val.toLocaleDateString()+' Faltas'"></th>
                             </tr>
                             </thead>
                             <form>
                             <tbody>
-                            <tr ng-repeat="aluno in pt._alunos">
+                            <tr ng-repeat="aluno in pt._alunos track by $index">
                                 <th ng-bind="aluno.nome"></th>
                                 <th>
                                     <!-- TODO ADICIONAR NOVO MODEL -->

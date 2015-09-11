@@ -9,6 +9,7 @@ var urlDataBase = '',
     dadosEnviarCircular = require('../mockup/xduka-json/common/dadosEnviarCircular.json'),
     dadosGeraTurma = require('../mockup/xduka-json/common/dadosGeraTurma.json'),
     dadosPauta = require('../mockup/xduka-json/common/dadosPauta.json'),
+    dadosTablesPauta = require('../mockup/xduka-json/secretaria/dadosTablesPauta.json'),
     templateAddCurso = require('../mockup/xduka-json/secretaria/templateAddCurso.json'),
     templateAddDisciplina = require('../mockup/xduka-json/secretaria/templateAddDisciplina.json'),
     templateAluno = require('../mockup/xduka-json/secretaria/templateAluno.json'),
@@ -42,30 +43,85 @@ module.exports = function() {
     controller.putDadosTurmas = postDadosTurmas;
     controller.putSaveDisciplinas = postSaveDisciplinas;
     controller.putSaveConfig = postSaveConfig;
+    controller.putSaveFreqAlunos = postSaveFreqAlunos;
+    controller.putSaveEditConteudo = postSaveEditConteudo;
+    controller.putSaveNovoConteudo = postSaveNovoConteudo;
     controller.putEnviarCircular = postEnviarCircular;
+    controller.putRemoveConteudo = postRemoveConteudo;
 
     return controller;
 };
 
 function getDadosPauta(req, res) {
     var idDisc = req.params.id,
-        i, j,
         objPauta = pegaDadosPauta(dadosPauta.disciplinas, idDisc);
 
-    for(i = 0; i < objPauta.tableFreqFixa.list.length; i++) {
-        objPauta.tableFreqFixa.list[i].anum = objPauta.tableFreqFixa.list[i].anum.toString();
-        objPauta.tableFreqFixa.list[i].cfaltas = objPauta.tableFreqFixa.list[i].cfaltas.toString();
+    extend(true, dadosTablesPauta, objPauta);
+    res.json(geraDadosCompletoPauta(dadosTablesPauta));
+}
+
+function geraDadosCompletoPauta(obj) {
+    var i, j,
+        freqDatasSimp = {};
+
+    // Definindo o head de datas simples
+    obj.tableFreqDatasSimp.head = obj.tableFreqDatasComp.head.slice(obj.tableFreqDatasComp.head.length-3);
+    //
+    obj.tableNotas.list = [];
+    obj.tableFreqFixa.list = [];
+    obj.tableFreqDatasComp.list = [];
+    obj.tableFreqDatasSimp.list = [];
+    obj._alunos = [];
+
+    for (i = 0; i < obj.alunos.length; i++) {
+        freqDatasSimp = {};
+        //
+        //_alunos para o preenchimento da pauta de chamada
+        obj._alunos.push({
+            "id": obj.alunos[i].mat,
+            "nome": obj.alunos[i].nome
+        });
+        //
+        // Table Notas
+        obj.tableNotas.list.push({
+            "bmat": obj.alunos[i].mat,
+            "caluno": obj.alunos[i].nome,
+            "dsit": obj.alunos[i].sit,
+            "efaltas": obj.alunos[i].faltas,
+            "fnotaUm": obj.alunos[i].notaUm,
+            "gnotaDois": obj.alunos[i].notaDois,
+            "hmedia": obj.alunos[i].media
+        });
+
+        // Table Frequência Fixa
+        obj.tableFreqFixa.list.push({
+            "baluno": obj.alunos[i].nome,
+            "cfaltas": obj.alunos[i].faltas
+        });
+
+        // Table Frequência Datas Completas
+        obj.tableFreqDatasComp.list.push(obj.alunos[i].freqDataComp);
+
+        // Table Frequência Datas Simples
+        obj.tableFreqDatasSimp.head.forEach(function(el) {
+            freqDatasSimp[el.toString()] = obj.tableFreqDatasComp.list[i][el.toString()];
+        });
+        obj.tableFreqDatasSimp.list.push(freqDatasSimp);
     }
 
-    for(j = 0; j < objPauta.tableNotas.list.length; j++) {
-        objPauta.tableNotas.list[j].anum = objPauta.tableNotas.list[j].anum.toString();
-        objPauta.tableNotas.list[j].enotaUm = objPauta.tableNotas.list[j].enotaUm.toString();
-        objPauta.tableNotas.list[j].fnotaDois = objPauta.tableNotas.list[j].fnotaDois.toString();
-        objPauta.tableNotas.list[j].gfaltas = objPauta.tableNotas.list[j].gfaltas.toString();
-        objPauta.tableNotas.list[j].hmedia = objPauta.tableNotas.list[j].hmedia.toString();
+    // Transformando dados tipo inteiro para string
+    for(i = 0; i < obj.tableFreqFixa.list.length; i++) {
+        // Table Freq Fixa
+        obj.tableFreqFixa.list[i].cfaltas = obj.tableFreqFixa.list[i].cfaltas.toString();
+
+        // Table Notas
+        obj.tableNotas.list[i].efaltas = obj.tableNotas.list[i].efaltas.toString();
+        obj.tableNotas.list[i].fnotaUm = obj.tableNotas.list[i].fnotaUm.toString();
+        obj.tableNotas.list[i].gnotaDois = obj.tableNotas.list[i].gnotaDois.toString();
+        obj.tableNotas.list[i].hmedia = obj.tableNotas.list[i].hmedia.toString();
     }
 
-    res.json(objPauta);
+    return obj
 }
 
 function pegaDadosPauta(obj, id) {
@@ -274,13 +330,13 @@ function postDadosInscricao(req, res) {
 }
 
 function postDadosTurmas(req, res) {
-    var dadosSent = req.body;
+    var dataSent = req.body;
 
     var result = [];
 
-    for (var i = 0; i < dadosSent.list.length; i++) {
-        if (dadosSent.list[i].acao.model.val) {
-            result.push(dadosSent.list[i].area.turma.id)
+    for (var i = 0; i < dataSent.list.length; i++) {
+        if (dataSent.list[i].acao.model.val) {
+            result.push(dataSent.list[i].area.turma.id)
         }
     }
 
@@ -288,46 +344,46 @@ function postDadosTurmas(req, res) {
 
     console.log(result); // ???
 
-    res.json(dadosSent);
+    res.json(dataSent);
 }
 
 function postSaveDisciplinas(req, res) {
-    var dadosSent = req.body;
+    var dataSent = req.body;
 
-    var result = {"list": dadosSent.tableNome.list};
+    var result = {"list": dataSent.tableNome.list};
 
     // Todo enviar dados para p backend | disciplinas adicionadas/editadas
 
-    res.json({"success": true, "tableNome": dadosSent.tableNome});
+    res.json({"success": true, "tableNome": dataSent.tableNome});
 }
 
 function postSaveConfig(req, res) {
-    var dadosSent = req.body;
+    var dataSent = req.body;
 
-    if (verificaDadosEmpresa(dadosSent.model)) {
+    if (verificaDadosEmpresa(dataSent.model)) {
         var sendDados = {
-            "nomeUnidade": {"model": {"val": dadosSent.nomeUnidade.model.val}},
-            "nomeEmpresa": {"model": {"val": dadosSent.nomeEmpresa.model.val}},
-            "cnpj": {"model": {"val": dadosSent.cnpj.model.val}},
-            "endereco": {"model": {"val": dadosSent.endereco.model.val}},
-            "telefone": {"model": {"val": dadosSent.telefone.model.val}},
-            "site": {"model": {"val": dadosSent.site.model.val}},
-            "email": {"model": {"val": dadosSent.email.model.val}},
-            "tipoCurso": {"list": dadosSent.tipoCurso.list},
-            "tipoArea": {"list": dadosSent.tipoArea.list},
-            "turno": {"list": dadosSent.turno.list},
-            "tipoPeriodo": {"list": dadosSent.tipoPeriodo.list},
-            "modalidadeTurma": {"list": dadosSent.modalidadeTurma.list},
-            "horarioEntrada": {"list": dadosSent.horarioEntrada.list},
-            "horarioSaida": {"list": dadosSent.horarioSaida.list},
-            "tipoTelefone": {"list": dadosSent.tipoTelefone.list},
-            "tipoSituacao": {"list": dadosSent.tipoSituacao.list},
-            "secAutorizacao": {"model": {"val": dadosSent.secAutorizacao.model.val}},
-            "secFolha": {"model": {"val": dadosSent.secFolha.model.val}},
-            "secNumero": {"model": {"val": dadosSent.secNumero.model.val}},
-            "dirAutorizacao": {"model": {"val": dadosSent.dirAutorizacao.model.val}},
-            "dirFolha": {"model": {"val": dadosSent.dirFolha.model.val}},
-            "dirNumero": {"model": {"val": dadosSent.dirNumero.model.val}}
+            "nomeUnidade": {"model": {"val": dataSent.nomeUnidade.model.val}},
+            "nomeEmpresa": {"model": {"val": dataSent.nomeEmpresa.model.val}},
+            "cnpj": {"model": {"val": dataSent.cnpj.model.val}},
+            "endereco": {"model": {"val": dataSent.endereco.model.val}},
+            "telefone": {"model": {"val": dataSent.telefone.model.val}},
+            "site": {"model": {"val": dataSent.site.model.val}},
+            "email": {"model": {"val": dataSent.email.model.val}},
+            "tipoCurso": {"list": dataSent.tipoCurso.list},
+            "tipoArea": {"list": dataSent.tipoArea.list},
+            "turno": {"list": dataSent.turno.list},
+            "tipoPeriodo": {"list": dataSent.tipoPeriodo.list},
+            "modalidadeTurma": {"list": dataSent.modalidadeTurma.list},
+            "horarioEntrada": {"list": dataSent.horarioEntrada.list},
+            "horarioSaida": {"list": dataSent.horarioSaida.list},
+            "tipoTelefone": {"list": dataSent.tipoTelefone.list},
+            "tipoSituacao": {"list": dataSent.tipoSituacao.list},
+            "secAutorizacao": {"model": {"val": dataSent.secAutorizacao.model.val}},
+            "secFolha": {"model": {"val": dataSent.secFolha.model.val}},
+            "secNumero": {"model": {"val": dataSent.secNumero.model.val}},
+            "dirAutorizacao": {"model": {"val": dataSent.dirAutorizacao.model.val}},
+            "dirFolha": {"model": {"val": dataSent.dirFolha.model.val}},
+            "dirNumero": {"model": {"val": dataSent.dirNumero.model.val}}
         };
 
         /*  ENVIAR PARA BD O OBJETO SENDDADOS CRIADO SÓ COM OS DADOS A SEREM SALVOS   */
@@ -342,12 +398,155 @@ function postSaveConfig(req, res) {
         */
         /*  ===   */
 
-        res.json(extend(true, dadosSent, sendDados));
+        res.json(extend(true, dataSent, sendDados));
     } else {
-        validaDadosEmpresa(dadosSent);
+        validaDadosEmpresa(dataSent);
 
-        res.json(dadosSent);
+        res.json(dataSent);
     }
+}
+
+function postSaveFreqAlunos(req, res) {
+    var dataSent = req.body;
+
+    if (verificaDadosAula(dataSent.model)) {
+
+        /**
+         * TOdo request para o backend / dados de frequências dos alunos
+         */
+
+        var i, dadosAlunoPauta, freqDatasSimp = {};
+
+        for (i = 0; i < dadosTablesPauta.alunos.length; i++) {
+            if (dataSent.freqAlunos[dadosTablesPauta.alunos[i].mat]) {
+                dadosTablesPauta.alunos[i].faltas = parseInt(dadosTablesPauta.alunos[i].faltas) + parseInt(dataSent.model.addAulas.model.val);
+            }
+        }
+
+        dadosTablesPauta.tableFreqDatasComp.head.push(new Date(dataSent.model.addConteudoData.model.val).getTime());
+
+        if (!!dataSent.model.addConteudoTitulo.model.val && !!dataSent.model.addConteudoTArea.model.val) {
+            dadosTablesPauta.tableConteudoAdicionado.list.push({
+                "adata": {
+                    "date": true,
+                    "int": new Date(dataSent.model.addConteudoData.model.val).getTime()
+                },
+                "btitulo": dataSent.model.addConteudoTitulo.model.val,
+                "cconteudo": dataSent.model.addConteudoTArea.model.val,
+                "dbtn": {
+                    "btn": true,
+                    "list": [{
+                        "title": "Editar",
+                        "entypo": "entypo-pencil",
+                        "class": "btn btn-white"
+                    },
+                    {
+                        "title": "Remover",
+                        "entypo": "entypo-cancel",
+                        "class": "btn btn-white"
+                    }]
+                }
+            });
+        }
+
+        // Definindo o head de datas simples
+        dadosTablesPauta.tableFreqDatasSimp.head = dadosTablesPauta.tableFreqDatasComp.head.slice(dadosTablesPauta.tableFreqDatasComp.head.length-3);
+        //
+        dadosTablesPauta.tableNotas.list = [];
+        dadosTablesPauta.tableFreqFixa.list = [];
+        dadosTablesPauta.tableFreqDatasComp.list = [];
+        dadosTablesPauta.tableFreqDatasSimp.list = [];
+        dadosTablesPauta._alunos = [];
+
+        for (i = 0; i < dadosTablesPauta.alunos.length; i++) {
+            freqDatasSimp = {};
+            //
+            //_alunos para o preenchimento da pauta de chamada
+            dadosTablesPauta._alunos.push({
+                "id": dadosTablesPauta.alunos[i].mat,
+                "nome": dadosTablesPauta.alunos[i].nome
+            });
+            //
+            // Table Notas
+            dadosTablesPauta.tableNotas.list.push({
+                "bmat": dadosTablesPauta.alunos[i].mat,
+                "caluno": dadosTablesPauta.alunos[i].nome,
+                "dsit": dadosTablesPauta.alunos[i].sit,
+                "efaltas": dadosTablesPauta.alunos[i].faltas,
+                "fnotaUm": dadosTablesPauta.alunos[i].notaUm,
+                "gnotaDois": dadosTablesPauta.alunos[i].notaDois,
+                "hmedia": dadosTablesPauta.alunos[i].media
+            });
+
+            // Table Frequência Fixa
+            dadosTablesPauta.tableFreqFixa.list.push({
+                "baluno": dadosTablesPauta.alunos[i].nome,
+                "cfaltas": dadosTablesPauta.alunos[i].faltas
+            });
+
+            // Table Frequência Datas Completas
+
+            if (dataSent.freqAlunos[dadosTablesPauta.alunos[i].mat]) {
+                dadosTablesPauta.alunos[i].freqDataComp[dadosTablesPauta.tableFreqDatasComp.head[dadosTablesPauta.tableFreqDatasComp.head.length - 1].toString()] = "f";
+            } else {
+                dadosTablesPauta.alunos[i].freqDataComp[dadosTablesPauta.tableFreqDatasComp.head[dadosTablesPauta.tableFreqDatasComp.head.length - 1].toString()] = "p";
+            }
+            dadosTablesPauta.tableFreqDatasComp.list.push(dadosTablesPauta.alunos[i].freqDataComp);
+
+            // Table Frequência Datas Simples
+            dadosTablesPauta.tableFreqDatasSimp.head.forEach(function(el) {
+                freqDatasSimp[el.toString()] = dadosTablesPauta.tableFreqDatasComp.list[i][el.toString()];
+            });
+            dadosTablesPauta.tableFreqDatasSimp.list.push(freqDatasSimp);
+        }
+
+        // Transformando dados tipo inteiro para string
+        for(i = 0; i < dadosTablesPauta.tableFreqFixa.list.length; i++) {
+            // Table Freq Fixa
+            dadosTablesPauta.tableFreqFixa.list[i].cfaltas = dadosTablesPauta.tableFreqFixa.list[i].cfaltas.toString();
+
+            // Table Notas
+            dadosTablesPauta.tableNotas.list[i].efaltas = dadosTablesPauta.tableNotas.list[i].efaltas.toString();
+            dadosTablesPauta.tableNotas.list[i].fnotaUm = dadosTablesPauta.tableNotas.list[i].fnotaUm.toString();
+            dadosTablesPauta.tableNotas.list[i].gnotaDois = dadosTablesPauta.tableNotas.list[i].gnotaDois.toString();
+            dadosTablesPauta.tableNotas.list[i].hmedia = dadosTablesPauta.tableNotas.list[i].hmedia.toString();
+        }
+
+        //
+        dataSent.model.addConteudoTitulo.model.err = "";
+        dataSent.model.addConteudoTArea.model.err = "";
+        //
+        dadosAlunoPauta = extend(true, dataSent, dadosTablesPauta);
+
+        res.json({"success": true, "table": dadosAlunoPauta});
+    } else {
+        validaDadosAula(dataSent);
+        res.json({"success": false, "model": dataSent.model});
+    }
+}
+
+function postSaveEditConteudo(req, res) {
+    var dataSent = req.body;
+
+    extend(true, dadosTablesPauta.tableConteudoAdicionado.list[dataSent.editingPos], dataSent.objConteudoEdit);
+
+    res.json({"success": true, "tableConteudoAdicionado": dadosTablesPauta.tableConteudoAdicionado});
+}
+
+function postSaveNovoConteudo(req, res) {
+    var dataSent = req.body;
+
+    dadosTablesPauta.tableConteudoAdicionado.list.push(dataSent.newContent);
+
+    res.json({"success": true, "tableConteudoAdicionado": dadosTablesPauta.tableConteudoAdicionado, "newContent": dataSent.newContent});
+}
+
+function postRemoveConteudo(req, res) {
+    var dataSent = req.body;
+
+    dadosTablesPauta.tableConteudoAdicionado.list.splice(dataSent.editingPos, 1);
+
+    res.json({"success": true, "tableConteudoAdicionado": dadosTablesPauta.tableConteudoAdicionado});
 }
 
 function postEnviarCircular(req, res) {
@@ -424,4 +623,14 @@ function validaDadosEnviarCircular(obj) {
 function isEmail(email){
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
+}
+
+function validaDadosAula(obj) {
+    obj.model.addConteudoTitulo.model.err = !!obj.model.addConteudoTitulo.model.val ? "" : obj.STR.FIELD;
+    obj.model.addConteudoTArea.model.err = !!obj.model.addConteudoTArea.model.val ? "" : obj.STR.FIELD;
+}
+
+function verificaDadosAula(obj) {
+    return !obj.addConteudoTitulo.model.val && !obj.addConteudoTArea.model.val ||
+        !!obj.addConteudoTitulo.model.val && !!obj.addConteudoTArea.model.val
 }
