@@ -11,7 +11,7 @@
         .col-xs-2 {  width: 14.666666667%; height: auto; margin:0 1%; float: left; }
         .col-xs-3 {  width: 23%; height: auto; margin:0 1%; float: left; }
         .col-xs-4 {  width: 31.333333333%; height: auto; margin:0 1%; float: left; }
-        .col-xs-5 {  width: 39,666666667%; height: auto; margin:0 1%; float: left; }
+        .col-xs-5 {  width: 39.666666667%; height: auto; margin:0 1%; float: left; }
         .col-xs-6 {  width: 48%; height: auto; margin:0 1%; float: left; }
         .col-xs-7 {  width: 56.333333333%; height: auto; margin:0 1%; float: left; }
         .col-xs-8 {  width: 64.666666667%; height: auto; margin:0 1%; float: left; }
@@ -52,33 +52,48 @@
 </header>
 
 <section>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>PAUTA DE FREQUÊNCIA</td>
+                <td>TURMA - {{turma}}</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>CURSO</td>
+                <td>{{curso}}</td>
+            </tr>
+            <tr>
+                <td>DISCIPLINA</td>
+                <td>{{disciplina}}</td>
+            </tr>
+            <tr>
+                <td>DATA DA AULA</td>
+                <td>{{data_aula}}</td>
+            </tr>
+            <tr>
+                <td>PROFESSOR(A)</td>
+                <td>{{professor}}</td>
+            </tr>
+        </tbody>
+    </table>
 
-    <h1>Complementação Pedagógica - Turma  {{#each content.body}} {{turma}}{{/each}}</h1>
+
+
     <table class="table table-bordered">
         <thead>
         <tr>
-        {{#each; content.head }}
-        <th>{{text}}</th>
+            {{#each content.head }}
+            <th>{{text}}</th>
             {{/each}}
         </tr>
         </thead>
         <tbody>
-        {{#each; content.body}}
+        {{#each content.body}}
         <tr>
             <td>{{Nome}}</td>
-            <td>{{foto}}</td>
-            <td>{{c_id}}</td>
-            <td>{{cpf}}</td>
-            <td>{{tit_eleit}}</td>
-            <td>{{comp_eleit}}</td>
-            <td>{{cert_reserv}}</td>
-            <td>{{cert_cas}}</td>
-            <td>{{comp_res}}</td>
-            <td>{{dip_em}}</td>
-            <td>{{hist_em}}</td>
-            <td>{{dip_grad}}</td>
-            <td>{{hist_grad}}</td>
-            <td>{{cert_conclu}}</td>
+            <td></td>
         </tr>
         {{/each}}
         </tbody>
@@ -98,3 +113,4 @@
 </footer>
 </body>
 </html>
+

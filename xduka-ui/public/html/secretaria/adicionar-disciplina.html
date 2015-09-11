@@ -9,22 +9,22 @@
 <br/>
 <div class="row">
     <div class="col-md-12">
-        <xd-select data-params="ad._model.nome" data-change="ad.cadastrarNovo"></xd-select>
+        <xd-grid data-params="ad.tableNome"></xd-grid>
     </div>
 </div>
 <div class="row">
     <div class="col-md-6 pull-right">
         <div class="col-md-4 pull-right" data-ng-show="ad.editing">
-            <button class="btn btn-danger btn-icon icon-left btn-lg btn-block" ng-click="ad.cancelar()"
+            <button class="btn btn-danger btn-icon icon-left btn-lg btn-block" ng-click="ad.cancelar(ad._bkp)"
                     data-ng-disabled="">
                 Cancelar
                 <i class="icon entypo-cancel icon-right"></i></button>
         </div>
         <div class="col-md-4 pull-right">
-            <button class="btn btn-blue btn-icon icon-left btn-lg btn-block" ng-click="ad.modalEditarDisciplinas()"
+            <button class="btn btn-blue btn-icon icon-left btn-lg btn-block" ng-click="ad.cadastrarNovo()"
                     data-ng-disabled="">
-                Editar
-                <i class="icon entypo-pencil icon-right"></i></button>
+                Adicionar
+                <i class="icon entypo-plus icon-right"></i></button>
         </div>
         <div class="col-md-4 pull-right">
             <button class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="ad.salvar()" data-ng-disabled="!ad.editing">
@@ -55,7 +55,7 @@
                     <i class="entypo-plus"></i>
                 </button>
                 <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ad.modalSalvar()">
-                    Salvar
+                    Adicionar
                     <i class="entypo-check"></i>
                 </button>
             </div>
@@ -71,22 +71,16 @@
                 <h4 class="modal-title" id="myModalLabel1">Editar Disciplinas</h4>
             </div>
             <div class="modal-body">
-
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params="ad._model.editarSelectNome" data-change="ad.selectDiscModal"></xd-select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <xd-input data-params="ad._model.editarNome" data-disable="!ad.editingModal"></xd-input>
+                        <xd-input data-params="ad._model.editarNome"></xd-input>
                     </div>
                 </div>
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ad.salvarEditDisc()">
-                    Salvar
+                <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ad.alteraEditDisc()">
+                    Alterar
                     <i class="entypo-check"></i>
                 </button>
                 <button class="btn btn-danger btn-lg btn-icon icon-left" ng-click="ad.cancelEditar()">

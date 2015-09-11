@@ -73,16 +73,18 @@
         "err": ""
       }
     },
-    "nome": {
-      "label": "Nome",
+    "periodo": {
+      "label": "Período",
       "type": "select",
-      "name": "nome",
+      "name": "periodo",
       "placeholder": "Selecione...",
       "model": {
         "val": "",
         "err": ""
       },
-      "list": []
+      "list": [
+        {"id": 1, "text": "Único"}
+      ]
     },
     "codigo": {
       "label": "Código",
