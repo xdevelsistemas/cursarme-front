@@ -9,6 +9,7 @@ var urlDataBase = '',
     dadosEnviarCircular = require('../mockup/xduka-json/common/dadosEnviarCircular.json'),
     dadosGeraTurma = require('../mockup/xduka-json/common/dadosGeraTurma.json'),
     dadosPauta = require('../mockup/xduka-json/common/dadosPauta.json'),
+    dadosTablesPauta = require('../mockup/xduka-json/secretaria/dadosTablesPauta.json'),
     templateAddCurso = require('../mockup/xduka-json/secretaria/templateAddCurso.json'),
     templateAddDisciplina = require('../mockup/xduka-json/secretaria/templateAddDisciplina.json'),
     templateAluno = require('../mockup/xduka-json/secretaria/templateAluno.json'),
@@ -43,6 +44,7 @@ module.exports = function() {
     controller.putSaveDisciplinas = postSaveDisciplinas;
     controller.putSaveConfig = postSaveConfig;
     controller.putSaveFreqAlunos = postSaveFreqAlunos;
+    controller.putSaveNovoConteudo = postSaveNovoConteudo;
     controller.putEnviarCircular = postEnviarCircular;
 
     return controller;
@@ -50,59 +52,74 @@ module.exports = function() {
 
 function getDadosPauta(req, res) {
     var idDisc = req.params.id,
-        i, j,
-        objPauta = pegaDadosPauta(dadosPauta.disciplinas, idDisc),
+        objPauta = pegaDadosPauta(dadosPauta.disciplinas, idDisc);
+
+    extend(true, dadosTablesPauta, objPauta);
+    res.json(geraDadosCompletoPauta(dadosTablesPauta));
+}
+
+function geraDadosCompletoPauta(obj) {
+    var i, j,
         freqDatasSimp = {};
 
     // Definindo o head de datas simples
-    objPauta.tableFreqDatasSimp.head = objPauta.tableFreqDatasComp.head.slice(objPauta.tableFreqDatasComp.head.length-3);
+    obj.tableFreqDatasSimp.head = obj.tableFreqDatasComp.head.slice(obj.tableFreqDatasComp.head.length-3);
     //
-    objPauta.tableNotas.list = [];
-    objPauta.tableFreqFixa.list = [];
-    objPauta.tableFreqDatasComp.list = [];
-    objPauta.tableFreqDatasSimp.list = [];
+    obj.tableNotas.list = [];
+    obj.tableFreqFixa.list = [];
+    obj.tableFreqDatasComp.list = [];
+    obj.tableFreqDatasSimp.list = [];
+    obj._alunos = [];
 
-    for (i = 0; i < objPauta.alunos.length; i++) {
+    for (i = 0; i < obj.alunos.length; i++) {
+        freqDatasSimp = {};
+        //
+        //_alunos para o preenchimento da pauta de chamada
+        obj._alunos.push({
+            "id": obj.alunos[i].mat,
+            "nome": obj.alunos[i].nome
+        });
+        //
         // Table Notas
-        objPauta.tableNotas.list.push({
-            "bmat": objPauta.alunos[i].mat,
-            "caluno": objPauta.alunos[i].nome,
-            "dsit": objPauta.alunos[i].sit,
-            "efaltas": objPauta.alunos[i].faltas,
-            "fnotaUm": objPauta.alunos[i].notaUm,
-            "gnotaDois": objPauta.alunos[i].notaDois,
-            "hmedia": objPauta.alunos[i].media
+        obj.tableNotas.list.push({
+            "bmat": obj.alunos[i].mat,
+            "caluno": obj.alunos[i].nome,
+            "dsit": obj.alunos[i].sit,
+            "efaltas": obj.alunos[i].faltas,
+            "fnotaUm": obj.alunos[i].notaUm,
+            "gnotaDois": obj.alunos[i].notaDois,
+            "hmedia": obj.alunos[i].media
         });
 
         // Table Frequência Fixa
-        objPauta.tableFreqFixa.list.push({
-            "baluno": objPauta.alunos[i].nome,
-            "cfaltas": objPauta.alunos[i].faltas
+        obj.tableFreqFixa.list.push({
+            "baluno": obj.alunos[i].nome,
+            "cfaltas": obj.alunos[i].faltas
         });
 
         // Table Frequência Datas Completas
-        objPauta.tableFreqDatasComp.list.push(objPauta.alunos[i].freqDataComp);
+        obj.tableFreqDatasComp.list.push(obj.alunos[i].freqDataComp);
 
         // Table Frequência Datas Simples
-        objPauta.tableFreqDatasSimp.head.forEach(function(el) {
-            freqDatasSimp[el.toString()] = objPauta.tableFreqDatasComp.list[i][el.toString()];
+        obj.tableFreqDatasSimp.head.forEach(function(el) {
+            freqDatasSimp[el.toString()] = obj.tableFreqDatasComp.list[i][el.toString()];
         });
-        objPauta.tableFreqDatasSimp.list.push(freqDatasSimp);
+        obj.tableFreqDatasSimp.list.push(freqDatasSimp);
     }
 
     // Transformando dados tipo inteiro para string
-    for(i = 0; i < objPauta.tableFreqFixa.list.length; i++) {
+    for(i = 0; i < obj.tableFreqFixa.list.length; i++) {
         // Table Freq Fixa
-        objPauta.tableFreqFixa.list[i].cfaltas = objPauta.tableFreqFixa.list[i].cfaltas.toString();
+        obj.tableFreqFixa.list[i].cfaltas = obj.tableFreqFixa.list[i].cfaltas.toString();
 
         // Table Notas
-        objPauta.tableNotas.list[i].efaltas = objPauta.tableNotas.list[i].efaltas.toString();
-        objPauta.tableNotas.list[i].fnotaUm = objPauta.tableNotas.list[i].fnotaUm.toString();
-        objPauta.tableNotas.list[i].gnotaDois = objPauta.tableNotas.list[i].gnotaDois.toString();
-        objPauta.tableNotas.list[i].hmedia = objPauta.tableNotas.list[i].hmedia.toString();
+        obj.tableNotas.list[i].efaltas = obj.tableNotas.list[i].efaltas.toString();
+        obj.tableNotas.list[i].fnotaUm = obj.tableNotas.list[i].fnotaUm.toString();
+        obj.tableNotas.list[i].gnotaDois = obj.tableNotas.list[i].gnotaDois.toString();
+        obj.tableNotas.list[i].hmedia = obj.tableNotas.list[i].hmedia.toString();
     }
 
-    res.json(objPauta);
+    return obj
 }
 
 function pegaDadosPauta(obj, id) {
@@ -396,50 +413,122 @@ function postSaveFreqAlunos(req, res) {
          * TOdo request para o backend / dados de frequências dos alunos
          */
 
-        var i, j, alunos = [];
+        var i, dadosAlunoPauta, freqDatasSimp = {};
 
-        for (i = 0; i < dataSent.tableNotas.list.length; i++) {
-            if (dataSent.freqAlunos[dataSent.tableNotas.list[i].bmat]) {
-                dataSent.tableNotas.list[i].gfaltas = parseInt(dataSent.tableNotas.list[i].gfaltas);
-                dataSent.tableNotas.list[i].gfaltas += parseInt(dataSent.model.addAulas.model.val);
-                dataSent.tableNotas.list[i].gfaltas = dataSent.tableNotas.list[i].gfaltas.toString();
-                alunos.push(dataSent.tableNotas.list[i].caluno);
+        for (i = 0; i < dadosTablesPauta.alunos.length; i++) {
+            if (dataSent.freqAlunos[dadosTablesPauta.alunos[i].mat]) {
+                dadosTablesPauta.alunos[i].faltas = parseInt(dadosTablesPauta.alunos[i].faltas) + parseInt(dataSent.model.addAulas.model.val);
             }
         }
 
-        // TABLE NOTAS
-        for (i = 0; i < dataSent.tableFreqFixa.list.length; i++) {
-            if (dataSent.tableFreqFixa.list[i].baluno in alunos) {
-                dataSent.tableFreqFixa.list[i].cfaltas = parseInt(dataSent.tableFreqFixa.list[i].cfaltas);
-                dataSent.tableFreqFixa.list[i].cfaltas += parseInt(dataSent.model.addAulas.model.val);
-                dataSent.tableFreqFixa.list[i].cfaltas = dataSent.tableFreqFixa.list[i].cfaltas.toString();
+        dadosTablesPauta.tableFreqDatasComp.head.push(new Date(dataSent.model.addConteudoData.model.val).getTime());
+
+        if (!!dataSent.model.addConteudoTitulo.model.val && !!dataSent.model.addConteudoTArea.model.val) {
+            dadosTablesPauta.tableConteudoAdicionado.list.push({
+                "adata": {
+                    "date": true,
+                    "int": new Date(dataSent.model.addConteudoData.model.val).getTime()
+                },
+                "btitulo": dataSent.model.addConteudoTitulo.model.val,
+                "cconteudo": dataSent.model.addConteudoTArea.model.val,
+                "dbtn": {
+                    "btn": true,
+                    "list": [{
+                        "title": "Editar",
+                        "entypo": "entypo-pencil",
+                        "class": "btn btn-white"
+                    },
+                    {
+                        "title": "Remover",
+                        "entypo": "entypo-cancel",
+                        "class": "btn btn-white"
+                    }]
+                }
+            });
+        }
+
+        // Definindo o head de datas simples
+        dadosTablesPauta.tableFreqDatasSimp.head = dadosTablesPauta.tableFreqDatasComp.head.slice(dadosTablesPauta.tableFreqDatasComp.head.length-3);
+        //
+        dadosTablesPauta.tableNotas.list = [];
+        dadosTablesPauta.tableFreqFixa.list = [];
+        dadosTablesPauta.tableFreqDatasComp.list = [];
+        dadosTablesPauta.tableFreqDatasSimp.list = [];
+        dadosTablesPauta._alunos = [];
+
+        for (i = 0; i < dadosTablesPauta.alunos.length; i++) {
+            freqDatasSimp = {};
+            //
+            //_alunos para o preenchimento da pauta de chamada
+            dadosTablesPauta._alunos.push({
+                "id": dadosTablesPauta.alunos[i].mat,
+                "nome": dadosTablesPauta.alunos[i].nome
+            });
+            //
+            // Table Notas
+            dadosTablesPauta.tableNotas.list.push({
+                "bmat": dadosTablesPauta.alunos[i].mat,
+                "caluno": dadosTablesPauta.alunos[i].nome,
+                "dsit": dadosTablesPauta.alunos[i].sit,
+                "efaltas": dadosTablesPauta.alunos[i].faltas,
+                "fnotaUm": dadosTablesPauta.alunos[i].notaUm,
+                "gnotaDois": dadosTablesPauta.alunos[i].notaDois,
+                "hmedia": dadosTablesPauta.alunos[i].media
+            });
+
+            // Table Frequência Fixa
+            dadosTablesPauta.tableFreqFixa.list.push({
+                "baluno": dadosTablesPauta.alunos[i].nome,
+                "cfaltas": dadosTablesPauta.alunos[i].faltas
+            });
+
+            // Table Frequência Datas Completas
+
+            if (dataSent.freqAlunos[dadosTablesPauta.alunos[i].mat]) {
+                dadosTablesPauta.alunos[i].freqDataComp[dadosTablesPauta.tableFreqDatasComp.head[dadosTablesPauta.tableFreqDatasComp.head.length - 1].toString()] = "f";
+            } else {
+                dadosTablesPauta.alunos[i].freqDataComp[dadosTablesPauta.tableFreqDatasComp.head[dadosTablesPauta.tableFreqDatasComp.head.length - 1].toString()] = "p";
             }
+            dadosTablesPauta.tableFreqDatasComp.list.push(dadosTablesPauta.alunos[i].freqDataComp);
+
+            // Table Frequência Datas Simples
+            dadosTablesPauta.tableFreqDatasSimp.head.forEach(function(el) {
+                freqDatasSimp[el.toString()] = dadosTablesPauta.tableFreqDatasComp.list[i][el.toString()];
+            });
+            dadosTablesPauta.tableFreqDatasSimp.list.push(freqDatasSimp);
         }
 
-        // TABLE FREQUÊNCIA SIMPLES
-        for (i = 0; i < dataSent.tableFreqDatasSimp.list.length; i++) {
-            for (j = 0; dataSent.tableFreqDatasSimp.head.length-1; j++) {
-                dataSent.tableFreqDatasSimp.list[i][dataSent.tableFreqDatasSimp.head[j].toString()] =
-                    dataSent.tableFreqDatasSimp.list[i][dataSent.tableFreqDatasSimp.head[j+1].toString()];
-            }
-        }
-        dataSent.tableFreqDatasSimp.head.splice(0, 1);
-        dataSent.tableFreqDatasSimp.head.push(new Date(dataSent.model.addConteudoData.model.val).getTime());
+        // Transformando dados tipo inteiro para string
+        for(i = 0; i < dadosTablesPauta.tableFreqFixa.list.length; i++) {
+            // Table Freq Fixa
+            dadosTablesPauta.tableFreqFixa.list[i].cfaltas = dadosTablesPauta.tableFreqFixa.list[i].cfaltas.toString();
 
-        // TABLE FREQUÊNCIA COMPLETA
-        dataSent.tableFreqDatasComp.head.push(new Date(dataSent.model.addConteudoData.model.val).getTime());
-        for (i = 0; i < dataSent.tableFreqDatasComp.list.length; i++) {
-            dataSent.tableFreqDatasComp.list[i][new Date(dataSent.model.addConteudoData.model.val).getTime().toString()] =
-                alunos ? "p" : "f";
+            // Table Notas
+            dadosTablesPauta.tableNotas.list[i].efaltas = dadosTablesPauta.tableNotas.list[i].efaltas.toString();
+            dadosTablesPauta.tableNotas.list[i].fnotaUm = dadosTablesPauta.tableNotas.list[i].fnotaUm.toString();
+            dadosTablesPauta.tableNotas.list[i].gnotaDois = dadosTablesPauta.tableNotas.list[i].gnotaDois.toString();
+            dadosTablesPauta.tableNotas.list[i].hmedia = dadosTablesPauta.tableNotas.list[i].hmedia.toString();
         }
 
+        //
+        dataSent.model.addConteudoTitulo.model.err = "";
+        dataSent.model.addConteudoTArea.model.err = "";
+        //
+        dadosAlunoPauta = extend(true, dataSent, dadosTablesPauta);
 
-
-        res.json({"success": true, "table": dataSent});
+        res.json({"success": true, "table": dadosAlunoPauta});
     } else {
         validaDadosAula(dataSent);
         res.json({"success": false, "model": dataSent.model});
     }
+}
+
+function postSaveNovoConteudo(req, res) {
+    var dataSent = req.body;
+
+    dadosTablesPauta.tableConteudoAdicionado.list.push(dataSent.newContent);
+
+    res.json({"success": true, "tableConteudoAdicionado": dadosTablesPauta.tableConteudoAdicionado});
 }
 
 function postEnviarCircular(req, res) {

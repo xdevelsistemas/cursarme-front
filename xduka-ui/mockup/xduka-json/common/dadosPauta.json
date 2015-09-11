@@ -9,7 +9,7 @@
             "nome": "João das Couves",
             "sit": "Normal",
             "notaUm": 7.5,
-            "notaDois": 0,
+            "notaDois": 0.0,
             "faltas": 1,
             "media": 3.75,
             "freqDataComp": {
@@ -25,10 +25,10 @@
           },
           {
             "mat": "2014BSI321",
-            "nome": "Mariana",
+            "nome": "Mariana Ramos",
             "sit": "Normal",
             "notaUm": 5.3,
-            "notaDois": 0,
+            "notaDois": 0.0,
             "faltas": 1,
             "media": 2.65,
             "freqDataComp": {
@@ -44,12 +44,12 @@
           },
           {
             "mat": "2014BSI456",
-            "nome": "Maria",
+            "nome": "Santiago Silva",
             "sit": "Normal",
-            "notaUm": 10,
-            "notaDois": 0,
+            "notaUm": 10.0,
+            "notaDois": 0.0,
             "faltas": 1,
-            "media": 5,
+            "media": 5.0,
             "freqDataComp": {
               "1440471600000": "p",
               "1440558000000": "p",
@@ -63,12 +63,12 @@
           },
           {
             "mat": "2014BSI654",
-            "nome": "Abner",
+            "nome": "Abner Santos",
             "sit": "Normal",
             "notaUm": 9.5,
             "notaDois": 2.5,
             "faltas": 0,
-            "media": 6,
+            "media": 6.0,
             "freqDataComp": {
               "1440471600000": "p",
               "1440558000000": "p",
@@ -81,31 +81,6 @@
             }
           }
         ],
-        "tableNotas": {
-          "head": [
-            "Matrícula",
-            "Aluno",
-            "Situação",
-            "Faltas",
-            "Nota1",
-            "Nota2",
-            "Média"
-          ],
-          "list": []
-        },
-        "tableFreqFixa": {
-          "head": [
-            {
-              "text": "Aluno",
-              "class": "col-md-10"
-            },
-            {
-              "text": "Faltas",
-              "class": "col-xs-1"
-            }
-          ],
-          "list": []
-        },
         "tableFreqDatasComp": {
           "head": [
             1440471600000,
@@ -116,44 +91,10 @@
             1440903600000,
             1440990000000,
             1441076400000
-          ],
-          "list": []
-        },
-        "tableFreqDatasSimp": {
-          "head": [],
-          "list": []
+          ]
         },
         "tableConteudoAdicionado": {
-          "head": [
-            "Data",
-            "Título",
-            "Conteúdo",
-            ""
-          ],
           "list": [
-            {
-              "adata": {
-                "date": true,
-                "int": 1440212400000
-              },
-              "btitulo": "Conteúdo 01",
-              "cconteudo": "Émile Durkheim, Karl Marx e Marx Weber. Citações sobre Auguste Comte e sua importância.",
-              "dbtn": {
-                "btn": true,
-                "list": [
-                  {
-                    "title": "Editar",
-                    "entypo": "entypo-pencil",
-                    "class": "btn btn-white"
-                  },
-                  {
-                    "title": "Remover",
-                    "entypo": "entypo-cancel",
-                    "class": "btn btn-white"
-                  }
-                ]
-              }
-            },
             {
               "adata": {
                 "date": true,
@@ -187,10 +128,10 @@
         "alunos": [
           {
             "mat": "2014BSI123",
-            "nome": "José Maria",
+            "nome": "João das Couves",
             "sit": "Normal",
-            "notaUm": 10,
-            "notaDois": 5,
+            "notaUm": 10.0,
+            "notaDois": 5.0,
             "faltas": 0,
             "media": 7.5,
             "freqDataComp": {
@@ -206,11 +147,11 @@
           },
           {
             "mat": "2014BSI321",
-            "nome": "Maria José",
+            "nome": "Mariana Ramos",
             "sit": "Normal",
-            "notaUm": 5.3,
-            "notaDois": 0,
-            "faltas": 1,
+            "notaUm": 5.0,
+            "notaDois": 5.0,
+            "faltas": 2,
             "media": 2.65,
             "freqDataComp": {
               "1440471600000": "p",
@@ -218,38 +159,38 @@
               "1440644400000": "p",
               "1440730800000": "p",
               "1440817200000": "p",
-              "1440903600000": "p",
+              "1440903600000": "f",
               "1440990000000": "p",
               "1441076400000": "p"
             }
           },
           {
             "mat": "2014BSI456",
-            "nome": "Maria",
+            "nome": "Santiago Silva",
             "sit": "Normal",
-            "notaUm": 10,
-            "notaDois": 0,
-            "faltas": 1,
-            "media": 5,
+            "notaUm": 6.0,
+            "notaDois": 9.0,
+            "faltas": 4,
+            "media": 7.5,
             "freqDataComp": {
               "1440471600000": "p",
               "1440558000000": "p",
               "1440644400000": "f",
               "1440730800000": "p",
-              "1440817200000": "p",
-              "1440903600000": "p",
+              "1440817200000": "f",
+              "1440903600000": "f",
               "1440990000000": "p",
-              "1441076400000": "p"
+              "1441076400000": "f"
             }
           },
           {
             "mat": "2014BSI654",
-            "nome": "Abner",
+            "nome": "Abner Santos",
             "sit": "Normal",
             "notaUm": 9.5,
             "notaDois": 2.5,
             "faltas": 0,
-            "media": 6,
+            "media": 6.0,
             "freqDataComp": {
               "1440471600000": "p",
               "1440558000000": "p",
@@ -262,31 +203,6 @@
             }
           }
         ],
-        "tableNotas": {
-          "head": [
-            "Matrícula",
-            "Aluno",
-            "Situação",
-            "Faltas",
-            "Nota1",
-            "Nota2",
-            "Média"
-          ],
-          "list": []
-        },
-        "tableFreqFixa": {
-          "head": [
-            {
-              "text": "Aluno",
-              "class": "col-md-10"
-            },
-            {
-              "text": "Faltas",
-              "class": "col-xs-1"
-            }
-          ],
-          "list": []
-        },
         "tableFreqDatasComp": {
           "head": [
             1440471600000,
@@ -297,20 +213,9 @@
             1440903600000,
             1440990000000,
             1441076400000
-          ],
-          "list": []
-        },
-        "tableFreqDatasSimp": {
-          "head": [],
-          "list": []
+          ]
         },
         "tableConteudoAdicionado": {
-          "head": [
-            "Data",
-            "Título",
-            "Conteúdo",
-            ""
-          ],
           "list": [
             {
               "adata": {
@@ -319,29 +224,6 @@
               },
               "btitulo": "Conteúdo 01",
               "cconteudo": "Émile Durkheim, Karl Marx e Marx Weber. Citações sobre Auguste Comte e sua importância.",
-              "dbtn": {
-                "btn": true,
-                "list": [
-                  {
-                    "title": "Editar",
-                    "entypo": "entypo-pencil",
-                    "class": "btn btn-white"
-                  },
-                  {
-                    "title": "Remover",
-                    "entypo": "entypo-cancel",
-                    "class": "btn btn-white"
-                  }
-                ]
-              }
-            },
-            {
-              "adata": {
-                "date": true,
-                "int": 1440039600000
-              },
-              "btitulo": "Sequência de Fibonacci",
-              "cconteudo": "Essa sequência tem uma lei de formação simples: cada elemento, a partir do terceiro, é obtido somando-se os dois anteriores. Veja: 1+1=2, 2+1=3, 3+2=5 e assim por diante.",
               "dbtn": {
                 "btn": true,
                 "list": [

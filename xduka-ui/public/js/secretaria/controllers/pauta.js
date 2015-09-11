@@ -14,7 +14,6 @@
             // VARIÁVEIS COMUNS
             //controles de dados
             vm._alunos = [];
-            vm._bkp = {};
             vm._model = {};
             vm._modelAlunos = {};
             vm.STR = modelStrings;
@@ -119,15 +118,26 @@
             }
 
             function addFreq() {
-                vm._model.addConteudoData.model.val = vm._model.addData.model.val;
-                $('#modalAddFreq').modal({
-                    backdrop: 'static',
-                    keyboard: false
-                })
+                if (!!vm._model.addAulas.model.val && !!vm._model.addData.model.val) {
+                    vm._model.addAulas.model.err = "";
+                    vm._model.addData.model.err = "";
+                    vm._model.addConteudoData.model.val = vm._model.addData.model.val;
+                    //
+                    // Open-modal
+                    $('#modalAddFreq').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                } else {
+                    vm._model.addAulas.model.err = !!vm._model.addAulas.model.val ? "" : vm.STR.FIELD;
+                    vm._model.addData.model.err = !!vm._model.addAulas.model.val ? "" : vm.STR.FIELD;
+                }
             }
 
             function cancelEditConteudo() {
-                vm._model = $.extend(true,{},vm._bkp);
+                vm._model.addConteudoData.model.val = "";
+                vm._model.addConteudoTitulo.model.val = "";
+                vm._model.addConteudoTArea.model.val = "";
             }
 
             function changeCurso(item, model) {
@@ -173,9 +183,7 @@
                         vm.tableNotas.head = data.tableNotas.head;
 
                         // vm._aluno
-                        vm.tableNotas.list.forEach(function(obj) {
-                            vm._alunos.push({"id": obj.bmat,"nome": obj.caluno});
-                        });
+                        vm._alunos = data._alunos;
                         //
                         // Tabela de Conteúdos Aplicados
                         vm.tableConteudoAdicionado.list = data.tableConteudoAdicionado.list;
@@ -210,7 +218,6 @@
 
             function editConteudo(args,line){
                 // TOdo resource para save das dados
-                vm._bkp = $.extend(true,{},vm._model);
                 vm._model.addConteudoData.model.val = new Date(line.adata.int);
                 vm._model.addConteudoTitulo.model.val = line.btitulo;
                 vm._model.addConteudoTArea.model.val = line.cconteudo;
@@ -227,7 +234,7 @@
             }
 
             function saveEditConteudo() {
-                vm.tableConteudoAdicionado.list[vm.editingPos].adata.int = vm._model.addConteudoData.model.val.getTime();
+                vm.tableConteudoAdicionado.list[vm.editingPos].adata.int = new Date(vm._model.addConteudoData.model.val).getTime();
                 vm.tableConteudoAdicionado.list[vm.editingPos].btitulo = vm._model.addConteudoTitulo.model.val;
                 vm.tableConteudoAdicionado.list[vm.editingPos].cconteudo = vm._model.addConteudoTArea.model.val;
                 vm.cancelEditConteudo();
@@ -235,29 +242,31 @@
             }
 
             function saveFreq() {
-                // TOdo save dos dados de frequencia / `chamada`
-
-                console.log(vm._modelAlunos);
-
                 var saveFreqPromise = $resource('/api/secretaria/save-frequencia-alunos').save({}, {
                     "model": vm._model,
                     "STR": vm.STR,
-                    "freqAlunos": vm._modelAlunos,
-                    "tableNotas": vm.tableNotas,
-                    "tableFreqFixa": vm.tableFreqFixa,
-                    "tableFreqDatasComp": vm.tableFreqDatasComp,
-                    "tableFreqDatasSimp": vm.tableFreqDatasSimp,
-                    "tableConteudoAdicionado": vm.tableConteudoAdicionado
+                    "freqAlunos": vm._modelAlunos
                 }).$promise;
 
                 saveFreqPromise
                     .then(function(data) {
                         if (data.success) {
+                            //
+                            $.extend(true, vm._model, data.table.model);
+                            //
+                            vm._alunos = data.table._alunos;
                             vm.tableNotas = data.table.tableNotas;
                             vm.tableFreqFixa = data.table.tableFreqFixa;
                             vm.tableFreqDatasComp = data.table.tableFreqDatasComp;
                             vm.tableFreqDatasSimp = data.table.tableFreqDatasSimp;
                             vm.tableConteudoAdicionado = data.table.tableConteudoAdicionado;
+                            //
+                            vm.tableFreqDatasComp.head = geraDataTxt(data.table.tableFreqDatasComp.head);
+                            vm.tableFreqDatasSimp.head = geraDataTxt(data.table.tableFreqDatasSimp.head);
+                            //
+                            $('#modalAddFreq').modal('toggle');
+                            //
+                            limpaCamposModalFreq();
                         } else {
                             $.extend(true, vm._model, data.model);
                         }
@@ -293,21 +302,37 @@
 
                     }
                 };
-                newContent.adata.int = vm._model.addConteudoData.model.val.getTime();
+                newContent.adata.int = new Date(vm._model.addConteudoData.model.val).getTime();
                 newContent.btitulo = vm._model.addConteudoTitulo.model.val;
                 newContent.cconteudo = vm._model.addConteudoTArea.model.val;
 
-                vm.tableConteudoAdicionado.list.push(newContent);
+                var saveFreqPromise = $resource('/api/secretaria/save-novo-conteudo').save({}, {"newContent": newContent}).$promise;
+
+                saveFreqPromise
+                    .then(function(data) {
+                        vm.tableConteudoAdicionado = data.tableConteudoAdicionado;
+                    })
+                    .catch(function(error) {
+                        // TOdo tratar error
+                    });
 
                 //Clear form
-                vm._model.addConteudoData.model.val = '';
-                vm._model.addConteudoTitulo.model.val = '';
-                vm._model.addConteudoTArea.model.val = '';
+                cancelEditConteudo();
 
             }
 
             function visualizarFreq() {
                 vm.verTodos = !vm.verTodos;
+            }
+
+            function limpaCamposModalFreq() {
+                //
+                vm._model.addAulas.model.val = "";
+                vm._model.addData.model.val = "";
+                // Frequência
+                vm._modelAlunos = {};
+                //
+                cancelEditConteudo();
             }
         }])
 })();
