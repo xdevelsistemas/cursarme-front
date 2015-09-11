@@ -69,12 +69,14 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th ng-repeat="title in pt.tableFreqDatasSimp.head track by $index" ng-bind="title"></th>
+                            <th ng-repeat="title in pt.tableFreqDatasSimp.head track by $index" ng-bind="title" class="text-center"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="line in pt.tableFreqDatasSimp.list track by $index">
-                            <th ng-repeat="col in line track by $index" ng-bind="col"></th>
+                            <th ng-repeat="col in line track by $index" class="text-center">
+                                <p ng-class="col.class">{{col.value?col.text:''}}</p>
+                            </th>
                         </tr>
                         </tbody>
                     </table>
@@ -83,12 +85,14 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th ng-repeat="title in pt.tableFreqDatasComp.head track by $index" ng-bind="title" class="col-md-2"></th>
+                            <th ng-repeat="title in pt.tableFreqDatasComp.head track by $index" ng-bind="title" class="col-md-2 text-center"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="line in pt.tableFreqDatasComp.list track by $index">
-                            <th ng-repeat="col in line track by $index" ng-bind="col"></th>
+                            <th ng-repeat="col in line track by $index" class="text-center">
+                                <p ng-class="col.class" ng-bind="col.value?col.text:''"></p>
+                            </th>
                         </tr>
                         </tbody>
                     </table>
