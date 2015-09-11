@@ -130,7 +130,23 @@
     "type": "select",
     "name": "relatorio",
     "placeholder": "Selecione...",
-    "list": [],
+    "list": [
+      {
+        "id": "4",
+        "text": "Declaração de matrícula",
+        "value": "dec-matricula-aluno"
+      },
+      {
+        "id": "3",
+        "text": "Declaração de horario",
+        "value": "dec-horario-aluno"
+      },
+      {
+        "id": "5",
+        "text": "Declaração de frequência",
+        "value": "dec-frequencia-aluno"
+      }
+    ],
     "model": {
       "val": "",
       "err": ""

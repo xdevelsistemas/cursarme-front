@@ -87,12 +87,15 @@
                                 <xd-select data-params="al._model.cursoTurma"></xd-select>
                             </div>
                             <div class="col-md-4 padding1">
-                                <xd-select data-params="al._model.relatorio"></xd-select>
+                                <xd-select data-params="al._model.relatorio" data-change="al.loadRelatorio"></xd-select>
                             </div>
                             <div class="col-md-3 padding1 text-center">
                                 <br/>
-                                <button type="button" class="btn btn-white heightFix" title="Imprimir relatório selecionado"><i class="entypo-print"></i></button>
-                                <button type="button" class="btn btn-white heightFix" title="Adicionar"><i class="entypo-plus"></i></button>
+                                <button type="button" class="btn btn-default heightFix" title="Imprimir relatório selecionado"
+                                        ng-click="al.printRelatorio()" data-ng-disabled="!al._model.relatorio.model.val">
+                                    <i class="entypo-print"></i>
+                                </button>
+                                <button type="button" class="btn btn-default heightFix" title="Adicionar"><i class="entypo-plus"></i></button>
                             </div>
                         </div>
                     </xd-panel-collapse>
