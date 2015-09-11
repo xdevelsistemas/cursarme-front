@@ -3,66 +3,98 @@
     {
       "id": 111,
       "pauta": {
+        "alunos": [
+          {
+            "mat": "2014BSI123",
+            "nome": "João das Couves",
+            "sit": "Normal",
+            "notaUm": 7.5,
+            "notaDois": 0,
+            "faltas": 1,
+            "media": 3.75,
+            "freqDataComp": {
+              "1440471600000": "p",
+              "1440558000000": "p",
+              "1440644400000": "f",
+              "1440730800000": "p",
+              "1440817200000": "p",
+              "1440903600000": "p",
+              "1440990000000": "p",
+              "1441076400000": "p"
+            }
+          },
+          {
+            "mat": "2014BSI321",
+            "nome": "Mariana",
+            "sit": "Normal",
+            "notaUm": 5.3,
+            "notaDois": 0,
+            "faltas": 1,
+            "media": 2.65,
+            "freqDataComp": {
+              "1440471600000": "p",
+              "1440558000000": "f",
+              "1440644400000": "p",
+              "1440730800000": "p",
+              "1440817200000": "p",
+              "1440903600000": "p",
+              "1440990000000": "p",
+              "1441076400000": "p"
+            }
+          },
+          {
+            "mat": "2014BSI456",
+            "nome": "Maria",
+            "sit": "Normal",
+            "notaUm": 10,
+            "notaDois": 0,
+            "faltas": 1,
+            "media": 5,
+            "freqDataComp": {
+              "1440471600000": "p",
+              "1440558000000": "p",
+              "1440644400000": "f",
+              "1440730800000": "p",
+              "1440817200000": "p",
+              "1440903600000": "p",
+              "1440990000000": "p",
+              "1441076400000": "p"
+            }
+          },
+          {
+            "mat": "2014BSI654",
+            "nome": "Abner",
+            "sit": "Normal",
+            "notaUm": 9.5,
+            "notaDois": 2.5,
+            "faltas": 0,
+            "media": 6,
+            "freqDataComp": {
+              "1440471600000": "p",
+              "1440558000000": "p",
+              "1440644400000": "p",
+              "1440730800000": "p",
+              "1440817200000": "p",
+              "1440903600000": "p",
+              "1440990000000": "p",
+              "1441076400000": "p"
+            }
+          }
+        ],
         "tableNotas": {
           "head": [
-            "",
             "Matrícula",
             "Aluno",
             "Situação",
+            "Faltas",
             "Nota1",
             "Nota2",
-            "Faltas",
             "Média"
           ],
-          "list": [
-            {
-              "anum": 1,
-              "bmat": "2014BSI123",
-              "caluno": "João das Couves",
-              "dsit": "Normal",
-              "enotaUm": 7.5,
-              "fnotaDois": 0,
-              "gfaltas": 1,
-              "hmedia": 3.75
-            },
-            {
-              "anum": 2,
-              "bmat": "2014BSI321",
-              "caluno": "Mariana",
-              "dsit": "Normal",
-              "enotaUm": 5.3,
-              "fnotaDois": 0,
-              "gfaltas": 1,
-              "hmedia": 2.65
-            },
-            {
-              "anum": 3,
-              "bmat": "2014BSI456",
-              "caluno": "Maria",
-              "dsit": "Normal",
-              "enotaUm": 10,
-              "fnotaDois": 0,
-              "gfaltas": 1,
-              "hmedia": 5
-            },
-            {
-              "anum": 4,
-              "bmat": "2014BSI654",
-              "caluno": "Abner",
-              "dsit": "Normal",
-              "enotaUm": 9.5,
-              "fnotaDois": 2.5,
-              "gfaltas": 0,
-              "hmedia": 6
-            }
-          ]
+          "list": []
         },
         "tableFreqFixa": {
           "head": [
-            {
-              "text": "",
-              "class": "col-sx-1"
-            },
             {
               "text": "Aluno",
               "class": "col-md-10"
@@ -72,28 +104,7 @@
               "class": "col-xs-1"
             }
           ],
-          "list": [
-            {
-              "anum": 1,
-              "baluno": "João das Couves",
-              "cfaltas": 1
-            },
-            {
-              "anum": 2,
-              "baluno": "Mariana",
-              "cfaltas": 1
-            },
-            {
-              "anum": 3,
-              "baluno": "Maria",
-              "cfaltas": 1
-            },
-            {
-              "anum": 4,
-              "baluno": "Abner",
-              "cfaltas": 0
-            }
-          ]
+          "list": []
         },
         "tableFreqDatasComp": {
           "head": [
@@ -106,77 +117,11 @@
             1440990000000,
             1441076400000
           ],
-          "list": [
-            {
-              "ajoao": "p",
-              "bjoao": "p",
-              "cjoao": "f",
-              "djoao": "p",
-              "ejoao": "p",
-              "fjoao": "p",
-              "gjoao": "p",
-              "hjoao": "p"
-            },
-            {
-              "amariana": "p",
-              "bmariana": "f",
-              "cmariana": "p",
-              "dmariana": "p",
-              "emariana": "p",
-              "fmariana": "p",
-              "gmariana": "p",
-              "hmariana": "p"
-            },
-            {
-              "amaria": "p",
-              "bmaria": "p",
-              "cmaria": "f",
-              "dmaria": "p",
-              "emaria": "p",
-              "fmaria": "p",
-              "gmaria": "p",
-              "hmaria": "p"
-            },
-            {
-              "aabner": "p",
-              "babner": "p",
-              "cabner": "p",
-              "dabner": "p",
-              "eabner": "p",
-              "fabner": "p",
-              "gabner": "p",
-              "habner": "p"
-            }
-          ]
+          "list": []
         },
         "tableFreqDatasSimp": {
-          "head": [
-            1440730800000,
-            1440817200000,
-            1440903600000
-          ],
-          "list": [
-            {
-              "ajoao": "p",
-              "bjoao": "p",
-              "cjoao": "f"
-            },
-            {
-              "amariana": "p",
-              "bmariana": "f",
-              "cmariana": "p"
-            },
-            {
-              "amaria": "p",
-              "bmaria": "p",
-              "cmaria": "f"
-            },
-            {
-              "aabner": "p",
-              "babner": "p",
-              "cabner": "p"
-            }
-          ]
+          "head": [],
+          "list": []
         },
         "tableConteudoAdicionado": {
           "head": [
@@ -239,66 +184,98 @@
     {
       "id": 222,
       "pauta": {
+        "alunos": [
+          {
+            "mat": "2014BSI123",
+            "nome": "José Maria",
+            "sit": "Normal",
+            "notaUm": 10,
+            "notaDois": 5,
+            "faltas": 0,
+            "media": 7.5,
+            "freqDataComp": {
+              "1440471600000": "p",
+              "1440558000000": "p",
+              "1440644400000": "p",
+              "1440730800000": "p",
+              "1440817200000": "p",
+              "1440903600000": "p",
+              "1440990000000": "p",
+              "1441076400000": "p"
+            }
+          },
+          {
+            "mat": "2014BSI321",
+            "nome": "Maria José",
+            "sit": "Normal",
+            "notaUm": 5.3,
+            "notaDois": 0,
+            "faltas": 1,
+            "media": 2.65,
+            "freqDataComp": {
+              "1440471600000": "p",
+              "1440558000000": "f",
+              "1440644400000": "p",
+              "1440730800000": "p",
+              "1440817200000": "p",
+              "1440903600000": "p",
+              "1440990000000": "p",
+              "1441076400000": "p"
+            }
+          },
+          {
+            "mat": "2014BSI456",
+            "nome": "Maria",
+            "sit": "Normal",
+            "notaUm": 10,
+            "notaDois": 0,
+            "faltas": 1,
+            "media": 5,
+            "freqDataComp": {
+              "1440471600000": "p",
+              "1440558000000": "p",
+              "1440644400000": "f",
+              "1440730800000": "p",
+              "1440817200000": "p",
+              "1440903600000": "p",
+              "1440990000000": "p",
+              "1441076400000": "p"
+            }
+          },
+          {
+            "mat": "2014BSI654",
+            "nome": "Abner",
+            "sit": "Normal",
+            "notaUm": 9.5,
+            "notaDois": 2.5,
+            "faltas": 0,
+            "media": 6,
+            "freqDataComp": {
+              "1440471600000": "p",
+              "1440558000000": "p",
+              "1440644400000": "p",
+              "1440730800000": "p",
+              "1440817200000": "p",
+              "1440903600000": "p",
+              "1440990000000": "p",
+              "1441076400000": "p"
+            }
+          }
+        ],
         "tableNotas": {
           "head": [
-            "",
             "Matrícula",
             "Aluno",
             "Situação",
+            "Faltas",
             "Nota1",
             "Nota2",
-            "Faltas",
             "Média"
           ],
-          "list": [
-            {
-              "anum": 1,
-              "bmat": "2014BSI123",
-              "caluno": "Marcelo Ramos",
-              "dsit": "Normal",
-              "enotaUm": 10,
-              "fnotaDois": 5,
-              "gfaltas": 1,
-              "hmedia": 7.5
-            },
-            {
-              "anum": 2,
-              "bmat": "2014BSI321",
-              "caluno": "Sarah Connor",
-              "dsit": "Normal",
-              "enotaUm": 10,
-              "fnotaDois": 10,
-              "gfaltas": 1,
-              "hmedia": 10
-            },
-            {
-              "anum": 3,
-              "bmat": "2014BSI456",
-              "caluno": "Maria Maria",
-              "dsit": "Normal",
-              "enotaUm": 10,
-              "fnotaDois": 0,
-              "gfaltas": 1,
-              "hmedia": 5
-            },
-            {
-              "anum": 4,
-              "bmat": "2014BSI654",
-              "caluno": "Abner Santos",
-              "dsit": "Normal",
-              "enotaUm": 9.5,
-              "fnotaDois": 2.5,
-              "gfaltas": 0,
-              "hmedia": 6
-            }
-          ]
+          "list": []
         },
         "tableFreqFixa": {
           "head": [
-            {
-              "text": "",
-              "class": "col-sx-1"
-            },
             {
               "text": "Aluno",
               "class": "col-md-10"
@@ -308,28 +285,7 @@
               "class": "col-xs-1"
             }
           ],
-          "list": [
-            {
-              "anum": 1,
-              "baluno": "João das Couves",
-              "cfaltas": 1
-            },
-            {
-              "anum": 2,
-              "baluno": "Mariana",
-              "cfaltas": 1
-            },
-            {
-              "anum": 3,
-              "baluno": "Maria",
-              "cfaltas": 1
-            },
-            {
-              "anum": 4,
-              "baluno": "Abner",
-              "cfaltas": 0
-            }
-          ]
+          "list": []
         },
         "tableFreqDatasComp": {
           "head": [
@@ -342,77 +298,11 @@
             1440990000000,
             1441076400000
           ],
-          "list": [
-            {
-              "ajoao": "p",
-              "bjoao": "p",
-              "cjoao": "f",
-              "djoao": "p",
-              "ejoao": "p",
-              "fjoao": "p",
-              "gjoao": "p",
-              "hjoao": "p"
-            },
-            {
-              "amariana": "p",
-              "bmariana": "f",
-              "cmariana": "p",
-              "dmariana": "p",
-              "emariana": "p",
-              "fmariana": "p",
-              "gmariana": "p",
-              "hmariana": "p"
-            },
-            {
-              "amaria": "p",
-              "bmaria": "p",
-              "cmaria": "f",
-              "dmaria": "p",
-              "emaria": "p",
-              "fmaria": "p",
-              "gmaria": "p",
-              "hmaria": "p"
-            },
-            {
-              "aabner": "p",
-              "babner": "p",
-              "cabner": "p",
-              "dabner": "p",
-              "eabner": "p",
-              "fabner": "p",
-              "gabner": "p",
-              "habner": "p"
-            }
-          ]
+          "list": []
         },
         "tableFreqDatasSimp": {
-          "head": [
-            1440730800000,
-            1440817200000,
-            1440903600000
-          ],
-          "list": [
-            {
-              "ajoao": "p",
-              "bjoao": "p",
-              "cjoao": "f"
-            },
-            {
-              "amariana": "p",
-              "bmariana": "f",
-              "cmariana": "p"
-            },
-            {
-              "amaria": "p",
-              "bmaria": "p",
-              "cmaria": "f"
-            },
-            {
-              "aabner": "p",
-              "babner": "p",
-              "cabner": "p"
-            }
-          ]
+          "head": [],
+          "list": []
         },
         "tableConteudoAdicionado": {
           "head": [

@@ -51,19 +51,55 @@ module.exports = function() {
 function getDadosPauta(req, res) {
     var idDisc = req.params.id,
         i, j,
-        objPauta = pegaDadosPauta(dadosPauta.disciplinas, idDisc);
+        objPauta = pegaDadosPauta(dadosPauta.disciplinas, idDisc),
+        freqDatasSimp = {};
 
-    for(i = 0; i < objPauta.tableFreqFixa.list.length; i++) {
-        objPauta.tableFreqFixa.list[i].anum = objPauta.tableFreqFixa.list[i].anum.toString();
-        objPauta.tableFreqFixa.list[i].cfaltas = objPauta.tableFreqFixa.list[i].cfaltas.toString();
+    // Definindo o head de datas simples
+    objPauta.tableFreqDatasSimp.head = objPauta.tableFreqDatasComp.head.slice(objPauta.tableFreqDatasComp.head.length-3);
+    //
+    objPauta.tableNotas.list = [];
+    objPauta.tableFreqFixa.list = [];
+    objPauta.tableFreqDatasComp.list = [];
+    objPauta.tableFreqDatasSimp.list = [];
+
+    for (i = 0; i < objPauta.alunos.length; i++) {
+        // Table Notas
+        objPauta.tableNotas.list.push({
+            "bmat": objPauta.alunos[i].mat,
+            "caluno": objPauta.alunos[i].nome,
+            "dsit": objPauta.alunos[i].sit,
+            "efaltas": objPauta.alunos[i].faltas,
+            "fnotaUm": objPauta.alunos[i].notaUm,
+            "gnotaDois": objPauta.alunos[i].notaDois,
+            "hmedia": objPauta.alunos[i].media
+        });
+
+        // Table Frequência Fixa
+        objPauta.tableFreqFixa.list.push({
+            "baluno": objPauta.alunos[i].nome,
+            "cfaltas": objPauta.alunos[i].faltas
+        });
+
+        // Table Frequência Datas Completas
+        objPauta.tableFreqDatasComp.list.push(objPauta.alunos[i].freqDataComp);
+
+        // Table Frequência Datas Simples
+        objPauta.tableFreqDatasSimp.head.forEach(function(el) {
+            freqDatasSimp[el.toString()] = objPauta.tableFreqDatasComp.list[i][el.toString()];
+        });
+        objPauta.tableFreqDatasSimp.list.push(freqDatasSimp);
     }
 
-    for(j = 0; j < objPauta.tableNotas.list.length; j++) {
-        objPauta.tableNotas.list[j].anum = objPauta.tableNotas.list[j].anum.toString();
-        objPauta.tableNotas.list[j].enotaUm = objPauta.tableNotas.list[j].enotaUm.toString();
-        objPauta.tableNotas.list[j].fnotaDois = objPauta.tableNotas.list[j].fnotaDois.toString();
-        objPauta.tableNotas.list[j].gfaltas = objPauta.tableNotas.list[j].gfaltas.toString();
-        objPauta.tableNotas.list[j].hmedia = objPauta.tableNotas.list[j].hmedia.toString();
+    // Transformando dados tipo inteiro para string
+    for(i = 0; i < objPauta.tableFreqFixa.list.length; i++) {
+        // Table Freq Fixa
+        objPauta.tableFreqFixa.list[i].cfaltas = objPauta.tableFreqFixa.list[i].cfaltas.toString();
+
+        // Table Notas
+        objPauta.tableNotas.list[i].efaltas = objPauta.tableNotas.list[i].efaltas.toString();
+        objPauta.tableNotas.list[i].fnotaUm = objPauta.tableNotas.list[i].fnotaUm.toString();
+        objPauta.tableNotas.list[i].gnotaDois = objPauta.tableNotas.list[i].gnotaDois.toString();
+        objPauta.tableNotas.list[i].hmedia = objPauta.tableNotas.list[i].hmedia.toString();
     }
 
     res.json(objPauta);
@@ -393,8 +429,8 @@ function postSaveFreqAlunos(req, res) {
         // TABLE FREQUÊNCIA COMPLETA
         dataSent.tableFreqDatasComp.head.push(new Date(dataSent.model.addConteudoData.model.val).getTime());
         for (i = 0; i < dataSent.tableFreqDatasComp.list.length; i++) {
-            dataSent.tableFreqDatasComp.list[i][new Date(dataSent.model.addConteudoData.model.val).getTime().toString()] =;
-                in alunos ? "p" : "f";
+            dataSent.tableFreqDatasComp.list[i][new Date(dataSent.model.addConteudoData.model.val).getTime().toString()] =
+                alunos ? "p" : "f";
         }
 
 

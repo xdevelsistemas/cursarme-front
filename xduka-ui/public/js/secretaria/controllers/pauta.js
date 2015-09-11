@@ -190,7 +190,7 @@
                         // TOdo tratar error
                     });
 
-                $("#notas").addClass("active");
+                //$("#notas").addClass("active");
 
                 vm.disableTables = true;
             }
