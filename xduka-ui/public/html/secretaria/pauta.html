@@ -69,12 +69,14 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th ng-repeat="title in pt.tableFreqDatasSimp.head track by $index" ng-bind="title"></th>
+                            <th ng-repeat="title in pt.tableFreqDatasSimp.head track by $index" ng-bind="title" class="text-center"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="line in pt.tableFreqDatasSimp.list track by $index">
-                            <th ng-repeat="col in line track by $index" ng-bind="col"></th>
+                            <th ng-repeat="col in line track by $index" class="text-center">
+                                <p ng-class="col.class">{{col.value?col.text:''}}</p>
+                            </th>
                         </tr>
                         </tbody>
                     </table>
@@ -83,12 +85,14 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th ng-repeat="title in pt.tableFreqDatasComp.head track by $index" ng-bind="title" class="col-md-2"></th>
+                            <th ng-repeat="title in pt.tableFreqDatasComp.head track by $index" ng-bind="title" class="col-md-2 text-center"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="line in pt.tableFreqDatasComp.list track by $index">
-                            <th ng-repeat="col in line track by $index" ng-bind="col"></th>
+                            <th ng-repeat="col in line track by $index" class="text-center">
+                                <p ng-class="col.class" ng-bind="col.value?col.text:''"></p>
+                            </th>
                         </tr>
                         </tbody>
                     </table>
@@ -105,13 +109,13 @@
                 <div class="col-md-6">
                     <div class="col-md-12">
                         <div class="col-md-12">
-                            <h2 class="text-info">Visualizar</h2>
+                            <h2 class="text-info" style="padding-left: 19%">Visualizar</h2>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <xd-input-date data-params="pt._model.addData"></xd-input-date>
                 </div>
                 <div class="col-md-2">
@@ -119,7 +123,7 @@
                 </div>
                 <div class="col-md-1 noPadLeft">
                     <div class="form-group noPadLeft">
-                        <div class="col-md-12 noPadLeft">
+                        <div class="col-md-12 noPadLeft" style="padding-top: 4px">
                             <div class="col-md-12 left noPadLeft">
                                 <label>
                                 </label>
@@ -131,7 +135,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="form-group">
                         <div class="col-md-12">
                             <div class="col-md-12 left">
