@@ -65,7 +65,6 @@
                 var template = item.value;
                 var data = item.id;
                 window.open('/report?templateContent='+template+'&data='+data ,'_blank');
-
             }
 
         }]);

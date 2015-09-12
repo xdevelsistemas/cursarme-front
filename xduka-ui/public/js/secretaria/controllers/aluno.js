@@ -8,6 +8,7 @@
 
                 /* PROGRESS BAR */
                 $scope.progressbar = ngProgressFactory.createInstance();
+                $scope.progressbar.setColor('#45A0CF');
                 $scope.progressbar.start();
 
                 var vm = this
@@ -60,7 +61,8 @@
                             }
                         });
                         if (Object.keys(alunoService.aluno).length==0){
-                            $routeParams.matricula.length > 6?search($routeParams.matricula):vm._erro='Matrícula '+$routeParams.matricula+' inexistente!'
+                            $routeParams.matricula.length > 6?search($routeParams.matricula):vm._erro='Matrícula '+$routeParams.matricula+' inexistente!';
+                            vm.completeBar();
                         }else{
                             $.extend(true,vm._model,alunoService.aluno);
                             vm.completeBar();
@@ -297,6 +299,20 @@
                         $scope.progressbar.complete();
                         vm.loaded = true;
                     })
+                };
+
+                vm.loadRelatorio = loadRelatorio;
+                vm.printRelatorio = printRelatorio;
+                vm._templateRelatorio = "";
+                vm._dataRelatorio = "";
+
+                function loadRelatorio(item, model) {
+                    vm._templateRelatorio = item.value;
+                    vm._dataRelatorio = item.id;
+                }
+
+                function printRelatorio() {
+                    window.open('/report?templateContent='+vm._templateRelatorio+'&data='+vm._dataRelatorio ,'_blank');
                 }
 
             }])

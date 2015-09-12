@@ -121,7 +121,7 @@
                         vm._model = data.model;
 
                         if (verificaInfo()) {
-                            $($('#info').data("target")).hide();
+                            $("#informacao").click();
                         }
                     })
                     .catch(function(error) {

@@ -3,78 +3,84 @@
     {
       "id": 111,
       "pauta": {
-        "tableNotas": {
-          "head": [
-            "",
-            "Matrícula",
-            "Aluno",
-            "Situação",
-            "Nota1",
-            "Nota2",
-            "Faltas",
-            "Média"
-          ],
-          "list": [
-            {
-              "anum": 1,
-              "bmat": "2014BSI123",
-              "caluno": "João das Couves",
-              "dsit": "Normal",
-              "enotaUm": 7.5,
-              "fnotaDois": 0,
-              "gfaltas": 3,
-              "hmedia": 3.75
-            },
-            {
-              "anum": 2,
-              "bmat": "2014BSI321",
-              "caluno": "Mariana",
-              "dsit": "Normal",
-              "enotaUm": 5.3,
-              "fnotaDois": 0,
-              "gfaltas": 0,
-              "hmedia": 2.65
+        "alunos": [
+          {
+            "mat": "2014BSI123",
+            "nome": "João das Couves",
+            "sit": "Normal",
+            "notaUm": 7.5,
+            "notaDois": 0.0,
+            "faltas": 1,
+            "media": 3.75,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": false,
+              "1440644400000": true,
+              "1440730800000": false,
+              "1440817200000": false,
+              "1440903600000": false,
+              "1440990000000": false,
+              "1441076400000": false
             }
-          ]
-        },
-        "tableFreqFixa": {
-          "head": [
-            {
-              "text": "",
-              "class": "col-sx-1"
-            },
-            {
-              "text": "Aluno",
-              "class": "col-md-10"
-            },
-            {
-              "text": "Faltas",
-              "class": "col-xs-1"
+          },
+          {
+            "mat": "2014BSI321",
+            "nome": "Mariana Ramos",
+            "sit": "Normal",
+            "notaUm": 5.3,
+            "notaDois": 0.0,
+            "faltas": 1,
+            "media": 2.65,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": true,
+              "1440644400000": false,
+              "1440730800000": false,
+              "1440817200000": false,
+              "1440903600000": false,
+              "1440990000000": false,
+              "1441076400000": false
             }
-          ],
-          "list": [
-            {
-              "anum": 1,
-              "baluno": "João das Couves",
-              "cfaltas": 1
-            },
-            {
-              "anum": 2,
-              "baluno": "Mariana",
-              "cfaltas": 1
-            },
-            {
-              "anum": 3,
-              "baluno": "Maria",
-              "cfaltas": 1
-            },
-            {
-              "anum": 4,
-              "baluno": "Abner",
-              "cfaltas": 0
+          },
+          {
+            "mat": "2014BSI456",
+            "nome": "Santiago Silva",
+            "sit": "Normal",
+            "notaUm": 10.0,
+            "notaDois": 0.0,
+            "faltas": 1,
+            "media": 5.0,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": false,
+              "1440644400000": true,
+              "1440730800000": false,
+              "1440817200000": false,
+              "1440903600000": false,
+              "1440990000000": false,
+              "1441076400000": false
             }
-          ]
-        },
+          },
+          {
+            "mat": "2014BSI654",
+            "nome": "Abner Santos",
+            "sit": "Normal",
+            "notaUm": 9.5,
+            "notaDois": 2.5,
+            "faltas": 0,
+            "media": 6.0,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": false,
+              "1440644400000": false,
+              "1440730800000": false,
+              "1440817200000": false,
+              "1440903600000": false,
+              "1440990000000": false,
+              "1441076400000": false
+            }
+          }
+        ],
         "tableFreqDatasComp": {
           "head": [
             1440471600000,
@@ -85,98 +91,32 @@
             1440903600000,
             1440990000000,
             1441076400000
-          ],
-          "list": [
-            {
-              "ajoao": "p",
-              "bjoao": "p",
-              "cjoao": "f",
-              "djoao": "p",
-              "ejoao": "p",
-              "fjoao": "p",
-              "gjoao": "p",
-              "hjoao": "p"
-            },
-            {
-              "amariana": "p",
-              "bmariana": "f",
-              "cmariana": "p",
-              "dmariana": "p",
-              "emariana": "p",
-              "fmariana": "p",
-              "gmariana": "p",
-              "hmariana": "p"
-            },
-            {
-              "amaria": "p",
-              "bmaria": "p",
-              "cmaria": "f",
-              "dmaria": "p",
-              "emaria": "p",
-              "fmaria": "p",
-              "gmaria": "p",
-              "hmaria": "p"
-            },
-            {
-              "aabner": "p",
-              "babner": "p",
-              "cabner": "p",
-              "dabner": "p",
-              "eabner": "p",
-              "fabner": "p",
-              "gabner": "p",
-              "habner": "p"
-            }
-          ]
-        },
-        "tableFreqDatasSimp": {
-          "head": [
-            1440730800000,
-            1440817200000,
-            1440903600000
-          ],
-          "list": [
-            {
-              "ajoao": "p",
-              "bjoao": "p",
-              "cjoao": "f"
-            },
-            {
-              "amariana": "p",
-              "bmariana": "f",
-              "cmariana": "p"
-            },
-            {
-              "amaria": "p",
-              "bmaria": "p",
-              "cmaria": "f"
-            },
-            {
-              "aabner": "p",
-              "babner": "p",
-              "cabner": "p"
-            }
           ]
         },
         "tableConteudoAdicionado": {
-          "head": [
-            "Data",
-            "Título",
-            "Conteúdo",
-            ""
-          ],
           "list": [
             {
-              "adata": {},
-              "btitulo": "Conteúdo 01",
-              "cconteudo": "Émile Durkheim, Karl Marx e Marx Weber. Citações sobre Auguste Comte e sua importância.",
-              "dbtn": {}
-            },
-            {
-              "adata": {},
+              "adata": {
+                "date": true,
+                "int": 1440039600000
+              },
               "btitulo": "Sequência de Fibonacci",
               "cconteudo": "Essa sequência tem uma lei de formação simples: cada elemento, a partir do terceiro, é obtido somando-se os dois anteriores. Veja: 1+1=2, 2+1=3, 3+2=5 e assim por diante.",
-              "dbtn": {}
+              "dbtn": {
+                "btn": true,
+                "list": [
+                  {
+                    "title": "Editar",
+                    "entypo": "entypo-pencil",
+                    "class": "btn btn-white"
+                  },
+                  {
+                    "title": "Remover",
+                    "entypo": "entypo-cancel",
+                    "class": "btn btn-white"
+                  }
+                ]
+              }
             }
           ]
         }
@@ -185,78 +125,84 @@
     {
       "id": 222,
       "pauta": {
-        "tableNotas": {
-          "head": [
-            "",
-            "Matrícula",
-            "Aluno",
-            "Situação",
-            "Nota1",
-            "Nota2",
-            "Faltas",
-            "Média"
-          ],
-          "list": [
-            {
-              "anum": 1,
-              "bmat": "2014BSI123",
-              "caluno": "Marcelo Ramos",
-              "dsit": "Normal",
-              "enotaUm": 10,
-              "fnotaDois": 5,
-              "gfaltas": 3,
-              "hmedia": 7.5
-            },
-            {
-              "anum": 2,
-              "bmat": "2014BSI321",
-              "caluno": "Sarah Connor",
-              "dsit": "Normal",
-              "enotaUm": 10,
-              "fnotaDois": 10,
-              "gfaltas": 0,
-              "hmedia": 10
+        "alunos": [
+          {
+            "mat": "2014BSI123",
+            "nome": "João das Couves",
+            "sit": "Normal",
+            "notaUm": 10.0,
+            "notaDois": 5.0,
+            "faltas": 0,
+            "media": 7.5,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": false,
+              "1440644400000": false,
+              "1440730800000": false,
+              "1440817200000": false,
+              "1440903600000": false,
+              "1440990000000": false,
+              "1441076400000": false
             }
-          ]
-        },
-        "tableFreqFixa": {
-          "head": [
-            {
-              "text": "",
-              "class": "col-sx-1"
-            },
-            {
-              "text": "Aluno",
-              "class": "col-md-10"
-            },
-            {
-              "text": "Faltas",
-              "class": "col-xs-1"
+          },
+          {
+            "mat": "2014BSI321",
+            "nome": "Mariana Ramos",
+            "sit": "Normal",
+            "notaUm": 5.0,
+            "notaDois": 5.0,
+            "faltas": 2,
+            "media": 2.65,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": true,
+              "1440644400000": false,
+              "1440730800000": false,
+              "1440817200000": false,
+              "1440903600000": true,
+              "1440990000000": false,
+              "1441076400000": false
             }
-          ],
-          "list": [
-            {
-              "anum": 1,
-              "baluno": "João das Couves",
-              "cfaltas": 1
-            },
-            {
-              "anum": 2,
-              "baluno": "Mariana",
-              "cfaltas": 1
-            },
-            {
-              "anum": 3,
-              "baluno": "Maria",
-              "cfaltas": 1
-            },
-            {
-              "anum": 4,
-              "baluno": "Abner",
-              "cfaltas": 0
+          },
+          {
+            "mat": "2014BSI456",
+            "nome": "Santiago Silva",
+            "sit": "Normal",
+            "notaUm": 6.0,
+            "notaDois": 9.0,
+            "faltas": 4,
+            "media": 7.5,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": false,
+              "1440644400000": true,
+              "1440730800000": false,
+              "1440817200000": true,
+              "1440903600000": true,
+              "1440990000000": false,
+              "1441076400000": true
             }
-          ]
-        },
+          },
+          {
+            "mat": "2014BSI654",
+            "nome": "Abner Santos",
+            "sit": "Normal",
+            "notaUm": 9.5,
+            "notaDois": 2.5,
+            "faltas": 0,
+            "media": 6.0,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": false,
+              "1440644400000": false,
+              "1440730800000": false,
+              "1440817200000": false,
+              "1440903600000": false,
+              "1440990000000": false,
+              "1441076400000": false
+            }
+          }
+        ],
         "tableFreqDatasComp": {
           "head": [
             1440471600000,
@@ -267,98 +213,32 @@
             1440903600000,
             1440990000000,
             1441076400000
-          ],
-          "list": [
-            {
-              "ajoao": "p",
-              "bjoao": "p",
-              "cjoao": "f",
-              "djoao": "p",
-              "ejoao": "p",
-              "fjoao": "p",
-              "gjoao": "p",
-              "hjoao": "p"
-            },
-            {
-              "amariana": "p",
-              "bmariana": "f",
-              "cmariana": "p",
-              "dmariana": "p",
-              "emariana": "p",
-              "fmariana": "p",
-              "gmariana": "p",
-              "hmariana": "p"
-            },
-            {
-              "amaria": "p",
-              "bmaria": "p",
-              "cmaria": "f",
-              "dmaria": "p",
-              "emaria": "p",
-              "fmaria": "p",
-              "gmaria": "p",
-              "hmaria": "p"
-            },
-            {
-              "aabner": "p",
-              "babner": "p",
-              "cabner": "p",
-              "dabner": "p",
-              "eabner": "p",
-              "fabner": "p",
-              "gabner": "p",
-              "habner": "p"
-            }
-          ]
-        },
-        "tableFreqDatasSimp": {
-          "head": [
-            1440730800000,
-            1440817200000,
-            1440903600000
-          ],
-          "list": [
-            {
-              "ajoao": "p",
-              "bjoao": "p",
-              "cjoao": "f"
-            },
-            {
-              "amariana": "p",
-              "bmariana": "f",
-              "cmariana": "p"
-            },
-            {
-              "amaria": "p",
-              "bmaria": "p",
-              "cmaria": "f"
-            },
-            {
-              "aabner": "p",
-              "babner": "p",
-              "cabner": "p"
-            }
           ]
         },
         "tableConteudoAdicionado": {
-          "head": [
-            "Data",
-            "Título",
-            "Conteúdo",
-            ""
-          ],
           "list": [
             {
-              "adata": {},
+              "adata": {
+                "date": true,
+                "int": 1440212400000
+              },
               "btitulo": "Conteúdo 01",
               "cconteudo": "Émile Durkheim, Karl Marx e Marx Weber. Citações sobre Auguste Comte e sua importância.",
-              "dbtn": {}
-            },
-            {
-              "adata": {},
-              "btitulo": "Sequência de Fibonacci",
-              "cconteudo": "Essa sequência tem uma lei de formação simples: cada elemento, a partir do terceiro, é obtido somando-se os dois anteriores. Veja: 1+1=2, 2+1=3, 3+2=5 e assim por diante.",
-              "dbtn": {}
+              "dbtn": {
+                "btn": true,
+                "list": [
+                  {
+                    "title": "Editar",
+                    "entypo": "entypo-pencil",
+                    "class": "btn btn-white"
+                  },
+                  {
+                    "title": "Remover",
+                    "entypo": "entypo-cancel",
+                    "class": "btn btn-white"
+                  }
+                ]
+              }
             }
           ]
         }
