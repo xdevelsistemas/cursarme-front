@@ -101,5 +101,9 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/remove-conteudo')
         .post(controller.putRemoveConteudo);
 
+    //
+    app.route('/api/secretaria/save-dados-curso')
+        .post(controller.putSaveDadosCurso);
+
     return app;
 };

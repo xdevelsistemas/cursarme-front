@@ -1,0 +1,24 @@
+{
+  "list": [
+    {
+      "acurso": "Informárica na Educação",
+      "bcodigo": "1231",
+      "ctipo": "Mestrado em Educação",
+      "darea": "Exatas",
+      "eturno": "Matutino",
+      "fvagas": "20",
+      "gcarga": "30 Horas",
+      "hbtn": {
+        "btn": true,
+        "list": [
+          {
+            "text": "",
+            "class": "btn btn-white",
+            "title": "Editar",
+            "entypo": "entypo-pencil"
+          }
+        ]
+      }
+    }
+  ]
+}

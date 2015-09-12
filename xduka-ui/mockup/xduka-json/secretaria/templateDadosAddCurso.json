@@ -1,0 +1,9 @@
+{
+  "id": "tabelaCursos",
+  "class": "table table-striped table-hover table-bordered",
+  "dataTable": {
+    "ordering": false
+  },
+  "head": ["Curso", "Código", "Tipo", "Área", "Turno", "Vagas", "Carga Horária", ""],
+  "list": []
+}

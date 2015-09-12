@@ -82,9 +82,14 @@
         "val": "",
         "err": ""
       },
-      "list": [
-        {"id": 1, "text": "Único"}
-      ]
+      "list": []
+    },
+    "addPeriodo": {
+      "label": "Período",
+      "type": "text",
+      "name": "addPeriodo",
+      "model": {"val": "", "err": ""},
+      "ref": "periodo"
     },
     "codigo": {
       "label": "Código",
