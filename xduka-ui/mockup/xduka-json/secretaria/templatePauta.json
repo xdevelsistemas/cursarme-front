@@ -47,7 +47,7 @@
       "type": "text",
       "mask": "9",
       "name": "addAulas",
-      "model": {"val": "", "err": ""}
+      "model": {"val": "1", "err": ""}
     },
     "addData": {
       "label": "",

@@ -103,6 +103,13 @@ function geraDadosCompletoPauta(obj) {
         });
 
         // Table Frequência Datas Completas
+        for (var alKey in obj.alunos[i].freqDataComp){
+            if(!obj.alunos[i].freqDataComp[alKey]){
+                obj.alunos[i].freqDataComp[alKey] = {"class": "pointP", "value": false}
+            }else{
+                obj.alunos[i].freqDataComp[alKey] = {"text": "f", "class": "pointF", "value": true}
+            }
+        }
         obj.tableFreqDatasComp.list.push(obj.alunos[i].freqDataComp);
 
         // Table Frequência Datas Simples
@@ -492,9 +499,9 @@ function postSaveFreqAlunos(req, res) {
             // Table Frequência Datas Completas
 
             if (dataSent.freqAlunos[dadosTablesPauta.alunos[i].mat]) {
-                dadosTablesPauta.alunos[i].freqDataComp[dadosTablesPauta.tableFreqDatasComp.head[dadosTablesPauta.tableFreqDatasComp.head.length - 1].toString()] = "f";
+                dadosTablesPauta.alunos[i].freqDataComp[dadosTablesPauta.tableFreqDatasComp.head[dadosTablesPauta.tableFreqDatasComp.head.length - 1].toString()] = {"text": "f", "class": "pointF", "value": true};
             } else {
-                dadosTablesPauta.alunos[i].freqDataComp[dadosTablesPauta.tableFreqDatasComp.head[dadosTablesPauta.tableFreqDatasComp.head.length - 1].toString()] = "p";
+                dadosTablesPauta.alunos[i].freqDataComp[dadosTablesPauta.tableFreqDatasComp.head[dadosTablesPauta.tableFreqDatasComp.head.length - 1].toString()] = {"class": "pointP", "value": false};
             }
             dadosTablesPauta.tableFreqDatasComp.list.push(dadosTablesPauta.alunos[i].freqDataComp);
 

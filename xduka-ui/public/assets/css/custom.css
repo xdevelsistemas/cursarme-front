@@ -458,3 +458,14 @@ input[type="search"] {
 .noPadLeft {
     padding-left: 0;
 }
+.pointP {
+    border-radius: 50%;
+    display: inline-block;
+    width: 4px;
+    height: 4px!important;
+    background: #000000 none repeat scroll 0%;
+}
+.pointF {
+    height: 4px!important;
+    text-transform: uppercase!important;
+}
