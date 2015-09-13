@@ -15,20 +15,7 @@
             vm.editing = false;
             vm.objEditing = {};
             vm.STR = modelStrings;
-            vm.tableCriterios = {
-                class: "table table-striped table-hover table-bordered",
-                head: ["Critério", "Obs",""],
-                list:[],
-                btnRemove: {
-                    btn: true,
-                    list: [{
-                        text: "",
-                        click: removeCriterio,
-                        class: "btn btn-danger btn-sm",
-                        entypo: "entypo-cancel"
-                    }]
-                }
-            };
+            vm.tableCriterios = {};
             vm.tableCursos = {};
 
             //VARIÁVEIS TIPO FUNÇÃO
@@ -42,14 +29,19 @@
             vm.limpar = limpar;
             vm.modalCriterios = modalCriterios;
             vm.modalPeriodos = modalPeriodos;
-            vm.modalSalvar = modalSalvar;
             vm.salvarCurso = salvarCurso;
 
             //Requisições
             templateAddCurso
                 .then(function(data) {
                     vm._model = data.template;
-                    $.extend(true, vm.tableCursos, data.tableCursos);
+                    //
+                    $.extend(true, vm.tableCursos, data.tables.tableCursos);
+                    vm.tableCursos.list.forEach(function(el) {
+                        el.ibtn.list[0].click = editar;
+                    });
+                    //
+                    $.extend(true, vm.tableCriterios, data.tables.tableCriterios);
 
                     dadosAddCurso
                         .then(function(dataA) {
@@ -68,9 +60,9 @@
                 if(vm._model.modalCriterio.model.val.length > 0){
                     vm._model.modalCriterio.model.err = "";
                     vm.tableCriterios.list.push({
-                        'a': vm._model.modalCriterio.model.val,
-                        'b': vm._model.modalObs.model.val,
-                        'c': vm.tableCriterios.btnRemove
+                        'acriterio': vm._model.modalCriterio.model.val,
+                        'bobs': vm._model.modalObs.model.val,
+                        'cbtn': vm.tableCriterios.btnRemove
                     });
                     vm._model.modalCriterio.model.val = '';
                     vm._model.modalObs.model.val = '';
@@ -80,7 +72,16 @@
             }
 
             function adicionarCurso() {
-                vm.editing = true;
+                var getIdCursoPromise = $resource('/api/secretaria/get-id-curso').get().$promise;
+
+                getIdCursoPromise
+                    .then(function(data) {
+                        vm._model.codigoCurso.model.val = data.idCurso;
+                        vm.editing = true;
+                    })
+                    .catch(function(error) {
+                        // TOdo tratar error
+                    });
             }
 
             function cancelar() {
@@ -106,24 +107,41 @@
 
             function disableModelArea() {
                 vm._model.area.list = [];
-                vm._model.area.model.val = "";
+                vm._model.area.model = {"val": "", "err": ""};
             }
 
             function disableModelTurno() {
                 vm._model.turno.list = [];
-                vm._model.turno.model.val = "";
+                vm._model.turno.model = {"val": "", "err": ""}
             }
 
             function editar(args, obj) {
                 vm.objEditing = obj;
-                vm._model.curso.model.val = obj.acurso;
-                vm._model.codigo.model.val = obj.bcodigo;
-                vm._model.tipo.model.val = obj.ctipo;
-                vm._model.area.model.val = obj.darea;
-                vm._model.turno.model.val = obj.eturno;
-                vm._model.vagasTurma.model.val = obj.fvagas;
-                vm._model.cargaHoraria.model.val = obj.gcarga;
-                vm._model.periodo.model.val = obj.hperiodo;
+                vm.dadosCursoEdit = vm.tableCursos.listComp.filter(
+                    function(el) {
+                        return el.codigoCurso.model.val == obj.acodigo
+                    }
+                )[0];
+                $.extend(true, vm._model, vm.dadosCursoEdit);
+                //
+                vm.tableCriterios.list = vm._model.tableCriterios;
+                vm.tableCriterios.btnRemove.list[0].click = removeCriterio;
+                //
+                vm.tableCriterios.list.forEach(function(el) {
+                    el.cbtn = vm.tableCriterios.btnRemove;
+                });
+
+                vm.changeTipo($.grep(vm._model.tipo.list, function (e) {
+                    return e.id == vm.dadosCursoEdit.tipo.model.val;
+                })[0], vm.dadosCursoEdit.tipo.model.val);
+
+                vm.changeArea($.grep(vm._model.area.list, function (e) {
+                    return e.id == vm.dadosCursoEdit.area.model.val;
+                })[0], vm.dadosCursoEdit.area.model.val);
+
+                vm._model.area.model.val = vm.dadosCursoEdit.area.model.val;
+                vm._model.turno.model.val = vm.dadosCursoEdit.turno.model.val;
+
                 vm.editing = true;
             }
 
@@ -142,8 +160,7 @@
                 vm._model.turno.model.val = '';
                 vm._model.vagasTurma.model.val = '';
                 vm._model.cargaHoraria.model.val = '';
-                vm._model.periodo.list = [];
-                vm._model.addPeriodo.model.val = '';
+                vm._model.periodo.model.val = '';
                 vm._model.habilitacao.model.val = '';
                 vm._model.autorizacao.model.val = '';
                 vm._model.reconhecimento.model.val = '';
@@ -167,20 +184,6 @@
                 })
             }
 
-            function modalSalvar() {
-                if (vm._model.addPeriodo.model.val == "") {
-                    vm._model.addPeriodo.model.err = vm.STR.FIELD;
-                    return 0
-                }
-
-                vm._model.addPeriodo.model.err = '';
-
-                vm._model.periodo.list.push({
-                    "id": vm._model.periodo.list.length+1,
-                    "text": vm._model.addPeriodo.model.val
-                })
-            }
-
             function removeCriterio(args,obj) {
                 vm.tableCriterios.list.splice(vm.tableCriterios.list.indexOf(obj),1)
             }
@@ -195,7 +198,7 @@
                         if (data.success) {
                             limpar();
                             $.extend(true, vm.tableCursos, data.tableCursos);
-                            vm.tableCursos.list[vm.tableCursos.list.length-1].hbtn.list[0].click = editar;
+                            vm.tableCursos.list[vm.tableCursos.list.length-1].ibtn.list[0].click = editar;
                             vm.editing = false;
                         } else {
                             $.extend(true, vm._model, data.model)

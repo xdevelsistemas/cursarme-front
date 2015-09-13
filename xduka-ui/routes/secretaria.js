@@ -26,6 +26,10 @@ module.exports = function (app, passport) {
         .get(controller.showDadosPauta);
 
     //info-usuario
+    app.route('/api/secretaria/get-id-curso')
+        .get(controller.showIdCurso);
+
+    //info-usuario
     app.route('/api/secretaria/info-usuario')
         .get(controller.showInfoUsuario);
 

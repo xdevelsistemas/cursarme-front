@@ -1,14 +1,15 @@
 {
   "list": [
     {
-      "acurso": "Informárica na Educação",
-      "bcodigo": "1231",
+      "acodigo": "AC0903600000",
+      "bcurso": "Informárica na Educação",
       "ctipo": "Mestrado em Educação",
       "darea": "Exatas",
       "eturno": "Matutino",
       "fvagas": "20",
       "gcarga": "30 Horas",
-      "hbtn": {
+      "hperiodo": "Único",
+      "ibtn": {
         "btn": true,
         "list": [
           {
@@ -19,6 +20,31 @@
           }
         ]
       }
+    }
+  ],
+  "listComp": [
+    {
+      "curso": {"model": {"val": "Informárica na Educação"}},
+      "codigoCurso": {"model": {"val": "AC0903600000"}},
+      "tipo": {"model": {"val": 1}},
+      "area": {"model": {"val": 11}},
+      "turno": {"model": {"val": 111}},
+      "vagasTurma": {"model": {"val": "12"}},
+      "cargaHoraria": {"model": {"val": "16"}},
+      "periodo": {"model": {"val": 1}},
+      "habilitacao": {"model": {"val": "?"}},
+      "autorizacao": {"model": {"val": "?"}},
+      "reconhecimento": {"model": {"val": "?"}},
+      "tableCriterios": [
+        {
+          "acriterio": "Uma(1) prova",
+          "bobs": "30pts"
+        },
+        {
+          "acriterio": "Dois(2) trabalhos",
+          "bobs": "35pts cada"
+        }
+      ]
     }
   ]
 }

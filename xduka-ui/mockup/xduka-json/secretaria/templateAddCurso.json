@@ -84,23 +84,6 @@
       },
       "list": []
     },
-    "addPeriodo": {
-      "label": "Período",
-      "type": "text",
-      "name": "addPeriodo",
-      "model": {"val": "", "err": ""},
-      "ref": "periodo"
-    },
-    "codigo": {
-      "label": "Código",
-      "type": "text",
-      "val": "Teste1",
-      "name": "codigo",
-      "model": {
-        "val": "",
-        "err": ""
-      }
-    },
     "habilitacao": {
       "label": "Habilitação",
       "type": "text",
