@@ -9,11 +9,14 @@ var urlDataBase = '',
     dadosEnviarCircular = require('../mockup/xduka-json/common/dadosEnviarCircular.json'),
     dadosGeraTurma = require('../mockup/xduka-json/common/dadosGeraTurma.json'),
     dadosPauta = require('../mockup/xduka-json/common/dadosPauta.json'),
+    dadosPeriodo = require('../mockup/xduka-json/common/dadosPeriodo.json'),
+    dadosTableAddCurso = require('../mockup/xduka-json/common/dadosTableAddCurso.json'),
     dadosTablesPauta = require('../mockup/xduka-json/secretaria/dadosTablesPauta.json'),
     templateAddCurso = require('../mockup/xduka-json/secretaria/templateAddCurso.json'),
     templateAddDisciplina = require('../mockup/xduka-json/secretaria/templateAddDisciplina.json'),
     templateAluno = require('../mockup/xduka-json/secretaria/templateAluno.json'),
     templateConfig = require('../mockup/xduka-json/secretaria/templateConfig.json'),
+    templateDadosAddCurso = require('../mockup/xduka-json/secretaria/templateDadosAddCurso.json'),
     templateEnviarCircular = require('../mockup/xduka-json/secretaria/templateEnviarCircular.json'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
     templatePauta = require('../mockup/xduka-json/secretaria/templatePauta.json'),
@@ -31,6 +34,7 @@ module.exports = function() {
     controller.showDadosEnviarCircular = getDadosEnviarCircular;
     controller.showDadosGeraTurma = getDadosGeraTurma;
     controller.showDadosPauta = getDadosPauta;
+    controller.showIdCurso = getIdCurso;
     controller.showInfoUsuario = getInfoUsuario;
     controller.showTemplateAddCurso = getTemplateAddCurso;
     controller.showTemplateAddDisciplina = getTemplateAddDisciplina;
@@ -44,6 +48,7 @@ module.exports = function() {
     controller.putSaveDisciplinas = postSaveDisciplinas;
     controller.putSaveConfig = postSaveConfig;
     controller.putSaveFreqAlunos = postSaveFreqAlunos;
+    controller.putSaveDadosCurso = postSaveDadosCurso;
     controller.putSaveEditConteudo = postSaveEditConteudo;
     controller.putSaveNovoConteudo = postSaveNovoConteudo;
     controller.putEnviarCircular = postEnviarCircular;
@@ -202,7 +207,9 @@ function getTemplatePauta(req, res) {
 }
 
 function getTemplateAddCurso(req,res) {
-    res.json(templateAddCurso);
+    extend(true, templateAddCurso.template.periodo, dadosPeriodo);
+    extend(true, templateDadosAddCurso.tableCursos, dadosTableAddCurso);
+    res.json({"template": templateAddCurso.template, "tables": templateDadosAddCurso});
 }
 
 function getTemplateAddDisciplina(req,res) {
@@ -219,6 +226,12 @@ function getTemplateEnviarCircular(req, res) {
 
 function getTemplateInscricao(req, res) {
     res.json(templateInscr);
+}
+
+function getIdCurso(req, res) {
+    var dataInt = new Date().getTime().toString();
+
+    res.json({"idCurso": "AC" + dataInt.slice(dataInt.length-10)});
 }
 
 function getInfoUsuario(req, res) {
@@ -532,6 +545,99 @@ function postSaveFreqAlunos(req, res) {
     }
 }
 
+function postSaveDadosCurso(req, res) {
+    var dataSent = req.body;
+
+    if (verificaDadosAddCurso(dataSent)) {
+        if (auxFilterCodCurso(templateDadosAddCurso.tableCursos, dataSent.model.codigoCurso.model.val)) {
+            var pos = descobrePos(templateDadosAddCurso.tableCursos.list,dataSent.model.codigoCurso.model.val);
+
+            templateDadosAddCurso.tableCursos.list[pos].acodigo = dataSent.model.codigoCurso.model.val;
+            templateDadosAddCurso.tableCursos.list[pos].bcurso = dataSent.model.curso.model.val;
+            templateDadosAddCurso.tableCursos.list[pos].ctipo = auxGeraTextObj(dataSent.model.tipo)[0].text;
+            templateDadosAddCurso.tableCursos.list[pos].darea = auxGeraTextObj(dataSent.model.area)[0].text;
+            templateDadosAddCurso.tableCursos.list[pos].eturno = auxGeraTextObj(dataSent.model.turno)[0].text;
+            templateDadosAddCurso.tableCursos.list[pos].fvagas = dataSent.model.vagasTurma.model.val;
+            templateDadosAddCurso.tableCursos.list[pos].gcarga = dataSent.model.cargaHoraria.model.val;
+            templateDadosAddCurso.tableCursos.list[pos].hperiodo = auxGeraTextObj(dataSent.model.periodo)[0].text;
+
+            for (var elem in templateDadosAddCurso.tableCursos.listComp[pos]) {
+                if (elem != "tableCriterios") {
+                    templateDadosAddCurso.tableCursos.listComp[pos][elem] = {"model": {"val": dataSent.model[elem].model.val}};
+                }
+            }
+            templateDadosAddCurso.tableCursos.listComp[pos].tableCriterios = dataSent.tableCriterios.list;
+        } else {
+            templateDadosAddCurso.tableCursos.list.push({
+                "acodigo": dataSent.model.codigoCurso.model.val,
+                "bcurso": dataSent.model.curso.model.val,
+                "ctipo": auxGeraTextObj(dataSent.model.tipo)[0].text,
+                "darea": auxGeraTextObj(dataSent.model.area)[0].text,
+                "eturno": auxGeraTextObj(dataSent.model.turno)[0].text,
+                "fvagas": dataSent.model.vagasTurma.model.val,
+                "gcarga": dataSent.model.cargaHoraria.model.val,
+                "hperiodo": auxGeraTextObj(dataSent.model.periodo)[0].text,
+                "ibtn": {
+                    "btn": true,
+                    "list": [
+                        {
+                            "text": "",
+                            "class": "btn btn-white",
+                            "title": "Editar",
+                            "entypo": "entypo-pencil"
+                        }
+                    ]
+                }
+            });
+            templateDadosAddCurso.tableCursos.listComp.push({
+                "curso": {"model": {"val": dataSent.model.curso.model.val}},
+                "codigoCurso": {"model": {"val": dataSent.model.codigoCurso.model.val}},
+                "tipo": {"model": {"val": dataSent.model.tipo.model.val}},
+                "area": {"model": {"val": dataSent.model.area.model.val}},
+                "turno": {"model": {"val": dataSent.model.turno.model.val}},
+                "vagasTurma": {"model": {"val": dataSent.model.vagasTurma.model.val}},
+                "cargaHoraria": {"model": {"val": dataSent.model.cargaHoraria.model.val}},
+                "periodo": {"model": {"val": dataSent.model.periodo.model.val}},
+                "habilitacao": {"model": {"val": dataSent.model.habilitacao.model.val}},
+                "autorizacao": {"model": {"val": dataSent.model.autorizacao.model.val}},
+                "reconhecimento": {"model": {"val": dataSent.model.reconhecimento.model.val}},
+                "tableCriterios": dataSent.tableCriterios.list
+            });
+        }
+
+        res.json({"success": true, "tableCursos": templateDadosAddCurso.tableCursos});
+    } else {
+        validaDadosAddCurso(dataSent);
+        res.json({"success": false, "model": dataSent.model});
+    }
+}
+
+function descobrePos(list, id) {
+    var cont = 0, pos;
+
+    list.forEach(function(el) {
+        if (el.acodigo == id) {
+            pos = cont;
+        }
+        cont++;
+    });
+    return pos
+}
+
+function auxFilterCodCurso(obj, id) {
+
+    // todo parou aqui | teste de edição de curso
+    return !!obj.list.filter(function(el) {
+        return el.acodigo == id
+    }).length;
+}
+
+function auxGeraTextObj(obj) {
+    return obj.list.filter(function(el) {
+        return el.id == obj.model.val
+    });
+}
+
 function postSaveEditConteudo(req, res) {
     var dataSent = req.body;
 
@@ -640,4 +746,27 @@ function validaDadosAula(obj) {
 function verificaDadosAula(obj) {
     return !obj.addConteudoTitulo.model.val && !obj.addConteudoTArea.model.val ||
         !!obj.addConteudoTitulo.model.val && !!obj.addConteudoTArea.model.val
+}
+
+function validaDadosAddCurso(obj) {
+    obj.model.curso.model.err = !!obj.model.curso.model.val ? "" : obj.STR.FIELD;
+    obj.model.tipo.model.err = !!obj.model.tipo.model.val ? "" : obj.STR.FIELD;
+    obj.model.area.model.err = !!obj.model.area.model.val ? "" : obj.STR.FIELD;
+    obj.model.turno.model.err = !!obj.model.turno.model.val ? "" : obj.STR.FIELD;
+    obj.model.vagasTurma.model.err = !!obj.model.vagasTurma.model.val ? "" : obj.STR.FIELD;
+    obj.model.cargaHoraria.model.err = !!obj.model.cargaHoraria.model.val ? "" : obj.STR.FIELD;
+    obj.model.periodo.model.err = !!obj.model.periodo.model.val ? "" : obj.STR.FIELD;
+    obj.model.habilitacao.model.err = !!obj.model.habilitacao.model.val ? "" : obj.STR.FIELD;
+    obj.model.autorizacao.model.err = !!obj.model.autorizacao.model.val ? "" : obj.STR.FIELD;
+    obj.model.reconhecimento.model.err = !!obj.model.reconhecimento.model.val ? "" : obj.STR.FIELD;
+    obj.model.obsAval.model.err = !!obj.tableCriterios.list.length ? "" : obj.STR.FIELD;
+}
+
+function verificaDadosAddCurso(obj) {
+    return !!obj.model.curso.model.val && !!obj.model.tipo.model.val &&
+        !!obj.model.area.model.val && !!obj.model.turno.model.val &&
+        !!obj.model.vagasTurma.model.val && !!obj.model.cargaHoraria.model.val &&
+        !!obj.model.periodo.model.val && !!obj.model.habilitacao.model.val &&
+        !!obj.model.autorizacao.model.val && !!obj.model.reconhecimento.model.val &&
+        !!obj.tableCriterios.list.length
 }

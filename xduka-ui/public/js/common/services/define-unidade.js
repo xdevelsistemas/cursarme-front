@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('app.services').factory('defineUnidade', function (){
+    angular.module('common.services').factory('defineUnidade', function (){
         var idUnidade = '';
 
         return  {
