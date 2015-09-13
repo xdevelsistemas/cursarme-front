@@ -45,6 +45,22 @@
                         <xd-select data-params="cc.modalEdit.status"></xd-select>
                     </div>
                 </div>
+                <div ng-show="cc.modalEdit.status.model.val == 2">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h4 class="text-info">Informações do repasse</h4>
+                        </div>
+                        <br/><br/>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <xd-input data-params="cc.modalEdit.repassadoCpf"></xd-input>
+                        </div>
+                        <div class="col-md-6">
+                            <xd-input data-params="cc.modalEdit.repassadoNome"></xd-input>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cc.cancelEdit()">Cancelar</button>

@@ -98,6 +98,8 @@
                 vm.cheques[pos].destino = vm.modalEdit.destino.model.val;
                 //TODO MELHORAR O SALVAMENTO DO STATUS ABAIXO
                 vm.cheques[pos].status = vm.modalEdit.status.list[vm.modalEdit.status.model.val];
+                vm.cheques[pos].repassadoCpf = vm.modalEdit.repassadoCpf.model.val;
+                vm.cheques[pos].repassadoNome = vm.modalEdit.repassadoNome.model.val;
 
                 // possível sintaxe para causar erro 400
                 //var chequeEditPromise = $resource('/api/financeiro/chequeEdit').save({}, pos).$promise;

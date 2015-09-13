@@ -273,6 +273,11 @@
 
                 <!-- GRADE/DISCIPLINA -->
                 <div class="tab-pane" id="gradeDisc">
+                    <div class="row" ng-show="al.editing">
+                        <div class="col-md-12">
+                            <p><span class="badge badge-warning" style="font-size: 1.3em">Atenção: Esta aba não é editável!</span></p>
+                        </div>
+                    </div>
                     <xd-panel-collapse title="'Grade/Disciplinas'">
                         <div class="row">
                             <div class="col-md-12">
@@ -286,6 +291,11 @@
 
                 <!-- NOTAS -->
                 <div class="tab-pane" id="notas">
+                    <div class="row" ng-show="al.editing">
+                        <div class="col-md-12">
+                            <p><span class="badge badge-warning" style="font-size: 1.3em">Atenção: Esta aba não é editável!</span></p>
+                        </div>
+                    </div>
                     <xd-panel-collapse title="'Boletim'">
                         <div class="row">
                             <div class="col-md-12">
