@@ -1,16 +1,19 @@
-FROM node:0.10-onbuild
-
-MAINTAINER Clayton Santos da Silva "clayton@xdevel.com.br"
+FROM node:0.12-onbuild
 
 # add project to build
 ADD . /root/xduka-ui
 WORKDIR /root/xduka-ui
-RUN npm install
-RUN npm install bower
-RUN node_modules/bower/bin/bower  --allow-root  install
+
+
+RUN npm install && \
+    npm -g install bower && \
+    npm -g install grunt-cli && \
+    npm install --dev && \
+    bower  --allow-root  install
+RUN grunt
 
 
 
 
 EXPOSE 3000
-CMD ["node","bin/www-prd"]
+CMD ["npm","start"]

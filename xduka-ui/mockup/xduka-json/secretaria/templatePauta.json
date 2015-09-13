@@ -1,0 +1,92 @@
+{
+  "template": {
+    "professor": {
+      "label": "Professor",
+      "type": "select",
+      "name": "prof",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "curso": {
+      "label": "Curso",
+      "type": "select",
+      "name": "curso",
+      "placeholder": "Selecione uma opção",
+      "list": [],
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "turma": {
+      "label": "Turma",
+      "type": "select",
+      "name": "turma",
+      "placeholder": "Selecione uma opção",
+      "list": [],
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "disciplina": {
+      "label": "Disciplina",
+      "type": "select",
+      "name": "disciplina",
+      "placeholder": "Selecione uma opção",
+      "list": [],
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "addAulas": {
+      "label": "Aulas",
+      "type": "text",
+      "mask": "9",
+      "name": "addAulas",
+      "model": {"val": "1", "err": ""}
+    },
+    "addData": {
+      "label": "",
+      "type": "text",
+      "model": {"val": "", "err": ""},
+      "name": "addData",
+      "format": "dd/MM/yyyy"
+    },
+    "addConteudoTitulo": {
+      "label": "Título",
+      "type": "text",
+      "name": "titulo",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "addConteudoData": {
+      "label": "Data",
+      "type": "text",
+      "model": {"val": "", "err": ""},
+      "name": "addConteudoData",
+      "format": "dd/MM/yyyy"
+    },
+    "addConteudoTArea": {
+      "label": "Conteúdo",
+      "type": "textarea",
+      "name": "addConteudoTArea",
+      "rows": 7,
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "duplicar": {
+      "label": "Duplicar anterior",
+      "type": "checkbox",
+      "name": "duplicar",
+      "model": {"val": "", "err": ""}
+    }
+  }
+}

@@ -8,9 +8,9 @@
                     replace: true,
                     templateUrl: 'html/common/xd-input.html',
                     scope: {
+                        change: '=',
                         disable: '=',
-                        params: '=',
-                        change: '='
+                        params: '='
                     }
                 };
 

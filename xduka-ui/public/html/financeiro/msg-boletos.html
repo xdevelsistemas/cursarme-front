@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <xd-select data-params="mb._model.tipoCurso" data-change="mb.changeTipoCurso"></xd-select>
+        </div>
+        <div class="col-md-4">
+            <xd-select data-params="mb._model.curso" data-change="mb.changeCurso"></xd-select>
+        </div>
+        <div class="col-md-4">
+            <xd-select data-params="mb._model.turma" data-change="mb.changeTurma"></xd-select>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-show="mb.showTextareas">
+    <div class="col-md-12">
+        <xd-panel-collapse title="'Compensação'">
+            <xd-input-textarea data-params="mb._model.compensacao"></xd-input-textarea>
+            <div class="col-md-6">
+                <button class="btn btn-warning btn-icon icon-left btn-lg pull-right" data-ng-click="mb.limpar(mb._model.compensacao)" data-ng-disabled="!mb.showTextareas">
+                    Limpar
+                    <i class="icon entypo-cup icon-right"></i></button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-green btn-lg btn-icon icon-left pull-left" data-ng-disabled="!mb.showTextareas" ng-click="mb.salvar(mb._model.compensacao)">
+                    Salvar
+                    <i class="entypo-check"></i>
+                </button>
+            </div>
+        </xd-panel-collapse>
+
+        <xd-panel-collapse title="'Sacado'">
+            <xd-input-textarea data-params="mb._model.sacado"></xd-input-textarea>
+            <div class="col-md-6">
+                <button class="btn btn-warning btn-icon icon-left btn-lg pull-right" data-ng-click="mb.limpar(mb._model.sacado)" data-ng-disabled="!mb.showTextareas">
+                    Limpar
+                    <i class="icon entypo-cup icon-right"></i></button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-green btn-lg btn-icon icon-left pull-left" data-ng-disabled="!mb.showTextareas" ng-click="mb.salvar(mb._model.sacado)">
+                    Salvar
+                    <i class="entypo-check"></i>
+                </button>
+            </div>
+        </xd-panel-collapse>
+
+        <xd-panel-collapse title="'Atraso'">
+            <xd-input-textarea data-params="mb._model.atraso"></xd-input-textarea>
+            <div class="col-md-6">
+                <button class="btn btn-warning btn-icon icon-left btn-lg pull-right" data-ng-click="mb.limpar(mb._model.atraso)" data-ng-disabled="!mb.showTextareas">
+                    Limpar
+                    <i class="icon entypo-cup icon-right"></i></button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-green btn-lg btn-icon icon-left pull-left" data-ng-disabled="!mb.showTextareas" ng-click="mb.salvar(mb._model.atraso)">
+                    Salvar
+                    <i class="entypo-check"></i>
+                </button>
+            </div>
+        </xd-panel-collapse>
+    </div>
+</div>

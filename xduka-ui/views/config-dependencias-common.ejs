@@ -1,3 +1,4 @@
+<!-- build:js /assets/js/bundle_common.min.js -->
 <script type="text/javascript" src="/lib/jquery/dist/jquery.js"></script>
 <!-- <script type="text/javascript" src="/lib/requirejs-domready/domReady.js"></script> -->
 
@@ -16,14 +17,16 @@
 <script type="text/javascript" src="/lib/angular-sanitize/angular-sanitize.js"></script>
 <script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
 <script type="text/javascript" src="/lib/angular-ui-utils/ui-utils.js"></script>
-<script src="http://code.angularjs.org/1.0.8/i18n/angular-locale_pt-br.js"></script>
+<script type="text/javascript" src="/assets/js/angular-locale_pt-br.js"></script>
 <script type="text/javascript" src="/lib/ngImgCrop/compile/unminified/ng-img-crop.js"></script>
+<script type="text/javascript" src="/lib/ngprogress/build/ngprogress.js"></script>
 
 <!-- outros -->
 <script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
 <script type="text/javascript" src="/lib/angular-ui-select/dist/select.js"></script>
 <script type="text/javascript" src="/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script type="text/javascript" src="/lib/underscore/underscore.js"></script>
+<script type="text/javascript" src="/lib/angular-file-upload/dist/angular-file-upload.min.js"></script>
 
 
 <!--    SCRIPTS COMMON   -->
@@ -39,7 +42,11 @@
 
 <!--    Services   -->
 <script type="text/javascript" src="/js/common/services/__module__.js"></script>
+<script type="text/javascript" src="/js/common/services/alunoService.js"></script>
 <script type="text/javascript" src="/js/common/services/bread-crumb.js"></script>
+<script type="text/javascript" src="/js/common/services/dataUser.js"></script>
+<script type="text/javascript" src="/js/common/services/define-unidade.js"></script>
+<script type="text/javascript" src="/js/common/services/report.js"></script>
 <script type="text/javascript" src="/js/common/services/tipoTelefone.js"></script>
 <script type="text/javascript" src="/js/common/services/version.js"></script>
 
@@ -59,6 +66,7 @@
 <script type="text/javascript" src="/js/common/directives/xd-grid.js"></script>
 <script type="text/javascript" src="/js/common/directives/xd-line-chart.js"></script>
 <script type="text/javascript" src="/js/common/directives/xd-input-checks.js"></script>
+<script type="text/javascript" src="/js/common/directives/xd-search-aluno.js"></script>
 
 
 <!-- //NEON -->
@@ -83,17 +91,9 @@
 
 <!--    SÓ CARREGA OS ARQUIVOS ABAIXO QUANDO OS DOM ESTIVER COMPLETO      -->
 
-<script type="text/javascript" ng-src="/assets/js/neon-api.js"></script>
-<script type="text/javascript" ng-src="/assets/js/neon-chat.js"></script>
-<script type="text/javascript" ng-src="/assets/js/neon-custom.js"></script>
-<script type="text/javascript" ng-src="/assets/js/neon-demo.js"></script>
-<script type="text/javascript" ng-src="/assets/js/jquery.bootstrap.wizard.min.js"></script>
-<!--
-    $(document).ready(function() {
-        $.getScript('/assets/neon/js/neon-api.js');
-        $.getScript('/assets/neon/js/neon-chat.js');
-        $.getScript('/assets/neon/js/neon-custom.js');
-        $.getScript('/assets/neon/js/neon-demo.js');
-        $.getScript('/assets/js/jquery.bootstrap.wizard.min.js')
-    });
-</script>-->
+<script type="text/javascript" src="/assets/js/fileinput.js"></script>
+<script type="text/javascript" src="/assets/js/neon-api.js"></script>
+<script type="text/javascript" src="/assets/js/neon-custom.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.bootstrap.wizard.min.js"></script>
+<!-- endbuild -->
+<script type="text/javascript" src="/assets/js/neon-custom.js"></script>

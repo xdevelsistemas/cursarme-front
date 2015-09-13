@@ -6,9 +6,7 @@
   "nome": {
     "label": "Nome",
     "type": "text",
-    "val": "Teste1",
     "name": "nome",
-
     "model": {"val": "", "err": ""}
   },
   "endereco": {
@@ -306,7 +304,7 @@
   "complemento": {
     "label": "Complemento",
     "type": "text",
-    "name": "apt",
+    "name": "complemento",
     "model": {"val": "", "err": ""}
   },
   "bairro": {
@@ -509,7 +507,7 @@
     "required": false,
     "placeholder": "Selecione uma opção",
     "list": [
-      {"id": "1", "text": "Dinheiro", "tpCheque": false},
+      {"id": "1", "text": "Boleto", "tpCheque": false},
       {"id": "2", "text": "Cheque", "tpCheque": true}
     ],
     "model": {"val": "", "err": ""}
@@ -548,10 +546,46 @@
     "required": false,
     "placeholder": "Selecione uma opção",
     "list": [
-      {"id": "1", "text": "Dinheiro", "name": "boleto", "tpCheque": false},
+      {"id": "1", "text": "Boleto", "name": "boleto", "tpCheque": false},
       {"id": "2", "text": "Cheque", "name": "cheque", "tpCheque": true},
       {"id": "3", "text": "Cartão", "name": "cartao", "tpCheque": false}
     ],
+    "model": {"val": "", "err": ""}
+  },
+  "descontosAdicionais": {
+    "label": "Descontos disponíveis",
+    "type": "select",
+    "name": "descontosDisp",
+    "placeholder": "Selecione uma opção",
+    "list": [
+      {
+        "id": "desc1",
+        "text": "Funcionário",
+        "percent": 1
+      },
+      {
+        "id": "desc2",
+        "text": "Convênio",
+        "percent": 0.1
+      },
+      {
+        "id": "desc3",
+        "text": "Indicação",
+        "percent": 0.05
+      },
+      {
+        "id": "desc4",
+        "text": "Grupo de pessoas",
+        "percent": 0.05
+      }
+    ],
+    "model": {"val": "", "err": ""}
+  },
+  "descricaoDesconto": {
+    "label": "Descrição do desconto",
+    "type": "textarea",
+    "name": "descrDesc",
+    "rows": 7,
     "model": {"val": "", "err": ""}
   },
   "qtdParcelas": {

@@ -1,0 +1,38 @@
+#cloud-config
+
+coreos:
+    units:
+      - name: etcd2.service
+        command: start
+      - name: fleet.service
+        command: start
+      - name: 99-public-interface.network
+        runtime: yes
+        content: |
+          [Match]
+          Path=*:03.0
+
+          [Network]
+          IPv4LL=true
+      - name: systemd-networkd.service
+        command: restart
+      - name: oem-cloudinit.service
+        command: restart
+        runtime: yes
+        content: |
+          [Unit]
+          Description=Cloudinit from DigitalOcean metadata
+
+          [Service]
+          Type=oneshot
+          ExecStart=/usr/bin/coreos-cloudinit --oem=digitalocean
+    etcd2:
+      # generate a new token for each unique cluster from https://discovery.etcd.io/new?size=3
+      # specify the initial size of your cluster with ?size=X
+      discovery: https://discovery.etcd.io/40a9485b523b5033ceca7de76ba1d984
+    oem:
+      id: digitalocean
+      name: DigitalOcean
+      version-id: 0.0.2
+      home-url: https://www.digitalocean.com/
+      bug-report-url: https://github.com/coreos/bugs/issues

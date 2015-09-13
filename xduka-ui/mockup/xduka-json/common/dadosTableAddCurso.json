@@ -1,0 +1,295 @@
+{
+  "unidades": [
+    {
+      "id": 1,
+      "list": [
+        {
+          "acodigo": "AC0903600000",
+          "bcurso": "Informárica na Educação",
+          "ctipo": "Mestrado em Educação",
+          "darea": "Exatas",
+          "eturno": "Matutino",
+          "fvagas": "20",
+          "gcarga": "30 Horas",
+          "hperiodo": "Único",
+          "ibtn": {
+            "btn": true,
+            "list": [
+              {
+                "text": "",
+                "class": "btn btn-white",
+                "title": "Editar",
+                "entypo": "entypo-pencil"
+              }
+            ]
+          }
+        }
+      ],
+      "listComp": [
+        {
+          "curso": {
+            "model": {
+              "val": "Informárica na Educação"
+            }
+          },
+          "codigoCurso": {
+            "model": {
+              "val": "AC0903600000"
+            }
+          },
+          "tipo": {
+            "model": {
+              "val": 1
+            }
+          },
+          "area": {
+            "model": {
+              "val": 11
+            }
+          },
+          "turno": {
+            "model": {
+              "val": 111
+            }
+          },
+          "vagasTurma": {
+            "model": {
+              "val": "12"
+            }
+          },
+          "cargaHoraria": {
+            "model": {
+              "val": "16"
+            }
+          },
+          "periodo": {
+            "model": {
+              "val": 1
+            }
+          },
+          "habilitacao": {
+            "model": {
+              "val": "?"
+            }
+          },
+          "autorizacao": {
+            "model": {
+              "val": "?"
+            }
+          },
+          "reconhecimento": {
+            "model": {
+              "val": "?"
+            }
+          },
+          "tableCriterios": [
+            {
+              "acriterio": "Uma(1) prova",
+              "bobs": "30pts"
+            },
+            {
+              "acriterio": "Dois(2) trabalhos",
+              "bobs": "35pts cada"
+            }
+          ]
+        }
+      ]
+    },
+    {
+    "id": 2,
+    "list": [
+      {
+        "acodigo": "AC2170369013",
+        "bcurso": "História da Humanidade",
+        "ctipo": "Mestrado em Educação",
+        "darea": "Humanas",
+        "eturno": "Noturno",
+        "fvagas": "12",
+        "gcarga": "30",
+        "hperiodo": "Único",
+        "ibtn": {
+          "btn": true,
+          "list": [
+            {
+              "text": "",
+              "class": "btn btn-white",
+              "title": "Editar",
+              "entypo": "entypo-pencil"
+            }
+          ]
+        }
+      }
+    ],
+    "listComp": [
+      {
+        "curso": {
+          "model": {
+            "val": "História da Humanidade"
+          }
+        },
+        "codigoCurso": {
+          "model": {
+            "val": "AC2170369013"
+          }
+        },
+        "tipo": {
+          "model": {
+            "val": 1
+          }
+        },
+        "area": {
+          "model": {
+            "val": 22
+          }
+        },
+        "turno": {
+          "model": {
+            "val": 222
+          }
+        },
+        "vagasTurma": {
+          "model": {
+            "val": "12"
+          }
+        },
+        "cargaHoraria": {
+          "model": {
+            "val": "30"
+          }
+        },
+        "periodo": {
+          "model": {
+            "val": 1
+          }
+        },
+        "habilitacao": {
+          "model": {
+            "val": "123"
+          }
+        },
+        "autorizacao": {
+          "model": {
+            "val": "123"
+          }
+        },
+        "reconhecimento": {
+          "model": {
+            "val": "123"
+          }
+        },
+        "tableCriterios": [
+          {
+            "acriterio": "123",
+            "bobs": "456",
+            "cbtn": {
+              "btn": true,
+              "list": [
+                {
+                  "text": "",
+                  "class": "btn btn-danger btn-sm",
+                  "entypo": "entypo-cancel"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+    },
+    {
+    "id": 3,
+    "list": [
+      {
+        "acodigo": "AC2170970190",
+        "bcurso": "Matemática Avançada",
+        "ctipo": "Mestrado em Educação",
+        "darea": "Exatas",
+        "eturno": "Matutino",
+        "fvagas": "20",
+        "gcarga": "50 Horas",
+        "hperiodo": "Único",
+        "ibtn": {
+          "btn": true,
+          "list": [
+            {
+              "text": "",
+              "class": "btn btn-white",
+              "title": "Editar",
+              "entypo": "entypo-pencil"
+            }
+          ]
+        }
+      }
+    ],
+    "listComp": [
+      {
+        "curso": {
+          "model": {
+            "val": "Matemática Avançada"
+          }
+        },
+        "codigoCurso": {
+          "model": {
+            "val": "AC2170970190"
+          }
+        },
+        "tipo": {
+          "model": {
+            "val": 1
+          }
+        },
+        "area": {
+          "model": {
+            "val": 11
+          }
+        },
+        "turno": {
+          "model": {
+            "val": 111
+          }
+        },
+        "vagasTurma": {
+          "model": {
+            "val": "20"
+          }
+        },
+        "cargaHoraria": {
+          "model": {
+            "val": "50 Horas"
+          }
+        },
+        "periodo": {
+          "model": {
+            "val": 1
+          }
+        },
+        "habilitacao": {
+          "model": {
+            "val": "??"
+          }
+        },
+        "autorizacao": {
+          "model": {
+            "val": "??"
+          }
+        },
+        "reconhecimento": {
+          "model": {
+            "val": "??"
+          }
+        },
+        "tableCriterios": [
+          {
+            "acriterio": "Uma(1) prova",
+            "bobs": "30pts"
+          },
+          {
+            "acriterio": "Dois(2) trabalhos",
+            "bobs": "35pts cada"
+          }
+        ]
+      }
+    ]
+    }
+  ]
+}

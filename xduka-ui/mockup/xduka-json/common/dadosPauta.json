@@ -1,0 +1,248 @@
+{
+  "disciplinas": [
+    {
+      "id": 111,
+      "pauta": {
+        "alunos": [
+          {
+            "mat": "2014BSI123",
+            "nome": "João das Couves",
+            "sit": "Normal",
+            "notaUm": 7.5,
+            "notaDois": 0.0,
+            "faltas": 1,
+            "media": 3.75,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": false,
+              "1440644400000": true,
+              "1440730800000": false,
+              "1440817200000": false,
+              "1440903600000": false,
+              "1440990000000": false,
+              "1441076400000": false
+            }
+          },
+          {
+            "mat": "2014BSI321",
+            "nome": "Mariana Ramos",
+            "sit": "Normal",
+            "notaUm": 5.3,
+            "notaDois": 0.0,
+            "faltas": 1,
+            "media": 2.65,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": true,
+              "1440644400000": false,
+              "1440730800000": false,
+              "1440817200000": false,
+              "1440903600000": false,
+              "1440990000000": false,
+              "1441076400000": false
+            }
+          },
+          {
+            "mat": "2014BSI456",
+            "nome": "Santiago Silva",
+            "sit": "Normal",
+            "notaUm": 10.0,
+            "notaDois": 0.0,
+            "faltas": 1,
+            "media": 5.0,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": false,
+              "1440644400000": true,
+              "1440730800000": false,
+              "1440817200000": false,
+              "1440903600000": false,
+              "1440990000000": false,
+              "1441076400000": false
+            }
+          },
+          {
+            "mat": "2014BSI654",
+            "nome": "Abner Santos",
+            "sit": "Normal",
+            "notaUm": 9.5,
+            "notaDois": 2.5,
+            "faltas": 0,
+            "media": 6.0,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": false,
+              "1440644400000": false,
+              "1440730800000": false,
+              "1440817200000": false,
+              "1440903600000": false,
+              "1440990000000": false,
+              "1441076400000": false
+            }
+          }
+        ],
+        "tableFreqDatasComp": {
+          "head": [
+            1440471600000,
+            1440558000000,
+            1440644400000,
+            1440730800000,
+            1440817200000,
+            1440903600000,
+            1440990000000,
+            1441076400000
+          ]
+        },
+        "tableConteudoAdicionado": {
+          "list": [
+            {
+              "adata": {
+                "date": true,
+                "int": 1440039600000
+              },
+              "btitulo": "Sequência de Fibonacci",
+              "cconteudo": "Essa sequência tem uma lei de formação simples: cada elemento, a partir do terceiro, é obtido somando-se os dois anteriores. Veja: 1+1=2, 2+1=3, 3+2=5 e assim por diante.",
+              "dbtn": {
+                "btn": true,
+                "list": [
+                  {
+                    "title": "Editar",
+                    "entypo": "entypo-pencil",
+                    "class": "btn btn-white"
+                  },
+                  {
+                    "title": "Remover",
+                    "entypo": "entypo-cancel",
+                    "class": "btn btn-white"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 222,
+      "pauta": {
+        "alunos": [
+          {
+            "mat": "2014BSI123",
+            "nome": "João das Couves",
+            "sit": "Normal",
+            "notaUm": 10.0,
+            "notaDois": 5.0,
+            "faltas": 0,
+            "media": 7.5,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": false,
+              "1440644400000": false,
+              "1440730800000": false,
+              "1440817200000": false,
+              "1440903600000": false,
+              "1440990000000": false,
+              "1441076400000": false
+            }
+          },
+          {
+            "mat": "2014BSI321",
+            "nome": "Mariana Ramos",
+            "sit": "Normal",
+            "notaUm": 5.0,
+            "notaDois": 5.0,
+            "faltas": 2,
+            "media": 2.65,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": true,
+              "1440644400000": false,
+              "1440730800000": false,
+              "1440817200000": false,
+              "1440903600000": true,
+              "1440990000000": false,
+              "1441076400000": false
+            }
+          },
+          {
+            "mat": "2014BSI456",
+            "nome": "Santiago Silva",
+            "sit": "Normal",
+            "notaUm": 6.0,
+            "notaDois": 9.0,
+            "faltas": 4,
+            "media": 7.5,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": false,
+              "1440644400000": true,
+              "1440730800000": false,
+              "1440817200000": true,
+              "1440903600000": true,
+              "1440990000000": false,
+              "1441076400000": true
+            }
+          },
+          {
+            "mat": "2014BSI654",
+            "nome": "Abner Santos",
+            "sit": "Normal",
+            "notaUm": 9.5,
+            "notaDois": 2.5,
+            "faltas": 0,
+            "media": 6.0,
+            "freqDataComp": {
+              "1440471600000": false,
+              "1440558000000": false,
+              "1440644400000": false,
+              "1440730800000": false,
+              "1440817200000": false,
+              "1440903600000": false,
+              "1440990000000": false,
+              "1441076400000": false
+            }
+          }
+        ],
+        "tableFreqDatasComp": {
+          "head": [
+            1440471600000,
+            1440558000000,
+            1440644400000,
+            1440730800000,
+            1440817200000,
+            1440903600000,
+            1440990000000,
+            1441076400000
+          ]
+        },
+        "tableConteudoAdicionado": {
+          "list": [
+            {
+              "adata": {
+                "date": true,
+                "int": 1440212400000
+              },
+              "btitulo": "Conteúdo 01",
+              "cconteudo": "Émile Durkheim, Karl Marx e Marx Weber. Citações sobre Auguste Comte e sua importância.",
+              "dbtn": {
+                "btn": true,
+                "list": [
+                  {
+                    "title": "Editar",
+                    "entypo": "entypo-pencil",
+                    "class": "btn btn-white"
+                  },
+                  {
+                    "title": "Remover",
+                    "entypo": "entypo-cancel",
+                    "class": "btn btn-white"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

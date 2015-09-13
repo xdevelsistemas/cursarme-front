@@ -1,0 +1,161 @@
+<div class="col-md-12">
+    <div class="col-md-12 configSecBorder">
+        <div class="row" style="padding-top: 1%">
+            <div class="col-md-12">
+                <xd-input data-params="config._model.nomeUnidade"></xd-input>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <xd-input data-params="config._model.nomeEmpresa"></xd-input>
+            </div>
+            <div class="col-md-4">
+                <xd-input data-params="config._model.cnpj"></xd-input>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <xd-input data-params="config._model.endereco"></xd-input>
+            </div>
+            <div class="col-md-4">
+                <xd-input data-params="config._model.telefone"></xd-input>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <xd-input data-params="config._model.site"></xd-input>
+            </div>
+            <div class="col-md-6">
+                <xd-input-email data-params="config._model.email"></xd-input-email>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <ul class="nav nav-tabs">
+        <li class="linkCursor linkCursor active" title="Adicionar">
+            <a data-target="#adicionar" data-toggle="tab" style="padding: 11px;">
+                <span class="hidden-xs hidden-sm"><i class="entypo-plus-circled"></i>Adicionar</span>
+                <span class="hidden-md hidden-lg"><i class="entypo-plus-circled"></i></span>
+            </a>
+        </li>
+        <li class="linkCursor linkCursor" title="Informações">
+            <a id="informacao" data-target="#info" data-toggle="tab" style="padding: 11px;">
+                <span class="hidden-xs hidden-sm"><i class="entypo-info"></i>Informações</span>
+                <span class="hidden-md hidden-lg"><i class="entypo-info"></i></span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <!-- ADICIONAR -->
+        <div class="tab-pane active" id="adicionar">
+            <xd-panel-collapse title="'Adicionar'">
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-select data-params="config._model.tipoCurso" data-change="config.newVal"></xd-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-select data-params="config._model.tipoArea" data-change="config.newVal"></xd-select>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-select data-params="config._model.turno" data-change="config.newVal"></xd-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-select data-params="config._model.tipoPeriodo" data-change="config.newVal"></xd-select>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-select data-params="config._model.modalidadeTurma" data-change="config.newVal"></xd-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-select data-params="config._model.horarioEntrada" data-change="config.newVal"></xd-select>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-select data-params="config._model.horarioSaida" data-change="config.newVal"></xd-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-select data-params="config._model.tipoTelefone" data-change="config.newVal"></xd-select>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-select data-params="config._model.tipoSituacao" data-change="config.newVal"></xd-select>
+                    </div>
+                </div>
+            </xd-panel-collapse>
+        </div>
+        <!-- INFORMAÇÕES -->
+        <div class="tab-pane" id="info">
+            <xd-panel-collapse title="'Secretaria'">
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input data-params="config._model.secAutorizacao"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input data-params="config._model.secFolha"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input data-params="config._model.secNumero"></xd-input>
+                    </div>
+                </div>
+            </xd-panel-collapse>
+            <xd-panel-collapse title="'Diretor'">
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input data-params="config._model.dirAutorizacao"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input data-params="config._model.dirFolha"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input data-params="config._model.dirNumero"></xd-input>
+                    </div>
+                </div>
+            </xd-panel-collapse>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-3 inLine pull-right">
+            <button class="btn btn-green btn-icon icon-left btn-block btn-lg" ng-click="config.saveDadosConfiguracoes()">
+                Salvar
+                <i class="icon entypo-check icon-right"></i>
+            </button>
+        </div>
+        <div class="col-md-3 inLine pull-right">
+            <button class="btn btn-blue btn-icon icon-left btn-block btn-lg" ng-click="config.voltar()">
+                Voltar
+                <i class="icon entypo-left icon-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- NEW VAL -->
+<div class="modal fade" id="modalNew" tabindex="-1" role="dialog" aria-labelledby="Cadastrar Novo" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="config.cancelNew()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Cadastrar Novo</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input data-params="config.modalNew"></xd-input>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="config.cancelNew()">Cancelar</button>
+                <button type="button" class="btn btn-green" ng-click="config.saveNew()">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,8 @@
 var isLoggedIn = require('../services/isLoggedIn.js'),
     isNotLoggedIn = require('../services/isNotLoggedIn.js'),
-    http = require('http');
+    reportClient = require('../config/report.js'),
+    http =  require('http');
+
 
 module.exports = function (app, passport) {
 //    var express = require('express');
@@ -20,7 +22,7 @@ module.exports = function (app, passport) {
                 dataRes = {},
                 options = {
                     host: 'localhost',
-                    port: 3000,
+                    port: function(){return process.env.PORT || 3000}(),
                     path: '/api/resetpassword/' + token
                 };
 
@@ -29,6 +31,7 @@ module.exports = function (app, passport) {
                     dataRes = JSON.parse(data);
                 });
                 response.on('end', function () {
+                    // your code here if you want to use the results !
                     if (dataRes.msgErro && dataRes.msgErro != '') {
                         res.redirect('/login');
                     } else {
@@ -38,7 +41,6 @@ module.exports = function (app, passport) {
                             dataUser: dataRes
                         });
                     }
-                    // your code here if you want to use the results !
                 });
             };
 
@@ -127,5 +129,175 @@ module.exports = function (app, passport) {
             res.send({success: false, errmsg: 'User is not defined.'});
     });
 
-    return app;
+
+    // REPORT
+    app.get('/report', function (req, res) {
+
+        var dataTemplate = {},
+            options = reportClient.options(req.query.templateContent),
+            data_content = [
+                {
+                    head: [
+                        {text: 'Nome'},
+                        {text: 'Turma'},
+                        {text: 'Curso'},
+                        {text: 'Unidade'}
+                    ],
+                    body: [
+                        {
+                            Nome: 'João das Couves',
+                            Turma: 'IESV1',
+                            Curso: 'Sistema de informação',
+                            Unidade: 'Cariacica'
+                        },
+                        {
+                            Nome: 'Pedro Augusto',
+                            Turma: 'IESV1',
+                            Curso: 'Sistema de informação',
+                            Unidade: 'Cariacica'
+                        }
+                    ]
+                },
+                {
+                    data: '22/12/2015',
+                    nome: 'João das Couves',
+                    curso: 'Sistemas de Informação'
+                },
+                {
+                    head: [
+                        {text: 'Nome'},
+                        {text: '5 fotos 3x4'},
+                        {text: 'Carteira de Identidade'},
+                        {text: 'CPF'},
+                        {text: 'Titulo Eleitoral'},
+                        {text: 'Comprovante da Ultima Eleição'},
+                        {text: 'Certidão de Reservista'},
+                        {text: 'Certidão de Nascimento ou Casamento'},
+                        {text: 'Comprovante de Residência'},
+                        {text: 'Diploma de Graduação'},
+                        {text: 'Histórico de Graduação'},
+                        {text: 'Certidão de Conclusão'}
+                    ],
+                    body: [
+                        {
+                            Nome: 'João das Couves',
+                            foto: 'X',
+                            c_id: '',
+                            cpf: 'X',
+                            tit_eleit: '',
+                            comp_eleit: 'X',
+                            cert_reserv: 'X',
+                            cert_cas: '',
+                            comp_res: 'X',
+                            dip_grad: '',
+                            hist_grad: 'X',
+                            cert_conclu: 'X'
+                        }
+                    ]
+                },
+                {
+                    nome: 'João das Couves',
+                    cpf: '123.123.123-54',
+                    disciplina: 'Cálculo 2',
+                    professor: 'Bruno teste',
+                    curso: 'Sistemas de Informação',
+                    dia: '14',
+                    mes: 'Novembro',
+                    ano: '2015',
+                    hora1: '7:30',
+                    hora2: '9:30'
+                },
+                {
+                    nome: 'João das Couves',
+                    rg: '2.141-654 - ES',
+                    curso: 'Sistemas de Informação',
+                    matricula: '1412SI312',
+                    encontro: 'semanais',
+                    data_ini: '18/08/2015',
+                    data_fim: '18/05/2017'
+                },
+                {
+                    nome: 'João das Couves',
+                    cpf: '123.123.123-31',
+                    curso: 'Complementação Pedagógica',
+                    matricula: '1412SI312',
+                    encontro: 'semanais',
+                    hora1: '07:30',
+                    hora2: '09:30',
+                    data_ini: '18/08/2015',
+                    data_fim: '18/05/2017'
+                },
+                {
+                    nome: 'João das Couves',
+                    curso: 'Sistemas de Informação',
+                    caga_horaria: '2500',
+                    dia_ini: '01',
+                    mes_ini: 'Novembro',
+                    ano_ini: '2013',
+                    dia_fim: '01',
+                    mes_fim: 'Novembro',
+                    ano_fim: '2016',
+                    content_curso: [
+                        { text: "DESENVOLVIMENTO INFANTIL" },
+                        { text: "RECÉM NASCIDO" },
+                        { text: "PRIMEIRO ANO" },
+                        { text: "SEGUNDO ANO" },
+                        { text: "DO TERCEIRO AO QUINTO ANO" },
+                        { text: "SINAIS DE ALERTA NO DESENVOLVIMENTO INFANTIL" },
+                        { text: "DESENVOLVIMENTO PSICOSEXUAL DA CRIANÇA" },
+                        { text: "FASES DO DESENVOLVIMENTO" },
+                        { text: "CARACTERÍSTICAS DO DESENVOLVIMENTO COGNITIVO" },
+                        { text: "REAÇÕES AGRESSIVAS NA INFÂNCIA" },
+                        { text: "AS BRINCADEIRAS NOS DOIS PRIMEIROS ANOS" },
+                        { text: "AS BRINCADEIRAS E A CRIANÇA DE 3, 4 E 5 ANOS" },
+                        { text: "BRINQUEDOS E BRINCADEIRAS" },
+                        { text: "CONSIDERAÇÕES SOBRE OS BRINQUEDOS PEDAGÓGICOS" },
+                        { text: "CLASSIFICAÇÃO DE BRINQUEDOS" },
+                        { text: "O DESENHO E O DESENVOLVIMENTO DAS CRIANÇAS" },
+                        { text: "ORIGEM DA EDUCAÇÃO INFANTIL NO MUNDO" },
+                        { text: "EDUCAÇÃO INFANTIL NO BRASIL" },
+                        { text: "O QUE É EDUCAÇÃO INFANTIL? OS OBJETIVOS DO TRABALHO PEDAGÓGICO COM CRIANÇAS DE 0 A 6 ANOS" },
+                        { text: "OBJETIVOS NA EDUCAÇÃO INFANTIL" },
+                        { text: "CURRÍCULO VIVO: A ORGANIZAÇÃO DO TRABALHO PEDAGÓGICO NA EDUCAÇÃO INFANTIL" },
+                        { text: "ROTINA NA EDUCAÇÃO INFANTIL" },
+                        { text: "AVALIAÇÃO NA EDUCAÇÃO INFANTIL: O ADULTO COMO UM DOS MEDIADORES DO DESENVOLVIMENTO INFANTIL" }
+                    ]
+                },
+                {
+                    head: [
+                        {text: 'Aluno'},
+                        {text: 'Assinatura'},
+                    ],
+                    body: [
+                        { Nome: 'João das Couves' },
+                        { Nome: 'Pedro das Alfaces' }
+                    ]
+                }
+            ];
+
+
+        var callback = function(response) {
+            response.on('data', function (data) {
+                dataTemplate = JSON.parse(data);
+            });
+            response.on('end', function() {
+                dataTemplate.template.recipe = "phantom-pdf";
+                dataTemplate.data.content = data_content[req.query.data];
+
+                reportClient.client.render(dataTemplate, function(err, response) {
+                    if (err) {
+                        return next(err);
+                    }
+
+                    response.pipe(res);
+
+                });
+            });
+        };
+
+        http.request(options, callback).end();
+
+
+    });
+
 };

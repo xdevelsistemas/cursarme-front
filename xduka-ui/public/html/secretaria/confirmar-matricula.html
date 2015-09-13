@@ -81,57 +81,72 @@
             <div class="row">
                 <div class="col-md-12">
                     <xd-input data-params="conf._model.nome"
-                              disable="true"></xd-input>
+                              ></xd-input>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
                     <xd-input data-params="conf._model.rg"
-                              disable="true"></xd-input>
+                              ></xd-input>
                 </div>
                 <div class="col-md-4">
-                    <xd-input-date data-disable="!conf.validaCpf"data-params="conf._model.dataExp" data-opened="main.opened"
+                    <xd-input-date data-params="conf._model.dataExp" data-opened="main.opened"
                                    date-options="main.dateOptions" data-click="main.open"></xd-input-date>
                 </div>
                 <div class="col-md-4">
                     <xd-input data-params="conf._model.orgaoEmissor"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-3">
                     <xd-input data-params="conf._model.tituloEleitor"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
                 <div class="col-md-3">
                     <xd-input data-params="conf._model.zona"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
                 <div class="col-md-3">
                     <xd-input data-params="conf._model.secao"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
                 <div class="col-md-3">
                     <xd-select data-params="conf._model.ufTitulo"
-                               data-disable="!conf.validaCpf"></xd-select>
+                               ></xd-select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-3">
                     <xd-input data-params="conf._model.certidaoNc"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
                 <div class="col-md-3">
                     <xd-input data-params="conf._model.folha"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
                 <div class="col-md-3">
                     <xd-input data-params="conf._model.livro"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
                 <div class="col-md-3">
                     <xd-input data-params="conf._model.cartorio"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-4">
+                    <xd-input data-params="conf._model.cpf"
+                              ></xd-input>
+                </div>
+                <div class="col-md-4">
+                    <xd-select data-params="conf._model.sexo" data-change="conf.verificaSexo"
+                               ></xd-select>
+                </div>
+                <div class="col-md-4">
+                    <xd-input-date data-params="conf._model.dataNasc" data-opened="main.opened"
+                                   date-options="main.dateOptions" data-click="main.open"></xd-input-date>
                 </div>
             </div>
             <div class="row">
@@ -153,100 +168,87 @@
                     <xd-input data-params="conf._model.categoria"
                               data-disable="!conf.validaCpf || conf.validaSexo"></xd-input>
                 </div>
-                <div class="col-md-5">
-                    <xd-input data-params="conf._model.cpf"
-                              disable="true"></xd-input>
-                </div>
-                <div class="col-md-3">
-                    <xd-select data-params="conf._model.sexo" data-change="conf.verificaSexo"
-                               data-disable="!conf.validaCpf"></xd-select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-5">
-                    <xd-input-date data-disable="!conf.validaCpf"data-params="conf._model.dataNasc" data-opened="main.opened"
-                                   date-options="main.dateOptions" data-click="main.open"></xd-input-date>
-                </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <xd-select data-params="conf._model.raca"
-                              data-disable="!conf.validaCpf"></xd-select>
+                               ></xd-select>
                 </div>
                 <div class="col-md-4">
                     <xd-select data-params="conf._model.estadoCivil"
-                              data-disable="!conf.validaCpf"></xd-select>
+                               ></xd-select>
                 </div>
+
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <xd-input data-params="conf._model.pai"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <xd-input data-params="conf._model.mae"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <xd-input data-params="conf._model.avRua"
-                              disable="true"></xd-input>
+                              disable="!conf.validaCepAvRua"></xd-input>
                 </div>
                 <div class="col-md-2">
                     <xd-input data-params="conf._model.endNum"
-                              data-disable="!conf.validaCpf"></xd-input>
-                </div>
-                <div class="col-md-2">
-                    <xd-input data-params="conf._model.apt"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
                 <div class="col-md-3">
-                    <xd-input data-params="conf._model.cep"
-                              disable="true"></xd-input>
+                    <xd-input data-params="conf._model.complemento"
+                              ></xd-input>
+                </div>
+                <div class="col-md-3">
+                    <xd-input data-params="conf._model.cep"  data-change="conf.getDadosCep"
+                              disable="!conf.validaCep"></xd-input>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-5">
                     <xd-input data-params="conf._model.bairro"
-                              disable="true"></xd-input>
+                              disable="!conf.validaCepBairro"></xd-input>
                 </div>
                 <div class="col-md-4">
                     <xd-input data-params="conf._model.cidade"
-                              disable="true"></xd-input>
+                              disable="!conf.validaCepCidade"></xd-input>
                 </div>
                 <div class="col-md-3">
                     <xd-select data-params="conf._model.endUf"
-                               disable="true"></xd-select>
+                               disable="!conf.validaCepEndUf"></xd-select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-5">
                     <xd-input data-params="conf._model.telefone"
-                              disable="true"></xd-input>
+                              ></xd-input>
                 </div>
                 <div class="col-md-4">
-                    <xd-select data-params="conf._model.tipoTelefone" data-change="conf.selectPhoneType" data-disable="!conf.validaCpf"></xd-select>
+                    <xd-select data-params="conf._model.tipoTelefone" ></xd-select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <xd-input-email data-params="conf._model.email"
-                                    disable="true"></xd-input-email>
+                                    ></xd-input-email>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-5">
                     <xd-input data-params="conf._model.nacionalidade"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
                 <div class="col-md-4">
                     <xd-input data-params="conf._model.naturalidade"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
                 <div class="col-md-3">
                     <xd-select data-params="conf._model.natUf"
-                               data-disable="!conf.validaCpf"></xd-select>
+                               ></xd-select>
                 </div>
             </div>
         </xd-panel-collapse>
@@ -255,27 +257,27 @@
             <div class="row">
                 <div class="col-md-8">
                     <xd-input data-params="conf._model.escolaEm"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
                 <div class="col-md-4">
                     <xd-input data-params="conf._model.anoEm"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-8">
                     <xd-input data-params="conf._model.cursoGrad"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
                 <div class="col-md-4">
                     <xd-input data-params="conf._model.anoGrad"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <xd-input data-params="conf._model.instituicao"
-                              data-disable="!conf.validaCpf"></xd-input>
+                              ></xd-input>
                 </div>
             </div>
         </xd-panel-collapse>

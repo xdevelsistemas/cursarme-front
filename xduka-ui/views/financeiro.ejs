@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="pt-br" ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xDuka | <%= title %></title>
+    <link rel="icon" type="image/png" href="/assets/xduka/img/mini.png">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+
+    <!-- build:css /assets/css/bundle_financeiro.min.css -->
+    <link rel="stylesheet" href="/lib/jquery-ui/themes/base/jquery-ui.css">
+    <!--NEON-->
+    <link rel="stylesheet" href="/assets/neon/vertical-timeline/css/component.css">
+    <link rel="stylesheet" href="/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
+    <link rel="stylesheet" href="/assets/css/neon.css">
+
+    <link rel="stylesheet" href="/lib/angular-ui-select/dist/select.css">
+    <link rel="stylesheet" href="/lib/select2/select2.css">
+    <link rel="stylesheet" href="/lib/select2/select2-bootstrap.css">
+    <link rel="stylesheet" href="/lib/c3/c3.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/ng-img-crop-custom.css">
+
+    <!--XDUKA-->
+    <link rel="stylesheet" href="/assets/xduka/css/skin.css">
+
+    <link rel="stylesheet" href="/lib/datatables/media/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" href="/lib/ngprogress/ngProgress.css">
+    <link rel="stylesheet" href="/assets/css/custom.css"/>
+
+    <link rel="stylesheet" href="/assets/css/font-icons/entypo/css/entypo.css">
+    <!-- endbuild -->
+
+    <!--UI-SELECT-->
+    <!--
+    IE8 support, see AngularJS Internet Explorer Compatibility http://docs.angularjs.org/guide/ie
+    For Firefox 3.6, you will also need to include jQuery and ECMAScript 5 shim -->
+    <!--[if lt IE 9]>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
+    <script>
+        document.createElement('ui-select');
+        document.createElement('ui-select-match');
+        document.createElement('ui-select-choices');
+    </script>
+    <![endif]-->
+
+</head>
+<body ng-controller="Main as main"
+      class="page-body page-fade" data-url="http://neon.dev">
+
+<div class="page-container">
+
+    <div class="sidebar-menu">
+        <header class="logo-env">
+            <!-- logo -->
+            <div class="logo">
+                <a href="/<%= title.toLowerCase() %>#/">
+                    <img src="assets/xduka/img/logo.png" width="120" alt=""/>
+                </a>
+            </div>
+            <!-- logo collapse icon -->
+            <div class="sidebar-collapse">
+                <a href="#" class="sidebar-collapse-icon with-animation">
+                    <!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+                    <i class="entypo-menu"></i>
+                </a>
+            </div>
+            <div style="padding-left: 1%" class="sidebar-collapse hidden-md hidden-lg hidden-sm" title="Sair">
+                <a href="/logout">
+                    <!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+                    <i class="entypo-logout"></i>
+                </a>
+            </div>
+            <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+            <div class="sidebar-mobile-menu visible-xs">
+                <a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+                    <i class="entypo-menu"></i>
+                </a>
+            </div>
+        </header>
+        <ul id="main-menu" class="">
+            <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+            <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+            <li ng-repeat="item in main.menu.list">
+                <a ng-href="{{item.href}}" ng-click="main.menuAction()">
+                    <i ng-class="item.iconClass"></i>
+                    <span ng-bind="item.text"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+
+        <div class="row">
+            <!-- Profile Info and Notifications -->
+            <div class="col-md-6 col-sm-8 clearfix">
+                <ul class="user-info pull-left pull-none-xsm">
+                    <!-- Profile Info -->
+                    <li class="profile-info dropdown">
+                        <!-- add class "pull-right" if you want to place this from right -->
+                        <span href="#" class="dropdown-toggle">
+                            <img ng-src="{{main.user.avatar.thumb}}" alt="{{main.user.name}}"
+                                 class="img-circle" width="44"/>
+                            {{main.user.name}}
+                        </span>
+                    </li>
+                </ul>
+
+                <div class="col-md-8 col-sm-8 clearfix">
+                    <div class="col-sm-12 hidden-lg">
+                        <br/>
+                    </div>
+                    <form role="form" class="form-horizontal form-groups-bordered">
+                        <xd-select data-params="main._unidade" data-change="main.sendUnidade" ></xd-select>
+                    </form>
+                </div>
+            </div>
+
+            <!-- SEARCH BAR -->
+            <!--<div id="xdSearch" class="xdCustomSearch" ng-class="{'open': main.openSearch}">
+                <form class="xdCustomSearch-form">
+                    <div class="input-group">
+                        <span class="input-group-btn searchIcon" ng-class="{'openSearchIcon': main.openSearch}">
+                            <i class="entypo-search"></i>
+                        </span>
+                        <input id="search" class="xdCustomSearch-input" type="search" placeholder="Matrícula ou nome" ng-focus="main.searchFocus()"
+                               ng-model="main._searchVal" ng-change="main.seachPromise(main._searchVal)" ui-keydown="{esc: main.searchkp}">
+                    </div>
+                </form>
+                <div class="col-md-12 text-center" ng-show="main.openSearch">
+                    <hr/>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 paddingB-3 animated" ng-repeat="aluno in main._alunos" ng-class="{'fadeIn': main.openSearch}">
+                        <div class="paddingB-3 linkCursor" ng-click="main.moreAluno(aluno)">
+                            <div class="text-center fadeBordered">
+                                <p class="nomeAluno">{{aluno.nome.model.val}}</p>
+                                <div class="col-md-12">
+                                    <img ng-src="{{aluno.foto.model.val}}" class="img-circle" alt="FOTO" width="100%"/>
+                                </div>
+                                <p class="matriculaSearch">Matrícula: {{aluno.matricula.model.val}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 text-center" ng-show="main.openSearch&&!!main._alunos.err">
+                    <div class="col-md-12 animated" ng-class="{'fadeOut': !main._alunos.err, 'fadeIn': !!main._alunos.err}">
+                        <div class="col-md-12">
+                            <h4 ng-bind="main._alunos.err">
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <span class="xdCustomSearch-close" ng-click="main.searchFocusOff()"></span>
+            </div>-->
+            <xd-search-aluno location="main.area"></xd-search-aluno>
+
+            <!-- Raw Links -->
+            <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+                <ul class="list-inline links-list pull-right">
+                    <li>
+                        <a href="/logout">
+                            {{main.STR.LOGOUT}}
+                            <i class="entypo-logout right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr/>
+
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb bc-3">
+                    <li>
+                        <a href="/"><i class="entypo-home"></i>Home</a>
+                    </li>
+                    <li class="active">
+                        <strong>{{main.breadCrumb.title}}</strong>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="row">
+            <div data-ng-view
+                 class="col-sm-12 col-md-12 col-lg-12" ng-cloak>
+            </div>
+        </div>
+
+        <footer class="main">
+            &copy; 2014
+            <strong>xDuka</strong>
+            Desenvolvido pela
+            <a href="http://xdevel.com.br"
+               target="_blank">xDevel</a>
+        </footer>
+
+    </div>
+</div>
+
+<% include config-dependencias-common.ejs %>
+<% include config-dependencias-financeiro.ejs %>
+
+
+</body>
+</html>

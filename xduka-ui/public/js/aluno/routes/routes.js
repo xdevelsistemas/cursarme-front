@@ -14,14 +14,19 @@
         'app.filters',
         'app.services',
         'app.directives',
-        'app.controllers'
-
-    ]).config(['$routeProvider', function ($routeProvider) {
+        'app.controllers',
+        'ngProgress'
+    ])
+    .config(['$httpProvider', function($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }
+    ])
+    .config(['$routeProvider', function ($routeProvider) {
 
         //Home
         $routeProvider.when('/', {
             redirectTo: '/mensagens'
-            //redirectTo: '/cursos'
         });
 
         //Mensagens
@@ -78,5 +83,7 @@
         $routeProvider.otherwise({
             redirectTo: '/'
         });
-    }]);
+    }])
 })();
+
+

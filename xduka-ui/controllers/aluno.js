@@ -23,6 +23,7 @@ module.exports = function() {
     controller.putEditarPerfilSenha = putEditarPerfilSenha;
     controller.showGrade = getGrade;
     controller.showHorarios = getHorarios;
+    controller.showInfoCurso = getInfoCurso;
     controller.showInfoUsuario = getInfoUsuario;
     controller.showMessages = getMessages;
     controller.showNotas = getNotas;
@@ -33,160 +34,280 @@ module.exports = function() {
 };
 
 function getAniversariantes(req, res) {
-    //req.params.id;
-    res.json(aniversariantes);
+    if(req.isAuthenticated()){
+        if(req.user.local.areas.aluno){
+            //req.params.id;
+            res.json(aniversariantes);
+        }else{
+            res.redirect("/404");
+        }
+    }else{
+        res.redirect('/login');
+    }
 }
 
 function getConteudo(req, res) {
-    res.json(conteudo);
+    if(req.isAuthenticated()){
+        if(req.user.local.areas.aluno){
+            res.json(conteudo);
+        }else{
+            res.redirect("/404");
+        }
+    }else{
+        res.redirect('/login');
+    }
 }
 
 function getEditarPerfil(req, res) {
-    res.json(editarPerfil);
+    if(req.isAuthenticated()){
+        if(req.user.local.areas.aluno){
+            res.json(editarPerfil);
+        }else{
+            res.redirect("/404");
+        }
+    }else{
+        res.redirect('/login');
+    }
 }
 
 function putEditarPerfil(req, res) {
-    //res.json(req.body);
-    console.log(req.body);
-    res.json({"foto": req.body});
+    if(req.isAuthenticated()){
+        if(req.user.local.areas.aluno){
+            //res.json(req.body);
+            console.log(req.body);
+            res.json({"foto": req.body});
+        }else{
+            res.redirect("/404");
+        }
+    }else{
+        res.redirect('/login');
+    }
 }
 
 function putEditarPerfilFoto(req, res) {
     //res.json(req.body);
     res.json({"foto": req.body});
+    if(req.isAuthenticated()){
+        if(req.user.local.areas.aluno){
+        }else{
+            res.redirect("/404");
+        }
+    }else{
+        res.redirect('/login');
+    }
 }
 
 function putEditarPerfilInfo(req, res) {
-    var dataSent = req.body,
-        dadosInfo;
+    if(req.isAuthenticated()){
+        if(req.user.local.areas.aluno){
+            var dataSent = req.body,
+                dadosInfo;
 
-    //// Limpa os dados referente aos maios de contato do ususario
-    dataSent.info.email.model.err = "";
-    dataSent.info.phone.model.err = "";
-    dataSent.info.cel.model.err = "";
+            //// Limpa os dados referente aos maios de contato do ususario
+            dataSent.info.email.model.err = "";
+            dataSent.info.phone.model.err = "";
+            dataSent.info.cel.model.err = "";
 
-    //// verifica se os campos sao validos e se os campo não estão vazios
-    if ((dataSent.info.email.model.val && dataSent.info.phone.model.val && dataSent.info.cel.model.val) &&
-        isEmail(dataSent.info.email.model.val) && isPhone(dataSent.info.phone.model.val) && isCel(dataSent.info.cel.model.val)) {
+            //// verifica se os campos sao validos e se os campo não estão vazios
+            if ((dataSent.info.email.model.val && dataSent.info.phone.model.val && dataSent.info.cel.model.val) &&
+                isEmail(dataSent.info.email.model.val) && isPhone(dataSent.info.phone.model.val) && isCel(dataSent.info.cel.model.val)) {
 
-        dadosInfo = {
-            "email":{"model":{"val": dataSent.info.email.model.val, "err": ""}},
-            "phone":{"model":{"val": dataSent.info.phone.model.val, "err": ""}},
-            "cel":{"model":{"val": dataSent.info.cel.model.val, "err": ""}}
-        };
+                dadosInfo = {
+                    "email":{"model":{"val": dataSent.info.email.model.val, "err": ""}},
+                    "phone":{"model":{"val": dataSent.info.phone.model.val, "err": ""}},
+                    "cel":{"model":{"val": dataSent.info.cel.model.val, "err": ""}}
+                };
 
-        dataSent.info.successMessage = dataSent.STR.SUCESSO;
+                dataSent.info.successMessage = dataSent.STR.SUCESSO;
 
-        res.json(extend(true, dataSent.info, dadosInfo));
+                res.json(extend(true, dataSent.info, dadosInfo));
+            }else{
+                //// Verifica se os campo estão vazios
+                if (!isEmail(dataSent.info.email.model.val)) {
+                    dataSent.info.email.model.err = dataSent.STR.NOEMAIL;
+                }else{
+                    dataSent.info.email.model.err = '';
+                }
+                if (!isPhone(dataSent.info.phone.model.val)) {
+                    dataSent.info.phone.model.err = dataSent.STR.NOPHONE;
+                }else{
+                    dataSent.info.phone.model.err = '';
+                }
+                if (!isCel(dataSent.info.cel.model.val)) {
+                    dataSent.info.cel.model.err = dataSent.STR.NOCEL;
+                }else{
+                    dataSent.info.cel.model.err = '';
+                }
+                dataSent.info.successMessage = "";
+
+                res.json(dataSent.info);
+            }
+        }else{
+            res.redirect("/404");
+        }
     }else{
-        //// Verifica se os campo estão vazios
-        if (!isEmail(dataSent.info.email.model.val)) {
-            dataSent.info.email.model.err = dataSent.STR.NOEMAIL;
-        }else{
-            dataSent.info.email.model.err = '';
-        }
-        if (!isPhone(dataSent.info.phone.model.val)) {
-            dataSent.info.phone.model.err = dataSent.STR.NOPHONE;
-        }else{
-            dataSent.info.phone.model.err = '';
-        }
-        if (!isCel(dataSent.info.cel.model.val)) {
-            dataSent.info.cel.model.err = dataSent.STR.NOCEL;
-        }else{
-            dataSent.info.cel.model.err = '';
-        }
-        dataSent.info.successMessage = "";
-
-        res.json(dataSent.info);
+        res.redirect('/login');
     }
 }
 
 function putEditarPerfilSenha(req, res) {
-    var dataSent = req.body,
-        dadosSenha;
+    if(req.isAuthenticated()){
+        if(req.user.local.areas.aluno){
+            var dataSent = req.body,
+                dadosSenha;
 
-    //// Limpa as mensagens de erros referente as senhas
-    dataSent.password.current.model.err = "";
-    dataSent.password.new.model.err = "";
-    dataSent.password.confirm.model.err = "";
+            //// Limpa as mensagens de erros referente as senhas
+            dataSent.password.current.model.err = "";
+            dataSent.password.new.model.err = "";
+            dataSent.password.confirm.model.err = "";
 
-    //// Verifica se as novas senhas batem e se não estão vazios
-    if ((dataSent.password.current.model.val && dataSent.password.new.model.val && dataSent.password.confirm.model.val) &&
-        isConfPw(dataSent.password.new.model.val, dataSent.password.confirm.model.val)) {
+            //// Verifica se as novas senhas batem e se não estão vazios
+            if ((dataSent.password.current.model.val && dataSent.password.new.model.val && dataSent.password.confirm.model.val) &&
+                isConfPw(dataSent.password.new.model.val, dataSent.password.confirm.model.val)) {
 
-        dadosSenha = {
-            "new": {"model": {"val": dataSent.password.new.model.val, "err": ""}},
-            "confirm": {"model": {"val": dataSent.password.confirm.model.val, "err": ""}},
-            "current": {"model": {"val": dataSent.password.current.model.val, "err": ""}}
-        };
+                dadosSenha = {
+                    "new": {"model": {"val": dataSent.password.new.model.val, "err": ""}},
+                    "confirm": {"model": {"val": dataSent.password.confirm.model.val, "err": ""}},
+                    "current": {"model": {"val": dataSent.password.current.model.val, "err": ""}}
+                };
 
-        dataSent.password.successMessagePw = dataSent.STR.SUCESSO;
+                dataSent.password.successMessagePw = dataSent.STR.SUCESSO;
 
-        res.json(extend(true, dataSent.password, dadosSenha));
+                res.json(extend(true, dataSent.password, dadosSenha));
 
-    }else{
-        //// Verifica se os campos estao vazios
-        dataSent.password.successMessagePw = "";
-        if (!dataSent.password.current.model.val || !dataSent.password.new.model.val || !dataSent.password.confirm.model.val) {
-            if (!dataSent.password.current.model.val) {
-                dataSent.password.current.model.err = dataSent.STR.REQUIRIDO;
             }else{
-                dataSent.password.current.model.err = '';
-            }
-            if (!dataSent.password.new.model.val) {
-                dataSent.password.new.model.err = dataSent.STR.REQUIRIDO;
-            }else{
-                dataSent.password.new.model.err = '';
-            }
-            if (!dataSent.password.confirm.model.val) {
-                dataSent.password.confirm.model.err = dataSent.STR.REQUIRIDO;
-            }else{
-                dataSent.password.confirm.model.err = '';
+                //// Verifica se os campos estao vazios
+                dataSent.password.successMessagePw = "";
+                if (!dataSent.password.current.model.val || !dataSent.password.new.model.val || !dataSent.password.confirm.model.val) {
+                    if (!dataSent.password.current.model.val) {
+                        dataSent.password.current.model.err = dataSent.STR.REQUIRIDO;
+                    }else{
+                        dataSent.password.current.model.err = '';
+                    }
+                    if (!dataSent.password.new.model.val) {
+                        dataSent.password.new.model.err = dataSent.STR.REQUIRIDO;
+                    }else{
+                        dataSent.password.new.model.err = '';
+                    }
+                    if (!dataSent.password.confirm.model.val) {
+                        dataSent.password.confirm.model.err = dataSent.STR.REQUIRIDO;
+                    }else{
+                        dataSent.password.confirm.model.err = '';
+                    }
+                }else{
+                    dataSent.password.confirm.model.err = dataSent.STR.NOCONFER;
+                }
+
+                res.json(dataSent.password);
             }
         }else{
-            dataSent.password.confirm.model.err = dataSent.STR.NOCONFER;
+            res.redirect("/404");
         }
-
-        res.json(dataSent.password);
+    }else{
+        res.redirect('/login');
     }
 }
 
 function getGrade(req, res) {
-    res.json(grade);
+    if(req.isAuthenticated()){
+        if(req.user.local.areas.aluno){
+            res.json(grade);
+        }else{
+            res.redirect("/404");
+        }
+    }else{
+        res.redirect('/login');
+    }
 }
 
 function getHorarios(req, res) {
-    res.json(horarios);
+    if(req.isAuthenticated()){
+        if(req.user.local.areas.aluno){
+            res.json(horarios);
+        }else{
+            res.redirect("/404");
+        }
+    }else{
+        res.redirect('/login');
+    }
+}
+
+function getInfoCurso(req, res) {
+    if(req.isAuthenticated()){
+        if(req.user.local.areas.aluno){
+            res.json(cursos);
+        }else{
+            res.redirect("/404");
+        }
+    }else{
+        res.redirect('/login');
+    }
 }
 
 function getInfoUsuario(req, res) {
-    var infoUsuario = {
-        "cursos": cursos,
-        "usuario": usuario
-    };
-    res.json(infoUsuario);
+    if(req.isAuthenticated()){
+        if(req.user.local.areas.aluno){
+            res.json(usuario);
+        }else{
+            res.redirect("/404");
+        }
+    }else{
+        res.redirect('/login');
+    }
 }
 
 function getMessages(req, res) {
-    var idCurso = req.params.id
-        , msg = mensagens.filter(function (msg) {
-            return msg.idCurso == idCurso;
-        })[0];
-    msg ?
-        res.json(msg) :
-        res.json({});
+    if(req.isAuthenticated()){
+        if(req.user.local.areas.aluno){
+            var idCurso = req.params.id
+                , msg = mensagens.filter(function (msg) {
+                    return msg.idCurso == idCurso;
+                })[0];
+            msg ?
+                res.json(msg) :
+                res.json({});
+        }else{
+            res.redirect("/404");
+        }
+    }else{
+        res.redirect('/login');
+    }
 }
 
 function getNotas(req, res) {
-    res.json(notas);
+    if(req.isAuthenticated()){
+        if(req.user.local.areas.aluno){
+            res.json(notas);
+        }else{
+            res.redirect("/404");
+        }
+    }else{
+        res.redirect('/login');
+    }
 }
 
 function getParcelas(req, res) {
-    res.json(parcelas);
+    if(req.isAuthenticated()){
+        if(req.user.local.areas.aluno){
+            res.json(parcelas);
+        }else{
+            res.redirect("/404");
+        }
+    }else{
+        res.redirect('/login');
+    }
 }
 
 function getTarefas(req, res) {
-    res.json(tarefas);
+    if(req.isAuthenticated()){
+        if(req.user.local.areas.aluno){
+            res.json(tarefas);
+        }else{
+            res.redirect("/404");
+        }
+    }else{
+        res.redirect('/login');
+    }
 }
 
 /*  Funções de editar-perfil    */

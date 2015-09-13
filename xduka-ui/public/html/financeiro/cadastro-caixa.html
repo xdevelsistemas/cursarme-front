@@ -1,0 +1,110 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <h2><i class="entypo-plus-circled"></i> <span>Adicionar Caixa</span><br/></h2>
+        </div>
+    </div>
+</div>
+<hr/>
+<br/>
+<div class="row" ng-show="cadc.showTable">
+    <div class="col-md-12">
+        <xd-grid data-params="cadc.tableCaixa"></xd-grid>
+    </div>
+</div>
+<div class="col-md-12" ng-hide="cadc.showTable">
+    <div class="row">
+        <div class="col-md-12">
+            <xd-input data-params="cadc._model.nomeCaixa" data-disable="cadc.disableNomeCaixa"
+                    data-change="cadc.changeNomeCaixa"></xd-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <xd-select data-params="cadc._model.nomeBanco" data-disable="cadc.disableNomeBanco"
+                       data-change="cadc.changeNomeBanco"></xd-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <xd-input data-params="cadc._model.agencia" data-disable="cadc.disableEscolhaBanco"></xd-input>
+        </div>
+        <div class="col-md-6">
+            <xd-input data-params="cadc._model.contaBancaria" data-disable="cadc.disableEscolhaBanco"></xd-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <xd-input data-params="cadc._model.codCedente" data-disable="cadc.disableEscolhaBanco"></xd-input>
+        </div>
+        <div class="col-md-6">
+            <xd-input data-params="cadc._model.tipoCarteira" data-disable="cadc.disableEscolhaBanco"></xd-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <xd-input-textarea data-params="cadc._model.obs" data-disable="cadc.disableEscolhaBanco"></xd-input-textarea>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-xs-9">
+            <xd-input data-params="cadc._model.numCartao" data-change="cadc.detectarBandeira"></xd-input>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="col-md-12 left">
+                    <label>
+                        &nbsp;
+                    </label>
+                </div>
+                <div class="col-md-12">
+                    <img ng-src="{{cadc.srcCartao}}" ng-show="!!cadc.srcCartao"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <xd-input data-params="cadc._model.nome"></xd-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <xd-input data-params="cadc._model.validadeCartao"></xd-input>
+        </div>
+        <div class="col-sm-4">
+            <xd-input data-params="cadc._model.codSeguranca"></xd-input>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 centered center-block text-center">
+        <span class="btn-group" style="padding: 2%">
+            <button class="btn btn-blue btn-lg btn-icon icon-left" data-ng-show="cadc.showTable&&!cadc.editing" ng-click="cadc.addCaixa()">
+                Adicionar
+                <i class="entypo-plus"></i>
+            </button>
+            <button class="btn btn-primary btn-icon icon-left btn-lg" data-ng-show="cadc.showTable&&cadc.editing" ng-click="cadc.continuar()">
+                Continuar
+                <i class="icon entypo-pencil icon-right"></i></button>
+            <button class="btn btn-green btn-lg btn-icon icon-left" data-ng-hide="cadc.showTable" ng-click="cadc.salvar()">
+                Salvar
+                <i class="entypo-check"></i>
+            </button>
+        </span>
+        <span class="btn-group" style="padding: 2%">
+            <button class="btn btn-warning btn-icon icon-left btn-lg" data-ng-hide="cadc.showTable" ng-click="cadc.limpar()">
+                Limpar
+                <i class="icon entypo-cup icon-right"></i></button>
+            <button class="btn btn-danger btn-icon icon-left btn-lg" data-ng-show="cadc.showTable&&cadc.editing" ng-click="cadc.cancelar()">
+                Cancelar
+                <i class="icon entypo-cancel icon-right"></i></button>
+        </span>
+        <span class="btn-group" style="padding: 2%" data-ng-hide="cadc.showTable">
+            <button class="btn btn-warning btn-icon icon-left btn-lg" data-toggle="modal" data-target="#confirmClear" ng-click="cadc.voltar()">
+                Voltar
+                <i class="icon entypo-cup icon-right"></i></button>
+        </span>
+    </div>
+</div>

@@ -1,0 +1,124 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <h2><i class="entypo-plus-circled"></i> <span> Adicionar Campanha</span><br/></h2>
+        </div>
+    </div>
+</div>
+<hr/>
+<br/>
+<div data-ng-hide="cp.showAdd">
+    <div class="row">
+        <div class="col-md-5">
+            <xd-select data-params="cp._model.tipoCurso" data-change="cp.changeTipoCurso"></xd-select>
+        </div>
+        <div class="col-md-3">
+            <xd-input-money data-params="cp._model.taxaInscr" disable="true"></xd-input-money>
+        </div>
+        <div class="col-md-4">
+            <xd-input data-params="cp._model.qtdParcelaMax" disable="true"></xd-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <xd-input-money data-params="cp._model.valorIntegral" disable="true"></xd-input-money>
+        </div>
+        <div class="col-md-4">
+            <xd-input-percent data-params="cp._model.desconto" disable="true"></xd-input-percent>
+        </div>
+        <div class="col-md-4">
+            <xd-input-money data-params="cp._model.valorAvista" disable="true"></xd-input-money>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <xd-select data-params="cp._model.formaPagamento" data-change="cp.changeFormaPag"></xd-select>
+        </div>
+        <div class="col-md-4">
+            <xd-input-money data-params="cp._model.descontoFormaPg" disable="true"></xd-input-money>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <xd-input-money data-params="cp._model.valorFormaPg" disable="true"></xd-input-money>
+        </div>
+    </div>
+</div>
+<div data-ng-show="cp.showAdd">
+    <div class="col-md-12 text-center">
+        <h2 class="text-info">Nova Capanha</h2>
+    </div>
+    <br/>
+    <br/>
+    <div class="row">
+        <div class="col-md-4">
+            <xd-select data-params="cp._model.addTipoCurso"></xd-select>
+        </div>
+        <div class="col-md-4">
+            <xd-input-date data-params="cp._model.addInicio"></xd-input-date>
+        </div>
+        <div class="col-md-4">
+            <xd-input-date data-params="cp._model.addFim"></xd-input-date>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <xd-input-money data-params="cp._model.addInscrPromo"></xd-input-money>
+        </div>
+        <div class="col-md-6">
+            <xd-input-money data-params="cp._model.addValorCursoPromo"></xd-input-money>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <xd-select data-params="cp._model.addFormaPagamento"></xd-select>
+        </div>
+        <div class="col-md-6">
+            <xd-input-money data-params="cp._model.addDescontoFormaPg"></xd-input-money>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 centered center-block text-center">
+        <span class="btn-group" style="padding: 2%">
+            <button class="btn btn-primary btn-lg btn-icon icon-left" ng-click="cp.adicionar()" data-ng-hide="cp.showAdd">
+                Adicionar
+                <i class="entypo-plus"></i>
+            </button>
+            <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="cp.salvar()" data-ng-show="cp.showAdd">
+                Salvar
+                <i class="entypo-check"></i>
+            </button>
+        </span>
+        <span class="btn-group" style="padding: 2%">
+            <button class="btn btn-warning btn-icon icon-left btn-lg" ng-click="cp.limpar()"
+                    data-ng-disabled="cp._model.tipoCurso.model.val== '' &&
+                                      cp._model.taxaInscr.model.val== '' &&
+                                      cp._model.qtdParcelaMax.model.val== '' &&
+                                      cp._model.valorIntegral.model.val== '' &&
+                                      cp._model.desconto.model.val== '' &&
+                                      cp._model.valorAvista.model.val== '' &&
+                                      cp._model.formaPagamento.model.val== '' &&
+                                      cp._model.descontoFormaPg.model.val== '' &&
+                                      cp._model.valorFormaPg.model.val== ''" data-ng-hide="cp.showAdd">
+                Limpar
+                <i class="icon entypo-cup icon-right"></i></button>
+            <button class="btn btn-warning btn-icon icon-left btn-lg" ng-click="cp.limparAdd()"
+                    data-ng-disabled="cp._model.addTipoCurso.model.val == '' &&
+                cp._model.addInicio.model.val == '' &&
+                cp._model.addFim.model.val == '' &&
+                cp._model.addInscrPromo.model.val == '' &&
+                cp._model.addValorCursoPromo.model.val == '' &&
+                cp._model.addFormaPagamento.model.val == '' &&
+                cp._model.addDescontoFormaPg.model.val == ''" data-ng-show="cp.showAdd">
+                Limpar
+                <i class="icon entypo-cup icon-right"></i></button>
+        </span>
+        <span class="btn-group" style="padding: 2%" data-ng-show="cp.showAdd">
+            <button class="btn btn-danger btn-lg btn-icon icon-left" ng-click="cp.cancelar()">
+                Cancelar
+                <i class="entypo-cancel"></i>
+            </button>
+        </span>
+    </div>
+</div>
