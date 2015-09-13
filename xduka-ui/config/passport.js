@@ -41,6 +41,16 @@ module.exports = function (passport) {
             // asynchronous
             // User.findOne wont fire unless data is sent back
             process.nextTick(function () {
+                var cpf = req.body.cpf;
+
+                User.findOne({ 'local.cpf': cpf }, function (err, user) {
+                    if(err){
+                        return done(err);
+                    }
+                    if(user){
+                        return done(null, false, req.flash('signupMessage', 'That cpf is already taken.'));
+                    }
+                });
 
                 // find a user whose email is the same as the forms email
                 // we are checking to see if the user trying to login already exists
@@ -60,7 +70,7 @@ module.exports = function (passport) {
 
                         // set the user's local credentials
                         newUser.local.email = email;
-                        newUser.local.cpf = req.body.cpf;
+                        newUser.local.cpf = cpf;
                         newUser.local.password = newUser.generateHash(password);
                         newUser.local.areas = {};
                         newUser.local.areas.aluno = !!req.body.aluno;
