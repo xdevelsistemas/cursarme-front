@@ -2,12 +2,11 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('adicionarDisciplina', ['$scope', '$resource', 'breadCrumb', '$timeout', '$route',
-            function($scope, $resource, breadCrumb, $timeout, $route){
+        .controller('adicionarDisciplina', ['$scope', '$resource', 'breadCrumb', '$timeout', '$route', 'defineUnidade',
+            function($scope, $resource, breadCrumb, $timeout, $route, defineUnidade){
 
             var vm = this,
-                templateAddDisciplina = $resource('/api/secretaria/template-add-disciplina').get().$promise;
-
+                templateAddDisciplina = $resource('/api/secretaria/template-add-disciplina/:id').get({"id": defineUnidade.getIdUnidade()}).$promise;
 
             // VARIÁVEIS COMUNS
             breadCrumb.title = 'Adicionar Disciplina';

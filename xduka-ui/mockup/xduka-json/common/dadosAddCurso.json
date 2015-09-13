@@ -1,34 +1,73 @@
 {
-  "list": [
+  "unidades": [
     {
       "id": 1,
-      "text": "Mestrado em Educação",
-      "areas": [
+      "list": [
         {
-          "id":11,
-          "text": "Exatas",
-          "turnos": [
+          "id": 1,
+          "text": "Mestrado em Educação",
+          "areas": [
             {
-              "id": 111,
-              "text": "Matutino"
+              "id": 11,
+              "text": "Exatas",
+              "turnos": [
+                {
+                  "id": 111,
+                  "text": "Matutino"
+                },
+                {
+                  "id": 222,
+                  "text": "Vespertino"
+                }
+              ]
             },
             {
-              "id": 222,
-              "text": "Vespertino"
+              "id": 22,
+              "text": "Humanas",
+              "turnos": [
+                {
+                  "id": 111,
+                  "text": "Matutino"
+                },
+                {
+                  "id": 222,
+                  "text": "Noturno"
+                }
+              ]
             }
           ]
         },
         {
-          "id":22,
-          "text": "Humanas",
-          "turnos": [
+          "id": 2,
+          "text": "Pós Graduação em Educação",
+          "areas": [
             {
-              "id": 111,
-              "text": "Matutino"
+              "id": 11,
+              "text": "Exatas",
+              "turnos": [
+                {
+                  "id": 111,
+                  "text": "Vespertino"
+                },
+                {
+                  "id": 222,
+                  "text": "Noturno"
+                }
+              ]
             },
             {
-              "id": 222,
-              "text": "Noturno"
+              "id": 22,
+              "text": "Biomedicina",
+              "turnos": [
+                {
+                  "id": 111,
+                  "text": "Matutino"
+                },
+                {
+                  "id": 222,
+                  "text": "Vespertino"
+                }
+              ]
             }
           ]
         }
@@ -36,33 +75,145 @@
     },
     {
       "id": 2,
-      "text": "Pós Graduação em Educação",
-      "areas": [
+      "list": [
         {
-          "id":11,
-          "text": "Exatas",
-          "turnos": [
+          "id": 1,
+          "text": "Mestrado em Educação",
+          "areas": [
             {
-              "id": 111,
-              "text": "Vespertino"
+              "id": 11,
+              "text": "Biofísica",
+              "turnos": [
+                {
+                  "id": 111,
+                  "text": "Matutino"
+                },
+                {
+                  "id": 222,
+                  "text": "Vespertino"
+                }
+              ]
             },
             {
-              "id": 222,
-              "text": "Noturno"
+              "id": 22,
+              "text": "Exatas",
+              "turnos": [
+                {
+                  "id": 111,
+                  "text": "Matutino"
+                },
+                {
+                  "id": 222,
+                  "text": "Noturno"
+                }
+              ]
             }
           ]
         },
         {
-          "id":22,
-          "text": "Biomedicina",
-          "turnos": [
+          "id": 2,
+          "text": "Pós Graduação em Educação",
+          "areas": [
             {
-              "id": 111,
-              "text": "Matutino"
+              "id": 11,
+              "text": "Teologia",
+              "turnos": [
+                {
+                  "id": 111,
+                  "text": "Vespertino"
+                },
+                {
+                  "id": 222,
+                  "text": "Noturno"
+                }
+              ]
             },
             {
-              "id": 222,
-              "text": "Vespertino"
+              "id": 22,
+              "text": "Humanas",
+              "turnos": [
+                {
+                  "id": 111,
+                  "text": "Matutino"
+                },
+                {
+                  "id": 222,
+                  "text": "Vespertino"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "list": [
+        {
+          "id": 1,
+          "text": "Mestrado em Educação",
+          "areas": [
+            {
+              "id": 11,
+              "text": "Humanas",
+              "turnos": [
+                {
+                  "id": 111,
+                  "text": "Matutino"
+                },
+                {
+                  "id": 222,
+                  "text": "Vespertino"
+                }
+              ]
+            },
+            {
+              "id": 22,
+              "text": "Exatas",
+              "turnos": [
+                {
+                  "id": 111,
+                  "text": "Matutino"
+                },
+                {
+                  "id": 222,
+                  "text": "Noturno"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "text": "Pós Graduação em Educação",
+          "areas": [
+            {
+              "id": 11,
+              "text": "Bioquímica",
+              "turnos": [
+                {
+                  "id": 111,
+                  "text": "Vespertino"
+                },
+                {
+                  "id": 222,
+                  "text": "Noturno"
+                }
+              ]
+            },
+            {
+              "id": 22,
+              "text": "Teologia",
+              "turnos": [
+                {
+                  "id": 111,
+                  "text": "Matutino"
+                },
+                {
+                  "id": 222,
+                  "text": "Vespertino"
+                }
+              ]
             }
           ]
         }
