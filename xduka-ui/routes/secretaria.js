@@ -26,6 +26,10 @@ module.exports = function (app, passport) {
         .get(controller.showDadosPauta);
 
     //info-usuario
+    app.route('/api/secretaria/get-id-curso')
+        .get(controller.showIdCurso);
+
+    //info-usuario
     app.route('/api/secretaria/info-usuario')
         .get(controller.showInfoUsuario);
 
@@ -100,6 +104,10 @@ module.exports = function (app, passport) {
     //
     app.route('/api/secretaria/remove-conteudo')
         .post(controller.putRemoveConteudo);
+
+    //
+    app.route('/api/secretaria/save-dados-curso')
+        .post(controller.putSaveDadosCurso);
 
     return app;
 };

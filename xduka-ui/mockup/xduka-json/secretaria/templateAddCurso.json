@@ -82,19 +82,7 @@
         "val": "",
         "err": ""
       },
-      "list": [
-        {"id": 1, "text": "Único"}
-      ]
-    },
-    "codigo": {
-      "label": "Código",
-      "type": "text",
-      "val": "Teste1",
-      "name": "codigo",
-      "model": {
-        "val": "",
-        "err": ""
-      }
+      "list": []
     },
     "habilitacao": {
       "label": "Habilitação",

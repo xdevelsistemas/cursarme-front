@@ -19,41 +19,33 @@
         <div class="col-md-12">
             <xd-panel-collapse title="'Informações Gerais'">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-9">
                         <xd-input data-params="ac._model.curso"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input data-params="ac._model.codigoCurso" data-disable="true"></xd-input>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
-                        <xd-input data-params="ac._model.codigoCurso"></xd-input>
-                    </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <xd-select data-params="ac._model.tipo" data-change="ac.changeTipo"></xd-select>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <xd-select data-params="ac._model.area" data-change="ac.changeArea" data-disable="ac.disableArea"></xd-select>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <xd-select data-params="ac._model.turno" data-disable="ac.disableArea"></xd-select>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <xd-input data-params="ac._model.vagasTurma"></xd-input>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <xd-input data-params="ac._model.cargaHoraria"></xd-input>
                     </div>
-                    <div class="col-md-5 text-center">
-                        <div class="col-md-9 text-left">
-                            <xd-select data-params="ac._model.periodo"></xd-select>
-                        </div>
-                        <div class="col-md-3" style="display:inline-block; vertical-align: middle;padding-left: 0!important;">
-                            <br/>
-                            <div class="col-md-12" style="padding-top: 5px; padding-left: 0;">
-                                <button type="button" class="btn btn-blue heightFix btn-block" ng-click=""><i class="glyphicon glyphicon-plus"></i> / <i class="glyphicon glyphicon-pencil"></i></button>
-                            </div>
-                        </div>
+                    <div class="col-md-5 text-left">
+                        <xd-select data-params="ac._model.periodo"></xd-select>
                     </div>
                 </div>
             </xd-panel-collapse>
@@ -113,7 +105,7 @@
                 <i class="icon entypo-cup icon-right"></i></button>
         </span>
         <span class="pull-right" style="padding-right: 5px">
-            <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ac.adicionarCurso()" ng-show="ac.editing">
+            <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ac.salvarCurso()" ng-show="ac.editing">
                 Salvar
                 <i class="entypo-check"></i>
             </button>
@@ -164,8 +156,8 @@
                     Adicionar
                     <i class="entypo-plus"></i>
                 </button>
-                <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ac.salvarCriterios()">
-                    Salvar
+                <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ac.fecharCriterios()">
+                    Fechar
                     <i class="entypo-check"></i>
                 </button>
             </div>
