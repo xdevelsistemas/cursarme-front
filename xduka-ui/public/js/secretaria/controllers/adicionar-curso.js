@@ -2,12 +2,12 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('adicionarCurso', ['$scope', '$resource', 'breadCrumb', '$timeout', '$route', 'modelStrings',
-            function($scope, $resource, breadCrumb, $timeout, $route, modelStrings){
+        .controller('adicionarCurso', ['$scope', '$resource', 'breadCrumb', '$timeout', '$route', 'modelStrings', 'defineUnidade',
+            function($scope, $resource, breadCrumb, $timeout, $route, modelStrings, defineUnidade){
 
             var vm = this,
-                dadosAddCurso = $resource('/api/secretaria/dados-add-curso').get().$promise,
-                templateAddCurso = $resource('/api/secretaria/template-add-curso').get().$promise;
+                dadosAddCurso = $resource('/api/secretaria/dados-add-curso/:id').get({"id": defineUnidade.getIdUnidade()}).$promise,
+                templateAddCurso = $resource('/api/secretaria/template-add-curso/:id').get({"id": defineUnidade.getIdUnidade()}).$promise;
 
             //VARIÁVEIS COMUNS
             breadCrumb.title = 'Adicionar Curso';

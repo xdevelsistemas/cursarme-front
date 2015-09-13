@@ -187,7 +187,13 @@ function getDadosGeraTurma(req, res) {
 }
 
 function getDadosAddCurso(req, res) {
-    res.json(dadosAddCurso);
+    res.json(getUnidade(dadosAddCurso.unidades, req.params.id));
+}
+
+function getUnidade(list, id) {
+    return list.filter(function(elem) {
+        return elem.id == id
+    })[0]
 }
 
 function getDadosCurso(req, res) {
@@ -208,12 +214,14 @@ function getTemplatePauta(req, res) {
 
 function getTemplateAddCurso(req,res) {
     extend(true, templateAddCurso.template.periodo, dadosPeriodo);
-    extend(true, templateDadosAddCurso.tableCursos, dadosTableAddCurso);
+    extend(true, templateDadosAddCurso.tableCursos, getUnidade(dadosTableAddCurso.unidades, req.params.id));
     res.json({"template": templateAddCurso.template, "tables": templateDadosAddCurso});
 }
 
 function getTemplateAddDisciplina(req,res) {
-    res.json({"template": templateAddDisciplina.template, "dadosAddDisciplina": dadosAddDisciplina.list});
+    var idUnidade = req.params.id;
+
+    res.json({"template": templateAddDisciplina.template, "dadosAddDisciplina": getUnidade(dadosAddDisciplina.unidades, idUnidade).list});
 }
 
 function getTemplateAl(req,res) {
