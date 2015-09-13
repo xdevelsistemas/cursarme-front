@@ -1,8 +1,5 @@
 {
   "tableCursos": {
-    "id": "tabelaCursos",
-    "class": "table table-striped table-hover table-bordered",
-    "dataTable": {},
     "head": [
       "Código",
       "Curso",

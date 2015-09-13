@@ -16,7 +16,12 @@
             vm.objEditing = {};
             vm.STR = modelStrings;
             vm.tableCriterios = {};
-            vm.tableCursos = {};
+            vm.tableCursos = {
+                "id": "tabelaCursos",
+                "class": "table table-striped table-hover table-bordered",
+                "dataTable": {},
+                "head": [],
+                "list": []};
 
             //VARIÁVEIS TIPO FUNÇÃO
             vm.adicionarCriterio = adicionarCriterio;
