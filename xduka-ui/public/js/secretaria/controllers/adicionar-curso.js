@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('adicionarCurso', ['$scope', '$resource', 'breadCrumb', '$timeout', 'modelStrings',
-            function($scope, $resource, breadCrumb, $timeout, modelStrings){
+        .controller('adicionarCurso', ['$scope', '$resource', 'breadCrumb', '$timeout', '$route', 'modelStrings',
+            function($scope, $resource, breadCrumb, $timeout, $route, modelStrings){
 
             var vm = this,
                 dadosAddCurso = $resource('/api/secretaria/dados-add-curso').get().$promise,
@@ -16,7 +16,12 @@
             vm.objEditing = {};
             vm.STR = modelStrings;
             vm.tableCriterios = {};
-            vm.tableCursos = {};
+            vm.tableCursos = {
+                "id": "tabelaCursos",
+                "class": "table table-striped table-hover table-bordered",
+                "dataTable": {},
+                "head": [],
+                "list": []};
 
             //VARIÁVEIS TIPO FUNÇÃO
             vm.adicionarCriterio = adicionarCriterio;
@@ -200,6 +205,11 @@
                             $.extend(true, vm.tableCursos, data.tableCursos);
                             vm.tableCursos.list[vm.tableCursos.list.length-1].ibtn.list[0].click = editar;
                             vm.editing = false;
+
+                            // Recarrega o controller
+                            $timeout(function () {
+                                $route.reload();
+                            }, 0); // 0 ms de delay para recarregar a página.
                         } else {
                             $.extend(true, vm._model, data.model)
                         }
