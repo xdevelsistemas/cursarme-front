@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('adicionarDisciplina', ['$scope', '$resource', 'breadCrumb', '$timeout', function($scope, $resource, breadCrumb, $timeout){
+        .controller('adicionarDisciplina', ['$scope', '$resource', 'breadCrumb', '$timeout', '$route',
+            function($scope, $resource, breadCrumb, $timeout, $route){
 
             var vm = this,
                 templateAddDisciplina = $resource('/api/secretaria/template-add-disciplina').get().$promise;
@@ -138,6 +139,11 @@
                         if (data.success) {
                             // TOdo mostrar uma msg de sucesso
                             cancelar(data.tableNome);
+
+                            // Recarrega o controller
+                            $timeout(function () {
+                                $route.reload();
+                            }, 0); // 0 ms de delay para recarregar a página.
                         }
                     })
                     .catch(function(error) {
