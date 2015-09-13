@@ -27,11 +27,6 @@
                         "value": "template-decDocs"
                     },
                     {
-                        "id": "2",
-                        "text": "Demo Mestrado",
-                        "value": "mestrado"
-                    },
-                    {
                         "id": "3",
                         "text": "Demo de horario",
                         "value": "dec-horario-aluno"
