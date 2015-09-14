@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('pauta', ['$scope', '$resource', 'breadCrumb', '$timeout','dataUser','modelStrings',
-            function($scope, $resource, breadCrumb, $timeout, dataUser, modelStrings){
+        .controller('pauta', ['$scope', '$resource', 'breadCrumb', '$timeout','dataUser','modelStrings', '$location',
+            function($scope, $resource, breadCrumb, $timeout, dataUser, modelStrings, $location){
 
             var vm = this,
                 dadosCursoPautaPromise = $resource('/api/secretaria/dados-curso-pauta').get().$promise,
@@ -182,6 +182,10 @@
                         vm.tableNotas.list = data.tableNotas.list;
                         vm.tableNotas.head = data.tableNotas.head;
 
+                        for(var cont = 0; cont < vm.tableNotas.list.length; cont++){
+                            vm.tableNotas.list[cont].bmat.list[0].click = moreAlunoTable;
+                        }
+
                         // vm._aluno
                         vm._alunos = data._alunos;
                         //
@@ -226,6 +230,11 @@
                     backdrop: 'static',
                     keyboard: true
                 });
+            }
+
+            function moreAlunoTable(args, line){
+                var route = '/secretaria/aluno/'+line.bmat.list[0].text;
+                $location.path(route);
             }
 
             function removeConteudo(args,line) {
@@ -294,6 +303,7 @@
                             $('#modalAddFreq').modal('toggle');
                             //
                             limpaCamposModalFreq();
+
                         } else {
                             $.extend(true, vm._model, data.model);
                         }
