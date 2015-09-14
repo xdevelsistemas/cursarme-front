@@ -2,7 +2,7 @@ module.exports = function (app, passport) {
     var controller = require('../controllers/secretaria')();
 
     //
-    app.route('/api/secretaria/dados-add-curso')
+    app.route('/api/secretaria/dados-add-curso/:id')
         .get(controller.showDadosAddCurso);
 
     //
@@ -54,11 +54,11 @@ module.exports = function (app, passport) {
         .get(controller.alunoSearch);
 
     //Template aluno
-    app.route('/api/secretaria/template-add-disciplina')
+    app.route('/api/secretaria/template-add-disciplina/:id')
         .get(controller.showTemplateAddDisciplina);
 
     //Template aluno
-    app.route('/api/secretaria/template-add-curso')
+    app.route('/api/secretaria/template-add-curso/:id')
         .get(controller.showTemplateAddCurso);
 
     //Template aluno

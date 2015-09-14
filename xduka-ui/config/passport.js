@@ -41,6 +41,16 @@ module.exports = function (passport) {
             // asynchronous
             // User.findOne wont fire unless data is sent back
             process.nextTick(function () {
+                var cpf = req.body.cpf;
+
+                User.findOne({ 'local.cpf': cpf }, function (err, user) {
+                    if(err){
+                        return done(err);
+                    }
+                    if(user){
+                        return done(null, false, req.flash('signupMessage', 'That cpf is already taken.'));
+                    }
+                });
 
                 // find a user whose email is the same as the forms email
                 // we are checking to see if the user trying to login already exists
@@ -60,6 +70,7 @@ module.exports = function (passport) {
 
                         // set the user's local credentials
                         newUser.local.email = email;
+                        newUser.local.cpf = cpf;
                         newUser.local.password = newUser.generateHash(password);
                         newUser.local.areas = {};
                         newUser.local.areas.aluno = !!req.body.aluno;
@@ -89,15 +100,26 @@ module.exports = function (passport) {
 
     passport.use('local-login', new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
-            usernameField: 'email',
+            usernameField: 'email'||'cpf',
             passwordField: 'password',
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },
-        function (req, email, password, done) { // callback with email and password from our form
+        function (req, emailCpf, password, done) { // callback with email and password from our form
 
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            User.findOne({ 'local.email': email }, function (err, user) {
+            var objUser;
+            if (emailCpf.indexOf('@') != -1){
+                objUser = { 'local.email': emailCpf }
+            }else{
+                //TRATANDO CPF VINDO SEM MÁSCARA
+                var strCpf = emailCpf;
+                if (strCpf.indexOf('-') == -1) {
+                    strCpf = emailCpf.substr(0, 3) + "." + emailCpf.substr(3, 3) + "." + emailCpf.substr(6, 3) + '-' + emailCpf.substr(-2);
+                }
+                objUser = { 'local.cpf': strCpf }
+            }
+            User.findOne( objUser , function (err, user) {
                 // if there are any errors, return the error before anything else
                 if (err)
                     return done(err);
