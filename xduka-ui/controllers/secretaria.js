@@ -210,7 +210,7 @@ function getDadosCurso(req, res) {
 }
 
 function getDadosCursoPauta(req, res) {
-    res.json(dadosCursoPauta);
+    res.json(getUnidade(dadosCursoPauta.unidades, req.params.id));
 }
 
 function getDadosEnviarCircular(req, res) {

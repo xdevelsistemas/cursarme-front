@@ -10,7 +10,7 @@ module.exports = function (app, passport) {
         .get(controller.showDadosCurso);
 
     //
-    app.route('/api/secretaria/dados-curso-pauta')
+    app.route('/api/secretaria/dados-curso-pauta/:id')
         .get(controller.showDadosCursoPauta);
 
     //dados-gera-turma

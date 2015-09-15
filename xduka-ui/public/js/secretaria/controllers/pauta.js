@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('pauta', ['$scope', '$resource', 'breadCrumb', '$timeout','dataUser','modelStrings', '$location',
-            function($scope, $resource, breadCrumb, $timeout, dataUser, modelStrings, $location){
+        .controller('pauta', ['$scope', '$resource', 'breadCrumb', '$timeout','dataUser','modelStrings', '$location', 'defineUnidade',
+            function($scope, $resource, breadCrumb, $timeout, dataUser, modelStrings, $location, defineUnidade){
 
             var vm = this,
-                dadosCursoPautaPromise = $resource('/api/secretaria/dados-curso-pauta').get().$promise,
+                dadosCursoPautaPromise = $resource('/api/secretaria/dados-curso-pauta/:id').get({"id": defineUnidade.getIdUnidade()}).$promise,
                 templatePautaPromise = $resource('/api/secretaria/template-pauta').get().$promise;
 
             breadCrumb.title = 'Pauta';
