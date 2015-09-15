@@ -10,6 +10,7 @@ var urlDataBase = '',
     dadosGeraTurma = require('../mockup/xduka-json/common/dadosGeraTurma.json'),
     dadosPauta = require('../mockup/xduka-json/common/dadosPauta.json'),
     dadosPeriodo = require('../mockup/xduka-json/common/dadosPeriodo.json'),
+    dadosMaterialComp = require('../mockup/xduka-json/common/dadosMaterialComp.json'),
     dadosTableAddCurso = require('../mockup/xduka-json/common/dadosTableAddCurso.json'),
     dadosTablesPauta = require('../mockup/xduka-json/secretaria/dadosTablesPauta.json'),
     templateAddCurso = require('../mockup/xduka-json/secretaria/templateAddCurso.json'),
@@ -19,6 +20,7 @@ var urlDataBase = '',
     templateDadosAddCurso = require('../mockup/xduka-json/secretaria/templateDadosAddCurso.json'),
     templateEnviarCircular = require('../mockup/xduka-json/secretaria/templateEnviarCircular.json'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
+    templateMaterialComp = require('../mockup/xduka-json/secretaria/templateMaterialComp.json'),
     templatePauta = require('../mockup/xduka-json/secretaria/templatePauta.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
     viewInscr = require('../mockup/xduka-json/common/viewInscr.json');
@@ -33,6 +35,7 @@ module.exports = function() {
     controller.showDadosCursoPauta = getDadosCursoPauta;
     controller.showDadosEnviarCircular = getDadosEnviarCircular;
     controller.showDadosGeraTurma = getDadosGeraTurma;
+    controller.showDadosMaterialComp = getDadosMaterialComp;
     controller.showDadosPauta = getDadosPauta;
     controller.showIdCurso = getIdCurso;
     controller.showInfoUsuario = getInfoUsuario;
@@ -41,17 +44,19 @@ module.exports = function() {
     controller.showTemplateAl = getTemplateAl;
     controller.showTemplateEnviarCircular = getTemplateEnviarCircular;
     controller.showTemplateInscricao = getTemplateInscricao;
+    controller.showTemplateMaterialCircular = getTemplateMaterialCircular;
     controller.showTemplatePauta = getTemplatePauta;
     controller.showViewInscr = getViewInscr;
     controller.putDadosInscricao = postDadosInscricao;
     controller.putDadosTurmas = postDadosTurmas;
     controller.putSaveDisciplinas = postSaveDisciplinas;
     controller.putSaveConfig = postSaveConfig;
-    controller.putSaveFreqAlunos = postSaveFreqAlunos;
     controller.putSaveDadosCurso = postSaveDadosCurso;
     controller.putSaveEditConteudo = postSaveEditConteudo;
+    controller.putSaveEnviarCircular = postSaveEnviarCircular;
+    controller.putSaveFreqAlunos = postSaveFreqAlunos;
+    controller.putSaveMaterialComp = postSaveMaterialComp;
     controller.putSaveNovoConteudo = postSaveNovoConteudo;
-    controller.putEnviarCircular = postEnviarCircular;
     controller.putRemoveConteudo = postRemoveConteudo;
 
     return controller;
@@ -186,6 +191,10 @@ function getDadosGeraTurma(req, res) {
     res.json(dadosGeraTurma);
 }
 
+function getDadosMaterialComp(req, res) {
+    res.json(getUnidade(dadosMaterialComp.unidades, req.params.id));
+}
+
 function getDadosAddCurso(req, res) {
     res.json(getUnidade(dadosAddCurso.unidades, req.params.id));
 }
@@ -205,7 +214,7 @@ function getDadosCursoPauta(req, res) {
 }
 
 function getDadosEnviarCircular(req, res) {
-    res.json(dadosEnviarCircular);
+    res.json(getUnidade(dadosEnviarCircular.unidades, req.params.id));
 }
 
 function getTemplatePauta(req, res) {
@@ -234,6 +243,10 @@ function getTemplateEnviarCircular(req, res) {
 
 function getTemplateInscricao(req, res) {
     res.json(templateInscr);
+}
+
+function getTemplateMaterialCircular(req, res) {
+    res.json(templateMaterialComp);
 }
 
 function getIdCurso(req, res) {
@@ -654,6 +667,38 @@ function postSaveEditConteudo(req, res) {
     res.json({"success": true, "tableConteudoAdicionado": dadosTablesPauta.tableConteudoAdicionado});
 }
 
+function postSaveEnviarCircular(req, res) {
+    var dataSent = req.body;
+
+    if (verificaDadosEnviarCircular(dataSent.model)) {
+
+        /**
+         * TOdo request para o backend / dados de enviar circular
+         */
+
+        res.json({"success": true, "model": dataSent.model});
+    } else {
+        validaDadosEnviarCircular(dataSent);
+        res.json({"success": false, "model": dataSent.model});
+    }
+}
+
+function postSaveMaterialComp(req, res) {
+    var dataSent = req.body;
+
+    if (verificaDadosMaterialComp(dataSent.model)) {
+
+        /**
+         * TOdo request para o backend / dados de enviar circular
+         */
+
+        res.json({"success": true, "model": dataSent.model});
+    } else {
+        validaDadosMaterialComp(dataSent);
+        res.json({"success": false, "model": dataSent.model});
+    }
+}
+
 function postSaveNovoConteudo(req, res) {
     var dataSent = req.body;
 
@@ -668,22 +713,6 @@ function postRemoveConteudo(req, res) {
     dadosTablesPauta.tableConteudoAdicionado.list.splice(dataSent.editingPos, 1);
 
     res.json({"success": true, "tableConteudoAdicionado": dadosTablesPauta.tableConteudoAdicionado});
-}
-
-function postEnviarCircular(req, res) {
-    var dataSent = req.body;
-
-    if (verificaDadosEnviarCircular(dataSent.model)) {
-
-        /**
-         * TOdo request para o backend / dados de enviar circular
-         */
-
-        res.json({"success": true, "model": dataSent.model});
-    } else {
-        validaDadosEnviarCircular(dataSent);
-        res.json({"success": false, "model": dataSent.model});
-    }
 }
 
 function setDataExt(a) {
@@ -727,7 +756,7 @@ function verificaDadosEnviarCircular(obj) {
     return !!obj.curso.model.val && !!obj.turma.model.val &&
         !!obj.disciplina.model.val && !!obj.titulo.model.val &&
         !!obj.numero.model.val && !!obj.data.model.val &&
-        !!obj.texto.model.val && !!obj.anexo.model.val
+        !!obj.texto.model.val && (new Date(obj.data.model.val).getTime() > new Date().getTime())
 }
 
 function validaDadosEnviarCircular(obj) {
@@ -736,9 +765,43 @@ function validaDadosEnviarCircular(obj) {
     obj.model.disciplina.model.err = !!obj.model.disciplina.model.val ? '' : obj.STR.FIELD;
     obj.model.titulo.model.err = !!obj.model.titulo.model.val ? '' : obj.STR.FIELD;
     obj.model.numero.model.err = !!obj.model.numero.model.val ? '' : obj.STR.FIELD;
-    obj.model.data.model.err = !!obj.model.data.model.val ? '' : obj.STR.FIELD;
     obj.model.texto.model.err = !!obj.model.texto.model.val ? '' : obj.STR.FIELD;
-    obj.model.anexo.model.err = !!obj.model.anexo.model.val ? '' : obj.STR.FIELD;
+
+    if (!!obj.model.data.model.val) {
+        if ((new Date(obj.model.data.model.val).getTime() > new Date().getTime())) {
+            obj.model.data.model.err = '';
+        } else {
+            obj.model.data.model.err = obj.STR.FUTUREDATE;
+        }
+    } else {
+        obj.model.data.model.err = obj.STR.FIELD;
+    }
+}
+
+function verificaDadosMaterialComp(obj) {
+    return !!obj.curso.model.val && !!obj.turma.model.val &&
+        !!obj.disciplina.model.val && !!obj.titulo.model.val &&
+        !!obj.numero.model.val && !!obj.data.model.val &&
+        !!obj.texto.model.val && (new Date(obj.data.model.val).getTime() > new Date().getTime())
+}
+
+function validaDadosMaterialComp(obj) {
+    obj.model.curso.model.err = !!obj.model.curso.model.val ? '' : obj.STR.FIELD;
+    obj.model.turma.model.err = !!obj.model.turma.model.val ? '' : obj.STR.FIELD;
+    obj.model.disciplina.model.err = !!obj.model.disciplina.model.val ? '' : obj.STR.FIELD;
+    obj.model.titulo.model.err = !!obj.model.titulo.model.val ? '' : obj.STR.FIELD;
+    obj.model.numero.model.err = !!obj.model.numero.model.val ? '' : obj.STR.FIELD;
+    obj.model.texto.model.err = !!obj.model.texto.model.val ? '' : obj.STR.FIELD;
+
+    if (!!obj.model.data.model.val) {
+        if ((new Date(obj.model.data.model.val).getTime() > new Date().getTime())) {
+            obj.model.data.model.err = '';
+        } else {
+            obj.model.data.model.err = obj.STR.FUTUREDATE;
+        }
+    } else {
+        obj.model.data.model.err = obj.STR.FIELD;
+    }
 }
 
 function isEmail(email){

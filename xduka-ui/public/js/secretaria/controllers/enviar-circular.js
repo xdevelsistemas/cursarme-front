@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('enviarCircular', ['$scope', '$resource', 'breadCrumb', '$timeout', 'modelStrings', 'FileUploader',
-            function($scope, $resource, breadCrumb, $timeout, modelStrings, FileUploader){
+        .controller('enviarCircular', ['$scope', '$resource', 'breadCrumb', '$timeout', 'modelStrings', 'FileUploader', 'defineUnidade',
+            function($scope, $resource, breadCrumb, $timeout, modelStrings, FileUploader, defineUnidade){
 
             var vm = this,
-                dadosEnviarCircular = $resource('/api/secretaria/dados-enviar-circular').get().$promise,
+                dadosEnviarCircular = $resource('/api/secretaria/dados-enviar-circular/:id').get({"id": defineUnidade.getIdUnidade()}).$promise,
                 templateEnviarCircular = $resource('/api/secretaria/template-enviar-circular').get().$promise;
 
             // VARIÁVEIS COMUNS
@@ -71,17 +71,24 @@
 
             function limpar() {
                 vm._model.curso.model.val = '';
+                vm._model.curso.model.err = '';
                 vm._model.turma.model.val = '';
+                vm._model.turma.model.err = '';
                 vm._model.disciplina.model.val = '';
+                vm._model.disciplina.model.err = '';
                 vm._model.titulo.model.val = '';
+                vm._model.titulo.model.err = '';
                 vm._model.numero.model.val = '';
+                vm._model.numero.model.err = '';
                 vm._model.data.model.val = '';
+                vm._model.data.model.err = '';
                 vm._model.texto.model.val = '';
+                vm._model.texto.model.err = '';
+                vm.disableTurma = true;
+                vm.disableDisciplina = true;
             }
 
             function salvar() {
-                //todo post salvamento
-
                 var saveEnviarCircular = $resource('/api/secretaria/save-enviar-circular').save({}, {
                     "model": vm._model, "STR": vm.STR
                 }).$promise;
@@ -90,6 +97,9 @@
                     .then(function(data) {
                         if (data.success) {
                             limpar();
+
+                            // TOdo mostrar mensagem de sucesso | quando adicionado um novo circular
+
                         } else {
                             $.extend(true, vm._model, data.model);
                         }
@@ -98,7 +108,5 @@
                         // TOdo tratar error
                     })
             }
-
-            console.info('uploader', vm.uploader);
         }])
 })();
