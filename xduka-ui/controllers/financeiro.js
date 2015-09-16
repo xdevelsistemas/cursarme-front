@@ -139,14 +139,16 @@ function postCampPromo(req,res) {
 function postDadosCadastroCaixa(req,res) {
     var dataSent = req.body;
 
-    if (verificaDadosCadastroCaixa(dataSent.model, dataSent.escolhaBanco)) {
+    if (verificaDadosCadastroCaixa(dataSent.model)) {
 
         /**
          * TOdo request para o beckend
          */
 
         dadosCadastroCaixa.list.push({
-            "aNome": dataSent.model.nomeCaixa.model.val || dataSent.model.nomeBanco.model.val,
+            "aNome": dataSent.model.nomeCaixa.model.val ||
+                     dataSent.model.nome.model.val ||
+                     dataSent.model.nomeBanco.list.filter(function(elem) {return elem.id == dataSent.model.nomeBanco.model.val})[0].text,
             "btipo": 'Indefinido',
             "cobs": dataSent.model.obs.model.val
         });
@@ -262,43 +264,71 @@ function verificaDadosValoresCurso(obj) {
 }
 
 function validaDadosCadastroCaixa(obj) {
-    if (obj.escolhaBanco) {
-        obj.model.nomeCaixa.model.err = !!obj.model.nomeCaixa.model.val ? "" : obj.STR.FIELD;
-        if (!obj.disNomeBanco) obj.model.nomeBanco.model.err = !!obj.model.nomeBanco.model.val ? "" : obj.STR.FIELD;
+    if (!!obj.model.nomeCaixa.model.val) {
+        obj.model.nomeCaixa.model.err = "";
+        obj.model.nomeBanco.model.err = "";
         obj.model.agencia.model.err = "";
         obj.model.contaBancaria.model.err = "";
         obj.model.codCedente.model.err = "";
         obj.model.tipoCarteira.model.err = "";
-        obj.model.obs.model.err = "";
-    } else {
+        obj.model.obs.model.err = !!obj.model.obs.model.val ? "" : obj.STR.FIELD;
+        obj.model.numCartao.model.err = "";
+        obj.model.nome.model.err = "";
+        obj.model.validadeCartao.model.err = "";
+        obj.model.codSeguranca.model.err = "";
+    } else
+    if (!!obj.model.numCartao.model.val) {
+        obj.model.numCartao.model.err = "";
+        obj.model.nome.model.err = !!obj.model.nome.model.val ? "" : obj.STR.FIELD;
+        obj.model.validadeCartao.model.err = !!obj.model.validadeCartao.model.val ? "" : obj.STR.FIELD;
+        obj.model.codSeguranca.model.err = !!obj.model.codSeguranca.model.val ? "" : obj.STR.FIELD;
         obj.model.nomeCaixa.model.err = "";
-        obj.model.nomeBanco.model.err = !!obj.model.nomeBanco.model.val ? "" : obj.STR.FIELD;
+        obj.model.nomeBanco.model.err = "";
+        obj.model.agencia.model.err = "";
+        obj.model.contaBancaria.model.err = "";
+        obj.model.codCedente.model.err = "";
+        obj.model.tipoCarteira.model.err = "";
+        obj.model.obs.model.err = !!obj.model.obs.model.val ? "" : obj.STR.FIELD;
+    } else
+    if (!!obj.model.nomeBanco.model.val) {
+        obj.model.nomeBanco.model.err = "";
         obj.model.agencia.model.err = !!obj.model.agencia.model.val ? "" : obj.STR.FIELD;
         obj.model.contaBancaria.model.err = !!obj.model.contaBancaria.model.val ? "" : obj.STR.FIELD;
         obj.model.codCedente.model.err = !!obj.model.codCedente.model.val ? "" : obj.STR.FIELD;
         obj.model.tipoCarteira.model.err = !!obj.model.tipoCarteira.model.val ? "" : obj.STR.FIELD;
         obj.model.obs.model.err = !!obj.model.obs.model.val ? "" : obj.STR.FIELD;
+        obj.model.nomeCaixa.model.err = "";
+        obj.model.nomeBanco.model.err = "";
+        obj.model.numCartao.model.err = "";
+        obj.model.nome.model.err = "";
+        obj.model.validadeCartao.model.err = "";
+        obj.model.codSeguranca.model.err = "";
+    } else {
+        obj.model.nomeCaixa.model.err = obj.STR.FIELD;
+        obj.model.numCartao.model.err = obj.STR.FIELD;
+        obj.model.nomeBanco.model.err = obj.STR.FIELD;
+        obj.model.obs.model.err = !!obj.model.obs.model.val ? "" : obj.STR.FIELD;
     }
 
-    obj.model.numCartao.model.err = !!obj.model.numCartao.model.val ? "" : obj.STR.FIELD;
-    obj.model.nome.model.err = !!obj.model.nome.model.val ? "" : obj.STR.FIELD;
-    obj.model.validadeCartao.model.err = !!obj.model.validadeCartao.model.val ? "" : obj.STR.FIELD;
-    obj.model.codSeguranca.model.err = !!obj.model.codSeguranca.model.val ? "" : obj.STR.FIELD;
 }
 
-function verificaDadosCadastroCaixa(obj, bool) {
-    var escolhaBanco;
-
-    if (bool) {
-        escolhaBanco = !!obj.nomeCaixa.model.val;
-    } else {
-        escolhaBanco = !!obj.nomeBanco.model.val && !!obj.agencia.model.val &&
+function verificaDadosCadastroCaixa(obj) {
+    if (!!obj.nomeCaixa.model.val) {
+        return !!obj.nomeCaixa.model.val && !!obj.obs.model.val
+    } else
+    if(!!obj.numCartao.model.val) {
+        return !!obj.numCartao.model.val && !!obj.nome.model.val &&
+            !!obj.validadeCartao.model.val && !!obj.codSeguranca.model.val &&
+            !!obj.obs.model.val
+    } else
+    if(!!obj.nomeBanco.model.val) {
+        return !!obj.nomeBanco.model.val && !!obj.agencia.model.val &&
             !!obj.contaBancaria.model.val && !!obj.codCedente.model.val &&
-            !!obj.tipoCarteira.model.val && !!obj.obs.model.val;
+            !!obj.tipoCarteira.model.val && !!obj.obs.model.val
+    } else {
+        return !!obj.nomeCaixa.model.val && !!obj.numCartao.model.val &&
+            !!obj.nomeBanco.model.val && !!obj.obs.model.val
     }
-
-    return escolhaBanco && !!obj.numCartao.model.val && !!obj.nome.model.val &&
-        !!obj.validadeCartao.model.val && !!obj.codSeguranca.model.val;
 }
 
 function validaDadosCampPromo(obj) {
