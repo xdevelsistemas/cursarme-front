@@ -17,8 +17,11 @@
             // VARIÁVEIS COMUNS
             vm._model = {};
             vm.disableEscolhaBanco = true;
+            vm.disableEscolhaCartao = true;
             vm.disableNomeBanco = false;
             vm.disableNomeCaixa = false;
+            vm.disableNumCartao = false;
+            //
             vm.editing = false;
             vm.showTable = true;
             vm.srcCartao = '';
@@ -42,6 +45,7 @@
             vm.cancelar = cancelar;
             vm.changeNomeBanco = changeNomeBanco;
             vm.changeNomeCaixa = changeNomeCaixa;
+            vm.changeNumCartao = changeNumCartao;
             vm.continuar = continuar;
             vm.detectarBandeira = detectarBandeira;
             vm.limpar = limpar;
@@ -78,21 +82,44 @@
             function changeNomeBanco(item, model) {
                 vm.disableNomeBanco = false;
                 vm.disableNomeCaixa = true;
+                vm.disableNumCartao = true;
                 vm.disableEscolhaBanco = false;
                 vm._model.nomeCaixa.model = {"val": "", "err": ""};
+                limpaCamposCartao();
             }
 
-            function changeNomeCaixa(item, model) {
+            function changeNomeCaixa() {
                 if (vm._model.nomeCaixa.model.val.length != 0) {
                     vm.disableNomeBanco = true;
                     vm.disableNomeCaixa = false;
+                    vm.disableNumCartao = true;
                 } else {
                     vm.disableNomeBanco = false;
                     vm.disableNomeCaixa = false;
+                    vm.disableNumCartao = false;
                 }
 
                 limpaCamposBancoFin();
+                limpaCamposCartao();
                 vm.disableEscolhaBanco = true;
+            }
+
+            function changeNumCartao() {
+                if (vm._model.numCartao.model.val.length != 0) {
+                    vm.disableNomeBanco = true;
+                    vm.disableNomeCaixa = true;
+                    vm.disableNumCartao = false;
+                    vm.disableEscolhaCartao = false;
+                } else {
+                    vm.disableNomeBanco = false;
+                    vm.disableNomeCaixa = false;
+                    vm.disableNumCartao = false;
+                    vm.disableEscolhaCartao = true;
+                }
+
+                limpaCamposBancoFin();
+                vm._model.nomeCaixa.model = {"val": "", "err": ""};
+                detectarBandeira(vm._model.numCartao.model.val)
             }
 
             function limpaCamposBancoFin() {
@@ -106,8 +133,17 @@
                 vm._model.codCedente.model.err = '';
                 vm._model.tipoCarteira.model.val = '';
                 vm._model.tipoCarteira.model.err = '';
-                vm._model.obs.model.val = '';
-                vm._model.obs.model.err = '';
+            }
+
+            function limpaCamposCartao() {
+                vm._model.numCartao.model.val = '';
+                vm._model.numCartao.model.err = '';
+                vm._model.nome.model.val = '';
+                vm._model.nome.model.err = '';
+                vm._model.validadeCartao.model.val = '';
+                vm._model.validadeCartao.model.err = '';
+                vm._model.codSeguranca.model.val = '';
+                vm._model.codSeguranca.model.err = '';
             }
 
             function continuar() {
@@ -150,16 +186,17 @@
 
                 vm.srcCartao = "";
 
+                vm.disableEscolhaBanco = true;
+                vm.disableEscolhaCartao  = true;
                 vm.disableNomeBanco = false;
                 vm.disableNomeCaixa = false;
-                vm.disableEscolhaBanco = true;
+                vm.disableNumCartao = false;
             }
 
             function salvar() {
                 var saveCadastroCaixa = $resource('/api/financeiro/save-dados-cadastro-caixa')
                     .save({}, {
-                        "model": vm._model, "escolhaBanco": vm.disableEscolhaBanco,
-                        "disNomeBanco": vm.disableNomeBanco,"STR": vm.STR
+                        "model": vm._model, "STR": vm.STR
                     }).$promise;
 
                 saveCadastroCaixa
