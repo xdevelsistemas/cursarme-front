@@ -19,6 +19,7 @@
         FILTER: 'Filtro',
         FINISH_DATE: 'Data final',
         FOTO_PERFIL: 'Foto para perfil',
+        FUTUREDATE: 'Data inválida, seleciona uma data futura',
         LOGOUT: 'Sair',
         NAME: 'Nome',
         NOCONFER: 'As novas senhas não batem!',

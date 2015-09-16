@@ -10,16 +10,20 @@ module.exports = function (app, passport) {
         .get(controller.showDadosCurso);
 
     //
-    app.route('/api/secretaria/dados-enviar-circular')
-        .get(controller.showDadosEnviarCircular);
-
-    //
-    app.route('/api/secretaria/dados-curso-pauta')
+    app.route('/api/secretaria/dados-curso-pauta/:id')
         .get(controller.showDadosCursoPauta);
 
     //dados-gera-turma
     app.route('/api/secretaria/dados-gera-turma')
         .get(controller.showDadosGeraTurma);
+
+    //
+    app.route('/api/secretaria/dados-enviar-circular/:id')
+        .get(controller.showDadosEnviarCircular);
+
+    //
+    app.route('/api/secretaria/dados-material-complementar/:id')
+        .get(controller.showDadosMaterialComp);
 
     //
     app.route('/api/secretaria/dados-pauta/:id')
@@ -57,7 +61,7 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/template-add-disciplina/:id')
         .get(controller.showTemplateAddDisciplina);
 
-    //Template aluno
+    //
     app.route('/api/secretaria/template-add-curso/:id')
         .get(controller.showTemplateAddCurso);
 
@@ -65,11 +69,15 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/templateAluno')
         .get(controller.showTemplateAl);
 
-    //Template aluno
+    //
     app.route('/api/secretaria/template-enviar-circular')
         .get(controller.showTemplateEnviarCircular);
 
-    //Alunos Search
+    //
+    app.route('/api/secretaria/template-material-complementar')
+        .get(controller.showTemplateMaterialCircular);
+
+    //
     app.route('/api/secretaria/templateConfig')
         .get(controller.showConfig);
 
@@ -83,7 +91,7 @@ module.exports = function (app, passport) {
 
     //
     app.route('/api/secretaria/save-enviar-circular')
-        .post(controller.putEnviarCircular);
+        .post(controller.putSaveEnviarCircular);
 
     //save-dados-disciplinas
     app.route('/api/secretaria/save-dados-disciplinas')
@@ -92,6 +100,10 @@ module.exports = function (app, passport) {
     //
     app.route('/api/secretaria/save-frequencia-alunos')
         .post(controller.putSaveFreqAlunos);
+
+    //
+    app.route('/api/secretaria/save-material-complementar')
+        .post(controller.putSaveMaterialComp);
 
     //
     app.route('/api/secretaria/save-novo-conteudo')

@@ -10,6 +10,7 @@ var urlDataBase = '',
     dadosGeraTurma = require('../mockup/xduka-json/common/dadosGeraTurma.json'),
     dadosPauta = require('../mockup/xduka-json/common/dadosPauta.json'),
     dadosPeriodo = require('../mockup/xduka-json/common/dadosPeriodo.json'),
+    dadosMaterialComp = require('../mockup/xduka-json/common/dadosMaterialComp.json'),
     dadosTableAddCurso = require('../mockup/xduka-json/common/dadosTableAddCurso.json'),
     dadosTablesPauta = require('../mockup/xduka-json/secretaria/dadosTablesPauta.json'),
     templateAddCurso = require('../mockup/xduka-json/secretaria/templateAddCurso.json'),
@@ -19,6 +20,7 @@ var urlDataBase = '',
     templateDadosAddCurso = require('../mockup/xduka-json/secretaria/templateDadosAddCurso.json'),
     templateEnviarCircular = require('../mockup/xduka-json/secretaria/templateEnviarCircular.json'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
+    templateMaterialComp = require('../mockup/xduka-json/secretaria/templateMaterialComp.json'),
     templatePauta = require('../mockup/xduka-json/secretaria/templatePauta.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
     viewInscr = require('../mockup/xduka-json/common/viewInscr.json');
@@ -33,6 +35,7 @@ module.exports = function() {
     controller.showDadosCursoPauta = getDadosCursoPauta;
     controller.showDadosEnviarCircular = getDadosEnviarCircular;
     controller.showDadosGeraTurma = getDadosGeraTurma;
+    controller.showDadosMaterialComp = getDadosMaterialComp;
     controller.showDadosPauta = getDadosPauta;
     controller.showIdCurso = getIdCurso;
     controller.showInfoUsuario = getInfoUsuario;
@@ -41,17 +44,19 @@ module.exports = function() {
     controller.showTemplateAl = getTemplateAl;
     controller.showTemplateEnviarCircular = getTemplateEnviarCircular;
     controller.showTemplateInscricao = getTemplateInscricao;
+    controller.showTemplateMaterialCircular = getTemplateMaterialCircular;
     controller.showTemplatePauta = getTemplatePauta;
     controller.showViewInscr = getViewInscr;
     controller.putDadosInscricao = postDadosInscricao;
     controller.putDadosTurmas = postDadosTurmas;
     controller.putSaveDisciplinas = postSaveDisciplinas;
     controller.putSaveConfig = postSaveConfig;
-    controller.putSaveFreqAlunos = postSaveFreqAlunos;
     controller.putSaveDadosCurso = postSaveDadosCurso;
     controller.putSaveEditConteudo = postSaveEditConteudo;
+    controller.putSaveEnviarCircular = postSaveEnviarCircular;
+    controller.putSaveFreqAlunos = postSaveFreqAlunos;
+    controller.putSaveMaterialComp = postSaveMaterialComp;
     controller.putSaveNovoConteudo = postSaveNovoConteudo;
-    controller.putEnviarCircular = postEnviarCircular;
     controller.putRemoveConteudo = postRemoveConteudo;
 
     return controller;
@@ -66,7 +71,7 @@ function getDadosPauta(req, res) {
 }
 
 function geraDadosCompletoPauta(obj) {
-    var i, j,
+    var i, j, freqAnterior = obj.tableFreqDatasComp.head[obj.tableFreqDatasComp.head.length-1],
         freqDatasSimp = {};
 
     // Definindo o head de datas simples
@@ -77,14 +82,21 @@ function geraDadosCompletoPauta(obj) {
     obj.tableFreqDatasComp.list = [];
     obj.tableFreqDatasSimp.list = [];
     obj._alunos = [];
+    obj.duplicaFreq = [];
 
     for (i = 0; i < obj.alunos.length; i++) {
         freqDatasSimp = {};
         //
         //_alunos para o preenchimento da pauta de chamada
         obj._alunos.push({
-            "id": obj.alunos[i].mat,
+            "id": obj.alunos[i].mat.list[0].text,
             "nome": obj.alunos[i].nome
+        });
+        //
+        // duplicando frequência anterior
+        obj.duplicaFreq.push({
+            "id": obj.alunos[i].mat.list[0].text,
+            "freq": obj.alunos[i].freqDataComp[freqAnterior].value
         });
         //
         // Table Notas
@@ -104,14 +116,6 @@ function geraDadosCompletoPauta(obj) {
             "cfaltas": obj.alunos[i].faltas
         });
 
-        // Table Frequência Datas Completas
-        for (var alKey in obj.alunos[i].freqDataComp){
-            if(!obj.alunos[i].freqDataComp[alKey]){
-                obj.alunos[i].freqDataComp[alKey] = {"class": "pointP", "value": false}
-            }else{
-                obj.alunos[i].freqDataComp[alKey] = {"text": "f", "class": "pointF", "value": true}
-            }
-        }
         obj.tableFreqDatasComp.list.push(obj.alunos[i].freqDataComp);
 
         // Table Frequência Datas Simples
@@ -186,6 +190,10 @@ function getDadosGeraTurma(req, res) {
     res.json(dadosGeraTurma);
 }
 
+function getDadosMaterialComp(req, res) {
+    res.json(getUnidade(dadosMaterialComp.unidades, req.params.id));
+}
+
 function getDadosAddCurso(req, res) {
     res.json(getUnidade(dadosAddCurso.unidades, req.params.id));
 }
@@ -201,11 +209,11 @@ function getDadosCurso(req, res) {
 }
 
 function getDadosCursoPauta(req, res) {
-    res.json(dadosCursoPauta);
+    res.json(getUnidade(dadosCursoPauta.unidades, req.params.id));
 }
 
 function getDadosEnviarCircular(req, res) {
-    res.json(dadosEnviarCircular);
+    res.json(getUnidade(dadosEnviarCircular.unidades, req.params.id));
 }
 
 function getTemplatePauta(req, res) {
@@ -234,6 +242,10 @@ function getTemplateEnviarCircular(req, res) {
 
 function getTemplateInscricao(req, res) {
     res.json(templateInscr);
+}
+
+function getTemplateMaterialCircular(req, res) {
+    res.json(templateMaterialComp);
 }
 
 function getIdCurso(req, res) {
@@ -446,7 +458,7 @@ function postSaveFreqAlunos(req, res) {
         var i, dadosAlunoPauta, freqDatasSimp = {};
 
         for (i = 0; i < dadosTablesPauta.alunos.length; i++) {
-            if (dataSent.freqAlunos[dadosTablesPauta.alunos[i].mat]) {
+            if (dataSent.freqAlunos[dadosTablesPauta.alunos[i].mat.list[0].text]) {
                 dadosTablesPauta.alunos[i].faltas = parseInt(dadosTablesPauta.alunos[i].faltas) + parseInt(dataSent.model.addAulas.model.val);
             }
         }
@@ -485,13 +497,15 @@ function postSaveFreqAlunos(req, res) {
         dadosTablesPauta.tableFreqDatasComp.list = [];
         dadosTablesPauta.tableFreqDatasSimp.list = [];
         dadosTablesPauta._alunos = [];
+        dadosTablesPauta.duplicaFreq = [];
 
         for (i = 0; i < dadosTablesPauta.alunos.length; i++) {
             freqDatasSimp = {};
+            var freqAnterior = dadosTablesPauta.tableFreqDatasComp.head[dadosTablesPauta.tableFreqDatasComp.head.length-1];
             //
             //_alunos para o preenchimento da pauta de chamada
             dadosTablesPauta._alunos.push({
-                "id": dadosTablesPauta.alunos[i].mat,
+                "id": dadosTablesPauta.alunos[i].mat.list[0].text,
                 "nome": dadosTablesPauta.alunos[i].nome
             });
             //
@@ -514,12 +528,19 @@ function postSaveFreqAlunos(req, res) {
 
             // Table Frequência Datas Completas
 
-            if (dataSent.freqAlunos[dadosTablesPauta.alunos[i].mat]) {
-                dadosTablesPauta.alunos[i].freqDataComp[dadosTablesPauta.tableFreqDatasComp.head[dadosTablesPauta.tableFreqDatasComp.head.length - 1].toString()] = {"text": "f", "class": "pointF", "value": true};
+            if (dataSent.freqAlunos[dadosTablesPauta.alunos[i].mat.list[0].text]) {
+                dadosTablesPauta.alunos[i].freqDataComp[freqAnterior] = {"text": "f", "class": "pointF", "value": true};
             } else {
-                dadosTablesPauta.alunos[i].freqDataComp[dadosTablesPauta.tableFreqDatasComp.head[dadosTablesPauta.tableFreqDatasComp.head.length - 1].toString()] = {"class": "pointP", "value": false};
+                dadosTablesPauta.alunos[i].freqDataComp[freqAnterior] = {"class": "pointP", "value": false};
             }
             dadosTablesPauta.tableFreqDatasComp.list.push(dadosTablesPauta.alunos[i].freqDataComp);
+
+            //
+            // duplicando frequência anterior
+            dadosTablesPauta.duplicaFreq.push({
+                "id": dadosTablesPauta.alunos[i].mat.list[0].text,
+                "freq": dadosTablesPauta.alunos[i].freqDataComp[freqAnterior].value
+            });
 
             // Table Frequência Datas Simples
             dadosTablesPauta.tableFreqDatasSimp.head.forEach(function(el) {
@@ -654,6 +675,38 @@ function postSaveEditConteudo(req, res) {
     res.json({"success": true, "tableConteudoAdicionado": dadosTablesPauta.tableConteudoAdicionado});
 }
 
+function postSaveEnviarCircular(req, res) {
+    var dataSent = req.body;
+
+    if (verificaDadosEnviarCircular(dataSent.model)) {
+
+        /**
+         * TOdo request para o backend / dados de enviar circular
+         */
+
+        res.json({"success": true, "model": dataSent.model});
+    } else {
+        validaDadosEnviarCircular(dataSent);
+        res.json({"success": false, "model": dataSent.model});
+    }
+}
+
+function postSaveMaterialComp(req, res) {
+    var dataSent = req.body;
+
+    if (verificaDadosMaterialComp(dataSent.model)) {
+
+        /**
+         * TOdo request para o backend / dados de enviar circular
+         */
+
+        res.json({"success": true, "model": dataSent.model});
+    } else {
+        validaDadosMaterialComp(dataSent);
+        res.json({"success": false, "model": dataSent.model});
+    }
+}
+
 function postSaveNovoConteudo(req, res) {
     var dataSent = req.body;
 
@@ -668,22 +721,6 @@ function postRemoveConteudo(req, res) {
     dadosTablesPauta.tableConteudoAdicionado.list.splice(dataSent.editingPos, 1);
 
     res.json({"success": true, "tableConteudoAdicionado": dadosTablesPauta.tableConteudoAdicionado});
-}
-
-function postEnviarCircular(req, res) {
-    var dataSent = req.body;
-
-    if (verificaDadosEnviarCircular(dataSent.model)) {
-
-        /**
-         * TOdo request para o backend / dados de enviar circular
-         */
-
-        res.json({"success": true, "model": dataSent.model});
-    } else {
-        validaDadosEnviarCircular(dataSent);
-        res.json({"success": false, "model": dataSent.model});
-    }
 }
 
 function setDataExt(a) {
@@ -727,7 +764,7 @@ function verificaDadosEnviarCircular(obj) {
     return !!obj.curso.model.val && !!obj.turma.model.val &&
         !!obj.disciplina.model.val && !!obj.titulo.model.val &&
         !!obj.numero.model.val && !!obj.data.model.val &&
-        !!obj.texto.model.val && !!obj.anexo.model.val
+        !!obj.texto.model.val && (new Date(obj.data.model.val).getTime() > new Date().getTime())
 }
 
 function validaDadosEnviarCircular(obj) {
@@ -736,9 +773,43 @@ function validaDadosEnviarCircular(obj) {
     obj.model.disciplina.model.err = !!obj.model.disciplina.model.val ? '' : obj.STR.FIELD;
     obj.model.titulo.model.err = !!obj.model.titulo.model.val ? '' : obj.STR.FIELD;
     obj.model.numero.model.err = !!obj.model.numero.model.val ? '' : obj.STR.FIELD;
-    obj.model.data.model.err = !!obj.model.data.model.val ? '' : obj.STR.FIELD;
     obj.model.texto.model.err = !!obj.model.texto.model.val ? '' : obj.STR.FIELD;
-    obj.model.anexo.model.err = !!obj.model.anexo.model.val ? '' : obj.STR.FIELD;
+
+    if (!!obj.model.data.model.val) {
+        if ((new Date(obj.model.data.model.val).getTime() > new Date().getTime())) {
+            obj.model.data.model.err = '';
+        } else {
+            obj.model.data.model.err = obj.STR.FUTUREDATE;
+        }
+    } else {
+        obj.model.data.model.err = obj.STR.FIELD;
+    }
+}
+
+function verificaDadosMaterialComp(obj) {
+    return !!obj.curso.model.val && !!obj.turma.model.val &&
+        !!obj.disciplina.model.val && !!obj.titulo.model.val &&
+        !!obj.numero.model.val && !!obj.data.model.val &&
+        !!obj.texto.model.val && (new Date(obj.data.model.val).getTime() > new Date().getTime())
+}
+
+function validaDadosMaterialComp(obj) {
+    obj.model.curso.model.err = !!obj.model.curso.model.val ? '' : obj.STR.FIELD;
+    obj.model.turma.model.err = !!obj.model.turma.model.val ? '' : obj.STR.FIELD;
+    obj.model.disciplina.model.err = !!obj.model.disciplina.model.val ? '' : obj.STR.FIELD;
+    obj.model.titulo.model.err = !!obj.model.titulo.model.val ? '' : obj.STR.FIELD;
+    obj.model.numero.model.err = !!obj.model.numero.model.val ? '' : obj.STR.FIELD;
+    obj.model.texto.model.err = !!obj.model.texto.model.val ? '' : obj.STR.FIELD;
+
+    if (!!obj.model.data.model.val) {
+        if ((new Date(obj.model.data.model.val).getTime() > new Date().getTime())) {
+            obj.model.data.model.err = '';
+        } else {
+            obj.model.data.model.err = obj.STR.FUTUREDATE;
+        }
+    } else {
+        obj.model.data.model.err = obj.STR.FIELD;
+    }
 }
 
 function isEmail(email){
