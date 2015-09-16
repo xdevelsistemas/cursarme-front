@@ -23,6 +23,7 @@
             vm.disableTurma = true;
             //
             vm.editingPos = -1;
+            vm.ultimaFreq = [];
             vm.verTodos = false;
             // xd-grid
             vm.tableConteudoAdicionado = {
@@ -189,6 +190,9 @@
                         // vm._aluno
                         vm._alunos = data._alunos;
                         //
+                        // vm.ultimaFreq
+                        vm.ultimaFreq = data.duplicaFreq;
+                        //
                         // Tabela de Conteúdos Aplicados
                         vm.tableConteudoAdicionado.list = data.tableConteudoAdicionado.list;
                         vm.tableConteudoAdicionado.head = data.tableConteudoAdicionado.head;
@@ -212,7 +216,7 @@
                 if (val) {
                     vm._modelAlunos.bkp = $.extend(true, {}, vm._modelAlunos);
                     for (var i = 0; i < vm._alunos.length; i++) {
-                        vm._modelAlunos[vm._alunos[i].id] = i % 2 == 0
+                        vm._modelAlunos[vm._alunos[i].id] = vm.ultimaFreq.filter(function(elem) {return elem.id == vm._alunos[i].id})[0].freq;
                     }
                 }else{
                     vm._modelAlunos = $.extend(true, {}, vm._modelAlunos.bkp);
@@ -287,6 +291,8 @@
                             $.extend(true, vm._model, data.table.model);
                             //
                             vm._alunos = data.table._alunos;
+                            vm.ultimaFreq = data.table.duplicaFreq;
+                            //
                             vm.tableNotas = data.table.tableNotas;
                             vm.tableFreqFixa = data.table.tableFreqFixa;
                             vm.tableFreqDatasComp = data.table.tableFreqDatasComp;

@@ -71,7 +71,7 @@ function getDadosPauta(req, res) {
 }
 
 function geraDadosCompletoPauta(obj) {
-    var i, j,
+    var i, j, freqAnterior = obj.tableFreqDatasComp.head[obj.tableFreqDatasComp.head.length-1],
         freqDatasSimp = {};
 
     // Definindo o head de datas simples
@@ -82,14 +82,21 @@ function geraDadosCompletoPauta(obj) {
     obj.tableFreqDatasComp.list = [];
     obj.tableFreqDatasSimp.list = [];
     obj._alunos = [];
+    obj.duplicaFreq = [];
 
     for (i = 0; i < obj.alunos.length; i++) {
         freqDatasSimp = {};
         //
         //_alunos para o preenchimento da pauta de chamada
         obj._alunos.push({
-            "id": obj.alunos[i].mat,
+            "id": obj.alunos[i].mat.list[0].text,
             "nome": obj.alunos[i].nome
+        });
+        //
+        // duplicando frequência anterior
+        obj.duplicaFreq.push({
+            "id": obj.alunos[i].mat.list[0].text,
+            "freq": obj.alunos[i].freqDataComp[freqAnterior].value
         });
         //
         // Table Notas
@@ -109,14 +116,6 @@ function geraDadosCompletoPauta(obj) {
             "cfaltas": obj.alunos[i].faltas
         });
 
-        // Table Frequência Datas Completas
-        for (var alKey in obj.alunos[i].freqDataComp){
-            if(!obj.alunos[i].freqDataComp[alKey]){
-                obj.alunos[i].freqDataComp[alKey] = {"class": "pointP", "value": false}
-            }else{
-                obj.alunos[i].freqDataComp[alKey] = {"text": "f", "class": "pointF", "value": true}
-            }
-        }
         obj.tableFreqDatasComp.list.push(obj.alunos[i].freqDataComp);
 
         // Table Frequência Datas Simples
@@ -459,7 +458,7 @@ function postSaveFreqAlunos(req, res) {
         var i, dadosAlunoPauta, freqDatasSimp = {};
 
         for (i = 0; i < dadosTablesPauta.alunos.length; i++) {
-            if (dataSent.freqAlunos[dadosTablesPauta.alunos[i].mat]) {
+            if (dataSent.freqAlunos[dadosTablesPauta.alunos[i].mat.list[0].text]) {
                 dadosTablesPauta.alunos[i].faltas = parseInt(dadosTablesPauta.alunos[i].faltas) + parseInt(dataSent.model.addAulas.model.val);
             }
         }
@@ -498,13 +497,15 @@ function postSaveFreqAlunos(req, res) {
         dadosTablesPauta.tableFreqDatasComp.list = [];
         dadosTablesPauta.tableFreqDatasSimp.list = [];
         dadosTablesPauta._alunos = [];
+        dadosTablesPauta.duplicaFreq = [];
 
         for (i = 0; i < dadosTablesPauta.alunos.length; i++) {
             freqDatasSimp = {};
+            var freqAnterior = dadosTablesPauta.tableFreqDatasComp.head[dadosTablesPauta.tableFreqDatasComp.head.length-1];
             //
             //_alunos para o preenchimento da pauta de chamada
             dadosTablesPauta._alunos.push({
-                "id": dadosTablesPauta.alunos[i].mat,
+                "id": dadosTablesPauta.alunos[i].mat.list[0].text,
                 "nome": dadosTablesPauta.alunos[i].nome
             });
             //
@@ -527,12 +528,19 @@ function postSaveFreqAlunos(req, res) {
 
             // Table Frequência Datas Completas
 
-            if (dataSent.freqAlunos[dadosTablesPauta.alunos[i].mat]) {
-                dadosTablesPauta.alunos[i].freqDataComp[dadosTablesPauta.tableFreqDatasComp.head[dadosTablesPauta.tableFreqDatasComp.head.length - 1].toString()] = {"text": "f", "class": "pointF", "value": true};
+            if (dataSent.freqAlunos[dadosTablesPauta.alunos[i].mat.list[0].text]) {
+                dadosTablesPauta.alunos[i].freqDataComp[freqAnterior] = {"text": "f", "class": "pointF", "value": true};
             } else {
-                dadosTablesPauta.alunos[i].freqDataComp[dadosTablesPauta.tableFreqDatasComp.head[dadosTablesPauta.tableFreqDatasComp.head.length - 1].toString()] = {"class": "pointP", "value": false};
+                dadosTablesPauta.alunos[i].freqDataComp[freqAnterior] = {"class": "pointP", "value": false};
             }
             dadosTablesPauta.tableFreqDatasComp.list.push(dadosTablesPauta.alunos[i].freqDataComp);
+
+            //
+            // duplicando frequência anterior
+            dadosTablesPauta.duplicaFreq.push({
+                "id": dadosTablesPauta.alunos[i].mat.list[0].text,
+                "freq": dadosTablesPauta.alunos[i].freqDataComp[freqAnterior].value
+            });
 
             // Table Frequência Datas Simples
             dadosTablesPauta.tableFreqDatasSimp.head.forEach(function(el) {

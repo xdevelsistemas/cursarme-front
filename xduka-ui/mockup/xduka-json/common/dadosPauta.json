@@ -21,14 +21,14 @@
             "faltas": 1,
             "media": 3.75,
             "freqDataComp": {
-              "1440471600000": false,
-              "1440558000000": false,
-              "1440644400000": true,
-              "1440730800000": false,
-              "1440817200000": false,
-              "1440903600000": false,
-              "1440990000000": false,
-              "1441076400000": false
+              "1440471600000": {"class": "pointP", "value": false},
+              "1440558000000": {"class": "pointP", "value": false},
+              "1440644400000": {"text": "f", "class": "pointF", "value": true},
+              "1440730800000": {"class": "pointP", "value": false},
+              "1440817200000": {"class": "pointP", "value": false},
+              "1440903600000": {"class": "pointP", "value": false},
+              "1440990000000": {"class": "pointP", "value": false},
+              "1441076400000": {"class": "pointP", "value": false}
             }
           },
           {
@@ -48,14 +48,14 @@
             "faltas": 1,
             "media": 2.65,
             "freqDataComp": {
-              "1440471600000": false,
-              "1440558000000": true,
-              "1440644400000": false,
-              "1440730800000": false,
-              "1440817200000": false,
-              "1440903600000": false,
-              "1440990000000": false,
-              "1441076400000": false
+              "1440471600000": {"class": "pointP", "value": false},
+              "1440558000000": {"text": "f", "class": "pointF", "value": true},
+              "1440644400000": {"class": "pointP", "value": false},
+              "1440730800000": {"class": "pointP", "value": false},
+              "1440817200000": {"class": "pointP", "value": false},
+              "1440903600000": {"class": "pointP", "value": false},
+              "1440990000000": {"class": "pointP", "value": false},
+              "1441076400000": {"class": "pointP", "value": false}
             }
           },
           {
@@ -75,14 +75,14 @@
             "faltas": 1,
             "media": 5.0,
             "freqDataComp": {
-              "1440471600000": false,
-              "1440558000000": false,
-              "1440644400000": true,
-              "1440730800000": false,
-              "1440817200000": false,
-              "1440903600000": false,
-              "1440990000000": false,
-              "1441076400000": false
+              "1440471600000": {"class": "pointP", "value": false},
+              "1440558000000": {"class": "pointP", "value": false},
+              "1440644400000": {"text": "f", "class": "pointF", "value": true},
+              "1440730800000": {"class": "pointP", "value": false},
+              "1440817200000": {"class": "pointP", "value": false},
+              "1440903600000": {"class": "pointP", "value": false},
+              "1440990000000": {"class": "pointP", "value": false},
+              "1441076400000": {"class": "pointP", "value": false}
             }
           },
           {
@@ -102,14 +102,14 @@
             "faltas": 0,
             "media": 6.0,
             "freqDataComp": {
-              "1440471600000": false,
-              "1440558000000": false,
-              "1440644400000": false,
-              "1440730800000": false,
-              "1440817200000": false,
-              "1440903600000": false,
-              "1440990000000": false,
-              "1441076400000": false
+              "1440471600000": {"class": "pointP", "value": false},
+              "1440558000000": {"class": "pointP", "value": false},
+              "1440644400000": {"class": "pointP", "value": false},
+              "1440730800000": {"class": "pointP", "value": false},
+              "1440817200000": {"class": "pointP", "value": false},
+              "1440903600000": {"class": "pointP", "value": false},
+              "1440990000000": {"class": "pointP", "value": false},
+              "1441076400000": {"class": "pointP", "value": false}
             }
           }
         ],
@@ -129,7 +129,7 @@
           "list": [
             {
               "adata": {
-                "date": true,
+                "date": {"text": "f", "class": "pointF", "value": true},
                 "int": 1440039600000
               },
               "btitulo": "Sequência de Fibonacci",
@@ -175,14 +175,14 @@
             "faltas": 0,
             "media": 7.5,
             "freqDataComp": {
-              "1440471600000": false,
-              "1440558000000": false,
-              "1440644400000": false,
-              "1440730800000": false,
-              "1440817200000": false,
-              "1440903600000": false,
-              "1440990000000": false,
-              "1441076400000": false
+              "1440471600000": {"class": "pointP", "value": false},
+              "1440558000000": {"class": "pointP", "value": false},
+              "1440644400000": {"class": "pointP", "value": false},
+              "1440730800000": {"class": "pointP", "value": false},
+              "1440817200000": {"class": "pointP", "value": false},
+              "1440903600000": {"class": "pointP", "value": false},
+              "1440990000000": {"class": "pointP", "value": false},
+              "1441076400000": {"class": "pointP", "value": false}
             }
           },
           {
@@ -202,14 +202,14 @@
             "faltas": 2,
             "media": 2.65,
             "freqDataComp": {
-              "1440471600000": false,
-              "1440558000000": true,
-              "1440644400000": false,
-              "1440730800000": false,
-              "1440817200000": false,
-              "1440903600000": true,
-              "1440990000000": false,
-              "1441076400000": false
+              "1440471600000": {"class": "pointP", "value": false},
+              "1440558000000": {"text": "f", "class": "pointF", "value": true},
+              "1440644400000": {"class": "pointP", "value": false},
+              "1440730800000": {"class": "pointP", "value": false},
+              "1440817200000": {"class": "pointP", "value": false},
+              "1440903600000": {"text": "f", "class": "pointF", "value": true},
+              "1440990000000": {"class": "pointP", "value": false},
+              "1441076400000": {"class": "pointP", "value": false}
             }
           },
           {
@@ -229,14 +229,14 @@
             "faltas": 4,
             "media": 7.5,
             "freqDataComp": {
-              "1440471600000": false,
-              "1440558000000": false,
-              "1440644400000": true,
-              "1440730800000": false,
-              "1440817200000": true,
-              "1440903600000": true,
-              "1440990000000": false,
-              "1441076400000": true
+              "1440471600000": {"class": "pointP", "value": false},
+              "1440558000000": {"class": "pointP", "value": false},
+              "1440644400000": {"text": "f", "class": "pointF", "value": true},
+              "1440730800000": {"class": "pointP", "value": false},
+              "1440817200000": {"text": "f", "class": "pointF", "value": true},
+              "1440903600000": {"text": "f", "class": "pointF", "value": true},
+              "1440990000000": {"class": "pointP", "value": false},
+              "1441076400000": {"text": "f", "class": "pointF", "value": true}
             }
           },
           {
@@ -256,14 +256,14 @@
             "faltas": 0,
             "media": 6.0,
             "freqDataComp": {
-              "1440471600000": false,
-              "1440558000000": false,
-              "1440644400000": false,
-              "1440730800000": false,
-              "1440817200000": false,
-              "1440903600000": false,
-              "1440990000000": false,
-              "1441076400000": false
+              "1440471600000": {"class": "pointP", "value": false},
+              "1440558000000": {"class": "pointP", "value": false},
+              "1440644400000": {"class": "pointP", "value": false},
+              "1440730800000": {"class": "pointP", "value": false},
+              "1440817200000": {"class": "pointP", "value": false},
+              "1440903600000": {"class": "pointP", "value": false},
+              "1440990000000": {"class": "pointP", "value": false},
+              "1441076400000": {"class": "pointP", "value": false}
             }
           }
         ],
