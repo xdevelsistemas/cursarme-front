@@ -53,10 +53,10 @@
                     }                ],
                 "model": {"val": "", "err": ""}
             };
-            vm.gerarPdf = gerarPdf;
+            vm.printContrato = printContrato;
 
 
-            function gerarPdf(item, model) {
+            function printContrato(item, model) {
                 var template = item.value;
                 var data = item.id;
                 window.open('/report?templateContent='+template+'&data='+data ,'_blank');
