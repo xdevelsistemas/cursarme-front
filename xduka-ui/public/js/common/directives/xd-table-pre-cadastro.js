@@ -12,7 +12,8 @@
                         disable: '=',
                         params: '=',
                         cond: '=',
-                        pos: '='
+                        pos: '=',
+                        pdf: '='
                     },
                     link: function(elem, attr,scope){
                         $timeout(function(){
@@ -47,6 +48,8 @@
                         $('.tableOnError').attr({'style': 'display: block'});
                     }
                 }
+
+
 
             }
         ]);
