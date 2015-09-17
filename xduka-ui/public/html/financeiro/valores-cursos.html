@@ -1,86 +1,114 @@
-<div class="row">
-    <div class="col-md-12">
+<div ng-hide="vc.editing">
+    <div class="row">
         <div class="col-md-12">
             <div class="col-md-12">
-                <h3>Cadastrar Valores dos Cursos</h3>
+                <div class="col-md-12">
+                    <h3>Valores Cursos</h3>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<br/><br/>
-<div class="row">
-    <div class="col-md-6 col-sm-12">
-        <xd-select data-params="vc._model.tipoCurso" data-change="vc.changeTipoCurso"></xd-select>
-    </div>
-    <div class="col-md-6 col-sm-12">
-        <xd-select data-params="vc._model.areaCurso" data-change="vc.changeArea" data-disable="vc.disableTipoCurso"></xd-select>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6 col-sm-12">
-        <xd-select data-params="vc._model.curso" data-change="vc.changeCurso" data-disable="vc.disableArea"></xd-select>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6 col-sm-12">
-        <xd-input-date data-params="vc._model.periodoVigencia" data-disable="vc.disableCurso"></xd-input-date>
-    </div>
-    <div class="col-md-6 col-sm-12">
-        <xd-input-date data-params="vc._model.ate" data-disable="vc.disableCurso"></xd-input-date>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6 col-sm-12">
-        <xd-input-money data-params="vc._model.valorIntegral" data-disable="vc.disableCurso"></xd-input-money>
-    </div>
-    <div class="col-md-6 col-sm-12">
-        <xd-input-money data-params="vc._model.valorAvista" data-disable="vc.disableCurso"></xd-input-money>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <xd-input-money data-params="vc._model.valorInscr" data-disable="vc.disableCurso"></xd-input-money>
-    </div>
-    <div class="col-md-4">
-        <xd-input data-params="vc._model.parcelaMax"></xd-input>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <xd-select data-params="vc._model.formaPagamento" data-change="vc.changeFormaPagamento"></xd-select>
-    </div>
-    <div class="col-md-4">
-        <xd-input-money data-params="vc._model.valorParcela"></xd-input-money>
-    </div>
-    <div class="col-md-4">
-        <label><br/><br/><br/></label>
-        <span><button class="btn btn-white heightFix" data-toggle="modal" data-target="#modalAddForma" data-ng-disabled="vc.disableCurso"><i class="entypo-plus"></i>Nova Forma</button></span>
-    </div>
-</div>
-<br/>
-<div class="row">
-    <div class="col-md-12 centered center-block text-center">
-        <span class="btn-group" style="padding: 2%">
-            <button class="btn btn-green btn-lg btn-icon icon-left" data-ng-disabled="" ng-click="vc.saveValoresCurso()">
-                Adicionar
-                <i class="entypo-check"></i>
-            </button>
-        </span>
-        <span class="btn-group" style="padding: 2%">
-            <button class="btn btn-warning btn-icon icon-left btn-lg" data-toggle="modal" data-target="#confirmClear" data-ng-disabled="" ng-click="vc.clear()">
-                Limpar
-                <i class="icon entypo-cup icon-right"></i></button>
-        </span>
+    <br/><br/>
+    <div class="row">
+        <div class="col-md-12">
+            <xd-grid data-params="vc.tableValoresCurso"></xd-grid>
+        </div>
     </div>
 </div>
 
+<div ng-show="vc.editing">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <h3>Cadastrar Valores dos Cursos</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/><br/>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <xd-select data-params="vc._model.tipoCurso" data-change="vc.changeTipoCurso"></xd-select>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <xd-select data-params="vc._model.areaCurso" data-change="vc.changeArea" data-disable="vc.disableTipoCurso"></xd-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <xd-select data-params="vc._model.curso" data-change="vc.changeCurso" data-disable="vc.disableArea"></xd-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <xd-input-date data-params="vc._model.periodoVigencia" data-disable="vc.disableCurso"></xd-input-date>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <xd-input-date data-params="vc._model.ate" data-disable="vc.disableCurso"></xd-input-date>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <xd-input-money data-params="vc._model.valorIntegral" data-disable="vc.disableCurso"></xd-input-money>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <xd-input-money data-params="vc._model.valorAvista" data-disable="vc.disableCurso"></xd-input-money>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <xd-input-money data-params="vc._model.valorInscr" data-disable="vc.disableCurso"></xd-input-money>
+        </div>
+        <div class="col-md-4">
+            <xd-input data-params="vc._model.parcelaMax"></xd-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <xd-select data-params="vc._model.formaPagamento" data-change="vc.changeFormaPagamento"></xd-select>
+        </div>
+        <div class="col-md-4">
+            <xd-input-money data-params="vc._model.valorParcela"></xd-input-money>
+        </div>
+        <div class="col-md-4">
+            <label><br/><br/><br/></label>
+            <span><button class="btn btn-white heightFix" data-toggle="modal" data-target="#modalAddForma" data-ng-disabled="vc.disableCurso"><i class="entypo-plus"></i>Nova Forma</button></span>
+        </div>
+    </div>
+    <br/>
+</div>
+<div class="row">
+    <div class="col-md-12 centered center-block text-center">
+            <span class="btn-group" style="padding: 2%">
+                <button class="btn btn-green btn-lg btn-icon icon-left" data-ng-disabled="" ng-click="vc.newValorCurso()" ng-hide="vc.editing">
+                    Adicionar
+                    <i class="entypo-check"></i>
+                </button>
+                <button class="btn btn-green btn-lg btn-icon icon-left" data-ng-disabled="" ng-click="vc.saveValoresCurso()" ng-show="vc.editing">
+                    Salvar
+                    <i class="entypo-check"></i>
+                </button>
+            </span>
+            <span class="btn-group" style="padding: 2%">
+                <button class="btn btn-warning btn-icon icon-left btn-lg" data-toggle="modal" data-target="#confirmClear" data-ng-disabled="" ng-click="vc.clear()" ng-show="vc.editing">
+                    Limpar
+                    <i class="icon entypo-cup icon-right"></i></button>
+            </span>
+            <span class="btn-group" style="padding: 2%" ng-show="vc.editing">
+                <button class="btn btn-blue btn-icon icon-left btn-lg" data-toggle="modal" data-target="#confirmClear" data-ng-disabled="" ng-click="vc.editing = false;vc.topCollapse()">
+                    Voltar
+                    <i class="icon entypo-left icon-right"></i></button>
+            </span>
+    </div>
+</div>
 <!-- ADICIONAR FORMA DE PAGAMENTO -->
 <div class="modal fade" id="modalAddForma" tabindex="-1" role="dialog" aria-labelledby="Cadastrar Novo">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click=""><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Editar Conteúdo</h4>
+                <h4 class="modal-title" id="myModalLabel">Nova Forma</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
