@@ -45,7 +45,7 @@ module.exports = function (app, passport) {
     app.route('/api/financeiro/save-mensagem-boletos')
         .post(controller.putMsgBoletos);
 
-    //dados-valores-curso
+    //dados-valores-curso.json
     app.route('/api/financeiro/save-valores-curso/:id')
         .post(controller.putValoresCurso);
 
@@ -68,6 +68,10 @@ module.exports = function (app, passport) {
     //template-valores-cursos
     app.route('/api/financeiro/template-valores-cursos')
         .get(controller.showTemplateValoresCursos);
+
+    //dados-valores-cursos
+    app.route('/api/financeiro/dados-valores-cursos')
+        .get(controller.showDadosValoresCursos);
 
     return app;
 };

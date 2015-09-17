@@ -10,10 +10,12 @@ var urlDataBase = '',
     dadosUnidades = require('../mockup/xduka-json/financeiro/dadosUnidades.json'),
     alunos = require('../mockup/xduka-json/common/alunos.json'),
     templateAluno = require('../mockup/xduka-json/financeiro/templateAluno.json'),
-    templateCadastroCaixa = require('../mockup/xduka-json/financeiro/templateCadastroCaixa.json');
-    templateCampPromo = require('../mockup/xduka-json/financeiro/templateCampPromo.json');
-    templateMsgBoletos = require('../mockup/xduka-json/financeiro/templateMsgBoletos.json');
-    templateValoresCursos = require('../mockup/xduka-json/financeiro/templateValoresCursos.json');
+    templateCadastroCaixa = require('../mockup/xduka-json/financeiro/templateCadastroCaixa.json'),
+    templateCampPromo = require('../mockup/xduka-json/financeiro/templateCampPromo.json'),
+    templateMsgBoletos = require('../mockup/xduka-json/financeiro/templateMsgBoletos.json'),
+    templateValoresCursos = require('../mockup/xduka-json/financeiro/templateValoresCursos.json'),
+    dadosValoresCurso = require('../mockup/xduka-json/financeiro/dadosValoresCursos.json');
+
 
 module.exports = function() {
     var controller = {};
@@ -30,6 +32,7 @@ module.exports = function() {
     controller.showTemplateCampPromo = getTemplateCampPromo;
     controller.showTemplateMsgBoletos = getTemplateMsgBoletos;
     controller.showTemplateValoresCursos = getTemplateValoresCursos;
+    controller.showDadosValoresCursos = getDadosValoresCurso;
     controller.putChequeEdit = postChequeEdit;
     controller.putCampPromo = postCampPromo;
     controller.putDadosCadastroCaixa = postDadosCadastroCaixa;
@@ -225,6 +228,10 @@ function getTemplateMsgBoletos(req,res) {
 
 function getTemplateValoresCursos(req,res) {
     res.json(templateValoresCursos);
+}
+
+function getDadosValoresCurso(req, res) {
+    res.json(dadosValoresCurso)
 }
 
 function getCheques(req,res) {

@@ -1,0 +1,61 @@
+{
+  "head": ["Tipo de Curso", "Área", "Curso", "Período de Vigência", "Até", "Valor Integral", "Valor a Vista", "Valor Inscrição"],
+  "dados": [
+    {
+      "tipoCurso": "Pós Graduação em Educação",
+      "area": "Humanas",
+      "curso": "Direito",
+      "periodoVigencia": "1442515355261",
+      "ate": "1442915355261",
+      "valorIntegral": "11230.00",
+      "valorAvista": "10000.00",
+      "valorInscr": "50.00",
+      "formaPagamento": [
+        {
+          "nome": "Cheque",
+          "valor": "11230.00",
+          "parcelamento": "3"
+        },
+        {
+          "nome": "Cartão de Crédito",
+          "valor": "11330.00",
+          "parcelamento": "12"
+        },
+        {
+          "nome": "Boleto",
+          "valor": "11230.00",
+          "parcelamento": "12"
+        }
+      ],
+      "id": "valorCurso1"
+    },
+    {
+      "tipoCurso": "Mestrado em Educação",
+      "area": "Exatas",
+      "curso": "Matemática",
+      "periodoVigencia": "1442515355261",
+      "ate": "1442915355261",
+      "valorIntegral": "8230.00",
+      "valorAvista": "8000.00",
+      "valorInscr": "30.00",
+      "formaPagamento": [
+        {
+          "nome": "Cheque",
+          "valor": "8230.00",
+          "parcelamento": "3"
+        },
+        {
+          "nome": "Cartão de Crédito",
+          "valor": "8330.00",
+          "parcelamento": "12"
+        },
+        {
+          "nome": "Boleto",
+          "valor": "8230.00",
+          "parcelamento": "12"
+        }
+      ],
+      "id": "valorCurso2"
+    }
+  ]
+}
