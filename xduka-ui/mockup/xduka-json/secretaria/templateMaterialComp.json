@@ -5,10 +5,7 @@
       "type": "select",
       "name": "curso",
       "placeholder": "Selecione...",
-      "model": {
-        "val": "",
-        "err": ""
-      },
+      "model": {"val": "", "err": ""},
       "list": []
     },
     "turma": {
@@ -16,10 +13,7 @@
       "type": "select",
       "name": "turma",
       "placeholder": "Selecione...",
-      "model": {
-        "val": "",
-        "err": ""
-      },
+      "model": {"val": "", "err": ""},
       "list": []
     },
     "disciplina": {
@@ -27,49 +21,34 @@
       "type": "select",
       "name": "disciplina",
       "placeholder": "Selecione...",
-      "model": {
-        "val": "",
-        "err": ""
-      },
+      "model": {"val": "", "err": ""},
       "list": []
     },
     "titulo": {
       "label": "Título",
       "type": "text",
       "name": "titulo",
-      "model": {
-        "val": "",
-        "err": ""
-      }
+      "model": {"val": "", "err": ""}
     },
     "numero": {
       "label": "Número",
       "type": "text",
       "name": "numero",
-      "model": {
-        "val": "",
-        "err": ""
-      }
+      "model": {"val": "", "err": ""}
     },
     "data": {
       "label": "Data",
       "type": "text",
-      "model": {
-        "val": "",
-        "err": ""
-      },
+      "model": {"val": "", "err": ""},
       "name": "data",
       "format": "dd/MM/yyyy"
     },
     "texto": {
-      "label": "Texto",
+      "label": "Texto Complementar",
       "type": "textarea",
       "name": "texto",
       "rows": 7,
-      "model": {
-        "val": "",
-        "err": ""
-      }
+      "model": {"val": "", "err": ""}
     }
   }
 }

@@ -19,6 +19,7 @@
                     data-change="cadc.changeNomeCaixa"></xd-input>
         </div>
     </div>
+    <hr>
     <div class="row">
         <div class="col-md-12">
             <xd-select data-params="cadc._model.nomeBanco" data-disable="cadc.disableNomeBanco"
@@ -41,15 +42,11 @@
             <xd-input data-params="cadc._model.tipoCarteira" data-disable="cadc.disableEscolhaBanco"></xd-input>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <xd-input-textarea data-params="cadc._model.obs" data-disable="cadc.disableEscolhaBanco"></xd-input-textarea>
-        </div>
-    </div>
-    <br/>
+    <hr>
     <div class="row">
         <div class="col-xs-9">
-            <xd-input data-params="cadc._model.numCartao" data-change="cadc.detectarBandeira"></xd-input>
+            <xd-input data-params="cadc._model.numCartao" data-change="cadc.changeNumCartao"
+                    data-disable="cadc.disableNumCartao"></xd-input>
         </div>
         <div class="form-group">
             <div class="col-md-12">
@@ -66,15 +63,21 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <xd-input data-params="cadc._model.nome"></xd-input>
+            <xd-input data-params="cadc._model.nome" data-disable="cadc.disableEscolhaCartao"></xd-input>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-4">
-            <xd-input data-params="cadc._model.validadeCartao"></xd-input>
+            <xd-input data-params="cadc._model.validadeCartao" data-disable="cadc.disableEscolhaCartao"></xd-input>
         </div>
         <div class="col-sm-4">
-            <xd-input data-params="cadc._model.codSeguranca"></xd-input>
+            <xd-input data-params="cadc._model.codSeguranca" data-disable="cadc.disableEscolhaCartao"></xd-input>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-12">
+            <xd-input-textarea data-params="cadc._model.obs"></xd-input-textarea>
         </div>
     </div>
 </div>

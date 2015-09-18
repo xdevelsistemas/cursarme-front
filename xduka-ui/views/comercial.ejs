@@ -67,17 +67,6 @@
                     <!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
                     <i class="entypo-logout"></i>
                 </a>
-            </div>v class="sidebar-collapse">
-                <a href="#" class="sidebar-collapse-icon with-animation">
-                    <!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
-                    <i class="entypo-menu"></i>
-                </a>
-            </div>
-            <div style="padding-left: 1%" class="sidebar-collapse hidden-md hidden-lg hidden-sm" title="Sair">
-                <a href="/logout">
-                    <!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
-                    <i class="entypo-logout"></i>
-                </a>
             </div>
             <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
             <div class="sidebar-mobile-menu visible-xs">
@@ -143,7 +132,7 @@
             <div class="col-md-12">
                 <ol class="breadcrumb bc-3">
                     <li>
-                        <a href="/"><i class="entypo-home"></i>Home</a>
+                        <a href="/<%= title.toLowerCase() %>#/"><i class="entypo-home"></i>Home</a>
                     </li>
                     <li class="active">
                         <strong>{{main.breadCrumb.title}}</strong>

@@ -1,0 +1,78 @@
+<div data-ng-class="{'has-error':!(params.model.err === undefined || params.model.err == '')}"
+     class="form-group">
+
+    <div class="col-md-12">
+        <div class="col-md-12" style="margin-bottom: 40px">
+            <h3>{{STR.UPLOAD}} {{STR.FILE}}s</h3>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th width="50%">{{STR.NAME}}</th>
+                    <th ng-show="params.isHTML5">{{STR.SIZE}}</th>
+                    <th ng-show="params.isHTML5">{{STR.PROGRESS}}</th>
+                    <th>{{STR.STATUS}}</th>
+                    <th>{{STR.ACTION}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in params.queue">
+                    <td><strong>{{ item.file.name }}</strong></td>
+                    <td ng-show="params.isHTML5" nowrap>{{geraStrTamanho(item.file.size)}}</td>
+                    <td ng-show="params.isHTML5">
+                        <div class="progress" style="margin-bottom: 0;">
+                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                        <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                    </td>
+                    <td nowrap>
+                        <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                            <span class="glyphicon glyphicon-upload"></span> {{STR.UPLOAD}}
+                        </button>
+                        <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> {{STR.CANCEL}}
+                        </button>
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> {{STR.REMOVE}}
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>{{STR.TOTALFILES}}: {{ params.queue.length }}</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <div>
+                    {{STR.PROGRESSTOTAL}}
+                    <div class="progress" style="">
+                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': params.progress + '%' }"></div>
+                    </div>
+                </div>
+
+                    <span class="btn btn-info btn-file">
+                        <span class="fileinput-new"><i class="glyphicon glyphicon-paperclip"></i>Anexar</span>
+                        <input type="file" name="fileNew" nv-file-select="" uploader="params" multiple="">
+                    </span>
+                <button type="button" class="btn btn-success btn-s" ng-click="params.uploadAll()" ng-disabled="!params.getNotUploadedItems().length">
+                    <span class="glyphicon glyphicon-upload"></span> {{STR.UPLOADALL}}
+                </button>
+                <button type="button" class="btn btn-warning btn-s" ng-click="params.cancelAll()" ng-disabled="!params.isUploading">
+                    <span class="glyphicon glyphicon-ban-circle"></span> {{STR.CANCELALL}}
+                </button>
+                <button type="button" class="btn btn-danger btn-s" ng-click="params.clearQueue()" ng-disabled="!params.queue.length">
+                    <span class="glyphicon glyphicon-trash"></span> {{STR.REMOVEALL}}
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+</div>

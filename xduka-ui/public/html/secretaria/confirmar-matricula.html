@@ -44,7 +44,7 @@
 
     <div class="col-md-12" ng-show="!conf.collapseForm">
         <xd-panel-collapse title="conf._viewInscr.inscrPanelCollapse.label">
-            <xd-table-pre-cadastro data-cond="conf.condTable" data-params="conf._viewInscr" data-pos="1"></xd-table-pre-cadastro>
+            <xd-table-pre-cadastro data-pdf="conf.gerarPdfContrato" data-cond="conf.condTable" data-params="conf._viewInscr" data-pos="1"></xd-table-pre-cadastro>
             <p class="text-warning" ng-show="conf.editing">*Edição em andamento: {{!!conf._model.nome.model.val?('Nome: '+conf._model.nome.model.val) : ('CPF: '+conf._model.cpf.model.val)}}</p>
         </xd-panel-collapse>
         <!-- BOTÕES DE MENU -->

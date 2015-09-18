@@ -8,6 +8,7 @@
             /* jshint validthis: true */
             var vm = this,
                 dadosCampPromoPromise = $resource('/api/financeiro/dados-campanhas-promocionais/:id').get({"id": defineUnidade.getIdUnidade()}).$promise,
+                tableCampPromoPromise = $resource('/api/financeiro/table-campanhas-promocionais').get().$promise,
                 templateCampPromoPromise = $resource('/api/financeiro/template-campanhas-promocionais').get().$promise;
 
             // VARIÁVEIS COMUNS
@@ -16,6 +17,13 @@
             vm.breadCrumb.title = 'Campanhas Promocionais';
             vm.showAdd = false;
             vm.STR = modelStrings;
+            vm.tableCampanhas = {
+                id: "tableCampanhas",
+                dataTable: {},
+                class: "table table-hover",
+                head: [],
+                list: []
+            };
 
             // VARIÁVIES TIPO FUNÇÃO
             vm.adicionar = adicionar;
@@ -46,6 +54,12 @@
                 .catch(function(error) {
                     // TOdo tratar error
                 });
+            tableCampPromoPromise
+                .then(function (data) {
+                    vm.tableCampanhas.head = data.head;
+                    vm.tableCampanhas.list = data.list;
+                })
+                .catch();
 
             // FUNÇÕES
             function adicionar() {

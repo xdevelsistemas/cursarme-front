@@ -272,6 +272,10 @@ module.exports = function (app, passport) {
                         { Nome: 'João das Couves' },
                         { Nome: 'Pedro das Alfaces' }
                     ]
+                },
+                {
+                    nome: "João das Couves",
+                    cpf: "01234567890"
                 }
             ];
 

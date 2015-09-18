@@ -1,0 +1,25 @@
+{
+  "head": ["Curso", "Data de Início", "Data de Término"],
+  "list": [
+    {
+      "acurso": "Sistemas de Informação",
+      "bdataInicio": {"date": true,"int": 1442595983183},
+      "cdataFim": {"date": true,"int": 1442995983183}
+    },
+    {
+      "acurso": "Matemática",
+      "bdataInicio": {"date": true,"int": 1443595983183},
+      "cdataFim": {"date": true,"int": 1443995983183}
+    },
+    {
+      "acurso": "Economia",
+      "bdataInicio": {"date": true,"int": 1443595983183},
+      "cdataFim": {"date": true,"int": 1443659983183}
+    },
+    {
+      "acurso": "História",
+      "bdataInicio": {"date": true,"int": 1443659983183},
+      "cdataFim": {"date": true,"int": 1445659983183}
+    }
+  ]
+}
