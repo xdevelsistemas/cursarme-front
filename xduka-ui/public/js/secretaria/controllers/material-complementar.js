@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('materialComplementar', ['$scope', '$resource', 'breadCrumb', '$timeout', 'modelStrings', 'defineUnidade',
-            function($scope, $resource, breadCrumb, $timeout, modelStrings, defineUnidade){
+        .controller('materialComplementar', ['$scope', '$resource', 'breadCrumb', '$timeout', 'modelStrings', 'defineUnidade', 'FileUploader',
+            function($scope, $resource, breadCrumb, $timeout, modelStrings, defineUnidade, FileUploader){
 
             var vm = this,
                 dadosMaterialCompPromise = $resource('/api/secretaria/dados-material-complementar/:id').get({"id": defineUnidade.getIdUnidade()}).$promise,
@@ -15,6 +15,7 @@
             vm.disableDisciplina = true;
             vm.disableTurma = true;
             vm.STR = modelStrings;
+            vm.anexo = new FileUploader();
 
             // VARIÁVEIS TIPO FUNÇÃO
             vm.changeCurso = changeCurso;

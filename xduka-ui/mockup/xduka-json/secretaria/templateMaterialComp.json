@@ -49,9 +49,6 @@
       "name": "texto",
       "rows": 7,
       "model": {"val": "", "err": ""}
-    },
-    "anexo": {
-      "model": {"val": ""}
     }
   }
 }
