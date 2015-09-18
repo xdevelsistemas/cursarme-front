@@ -3,8 +3,10 @@
 
 
     angular.module('app.controllers')
-        .controller('aluno', ['$scope', '$resource', '$route', 'breadCrumb', 'tipoTelefone', '$timeout', 'modelStrings', 'alunoService','$location', '$routeParams', 'ngProgressFactory',
-            function($scope, $resource, $route, breadCrumb, tipoTelefone, $timeout, modelStrings,alunoService,$location, $routeParams, ngProgressFactory){
+        .controller('aluno', ['$scope', '$resource', '$route', 'breadCrumb', 'tipoTelefone', '$timeout', 'modelStrings',
+            'alunoService','$location', '$routeParams', 'ngProgressFactory', 'FileUploader',
+            function($scope, $resource, $route, breadCrumb, tipoTelefone, $timeout, modelStrings,
+                     alunoService,$location, $routeParams, ngProgressFactory, FileUploader){
 
                 /* PROGRESS BAR */
                 $scope.progressbar = ngProgressFactory.createInstance();
@@ -19,6 +21,7 @@
                 // ==== MODELOS ==== //
 
                 vm.alert = true;
+                vm.anexo = new FileUploader();
                 vm._alunos = [];
                 vm._model = {};
                 vm._temp = {};
@@ -28,6 +31,13 @@
                 vm.loaded = false;
                 vm.editing = false;
                 vm.visualizarAluno = false;
+                vm.tableAnexos = {
+                    id: 'tableAnexos',
+                    dataTable: {},
+                    class: 'table table-hover',
+                    head: ["Nome do arquivo", "Data", ""],
+                    list: []
+                };
 
 
                 template
@@ -149,37 +159,36 @@
                     {
                         text: 'Endereço',
                         entypo: 'entypo-address',
-                        active: false,
                         target: '#endereco'
                     },
                     {
                         text: 'Documentação',
                         entypo: 'entypo-vcard',
-                        active: false,
                         target: '#documentacao'
                     },
                     {
                         text: 'Grade',
                         entypo: 'entypo-docs',
-                        active: false,
                         target: '#gradeDisc'
                     },
                     {
                         text: 'Notas',
                         entypo: 'entypo-graduation-cap',
-                        active: false,
                         target: '#notas'
                     },
                     {
                         text: 'Histórico',
                         entypo: 'entypo-archive',
-                        active: false,
                         target: '#historico'
+                    },
+                    {
+                        text: 'Anexo',
+                        entypo: 'glyphicon glyphicon-paperclip',
+                        target: '#anexar'
                     },
                     {
                         text: 'Log',
                         entypo: 'entypo-book-open',
-                        active: false,
                         target: '#log'
                     }
                 ];
