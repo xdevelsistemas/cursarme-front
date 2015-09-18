@@ -14,13 +14,15 @@ var urlDataBase = '',
     templateCampPromo = require('../mockup/xduka-json/financeiro/templateCampPromo.json'),
     templateMsgBoletos = require('../mockup/xduka-json/financeiro/templateMsgBoletos.json'),
     templateValoresCursos = require('../mockup/xduka-json/financeiro/templateValoresCursos.json'),
-    dadosValoresCurso = require('../mockup/xduka-json/financeiro/dadosValoresCursos.json');
+    dadosValoresCurso = require('../mockup/xduka-json/financeiro/dadosValoresCursos.json'),
+    tableCampanhasPromoDados = require('../mockup/xduka-json/financeiro/tableCampanhasPromocionais.json');
 
 
 module.exports = function() {
     var controller = {};
 
     controller.alunoSearch = alunoSearch;
+    controller.tableCampanhasPromo = tableCampanhasPromo;
     controller.showCheques = getCheques;
     controller.showDadosCadastroCaixa = getDadosCadastroCaixa;
     controller.showDadosCampPromo = getDadosCampPromo;
@@ -73,6 +75,10 @@ function alunoSearch(req,res){
     }
 
     res.json(result)
+}
+
+function tableCampanhasPromo(req, res){
+    res.json(tableCampanhasPromoDados)
 }
 
 function getDadosCadastroCaixa(req,res) {
