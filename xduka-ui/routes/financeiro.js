@@ -73,5 +73,9 @@ module.exports = function (app, passport) {
     app.route('/api/financeiro/dados-valores-cursos')
         .get(controller.showDadosValoresCursos);
 
+    //table-campanhas-promocionais
+    app.route('/api/financeiro/table-campanhas-promocionais')
+        .get(controller.tableCampanhasPromo);
+
     return app;
 };
