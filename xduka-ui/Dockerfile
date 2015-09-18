@@ -7,6 +7,7 @@ WORKDIR /root/xduka-ui
 
 RUN npm install && \
     npm -g install bower && \
+    npm -g install satan-pm && \
     npm -g install grunt-cli && \
     npm install --dev && \
     bower  --allow-root  install
