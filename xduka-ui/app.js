@@ -12,6 +12,7 @@ var session = require('express-session');
 var compression = require('compression');
 var app = express();
 var http = require('http');
+var ejs = require('ejs');
 
 var RedisStore = require('connect-redis')(session);
 
@@ -28,6 +29,14 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "" + process.env.STATIC_HOST + "" );
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
+});
+
+//Callback ejs
+app.engine('ejs', function (filePath, options, callback) {
+    ejs.__express(filePath, options, function (err, html) {
+        if (err) return callback(err);
+        callback(null, html)
+    })
 });
 
 // view engine setup
