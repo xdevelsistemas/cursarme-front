@@ -7,10 +7,9 @@
             var vm = this
                 ,templateConfig = $resource('/api/secretaria/templateConfig').get().$promise;
 
-            breadCrumb.title = 'Configurações';
-
             /* OBJETOS */
             vm.STR = modelStrings;
+            breadCrumb.title = vm.STR.CONFIG;
             vm._model = {};
             vm.modalNew = { //CRIADO COM OBJETIVO DE INSERIR NOVOS CAMPOS NOS SELECT'S
                 model: {val: ''},

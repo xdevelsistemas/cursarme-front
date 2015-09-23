@@ -17,6 +17,7 @@
 
             // VARIÁVEIS COMUNS
             //
+            vm.breadCrumb = breadCrumb;
             //vm._alunos = [];
             vm._searchVal = '';
             vm.appName = 'xDuka';

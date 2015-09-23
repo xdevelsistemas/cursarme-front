@@ -13,11 +13,9 @@
         var vm = this
             , aniverPromise = $resource('/api/aluno/aniversariantes/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
-        //console.log(breadCrumb);
-
-        breadCrumb.title = 'Aniversariantes';
 
         vm.STR = modelStrings;
+        breadCrumb.title = vm.STR.ANIVER;
 
         aniverPromise
             .then(function(data) {

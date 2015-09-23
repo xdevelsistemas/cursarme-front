@@ -13,9 +13,9 @@
         var vm = this
             , notasPromise = $resource('/api/aluno/notas/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
-        breadCrumb.title = 'Notas e Avaliações';
 
         vm.STR = modelStrings;
+        breadCrumb.title = vm.STR.NOTAS;
 
         notasPromise
             .then(function(data) {

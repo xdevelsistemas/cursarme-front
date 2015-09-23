@@ -18,9 +18,9 @@
             $scope.showModal = !$scope.showModal;
         };
 
-        breadCrumb.title = 'Editar Perfil';
 
         vm.STR = modelStrings;
+        breadCrumb.title = vm.STR.EDITAPERFIL;
 
         $scope.myImage = '';
         $scope.myCroppedImage = '';

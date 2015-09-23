@@ -2,13 +2,15 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('dashboard', ['$scope', '$resource', 'breadCrumb', function($scope, $resource, breadCrumb) {
+        .controller('dashboard', ['$scope', '$resource', 'modelStrings', 'breadCrumb',
+            function($scope, $resource, modelStrings, breadCrumb) {
 
             /* jshint validthis: true */
             var vm = this;
 
+            vm.STR = modelStrings;
             vm.breadCrumb = breadCrumb;
-            vm.breadCrumb.title = 'Dashboard';
+            vm.breadCrumb.title = vm.STR.DASHBOARD;
 
             vm.grafic1 = {
                 id: 'graf1',

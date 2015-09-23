@@ -19,9 +19,9 @@
 
         vm.imgSv = cropService.imgTemp;
 
-        breadCrumb.title = 'Cortar Imagem';
-
         vm.STR = modelStrings;
+        breadCrumb.title = vm.STR.CORTAIMG;
+
         $scope.myImage = '';
         $scope.myCroppedImage = '';
 
