@@ -1,5 +1,6 @@
 var extend = require('node.extend'),
     request = require('request'),
+    reqPro = require('request-promise'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
     dadosBancoFinaceiro = require('../mockup/xduka-json/common/dadosBancoFinanceiro.json'),
     dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
@@ -26,14 +27,23 @@ module.exports = function() {
 };
 
 function getDadosCep(req, res) {
-    request('http://cep.correiocontrol.com.br/'+ req.params.cep +'.json', function (error, response, body) {
+    /*request('http://cep.correiocontrol.com.br/'+ req.params.cep +'.json', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             if (body[0] == 'c' && body[1] == 'o') res.json({"erro": true});
             else res.json(JSON.parse(body));
         }else {
             res.json({"erro": true});
         }
-    });
+    });*/
+
+    reqPro('http://cep.correiocontrol.com.br/'+ req.params.cep +'.json')
+        .then(function(data) {
+            if (data[0] == 'c' && data[1] == 'o') res.json({"erro": true});
+            else res.json(JSON.parse(data));
+        })
+        .catch(function(error) {
+            res.json({"erro": true});
+        });
 }
 
 function getDadosInscricao(req, res) {
