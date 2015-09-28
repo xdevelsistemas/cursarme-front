@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <h2><i class="entypo-plus-circled"></i> <span>Turmas</span><br/></h2>
+        </div>
+    </div>
+</div>
+<hr/>
+<br/>
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="row">
+            <div class="col-md-12">
+                <xd-select data-params="at._model.tipoCurso" data-change="at.tipoCursoChange"></xd-select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <xd-select data-params="at._model.curso" data-disable="at.showCurso" data-change="at.cursoChange"></xd-select>
+            </div>
+            <div class="col-md-6">
+                <xd-select data-params="at._model.periodo" data-disable="at.showPeriodo" data-change="at.periodoChange"></xd-select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-show="at._model.periodo.model.val">
+    <div class="col-md-12">
+        <hr/>
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <xd-grid data-params="at.tableTurmas"></xd-grid>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <hr/>
+        <div class="col-md-12">
+
+            <div class="row">
+                <div class="col-md-6 pull-right">
+        <span class="pull-right" style="padding-right: 10px">
+            <button class="btn btn-danger btn-icon icon-left btn-lg" ng-click=""
+                    data-ng-disabled="" ng-show="">
+                Cancelar
+                <i class="icon entypo-cancel icon-right"></i></button>
+        </span>
+        <span class="pull-right" style="padding-right: 10px">
+            <button class="btn btn-warning btn-icon icon-left btn-lg" ng-click=""
+                    data-ng-disabled="" ng-show="">
+                Limpar
+                <i class="icon entypo-cup icon-right"></i></button>
+        </span>
+        <span class="pull-right" style="padding-right: 10px">
+            <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="" ng-show="">
+                Salvar
+                <i class="entypo-check"></i>
+            </button>
+        </span>
+        <span class="pull-right" style="padding-right: 10px">
+            <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="" ng-hide="">
+                Adicionar
+                <i class="entypo-plus-circled"></i>
+            </button>
+        </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

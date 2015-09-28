@@ -1,0 +1,16 @@
+[
+  {
+    "nome": "2015BF1MP",
+    "apelido": "Beija-Flor",
+    "turno": {"id": 0, "text": "Matutino"},
+    "modalidade": {"id": 0, "text": "Presencial"},
+    "grade": "Grade Oficial"
+  },
+  {
+    "nome": "2015EA1NP",
+    "apelido": "Enfermeiros-A",
+    "turno": {"id": 2, "text": "Noturno"},
+    "modalidade": {"id": 0, "text": "Presencial"},
+    "grade": "Grade Oficial"
+  }
+]

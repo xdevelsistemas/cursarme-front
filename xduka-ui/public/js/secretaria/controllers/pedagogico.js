@@ -39,6 +39,12 @@
                     "icon": "entypo-plus",
                     "href": "#/secretaria/adicionar-disciplina",
                     "description": "Novas disciplinas"
+                },
+                {
+                    "text": "Adicionar Turma",
+                    "icon": "entypo-plus",
+                    "href": "#/secretaria/adicionar-turma",
+                    "description": "Novas turmas"
                 }
             ];
 
