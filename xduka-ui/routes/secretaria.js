@@ -2,6 +2,19 @@ module.exports = function (app, passport) {
     var controller = require('../controllers/secretaria')();
 
     //
+    app.route('/api/secretaria/showTurmas/')
+        .get(controller.showTurmas);
+
+    //
+    app.route('/api/secretaria/cursos/:tipo')
+        .get(controller.showCursos);
+
+
+    //
+    app.route('/api/secretaria/template-add-turma/:id')
+        .get(controller.showTemplateAddTurma);
+
+    //
     app.route('/api/secretaria/dados-add-curso/:id')
         .get(controller.showDadosAddCurso);
 

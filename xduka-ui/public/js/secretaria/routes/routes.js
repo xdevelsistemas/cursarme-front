@@ -84,6 +84,13 @@ angular.module('app',[
                 controller: 'adicionarDisciplina',
                 controllerAs: 'ad'
             });
+
+    // ========= ADICIONAR TURMA ========= //
+            $routeProvider.when('/secretaria/adicionar-turma', {
+                templateUrl: 'html/secretaria/adicionar-turma.html',
+                controller: 'adicionarTurma',
+                controllerAs: 'at'
+            });
     // ========= ENVIAR CIRCULAR ========= //
             $routeProvider.when('/secretaria/enviar-circular', {
                 templateUrl: 'html/secretaria/enviar-circular.html',
