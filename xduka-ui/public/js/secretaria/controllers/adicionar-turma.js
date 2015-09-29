@@ -1,4 +1,4 @@
-(function(){
+    (function(){
     'use strict';
 
     angular.module('app.controllers')
@@ -13,6 +13,7 @@
             vm._model = {};
             vm.disableCurso = true;
             vm.disablePeriodo = true;
+            vm.editing = false;
             vm.tableTurmas = {
                 "id": "tableTurmas",
                 "dataTable": false,
@@ -23,8 +24,12 @@
 
 
             //VARIÁVEIS TIPO FUNÇÕES
+            vm.adicionar = adicionar;
+            vm.cancelar = cancelar;
             vm.cursoChange = cursoChange;
+            vm.limpar = limpar;
             vm.periodoChange = periodoChange;
+            vm.salvar = salvar;
             vm.tipoCursoChange = tipoCursoChange;
 
 
@@ -40,6 +45,15 @@
 
 
             /* FUNÇÕES */
+            function adicionar(){
+
+                vm.editing = true;
+            }
+
+            function cancelar() {
+                limpar();
+                vm.editing = false;
+            }
 
             function cursoChange(item, model){
                 vm._model.periodo.listAux.forEach(function(elem, index, array){
@@ -59,13 +73,26 @@
                 });
                 vm._model.periodo.listAux = [];
 
-                vm._model.periodo.model.val = '';
+                /* FIXANDO PERÍODO */
+                vm._model.periodo.model.val = vm._model.periodo.list[0];
+                periodoChange();
                 vm.disablePeriodo = false;
 
             }
 
             function editTurma(args, line){
-                console.log('Editar: \n', line);
+                vm._model.descricao.model.val = line.bdescricao;
+                vm._model.turno.model.val = line.cturno.id;
+                vm._model.modalidade.model.val = line.dmodalidade.id;
+                vm._model.grade.model.val = line.egrade.id;
+
+                vm.editing = true;
+            }
+
+            function limpar() {
+                for(var i in vm._model){
+                    i.indexOf('$')==-1?vm._model[i].model.val = '':0;
+                }
             }
 
             function periodoChange(item, model) {
@@ -83,9 +110,9 @@
                             vm.tableTurmas.list.push({
                                 'anome': elem.nome,
                                 'bdescricao': elem.apelido,
-                                'cturno': elem.turno.text,
-                                'dmodalidade': elem.modalidade.text,
-                                'egrade': elem.grade,
+                                'cturno': {type: 'text', text: elem.turno.text, id: elem.turno.id},
+                                'dmodalidade': {type: 'text', text: elem.modalidade.text, id: elem.modalidade.id},
+                                'egrade': {type: 'text', text: elem.grade.text, id: elem.grade.id},
                                 'fbtn': {
                                     btn: true,
                                     list: [
@@ -102,6 +129,13 @@
                     function(err){
                         console.log(err)
                     });
+            }
+
+            function salvar() {
+                //todo rota de salvamento
+                console.log(vm._model);
+                limpar();
+                vm.editing = false;
             }
 
             function tipoCursoChange(item, model) {

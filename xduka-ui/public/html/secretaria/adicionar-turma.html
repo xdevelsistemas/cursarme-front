@@ -11,22 +11,17 @@
     <div class="col-md-12">
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <xd-select data-params="at._model.tipoCurso" data-change="at.tipoCursoChange"></xd-select>
             </div>
-        </div>
-        <div class="row">
             <div class="col-md-6">
                 <xd-select data-params="at._model.curso" data-disable="at.showCurso" data-change="at.cursoChange"></xd-select>
-            </div>
-            <div class="col-md-6">
-                <xd-select data-params="at._model.periodo" data-disable="at.showPeriodo" data-change="at.periodoChange"></xd-select>
             </div>
         </div>
     </div>
 </div>
 
-<div class="row" ng-show="at._model.periodo.model.val">
+<div class="row" ng-show="at._model.periodo.model.val&&!at.editing">
     <div class="col-md-12">
         <hr/>
         <div class="col-md-12">
@@ -37,33 +32,66 @@
     </div>
 </div>
 
+<div class="row" ng-show="at.editing">
+    <div class="col-md-12">
+
+        <div class="row">
+            <div class="col-sm-6">
+                <xd-input data-params="at._model.descricao"></xd-input>
+            </div>
+            <div class="col-sm-6">
+                <xd-select data-params="at._model.turno"></xd-select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <xd-select data-params="at._model.periodo" data-disable="at.showPeriodo" data-change="at.periodoChange"></xd-select>
+            </div>
+            <div class="col-sm-6">
+                <xd-select data-params="at._model.modalidade"></xd-select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <xd-select data-params="at._model.grade"></xd-select>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <div class="row">
     <div class="col-md-12">
-        <hr/>
         <div class="col-md-12">
 
             <div class="row">
                 <div class="col-md-6 pull-right">
         <span class="pull-right" style="padding-right: 10px">
-            <button class="btn btn-danger btn-icon icon-left btn-lg" ng-click=""
-                    data-ng-disabled="" ng-show="">
-                Cancelar
-                <i class="icon entypo-cancel icon-right"></i></button>
-        </span>
-        <span class="pull-right" style="padding-right: 10px">
-            <button class="btn btn-warning btn-icon icon-left btn-lg" ng-click=""
-                    data-ng-disabled="" ng-show="">
-                Limpar
-                <i class="icon entypo-cup icon-right"></i></button>
-        </span>
-        <span class="pull-right" style="padding-right: 10px">
-            <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="" ng-show="">
+            <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="at.salvar()" ng-show="at.editing">
                 Salvar
                 <i class="entypo-check"></i>
             </button>
         </span>
         <span class="pull-right" style="padding-right: 10px">
-            <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="" ng-hide="">
+            <button class="btn btn-warning btn-icon icon-left btn-lg" ng-click="at.limpar()"
+                    data-ng-disabled="!at._model.descricao.model.val&&
+                                      !at._model.tipoCurso.model.val&&
+                                      !at._model.grade.model.val&&
+                                      !at._model.turno.model.val&&
+                                      !at._model.modalidade.model.val" ng-show="at.editing">
+                Limpar
+                <i class="icon entypo-cup icon-right"></i></button>
+        </span>
+                    <span class="pull-right" style="padding-right: 10px">
+            <button class="btn btn-danger btn-icon icon-left btn-lg" ng-click="at.cancelar()" ng-show="at.editing">
+                Cancelar
+                <i class="icon entypo-cancel icon-right"></i></button>
+        </span>
+        <span class="pull-right" style="padding-right: 10px">
+            <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="at.adicionar()" ng-hide="at.editing"
+                    data-ng-disabled="!at._model.periodo.model.val">
                 Adicionar
                 <i class="entypo-plus-circled"></i>
             </button>
