@@ -8,6 +8,11 @@ var loginRedirect = require('../services/loginRedirect.js');
 module.exports = function (app, passport) {
     var express = require('express');
 
+    // MODULOS (CASO HAJA MAIS DE 1)
+    app.get('/modulos', isLoggedIn, function(req, res){
+        res.render('modulos', {title: 'Modulos'})
+    });
+
     // VISITANTE ========
     app.get('/', isLoggedIn, loginRedirect, function (req, res) {
         res.render('index', { title: 'Visitante', area: 'visitante'});
