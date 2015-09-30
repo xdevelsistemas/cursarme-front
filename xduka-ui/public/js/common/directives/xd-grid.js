@@ -27,17 +27,22 @@
                     },
                     link: function(scope){
                         try{if (!!scope.params.dataTable&&!!scope.params.id){
-                            /* SE A TRADUÇÃO NÃO FOI ALTERADA ASSUMO O PADRÃO DEFINIDO ACIMA */
-                            if(!scope.params.dataTable.language){scope.params.dataTable.language = language}
+                                /* SE A TRADUÇÃO NÃO FOI ALTERADA ASSUMO O PADRÃO DEFINIDO ACIMA */
+                                if(!scope.params.dataTable.language){scope.params.dataTable.language = language}
 
-                            $timeout(function(){
-                                window['dataTable_'+scope.params.id] = $('#'+scope.params.id).dataTable(
-                                    scope.params.dataTable
-                                );
-                            },2000)
-                        }}catch(err){
+                                $timeout(function(){
+                                    window['dataTable_'+scope.params.id] = $('#'+scope.params.id).dataTable(
+                                        scope.params.dataTable
+                                    );
+                                    $('#'+'tableLoading_'+scope.params.id).attr({'style': 'display: none'});
+                                },2000)
+                            }else{$('#'+'tableLoading_'+scope.params.id).attr({'style': 'display: none'});}
+                        }catch(err){
                             console.log('xdGrid directive: Params provavelmente não está definido! Insira um objeto válido e use data-params no html.')
                         }
+                        $timeout(function(){
+                            $('#'+'tableLoading_'+scope.params.id).attr({'style': 'display: none'});
+                        }, 2000)
 
                     }
                 };
