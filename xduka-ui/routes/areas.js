@@ -24,7 +24,7 @@ module.exports = function (app, passport) {
                 href: '/comercial',
                 icon: 'entypo-credit-card',
                 text: 'Comercial',
-                description: 'Acessar página comercial'
+                description: 'Novas Matrículas'
             })
         }
         if(req.user._doc.local.areas.financeiro){
@@ -32,7 +32,7 @@ module.exports = function (app, passport) {
                 href: '/financeiro',
                 icon: 'entypo-chart-line',
                 text: 'Financeiro',
-                description: 'Acessar página financeiro'
+                description: 'Gestão Financeira'
             })
         }
         if(req.user._doc.local.areas.secretaria){
@@ -40,7 +40,7 @@ module.exports = function (app, passport) {
                 href: '/secretaria',
                 icon: 'entypo-graduation-cap',
                 text: 'Secretaria',
-                description: 'Acessar página secretaria'
+                description: 'Conferência de Cadastros'
             })
         }
 
