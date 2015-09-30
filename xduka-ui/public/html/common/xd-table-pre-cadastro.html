@@ -2,11 +2,10 @@
     <div data-ng-class="{'has-error':!(params.model.err === undefined || params.model.err == '')}"
      class="form-group">
     <div class="tableLoading col-md-12 center text-center center-block" style="display: block">
-        <div class="col-md-12">
-            <img src="assets/images/loader-1.gif" alt="Carregando" class="text-center"/>
-        </div>
-        <div class="col-md-12">
-            <p class="text-center">Carregando</p>
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
         </div>
     </div>
     <div class="divTable col-md-12" style="display: none">
