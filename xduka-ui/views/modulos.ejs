@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt" ng-app="app">
+<html lang="pt" ng-app>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,6 +24,15 @@
     <link rel="stylesheet" href="assets/xduka/css/skin.css">
     <link rel="stylesheet" href="/lib/ngprogress/ngProgress.css">
     <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+
+    <style>
+        a {
+            color: #005993!important;
+        }
+        a:hover {
+            color: #949494!important;
+        }
+    </style>
     <!-- endbuild -->
 
     <!--UI-SELECT-->
@@ -43,7 +52,77 @@
 </head>
 <body class="page-body page-fade" data-url="http://neon.dev">
 
-<h1>MODULOS</h1>
+<div class="page-container horizontal-menu sidebar-collapsed">
+
+    <header class="navbar navbar-fixed-top" style="background-color: #EFF9FF!important;">
+        <!-- set fixed position by adding class "navbar-fixed-top" -->
+        <div class="navbar-inner">
+            <!-- logo -->
+            <div class="navbar-brand">
+                <a href="#"> <img src="assets/xduka/img/logo.png" width="120" alt=""/> </a>
+            </div>
+
+            <!-- main menu -->
+            <ul class="nav navbar-right pull-right" style="padding-top: 10px" height="auto">
+                <li>
+                    <a href="/logout">
+                        Sair
+                        <i class="entypo-logout right"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-collapse hidden-md hidden-lg hidden-sm pull-right" title="Sair" style="padding-top: 30px; padding-right: 10px">
+                <a href="/logout">
+                    <i class="entypo-logout"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="col-md-12">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="title">Módulos</h1>
+                </div>
+            </div>
+            <hr/>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <% for(var i=0; i < modulos.length; i++) { %>
+                        <a href="<%= modulos[i].href %>">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                <div class="tile-stats tile-blue linkCursor" style="min-height: 143px;">
+                                    <div class="icon">
+                                        <i class="<%= modulos[i].icon %>"></i>
+                                    </div>
+                                    <h3 style="font-size: 2.5em"><%= modulos[i].text %></h3>
+                                    <p style="padding-top: 10px">
+                                        <%= modulos[i].description %>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <footer class="main">
+            &copy; 2014
+            <strong>Cursar.me</strong>
+            Desenvolvido pela
+            <a href="http://xdevel.com.br"
+               target="_blank">xDevel</a>
+        </footer>
+    </div>
+</div>
 
 <% include config-dependencias-common.ejs %>
 

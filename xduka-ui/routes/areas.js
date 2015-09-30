@@ -10,7 +10,44 @@ module.exports = function (app, passport) {
 
     // MODULOS (CASO HAJA MAIS DE 1)
     app.get('/modulos', isLoggedIn, function(req, res){
-        res.render('modulos', {title: 'Modulos'})
+        var modulos = [];
+        if(req.user._doc.local.areas.aluno){
+            modulos.push({
+                href: '/aluno',
+                icon: 'entypo-user',
+                text: 'Aluno',
+                description: 'Acessar página de alunos'
+            })
+        }
+        if(req.user._doc.local.areas.comercial){
+            modulos.push({
+                href: '/comercial',
+                icon: 'entypo-credit-card',
+                text: 'Comercial',
+                description: 'Acessar página comercial'
+            })
+        }
+        if(req.user._doc.local.areas.financeiro){
+            modulos.push({
+                href: '/financeiro',
+                icon: 'entypo-chart-line',
+                text: 'Financeiro',
+                description: 'Acessar página financeiro'
+            })
+        }
+        if(req.user._doc.local.areas.secretaria){
+            modulos.push({
+                href: '/secretaria',
+                icon: 'entypo-graduation-cap',
+                text: 'Secretaria',
+                description: 'Acessar página secretaria'
+            })
+        }
+
+        res.render('modulos', {
+            title: 'Modulos',
+            modulos: modulos
+        })
     });
 
     // VISITANTE ========
