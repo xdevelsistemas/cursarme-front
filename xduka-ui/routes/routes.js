@@ -274,8 +274,14 @@ module.exports = function (app, passport) {
                     ]
                 },
                 {
-                    nome: "João das Couves",
-                    cpf: "01234567890"
+                    head: [
+                        {text: 'Aluno'},
+                        {text: 'Assinatura'},
+                    ],
+                    body: [
+                        { Nome: 'João das Couves' },
+                        { Nome: 'Pedro das Alfaces' }
+                    ]
                 }
             ];
 

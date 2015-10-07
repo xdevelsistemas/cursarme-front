@@ -1,0 +1,277 @@
+<html>
+<head>
+    <meta charset="utf8" />
+    <style>
+        /* general */
+        body { margin: 0px; padding: 0px; font-size: 14px; line-height: 1.42857;}
+        div { position: relative; }
+        /* grid system */
+        .row { width: 100%; height: auto; }
+        .col-xs-1 {  width: 6.333333333%; height: auto; margin:0 1%; float: left; }
+        .col-xs-2 {  width: 14.666666667%; height: auto; margin:0 1%; float: left; }
+        .col-xs-3 {  width: 23%; height: auto; margin:0 1%; float: left; }
+        .col-xs-4 {  width: 31.333333333%; height: auto; margin:0 1%; float: left; }
+        .col-xs-5 {  width: 39.666666667%; height: auto; margin:0 1%; float: left; }
+        .col-xs-6 {  width: 48%; height: auto; margin:0 1%; float: left; }
+        .col-xs-7 {  width: 56.333333333%; height: auto; margin:0 1%; float: left; }
+        .col-xs-8 {  width: 64.666666667%; height: auto; margin:0 1%; float: left; }
+        .col-xs-9 { width: 73%; height: auto; margin:0 1%; float: left; }
+        .col-xs-10 {  width: 81.333333333%; height: auto; margin:0 1%; float: left; }
+        .col-xs-11 {  width: 89.666666667%; height: auto; margin:0 1%; float: left; }
+        .col-xs-12 { width: 98%; height: auto; margin:0 1%;}
+        /* header*/
+        header { position: relative; padding-bottom: 100px; }
+        img.img-logo { width:100%; }
+        header h1 { padding-left: 3%; font-size: 1.1em; }
+        header h2 { padding-left: 3%; font-size: 0.8em; }
+        /* footer */
+        .text-center{ text-align: center; }
+        .navbar-fixed-bottom { position: absolute; top: auto; bottom: 0px; width: 100%;}
+        .navbar-fixed-bottom p { font-size: 12px; }
+        /* table */
+        table { width: 100%; max-width: 100%; margin-bottom: 20px; background-color: transparent; border-spacing: 0px; border-collapse: collapse; box-sizing: border-box; }
+        .table > thead:first-child > tr:first-child > th{ border-top: 0px none; }
+        .table-bordered { border: 1px solid #DDD; }
+        .table-bordered > thead > tr > th { border-bottom-width: 2px; border: 1px solid #DDD; }
+        .table > thead > tr > th { padding: 8px; line-height: 1.42857; }
+        .table-bordered > tbody > tr > td { border: 1px solid #DDD; }
+        .table > tbody > tr > td { padding: 8px; line-height: 1.42857; vertical-align: top; border-top: 1px solid #DDD; }
+
+        table { font-size: 10px; }
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="row">
+        <div class="col-xs-3">
+            <img src="{{header.logo}}" class="img-logo"/>
+        </div>
+        <div class="col-xs-9">
+            <h1>{{header.nomeEmpresa}}</h1>
+            <h2>{{header.nomeUnidade}}</h2>
+        </div>
+    </div>
+</header>
+
+<section>
+    <div class="row">
+         <div class="col-xs-6">
+             <table class="table table-bordered">
+                 <tbody>
+                 <tr><td>
+                         CONTRATO DE PRESTAÇÃO DE SERVIÇO<br/>
+                         No da Matrícula:_____________________________________<br/>
+                         Turma:____________________________________________<br/>
+                         Consultor Comercial:_________________________________<br/>
+                         Polo:______________________________________________<br/>
+                     </td></tr>
+                 </tbody>
+             </table>
+         </div>
+        <div class="col-xs-6">
+            <div style="width: 90px; height: 120px; border: 1px solid #000; float: right;"></div>
+        </div>
+    </div>
+
+    <br/>
+    Curso:
+    <div class="container" style="font-size: 10px;">
+        <div class="row">
+            <div class="col-xs-4">
+                ( ) CONVALIDAÇÃO EM TEOLOGIA
+            </div>
+            <div class="col-xs-4">
+                ( ) MESTRADO
+            </div>
+            <div class="col-xs-4">
+                ( ) SEGUNDA LICENCIATURA
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                ( ) PÓS-GRADUAÇÃO
+            </div>
+        <div class="col-xs-4">
+            ( ) COMPLEMENTAÇÃO PEDAGÓGICA
+        </div>
+        <div class="col-xs-4">
+            ( ) CURSO LIVRE DE CAPACITAÇÃO
+        </div>
+    </div>
+    </div>
+
+    <br/><br/>
+    <b>01 - DA IDENTIFICAÇÃO DO ALUNO / RESPONSÁVEL LEGAL E/OU FINANCEIRO </b>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td colspan="4">NOME DO ALUNO</td>
+            <td colspan="1">DATA</td>
+            <td colspan="1">RG</td>
+        </tr>
+        <tr>
+            <td colspan="2">CPF</td>
+            <td colspan="1">DATA DE NASC.</td>
+            <td colspan="1">SEXO</td>
+            <td colspan="2">PAI</td>
+        </tr>
+        <tr>
+            <td colspan="2">MÃE</td>
+            <td colspan="4">AV. /RUA</td>
+
+        </tr>
+        <tr>
+            <td colspan="1">Nº</td>
+            <td colspan="1">APT.</td>
+            <td colspan="1">CEP</td>
+            <td colspan="1">BAIRRO</td>
+            <td colspan="1">CIDADE</td>
+            <td colspan="1">ESTADO</td>
+        </tr>
+        <tr>
+            <td colspan="2">TEL. RESIDENCIAL</td>
+            <td colspan="2">TEL. CELULAR</td>
+            <td colspan="2">TEL. COMERCIAL</td>
+        </tr>
+        <tr>
+            <td colspan="6">EMAIL</td>
+        </tr>
+        <tr>
+            <td colspan="3">NACIONALIDADE</td>
+            <td colspan="3">NATURALIDADE</td>
+        </tr>
+        <tr>
+            <td colspan="4">CURSO DE GRADUAÇÃO</td>
+            <td colspan="2">ANO DE CONLUSÃO</td>
+        </tr>
+        <tr>
+            <td colspan="6">NOME DA INSTIUIÇÃO ONDE VOCÊ GRADUOU</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <b>02 - DO VALOR DO CONTRATO E DAS CONDIÇÕES DE PAGAMENTO </b>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td>
+                IESES - Instituto de Educação Superior do Espírito Santo – Razão Social Coutinho e Coutinho Serviços Educacionais Ltda.- ME empresa inscrita no CNPJ sob no 09.553.544/0001-55 sediada nesta cidade de Cariacica, na Rua José Himério, 11, Campo Grande, ES, CEP 29146-460, designada PRESTADORA DE SERVIÇOS e de outro lado, o tomador de serviços, identificado no quadro 01, designado (a) ALUNO / RESPONSÁVEL LEGAL E/OU FINANCEIRO.
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <b>03 - DO VALOR DO CONTRATO E DAS CONDIÇÕES DE PAGAMENTO </b>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td colspan="3">
+                <b>PAGAMENTO DA TAXA DE INSCRIÇÃO:</b><br/>
+            </td>
+        </tr>
+        <tr>
+            <td>( ) À Vista</td>
+            <td>( )Cheque</td>
+            <td>( ) Outro___________________________________</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td colspan="1">VALOR DO CURSO INTEGRAL</td>
+            <td colspan="1">QUANTIDADE DE PARCELAS</td>
+            <td colspan="1">VALOR DA PARCELA</td>
+            <td colspan="1">DESCONTO PONTUALIDADE</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                MODALIDADE DE PAGAMENTO
+                <br/>
+                ( ) A Vista
+                ( ) Cheque
+                ( ) Cartão
+                ( ) Boleto
+            </td>
+            <td colspan="1">
+                DATA DE VENCIMENTO DAS PARCELAS
+                <br/>
+                ( ) 05
+                ( ) 15
+                ( ) 30
+            </td>
+            <td colspan="1">
+                DATA DE VENC. DA PRIMEIRA PARCELA
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <div style='page-break-before: always;'></div> <!-- pagina 2 -->
+
+    <b>04 - DA INDENTIFICAÇÃO DO CURSO, PRAZO E DURAÇÃO DE ACORDO COM O CRONOGRAMA ESTIPULADO </b>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td colspan="4"> NOME DO CURSO </td>
+        </tr>
+        <tr>
+            <td colspan="4"> ÁREA </td>
+        </tr>
+        <tr>
+            <td>DIA'S DE AULA</td>
+            <td>HORARIO DE AULA</td>
+            <td>
+                MODALIDADE <br/>
+                Semipresencial ( ) Presencial ( )
+            </td>
+            <td>INICIO PREVISTO</td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="navbar-fixed-bottom">
+    <div class="row">
+        <div class="col-xs-12">
+            <p class="text-center">
+                Endereço: {{footer.endereco}} | Telefone: {{footer.telefone}}
+                <br/>
+                {{footer.email}} | {{footer.site}}
+            </p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
+
