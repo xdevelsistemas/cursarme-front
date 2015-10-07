@@ -283,7 +283,6 @@ module.exports = function (app, passport) {
             response.on('end', function() {
                 dataTemplate.template.recipe = "phantom-pdf";
                 dataTemplate.data.content = data_content[req.query.data];
-
                 reportClient.client.render(dataTemplate, function(err, response) {
                     if (err) {
                         return next(err);
