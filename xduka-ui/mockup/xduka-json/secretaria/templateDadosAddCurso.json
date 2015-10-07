@@ -1,0 +1,29 @@
+{
+  "tableCursos": {
+    "head": [
+      "Código",
+      "Curso",
+      "Tipo",
+      "Área",
+      "Turno",
+      "Vagas",
+      "Carga Horária",
+      "Período",
+      ""
+    ],
+    "list": []
+  },
+  "tableCriterios": {
+    "class": "table table-striped table-hover table-bordered",
+    "head": ["Critério", "Obs",""],
+    "list":[],
+    "btnRemove": {
+      "btn": true,
+      "list": [{
+        "text": "",
+        "class": "btn btn-danger btn-sm",
+        "entypo": "entypo-cancel"
+      }]
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "unidades": [
+    {
+      "id": 1,
+      "list": [
+        {
+          "anome": "Administração Financeira",
+          "bbtn": {
+            "btn": true,
+            "list": [
+              {
+                "text": "",
+                "entypo": "entypo-pencil",
+                "class": "btn btn-white",
+                "title": "Editar"
+              }
+            ]
+          }
+        },
+        {
+          "anome": "Matemática",
+          "bbtn": {
+            "btn": true,
+            "list": [
+              {
+                "text": "",
+                "entypo": "entypo-pencil",
+                "class": "btn btn-white",
+                "title": "Editar"
+              }
+            ]
+          }
+        },
+        {
+          "anome": "Artes Visuais",
+          "bbtn": {
+            "btn": true,
+            "list": [
+              {
+                "text": "",
+                "entypo": "entypo-pencil",
+                "class": "btn btn-white",
+                "title": "Editar"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "list": [
+        {
+          "anome": "Circuitos Elétricos",
+          "bbtn": {
+            "btn": true,
+            "list": [
+              {
+                "text": "",
+                "entypo": "entypo-pencil",
+                "class": "btn btn-white",
+                "title": "Editar"
+              }
+            ]
+          }
+        },
+        {
+          "anome": "Cálculo Básico",
+          "bbtn": {
+            "btn": true,
+            "list": [
+              {
+                "text": "",
+                "entypo": "entypo-pencil",
+                "class": "btn btn-white",
+                "title": "Editar"
+              }
+            ]
+          }
+        },
+        {
+          "anome": "Português",
+          "bbtn": {
+            "btn": true,
+            "list": [
+              {
+                "text": "",
+                "entypo": "entypo-pencil",
+                "class": "btn btn-white",
+                "title": "Editar"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "list": [
+        {
+          "anome": "História",
+          "bbtn": {
+            "btn": true,
+            "list": [
+              {
+                "text": "",
+                "entypo": "entypo-pencil",
+                "class": "btn btn-white",
+                "title": "Editar"
+              }
+            ]
+          }
+        },
+        {
+          "anome": "Geometria Analítica",
+          "bbtn": {
+            "btn": true,
+            "list": [
+              {
+                "text": "",
+                "entypo": "entypo-pencil",
+                "class": "btn btn-white",
+                "title": "Editar"
+              }
+            ]
+          }
+        },
+        {
+          "anome": "Análise de Sistemas",
+          "bbtn": {
+            "btn": true,
+            "list": [
+              {
+                "text": "",
+                "entypo": "entypo-pencil",
+                "class": "btn btn-white",
+                "title": "Editar"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

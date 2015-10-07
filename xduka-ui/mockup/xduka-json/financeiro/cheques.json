@@ -268,9 +268,22 @@
       "list": [
         {"id": 0, "text": "Recusado"},
         {"id": 1, "text": "Compensado"},
-        {"id": 2, "text": "Passado"}
+        {"id": 2, "text": "Repassado"}
       ],
       "model": {"err": "", "val": ""}
+    },
+    "repassadoCpf": {
+      "label": "CPF",
+      "type": "text",
+      "name": "repassadoCpf",
+      "mask": "999.999.999-99",
+      "model": {"val": "", "err": ""}
+    },
+    "repassadoNome": {
+      "label": "Nome",
+      "type": "text",
+      "name": "repassadoNome",
+      "model": {"val": "", "err": ""}
     }
   }
 }

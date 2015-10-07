@@ -1,0 +1,43 @@
+{
+  "tableNotas": {
+    "head": [
+      "Matrícula",
+      "Aluno",
+      "Situação",
+      "Faltas",
+      "Nota1",
+      "Nota2",
+      "Média"
+    ],
+    "list": []
+  },
+  "tableFreqFixa": {
+    "head": [
+      {
+        "text": "Aluno",
+        "class": "col-md-10"
+      },
+      {
+        "text": "Faltas",
+        "class": "col-xs-1"
+      }
+    ],
+    "list": []
+  },
+  "tableFreqDatasComp": {
+    "list": []
+  },
+  "tableFreqDatasSimp": {
+    "head": [],
+    "list": []
+  },
+  "tableConteudoAdicionado": {
+    "head": [
+      "Data",
+      "Título",
+      "Conteúdo",
+      ""
+    ],
+    "list": []
+  }
+}

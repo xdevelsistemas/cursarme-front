@@ -1,89 +1,94 @@
 <div class="row">
     <div class="col-md-12">
         <div class="col-md-12">
-            <h2><i class="entypo-plus-circled"></i> <span>Adicionar Curso</span><br/></h2>
+            <h2><i class="entypo-plus-circled"></i> <span>Curso</span><br/></h2>
         </div>
     </div>
 </div>
 <hr/>
 <br/>
-<div class="row">
-    <div class="col-md-12">
-        <xd-panel-collapse title="'Informações Gerais'">
-            <div class="row">
-                <div class="col-md-12">
-                    <xd-input data-params="ac._model.curso"></xd-input>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <xd-input data-params="ac._model.codigoCurso"></xd-input>
-                </div>
-                <div class="col-md-3">
-                    <xd-select data-params="ac._model.tipo"></xd-select>
-                </div>
-                <div class="col-md-3">
-                    <xd-select data-params="ac._model.area"></xd-select>
-                </div>
-                <div class="col-md-3">
-                    <xd-select data-params="ac._model.turno"></xd-select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <xd-input data-params="ac._model.vagasTurma"></xd-input>
-                </div>
-                <div class="col-md-3">
-                    <xd-input data-params="ac._model.cargaHoraria"></xd-input>
-                </div>
-                <div class="col-md-4 text-center">
-                    <div class="col-md-9 text-left">
-                        <xd-select data-params="ac._model.nome"></xd-select>
-                    </div>
-                    <div class="col-md-3" style="display:inline-block; vertical-align: middle;padding-left: 0!important;">
-                        <br/>
-                        <div class="col-md-12" style="padding-top: 5px; padding-left: 0;">
-                            <button type="button" class="btn btn-blue heightFix btn-block" ng-click=""><i class="glyphicon glyphicon-plus"></i> / <i class="glyphicon glyphicon-pencil"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <xd-input data-params="ac._model.codigo"></xd-input>
-                </div>
-            </div>
-        </xd-panel-collapse>
-        <xd-panel-collapse title="'Informações do Curso'">
-            <div class="row">
-                <div class="col-md-6">
-                    <xd-input data-params="ac._model.habilitacao"></xd-input>
-                </div>
-                <div class="col-md-6">
-                    <xd-input data-params="ac._model.autorizacao"></xd-input>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <xd-input data-params="ac._model.reconhecimento"></xd-input>
-                </div>
-                <div class="col-md-6 text-center">
-                    <div class="col-md-10 text-left" style="padding-left: 0;padding-right: 0">
-                        <xd-input data-params="ac._model.obsAval" data-disable="true"></xd-input>
-                    </div>
-                    <div class="col-md-2 text-center" style="display:inline-block; vertical-align: middle;padding-left: 0!important;">
-                        <br/>
-                        <div class="col-md-12 center-block" style="padding-top: 5px; padding-left: 0;">
-                            <button type="button" class="btn btn-blue heightFix center-block" ng-click="ac.modalCriterios()"><i class="entypo-reply"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </xd-panel-collapse>
+<div ng-hide="ac.editing">
+    <div class="row">
+        <div class="col-md-12">
+            <xd-grid data-params="ac.tableCursos"></xd-grid>
+        </div>
     </div>
 </div>
+<div ng-show="ac.editing">
+    <div class="row">
+        <div class="col-md-12">
+            <xd-panel-collapse title="'Informações Gerais'">
+                <div class="row">
+                    <div class="col-md-9">
+                        <xd-input data-params="ac._model.curso"></xd-input>
+                    </div>
+                    <div class="col-md-3">
+                        <xd-input data-params="ac._model.codigoCurso" data-disable="true"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <xd-select data-params="ac._model.tipo" data-change="ac.changeTipo"></xd-select>
+                    </div>
+                    <div class="col-md-4">
+                        <xd-select data-params="ac._model.area" data-change="ac.changeArea" data-disable="ac.disableArea"></xd-select>
+                    </div>
+                    <div class="col-md-4">
+                        <xd-select data-params="ac._model.turno" data-disable="ac.disableArea"></xd-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <xd-input data-params="ac._model.vagasTurma"></xd-input>
+                    </div>
+                    <div class="col-md-4">
+                        <xd-input data-params="ac._model.cargaHoraria"></xd-input>
+                    </div>
+                    <div class="col-md-5 text-left">
+                        <xd-select data-params="ac._model.periodo"></xd-select>
+                    </div>
+                </div>
+            </xd-panel-collapse>
+            <xd-panel-collapse title="'Informações do Curso'">
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input data-params="ac._model.habilitacao"></xd-input>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-input data-params="ac._model.autorizacao"></xd-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-input data-params="ac._model.reconhecimento"></xd-input>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <div class="col-md-10 text-left" style="padding-left: 0;padding-right: 0">
+                            <xd-input data-params="ac._model.obsAval" data-disable="true"></xd-input>
+                        </div>
+                        <div class="col-md-2 text-center" style="display:inline-block; vertical-align: middle;padding-left: 0!important;">
+                            <br/>
+                            <div class="col-md-12 center-block" style="padding-top: 5px; padding-left: 0;">
+                                <button type="button" class="btn btn-blue heightFix center-block" ng-click="ac.modalCriterios()"><i class="entypo-reply"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xd-panel-collapse>
+        </div>
+    </div>
+</div>
+<br/>
 <div class="row">
     <div class="col-md-6 pull-right">
-        <div class="col-md-5 pull-right">
-            <button class="btn btn-warning btn-icon icon-left btn-lg btn-block" ng-click="ac.limpar()"
+        <span class="pull-right" style="padding-right: 5px">
+            <button class="btn btn-danger btn-icon icon-left btn-lg" ng-click="ac.cancelar()"
+                    data-ng-disabled="" ng-show="ac.editing">
+                Cancelar
+                <i class="icon entypo-cancel icon-right"></i></button>
+        </span>
+        <span class="pull-right" style="padding-right: 5px">
+            <button class="btn btn-warning btn-icon icon-left btn-lg" ng-click="ac.limpar()"
                     data-ng-disabled="ac._model.curso.model.val==''&&
                                       ac._model.codigoCurso.model.val==''&&
                                       ac._model.tipo.model.val==''&&
@@ -91,21 +96,26 @@
                                       ac._model.turno.model.val==''&&
                                       ac._model.vagasTurma.model.val==''&&
                                       ac._model.cargaHoraria.model.val==''&&
-                                      ac._model.nome.model.val==''&&
                                       ac._model.codigo.model.val==''&&
                                       ac._model.habilitacao.model.val==''&&
                                       ac._model.autorizacao.model.val==''&&
                                       ac._model.reconhecimento.model.val==''&&
-                                      ac._model.obsAval.model.val==''">
+                                      ac._model.obsAval.model.val==''" ng-show="ac.editing">
                 Limpar
                 <i class="icon entypo-cup icon-right"></i></button>
-        </div>
-        <div class="col-md-5 pull-right">
-            <button class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="ac.adicionarCurso()">
+        </span>
+        <span class="pull-right" style="padding-right: 5px">
+            <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ac.salvarCurso()" ng-show="ac.editing">
+                Salvar
+                <i class="entypo-check"></i>
+            </button>
+        </span>
+        <span class="pull-right" style="padding-right: 5px">
+            <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ac.adicionarCurso()" ng-hide="ac.editing">
                 Adicionar
                 <i class="entypo-plus-circled"></i>
             </button>
-        </div>
+        </span>
     </div>
 </div>
 <!-- Critérios de Avaliação -->
@@ -146,8 +156,8 @@
                     Adicionar
                     <i class="entypo-plus"></i>
                 </button>
-                <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ac.salvarCriterios()">
-                    Salvar
+                <button class="btn btn-green btn-lg btn-icon icon-left" ng-click="ac.fecharCriterios()">
+                    Fechar
                     <i class="entypo-check"></i>
                 </button>
             </div>

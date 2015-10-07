@@ -2,11 +2,10 @@
     <div data-ng-class="{'has-error':!(params.model.err === undefined || params.model.err == '')}"
      class="form-group">
     <div class="tableLoading col-md-12 center text-center center-block" style="display: block">
-        <div class="col-md-12">
-            <img src="assets/images/loader-1.gif" alt="Carregando" class="text-center"/>
-        </div>
-        <div class="col-md-12">
-            <p class="text-center">Carregando</p>
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
         </div>
     </div>
     <div class="divTable col-md-12" style="display: none">
@@ -14,8 +13,8 @@
         <table id="{{params.name}}" class="xd-table-pre table table-striped table-hover">
             <thead>
             <tr>
-                <th ng-if="!!params.naoEhComercial">Ação</th>
-               <th ng-repeat="head in params.head">{{head.text}}</th>
+                <th ng-if="!!params.naoEhComercial" class="col-md-1">Ação</th>
+               <th ng-repeat="head in params.head" ng-bind="head.text"></th>
             </tr>
             </thead>
             <tbody>
@@ -31,13 +30,13 @@
                 <th ng-bind="line.vagas.preenchidas+'/'+line.vagas.totais"></th>
                 <th ng-bind="line.unidade.model.text"></th>
                 <th ng-if="!!line.validacoes.length">
-                    <span style="font-size: 11px">Incompleto</span>
-                    <button title="Imprimir Contrato" class="btn btn-info"><i class="entypo-print"></i></button>
-                    <button ng-hide="cond.verificaEdit(line.dataCadastro)" title="Editar Cadastro" class="btn btn-white" onclick="$('#cursorSetp1').click()" ng-click="cond.editFunc();cond.editInscr(line)"><i class="entypo-pencil"></i></button>
+                    <span style="font-size: 11px">Incompleto</span><br/>
+                    <button title="Imprimir Contrato" class="btn btn-info" ng-click="pdf(line)"><i class="entypo-print"></i></button>&nbsp;
+                    <button ng-show="cond.verificaEdit(line.dataCadastro)" title="Editar Cadastro" class="btn btn-white" onclick="$('#cursorSetp1').click()" ng-click="cond.editFunc();cond.editInscr(line)"><i class="entypo-pencil"></i></button>
                 </th>
                 <th ng-if="!line.validacoes.length">
-                    <span style="font-size: 11px">Completo&nbsp;&nbsp;&nbsp;</span>
-                    <button title="Imprimir Contrato" class="btn btn-info"><i class="entypo-print"></i></button>
+                    <span style="font-size: 11px">Completo&nbsp;&nbsp;&nbsp;</span><br/>
+                    <button title="Imprimir Contrato" class="btn btn-info" ng-click="pdf(line)"><i class="entypo-print"></i></button>
                 </th>
             </tr>
             </tbody>

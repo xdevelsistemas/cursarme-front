@@ -23,6 +23,11 @@
                 "text": "Configurações",
                 "iconClass": "entypo-cog",
                 "href": "#/secretaria/configuracoes"
+            },
+            {
+                "text": "Pedagógico",
+                "iconClass": "entypo-book-open",
+                "href": "#/pedagogico"
             }
         ],
         "listLevels": [

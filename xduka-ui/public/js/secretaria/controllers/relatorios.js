@@ -27,11 +27,6 @@
                         "value": "template-decDocs"
                     },
                     {
-                        "id": "2",
-                        "text": "Demo Mestrado",
-                        "value": "mestrado"
-                    },
-                    {
                         "id": "3",
                         "text": "Demo de horario",
                         "value": "dec-horario-aluno"
@@ -58,14 +53,13 @@
                     }                ],
                 "model": {"val": "", "err": ""}
             };
-            vm.gerarPdf = gerarPdf;
+            vm.printContrato = printContrato;
 
 
-            function gerarPdf(item, model) {
+            function printContrato(item, model) {
                 var template = item.value;
                 var data = item.id;
                 window.open('/report?templateContent='+template+'&data='+data ,'_blank');
-
             }
 
         }]);

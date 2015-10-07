@@ -17,7 +17,6 @@ angular.module('app',[
     'app.directives',
     'app.controllers',
     'ngProgress'
-
 ])
     .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;

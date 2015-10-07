@@ -1,0 +1,223 @@
+{
+  "unidades": [
+    {
+      "id": 1,
+      "list": [
+        {
+          "id": 1,
+          "text": "Sistemas de Informação",
+          "turmas": [
+            {
+              "id": 11,
+              "text": "SI1",
+              "disciplinas": [
+                {
+                  "id": 111,
+                  "text": "Cálculo I"
+                },
+                {
+                  "id": 222,
+                  "text": "Programação I"
+                }
+              ]
+            },
+            {
+              "id": 22,
+              "text": "SI2",
+              "disciplinas": [
+                {
+                  "id": 111,
+                  "text": "Cálculo II"
+                },
+                {
+                  "id": 222,
+                  "text": "Programação II"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "text": "Engenharia Elétrica",
+          "turmas": [
+            {
+              "id": 11,
+              "text": "EE1",
+              "disciplinas": [
+                {
+                  "id": 111,
+                  "text": "Geometria Analítica"
+                },
+                {
+                  "id": 222,
+                  "text": "Cálculo I"
+                }
+              ]
+            },
+            {
+              "id": 22,
+              "text": "EE2",
+              "disciplinas": [
+                {
+                  "id": 111,
+                  "text": "Cálculo II"
+                },
+                {
+                  "id": 222,
+                  "text": "Circuitos Elétricos"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "list": [
+        {
+          "id": 1,
+          "text": "Tecnólogo de Redes",
+          "turmas": [
+            {
+              "id": 11,
+              "text": "TR1",
+              "disciplinas": [
+                {
+                  "id": 111,
+                  "text": "Arquitetura de Redes"
+                },
+                {
+                  "id": 222,
+                  "text": "Cálculo I"
+                }
+              ]
+            },
+            {
+              "id": 22,
+              "text": "TR2",
+              "disciplinas": [
+                {
+                  "id": 111,
+                  "text": "Cálculo II"
+                },
+                {
+                  "id": 222,
+                  "text": "Circuitos Elétricos"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "text": "Sistemas de Informação",
+          "turmas": [
+            {
+              "id": 11,
+              "text": "SI1",
+              "disciplinas": [
+                {
+                  "id": 111,
+                  "text": "Cálculo I"
+                },
+                {
+                  "id": 222,
+                  "text": "Programação I"
+                }
+              ]
+            },
+            {
+              "id": 22,
+              "text": "SI2",
+              "disciplinas": [
+                {
+                  "id": 111,
+                  "text": "Cálculo II"
+                },
+                {
+                  "id": 222,
+                  "text": "Programação II"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "list": [
+        {
+          "id": 1,
+          "text": "Ciências da Computação",
+          "turmas": [
+            {
+              "id": 11,
+              "text": "CC1",
+              "disciplinas": [
+                {
+                  "id": 111,
+                  "text": "Cálculo I"
+                },
+                {
+                  "id": 222,
+                  "text": "Álgebra Linear"
+                }
+              ]
+            },
+            {
+              "id": 22,
+              "text": "CC2",
+              "disciplinas": [
+                {
+                  "id": 111,
+                  "text": "Cálculo II"
+                },
+                {
+                  "id": 222,
+                  "text": "Programação II"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "text": "Engenharia Elétrica",
+          "turmas": [
+            {
+              "id": 11,
+              "text": "EE1",
+              "disciplinas": [
+                {
+                  "id": 111,
+                  "text": "Geometria Analítica"
+                },
+                {
+                  "id": 222,
+                  "text": "Cálculo I"
+                }
+              ]
+            },
+            {
+              "id": 22,
+              "text": "EE2",
+              "disciplinas": [
+                {
+                  "id": 111,
+                  "text": "Cálculo II"
+                },
+                {
+                  "id": 222,
+                  "text": "Circuitos Elétricos"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

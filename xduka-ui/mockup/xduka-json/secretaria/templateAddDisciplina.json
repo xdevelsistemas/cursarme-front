@@ -1,0 +1,25 @@
+{
+  "template": {
+    "addNome": {
+      "label": "Digite o Nome da disciplina",
+      "type": "text",
+      "name": "addNome",
+      "model": {"val": "", "err": ""},
+      "ref": "nome"
+    },
+    "editarSelectNome": {
+      "label": "Disciplinas cadastradas",
+      "type": "select",
+      "name": "nome",
+      "placeholder": "Selecione uma opção",
+      "list": [],
+      "model": {"val": "", "err": ""}
+    },
+    "editarNome": {
+      "label": "Novo Nome",
+      "type": "text",
+      "name": "editarNome",
+      "model": {"val": "", "err": ""}
+    }
+  }
+}

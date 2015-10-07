@@ -1,0 +1,75 @@
+{
+  "template": {
+    "curso": {
+      "label": "Curso",
+      "type": "select",
+      "name": "curso",
+      "placeholder": "Selecione...",
+      "model": {
+        "val": "",
+        "err": ""
+      },
+      "list": []
+    },
+    "turma": {
+      "label": "Turma",
+      "type": "select",
+      "name": "turma",
+      "placeholder": "Selecione...",
+      "model": {
+        "val": "",
+        "err": ""
+      },
+      "list": []
+    },
+    "disciplina": {
+      "label": "Disciplina",
+      "type": "select",
+      "name": "disciplina",
+      "placeholder": "Selecione...",
+      "model": {
+        "val": "",
+        "err": ""
+      },
+      "list": []
+    },
+    "titulo": {
+      "label": "Título",
+      "type": "text",
+      "name": "titulo",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "numero": {
+      "label": "Número",
+      "type": "text",
+      "name": "numero",
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    },
+    "data": {
+      "label": "Data",
+      "type": "text",
+      "model": {
+        "val": "",
+        "err": ""
+      },
+      "name": "data",
+      "format": "dd/MM/yyyy"
+    },
+    "texto": {
+      "label": "Texto",
+      "type": "textarea",
+      "name": "texto",
+      "rows": 7,
+      "model": {
+        "val": "",
+        "err": ""
+      }
+    }
+  }
+}

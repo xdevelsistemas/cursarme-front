@@ -1,10 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt" ng-app="app">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>xDuka | <%= title %></title>
-    <link rel="icon" type="image/png" href="assets/xduka/img/mini.png">
+    <title>Cursar.me | <%= title %></title>
+
 
     <!-- build:css /assets/css/bundle_aluno.min.css -->
     <!--NEON-->
@@ -50,7 +50,7 @@
         <header class="logo-env">
             <!-- logo -->
             <div class="logo">
-                <a href="/">
+                <a href="/<%= title.toLowerCase() %>#/">
                     <img src="assets/xduka/img/logo.png" width="120" alt=""/>
                 </a>
             </div>
@@ -131,7 +131,7 @@
             <div class="col-md-12">
                 <ol class="breadcrumb bc-3">
                     <li>
-                        <a href="/"><i class="entypo-home"></i>Home</a>
+                        <a href="/<%= title.toLowerCase() %>#/"><i class="entypo-home"></i>Home</a>
                     </li>
                     <li class="active">
                         <strong>{{main.breadCrumb.title}}</strong>
@@ -148,7 +148,7 @@
 
         <footer class="main">
             &copy; 2014
-            <strong>xDuka</strong>
+            <strong>Cursar.me</strong>
             Desenvolvido pela
             <a href="http://xdevel.com.br"
                target="_blank">xDevel</a>

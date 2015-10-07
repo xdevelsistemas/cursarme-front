@@ -1,0 +1,5 @@
+{
+  "workingDirectory": ".",
+  "script": "bin/www",
+  "instances": 5
+}

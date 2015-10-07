@@ -6,9 +6,7 @@
   "nome": {
     "label": "Nome",
     "type": "text",
-    "val": "Teste1",
     "name": "nome",
-
     "model": {"val": "", "err": ""}
   },
   "endereco": {

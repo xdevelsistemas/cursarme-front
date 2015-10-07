@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <h2>Material Complementar</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<br/><br/>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <xd-select data-params="mc._model.curso" data-change="mc.changeCurso"></xd-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <xd-select data-params="mc._model.turma" data-disable="mc.disableTurma" data-change="mc.changeTurma"></xd-select>
+        </div>
+        <div class="col-md-8">
+            <xd-select data-params="mc._model.disciplina" data-disable="mc.disableDisciplina"></xd-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <xd-input data-params="mc._model.titulo"></xd-input>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <xd-input data-params="mc._model.numero"></xd-input>
+        </div>
+        <div class="col-md-5">
+            <xd-input-date data-params="mc._model.data"></xd-input-date>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <xd-input-textarea data-params="mc._model.texto"></xd-input-textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <xd-input-file data-params="mc.anexo"></xd-input-file>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 pull-right">
+        <div class="col-md-5 pull-right">
+            <button class="btn btn-warning btn-icon icon-left btn-lg btn-block" ng-click="mc.limpar()"
+                    data-ng-disabled="mc._model.curso.model.val == '' &&
+                                      mc._model.turma.model.val == '' &&
+                                      mc._model.disciplina.model.val == '' &&
+                                      mc._model.titulo.model.val == '' &&
+                                      mc._model.numero.model.val == '' &&
+                                      mc._model.data.model.val == '' &&
+                                      mc._model.anexo.model.val == '' &&
+                                      mc._model.texto.model.val == ''">
+                Limpar
+                <i class="icon entypo-cup icon-right"></i></button>
+        </div>
+        <div class="col-md-5 pull-right">
+            <button class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="mc.salvar()">
+                Salvar
+                <i class="entypo-check"></i>
+            </button>
+        </div>
+    </div>
+</div>

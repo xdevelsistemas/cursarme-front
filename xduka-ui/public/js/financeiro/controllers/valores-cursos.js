@@ -8,6 +8,7 @@
             /* jshint validthis: true */
             var vm = this,
                 templateValoresCursosPromise = $resource('/api/financeiro/template-valores-cursos').get().$promise,
+                valoresCadastradosPromise = $resource('/api/financeiro/dados-valores-cursos').get().$promise,
                 dadosTipoCursoPromise = $resource('/api/financeiro/dados-tipo-curso/:id').get({id: defineUnidade.getIdUnidade()}).$promise;
 
             // VARIÁVEIS COMUNS
@@ -17,7 +18,15 @@
             vm.disableArea = true;
             vm.disableCurso = true;
             vm.disableTipoCurso = true;
+            vm.editing = false;
             vm.STR = modelStrings;
+            vm.tableValoresCurso = {
+                "id": "tableValoresCurso",
+                "dataTable": {},
+                "class": "table table-hover table-striped",
+                "head": [],
+                "list": []
+            };
 
             // VARIÁVEIS TIPO FUNÇÕES
             vm.addFormaPagamento = addFormaPagamento;
@@ -28,7 +37,9 @@
             vm.changeArea = changeArea;
             vm.changeCurso = changeCurso;
             vm.changeTipoCurso = changeTipoCurso;
+            vm.newValorCurso = newValorCurso;
             vm.saveValoresCurso = saveValoresCurso;
+            vm.topCollapse = topCollapse;
 
             templateValoresCursosPromise
                 .then(function(data) {
@@ -36,6 +47,26 @@
                 })
                 .catch(function(error) {
                     // TOdo tratar error
+                });
+
+            valoresCadastradosPromise
+                .then(function(data){
+                    vm.tableValoresCurso.head = data.head;
+                    for (var i = 0; i < data.dados.length; i++){
+                        vm.tableValoresCurso.list.push({
+                            "a": data.dados[i].tipoCurso,
+                            "b": data.dados[i].area,
+                            "d": data.dados[i].curso,
+                            "e": {date: true, int: data.dados[i].periodoVigencia},
+                            "f": {date: true, int: data.dados[i].ate},
+                            "g": data.dados[i].valorIntegral,
+                            "h": data.dados[i].valorAvista,
+                            "i": data.dados[i].valorAvista
+                        })
+                    }
+                })
+                .catch(function(error){
+                    // Todo tratar error
                 });
 
             dadosTipoCursoPromise
@@ -123,6 +154,10 @@
                 vm._model.areaCurso.list = item.areas;
             }
 
+            function newValorCurso() {
+                vm.editing = true;
+            }
+
             function changeArea(item, model) {
                 vm.disableArea = false;
                 vm.disableCurso = true;
@@ -163,6 +198,8 @@
                             defineModelAreaCurso();
                             clearMsgErro();
                             vm._model.formaPagamento.list = [];
+                            vm.editing = false;
+                            topCollapse();
                         } else {
                             $.extend(true, vm._model, data.model);
                         }
@@ -170,6 +207,10 @@
                     .catch(function(error) {
                         // TOdo tratar error
                     })
+            }
+
+            function topCollapse(){
+                $('html, body').animate({scrollTop: 0},'slow');
             }
 
         }]);
