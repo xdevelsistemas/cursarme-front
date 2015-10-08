@@ -266,7 +266,7 @@ module.exports = function (app, passport) {
                 {
                     head: [
                         {text: 'Aluno'},
-                        {text: 'Assinatura'},
+                        {text: 'Assinatura'}
                     ],
                     body: [
                         { Nome: 'João das Couves' },
@@ -274,23 +274,97 @@ module.exports = function (app, passport) {
                     ]
                 },
                 {
-                    head: [
-                        {text: 'Aluno'},
-                        {text: 'Assinatura'},
-                    ],
-                    body: [
-                        { Nome: 'João das Couves' },
-                        { Nome: 'Pedro das Alfaces' }
-                    ]
+                    contrato: {
+                        matricula: "mat123",
+                        turma: "20131VMEST",
+                        consultor: "Joao Neve",
+                        polo: "Cariacica"
+                    },
+                    curso: {
+                        coTeologia: "X",
+                        mestrado: "",
+                        segLicenciatura: "",
+                        posGraduacao: "",
+                        compPedagogica: "",
+                        capacitacao: ""
+                    },
+                    idAluno: {
+                        nome: "",
+                        data: "",
+                        rg: "",
+                        cpf: "",
+                        dataNasc: "",
+                        sexo: "",
+                        nomePai: "",
+                        nomeMae: "",
+                        rua: "",
+                        numero: "",
+                        apto: "",
+                        cep: "",
+                        bairro: "",
+                        cidade: "",
+                        estado: "",
+                        telRes: "",
+                        telCel: "",
+                        telCom: "",
+                        email: "",
+                        nacionalidade: "",
+                        naturalidade: "",
+                        cursoGraduacao: "",
+                        anoConclusao: "",
+                        nomeIstituicao: ""
+                    },
+                    valorContrato: {
+                        taxaInscricao: {
+                            aVista: "",
+                            cheque: "",
+                            Outro: {
+                                check: "",
+                                texto: ""
+                            }
+                        },
+                        valorIntegral: "",
+                        quantParcelas: "",
+                        valorParcelas: "",
+                        descPontualidade: "",
+                        modalidadePagamento: {
+                            aVista: "",
+                            cheque: "",
+                            cartao: "",
+                            boleto: ""
+                        },
+                        dataVencimentoParc: {
+                            5: "",
+                            15: "",
+                            30: ""
+                        },
+                        dataVencPrimeiraParcela: ""
+                    },
+                    idCurso: {
+                        nome: "",
+                        area: "",
+                        diaDeAula: "",
+                        horarioAula: "",
+                        modalidade: {
+                            semipresencial: "",
+                            presencial: ""
+                        },
+                        inicioPrevisto: ""
+                    }
+                },
+                {
+
                 }
-            ];
+        ];
 
 
         var callback = function(response) {
-            response.on('data', function (data) {
-                dataTemplate = JSON.parse(data);
+            var data = '';
+            response.on('data', function (chunk) {
+                data += chunk;
             });
             response.on('end', function() {
+                dataTemplate = JSON.parse(data);
                 dataTemplate.template.recipe = "phantom-pdf";
                 dataTemplate.data.content = data_content[req.query.data];
                 reportClient.client.render(dataTemplate, function(err, response) {
