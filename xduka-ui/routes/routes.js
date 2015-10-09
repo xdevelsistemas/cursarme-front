@@ -289,67 +289,67 @@ module.exports = function (app, passport) {
                         capacitacao: ""
                     },
                     idAluno: {
-                        nome: "",
-                        data: "",
-                        rg: "",
-                        cpf: "",
-                        dataNasc: "",
-                        sexo: "",
-                        nomePai: "",
-                        nomeMae: "",
-                        rua: "",
-                        numero: "",
-                        apto: "",
-                        cep: "",
-                        bairro: "",
-                        cidade: "",
-                        estado: "",
-                        telRes: "",
-                        telCel: "",
-                        telCom: "",
-                        email: "",
-                        nacionalidade: "",
-                        naturalidade: "",
-                        cursoGraduacao: "",
-                        anoConclusao: "",
-                        nomeIstituicao: ""
+                        nome: "Nome Show da Silva",
+                        data: "14/12/2015",
+                        rg: "2231-123",
+                        cpf: "123.123.123-12",
+                        dataNasc: "14/12/2015",
+                        sexo: "Masculino",
+                        nomePai: "Pai show show",
+                        nomeMae: "Mãe show show",
+                        rua: "Rua show de bola",
+                        numero: "182",
+                        apto: "1001",
+                        cep: "29012-221",
+                        bairro: "Morada De Laranjeiras",
+                        cidade: "Cariacica",
+                        estado: "Espírito Santo",
+                        telRes: "27 4323-3242",
+                        telCel: "27 998-383-382",
+                        telCom: "27 998-141-321",
+                        email: "show@show.com",
+                        nacionalidade: "Brasileiro",
+                        naturalidade: "Vitória ES",
+                        cursoGraduacao: "Bacharelado de Sistema de Informação",
+                        anoConclusao: "2008",
+                        nomeIstituicao: "Instituto Federal do Espírito Santo"
                     },
                     valorContrato: {
                         taxaInscricao: {
-                            aVista: "",
+                            aVista: "X",
                             cheque: "",
-                            Outro: {
+                            outro: {
                                 check: "",
                                 texto: ""
                             }
                         },
-                        valorIntegral: "",
-                        quantParcelas: "",
-                        valorParcelas: "",
-                        descPontualidade: "",
+                        valorIntegral: "2.000,00",
+                        quantParcelas: "12",
+                        valorParcelas: "166,66",
+                        descPontualidade: "5%",
                         modalidadePagamento: {
-                            aVista: "",
+                            aVista: "X",
                             cheque: "",
                             cartao: "",
                             boleto: ""
                         },
                         dataVencimentoParc: {
-                            5: "",
-                            15: "",
-                            30: ""
+                            cinco: "",
+                            quinze: "X",
+                            trinta: ""
                         },
-                        dataVencPrimeiraParcela: ""
+                        dataVencPrimeiraParcela: "10/10/2015"
                     },
                     idCurso: {
-                        nome: "",
-                        area: "",
-                        diaDeAula: "",
-                        horarioAula: "",
+                        nome: "Pedagogia",
+                        area: "Ciências Humanas",
+                        diaDeAula: "Terça-feira",
+                        horarioAula: "18:00, 21:00",
                         modalidade: {
-                            semipresencial: "",
+                            semipresencial: "X",
                             presencial: ""
                         },
-                        inicioPrevisto: ""
+                        inicioPrevisto: "14/11/2015"
                     }
                 },
                 {
