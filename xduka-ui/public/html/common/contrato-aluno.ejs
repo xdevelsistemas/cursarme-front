@@ -38,7 +38,9 @@
         .table > tbody > tr > td { padding: 8px; line-height: 1.42857; vertical-align: top; border-top: 1px solid #DDD; }
 
         table { font-size: 10px; }
+        table.small { font-size: 8px; }
         .assinaturas {text-align: center; padding: 40px 0px 20px 0px; }
+        span.t-tab { font-size: 11px; margin: 0px 0px 0px 10px; display: inline-block; font-weight: bold;}
 
     </style>
 </head>
@@ -62,10 +64,18 @@
                  <tbody>
                     <tr><td>
                          CONTRATO DE PRESTAÇÃO DE SERVIÇO<br/>
-                         No da Matrícula: {{content.contrato.matricula}} <br/>
-                         Turma: {{content.contrato.turma}} <br/>
-                         Consultor Comercial: {{content.contrato.consultor}} <br/>
-                         Polo: {{content.contrato.polo}} <br/>
+                         Nº da Matrícula:
+                            <span class="t-tab">{{content.contrato.matricula}}</span>
+                            <br/>
+                         Turma:
+                            <span class="t-tab">{{content.contrato.turma}}</span>
+                            <br/>
+                         Consultor Comercial:
+                            <span class="t-tab">{{content.contrato.consultor}}</span>
+                            <br/>
+                         Polo:
+                            <span class="t-tab">{{content.contrato.polo}}</span>
+                            <br/>
                      </td></tr>
                  </tbody>
              </table>
@@ -104,50 +114,98 @@
 
     <br/><br/>
     <b>01 - DA IDENTIFICAÇÃO DO ALUNO / RESPONSÁVEL LEGAL E/OU FINANCEIRO </b>
-    <table class="table table-bordered">
+    <table class="table table-bordered small">
         <tbody>
         <tr>
-            <td colspan="4">NOME DO ALUNO</td>
-            <td colspan="1">DATA</td>
-            <td colspan="1">RG</td>
+            <td colspan="4">NOME DO ALUNO
+                <span class="t-tab">{{content.idAluno.nome}}</span>
+            </td>
+            <td colspan="1">DATA
+                <span class="t-tab">{{content.idAluno.data}}</span>
+            </td>
+            <td colspan="1">RG
+                <span class="t-tab">{{content.idAluno.rg}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="2">CPF</td>
-            <td colspan="1">DATA DE NASC.</td>
-            <td colspan="1">SEXO</td>
-            <td colspan="2">PAI</td>
+            <td colspan="2">CPF
+                <span class="t-tab">{{content.idAluno.cpf}}</span>
+            </td>
+            <td colspan="1">DATA DE NASC.
+                <span class="t-tab">{{content.idAluno.dataNasc}}</span>
+            </td>
+            <td colspan="1">SEXO
+                <span class="t-tab">{{content.idAluno.sexo}}</span>
+            </td>
+            <td colspan="2">PAI
+                <span class="t-tab">{{content.idAluno.nomePai}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="2">MÃE</td>
-            <td colspan="4">AV. /RUA</td>
+            <td colspan="3">MÃE
+                <span class="t-tab">{{content.idAluno.nomeMae}}</span>
+            </td>
+            <td colspan="3">AV. /RUA
+                <span class="t-tab">{{content.idAluno.rua}}</span>
+            </td>
 
         </tr>
         <tr>
-            <td colspan="1">Nº</td>
-            <td colspan="1">APT.</td>
-            <td colspan="1">CEP</td>
-            <td colspan="1">BAIRRO</td>
-            <td colspan="1">CIDADE</td>
-            <td colspan="1">ESTADO</td>
+            <td colspan="1">Nº
+                <span class="t-tab">{{content.idAluno.numero}}</span>
+            </td>
+            <td colspan="1">APT.
+                <span class="t-tab">{{content.idAluno.apto}}</span>
+            </td>
+            <td colspan="1">CEP
+                <span class="t-tab">{{content.idAluno.cep}}</span>
+            </td>
+            <td colspan="1">BAIRRO
+                <span class="t-tab">{{content.idAluno.bairro}}</span>
+            </td>
+            <td colspan="1">CIDADE
+                <span class="t-tab">{{content.idAluno.cidade}}</span>
+            </td>
+            <td colspan="1">ESTADO
+                <span class="t-tab">{{content.idAluno.estado}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="2">TEL. RESIDENCIAL</td>
-            <td colspan="2">TEL. CELULAR</td>
-            <td colspan="2">TEL. COMERCIAL</td>
+            <td colspan="2">TEL. RESIDENCIAL
+                <span class="t-tab">{{content.idAluno.telRes}}</span>
+            </td>
+            <td colspan="2">TEL. CELULAR
+                <span class="t-tab">{{content.idAluno.telCel}}</span>
+            </td>
+            <td colspan="2">TEL. COMERCIAL
+                <span class="t-tab">{{content.idAluno.telCom}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="6">EMAIL</td>
+            <td colspan="6">EMAIL
+                <span class="t-tab">{{content.idAluno.email}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="3">NACIONALIDADE</td>
-            <td colspan="3">NATURALIDADE</td>
+            <td colspan="3">NACIONALIDADE
+                <span class="t-tab">{{content.idAluno.nacionalidade}}</span>
+            </td>
+            <td colspan="3">NATURALIDADE
+                <span class="t-tab">{{content.idAluno.naturalidade}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="4">CURSO DE GRADUAÇÃO</td>
-            <td colspan="2">ANO DE CONLUSÃO</td>
+            <td colspan="4">CURSO DE GRADUAÇÃO
+                <span class="t-tab">{{content.idAluno.cursoGraduacao}}</span>
+            </td>
+            <td colspan="2">ANO DE CONLUSÃO
+                <span class="t-tab">{{content.idAluno.anoConclusao}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="6">NOME DA INSTIUIÇÃO ONDE VOCÊ GRADUOU</td>
+            <td colspan="6">NOME DA INSTIUIÇÃO ONDE VOCÊ GRADUOU
+                <span class="t-tab">{{content.idAluno.nomeIstituicao}}</span>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -173,9 +231,9 @@
             </td>
         </tr>
         <tr>
-            <td>( ) À Vista</td>
-            <td>( )Cheque</td>
-            <td>( ) Outro___________________________________</td>
+            <td>( {{content.valorContrato.taxaInscricao.aVista}} ) À Vista</td>
+            <td>( {{content.valorContrato.taxaInscricao.cheque}} ) Cheque</td>
+            <td>( {{content.valorContrato.taxaInscricao.outro.check}} ) Outro: {{content.valorContrato.taxaInscricao.outro.texto}}</td>
         </tr>
         </tbody>
     </table>
@@ -183,29 +241,38 @@
     <table class="table table-bordered">
         <tbody>
         <tr>
-            <td colspan="1">VALOR DO CURSO INTEGRAL</td>
-            <td colspan="1">QUANTIDADE DE PARCELAS</td>
-            <td colspan="1">VALOR DA PARCELA</td>
-            <td colspan="1">DESCONTO PONTUALIDADE</td>
+            <td colspan="1">VALOR DO CURSO INTEGRAL
+                <span class="t-tab">{{content.valorContrato.valorIntegral}}</span>
+            </td>
+            <td colspan="1">QUANTIDADE DE PARCELAS
+                <span class="t-tab">{{content.valorContrato.quantParcelas}}</span>
+            </td>
+            <td colspan="1">VALOR DA PARCELA
+                <span class="t-tab">{{content.valorContrato.valorParcelas}}</span>
+            </td>
+            <td colspan="1">DESCONTO PONTUALIDADE
+                <span class="t-tab">{{content.valorContrato.descPontualidade}}</span>
+            </td>
         </tr>
         <tr>
             <td colspan="2">
                 MODALIDADE DE PAGAMENTO
                 <br/>
-                ( ) A Vista
-                ( ) Cheque
-                ( ) Cartão
-                ( ) Boleto
+                ( {{content.valorContrato.modalidadePagamento.aVista}} ) A Vista
+                ( {{content.valorContrato.modalidadePagamento.cheque}} ) Cheque
+                ( {{content.valorContrato.modalidadePagamento.cartao}} ) Cartão
+                ( {{content.valorContrato.modalidadePagamento.boleto}} ) Boleto
             </td>
             <td colspan="1">
                 DATA DE VENCIMENTO DAS PARCELAS
                 <br/>
-                ( ) 05
-                ( ) 15
-                ( ) 30
+                ( {{content.valorContrato.dataVencimentoParc.cinco}} ) 05
+                ( {{content.valorContrato.dataVencimentoParc.quinze}} ) 15
+                ( {{content.valorContrato.dataVencimentoParc.trinta}} ) 30
             </td>
             <td colspan="1">
                 DATA DE VENC. DA PRIMEIRA PARCELA
+                <span class="t-tab">{{content.valorContrato.dataVencPrimeiraParcela}}</span>
             </td>
         </tr>
 
@@ -218,19 +285,31 @@
     <table class="table table-bordered">
         <tbody>
         <tr>
-            <td colspan="4"> NOME DO CURSO </td>
+            <td colspan="4"> NOME DO CURSO
+                <span class="t-tab">{{content.idCurso.nome}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="4"> ÁREA </td>
+            <td colspan="4"> ÁREA
+                <span class="t-tab">{{content.idCurso.area}}</span>
+            </td>
         </tr>
         <tr>
-            <td>DIA'S DE AULA</td>
-            <td>HORARIO DE AULA</td>
+            <td>DIA'S DE AULA
+                <span class="t-tab">{{content.idCurso.diaDeAula}}</span>
+            </td>
+            <td>HORARIO DE AULA
+                <span class="t-tab">{{content.idCurso.horarioAula}}</span>
+            </td>
             <td>
                 MODALIDADE <br/>
-                Semipresencial ( ) Presencial ( )
+                Semipresencial ( {{content.idCurso.modalidade.semipresencial}} )
+                <br/>
+                Presencial ( {{content.idCurso.modalidade.presencial}} )
             </td>
-            <td>INICIO PREVISTO</td>
+            <td>INICIO PREVISTO
+                <span class="t-tab">{{content.idCurso.inicioPrevisto}}</span>
+            </td>
         </tr>
         </tbody>
     </table>
