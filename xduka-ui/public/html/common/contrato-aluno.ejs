@@ -38,6 +38,9 @@
         .table > tbody > tr > td { padding: 8px; line-height: 1.42857; vertical-align: top; border-top: 1px solid #DDD; }
 
         table { font-size: 10px; }
+        table.small { font-size: 8px; }
+        .assinaturas {text-align: center; padding: 40px 0px 20px 0px; }
+        span.t-tab { font-size: 11px; margin: 0px 0px 0px 10px; display: inline-block; font-weight: bold;}
 
     </style>
 </head>
@@ -59,12 +62,20 @@
          <div class="col-xs-6">
              <table class="table table-bordered">
                  <tbody>
-                 <tr><td>
+                    <tr><td>
                          CONTRATO DE PRESTAÇÃO DE SERVIÇO<br/>
-                         No da Matrícula:_____________________________________<br/>
-                         Turma:____________________________________________<br/>
-                         Consultor Comercial:_________________________________<br/>
-                         Polo:______________________________________________<br/>
+                         Nº da Matrícula:
+                            <span class="t-tab">{{content.contrato.matricula}}</span>
+                            <br/>
+                         Turma:
+                            <span class="t-tab">{{content.contrato.turma}}</span>
+                            <br/>
+                         Consultor Comercial:
+                            <span class="t-tab">{{content.contrato.consultor}}</span>
+                            <br/>
+                         Polo:
+                            <span class="t-tab">{{content.contrato.polo}}</span>
+                            <br/>
                      </td></tr>
                  </tbody>
              </table>
@@ -79,74 +90,122 @@
     <div class="container" style="font-size: 10px;">
         <div class="row">
             <div class="col-xs-4">
-                ( ) CONVALIDAÇÃO EM TEOLOGIA
+                ( {{content.curso.coTeologia}} ) CONVALIDAÇÃO EM TEOLOGIA
             </div>
             <div class="col-xs-4">
-                ( ) MESTRADO
+                ( {{content.curso.mestrado}} ) MESTRADO
             </div>
             <div class="col-xs-4">
-                ( ) SEGUNDA LICENCIATURA
+                ( {{content.curso.segLicenciatura}} ) SEGUNDA LICENCIATURA
             </div>
         </div>
         <div class="row">
             <div class="col-xs-4">
-                ( ) PÓS-GRADUAÇÃO
+                ( {{content.curso.posGraduacao}} ) PÓS-GRADUAÇÃO
             </div>
         <div class="col-xs-4">
-            ( ) COMPLEMENTAÇÃO PEDAGÓGICA
+            ( {{content.curso.compPedagogica}} ) COMPLEMENTAÇÃO PEDAGÓGICA
         </div>
         <div class="col-xs-4">
-            ( ) CURSO LIVRE DE CAPACITAÇÃO
+            ( {{content.curso.capacitacao}} ) CURSO LIVRE DE CAPACITAÇÃO
         </div>
     </div>
     </div>
 
     <br/><br/>
     <b>01 - DA IDENTIFICAÇÃO DO ALUNO / RESPONSÁVEL LEGAL E/OU FINANCEIRO </b>
-    <table class="table table-bordered">
+    <table class="table table-bordered small">
         <tbody>
         <tr>
-            <td colspan="4">NOME DO ALUNO</td>
-            <td colspan="1">DATA</td>
-            <td colspan="1">RG</td>
+            <td colspan="4">NOME DO ALUNO
+                <span class="t-tab">{{content.idAluno.nome}}</span>
+            </td>
+            <td colspan="1">DATA
+                <span class="t-tab">{{content.idAluno.data}}</span>
+            </td>
+            <td colspan="1">RG
+                <span class="t-tab">{{content.idAluno.rg}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="2">CPF</td>
-            <td colspan="1">DATA DE NASC.</td>
-            <td colspan="1">SEXO</td>
-            <td colspan="2">PAI</td>
+            <td colspan="2">CPF
+                <span class="t-tab">{{content.idAluno.cpf}}</span>
+            </td>
+            <td colspan="1">DATA DE NASC.
+                <span class="t-tab">{{content.idAluno.dataNasc}}</span>
+            </td>
+            <td colspan="1">SEXO
+                <span class="t-tab">{{content.idAluno.sexo}}</span>
+            </td>
+            <td colspan="2">PAI
+                <span class="t-tab">{{content.idAluno.nomePai}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="2">MÃE</td>
-            <td colspan="4">AV. /RUA</td>
+            <td colspan="3">MÃE
+                <span class="t-tab">{{content.idAluno.nomeMae}}</span>
+            </td>
+            <td colspan="3">AV. /RUA
+                <span class="t-tab">{{content.idAluno.rua}}</span>
+            </td>
 
         </tr>
         <tr>
-            <td colspan="1">Nº</td>
-            <td colspan="1">APT.</td>
-            <td colspan="1">CEP</td>
-            <td colspan="1">BAIRRO</td>
-            <td colspan="1">CIDADE</td>
-            <td colspan="1">ESTADO</td>
+            <td colspan="1">Nº
+                <span class="t-tab">{{content.idAluno.numero}}</span>
+            </td>
+            <td colspan="1">APT.
+                <span class="t-tab">{{content.idAluno.apto}}</span>
+            </td>
+            <td colspan="1">CEP
+                <span class="t-tab">{{content.idAluno.cep}}</span>
+            </td>
+            <td colspan="1">BAIRRO
+                <span class="t-tab">{{content.idAluno.bairro}}</span>
+            </td>
+            <td colspan="1">CIDADE
+                <span class="t-tab">{{content.idAluno.cidade}}</span>
+            </td>
+            <td colspan="1">ESTADO
+                <span class="t-tab">{{content.idAluno.estado}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="2">TEL. RESIDENCIAL</td>
-            <td colspan="2">TEL. CELULAR</td>
-            <td colspan="2">TEL. COMERCIAL</td>
+            <td colspan="2">TEL. RESIDENCIAL
+                <span class="t-tab">{{content.idAluno.telRes}}</span>
+            </td>
+            <td colspan="2">TEL. CELULAR
+                <span class="t-tab">{{content.idAluno.telCel}}</span>
+            </td>
+            <td colspan="2">TEL. COMERCIAL
+                <span class="t-tab">{{content.idAluno.telCom}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="6">EMAIL</td>
+            <td colspan="6">EMAIL
+                <span class="t-tab">{{content.idAluno.email}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="3">NACIONALIDADE</td>
-            <td colspan="3">NATURALIDADE</td>
+            <td colspan="3">NACIONALIDADE
+                <span class="t-tab">{{content.idAluno.nacionalidade}}</span>
+            </td>
+            <td colspan="3">NATURALIDADE
+                <span class="t-tab">{{content.idAluno.naturalidade}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="4">CURSO DE GRADUAÇÃO</td>
-            <td colspan="2">ANO DE CONLUSÃO</td>
+            <td colspan="4">CURSO DE GRADUAÇÃO
+                <span class="t-tab">{{content.idAluno.cursoGraduacao}}</span>
+            </td>
+            <td colspan="2">ANO DE CONLUSÃO
+                <span class="t-tab">{{content.idAluno.anoConclusao}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="6">NOME DA INSTIUIÇÃO ONDE VOCÊ GRADUOU</td>
+            <td colspan="6">NOME DA INSTIUIÇÃO ONDE VOCÊ GRADUOU
+                <span class="t-tab">{{content.idAluno.nomeIstituicao}}</span>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -172,9 +231,9 @@
             </td>
         </tr>
         <tr>
-            <td>( ) À Vista</td>
-            <td>( )Cheque</td>
-            <td>( ) Outro___________________________________</td>
+            <td>( {{content.valorContrato.taxaInscricao.aVista}} ) À Vista</td>
+            <td>( {{content.valorContrato.taxaInscricao.cheque}} ) Cheque</td>
+            <td>( {{content.valorContrato.taxaInscricao.outro.check}} ) Outro: {{content.valorContrato.taxaInscricao.outro.texto}}</td>
         </tr>
         </tbody>
     </table>
@@ -182,29 +241,38 @@
     <table class="table table-bordered">
         <tbody>
         <tr>
-            <td colspan="1">VALOR DO CURSO INTEGRAL</td>
-            <td colspan="1">QUANTIDADE DE PARCELAS</td>
-            <td colspan="1">VALOR DA PARCELA</td>
-            <td colspan="1">DESCONTO PONTUALIDADE</td>
+            <td colspan="1">VALOR DO CURSO INTEGRAL
+                <span class="t-tab">{{content.valorContrato.valorIntegral}}</span>
+            </td>
+            <td colspan="1">QUANTIDADE DE PARCELAS
+                <span class="t-tab">{{content.valorContrato.quantParcelas}}</span>
+            </td>
+            <td colspan="1">VALOR DA PARCELA
+                <span class="t-tab">{{content.valorContrato.valorParcelas}}</span>
+            </td>
+            <td colspan="1">DESCONTO PONTUALIDADE
+                <span class="t-tab">{{content.valorContrato.descPontualidade}}</span>
+            </td>
         </tr>
         <tr>
             <td colspan="2">
                 MODALIDADE DE PAGAMENTO
                 <br/>
-                ( ) A Vista
-                ( ) Cheque
-                ( ) Cartão
-                ( ) Boleto
+                ( {{content.valorContrato.modalidadePagamento.aVista}} ) A Vista
+                ( {{content.valorContrato.modalidadePagamento.cheque}} ) Cheque
+                ( {{content.valorContrato.modalidadePagamento.cartao}} ) Cartão
+                ( {{content.valorContrato.modalidadePagamento.boleto}} ) Boleto
             </td>
             <td colspan="1">
                 DATA DE VENCIMENTO DAS PARCELAS
                 <br/>
-                ( ) 05
-                ( ) 15
-                ( ) 30
+                ( {{content.valorContrato.dataVencimentoParc.cinco}} ) 05
+                ( {{content.valorContrato.dataVencimentoParc.quinze}} ) 15
+                ( {{content.valorContrato.dataVencimentoParc.trinta}} ) 30
             </td>
             <td colspan="1">
                 DATA DE VENC. DA PRIMEIRA PARCELA
+                <span class="t-tab">{{content.valorContrato.dataVencPrimeiraParcela}}</span>
             </td>
         </tr>
 
@@ -217,43 +285,116 @@
     <table class="table table-bordered">
         <tbody>
         <tr>
-            <td colspan="4"> NOME DO CURSO </td>
+            <td colspan="4"> NOME DO CURSO
+                <span class="t-tab">{{content.idCurso.nome}}</span>
+            </td>
         </tr>
         <tr>
-            <td colspan="4"> ÁREA </td>
+            <td colspan="4"> ÁREA
+                <span class="t-tab">{{content.idCurso.area}}</span>
+            </td>
         </tr>
         <tr>
-            <td>DIA'S DE AULA</td>
-            <td>HORARIO DE AULA</td>
+            <td>DIA'S DE AULA
+                <span class="t-tab">{{content.idCurso.diaDeAula}}</span>
+            </td>
+            <td>HORARIO DE AULA
+                <span class="t-tab">{{content.idCurso.horarioAula}}</span>
+            </td>
             <td>
                 MODALIDADE <br/>
-                Semipresencial ( ) Presencial ( )
+                Semipresencial ( {{content.idCurso.modalidade.semipresencial}} )
+                <br/>
+                Presencial ( {{content.idCurso.modalidade.presencial}} )
             </td>
-            <td>INICIO PREVISTO</td>
+            <td>INICIO PREVISTO
+                <span class="t-tab">{{content.idCurso.inicioPrevisto}}</span>
+            </td>
         </tr>
         </tbody>
     </table>
+
+    Doravante denominado (a) CONTRATANTE, tendo entre si justo e contratado a prestação de serviços educacionais, dentro da legislação em vigor no país, nas condições a seguir especificadas e cujo cumprimento se obrigam mútua e fielmente cumprir
+
+    <br/><br/>
+
+    <b>1 - OBJETO </b><br/>
+    1.1 O objeto do presente instrumento é a contratação dos serviços educacionais da PRESTADORA DE SERVIÇOS, conveniada a Faculdades Certificadoras dos cursos oferecidos pela mesma, no que se compromete a ministrar aulas no método semipresencial ou presencial, em conformidade com o curso descrito no quadro 04, bem como garantir a certificação do aluno junto a Faculdade Certificadora conveniada a PRESTADORA DE SERVIÇOS ao final do curso dentro da legislação em vigor, obedecendo-se as normas gerais de educação, e de acordo com a proposta educacional do CONTRATADO, sendo de inteira responsabilidade deste o planejamento de ensino, a marcação de datas de provas para o aproveitamento, a fixação de carga horária, designação de professores, orientação didático-pedagógica e disciplinar, além de outras que tornarem necessárias, a seu exclusivo critério. 1.2 - O projeto didático-pedagógico que o CONTRATADO obriga-se a cumprir é composto das disciplinas e respectivas cargas horárias, constantes do ementário e do plano de curso. 1.3 – Os serviços contratados só serão realizados havendo um número mínimo de discentes conforme o estabelecido no Regimento Interno, e será prestada a toda a turma coletivamente. 1.4 – É facultado ao CONTRATADO iniciar o curso com número inferior ao estipulado sendo, nesse caso, obrigado da mesma forma a concluir o curso iniciado. 1.5 - O (A) CONTRATANTE obedecerá rigorosamente ao Regimento Interno do CONTRATADO.
+
+    <br/><br/>
+
+    <b>2 - DO VALOR A SER PAGO, DO PERÍODO CONTRATADO, DO VENCIMENTO E MORA.</b><br/>
+    2.1 - Os serviços educacionais serão prestados pelo CONTRATADO no período Letivo do curso. 2.2 – Pelos serviços educacionais que serão prestados pelo CONTRATADO, o CONTRATANTE pagará o valor descrito no quadro 3 2.3 - Os pagamentos deverão ser feitos através das opções oferecidas na tabela comercial da Instituição onde contempla as seguintes opções: A vista, Cartão, Cheque e Boleto bancário na rede credenciada do CONTRATADO. 2.4 – Quando a opção de pagamento for de boleto bancário as parcelas pagas após o vencimento serão acrescidas de multa de 2 % (dois por cento) sobre o valor da mensalidade em atraso, corrigido monetariamente de juros de 0,033% (zero, zero trinta e três por cento ao dia). 2.5 – O CONTRATANTE que não efetuar o pagamento das mensalidades por mais de 30 (trinta) dias, poderá ser encaminhado para Assessoria Jurídica, e/ou, caso não efetue o referido pagamento, terá o seu CPF registrado no Serviço de Proteção ao Crédito (SPC). 2.6- O CONTRATANTE que for contemplado com desconto fidelidade ou bolsa promocional deverá pagar a mensalidade até o dia do vencimento da mensalidade. Após o vencimento, perderá o desconto. 2.7 – Qualquer pagamento realizado com cheque será sempre recebido em caráter “pró solvendo”, só se concretizando a matrícula ou a quitação da referida parcela após a regular compensação do mesmo. 2.8–Caso seja necessário à contratação de advogados para obter do (a) CONTRATANTE o pagamento por motivo de sua inadimplência, fica o (a) mesmo (a) obrigado (a) a ressarcir todas as despesas com honorários dos profissionais contratados. 2.9 - Não está incluída no preço a aquisição de todo o material que será utilizado ao longo do curso pelo aluno. 2.10- A data de vencimento de cada parcela é de conhecimento do CONTRATANTE desde o presente momento, e na eventualidade de que o CONTRATANTE não estiver em posse do boleto de pagamento deverá procurar a secretaria até 48 horas antes do vencimento da parcela, uma vez que o não recebimento do boleto não exime do pagamento que não se obrigou, estando esclarecido no ato da matrícula que o boleto será postado no portal do aluno, caso o mesmo não tenha habilidade para acessar o portal, a secretaria põe-se a inteira disposição deste, para assim faze-lo com a devida antecedência. 2.11- A alteração de vencimento de cobrança Bancária deverá ser solicitada pelo CONTRATANTE formalizando o pedido junto à secretaria através de formulário onde haverá o deferimento ou indeferimento por parte do CONTRATADO.
+    Parágrafo Único: Os valores de todos os documentos emitidos pela secretaria do CONTRATADO encontram-se afixados na mesma bem como no Manual do aluno postado no Portal da Instituição.
+
+    <br/><br/>
+
+    <b>3 – DO SERVIÇO PRESTADO PELO CONTRATADO</b><br/>
+    3.1 – Os serviços serão prestados nas dependências da instituição em salas ou outros locais e em horários que o CONTRATADO indicar. 3.2 – O CONTRATANTE fica ciente de que o conjunto de disciplinas com as respectivas cargas horárias previstas na organização curricular serão distribuídas nos horários organizados em aulas pré-estabelecidas no cronograma Institucional o qual é disponibilizado no Portal do aluno, este pode sofrer alterações no decorrer do ano letivo. 3.3 – O CONTRATANTE fica ciente de que o CONTRATADO seguirá os prazos estipulados pela coordenação, através de cronogramas e normativas de fechamento de turmas, para fins de solicitação de certificação do aluno, onde o prazo mínimo após o pedido de certificação passa a ser: Certidão de Conclusão de Curso com histórico 60 (sessenta dias), Diploma ou Certificado 6 meses (seis meses) a 1(um) ano e meio. 3.4 - O CONTRATANTE fica ciente de que foi informado pela Instituição; que de acordo com a Legislação vigente ao curso optado, quando receberá Diploma ou Certificado, os quais são emitidos pelas Faculdades certificadoras conveniadas ao IESES, não podendo este diplomar ou certificar no lugar das mesmas .CONVALIDAÇÃO EM TEOLOGIA (Diploma), MESTRADO (Diploma), SEGUNDA LICENCIATURA (Diploma), PÓS-GRADUAÇÃO (Certificado), COMPLEMENTAÇÃO PEDAGÓGICA (Certificado), CURSO DE CAPACITAÇAÕ LIVRE (Certificado).
+
+    <br/><br/>
+
+    <b>4 – DA REPROVAÇÃO EM DISCIPLINAS</b><br/>
+    Em caso de reprovação de disciplina, por falta ou por nota, o (a) CONTRATANTE poderá repeti-la em outra turma, sendo obrigatório o pagamento da mesma, tendo direito a um desconto de 20% (vinte por cento) sobre o valor normal desta disciplina, desde que haja turma em andamento para tal procedimento.
+
+    <br/><br/>
+
+    <b>5- DAS OBRIGAÇÕES E COMPROMISSO DO CONTRATANTE</b><br/>
+    5.1 – Compromete-se o (a) CONTRATANTE a proceder à aquisição de material, dos livros indicados, das apostilas adotadas e/ou confeccionadas pelo CONTRATADO, necessário à consecução dos princípios pedagógicos propostos, fundamentais para o acompanhamento e para o aproveitamento das disciplinas; 5.2 - AO CONTRATADO fica resguardado o direito de requerer do CONTRATANTE o ressarcimento dos danos que este, por sua responsabilidade, porventura vier a causar ao patrimônio da escola e/ou de seus prepostos. 5.3 - O (A) CONTRATANTE obriga-se a apresentar, sempre que solicitado, comprovação de quitação de débitos, sob pena de os mesmos continuarem com os registros em aberto, obrigando-se o CONTRATADO a fornecer respectiva declaração de pagamentos efetuados, sempre que solicitado; 5.4 - Obriga-se o Contratante a comunicar ao CONTRATADO qualquer alteração de seu endereço, e-mail e/ou telefone residencial ou comercial; 5.5- O contratante se responsabiliza em cumprir as obrigações e deveres contidos no manual do aluno (o qual é disponibilizado no portal do aluno)
+
+    <br/><br/>
+
+    <b>6. DA RESCISÃO</b><br/>
+    6.1 – O presente contrato poderá ser rescindido nos seguintes casos: a) pelo (a) CONTRATANTE, mediante: - solicitação por escrito, protocolada na secretaria do CONTRATADO, em formulário próprio, necessitando para tal encontrar-se devidamente em dia com o pagamento das mensalidades; (Se a solicitação de cancelamento for efetuada após o início do mês, a mensalidade do referido mês deverá ser quitada, independente do dia em curso). b) pelo CONTRATADO, quando: - Houver constatação de irregularidade na documentação apresentada pelo (a) CONTRATANTE; - Entregues declarações provisórias, não for apresentada a documentação definitiva exigida conforme legislação vigente até trinta dias após a efetivação da matrícula; - Não forem apresentados, nos prazos determinados, os documentos solicitados que deixarem de ser entregues no ato da matrícula. 6.2 – O abandono das aulas pelo aluno não configura por si só rescisão do contrato, obrigando-se o (a) CONTRATANTE ao pagamento regular e pontual das obrigações contratuais aqui contidas até que oficialize na secretaria da escola o pedido de rescisão, em formulário próprio. 6.3 – No caso de desistência do curso antes do mesmo ter iniciado, formalizando-se o pedido de cancelamento junto a secretaria até o prazo máximo de 7 (sete) dias da assinatura do presente contrato, será admitida a devolução do valor da mensalidade paga, isto não contempla o valor da Inscrição. A retenção da mesma é a título de assessoria Educacional prestada pelo consultor ao aluno. 6.4 – Havendo desistência após o aluno ter cursado a disciplina do mês vigente a desistência, não haverá devolução de parcelas pagas, estando o aluno obrigado a pagar a prestação de serviços do referido mês não sendo permitida a transferência de valores pagos por um aluno para a quitação parcial ou total do débito ou para pagamento de parcelas de outro aluno.
+
+    <br/><br/>
+
+    <b>7. DAS EXCLUSÕES</b><br/>
+    Não estão incluídos neste contrato os serviços especiais de: Reposição de disciplinas, reciclagens, segunda via de diploma e/ou certificado, carteirinha estudantil, cursos paralelos, primeira e segunda via de histórico escolar, segunda chamada de provas e exames, segunda via de boletins e notas, segunda via de boleto, declarações, trancamento e/ou cancelamento de matrícula, remanejamento de turma e/ou turno, certificados de matérias independentes entre outras taxas cobradas pela Instituição.
+
+    <br/><br/>
+
+    <b>8 – DAS DISPOSIÇÕES GERAIS</b><br/>
+    8.1 – Reserva-se ao CONTRATADO, o direito de remanejar qualquer turma que seja inferior a 15 (quinze) alunos, após o início das aulas, ou durante o andamento do curso. 8.2 – O (A) CONTRATANTE autoriza ao CONTRATADO, sempre que necessário, a utilizar-se de seu nome e/ou imagem sob sua responsabilidade, onde o CONTRATADO responsabiliza-se em avisar previamente ao CONTRATANTE
+    quando sua imagem for utilizada nos diversos meios e veículos de comunicação, para divulgação de eventos, de resultados de concursos, de desempenho profissional, com fins institucionais e promocionais, sem quaisquer ônus para ambas as partes. 8.3 – O CONTRATADO não se responsabiliza por custos médicos hospitalares, já que os mesmos não fazem parte do presente contrato. Todos os documentos pertinentes aos serviços educacionais oferecidos pelo CONTRATADO deverão ser solicitados na Secretaria Escolar, com o pagamento efetuado antecipadamente, conforme tabela de preço afixado na mesma. 8.4 – Para conclusão do curso e obtenção do respectivo certificado ou diploma, o aluno deverá cumprir com os prazos de entrega de documentação, trabalhos e TCC estipulados no manual do aluno, normativas, cronogramas previstos no Regimento Interno e nas Regulamentações da Instituição, bem como a quitação financeira do curso, o não cumprimento de tais prazos acarretará na transferência do aluno para outra turma, ficando o processo de certificação do aluno vinculado a turma para qual foi transferido.
+    Parágrafo Primeiro: O aluno com matrícula trancada, cancelada ou em situação de abandono, pode retornar ao curso, esteja sendo oferecido o módulo pretendido, e, após análise curricular dos créditos cursados com aproveitamento, haja vaga na turma pretendida.
+    Parágrafo Segundo: O remanejamento para outra turma só poderá ocorrer com justificativa formulada junto a Coordenação do Curso e a Secretaria Escolar.
+
+    <br/><br/>
+
+    <b>9. DO FORO</b><br/>
+    Para dirimir dúvidas originadas neste contrato, as partes contratantes elegem o foro de Cariacica/ES, com exclusão de qualquer outro, por mais privilegiado que seja.
+
+    <div style='page-break-before: always;'></div> <!-- pagina 3 -->
+
+    <b>10. DE ACORDO E DO INSTRUMENTO</b><br/>
+    No ato da matrícula, será assinado o presente contrato, que deverá ser emitido em duas vias de igual teor, destinando- se uma a cada parte.
+
+    <p class="assinaturas">
+        Cariacica-ES, _________ de _______________________ de __________ .
+    </p>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <p class="assinaturas">
+                ____________________________________ <br/>
+                CONTRATANTE
+            </p>
+        </div>
+        <div class="col-xs-6">
+            <p class="assinaturas">
+                ____________________________________ <br/>
+                CONTRATADO
+            </p>
+        </div>
+    </div>
+
+    <br/>
+
+
+
+
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

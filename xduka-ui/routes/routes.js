@@ -266,7 +266,7 @@ module.exports = function (app, passport) {
                 {
                     head: [
                         {text: 'Aluno'},
-                        {text: 'Assinatura'},
+                        {text: 'Assinatura'}
                     ],
                     body: [
                         { Nome: 'João das Couves' },
@@ -274,25 +274,103 @@ module.exports = function (app, passport) {
                     ]
                 },
                 {
-                    head: [
-                        {text: 'Aluno'},
-                        {text: 'Assinatura'},
-                    ],
-                    body: [
-                        { Nome: 'João das Couves' },
-                        { Nome: 'Pedro das Alfaces' }
-                    ]
+                    contrato: {
+                        matricula: "mat123",
+                        turma: "20131VMEST",
+                        consultor: "Joao Neve",
+                        polo: "Cariacica"
+                    },
+                    curso: {
+                        coTeologia: "X",
+                        mestrado: "",
+                        segLicenciatura: "",
+                        posGraduacao: "",
+                        compPedagogica: "",
+                        capacitacao: ""
+                    },
+                    idAluno: {
+                        nome: "Nome Show da Silva",
+                        data: "14/12/2015",
+                        rg: "2231-123",
+                        cpf: "123.123.123-12",
+                        dataNasc: "14/12/2015",
+                        sexo: "Masculino",
+                        nomePai: "Pai show show",
+                        nomeMae: "Mãe show show",
+                        rua: "Rua show de bola",
+                        numero: "182",
+                        apto: "1001",
+                        cep: "29012-221",
+                        bairro: "Morada De Laranjeiras",
+                        cidade: "Cariacica",
+                        estado: "Espírito Santo",
+                        telRes: "27 4323-3242",
+                        telCel: "27 998-383-382",
+                        telCom: "27 998-141-321",
+                        email: "show@show.com",
+                        nacionalidade: "Brasileiro",
+                        naturalidade: "Vitória ES",
+                        cursoGraduacao: "Bacharelado de Sistema de Informação",
+                        anoConclusao: "2008",
+                        nomeIstituicao: "Instituto Federal do Espírito Santo"
+                    },
+                    valorContrato: {
+                        taxaInscricao: {
+                            aVista: "X",
+                            cheque: "",
+                            outro: {
+                                check: "",
+                                texto: ""
+                            }
+                        },
+                        valorIntegral: "2.000,00",
+                        quantParcelas: "12",
+                        valorParcelas: "166,66",
+                        descPontualidade: "5%",
+                        modalidadePagamento: {
+                            aVista: "X",
+                            cheque: "",
+                            cartao: "",
+                            boleto: ""
+                        },
+                        dataVencimentoParc: {
+                            cinco: "",
+                            quinze: "X",
+                            trinta: ""
+                        },
+                        dataVencPrimeiraParcela: "10/10/2015"
+                    },
+                    idCurso: {
+                        nome: "Pedagogia",
+                        area: "Ciências Humanas",
+                        diaDeAula: "Terça-feira",
+                        horarioAula: "18:00, 21:00",
+                        modalidade: {
+                            semipresencial: "X",
+                            presencial: ""
+                        },
+                        inicioPrevisto: "14/11/2015"
+                    }
+                },
+                {
+
                 }
-            ];
+        ];
 
 
         var callback = function(response) {
-            response.on('data', function (data) {
-                dataTemplate = JSON.parse(data);
+            var data = '';
+            response.on('data', function (chunk) {
+                data += chunk;
             });
             response.on('end', function() {
+                dataTemplate = JSON.parse(data);
                 dataTemplate.template.recipe = "phantom-pdf";
                 dataTemplate.data.content = data_content[req.query.data];
+                dataTemplate.template.phantom = {
+                    header: "",
+                    footer: ""
+                };
                 reportClient.client.render(dataTemplate, function(err, response) {
                     if (err) {
                         return next(err);
