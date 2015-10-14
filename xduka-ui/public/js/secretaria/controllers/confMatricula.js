@@ -376,7 +376,7 @@
 
                 vm.gerarPdfContrato = gerarPdfContrato;
                 function gerarPdfContrato(item) {
-                    var template = 'contrato';
+                    var template = 'contrato-aluno';
                     var data = 8;
                     window.open('/report?templateContent='+template+'&data='+data ,'_blank');
                 }
