@@ -128,6 +128,9 @@
                             vm._viewInscr.list[i].listaCheques[j].data = new Date(data.list[i].listaCheques[j].data);
                         }
                     }
+
+                    vm._viewInscr.naoEhComercial = true;
+
                 })
                 .catch(function(erro) {
                     // TOdo tratar erro
@@ -811,7 +814,9 @@
 
             function verificaEdit(data){
                 data = new Date(data); var atual = new Date();
-                return (atual.getDate() == data.getDate() && atual.getMonth() == data.getMonth())
+                // comentario temporario para teste
+                // return (atual.getDate() == data.getDate() && atual.getMonth() == data.getMonth())
+                return true;
             }
 
             vm.testeInput = {
@@ -837,16 +842,15 @@
 
             vm.gerarPdfContrato = gerarPdfContrato;
             function gerarPdfContrato(item) {
-                var template = 'contrato';
+
+                console.log(item);
+
+                var template = 'contrato-aluno';
                 var data = 8;
-                window.open('/report?templateContent='+template+'&data='+data ,'_blank');
+                var id = 1;
+                window.open('/report?templateContent='+template+'&data='+data+'&id='+id ,'_blank');
             }
-            vm.gerarPdfContrato = gerarPdfContrato;
-            function gerarPdfContrato(item) {
-                var template = 'contrato';
-                var data = 8;
-                window.open('/report?templateContent='+template+'&data='+data ,'_blank');
-            }
+
 
 
         }])
