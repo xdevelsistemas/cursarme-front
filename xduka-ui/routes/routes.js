@@ -1,7 +1,8 @@
 var isLoggedIn = require('../services/isLoggedIn.js'),
     isNotLoggedIn = require('../services/isNotLoggedIn.js'),
     reportClient = require('../config/report.js'),
-    dadosRelPdf = require('../mockup/xduka-json/secretaria/dadosRelPdf.json'),
+    dadosRelPdf = require('../mockup/xduka-json/common/dadosContratoAluno.json'),
+    dadosContrato = require('../mockup/xduka-json/common/viewContrato.json'),
     http =  require('http');
 
 
@@ -148,6 +149,9 @@ module.exports = function (app, passport) {
                 dataTemplate.template.recipe = "phantom-pdf";
                 if(req.query.id){
                     dataTemplate.data.content = data_content[req.query.data].id[req.query.id];
+                    if(req.query.data == 8){
+                        dataTemplate.data.content.clausulas = dadosContrato.clausulas;
+                    }
                 } else {
                     dataTemplate.data.content = data_content[req.query.data];
                 }
