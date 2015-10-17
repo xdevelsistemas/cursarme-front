@@ -28,6 +28,10 @@ module.exports = function (app, passport) {
     app.route('/api/comercial/view-inscr')
         .get(controller.showViewInscr);
 
+    //view-contrato
+    app.route('/api/comercial/view-contrato')
+        .get(controller.showViewContrato);
+
     //dados-inscricao-completa
     app.route('/api/comercial/dados-inscricao-completa')
         .post(controller.putDadosInscricaoCompleta);

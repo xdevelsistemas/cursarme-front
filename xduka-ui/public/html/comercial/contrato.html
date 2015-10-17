@@ -1,0 +1,24 @@
+<div class="col-md-12">
+    <div class="col-md-12">
+        <h2>Contrato de Aluno</h2>
+        <hr/>
+        <div class="col-md-12">
+            <xd-panel-collapse title="'Cláusulas do contrato'">
+                <div class="row">
+                    <div class="col-md-12" ng-repeat="clausula in contr.clausulas">
+                        <xd-input-textarea data-params="clausula"></xd-input-textarea>
+                        <hr/>
+                    </div>
+                </div>
+                <ul>
+                    <li class="col-md-3 inLine">
+                        <button class="btn btn-green btn-lg btn-icon icon-left btn-block">
+                            Salvar <i class="entypo-check"></i>
+                        </button>
+                    </li>
+                </ul>
+
+            </xd-panel-collapse>
+        </div>
+    </div>
+</div>
