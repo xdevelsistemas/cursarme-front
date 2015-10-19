@@ -8,6 +8,11 @@
                 "text": "Pré Cadastro",
                 "iconClass": "entypo-docs",
                 "href": "#/pre-cadastro"
+            },
+            {
+                "text": "contrato",
+                "iconClass": "entypo-newspaper",
+                "href": "#/contrato"
             }
         ]
     })
