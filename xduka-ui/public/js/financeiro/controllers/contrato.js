@@ -24,12 +24,11 @@
                 vm.lang = 'pt-br';
                 vm.section = '';
                 vm.clausulas = {};
-
+                vm.cl_text = [];
 
                 contratoPromise.
                     then(
                     function (data) {
-                        console.log(data.clausulas);
                         vm.clausulas = data.clausulas;
                         $scope.progressbar.complete();
                     })
@@ -45,5 +44,29 @@
                         $('.sidebar-mobile-menu.visible-xs>.with-animation').click()
                     }
                 };
+
+                vm.salvarContrato = function(){
+                    $resource('/api/financeiro/contrato').save({clausula: vm.clausulas}).$promise;
+
+                    console.log(vm.clausulas);
+
+                }
+
+                vm.addClausula = function(){
+                    vm.clausulas.push({
+                        "label": "Cláusula "+vm.clausulas.length,
+                        "type": "textarea",
+                        "name": "",
+                        "rows": 7,
+                        "model": {
+                            "title": "",
+                            "val": "",
+                            "err": ""
+                        }
+                    });
+
+                    console.log(vm.clausulas)
+                }
+
             }]);
 })();
