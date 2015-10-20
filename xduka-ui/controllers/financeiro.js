@@ -40,6 +40,7 @@ module.exports = function() {
     controller.putDadosCadastroCaixa = postDadosCadastroCaixa;
     controller.putMsgBoletos = postMsgBoletos;
     controller.putValoresCurso = postValoresCurso;
+    controller.salvaContrato = salvaContrato;
 
     return controller;
 };
@@ -359,4 +360,10 @@ function verificaDadosCampPromo(obj) {
         !!obj.addFim.model.val && !!obj.addInscrPromo.model.val &&
         !!obj.addValorCursoPromo.model.val && !!obj.addFormaPagamento.model.val &&
         !!obj.addDescontoFormaPg.model.val
+}
+
+function salvaContrato(req,res){
+    var data = req.body;
+    res.send(true);
+
 }
