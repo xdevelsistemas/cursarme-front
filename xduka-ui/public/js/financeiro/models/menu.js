@@ -33,6 +33,11 @@
                 "text": "Campanhas Promocionais",
                 "iconClass": "entypo-megaphone",
                 "href": "#/campanhas-promocionais"
+            },
+            {
+                "text": "contrato",
+                "iconClass": "entypo-newspaper",
+                "href": "#/contrato"
             }
         ]
     })

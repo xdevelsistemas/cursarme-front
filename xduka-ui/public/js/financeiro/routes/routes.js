@@ -17,7 +17,8 @@ angular.module('app',[
     'app.directives',
     'app.controllers',
     'gridshore.c3js.chart',
-    'ngProgress'
+    'ngProgress',
+    'textAngular'
 ])
     .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
@@ -70,6 +71,12 @@ angular.module('app',[
                 templateUrl: 'html/financeiro/campanhas-promocionais.html',
                 controller: 'campanhasPromocionais',
                 controllerAs: 'cp'
+            });
+    // ========= CONTRATO ========= //
+            $routeProvider.when('/contrato', {
+                templateUrl: 'html/financeiro/contrato.html',
+                controller: 'FormContrato',
+                controllerAs: 'contr'
             });
     // ========= OTHERWISE ========= //
             $routeProvider.otherwise({

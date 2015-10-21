@@ -77,5 +77,9 @@ module.exports = function (app, passport) {
     app.route('/api/financeiro/table-campanhas-promocionais')
         .get(controller.tableCampanhasPromo);
 
+    //
+    app.route('/api/financeiro/contrato')
+        .post(controller.salvaContrato);
+
     return app;
 };
