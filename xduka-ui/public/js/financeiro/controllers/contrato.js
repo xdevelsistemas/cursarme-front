@@ -55,14 +55,8 @@
                 vm.addClausula = function(){
                     vm.clausulas.push({
                         "label": "Cláusula "+vm.clausulas.length,
-                        "type": "textarea",
-                        "name": "",
-                        "rows": 7,
-                        "model": {
-                            "title": "",
-                            "val": "",
-                            "err": ""
-                        }
+                        "title": "",
+                        "text": ""
                     });
 
                     console.log(vm.clausulas)
