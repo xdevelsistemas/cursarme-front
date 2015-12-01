@@ -98,7 +98,6 @@
         }
 
 
-
         function sendSenha() {
             var sendSenhaPromise = $resource('/api/aluno/editar-perfil-senha').save({}, {"password": vm.password, "STR": vm.STR}).$promise;
 

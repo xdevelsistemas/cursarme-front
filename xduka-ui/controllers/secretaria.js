@@ -23,13 +23,16 @@ var urlDataBase = '',
     templateMaterialComp = require('../mockup/xduka-json/secretaria/templateMaterialComp.json'),
     templatePauta = require('../mockup/xduka-json/secretaria/templatePauta.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
-    viewInscr = require('../mockup/xduka-json/common/viewInscr.json');
+    viewInscr = require('../mockup/xduka-json/common/viewInscr.json'),
+    templateAddTurma = require('../mockup/xduka-json/secretaria/templateAddTurma'),
+    dadosTurmas = require('../mockup/xduka-json/secretaria/dadosTurmas.json');
 
 module.exports = function() {
     var controller = {};
 
     controller.alunoSearch = alunoSearch;
     controller.showConfig = showConfig;
+    controller.showCursos = showCursos;
     controller.showDadosAddCurso = getDadosAddCurso;
     controller.showDadosCurso = getDadosCurso;
     controller.showDadosCursoPauta = getDadosCursoPauta;
@@ -41,11 +44,13 @@ module.exports = function() {
     controller.showInfoUsuario = getInfoUsuario;
     controller.showTemplateAddCurso = getTemplateAddCurso;
     controller.showTemplateAddDisciplina = getTemplateAddDisciplina;
+    controller.showTemplateAddTurma = getTemplateAddTurma;
     controller.showTemplateAl = getTemplateAl;
     controller.showTemplateEnviarCircular = getTemplateEnviarCircular;
     controller.showTemplateInscricao = getTemplateInscricao;
     controller.showTemplateMaterialCircular = getTemplateMaterialCircular;
     controller.showTemplatePauta = getTemplatePauta;
+    controller.showTurmas = showTurmas;
     controller.showViewInscr = getViewInscr;
     controller.putDadosInscricao = postDadosInscricao;
     controller.putDadosTurmas = postDadosTurmas;
@@ -152,6 +157,55 @@ function showConfig(req,res) {
     res.json(templateConfig)
 }
 
+function showCursos(req, res){
+
+    /* RETORNAR UMA LISTAR DE CURSOS E UMA LISTA DE PERÍODOS REFERENTE A ESTES CURSOS */
+
+    var testCursos = {
+        "1": [
+            {"id": "11", "text": "Curso1"},
+            {"id": "12", "text": "Curso2"},
+            {"id": "13", "text": "Curso3"}
+        ],
+        "2": [
+            {"id": "21", "text": "Curso4"},
+            {"id": "22", "text": "Curso5"},
+            {"id": "23", "text": "Curso6"}
+        ]
+    };
+    var testPeriodos = {
+        "11": [
+            {"id": "111", "text": "Único"}
+        ],
+        "12": [
+            {"id": "121", "text": "Único"}
+        ],
+        "13": [
+            {"id": "131", "text": "Único"}
+        ],
+        "21": [
+            {"id": "211", "text": "Único"}
+        ],
+        "22": [
+            {"id": "221", "text": "Único"}
+        ],
+        "23": [
+            {"id": "231", "text": "Único"}
+        ]
+    };
+
+    var respObj = {
+        "listCursos": testCursos[req.params.tipo],
+        "listPeriodos": []
+    };
+
+    respObj.listCursos.forEach(function(element, index, array){
+        respObj.listPeriodos.push(testPeriodos[element.id])
+    });
+
+    res.json(respObj)
+}
+
 function alunoSearch(req, res){
     var result = {};
 
@@ -220,6 +274,10 @@ function getTemplatePauta(req, res) {
     res.json(templatePauta);
 }
 
+function showTurmas(req, res){
+    res.json(dadosTurmas);
+}
+
 function getTemplateAddCurso(req,res) {
     extend(true, templateAddCurso.template.periodo, dadosPeriodo);
     extend(true, templateDadosAddCurso.tableCursos, getUnidade(dadosTableAddCurso.unidades, req.params.id));
@@ -230,6 +288,12 @@ function getTemplateAddDisciplina(req,res) {
     var idUnidade = req.params.id;
 
     res.json({"template": templateAddDisciplina.template, "dadosAddDisciplina": getUnidade(dadosAddDisciplina.unidades, idUnidade).list});
+}
+
+function getTemplateAddTurma(req, res){
+    var idUnidade = req.params.id;
+
+    res.json(templateAddTurma.template);
 }
 
 function getTemplateAl(req,res) {

@@ -22,6 +22,7 @@
             vm._searchVal = '';
             vm.appName = 'xDuka';
             vm.area = 'Secretaria';
+            vm.breadCrumb = breadCrumb;
             vm.lang = 'pt-br';
             vm.menu = modelMenu;
             vm.section = '';

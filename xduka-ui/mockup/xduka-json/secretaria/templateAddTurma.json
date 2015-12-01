@@ -1,0 +1,76 @@
+{
+  "template": {
+    "nome": {
+      "label": "Nome",
+      "type": "text",
+      "name": "nome",
+      "model": {"val": "", "err": ""}
+    },
+    "descricao": {
+      "label": "Descrição",
+      "type": "text",
+      "name": "descricao",
+      "model": {"val": "", "err": ""}
+    },
+    "tipoCurso": {
+      "label": "Tipo de Curso",
+      "type": "select",
+      "name": "tipoCurso",
+      "placeholder": "Selecione uma opção",
+      "list": [
+        {"id": "1", "text": "Curso Teste 1"},
+        {"id": "2", "text": "Curso Teste 2"}
+      ],
+      "model": {"val": "", "err": ""}
+    },
+    "curso": {
+      "label": "Curso",
+      "type": "select",
+      "name": "curso",
+      "placeholder": "Selecione uma opção",
+      "list": [],
+      "model": {"val": "", "err": ""}
+    },
+    "periodo": {
+      "label": "Período",
+      "type": "select",
+      "name": "periodo",
+      "placeholder": "Selecione uma opção",
+      "list": [],
+      "model": {"val": "", "err": ""}
+    },
+    "grade": {
+      "label": "Grade",
+      "type": "select",
+      "name": "grade",
+      "placeholder": "Selecione uma opção",
+      "list": [
+        {"id": "1", "text": "Grade oficial"}
+      ],
+      "model": {"val": "", "err": ""}
+    },
+    "turno": {
+      "label": "Turno",
+      "type": "select",
+      "name": "turno",
+      "placeholder": "Selecione uma opção",
+      "list": [
+        {"id": "1", "text": "Matutino"},
+        {"id": "2", "text": "Vespertino"},
+        {"id": "3", "text": "Noturno"}
+      ],
+      "model": {"val": "", "err": ""}
+    },
+    "modalidade": {
+      "label": "Modalidade",
+      "type": "select",
+      "name": "modalidade",
+      "placeholder": "Selecione uma opção",
+      "list": [
+        {"id": "1", "text": "Presencial"},
+        {"id": "2", "text": "A Distância"}
+      ],
+      "model": {"val": "", "err": ""}
+    }
+  }
+}

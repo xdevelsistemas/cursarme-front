@@ -8,6 +8,7 @@ var extend = require('node.extend'),
     modalCheque = require('../mockup/xduka-json/comercial/modalCheque.json'),
     usuario = require('../mockup/xduka-json/common/user.json'),
     viewInscr = require('../mockup/xduka-json/common/viewInscr.json');
+    viewContrato = require('../mockup/xduka-json/common/viewContrato.json');
 
 module.exports = function() {
     var controller = {};
@@ -22,6 +23,7 @@ module.exports = function() {
     controller.showInfoUsuario = getInfoUsuario;
     controller.showModalCheque = getModalCheque;
     controller.showViewInscr = getViewInscr;
+    controller.showViewContrato = getViewContrato;
 
     return controller;
 };
@@ -98,6 +100,12 @@ function getViewInscr(req, res) {
     }
 
     res.json(viewInscr);
+}
+
+function getViewContrato(req, res) {
+
+    res.json(viewContrato);
+
 }
 
 function putDadosInscricaoParcial(req, res) {

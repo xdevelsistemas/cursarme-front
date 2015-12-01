@@ -53,13 +53,19 @@
                         "id": "7",
                         "text": "Demo Pauta de Frequência",
                         "value": "pauta-frequencia"
-                    }                ],
+                    },
+                    {
+                        "id": "8",
+                        "text": "Contrato de aluno",
+                        "value": "contrato-aluno"
+                    }
+                ],
                 "model": {"val": "", "err": ""}
             };
-            vm.printContrato = printContrato;
+            vm.gerarPdf = gerarPdf;
 
 
-            function printContrato(item, model) {
+            function gerarPdf(item, model) {
                 var template = item.value;
                 var data = item.id;
                 window.open('/report?templateContent='+template+'&data='+data ,'_blank');

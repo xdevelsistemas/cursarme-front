@@ -376,9 +376,13 @@
 
                 vm.gerarPdfContrato = gerarPdfContrato;
                 function gerarPdfContrato(item) {
-                    var template = 'contrato';
+
+                    console.log(item);
+
+                    var template = 'contrato-aluno';
                     var data = 8;
-                    window.open('/report?templateContent='+template+'&data='+data ,'_blank');
+                    var id = 1;
+                    window.open('/report?templateContent='+template+'&data='+data+'&id='+id ,'_blank');
                 }
 
             }])

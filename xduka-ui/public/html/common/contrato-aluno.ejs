@@ -1,0 +1,365 @@
+<html>
+<head>
+    <meta charset="utf8" />
+    <style>
+        /* general */
+        body { margin: 0px; padding: 0px; font-size: 14px; line-height: 1.42857;}
+        div { position: relative; }
+        /* grid system */
+        .row { width: 100%; height: auto; }
+        .col-xs-1 {  width: 6.333333333%; height: auto; margin:0 1%; float: left; }
+        .col-xs-2 {  width: 14.666666667%; height: auto; margin:0 1%; float: left; }
+        .col-xs-3 {  width: 23%; height: auto; margin:0 1%; float: left; }
+        .col-xs-4 {  width: 31.333333333%; height: auto; margin:0 1%; float: left; }
+        .col-xs-5 {  width: 39.666666667%; height: auto; margin:0 1%; float: left; }
+        .col-xs-6 {  width: 48%; height: auto; margin:0 1%; float: left; }
+        .col-xs-7 {  width: 56.333333333%; height: auto; margin:0 1%; float: left; }
+        .col-xs-8 {  width: 64.666666667%; height: auto; margin:0 1%; float: left; }
+        .col-xs-9 { width: 73%; height: auto; margin:0 1%; float: left; }
+        .col-xs-10 {  width: 81.333333333%; height: auto; margin:0 1%; float: left; }
+        .col-xs-11 {  width: 89.666666667%; height: auto; margin:0 1%; float: left; }
+        .col-xs-12 { width: 98%; height: auto; margin:0 1%;}
+        /* header*/
+        header { position: relative; padding-bottom: 100px; }
+        img.img-logo { width:100%; }
+        header h1 { padding-left: 3%; font-size: 1.1em; }
+        header h2 { padding-left: 3%; font-size: 0.8em; }
+        /* footer */
+        .text-center{ text-align: center; }
+        .navbar-fixed-bottom { position: absolute; top: auto; bottom: 0px; width: 100%;}
+        .navbar-fixed-bottom p { font-size: 12px; }
+        /* table */
+        table { width: 100%; max-width: 100%; margin-bottom: 20px; background-color: transparent; border-spacing: 0px; border-collapse: collapse; box-sizing: border-box; }
+        .table > thead:first-child > tr:first-child > th{ border-top: 0px none; }
+        .table-bordered { border: 1px solid #DDD; }
+        .table-bordered > thead > tr > th { border-bottom-width: 2px; border: 1px solid #DDD; }
+        .table > thead > tr > th { padding: 8px; line-height: 1.42857; }
+        .table-bordered > tbody > tr > td { border: 1px solid #DDD; }
+        .table > tbody > tr > td { padding: 8px; line-height: 1.42857; vertical-align: top; border-top: 1px solid #DDD; }
+
+        table { font-size: 10px; }
+        table.small { font-size: 8px; }
+        .assinaturas {text-align: center; padding: 40px 0px 20px 0px; }
+        span.t-tab { font-size: 11px; margin: 0px 0px 0px 10px; display: inline-block; font-weight: bold;}
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="row">
+        <div class="col-xs-3">
+            <img src="{{header.logo}}" class="img-logo"/>
+        </div>
+        <div class="col-xs-9">
+            <h1>{{header.nomeEmpresa}}</h1>
+            <h2>{{header.nomeUnidade}}</h2>
+        </div>
+    </div>
+</header>
+
+<section>
+    <div class="row">
+         <div class="col-xs-6">
+             <table class="table table-bordered">
+                 <tbody>
+                    <tr><td>
+                         CONTRATO DE PRESTAÇÃO DE SERVIÇO<br/>
+                         Nº da Matrícula:
+                            <span class="t-tab">{{content.contrato.matricula}}</span>
+                            <br/>
+                         Turma:
+                            <span class="t-tab">{{content.contrato.turma}}</span>
+                            <br/>
+                         Consultor Comercial:
+                            <span class="t-tab">{{content.contrato.consultor}}</span>
+                            <br/>
+                         Polo:
+                            <span class="t-tab">{{content.contrato.polo}}</span>
+                            <br/>
+                     </td></tr>
+                 </tbody>
+             </table>
+         </div>
+        <div class="col-xs-6">
+            <div style="width: 90px; height: 120px; border: 1px solid #000; float: right;"></div>
+        </div>
+    </div>
+
+    <br/>
+    Curso:
+    <div class="container" style="font-size: 10px;">
+        <div class="row">
+            <div class="col-xs-4">
+                ( {{content.curso.coTeologia}} ) CONVALIDAÇÃO EM TEOLOGIA
+            </div>
+            <div class="col-xs-4">
+                ( {{content.curso.mestrado}} ) MESTRADO
+            </div>
+            <div class="col-xs-4">
+                ( {{content.curso.segLicenciatura}} ) SEGUNDA LICENCIATURA
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                ( {{content.curso.posGraduacao}} ) PÓS-GRADUAÇÃO
+            </div>
+        <div class="col-xs-4">
+            ( {{content.curso.compPedagogica}} ) COMPLEMENTAÇÃO PEDAGÓGICA
+        </div>
+        <div class="col-xs-4">
+            ( {{content.curso.capacitacao}} ) CURSO LIVRE DE CAPACITAÇÃO
+        </div>
+    </div>
+    </div>
+
+    <br/><br/>
+    <b>01 - DA IDENTIFICAÇÃO DO ALUNO / RESPONSÁVEL LEGAL E/OU FINANCEIRO </b>
+    <table class="table table-bordered small">
+        <tbody>
+        <tr>
+            <td colspan="4">NOME DO ALUNO
+                <span class="t-tab">{{content.idAluno.nome}}</span>
+            </td>
+            <td colspan="1">DATA
+                <span class="t-tab">{{content.idAluno.data}}</span>
+            </td>
+            <td colspan="1">RG
+                <span class="t-tab">{{content.idAluno.rg}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">CPF
+                <span class="t-tab">{{content.idAluno.cpf}}</span>
+            </td>
+            <td colspan="1">DATA DE NASC.
+                <span class="t-tab">{{content.idAluno.dataNasc}}</span>
+            </td>
+            <td colspan="1">SEXO
+                <span class="t-tab">{{content.idAluno.sexo}}</span>
+            </td>
+            <td colspan="2">PAI
+                <span class="t-tab">{{content.idAluno.nomePai}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">MÃE
+                <span class="t-tab">{{content.idAluno.nomeMae}}</span>
+            </td>
+            <td colspan="3">AV. /RUA
+                <span class="t-tab">{{content.idAluno.rua}}</span>
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="1">Nº
+                <span class="t-tab">{{content.idAluno.numero}}</span>
+            </td>
+            <td colspan="1">APT.
+                <span class="t-tab">{{content.idAluno.apto}}</span>
+            </td>
+            <td colspan="1">CEP
+                <span class="t-tab">{{content.idAluno.cep}}</span>
+            </td>
+            <td colspan="1">BAIRRO
+                <span class="t-tab">{{content.idAluno.bairro}}</span>
+            </td>
+            <td colspan="1">CIDADE
+                <span class="t-tab">{{content.idAluno.cidade}}</span>
+            </td>
+            <td colspan="1">ESTADO
+                <span class="t-tab">{{content.idAluno.estado}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">TEL. RESIDENCIAL
+                <span class="t-tab">{{content.idAluno.telRes}}</span>
+            </td>
+            <td colspan="2">TEL. CELULAR
+                <span class="t-tab">{{content.idAluno.telCel}}</span>
+            </td>
+            <td colspan="2">TEL. COMERCIAL
+                <span class="t-tab">{{content.idAluno.telCom}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">EMAIL
+                <span class="t-tab">{{content.idAluno.email}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">NACIONALIDADE
+                <span class="t-tab">{{content.idAluno.nacionalidade}}</span>
+            </td>
+            <td colspan="3">NATURALIDADE
+                <span class="t-tab">{{content.idAluno.naturalidade}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">CURSO DE GRADUAÇÃO
+                <span class="t-tab">{{content.idAluno.cursoGraduacao}}</span>
+            </td>
+            <td colspan="2">ANO DE CONLUSÃO
+                <span class="t-tab">{{content.idAluno.anoConclusao}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">NOME DA INSTIUIÇÃO ONDE VOCÊ GRADUOU
+                <span class="t-tab">{{content.idAluno.nomeIstituicao}}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <b>02 - DO VALOR DO CONTRATO E DAS CONDIÇÕES DE PAGAMENTO </b>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td>
+                IESES - Instituto de Educação Superior do Espírito Santo – Razão Social Coutinho e Coutinho Serviços Educacionais Ltda.- ME empresa inscrita no CNPJ sob no 09.553.544/0001-55 sediada nesta cidade de Cariacica, na Rua José Himério, 11, Campo Grande, ES, CEP 29146-460, designada PRESTADORA DE SERVIÇOS e de outro lado, o tomador de serviços, identificado no quadro 01, designado (a) ALUNO / RESPONSÁVEL LEGAL E/OU FINANCEIRO.
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <b>03 - DO VALOR DO CONTRATO E DAS CONDIÇÕES DE PAGAMENTO </b>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td colspan="3">
+                <b>PAGAMENTO DA TAXA DE INSCRIÇÃO:</b><br/>
+            </td>
+        </tr>
+        <tr>
+            <td>( {{content.valorContrato.taxaInscricao.aVista}} ) À Vista</td>
+            <td>( {{content.valorContrato.taxaInscricao.cheque}} ) Cheque</td>
+            <td>( {{content.valorContrato.taxaInscricao.outro.check}} ) Outro: {{content.valorContrato.taxaInscricao.outro.texto}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td colspan="1">VALOR DO CURSO INTEGRAL
+                <span class="t-tab">{{content.valorContrato.valorIntegral}}</span>
+            </td>
+            <td colspan="1">QUANTIDADE DE PARCELAS
+                <span class="t-tab">{{content.valorContrato.quantParcelas}}</span>
+            </td>
+            <td colspan="1">VALOR DA PARCELA
+                <span class="t-tab">{{content.valorContrato.valorParcelas}}</span>
+            </td>
+            <td colspan="1">DESCONTO PONTUALIDADE
+                <span class="t-tab">{{content.valorContrato.descPontualidade}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                MODALIDADE DE PAGAMENTO
+                <br/>
+                ( {{content.valorContrato.modalidadePagamento.aVista}} ) A Vista
+                ( {{content.valorContrato.modalidadePagamento.cheque}} ) Cheque
+                ( {{content.valorContrato.modalidadePagamento.cartao}} ) Cartão
+                ( {{content.valorContrato.modalidadePagamento.boleto}} ) Boleto
+            </td>
+            <td colspan="1">
+                DATA DE VENCIMENTO DAS PARCELAS
+                <br/>
+                ( {{content.valorContrato.dataVencimentoParc.cinco}} ) 05
+                ( {{content.valorContrato.dataVencimentoParc.quinze}} ) 15
+                ( {{content.valorContrato.dataVencimentoParc.trinta}} ) 30
+            </td>
+            <td colspan="1">
+                DATA DE VENC. DA PRIMEIRA PARCELA
+                <span class="t-tab">{{content.valorContrato.dataVencPrimeiraParcela}}</span>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <div style='page-break-before: always;'></div> <!-- pagina 2 -->
+
+    <b>04 - DA INDENTIFICAÇÃO DO CURSO, PRAZO E DURAÇÃO DE ACORDO COM O CRONOGRAMA ESTIPULADO </b>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td colspan="4"> NOME DO CURSO
+                <span class="t-tab">{{content.idCurso.nome}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"> ÁREA
+                <span class="t-tab">{{content.idCurso.area}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>DIA'S DE AULA
+                <span class="t-tab">{{content.idCurso.diaDeAula}}</span>
+            </td>
+            <td>HORARIO DE AULA
+                <span class="t-tab">{{content.idCurso.horarioAula}}</span>
+            </td>
+            <td>
+                MODALIDADE <br/>
+                Semipresencial ( {{content.idCurso.modalidade.semipresencial}} )
+                <br/>
+                Presencial ( {{content.idCurso.modalidade.presencial}} )
+            </td>
+            <td>INICIO PREVISTO
+                <span class="t-tab">{{content.idCurso.inicioPrevisto}}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    Doravante denominado (a) CONTRATANTE, tendo entre si justo e contratado a prestação de serviços educacionais, dentro da legislação em vigor no país, nas condições a seguir especificadas e cujo cumprimento se obrigam mútua e fielmente cumprir
+
+    <br/><br/>
+
+    {{#each content.clausulas }}
+        <b>{{title}} </b><br/>
+        {{text}}
+        <br/><br/>
+    {{/each}}
+
+
+    <p class="assinaturas">
+        Cariacica-ES, _________ de _______________________ de __________ .
+    </p>
+
+    <div class="row" style="height: 400px;">
+        <div class="col-xs-6">
+            <p class="assinaturas">
+                ____________________________________ <br/>
+                CONTRATANTE
+            </p>
+        </div>
+        <div class="col-xs-6">
+            <p class="assinaturas">
+                ____________________________________ <br/>
+                CONTRATADO
+            </p>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<footer class="navbar-fixed-bottom">
+    <div class="row">
+        <div class="col-xs-12">
+            <p class="text-center">
+                Endereço: {{footer.endereco}} | Telefone: {{footer.telefone}}
+                <br/>
+                {{footer.email}} | {{footer.site}}
+            </p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

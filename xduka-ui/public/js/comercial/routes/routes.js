@@ -34,7 +34,7 @@ angular.module('app',[
                 controller: 'FormPreCadastro',
                 controllerAs: 'pre'
             });
-    // ========= FORMS EXAMPLE ========= //
+            // ========= FORMS EXAMPLE ========= //
             $routeProvider.when('/forms-example', {
                 templateUrl: 'html/forms-example.html',
                 controller: 'formsExample'
