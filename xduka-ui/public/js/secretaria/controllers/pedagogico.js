@@ -16,6 +16,12 @@
                     "description": "Controle de pautas"
                 },
                 {
+                    "text": "Aulas Dadas",
+                    "icon": "glyphicon glyphicon-calendar",
+                    "href": "#/secretaria/aulas-dadas",
+                    "description": "Cronograma de aulas dadas"
+                },
+                {
                     "text": "Enviar Circular",
                     "icon": "glyphicon glyphicon-send",
                     "href": "#/secretaria/enviar-circular",
