@@ -49,7 +49,6 @@ module.exports = function() {
     controller.showTemplateAddDisciplina = getTemplateAddDisciplina;
     controller.showTemplateAddTurma = getTemplateAddTurma;
     controller.showTemplateAl = getTemplateAl;
-    controller.showTemplateAulasDadas = getTemplateAulasDadas;
     controller.showTemplateEnviarCircular = getTemplateEnviarCircular;
     controller.showTemplateInscricao = getTemplateInscricao;
     controller.showTemplateMaterialCircular = getTemplateMaterialCircular;
@@ -257,7 +256,7 @@ function getDadosAddCurso(req, res) {
 }
 
 function getDadosAulasDadas(req, res) {
-    res.status(200).json(dadosAulasDadas.cronograma);
+    res.status(200).json(extend(true, templateAulasDadas.template, dadosAulasDadas.cronograma));
 }
 
 function getUnidade(list, id) {
@@ -306,10 +305,6 @@ function getTemplateAddTurma(req, res){
 
 function getTemplateAl(req,res) {
     res.json(templateAluno);
-}
-
-function getTemplateAulasDadas(req,res) {
-    res.json(templateAulasDadas);
 }
 
 function getTemplateEnviarCircular(req, res) {
