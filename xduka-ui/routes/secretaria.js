@@ -9,7 +9,6 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/cursos/:tipo')
         .get(controller.showCursos);
 
-
     //
     app.route('/api/secretaria/template-add-turma/:id')
         .get(controller.showTemplateAddTurma);
@@ -85,10 +84,6 @@ module.exports = function (app, passport) {
     //Template aluno
     app.route('/api/secretaria/templateAluno')
         .get(controller.showTemplateAl);
-
-    //Template Aulas Dadas
-    app.route('/api/secretaria/template-aulas-dadas')
-        .get(controller.showTemplateAulasDadas);
 
     //
     app.route('/api/secretaria/template-enviar-circular')
