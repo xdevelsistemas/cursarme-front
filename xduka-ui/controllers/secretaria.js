@@ -256,7 +256,8 @@ function getDadosAddCurso(req, res) {
 }
 
 function getDadosAulasDadas(req, res) {
-    res.status(200).json(extend(true, templateAulasDadas.template, dadosAulasDadas.cronograma));
+    extend(templateAulasDadas.template, dadosAulasDadas.cronograma);
+    res.status(200).json(templateAulasDadas);
 }
 
 function getUnidade(list, id) {
