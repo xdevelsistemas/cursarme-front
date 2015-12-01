@@ -17,7 +17,23 @@
 
             // VARIÁVEIS COMUNS
             vm._model = {};
-            vm.tableCronograma = {};
+            vm.tableCronograma = {
+                id: 'tableCronograma',
+                dataTable: {
+                    "paging":   false,
+                    "ordering": true,
+                    "info":     false,
+                    "filter":   true,
+                    "order": [[ 0, "asc" ]],
+                    "aoColumnDefs": [
+                        { 'bSortable': false, 'aTargets': [ 2 ] }
+                    ]
+
+                },
+                class: 'table table-hover table-striped table-bordered',
+                head: [],
+                list: []
+            };
 
             //Variáveis de funções
             vm.limpar = limpar;
@@ -27,7 +43,8 @@
 
             dadosAulasPromise
                 .then(function(data){
-                    console.log(data);
+                    vm.tableCronograma.head = data.header;
+                    vm._model = data.modal;
                 })
                 .catch(function(err){
                     console.log(err);
