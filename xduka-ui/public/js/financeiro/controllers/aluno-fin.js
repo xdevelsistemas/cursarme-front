@@ -19,7 +19,9 @@
                 var vm = this
                     , template = $resource('/api/financeiro/templateAluno').get().$promise;
 
-                breadCrumb.title = 'Aluno';
+
+                vm.modelStrings = modelStrings;
+                breadCrumb.title = vm.modelStrings.ALUNO;
 
                 // ==== MODELOS ==== //
 
@@ -30,7 +32,6 @@
                 vm.alert = true;
                 vm.editing = false;
                 vm.loaded = false;
-                vm.modelStrings = modelStrings;
                 vm.msgPendencia = '';
                 vm.openSearch = false;
                 vm.salvarParcela = salvarParcela;

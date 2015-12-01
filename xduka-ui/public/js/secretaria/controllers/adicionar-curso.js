@@ -10,11 +10,11 @@
                 templateAddCurso = $resource('/api/secretaria/template-add-curso/:id').get({"id": defineUnidade.getIdUnidade()}).$promise;
 
             //VARIÁVEIS COMUNS
-            breadCrumb.title = 'Adicionar Curso';
+            vm.STR = modelStrings;
+            breadCrumb.title = vm.STR.ADDCURSO;
             vm._model = {};
             vm.editing = false;
             vm.objEditing = {};
-            vm.STR = modelStrings;
             vm.tableCriterios = {};
             vm.tableCursos = {
                 "id": "tabelaCursos",

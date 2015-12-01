@@ -1,0 +1,53 @@
+{
+  "template": {
+    "header": ["Nome (Titulação)", "Data", "Valor/Hora", "Conta Bancária", "CPF", "Disciplina", "Aula"],
+    "body": []
+  },
+  "modal": {
+    "nome": {
+      "label": "Nome",
+      "type": "text",
+      "name": "nome",
+      "model": { "val": "", "err": "" }
+    },
+    "conta": {
+      "label": "Conta Bancária",
+      "type": "text",
+      "name": "conta",
+      "model": { "val": "", "err": "" }
+    },
+    "cpf": {
+      "label": "CPF",
+      "type": "text",
+      "name": "cpf",
+      "model": { "val": "", "err": "" }
+    },
+    "data": {
+      "label": "Data",
+      "type": "text",
+      "name": "data",
+      "format": "dd/MM/yyyy",
+      "model": { "val": "", "err": "" }
+    },
+    "aula": {
+      "label": "Aulas",
+      "type": "text",
+      "name": "aula",
+      "model": { "val": "", "err": "" }
+    },
+    "curso": {
+      "label": "Curso",
+      "type": "select",
+      "name": "curso",
+      "list": [],
+      "model": { "val": "", "err": "" }
+    },
+    "addConteudoTitulo": {
+      "label": "Disciplina",
+      "type": "select",
+      "name": "disciplina",
+      "list": [],
+      "model": { "val": "", "err": "" }
+    }
+  }
+}

@@ -12,12 +12,12 @@
 
             // VARIÁVEIS COMUNS
             vm._model = {};
+            vm.STR = modelStrings;
             vm.breadCrumb = breadCrumb;
-            vm.breadCrumb.title = 'Mensagem Boletos';
+            vm.breadCrumb.title = vm.STR.MSGBOLETOS;
             vm.disableTipoCurso = true;
             vm.disableCurso = true;
             vm.showTextareas = false;
-            vm.STR = modelStrings;
 
             // VARIÁVEIS TIPO FUNÇÃO
             vm.changeCurso = changeCurso;

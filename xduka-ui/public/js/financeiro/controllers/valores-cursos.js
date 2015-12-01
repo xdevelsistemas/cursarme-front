@@ -13,13 +13,13 @@
 
             // VARIÁVEIS COMUNS
             vm._model = {};
+            vm.STR = modelStrings;
             vm.breadCrumb = breadCrumb;
-            vm.breadCrumb.title = 'Valores Cursos';
+            vm.breadCrumb.title = vm.STR.VALORECURSOS;
             vm.disableArea = true;
             vm.disableCurso = true;
             vm.disableTipoCurso = true;
             vm.editing = false;
-            vm.STR = modelStrings;
             vm.tableValoresCurso = {
                 "id": "tableValoresCurso",
                 "dataTable": {},

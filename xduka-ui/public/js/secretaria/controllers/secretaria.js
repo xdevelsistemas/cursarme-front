@@ -2,13 +2,15 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('secretaria', ['$scope', '$resource', 'breadCrumb', '$timeout', function($scope, $resource, breadCrumb, $timeout){
+        .controller('secretaria', ['$scope', '$resource', 'modelStrings', 'breadCrumb', '$timeout',
+            function($scope, $resource, modelStrings, breadCrumb, $timeout){
 
             var vm = this
                 , geraTurmaPromise = $resource('/api/secretaria/dados-gera-turma').get().$promise;
 
-            breadCrumb.title = 'Secretaria';
-
+            vm.STR = modelStrings;
+            breadCrumb.title = vm.STR.SECRETARIA;
+            //
             vm.grafico = {};
 
             geraTurmaPromise

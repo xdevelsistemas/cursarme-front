@@ -11,7 +11,8 @@
                     , secretariaPromise = $resource('/api/secretaria/template-inscricao').get().$promise
                     , viewInscrPromise = $resource('/api/secretaria/view-inscr').get().$promise;
 
-                breadCrumb.title = 'Confirmação de Matrícula';
+                vm.STR = modelStrings;
+                breadCrumb.title = vm.STR.CONFMAT;
 
                 // ==== MODELOS ==== //
 
@@ -34,7 +35,6 @@
                 //Alerta de campos faltando
                 vm.showAlert = false;
 
-                vm.STR = modelStrings;
 
                 // valida todos os campos
                 vm.validaCpf = false;

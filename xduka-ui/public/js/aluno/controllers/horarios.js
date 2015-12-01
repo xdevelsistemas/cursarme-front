@@ -13,9 +13,9 @@
         var vm = this
             , horariosPromise = $resource('/api/aluno/horarios/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
-        breadCrumb.title = 'Quadro de Horários';
 
         vm.STR = modelStrings;
+        breadCrumb.title = vm.STR.HORARIOS;
 
         horariosPromise
             .then(function(data){

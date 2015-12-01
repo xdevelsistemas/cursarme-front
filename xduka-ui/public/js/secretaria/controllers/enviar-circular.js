@@ -10,11 +10,11 @@
                 templateEnviarCircular = $resource('/api/secretaria/template-enviar-circular').get().$promise;
 
             // VARIÁVEIS COMUNS
-            breadCrumb.title = 'Enviar Circular';
+            vm.STR = modelStrings;
+            breadCrumb.title = vm.STR.ENVCIRCULAR;
             vm._model = {}; //todo pegar arquivo anexado e enviar para o node
             vm.disableTurma = true;
             vm.disableDisciplina = true;
-            vm.STR = modelStrings;
 
             // VARÍVEIS TIPO FUNÇÃO
             vm.changeCurso = changeCurso;

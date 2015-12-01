@@ -16,9 +16,10 @@
                 var vm = this
                     , template = $resource('/api/secretaria/templateAluno').get().$promise;
 
-                breadCrumb.title = 'Aluno';
-
+                // VARIÁVEIS COMUNS
                 // ==== MODELOS ==== //
+                vm.STR = modelStrings;
+                breadCrumb.title = vm.STR.ALUNO;
 
                 vm.alert = true;
                 vm.anexo = new FileUploader();
@@ -26,7 +27,6 @@
                 vm._model = {};
                 vm._temp = {};
                 vm._searchVal = '';
-                vm.modelStrings = modelStrings;
                 vm.openSearch = false;
                 vm.loaded = false;
                 vm.editing = false;
