@@ -19,20 +19,7 @@
             vm._model = {};
             vm.tableCronograma = {
                 id: 'tableCronograma',
-                dataTable: {
-                    "paging":   false,
-                    "ordering": true,
-                    "info":     false,
-                    "filter":   true,
-                    "order": [[ 0, "asc" ]],
-                    "aoColumnDefs": [
-                        { 'bSortable': false, 'aTargets': [ 2 ] }
-                    ]
-
-                },
-                class: 'table table-hover table-striped table-bordered',
-                head: ["Nome (Titulação)", "Data", "Valor/Hora", "Conta Bancária", "CPF", "Disciplina", "Aula"],
-                list: [{"anome": "","bdata": 0,"cvalor": "","dconta": "","ecpf": "","fcurso": "","gdisciplina": "","haula": ""}]
+                columnDefs: []
             };
 
             //Variáveis de funções
@@ -43,9 +30,9 @@
 
             dadosAulasPromise
                 .then(function(data){
-                    vm.tableCronograma.list = data.template.body.map(function(el){
-                        var data = new Date(el.bdata);
-                        el.bdata = {date: true, int: data.getTime(), formatDate: 'dd/MM/yyyy'};
+                    vm.tableCronograma.data = data.template.body.map(function(el){
+                        var data = new Date(el.data);
+                        el.data = data.toLocaleDateString();
                         return el;
                     });
                     vm._model = data.modal;

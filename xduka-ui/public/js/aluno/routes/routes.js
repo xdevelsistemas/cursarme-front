@@ -1,12 +1,14 @@
 (function () {
     angular.module('app',[
+        'ngImgCrop',
+        'ngProgress',
         'ngRoute',
         'ngResource',
-        'ui.select',
         'ngSanitize',
+        'ui.grid',
+        'ui.select',
         'ui.utils',
         'ui.bootstrap',
-        'ngImgCrop',
         'common.values',
         'common.filters',
         'common.services',
@@ -14,8 +16,7 @@
         'app.filters',
         'app.services',
         'app.directives',
-        'app.controllers',
-        'ngProgress'
+        'app.controllers'
     ])
     .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;

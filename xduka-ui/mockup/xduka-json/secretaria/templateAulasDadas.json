@@ -1,6 +1,6 @@
 {
   "template": {
-    "header": ["Nome (Titulação)", "Data", "Valor/Hora", "Conta Bancária", "CPF", "Disciplina", "Aula"],
+    "header": [{"name": "nome"}, {"name": "data"}, {"name": "valor"}, {"name": "conta bancária"}, {"name": "cpf"}, {"name": "disciplina"}, {"name": "aula"}],
     "body": []
   },
   "modal": {
