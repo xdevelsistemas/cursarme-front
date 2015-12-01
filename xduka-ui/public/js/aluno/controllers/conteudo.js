@@ -13,9 +13,9 @@
         var vm = this
             , conteudoPromise = $resource('/api/aluno/conteudo/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
-        breadCrumb.title = 'Conteúdo Aplicado';
 
         vm.STR = modelStrings;
+        breadCrumb.title = vm.STR.CONTAPLIC;
 
         conteudoPromise
             .then(function(data) {

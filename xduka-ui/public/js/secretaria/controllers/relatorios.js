@@ -2,12 +2,15 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('relatorios', ['$scope', '$resource', 'breadCrumb', '$timeout', '$http', '$sce', 'reportService', function($scope, $resource, breadCrumb, $timeout, $http, $sce, reportService){
-
-            breadCrumb.title = 'Relatórios';
+        .controller('relatorios', ['$scope', '$resource', 'modelStrings', 'breadCrumb', '$timeout', '$http', '$sce', 'reportService',
+            function($scope, $resource, modelStrings, breadCrumb, $timeout, $http, $sce, reportService){
 
             var vm = this;
 
+            //
+            vm.STR = modelStrings;
+            breadCrumb.title = vm.STR.RELATORIO;
+            //
             vm._viewInscr = {};
             vm._templateConfig = {};
             vm._selectPdf = {

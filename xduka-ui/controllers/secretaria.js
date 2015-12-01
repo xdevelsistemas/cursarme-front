@@ -4,6 +4,7 @@ var urlDataBase = '',
     alunos = require('../mockup/xduka-json/common/alunos.json'),
     dadosAddCurso = require('../mockup/xduka-json/common/dadosAddCurso.json'),
     dadosAddDisciplina = require('../mockup/xduka-json/common/dadosAddDisciplina.json'),
+    dadosAulasDadas = require('../mockup/xduka-json/secretaria/dadosAulasDadas.json'),
     dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
     dadosCursoPauta = require('../mockup/xduka-json/common/dadosCursoPauta.json'),
     dadosEnviarCircular = require('../mockup/xduka-json/common/dadosEnviarCircular.json'),
@@ -16,6 +17,7 @@ var urlDataBase = '',
     templateAddCurso = require('../mockup/xduka-json/secretaria/templateAddCurso.json'),
     templateAddDisciplina = require('../mockup/xduka-json/secretaria/templateAddDisciplina.json'),
     templateAluno = require('../mockup/xduka-json/secretaria/templateAluno.json'),
+    templateAulasDadas = require('../mockup/xduka-json/secretaria/templateAulasDadas.json'),
     templateConfig = require('../mockup/xduka-json/secretaria/templateConfig.json'),
     templateDadosAddCurso = require('../mockup/xduka-json/secretaria/templateDadosAddCurso.json'),
     templateEnviarCircular = require('../mockup/xduka-json/secretaria/templateEnviarCircular.json'),
@@ -34,6 +36,7 @@ module.exports = function() {
     controller.showConfig = showConfig;
     controller.showCursos = showCursos;
     controller.showDadosAddCurso = getDadosAddCurso;
+    controller.showDadosAulasDadas = getDadosAulasDadas;
     controller.showDadosCurso = getDadosCurso;
     controller.showDadosCursoPauta = getDadosCursoPauta;
     controller.showDadosEnviarCircular = getDadosEnviarCircular;
@@ -46,6 +49,7 @@ module.exports = function() {
     controller.showTemplateAddDisciplina = getTemplateAddDisciplina;
     controller.showTemplateAddTurma = getTemplateAddTurma;
     controller.showTemplateAl = getTemplateAl;
+    controller.showTemplateAulasDadas = getTemplateAulasDadas;
     controller.showTemplateEnviarCircular = getTemplateEnviarCircular;
     controller.showTemplateInscricao = getTemplateInscricao;
     controller.showTemplateMaterialCircular = getTemplateMaterialCircular;
@@ -252,6 +256,10 @@ function getDadosAddCurso(req, res) {
     res.json(getUnidade(dadosAddCurso.unidades, req.params.id));
 }
 
+function getDadosAulasDadas(req, res) {
+    res.status(200).json(dadosAulasDadas.cronograma);
+}
+
 function getUnidade(list, id) {
     return list.filter(function(elem) {
         return elem.id == id
@@ -298,6 +306,10 @@ function getTemplateAddTurma(req, res){
 
 function getTemplateAl(req,res) {
     res.json(templateAluno);
+}
+
+function getTemplateAulasDadas(req,res) {
+    res.json(templateAulasDadas);
 }
 
 function getTemplateEnviarCircular(req, res) {

@@ -13,10 +13,10 @@
 
             // VARIÁVEIS COMUNS
             vm._model = {};
-            vm.breadCrumb = breadCrumb;
-            vm.breadCrumb.title = 'Campanhas Promocionais';
-            vm.showAdd = false;
             vm.STR = modelStrings;
+            vm.breadCrumb = breadCrumb;
+            vm.breadCrumb.title = vm.STR.CAMPPROMO;
+            vm.showAdd = false;
             vm.tableCampanhas = {
                 id: "tableCampanhas",
                 dataTable: {},

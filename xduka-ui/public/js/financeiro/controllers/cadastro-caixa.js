@@ -11,8 +11,8 @@
                 templateCadastroCaixa = $resource('/api/financeiro/template-cadastro-caixa').get().$promise;
 
             vm.breadCrumb = breadCrumb;
-            vm.breadCrumb.title = 'Cadastro de Caixa';
             vm.STR = modelStrings;
+            vm.breadCrumb.title = vm.STR.CADCAIXA;
 
             // VARIÁVEIS COMUNS
             vm._model = {};

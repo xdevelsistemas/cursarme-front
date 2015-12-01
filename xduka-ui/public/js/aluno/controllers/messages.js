@@ -14,9 +14,9 @@
         var vm = this
             , msgPromise = serviceMessages.get({id: defineCurso.getIdCurso()}).$promise;
 
-        breadCrumb.title = 'Mensagens';
 
         vm.STR = modelStrings;
+        breadCrumb.title = vm.STR.MENSAGENS;
 
         msgPromise
             .then(function(data) {

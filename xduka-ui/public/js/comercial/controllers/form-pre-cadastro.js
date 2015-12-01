@@ -10,9 +10,12 @@
                 , comercialPromise = $resource('/api/comercial/template-inscricao').get().$promise
                 , viewInscrPromise = $resource('/api/comercial/view-inscr').get().$promise;
 
-            breadCrumb.title = 'Pré Cadastro';
 
             // VARIÁVEIS COMUNS
+            //Common model string
+            vm.STR = modelStrings;
+            breadCrumb.title = vm.STR.PRECAD;
+
             // Modelo
             vm._model = {};
             // Botões de pre-cadastro
@@ -43,8 +46,6 @@
             vm.sendSuccess = false;
             //Alerta de campos faltando
             vm.showAlert = false;
-            //Common model string
-            vm.STR = modelStrings;
             // valida todos os campos
             vm.validaCpf = false;
             vm.validaSexo = false;

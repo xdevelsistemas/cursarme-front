@@ -13,9 +13,9 @@
         var vm = this
             , gradePromise = $resource('/api/aluno/grade/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
-        breadCrumb.title = 'Grade Curricular';
 
         vm.STR = modelStrings;
+        breadCrumb.title = vm.STR.GRADECUR;
 
         gradePromise
             .then(function(data) {
