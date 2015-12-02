@@ -32,13 +32,14 @@ module.exports = function(config) {
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-ui-utils/ui-utils.js',
         'public/lib/angular-ui-select/dist/select.js',
+        'public/lib/ngprogress/build/ngprogress.js',
         'public/assets/js/jquery.mask.min.js',
         'public/js/comercial/routes/routes.js',
         'public/js/comercial/**/*.js',
         'public/js/common/**/*.js',
-        'tests/spec/comercial/**/*Spec.js'
+        'tests/spec/comercial/controllers/modalChequesSpec.js'
     ],
-
+      //'tests/spec/comercial/**/*Spec.js'
 
     // list of files to exclude
     exclude: [
@@ -84,6 +85,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: true
   });
 };
