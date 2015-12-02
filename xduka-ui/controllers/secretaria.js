@@ -57,6 +57,7 @@ module.exports = function() {
     controller.showViewInscr = getViewInscr;
     controller.putDadosInscricao = postDadosInscricao;
     controller.putDadosTurmas = postDadosTurmas;
+    controller.putSaveAulasDadas = postSaveAulasDadas;
     controller.putSaveDisciplinas = postSaveDisciplinas;
     controller.putSaveConfig = postSaveConfig;
     controller.putSaveDadosCurso = postSaveDadosCurso;
@@ -457,6 +458,15 @@ function postDadosTurmas(req, res) {
     console.log(result); // ???
 
     res.json(dataSent);
+}
+
+function postSaveAulasDadas(req, res) {
+    var dataSent = req.body;
+
+    // TOdo  -  Dando push nos dados para simular o cadastro das aulas dadas
+    templateAulasDadas.template.body.push(dataSent.dados);
+
+    res.status(201).json(templateAulasDadas);
 }
 
 function postSaveDisciplinas(req, res) {
