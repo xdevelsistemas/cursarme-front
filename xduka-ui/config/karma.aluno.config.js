@@ -32,6 +32,7 @@ module.exports = function(config) {
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-ui-utils/ui-utils.js',
         'public/lib/angular-ui-select/dist/select.js',
+        'public/lib/ngprogress/build/ngprogress.js',
         'public/assets/js/jquery.mask.min.js',
         'public/js/aluno/routes/routes.js',
         'public/js/aluno/**/*.js',

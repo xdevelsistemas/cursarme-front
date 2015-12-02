@@ -58,7 +58,7 @@ function getInfoUsuario(req, res) {
 
 function getModalCheque(req, res) {
     modalCheque.banco.list = dadosBancoFinaceiro.list;
-    res.json(modalCheque);
+    res.status(200).json(modalCheque);
 }
 
 function putVerificaCpf(req, res) {
