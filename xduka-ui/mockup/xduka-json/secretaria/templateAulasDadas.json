@@ -1,6 +1,6 @@
 {
   "template": {
-    "header": ["Nome (Titulação)", "Data", "Valor/Hora", "Conta Bancária", "CPF", "Disciplina", "Aula"],
+    "header": [{"name": "nome"}, {"name": "data"}, {"name": "valor"}, {"name": "conta bancária"}, {"name": "cpf"}, {"name": "disciplina"}, {"name": "aula"}],
     "body": []
   },
   "modal": {
@@ -39,14 +39,14 @@
       "label": "Curso",
       "type": "select",
       "name": "curso",
-      "list": [],
+      "list": [{"id": "0", "text": "Curso 1"}],
       "model": { "val": "", "err": "" }
     },
-    "addConteudoTitulo": {
+    "disciplina": {
       "label": "Disciplina",
       "type": "select",
       "name": "disciplina",
-      "list": [],
+      "list": [{"id": "0", "text": "Disciplina 1"}],
       "model": { "val": "", "err": "" }
     }
   }
