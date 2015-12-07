@@ -9,7 +9,7 @@
     "angular-resource": "1.2.26",
     "angular-route": "1.2.26",
     "angular-sanitize": "1.2.26",
-    "angular-ui-grid": "~3.0.0-rc.21",
+    "angular-ui-grid": "~3.0.7",
     "angular-ui-select": "0.10.0",
     "angular-ui-utils": "0.1.1",
     "animate.css": "3.2.1",
@@ -24,7 +24,6 @@
     "ngImgCrop": "0.3.2",
     "ngprogress": "~1.1.2",
     "select2": "3.5.2",
-    "textAngular": "~1.4.6",
     "underscore": "~1.8.3"
   },
   "homepage": "https://github.com/xdevelsistemas/xDuka",

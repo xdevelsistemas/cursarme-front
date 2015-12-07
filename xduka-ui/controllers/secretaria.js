@@ -37,6 +37,7 @@ module.exports = function() {
     controller.showCursos = showCursos;
     controller.showDadosAddCurso = getDadosAddCurso;
     controller.showDadosAulasDadas = getDadosAulasDadas;
+    controller.saveAulasDadas = saveAulasDadas;
     controller.showDadosCurso = getDadosCurso;
     controller.showDadosCursoPauta = getDadosCursoPauta;
     controller.showDadosEnviarCircular = getDadosEnviarCircular;
@@ -259,6 +260,10 @@ function getDadosAddCurso(req, res) {
 function getDadosAulasDadas(req, res) {
     extend(templateAulasDadas.template, dadosAulasDadas.cronograma);
     res.status(200).json(templateAulasDadas);
+}
+
+function saveAulasDadas(req, res) {
+    res.status(200).json({success: true});
 }
 
 function getUnidade(list, id) {
