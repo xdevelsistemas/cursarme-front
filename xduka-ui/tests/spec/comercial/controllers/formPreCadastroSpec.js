@@ -1,1235 +1,220 @@
-describe('Controller: FormPreCadastro test', function() {
-    beforeEach(module('app'));
-    var $scope, vm, $httpBackend, $controller, breadCrumb;
+(function() {
+    'use strict';
 
-    beforeEach(function() {
-        inject(function(_$injector_, _$controller_, _$httpBackend_, _breadCrumb_, _$timeout_, _$modal_, _$route_, _$resource_, _modelStrings_, _lista_cheques_, _dataCheque_, _tipoTelefone_) {
-            $scope = _$injector_.get('$rootScope').$new();
-            breadCrumb = _breadCrumb_;
-            $controller = _$controller_;
+    describe('Controller: FormPreCadastro test', function() {
+        beforeEach(module('app'));
+        var $scope, $httpBackend, vm, dadosCep, dadosCpf, cep, cpf, itemSexo,
 
-            //$httpBackend = _$httpBackend_;
-            //$httpBackend.when('GET', '/api/comercial/view-inscr').responde([{}]);
-            //$httpBackend.flush();
+        // Variáveis para resposta do servidor
+            template = {"alunoPanelCollapse":{"label":"Informações do Aluno","name":"aluno"},"nome":{"label":"Nome","type":"text","name":"nome","model":{"val":"","err":""}},"endereco":{"label":"Edereço","type":"text","name":"endereco","model":{"val":"","err":""}},"tipoTelefone":{"label":"Tipo de telefone","type":"select","name":"tipoTelefone","placeholder":"Selecione uma opção","list":[{"id":"res","text":"Residencial"},{"id":"com","text":"Comercial"},{"id":"cel","text":"Celular"}],"model":{"val":"","err":""}},"telefone":{"label":"Telefone","type":"text","mask":"?(99) 9999-9999","name":"telefone","model":{"val":"","err":""}},"email":{"label":"Email","type":"email","name":"email","model":{"val":"","err":""}},"cidade":{"label":"Cidade","type":"text","name":"cidade","model":{"val":"","err":""}},"cep":{"label":"CEP","type":"text","name":"cep","mask":"?99.999-999","model":{"val":"","err":""}},"rg":{"label":"RG","type":"text","name":"rg","mask":"?9.999-999","model":{"val":"","err":""}},"dataExp":{"label":"Data Expedição","type":"text","model":{"val":"","err":""},"name":"dataExp","format":"dd/MM/yyyy"},"orgaoEmissor":{"label":"Órgão Emissor","type":"text","name":"orgaoEmissor","model":{"val":"","err":""}},"cpf":{"label":"CPF","type":"text","name":"cpf","mask":"?999.999.999-99","model":{"val":"","err":""}},"tituloEleitor":{"label":"Título Eleitor","type":"text","name":"tituloEleito","model":{"val":"","err":""}},"zona":{"label":"Zona","type":"text","name":"zona","model":{"val":"","err":""}},"secao":{"label":"Seção","type":"text","name":"secao","model":{"val":"","err":""}},"ufTitulo":{"label":"UF","type":"text","name":"ufTitulo","placeholder":"Selecione...","model":{"val":"","err":""},"list":[{"id":"UF_AC","text":"AC"},{"id":"UF_AL","text":"AL"},{"id":"UF_AP","text":"AP"},{"id":"UF_AM","text":"AM"},{"id":"UF_BA","text":"BA"},{"id":"UF_CE","text":"CE"},{"id":"UF_DF","text":"DF"},{"id":"UF_ES","text":"ES"},{"id":"UF_GO","text":"GO"},{"id":"UF_MA","text":"MA"},{"id":"UF_MT","text":"MT"},{"id":"UF_MS","text":"MS"},{"id":"UF_MG","text":"MG"},{"id":"UF_PA","text":"PA"},{"id":"UF_PB","text":"PB"},{"id":"UF_PR","text":"PR"},{"id":"UF_PE","text":"PE"},{"id":"UF_PI","text":"PI"},{"id":"UF_RJ","text":"RJ"},{"id":"UF_RN","text":"RN"},{"id":"UF_RS","text":"RS"},{"id":"UF_RO","text":"RO"},{"id":"UF_SC","text":"SC"},{"id":"UF_RR","text":"RR"},{"id":"UF_SP","text":"SP"},{"id":"UF_SE","text":"SE"},{"id":"UF_TO","text":"TO"}]},"certidaoNc":{"label":"Certidão N C","type":"text","name":"certidaoNc","model":{"val":"","err":""}},"folha":{"label":"Folha","type":"text","name":"folha","model":{"val":"","err":""}},"livro":{"label":"Livro","type":"text","name":"livro","model":{"val":"","err":""}},"cartorio":{"label":"Cartório","type":"text","name":"cartorio","model":{"val":"","err":""}},"certificadoRes":{"label":"Certificado Reservista","type":"text","name":"certificadoRes","model":{"val":"","err":""}},"registro":{"label":"Registro","type":"text","name":"registro","model":{"val":"","err":""}},"ufReservista":{"label":"UF","type":"text","placeholder":"Selecione...","name":"ufReservista","model":{"val":"","err":""},"list":[{"id":"UF_AC","text":"AC"},{"id":"UF_AL","text":"AL"},{"id":"UF_AP","text":"AP"},{"id":"UF_AM","text":"AM"},{"id":"UF_BA","text":"BA"},{"id":"UF_CE","text":"CE"},{"id":"UF_DF","text":"DF"},{"id":"UF_ES","text":"ES"},{"id":"UF_GO","text":"GO"},{"id":"UF_MA","text":"MA"},{"id":"UF_MT","text":"MT"},{"id":"UF_MS","text":"MS"},{"id":"UF_MG","text":"MG"},{"id":"UF_PA","text":"PA"},{"id":"UF_PB","text":"PB"},{"id":"UF_PR","text":"PR"},{"id":"UF_PE","text":"PE"},{"id":"UF_PI","text":"PI"},{"id":"UF_RJ","text":"RJ"},{"id":"UF_RN","text":"RN"},{"id":"UF_RS","text":"RS"},{"id":"UF_RO","text":"RO"},{"id":"UF_SC","text":"SC"},{"id":"UF_RR","text":"RR"},{"id":"UF_SP","text":"SP"},{"id":"UF_SE","text":"SE"},{"id":"UF_TO","text":"TO"}]},"categoria":{"label":"Categoria","type":"text","name":"categoria","model":{"val":"","err":""}},"sexo":{"label":"Sexo","type":"select","name":"sexo","placeholder":"Selecione...","model":{"val":"","err":""},"list":[{"id":"f","text":"Feminino"},{"id":"m","text":"Masculino"}]},"dataNasc":{"label":"Data Nascimento","type":"text","name":"dataNasc","model":{"val":"","err":""},"format":"dd/MM/yyyy"},"raca":{"label":"Raça","type":"select","name":"raca","placeholder":"Selecione...","list":[{"id":"1","text":"Branca"},{"id":"2","text":"Preta"},{"id":"3","text":"Amarela"},{"id":"4","text":"Parda"},{"id":"5","text":"Indígena"}],"model":{"val":"","err":""}},"estadoCivil":{"label":"Estado Civil","type":"select","name":"estadoCivil","placeholder":"Selecione...","list":[{"id":"1","text":"Solteiro(a)"},{"id":"2","text":"Casado(a)"},{"id":"3","text":"Divorciado(a)"},{"id":"4","text":"Viúvo(a)"},{"id":"5","text":"Separado(a)"},{"id":"5","text":"Separado(a)"},{"id":"6","text":"Companheiro(a)"}],"model":{"val":"","err":""}},"pai":{"label":"Pai","type":"text","name":"pai","model":{"val":"","err":""}},"mae":{"label":"Mãe","type":"text","name":"mae","model":{"val":"","err":""}},"avRua":{"label":"Av/Rua","type":"text","name":"avRua","model":{"val":"","err":""}},"endNum":{"label":"N","type":"text","name":"endNum","model":{"val":"","err":""}},"complemento":{"label":"Complemento","type":"text","name":"complemento","model":{"val":"","err":""}},"bairro":{"label":"Bairro","type":"text","name":"bairro","model":{"val":"","err":""}},"endUf":{"label":"UF","type":"text","placeholder":"Selecione...","name":"endUf","model":{"val":"","err":""},"list":[{"id":"UF_AC","text":"AC"},{"id":"UF_AL","text":"AL"},{"id":"UF_AP","text":"AP"},{"id":"UF_AM","text":"AM"},{"id":"UF_BA","text":"BA"},{"id":"UF_CE","text":"CE"},{"id":"UF_DF","text":"DF"},{"id":"UF_ES","text":"ES"},{"id":"UF_GO","text":"GO"},{"id":"UF_MA","text":"MA"},{"id":"UF_MT","text":"MT"},{"id":"UF_MS","text":"MS"},{"id":"UF_MG","text":"MG"},{"id":"UF_PA","text":"PA"},{"id":"UF_PB","text":"PB"},{"id":"UF_PR","text":"PR"},{"id":"UF_PE","text":"PE"},{"id":"UF_PI","text":"PI"},{"id":"UF_RJ","text":"RJ"},{"id":"UF_RN","text":"RN"},{"id":"UF_RS","text":"RS"},{"id":"UF_RO","text":"RO"},{"id":"UF_SC","text":"SC"},{"id":"UF_RR","text":"RR"},{"id":"UF_SP","text":"SP"},{"id":"UF_SE","text":"SE"},{"id":"UF_TO","text":"TO"}]},"nacionalidade":{"label":"Nacionalidade","type":"text","name":"nacionalidade","model":{"val":"","err":""}},"naturalidade":{"label":"Naturalidade","type":"text","name":"naturalidade","model":{"val":"","err":""}},"natUf":{"label":"UF","type":"text","placeholder":"Selecione...","name":"natUf","model":{"val":"","err":""},"list":[{"id":"UF_AC","text":"AC"},{"id":"UF_AL","text":"AL"},{"id":"UF_AP","text":"AP"},{"id":"UF_AM","text":"AM"},{"id":"UF_BA","text":"BA"},{"id":"UF_CE","text":"CE"},{"id":"UF_DF","text":"DF"},{"id":"UF_ES","text":"ES"},{"id":"UF_GO","text":"GO"},{"id":"UF_MA","text":"MA"},{"id":"UF_MT","text":"MT"},{"id":"UF_MS","text":"MS"},{"id":"UF_MG","text":"MG"},{"id":"UF_PA","text":"PA"},{"id":"UF_PB","text":"PB"},{"id":"UF_PR","text":"PR"},{"id":"UF_PE","text":"PE"},{"id":"UF_PI","text":"PI"},{"id":"UF_RJ","text":"RJ"},{"id":"UF_RN","text":"RN"},{"id":"UF_RS","text":"RS"},{"id":"UF_RO","text":"RO"},{"id":"UF_SC","text":"SC"},{"id":"UF_RR","text":"RR"},{"id":"UF_SP","text":"SP"},{"id":"UF_SE","text":"SE"},{"id":"UF_TO","text":"TO"}]},"cursoPanelCollapse":{"label":"Informações do Curso","name":"curso"},"unidade":{"label":"Unidade","type":"select","name":"unidade","select":{"unidade":0,"area":0,"curso":0,"turma":0},"placeholder":"Selecione uma opção","required":false,"list":[],"model":{"val":"","err":""}},"tipoCurso":{"label":"Tipo Curso","type":"select","name":"tipoCurso","placeholder":"Selecione uma opção","required":false,"list":[],"model":{"val":"","err":""}},"area":{"label":"Área","type":"select","name":"area","placeholder":"Selecione uma opção","required":false,"list":[],"model":{"val":"","err":""}},"curso":{"label":"Curso","type":"select","name":"curso","placeholder":"Selecione uma opção","required":false,"list":[],"model":{"val":"","err":""}},"vagas":{"str":{"totais":"Vagas Totais","disponiveis":"Vagas Disponíveis"},"css":{"titleBlue":true,"titleRed":false}},"documentacaoPanelCollapse":{"label":"Informações complementares do Aluno","label2":"Escolaridade"},"escolaEm":{"label":"Escola que cursou Ensino Médio","type":"text","name":"escolaEm","required":false,"model":{"val":"","err":""}},"anoEm":{"label":"Ano de Conclusão","type":"text","name":"anoEm","required":false,"model":{"val":"","err":""}},"cursoGrad":{"label":"Curso de Graduação","type":"text","name":"cursoGrad","required":false,"model":{"val":"","err":""}},"anoGrad":{"label":"Ano de Conclusão","type":"text","name":"anoGrad","required":false,"model":{"val":"","err":""}},"instituicao":{"label":"Nome da instituição onde graduou","type":"text","name":"instituicao","required":false,"model":{"val":"","err":""}},"inscrPanelCollapse":{"label":"Informações de Inscrição"},"valorInscricao":{"label":"Valor Inscrição","type":"text","name":"inscr","required":false,"mask":"?","model":{"val":"","err":""}},"formaPagamentoInscr":{"label":"Forma de pagamento","type":"select","name":"formaPagamentoInscr","required":false,"placeholder":"Selecione uma opção","list":[{"id":"1","text":"Boleto","tpCheque":false},{"id":"2","text":"Cheque","tpCheque":true}],"model":{"val":"","err":""}},"descontoInscr":{"label":"Desconto","type":"select","name":"descontoInscr","placeholder":"Selecione uma opção","required":false,"list":[],"model":{"val":"","err":""}},"pagamentoPanelCollapse":{"label":"Informações de Pagamento","name":"pagamento"},"valorIntegral":{"label":"Valor Integral","type":"text","model":{"val":"","err":""},"name":"valorIntegral","required":false},"desconto":{"label":"Desconto","type":"text","name":"desconto","required":false,"model":{"val":"0","err":""}},"formaPagamentoPag":{"label":"Forma de pagamento","type":"select","name":"formaPagamentoPag","required":false,"placeholder":"Selecione uma opção","list":[{"id":"1","text":"Boleto","name":"boleto","tpCheque":false},{"id":"2","text":"Cheque","name":"cheque","tpCheque":true},{"id":"3","text":"Cartão","name":"cartao","tpCheque":false}],"model":{"val":"","err":""}},"descontosAdicionais":{"label":"Descontos disponíveis","type":"select","name":"descontosDisp","placeholder":"Selecione uma opção","list":[{"id":"desc1","text":"Funcionário","percent":1},{"id":"desc2","text":"Convênio","percent":0.1},{"id":"desc3","text":"Indicação","percent":0.05},{"id":"desc4","text":"Grupo de pessoas","percent":0.05}],"model":{"val":"","err":""}},"descricaoDesconto":{"label":"Descrição do desconto","type":"textarea","name":"descrDesc","rows":7,"model":{"val":"","err":""}},"qtdParcelas":{"label":"Quantidade de parcelas","type":"select","name":"qtdParcelas","required":false,"placeholder":"Selecione uma opção","list":[],"model":{"val":"","err":""}},"valorParcela":{"label":"Valor da Parcela","type":"text","name":"valorParcela","required":false,"model":{"val":"","err":""}},"melhorData":{"label":"Melhor data de vencimento","type":"select","name":"melhorData","placeholder":"Selecione uma opção","list":[],"model":{"val":"","err":""}},"observacoes":{"label":"Observações","type":"textarea","name":"observacoes","required":false,"model":{"val":"","err":""}},"checkFoto34":{"label":"Fotos 3x4 Recente","type":"checkbox","name":"foto34","required":false,"model":{"val":"","err":""}},"checkCertidao":{"label":"Certidão de nascimento/casamento/divórcio (cópia simples)","type":"checkbox","name":"checkCertidao","required":false,"model":{"val":"","err":""}},"checkReservista":{"label":"Certificados de reservista (cópias simples)","type":"checkbox","name":"checkReservista","required":false,"model":{"val":"","err":""}},"checkComprovanteResidencia":{"label":"Comprovantes de residência com CEP (cópias simples)","type":"checkbox","name":"checkResidencia","required":false,"model":{"val":"","err":""}},"checkCpf":{"label":"CPF cópia simples","type":"checkbox","name":"checkCpf","required":false,"model":{"val":"","err":""}},"checkDiplomaGrad":{"label":"Diploma ou certificado de conclusão (cópia autenticada)","type":"checkbox","name":"checkDipGrad","required":false,"model":{"val":"","err":""}},"checkDiploma2grau":{"label":"Diplomas do 2º Grau (2 cópias autenticadas)","type":"checkbox","name":"checkDip2grau","required":false,"model":{"val":"","err":""}},"checkDiplomaSeminario":{"label":"Diplomas do Seminário cursado (2 cópias autenticadas)","type":"checkbox","name":"checkDipSeminario","required":false,"model":{"val":"","err":""}},"checkHistoricoGraduacao":{"label":"Histórico da graduação (cópia autenticada)","type":"checkbox","name":"checkHistGrad","required":false,"model":{"val":"","err":""}},"checkHistoricoSeminario":{"label":"Históricos do Seminário cursado (2 cópias autenticadas)","type":"checkbox","name":"checkHistSeminario","required":false,"model":{"val":"","err":""}},"checkTitulo":{"label":"Título e comprovante da última votação (cópias simples)","type":"checkbox","name":"checkTitulo","required":false,"model":{"val":"","err":""}},"checkRg":{"label":"Cópia do Documento de Identidade (RG), frente e verso","type":"checkbox","name":"checkRg","required":false,"model":{"val":"","err":""}},"checkFichaInscr":{"label":"Ficha de inscrição devidamente preenchida","type":"checkbox","name":"checkInscr","required":false,"model":{"val":"","err":""}},"checkTaxaInscr":{"label":"Taxa de Inscrição devidamente paga","type":"checkbox","name":"checkTaxaInscr","required":false,"model":{"val":"","err":""}},"listaCheques":[]},
+            inscr = {"inscrPanelCollapse":{"label":"Matrículas Pendentes","name":"confMat"},"head":[{"id":"anome","text":"Nome"},{"id":"bturma","text":"Turma"},{"id":"ccurso","text":"Curso"},{"id":"dquantidade","text":"Quantidade"},{"id":"eunidade","text":"Unidade"},{"id":"ffstatus","text":"Status"}],"list":[{"validacoes":[{}],"dataCadastro":1435869203305,"nome":{"model":{"val":"João das Couves","err":""}},"endereco":{"model":{"val":"","err":""}},"tipoTelefone":{"model":{"val":"res","err":""}},"telefone":{"model":{"val":"1234567890","err":""}},"email":{"model":{"val":"joao@email.com","err":""}},"cidade":{"model":{"val":"Serra","err":""}},"cep":{"model":{"val":"29175254","err":""}},"rg":{"model":{"val":"0123456","err":""}},"dataExp":{"model":{"val":"","err":""}},"orgaoEmissor":{"model":{"val":"","err":""}},"cpf":{"model":{"val":"01234567890","err":""}},"tituloEleitor":{"model":{"val":"","err":""}},"zona":{"model":{"val":"","err":""}},"secao":{"model":{"val":"","err":""}},"ufTitulo":{"model":{"val":"","err":""}},"certidaoNc":{"model":{"val":"","err":""}},"folha":{"model":{"val":"","err":""}},"livro":{"model":{"val":"","err":""}},"cartorio":{"model":{"val":"","err":""}},"certificadoRes":{"model":{"val":"","err":""}},"registro":{"model":{"val":"","err":""}},"ufReservista":{"model":{"val":"","err":""}},"categoria":{"model":{"val":"","err":""}},"sexo":{"model":{"val":"","err":""}},"dataNasc":{"model":{"val":"","err":""}},"raca":{"model":{"val":"","err":""}},"estadoCivil":{"model":{"val":"","err":""}},"pai":{"model":{"val":"","err":""}},"mae":{"model":{"val":"","err":""}},"avRua":{"model":{"val":"Rua Guaracy","err":""}},"endNum":{"model":{"val":"","err":""}},"complemento":{"model":{"val":"","err":""}},"bairro":{"model":{"val":"Jardim Atlântico","err":""}},"endUf":{"model":{"val":"UF_ES","err":""}},"nacionalidade":{"model":{"val":"","err":""}},"naturalidade":{"model":{"val":"","err":""}},"natUf":{"model":{"val":"","err":""}},"unidade":{"model":{"val":1,"text":"Vitória"}},"tipoCurso":{"model":{"val":11,"err":""}},"area":{"model":{"val":11,"err":""}},"curso":{"model":{"val":111,"text":"Matemática"}},"vagas":{"id":"1A","text":"1A","turma":"Turma A","preenchidas":12,"totais":20},"escolaEm":{"model":{"val":"","err":""}},"anoEm":{"model":{"val":"","err":""}},"cursoGrad":{"model":{"val":"","err":""}},"anoGrad":{"model":{"val":"","err":""}},"instituicao":{"model":{"val":"","err":""}},"valorInscricao":{"model":{"val":190,"err":"","aux":190}},"formaPagamentoInscr":{"model":{"val":"1","err":""}},"descontoInscr":{"model":{"val":"","err":""}},"valorIntegral":{"model":{"val":12762,"err":"","aux":16380}},"desconto":{"model":{"val":0.2208791208791209,"err":"","aux":0.1,"descPag":0.1208791208791209,"descontoAdd":0.1}},"formaPagamentoPag":{"model":{"val":"1","err":""}},"descontosAdicionais":{"model":{"val":"desc2","err":"","text":"Convênio"}},"descricaoDesconto":{"model":{"val":"nm","err":""}},"qtdParcelas":{"model":{"val":"3","err":""}},"valorParcela":{"model":{"val":4254,"err":""}},"melhorData":{"model":{"val":"05","err":""}},"observacoes":{"model":{"val":"alshf","err":""}},"checkFoto34":{"model":{"val":true,"err":""}},"checkCertidao":{"model":{"val":true,"err":""}},"checkReservista":{"model":{"val":true,"err":""}},"checkComprovanteResidencia":{"model":{"val":true,"err":""}},"checkCpf":{"model":{"val":true,"err":""}},"checkDiplomaGrad":{"model":{"val":true,"err":""}},"checkDiploma2grau":{"model":{"val":true,"err":""}},"checkDiplomaSeminario":{"model":{"val":true,"err":""}},"checkHistoricoGraduacao":{"model":{"val":true,"err":""}},"checkHistoricoSeminario":{"model":{"val":true,"err":""}},"checkTitulo":{"model":{"val":true,"err":""}},"checkRg":{"model":{"val":true,"err":""}},"checkFichaInscr":{"model":{"val":true,"err":""}},"checkTaxaInscr":{"model":{"val":true,"err":""}},"listaCheques":[],"success":true},{"validacoes":[],"dataCadastro":1420077600000,"nome":{"model":{"val":"Mariana Ramos"}},"endereco":{"model":{"val":"","err":""}},"tipoTelefone":{"model":{"val":"res","err":""}},"telefone":{"model":{"val":"1234567890","err":""}},"email":{"model":{"val":"mariana@email.com","err":""}},"cidade":{"model":{"val":"Serra","err":""}},"cep":{"model":{"val":"29175254","err":""}},"rg":{"model":{"val":"0123456","err":""}},"dataExp":{"model":{"val":"","err":""}},"orgaoEmissor":{"model":{"val":"","err":""}},"cpf":{"model":{"val":"65854570564","err":""}},"tituloEleitor":{"model":{"val":"","err":""}},"zona":{"model":{"val":"","err":""}},"secao":{"model":{"val":"","err":""}},"ufTitulo":{"model":{"val":"","err":""}},"certidaoNc":{"model":{"val":"","err":""}},"folha":{"model":{"val":"","err":""}},"livro":{"model":{"val":"","err":""}},"cartorio":{"model":{"val":"","err":""}},"certificadoRes":{"model":{"val":"","err":""}},"registro":{"model":{"val":"","err":""}},"ufReservista":{"model":{"val":"","err":""}},"categoria":{"model":{"val":"","err":""}},"sexo":{"model":{"val":"","err":""}},"dataNasc":{"model":{"val":"","err":""}},"raca":{"model":{"val":"","err":""}},"estadoCivil":{"model":{"val":"","err":""}},"pai":{"model":{"val":"","err":""}},"mae":{"model":{"val":"","err":""}},"avRua":{"model":{"val":"Rua Guaracy","err":""}},"endNum":{"model":{"val":"","err":""}},"complemento":{"model":{"val":"","err":""}},"bairro":{"model":{"val":"Jardim Atlântico","err":""}},"endUf":{"model":{"val":"UF_ES","err":""}},"nacionalidade":{"model":{"val":"","err":""}},"naturalidade":{"model":{"val":"","err":""}},"natUf":{"model":{"val":"","err":""}},"unidade":{"model":{"val":1,"text":"Vitória"}},"tipoCurso":{"model":{"val":11,"err":""}},"area":{"model":{"val":11,"err":""}},"curso":{"model":{"val":111,"text":"Matemática"}},"vagas":{"id":"1A","text":"1A","turma":"Turma A","preenchidas":12,"totais":20},"escolaEm":{"model":{"val":"","err":""}},"anoEm":{"model":{"val":"","err":""}},"cursoGrad":{"model":{"val":"","err":""}},"anoGrad":{"model":{"val":"","err":""}},"instituicao":{"model":{"val":"","err":""}},"valorInscricao":{"model":{"val":190,"err":"","aux":190}},"formaPagamentoInscr":{"model":{"val":"2","err":""}},"descontoInscr":{"model":{"val":"","err":""}},"valorIntegral":{"model":{"val":13500,"err":"","aux":16380}},"desconto":{"model":{"val":0.17582417582417587,"err":"","aux":0,"descPag":0.17582417582417587,"descontoAdd":0}},"formaPagamentoPag":{"model":{"val":"2","err":""}},"descontosAdicionais":{"model":{"val":""}},"descricaoDesconto":{"model":{"val":"","err":""}},"qtdParcelas":{"model":{"val":"3","err":""}},"valorParcela":{"model":{"val":4500,"err":""}},"melhorData":{"model":{"val":"05","err":""}},"observacoes":{"model":{"val":"alshf","err":""}},"checkFoto34":{"model":{"val":true,"err":""}},"checkCertidao":{"model":{"val":true,"err":""}},"checkReservista":{"model":{"val":true,"err":""}},"checkComprovanteResidencia":{"model":{"val":true,"err":""}},"checkCpf":{"model":{"val":true,"err":""}},"checkDiplomaGrad":{"model":{"val":true,"err":""}},"checkDiploma2grau":{"model":{"val":true,"err":""}},"checkDiplomaSeminario":{"model":{"val":true,"err":""}},"checkHistoricoGraduacao":{"model":{"val":true,"err":""}},"checkHistoricoSeminario":{"model":{"val":true,"err":""}},"checkTitulo":{"model":{"val":true,"err":""}},"checkRg":{"model":{"val":true,"err":""}},"checkFichaInscr":{"model":{"val":true,"err":""}},"checkTaxaInscr":{"model":{"val":true,"err":""}},"listaCheques":[{"banco":{"id":"003","text":"003 - BANCO DA AMAZONIA S.A."},"agencia":"123","conta":"456","numero":"789","data":"2015-09-01T03:00:00.000Z","valor":190,"titular":"Mariana"},{"banco":{"id":"003","text":"003 - BANCO DA AMAZONIA S.A."},"agencia":"123","conta":"456","numero":"789","data":"2015-09-01T03:00:00.000Z","valor":13500,"titular":"Mariana"}],"success":true},{"validacoes":[{}],"dataCadastro":1420077600000,"nome":{"model":{"val":"Pedro Nascimento"}},"endereco":{"model":{"val":"","err":""}},"tipoTelefone":{"model":{"val":"res","err":""}},"telefone":{"model":{"val":"1234567890","err":""}},"email":{"model":{"val":"pedro@email.com","err":""}},"cidade":{"model":{"val":"Serra","err":""}},"cep":{"model":{"val":"29175254","err":""}},"rg":{"model":{"val":"0123456","err":""}},"dataExp":{"model":{"val":"","err":""}},"orgaoEmissor":{"model":{"val":"","err":""}},"cpf":{"model":{"val":"19504036708","err":""}},"tituloEleitor":{"model":{"val":"","err":""}},"zona":{"model":{"val":"","err":""}},"secao":{"model":{"val":"","err":""}},"ufTitulo":{"model":{"val":"","err":""}},"certidaoNc":{"model":{"val":"","err":""}},"folha":{"model":{"val":"","err":""}},"livro":{"model":{"val":"","err":""}},"cartorio":{"model":{"val":"","err":""}},"certificadoRes":{"model":{"val":"","err":""}},"registro":{"model":{"val":"","err":""}},"ufReservista":{"model":{"val":"","err":""}},"categoria":{"model":{"val":"","err":""}},"sexo":{"model":{"val":"","err":""}},"dataNasc":{"model":{"val":"","err":""}},"raca":{"model":{"val":"","err":""}},"estadoCivil":{"model":{"val":"","err":""}},"pai":{"model":{"val":"","err":""}},"mae":{"model":{"val":"","err":""}},"avRua":{"model":{"val":"Rua Guaracy","err":""}},"endNum":{"model":{"val":"","err":""}},"complemento":{"model":{"val":"","err":""}},"bairro":{"model":{"val":"Jardim Atlântico","err":""}},"endUf":{"model":{"val":"UF_ES","err":""}},"nacionalidade":{"model":{"val":"","err":""}},"naturalidade":{"model":{"val":"","err":""}},"natUf":{"model":{"val":"","err":""}},"unidade":{"model":{"val":1,"text":"Vitória"}},"tipoCurso":{"model":{"val":11,"err":""}},"area":{"model":{"val":11,"err":""}},"curso":{"model":{"val":111,"text":"Matemática"}},"vagas":{"id":"1A","text":"1A","turma":"Turma A","preenchidas":12,"totais":20},"escolaEm":{"model":{"val":"","err":""}},"anoEm":{"model":{"val":"","err":""}},"cursoGrad":{"model":{"val":"","err":""}},"anoGrad":{"model":{"val":"","err":""}},"instituicao":{"model":{"val":"","err":""}},"valorInscricao":{"model":{"val":190,"err":"","aux":190}},"formaPagamentoInscr":{"model":{"val":"2","err":""}},"descontoInscr":{"model":{"val":"","err":""}},"valorIntegral":{"model":{"val":13500,"err":"","aux":16380}},"desconto":{"model":{"val":0.17582417582417587,"err":"","aux":0,"descPag":0.17582417582417587,"descontoAdd":0}},"formaPagamentoPag":{"model":{"val":"2","err":""}},"descontosAdicionais":{"model":{"val":""}},"descricaoDesconto":{"model":{"val":"","err":""}},"qtdParcelas":{"model":{"val":"3","err":""}},"valorParcela":{"model":{"val":4500,"err":""}},"melhorData":{"model":{"val":"05","err":""}},"observacoes":{"model":{"val":"alshf","err":""}},"checkFoto34":{"model":{"val":true,"err":""}},"checkCertidao":{"model":{"val":true,"err":""}},"checkReservista":{"model":{"val":true,"err":""}},"checkComprovanteResidencia":{"model":{"val":true,"err":""}},"checkCpf":{"model":{"val":true,"err":""}},"checkDiplomaGrad":{"model":{"val":true,"err":""}},"checkDiploma2grau":{"model":{"val":true,"err":""}},"checkDiplomaSeminario":{"model":{"val":true,"err":""}},"checkHistoricoGraduacao":{"model":{"val":true,"err":""}},"checkHistoricoSeminario":{"model":{"val":true,"err":""}},"checkTitulo":{"model":{"val":true,"err":""}},"checkRg":{"model":{"val":true,"err":""}},"checkFichaInscr":{"model":{"val":true,"err":""}},"checkTaxaInscr":{"model":{"val":true,"err":""}},"listaCheques":[{"banco":{"id":"003","text":"003 - BANCO DA AMAZONIA S.A."},"agencia":"123","conta":"456","numero":"789","data":"2015-09-01T03:00:00.000Z","valor":190,"titular":"Pedro"},{"banco":{"id":"003","text":"003 - BANCO DA AMAZONIA S.A."},"agencia":"123","conta":"456","numero":"789","data":"2015-09-01T03:00:00.000Z","valor":13500,"titular":"Pedro"}],"success":true},{"validacoes":[{}],"dataCadastro":1420077600000,"nome":{"model":{"val":"Abner dos Santos"}},"endereco":{"model":{"val":"","err":""}},"tipoTelefone":{"model":{"val":"res","err":""}},"telefone":{"model":{"val":"1234567890","err":""}},"email":{"model":{"val":"abner@email.com","err":""}},"cidade":{"model":{"val":"Serra","err":""}},"cep":{"model":{"val":"29175254","err":""}},"rg":{"model":{"val":"0123456","err":""}},"dataExp":{"model":{"val":"","err":""}},"orgaoEmissor":{"model":{"val":"","err":""}},"cpf":{"model":{"val":"44158457700","err":""}},"tituloEleitor":{"model":{"val":"","err":""}},"zona":{"model":{"val":"","err":""}},"secao":{"model":{"val":"","err":""}},"ufTitulo":{"model":{"val":"","err":""}},"certidaoNc":{"model":{"val":"","err":""}},"folha":{"model":{"val":"","err":""}},"livro":{"model":{"val":"","err":""}},"cartorio":{"model":{"val":"","err":""}},"certificadoRes":{"model":{"val":"","err":""}},"registro":{"model":{"val":"","err":""}},"ufReservista":{"model":{"val":"","err":""}},"categoria":{"model":{"val":"","err":""}},"sexo":{"model":{"val":"","err":""}},"dataNasc":{"model":{"val":"","err":""}},"raca":{"model":{"val":"","err":""}},"estadoCivil":{"model":{"val":"","err":""}},"pai":{"model":{"val":"","err":""}},"mae":{"model":{"val":"","err":""}},"avRua":{"model":{"val":"Rua Guaracy","err":""}},"endNum":{"model":{"val":"","err":""}},"complemento":{"model":{"val":"","err":""}},"bairro":{"model":{"val":"Jardim Atlântico","err":""}},"endUf":{"model":{"val":"UF_ES","err":""}},"nacionalidade":{"model":{"val":"","err":""}},"naturalidade":{"model":{"val":"","err":""}},"natUf":{"model":{"val":"","err":""}},"unidade":{"model":{"val":1,"text":"Vitória"}},"tipoCurso":{"model":{"val":11,"err":""}},"area":{"model":{"val":11,"err":""}},"curso":{"model":{"val":111,"text":"Matemática"}},"vagas":{"id":"1A","text":"1A","turma":"Turma A","preenchidas":12,"totais":20},"escolaEm":{"model":{"val":"","err":""}},"anoEm":{"model":{"val":"","err":""}},"cursoGrad":{"model":{"val":"","err":""}},"anoGrad":{"model":{"val":"","err":""}},"instituicao":{"model":{"val":"","err":""}},"valorInscricao":{"model":{"val":190,"err":"","aux":190}},"formaPagamentoInscr":{"model":{"val":"2","err":""}},"descontoInscr":{"model":{"val":"","err":""}},"valorIntegral":{"model":{"val":13500,"err":"","aux":16380}},"desconto":{"model":{"val":0.17582417582417587,"err":"","aux":0,"descPag":0.17582417582417587,"descontoAdd":0}},"formaPagamentoPag":{"model":{"val":"2","err":""}},"descontosAdicionais":{"model":{"val":""}},"descricaoDesconto":{"model":{"val":"","err":""}},"qtdParcelas":{"model":{"val":"3","err":""}},"valorParcela":{"model":{"val":4500,"err":""}},"melhorData":{"model":{"val":"05","err":""}},"observacoes":{"model":{"val":"alshf","err":""}},"checkFoto34":{"model":{"val":true,"err":""}},"checkCertidao":{"model":{"val":true,"err":""}},"checkReservista":{"model":{"val":true,"err":""}},"checkComprovanteResidencia":{"model":{"val":true,"err":""}},"checkCpf":{"model":{"val":true,"err":""}},"checkDiplomaGrad":{"model":{"val":true,"err":""}},"checkDiploma2grau":{"model":{"val":true,"err":""}},"checkDiplomaSeminario":{"model":{"val":true,"err":""}},"checkHistoricoGraduacao":{"model":{"val":true,"err":""}},"checkHistoricoSeminario":{"model":{"val":true,"err":""}},"checkTitulo":{"model":{"val":true,"err":""}},"checkRg":{"model":{"val":true,"err":""}},"checkFichaInscr":{"model":{"val":true,"err":""}},"checkTaxaInscr":{"model":{"val":true,"err":""}},"listaCheques":[{"banco":{"id":"003","text":"003 - BANCO DA AMAZONIA S.A."},"agencia":"123","conta":"456","numero":"789","data":"2015-09-01T03:00:00.000Z","valor":190,"titular":"Abner"},{"banco":{"id":"003","text":"003 - BANCO DA AMAZONIA S.A."},"agencia":"123","conta":"456","numero":"789","data":"2015-09-01T03:00:00.000Z","valor":13500,"titular":"Abner"}],"success":true}]};
+
+
+        beforeEach(function() {
+            inject(function(_$injector_, _$controller_, _$httpBackend_, _$modal_) {
+                $scope = _$injector_.get('$rootScope').$new();
+                $httpBackend = _$httpBackend_;
+
+                // Buscando dados servidor
+                $httpBackend.when('GET', '/api/comercial/template-inscricao').respond(200, template);
+                $httpBackend.when('GET', '/api/comercial/view-inscr').respond(200, inscr);
+                $httpBackend.when('GET', 'html/comercial/pre-cadastro.html').respond(200);
+
+                vm = _$controller_('FormPreCadastro', {"$scope": $scope});
+            });
+        });
+
+
+        describe('-> Definição do FormPreCadastro', function() {
+            it('-> controller FormPreCadastro foi definido', function() {
+                expect(vm).toBeDefined();
+            });
+        });
+
+
+        describe('-> Testando modelo e alunos inscritos', function() {
+            it('-> Verificando se _model está definido', function() {
+                $httpBackend.flush();
+                expect(vm._model).toBeDefined();
+            });
+
+            it('-> Verificando se _viewInscr está definido', function() {
+                $httpBackend.flush();
+                expect(vm._viewInscr).toBeDefined();
+            });
+        });
+
+
+        describe('-> Testando cpf', function() {
+            it('-> O cpf 0123456 não é válido pois está incompleto', function() {
+                $httpBackend.flush();
+                cpf = "0123456";
+
+            // Chamando função
+                vm.verificaCpf(cpf);
+
+                expect(vm.validaCpf).toBe(false);
+                expect(vm.editing).toBe(false);
+            });
+
+            it('-> O cpf 0123456 não é válido pois passou do tamanho de um cpf válido', function() {
+                $httpBackend.flush();
+                cpf = "01234567890123";
+
+            // Chamando função
+                vm.verificaCpf(cpf);
+
+                expect(vm.validaCpf).toBe(false);
+                expect(vm.editing).toBe(false);
+            });
+
+            it('-> O cpf 11111111111 não é válido', function() {
+                $httpBackend.flush();
+                cpf = "11111111111";
+
+            // Chamando função
+                vm.verificaCpf(cpf);
+
+                expect(vm._model.cpf.model.err).toEqual(vm.STR.NOCPF);
+                expect(vm.validaCpf).toBe(false);
+                expect(vm.editing).toBe(false);
+            });
+
+            it('-> O cpf 01234567889 não é válido', function() {
+                $httpBackend.flush();
+                cpf = "01234567889";
+
+            // Chamando função
+                vm.verificaCpf(cpf);
+
+                expect(vm._model.cpf.model.err).toEqual(vm.STR.NOCPF);
+                expect(vm.validaCpf).toBe(false);
+                expect(vm.editing).toBe(false);
+            });
+
+            it('-> O cpf 01234567891 não é válido', function() {
+                $httpBackend.flush();
+                cpf = "01234567891";
+
+            // Chamando função
+                vm.verificaCpf(cpf);
+
+                expect(vm._model.cpf.model.err).toEqual(vm.STR.NOCPF);
+                expect(vm.validaCpf).toBe(false);
+                expect(vm.editing).toBe(false);
+            });
+
+            it('-> O cpf 01234567890 é válido', function() {
+                $httpBackend.flush();
+                cpf = "01234567890";
+                dadosCpf = {"dados":{"cpf":"01234567890","msg":""},"dadosCurso":{"unidade":{"list":[{"id":1,"text":"Unidade Vitória","tipoCursos":[{"id":11,"text":"Mestrado em Educação","valores":{"inscricao":190,"integral":16380,"boleto":14400,"cheque":13500,"cartao":13680,"avista":13104},"areas":[{"id":11,"text":"Exatas","turma":[{"vagas":{"id":"1A","text":"1A","turma":"Turma A","preenchidas":12,"totais":20}}],"cursos":[{"id":111,"text":"Matemática","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"3","text":"3"},{"id":"6","text":"6"}],"melhorData":[{"id":"05","text":"05"},{"id":"10","text":"10"},{"id":"25","text":"25"}]},{"id":222,"text":"Economia","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"8","text":"8%"},{"id":"16","text":"16%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"5","text":"5"},{"id":"12","text":"12"}],"melhorData":[{"id":"08","text":"08"},{"id":"12","text":"12"},{"id":"25","text":"25"}]}]},{"id":22,"text":"Humanas","turma":[{"vagas":{"id":"2B","text":"2B","preenchidas":28,"totais":30}}],"cursos":[{"id":111,"text":"Direito","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"15","text":"15%"},{"id":"25","text":"25%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"3","text":"3"},{"id":"5","text":"5"},{"id":"10","text":"10"}],"melhorData":[{"id":"06","text":"06"},{"id":"12","text":"12"},{"id":"24","text":"24"}]},{"id":222,"text":"História","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"10","text":"10%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"4","text":"4"},{"id":"8","text":"8"}],"melhorData":[{"id":"05","text":"05"},{"id":"12","text":"12"},{"id":"28","text":"28"}]}]}]},{"id":22,"text":"Pós Graduação em Educação","valores":{"inscricao":190,"integral":1248,"boleto":930,"cheque":883.8,"cartao":837,"avista":800},"areas":[{"id":11,"text":"Exatas","turma":[{"vagas":{"id":"1A","text":"1A","preenchidas":12,"totais":20}}],"cursos":[{"id":111,"text":"Matemática","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"3","text":"3"},{"id":"6","text":"6"}],"melhorData":[{"id":"05","text":"05"},{"id":"10","text":"10"},{"id":"25","text":"25"}]},{"id":222,"text":"Economia","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"8","text":"8%"},{"id":"16","text":"16%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"5","text":"5"},{"id":"12","text":"12"}],"melhorData":[{"id":"08","text":"08"},{"id":"12","text":"12"},{"id":"25","text":"25"}]}]},{"id":22,"text":"Humanas","turma":[{"vagas":{"id":"2B","text":"2B","preenchidas":28,"totais":30}}],"cursos":[{"id":111,"text":"Direito","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"15","text":"15%"},{"id":"25","text":"25%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"3","text":"3"},{"id":"5","text":"5"},{"id":"10","text":"10"}],"melhorData":[{"id":"06","text":"06"},{"id":"12","text":"12"},{"id":"24","text":"24"}]},{"id":222,"text":"História","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"10","text":"10%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"4","text":"4"},{"id":"8","text":"8"}],"melhorData":[{"id":"05","text":"05"},{"id":"12","text":"12"},{"id":"28","text":"28"}]}]}]}]},{"id":2,"text":"Unidade Cariacica","tipoCursos":[{"id":11,"text":"Pós Graduação em Educação","valores":{"inscricao":190,"integral":1248,"boleto":930,"cheque":883.8,"cartao":837,"avista":800},"areas":[{"id":11,"text":"Biomedicina","turma":[{"vagas":{"id":"3C","text":"3C","turma":"Turma B","preenchidas":25,"totais":30}}],"cursos":[{"id":111,"text":"Medicina","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"10","text":"10%"},{"id":"20","text":"20%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"3","text":"3"},{"id":"6","text":"6"}],"melhorData":[{"id":"05","text":"05"},{"id":"10","text":"10"},{"id":"25","text":"25"}]},{"id":222,"text":"Biologia","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"15","text":"15%"},{"id":"30","text":"30%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"3","text":"3"},{"id":"6","text":"6"}],"melhorData":[{"id":"04","text":"04"},{"id":"12","text":"12"},{"id":"28","text":"28"}]}]},{"id":22,"text":"Tecnologias da Informação","turma":[{"vagas":{"id":"4D","text":"4D","preenchidas":18,"totais":30}}],"cursos":[{"id":111,"text":"Ciência da Computação","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"20","text":"20%"},{"id":"50","text":"50%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"4","text":"4"},{"id":"10","text":"10"}],"melhorData":[{"id":"06","text":"06"},{"id":"12","text":"12"},{"id":"24","text":"24"}]},{"id":222,"text":"Sistema de Informação","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"10","text":"10%"},{"id":"20","text":"20%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"3","text":"3"},{"id":"6","text":"6"}],"melhorData":[{"id":"05","text":"05"},{"id":"10","text":"10"},{"id":"25","text":"25"}]}]}]},{"id":22,"text":"Mestrado em Educação","valores":{"inscricao":190,"integral":16380,"boleto":14400,"cheque":13500,"cartao":13680,"avista":13104},"areas":[{"id":11,"text":"Biomedicina","turma":[{"vagas":{"id":"3C","text":"3C","preenchidas":25,"totais":30}}],"cursos":[{"id":111,"text":"Medicina","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"10","text":"10%"},{"id":"20","text":"20%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"3","text":"3"},{"id":"6","text":"6"}],"melhorData":[{"id":"05","text":"05"},{"id":"10","text":"10"},{"id":"25","text":"25"}]},{"id":222,"text":"Biologia","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"15","text":"15%"},{"id":"30","text":"30%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"3","text":"3"},{"id":"6","text":"6"}],"melhorData":[{"id":"04","text":"04"},{"id":"12","text":"12"},{"id":"28","text":"28"}]}]},{"id":22,"text":"Tecnologias da Informação","turma":[{"vagas":{"id":"4D","text":"4D","preenchidas":18,"totais":30}}],"cursos":[{"id":111,"text":"Ciência da Computação","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"20","text":"20%"},{"id":"50","text":"50%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"4","text":"4"},{"id":"10","text":"10"}],"melhorData":[{"id":"06","text":"06"},{"id":"12","text":"12"},{"id":"24","text":"24"}]},{"id":222,"text":"Sistema de Informação","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"10","text":"10%"},{"id":"20","text":"20%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"3","text":"3"},{"id":"6","text":"6"}],"melhorData":[{"id":"05","text":"05"},{"id":"10","text":"10"},{"id":"25","text":"25"}]}]}]}]},{"id":3,"text":"Unidade São Mateus","tipoCursos":[{"id":11,"text":"Mestrado em Educação","valores":{"inscricao":190,"integral":16380,"boleto":14400,"cheque":13500,"cartao":13680,"avista":13104},"areas":[{"id":11,"text":"Exatas","turma":[{"vagas":{"id":"5E","text":"5E","preenchidas":14,"totais":22}}],"cursos":[{"id":111,"text":"Matemática","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"20","text":"20%"},{"id":"50","text":"50%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"4","text":"4"},{"id":"10","text":"10"}],"melhorData":[{"id":"06","text":"06"},{"id":"12","text":"12"},{"id":"24","text":"24"}]},{"id":222,"text":"Ciências Contábeis","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"10","text":"10%"},{"id":"20","text":"20%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"3","text":"3"},{"id":"6","text":"6"}],"melhorData":[{"id":"05","text":"05"},{"id":"10","text":"10"},{"id":"25","text":"25"}]}]},{"id":22,"text":"Humanas","turma":[{"vagas":{"id":"6F","text":"6F","preenchidas":40,"totais":40}}],"cursos":[{"id":111,"text":"Direito","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"10","text":"10%"},{"id":"20","text":"20%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"3","text":"3"},{"id":"6","text":"6"}],"melhorData":[{"id":"05","text":"05"},{"id":"10","text":"10"},{"id":"25","text":"25"}]},{"id":222,"text":"Geografia","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"20","text":"20%"},{"id":"50","text":"50%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"4","text":"4"},{"id":"10","text":"10"}],"melhorData":[{"id":"06","text":"06"},{"id":"12","text":"12"},{"id":"24","text":"24"}]}]}]},{"id":22,"text":"Pós Graduação em Educação","valores":{"inscricao":190,"integral":1248,"boleto":930,"cheque":883.8,"cartao":837,"avista":800},"areas":[{"id":11,"text":"Exatas","turma":[{"vagas":{"id":"5E","text":"5E","turma":"Turma C","preenchidas":14,"totais":22}}],"cursos":[{"id":111,"text":"Matemática","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"20","text":"20%"},{"id":"50","text":"50%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"4","text":"4"},{"id":"10","text":"10"}],"melhorData":[{"id":"06","text":"06"},{"id":"12","text":"12"},{"id":"24","text":"24"}]},{"id":222,"text":"Ciências Contábeis","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"10","text":"10%"},{"id":"20","text":"20%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"3","text":"3"},{"id":"6","text":"6"}],"melhorData":[{"id":"05","text":"05"},{"id":"10","text":"10"},{"id":"25","text":"25"}]}]},{"id":22,"text":"Humanas","turma":[{"vagas":{"id":"6F","text":"6F","preenchidas":40,"totais":40}}],"cursos":[{"id":111,"text":"Direito","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"10","text":"10%"},{"id":"20","text":"20%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"3","text":"3"},{"id":"6","text":"6"}],"melhorData":[{"id":"05","text":"05"},{"id":"10","text":"10"},{"id":"25","text":"25"}]},{"id":222,"text":"Geografia","descontoInscr":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"10","text":"10%"},{"id":"15","text":"15%"},{"id":"20","text":"20%"},{"id":"30","text":"30%"},{"id":"40","text":"40%"},{"id":"50","text":"50%"}],"desconto":[{"id":"0","text":"Sem desconto"},{"id":"5","text":"5%"},{"id":"20","text":"20%"},{"id":"50","text":"50%"}],"qtdParcelas":[{"id":"1","text":"1"},{"id":"4","text":"4"},{"id":"10","text":"10"}],"melhorData":[{"id":"06","text":"06"},{"id":"12","text":"12"},{"id":"24","text":"24"}]}]}]}]}]}},"exAlunoConv":true,"desconto":0.1};
+
+            // Chamando função
+                vm.verificaCpf(cpf);
+                $httpBackend.when('GET', '/api/comercial/verifica-cpf/' + cpf).respond(200, dadosCpf);
+                $httpBackend.flush();
+
+                expect(vm._model.cpf.model.err).toEqual(dadosCpf.dados.msg);
+                expect(vm._model.unidade.list).toEqual(dadosCpf.dadosCurso.unidade.list);
+                expect(vm.validaCpf).toEqual(!dadosCpf.dados.msg);
+                expect(vm.editing).toBe(vm.validaCpf);
+                expect(vm._model.desconto.model.aux).toEqual(dadosCpf.desconto);
+            });
+        });
+
+
+        describe('-> Testando cep', function() {
+            it('-> 29175254 é válido', function() {
+            // Definindo variáveis
+                cep = "29175254";
+                dadosCep = {"bairro":"Jardim Atlântico","logradouro":"Rua Guaracy","cep":"29175254","uf":"ES","localidade":"Serra"};
+
+            // Chamando função
+                vm.getDadosCep(cep);
+                $httpBackend.when('GET', '/api/comercial/dados-cep/' + cep).respond(200, dadosCep);
+                $httpBackend.flush();
+
+                expect(vm.validaCep).toBe(false);
+                expect(vm._model.avRua.model.val).toEqual(dadosCep.logradouro);
+                expect(vm._model.bairro.model.val).toEqual(dadosCep.bairro);
+                expect(vm._model.cidade.model.val).toEqual(dadosCep.localidade);
+                expect(vm._model.endUf.model.val).toEqual("UF_" + dadosCep.uf);
+                expect(vm._model.cep.model.err).toEqual('');
+                expect(vm.validaCepAvRua).toEqual(vm._model.avRua.model.val.length <= 1);
+                expect(vm.validaCepBairro).toEqual(!vm._model.bairro.model.val);
+                expect(vm.validaCepCidade).toEqual(!vm._model.cidade.model.val);
+                expect(vm.validaCepEndUf).toEqual(!vm._model.endUf.model.val);
+            });
+
+            it('-> 29175000 não é válido', function() {
+            // Definindo variáveis
+                cep = "29175000";
+                dadosCep = {"erro":true};
+
+            // Chamando função
+                vm.getDadosCep(cep);
+                $httpBackend.when('GET', '/api/comercial/dados-cep/' + cep).respond(200, dadosCep);
+                $httpBackend.flush();
+
+                expect(vm.validaCep).toBe(dadosCep.erro);
+                expect(vm._model.avRua.model.val).toEqual('');
+                expect(vm._model.bairro.model.val).toEqual('');
+                expect(vm._model.cidade.model.val).toEqual('');
+                expect(vm._model.endUf.model.val).toEqual('');
+                expect(vm._model.cep.model.err).toEqual(vm.STR.NOCEPFOUND);
+                expect(vm.validaCepAvRua).toBe(dadosCep.erro);
+                expect(vm.validaCepBairro).toBe(dadosCep.erro);
+                expect(vm.validaCepCidade).toBe(dadosCep.erro);
+                expect(vm.validaCepEndUf).toBe(dadosCep.erro);
+            });
+        });
+
+
+        describe('-> Testando select sexo', function() {
+            it('-> Selecionando sexo masculino', function() {
+                $httpBackend.flush();
+                itemSexo = {"id": "m", "text": "Masculino"};
+
+            // Chamando função
+                vm.verificaSexo(itemSexo, itemSexo.id);
+
+                expect(vm.validaSexo).toBe(itemSexo.id === 'f');
+                expect(vm._model.certificadoRes.model.val).toEqual('');
+                expect(vm._model.registro.model.val).toEqual('');
+                expect(vm._model.categoria.model.val).toEqual('');
+                expect(vm._model.ufReservista.model.val).toEqual('');
+            });
+
+            it('-> Selecionando sexo feminino', function() {
+                $httpBackend.flush();
+                itemSexo = {"id": "f", "text": "Feminino"};
+
+                // Chamando função
+                vm.verificaSexo(itemSexo, itemSexo.id);
+
+                expect(vm.validaSexo).toBe(itemSexo.id === 'f');
+                expect(vm._model.certificadoRes.model.val).toEqual('');
+                expect(vm._model.registro.model.val).toEqual('');
+                expect(vm._model.categoria.model.val).toEqual('');
+                expect(vm._model.ufReservista.model.val).toEqual('');
+            });
+        });
+
+
+        describe('-> Testando select sexo', function() {
+            it('-> Selecionando sexo masculino', function() {
+                $httpBackend.flush();
+                itemSexo = {"id": "m", "text": "Masculino"};
+
+            // Chamando função
+                vm.verificaSexo(itemSexo, itemSexo.id);
+
+                expect(vm.validaSexo).toBe(itemSexo.id === 'f');
+                expect(vm._model.certificadoRes.model.val).toEqual('');
+                expect(vm._model.registro.model.val).toEqual('');
+                expect(vm._model.categoria.model.val).toEqual('');
+                expect(vm._model.ufReservista.model.val).toEqual('');
+            });
         });
     });
-
-    it('-> controller FormPreCadastro foi definido', function() {
-        //vm = _$controller_('FormPreCadastro', {"$scope": $scope, "breadCrumb": _breadCrumb_, "$timeout": _$timeout_, "$modal": _$modal_, "$route": _$route_, "$resource": _$resource_, "modelStrings": _modelStrings_, "lista_cheques": _lista_cheques_, "dataCheque": _dataCheque_, "tipoTelefone": _tipoTelefone});
-        vm = $controller('FormPreCadastro', {"$scope": $scope, "breadCrumb": breadCrumb});
-        expect(vm).toBeDefined();
-    });
-
-    /*it('-> Buscando vm-cadastros ativos', function() {
-        //$httpBackend.flush();
-        expect(vm._viewInscr.list).toEqual([
-                {
-                    "validacoes":[{}],
-                    "nome":{
-                        "model":{
-                            "val":"João das Couves"
-                        }
-                    },
-                    "endereco":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "tipoTelefone":{
-                        "model":{
-                            "val":"cel"
-                        }
-                    },
-                    "telefone":{
-                        "model":{
-                            "val":"27999999999"
-                        }
-                    },
-                    "email":{
-                        "model":{
-                            "val":"comercial@email.com"
-                        }
-                    },
-                    "cidade":{
-                        "model":{
-                            "val":"Serra"
-                        }
-                    },
-                    "cep":{
-                        "model":{
-                            "val":"29290000"
-                        }
-                    },
-                    "rg":{
-                        "model":{
-                            "val":"0123450"
-                        }
-                    },
-                    "dataExp":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "orgaoEmissor":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "cpf":{
-                        "model":{
-                            "val":"01234567890"
-                        }
-                    },
-                    "tituloEleitor":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "zona":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "secao":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "ufTitulo":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "certidaoNc":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "folha":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "livro":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "cartorio":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "certificadoRes":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "registro":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "ufReservista":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "categoria":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "sexo":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "dataNasc":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "raca":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "estadoCivil":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "pai":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "mae":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "avRua":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "endNum":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "apt":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "bairro":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "endUf":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "nacionalidade":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "naturalidade":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "natUf":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "unidade":{
-                        "model":{
-                            "val":1,
-                            "text":"Vitória"
-                        }
-                    },
-                    "tipoCurso":{
-                        "model":{
-                            "val":11
-                        }
-                    },
-                    "area":{
-                        "model":{
-                            "val":11
-                        }
-                    },
-                    "curso":{
-                        "model":{
-                            "val":222,
-                            "text":"Economia"
-                        }
-                    },
-                    "vagas":{
-                        "turma":"Turma A",
-                        "preenchidas": 12,
-                        "totais": 20
-                    },
-                    "escolaEm":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "anoEm":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "cursoGrad":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "anoGrad":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "instituicao":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "valorInscricao":{
-                        "model":{
-                            "val":190
-                        }
-                    },
-                    "formaPagamentoInscr":{
-                        "model":{
-                            "val":1
-                        }
-                    },
-                    "descontoInscr":{
-                        "model":{
-                            "val":0
-                        }
-                    },
-                    "valorIntegral":{
-                        "model":{
-                            "val":12762
-                        }
-                    },
-                    "desconto":{
-                        "model":{
-                            "val":22.09
-                        }
-                    },
-                    "formaPagamentoPag":{
-                        "model":{
-                            "val":1
-                        }
-                    },
-                    "qtdParcelas":{
-                        "model":{
-                            "val":5
-                        }
-                    },
-                    "valorParcela":{
-                        "model":{
-                            "val":2552.4
-                        }
-                    },
-                    "melhorData":{
-                        "model":{
-                            "val":12
-                        }
-                    },
-                    "observacoes":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "listaCheques":[
-
-                    ]
-                },
-                {
-                    "validacoes":[{}],
-                    "nome":{
-                        "model":{
-                            "val":"Mariana Ramos"
-                        }
-                    },
-                    "endereco":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "tipoTelefone":{
-                        "model":{
-                            "val":"cel"
-                        }
-                    },
-                    "telefone":{
-                        "model":{
-                            "val":"27999999999"
-                        }
-                    },
-                    "email":{
-                        "model":{
-                            "val":"comercial@email.com"
-                        }
-                    },
-                    "cidade":{
-                        "model":{
-                            "val":"Serra"
-                        }
-                    },
-                    "cep":{
-                        "model":{
-                            "val":"29156030"
-                        }
-                    },
-                    "rg":{
-                        "model":{
-                            "val":"0123450"
-                        }
-                    },
-                    "dataExp":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "orgaoEmissor":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "cpf":{
-                        "model":{
-                            "val":"65854570564"
-                        }
-                    },
-                    "tituloEleitor":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "zona":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "secao":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "ufTitulo":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "certidaoNc":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "folha":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "livro":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "cartorio":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "certificadoRes":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "registro":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "ufReservista":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "categoria":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "sexo":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "dataNasc":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "raca":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "estadoCivil":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "pai":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "mae":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "avRua":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "endNum":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "apt":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "bairro":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "endUf":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "nacionalidade":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "naturalidade":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "natUf":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "unidade":{
-                        "model":{
-                            "val":2,
-                            "text": "Cariacica"
-                        }
-                    },
-                    "tipoCurso":{
-                        "model":{
-                            "val":11
-                        }
-                    },
-                    "area":{
-                        "model":{
-                            "val":11
-                        }
-                    },
-                    "curso":{
-                        "model":{
-                            "val":111,
-                            "text" :"Medicina"
-                        }
-                    },
-                    "vagas":{
-                        "turma":"Turma B",
-                        "preenchidas": 25,
-                        "totais": 30
-                    },
-                    "escolaEm":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "anoEm":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "cursoGrad":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "anoGrad":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "instituicao":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "valorInscricao":{
-                        "model":{
-                            "val":190
-                        }
-                    },
-                    "formaPagamentoInscr":{
-                        "model":{
-                            "val":2
-                        }
-                    },
-                    "descontoInscr":{
-                        "model":{
-                            "val":0
-                        }
-                    },
-                    "valorIntegral":{
-                        "model":{
-                            "val":930
-                        }
-                    },
-                    "desconto":{
-                        "model":{
-                            "val":25.5
-                        }
-                    },
-                    "formaPagamentoPag":{
-                        "model":{
-                            "val":1
-                        }
-                    },
-                    "qtdParcelas":{
-                        "model":{
-                            "val":3
-                        }
-                    },
-                    "valorParcela":{
-                        "model":{
-                            "val":310
-                        }
-                    },
-                    "melhorData":{
-                        "model":{
-                            "val":10
-                        }
-                    },
-                    "observacoes":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "listaCheques":[
-                        {
-                            "banco":{
-                                "id":"012",
-                                "text":"012 - BANCO GUANABARA S.A."
-                            },
-                            "agencia":"123",
-                            "conta":"4657",
-                            "numero":"817648716487165",
-                            "data":1436929200000,
-                            "valor":123.03,
-                            "titular":"Mariana Ramos"
-                        }
-                    ]
-                },
-                {
-                    "validacoes":[{}],
-                    "nome":{
-                        "model":{
-                            "val":"Pedro Nascimento"
-                        }
-                    },
-                    "endereco":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "tipoTelefone":{
-                        "model":{
-                            "val":"cel"
-                        }
-                    },
-                    "telefone":{
-                        "model":{
-                            "val":"27999999999"
-                        }
-                    },
-                    "email":{
-                        "model":{
-                            "val":"comercial@email.com"
-                        }
-                    },
-                    "cidade":{
-                        "model":{
-                            "val":"Serra"
-                        }
-                    },
-                    "cep":{
-                        "model":{
-                            "val":"29175254"
-                        }
-                    },
-                    "rg":{
-                        "model":{
-                            "val":"0123450"
-                        }
-                    },
-                    "dataExp":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "orgaoEmissor":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "cpf":{
-                        "model":{
-                            "val":"19504036708"
-                        }
-                    },
-                    "tituloEleitor":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "zona":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "secao":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "ufTitulo":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "certidaoNc":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "folha":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "livro":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "cartorio":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "certificadoRes":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "registro":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "ufReservista":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "categoria":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "sexo":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "dataNasc":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "raca":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "estadoCivil":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "pai":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "mae":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "avRua":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "endNum":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "apt":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "bairro":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "endUf":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "nacionalidade":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "naturalidade":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "natUf":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "unidade":{
-                        "model":{
-                            "val":3,
-                            "text":"São Mateus"
-                        }
-                    },
-                    "tipoCurso":{
-                        "model":{
-                            "val":22
-                        }
-                    },
-                    "area":{
-                        "model":{
-                            "val":11
-                        }
-                    },
-                    "curso":{
-                        "model":{
-                            "val":111,
-                            "text":"Matemática"
-                        }
-                    },
-                    "vagas":{
-                        "turma":"Turma C",
-                        "preenchidas": 14,
-                        "totais": 22
-                    },
-                    "escolaEm":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "anoEm":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "cursoGrad":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "anoGrad":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "instituicao":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "valorInscricao":{
-                        "model":{
-                            "val":190
-                        }
-                    },
-                    "formaPagamentoInscr":{
-                        "model":{
-                            "val":2
-                        }
-                    },
-                    "descontoInscr":{
-                        "model":{
-                            "val":0
-                        }
-                    },
-                    "valorIntegral":{
-                        "model":{
-                            "val":930
-                        }
-                    },
-                    "desconto":{
-                        "model":{
-                            "val":25.5
-                        }
-                    },
-                    "formaPagamentoPag":{
-                        "model":{
-                            "val":1
-                        }
-                    },
-                    "qtdParcelas":{
-                        "model":{
-                            "val":10
-                        }
-                    },
-                    "valorParcela":{
-                        "model":{
-                            "val":93
-                        }
-                    },
-                    "melhorData":{
-                        "model":{
-                            "val":12
-                        }
-                    },
-                    "observacoes":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "listaCheques":[
-                        {
-                            "banco":{
-                                "id":"012",
-                                "text":"012 - BANCO GUANABARA S.A."
-                            },
-                            "agencia":"123",
-                            "conta":"4657",
-                            "numero":"817648716487165",
-                            "data":1436929200000,
-                            "valor":123.03,
-                            "titular":"Pedro Nascimento"
-                        },
-                        {
-                            "banco":{
-                                "id":"012",
-                                "text":"012 - BANCO GUANABARA S.A."
-                            },
-                            "agencia":"123",
-                            "conta":"4657",
-                            "numero":"817665465468464",
-                            "data":1436929200000,
-                            "valor":132.03,
-                            "titular":"Pedro Nascimento"
-                        }
-                    ]
-                },
-                {
-                    "validacoes":[],
-                    "nome":{
-                        "model":{
-                            "val":"Abner dos Santos"
-                        }
-                    },
-                    "endereco":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "tipoTelefone":{
-                        "model":{
-                            "val":"cel"
-                        }
-                    },
-                    "telefone":{
-                        "model":{
-                            "val":"27999999999"
-                        }
-                    },
-                    "email":{
-                        "model":{
-                            "val":"comercial@email.com"
-                        }
-                    },
-                    "cidade":{
-                        "model":{
-                            "val":"Serra"
-                        }
-                    },
-                    "cep":{
-                        "model":{
-                            "val":"29170010"
-                        }
-                    },
-                    "rg":{
-                        "model":{
-                            "val":"0123450"
-                        }
-                    },
-                    "dataExp":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "orgaoEmissor":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "cpf":{
-                        "model":{
-                            "val":"44158457700"
-                        }
-                    },
-                    "tituloEleitor":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "zona":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "secao":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "ufTitulo":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "certidaoNc":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "folha":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "livro":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "cartorio":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "certificadoRes":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "registro":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "ufReservista":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "categoria":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "sexo":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "dataNasc":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "raca":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "estadoCivil":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "pai":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "mae":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "avRua":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "endNum":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "apt":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "bairro":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "endUf":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "nacionalidade":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "naturalidade":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "natUf":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "unidade":{
-                        "model":{
-                            "val":1,
-                            "text":"Vitória"
-                        }
-                    },
-                    "tipoCurso":{
-                        "model":{
-                            "val":11
-                        }
-                    },
-                    "area":{
-                        "model":{
-                            "val":11
-                        }
-                    },
-                    "curso":{
-                        "model":{
-                            "val":222,
-                            "text":"Economia"
-                        }
-                    },
-                    "vagas":{
-                        "turma":"Turma A",
-                        "preenchidas":12,
-                        "totais":20
-                    },
-                    "escolaEm":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "anoEm":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "cursoGrad":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "anoGrad":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "instituicao":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "valorInscricao":{
-                        "model":{
-                            "val":190
-                        }
-                    },
-                    "formaPagamentoInscr":{
-                        "model":{
-                            "val":1
-                        }
-                    },
-                    "descontoInscr":{
-                        "model":{
-                            "val":0
-                        }
-                    },
-                    "valorIntegral":{
-                        "model":{
-                            "val":14400
-                        }
-                    },
-                    "desconto":{
-                        "model":{
-                            "val":12.09
-                        }
-                    },
-                    "formaPagamentoPag":{
-                        "model":{
-                            "val":1
-                        }
-                    },
-                    "qtdParcelas":{
-                        "model":{
-                            "val":3
-                        }
-                    },
-                    "valorParcela":{
-                        "model":{
-                            "val":4800
-                        }
-                    },
-                    "melhorData":{
-                        "model":{
-                            "val":12
-                        }
-                    },
-                    "observacoes":{
-                        "model":{
-                            "val":""
-                        }
-                    },
-                    "listaCheques":[
-
-                    ]
-                }
-            ]);
-    });*/
-
-});
+})();

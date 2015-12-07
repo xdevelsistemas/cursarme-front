@@ -49,7 +49,7 @@ function getDadosCep(req, res) {
 }
 
 function getDadosInscricao(req, res) {
-    res.json(templateInscr);
+    res.status(200).json(templateInscr);
 }
 
 function getInfoUsuario(req, res) {
@@ -99,7 +99,7 @@ function getViewInscr(req, res) {
         }
     }
 
-    res.json(viewInscr);
+    res.status(200).json(viewInscr);
 }
 
 function getViewContrato(req, res) {
