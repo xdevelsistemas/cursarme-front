@@ -41,25 +41,40 @@
                     console.log(err);
                 });
 
+            function _valida(){
+                var ret = true;
+                for(var i in vm._model){
+                    if(!vm._model[i].model.val){
+                        vm._model[i].model.err = 'Campo obrigatório!';
+                        ret = false;
+                    }else{
+                        vm._model[i].model.err = '';
+                    }
+                }
+                return ret;
+            }
 
             function limpar(){
                 var el;
                 for(el in vm._model){
                     if(angular.isDefined(vm._model[el].model)){
                         vm._model[el].model.val = "";
+                        vm._model[el].model.err = "";
                     }
                 }
             }
 
             function salvar(){
-                console.log(vm._model);
-                $resource('/api/secretaria/aulas-dadas/salvar').save({},vm._model).$promise
-                    .then(function(data){
-                        console.log(data);
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                    });
+                if(_valida()){
+                    $resource('/api/secretaria/aulas-dadas/salvar').save({},vm._model).$promise
+                        .then(function(data){
+                            limpar();
+                            $('#modalNovoProf').modal('hide');
+                        })
+                        .catch(function(err){
+                            console.log(err);
+                        });
+                }
             }
 
             function voltar(){

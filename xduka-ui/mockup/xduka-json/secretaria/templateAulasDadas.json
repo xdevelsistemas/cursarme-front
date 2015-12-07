@@ -39,14 +39,14 @@
       "label": "Curso",
       "type": "select",
       "name": "curso",
-      "list": [],
+      "list": [{"id": "0", "text": "Curso 1"}],
       "model": { "val": "", "err": "" }
     },
-    "addConteudoTitulo": {
+    "disciplina": {
       "label": "Disciplina",
       "type": "select",
       "name": "disciplina",
-      "list": [],
+      "list": [{"id": "0", "text": "Disciplina 1"}],
       "model": { "val": "", "err": "" }
     }
   }

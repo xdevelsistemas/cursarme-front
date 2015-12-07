@@ -10,18 +10,6 @@
         <br/>
         <div class="row">
             <div class="col-md-6 pull-right">
-                <!--<div class="col-md-3 pull-right">
-                    <button class="btn btn-danger btn-lg btn-icon icon-left btn-block" ng-click="">
-                        Cancelar
-                        <i class="entypo-cancel"></i>
-                    </button>
-                </div>-->
-                <div class="col-md-4 pull-right">
-                    <button class="btn btn-green btn-lg btn-icon icon-left btn-block" ng-click="aud.salvar()">
-                        Salvar
-                        <i class="entypo-check"></i>
-                    </button>
-                </div>
                 <div class="col-md-4 pull-right">
                     <button class="btn btn-primary btn-lg btn-icon icon-left btn-block" data-toggle="modal" data-target="#modalNovoProf">
                         Novo
@@ -44,41 +32,41 @@
     <div class="modal-lg modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="ac.fecharCriterios()"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click=""><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel2">Novo Professor</h4>
             </div>
             <div class="modal-body">
 
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-input data-params=""></xd-input>
+                        <xd-input data-params="aud._model.nome"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <xd-input data-params=""></xd-input>
+                        <xd-input data-params="aud._model.conta"></xd-input>
                     </div>
                     <div class="col-md-6">
-                        <xd-input data-params=""></xd-input>
+                        <xd-input data-params="aud._model.cpf"></xd-input>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <xd-input-date data-params=""></xd-input-date>
+                        <xd-input-date data-params="aud._model.data"></xd-input-date>
                     </div>
                     <div class="col-md-3">
-                        <xd-input data-params=""></xd-input>
+                        <xd-input data-params="aud._model.aula"></xd-input>
                     </div>
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params=""></xd-select>
+                        <xd-select data-params="aud._model.curso"></xd-select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <xd-select data-params=""></xd-select>
+                        <xd-select data-params="aud._model.disciplina"></xd-select>
                     </div>
                 </div>
             </div>
@@ -87,7 +75,7 @@
                     Limpar
                     <i class="entypo-cup"></i>
                 </button>
-                <button class="btn btn-blue btn-lg btn-icon icon-left" ng-click="">
+                <button class="btn btn-blue btn-lg btn-icon icon-left" ng-click="aud.salvar()">
                     Adicionar
                     <i class="entypo-plus"></i>
                 </button>

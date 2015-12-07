@@ -21,6 +21,10 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/dados-aulas-dadas')
         .get(controller.showDadosAulasDadas);
 
+    // Salvar aulas dadas
+    app.route('/api/secretaria/aulas-dadas/salvar')
+        .post(controller.saveAulasDadas);
+
     //
     app.route('/api/secretaria/dados-curso')
         .get(controller.showDadosCurso);
