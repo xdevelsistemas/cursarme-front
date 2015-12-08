@@ -10,11 +10,11 @@
                 templateMaterialComp = $resource('/api/secretaria/template-material-complementar').get().$promise;
 
             // VARIÁVEIS COMUNS
-            breadCrumb.title = 'Material Complementar';
+            vm.STR = modelStrings;
+            breadCrumb.title = vm.STR.MATCOMPLEM;
             vm._model = {}; //todo pegar arquivo anexado e enviar para o node
             vm.disableDisciplina = true;
             vm.disableTurma = true;
-            vm.STR = modelStrings;
             vm.anexo = new FileUploader();
 
             // VARIÁVEIS TIPO FUNÇÃO

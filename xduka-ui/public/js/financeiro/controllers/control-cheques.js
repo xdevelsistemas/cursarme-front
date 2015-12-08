@@ -2,15 +2,17 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('controlCheques', ['$scope', '$resource', '$timeout', '$route', 'breadCrumb',
-            function($scope, $resource, $timeout, $route, breadCrumb) {
+        .controller('controlCheques', ['$scope', '$resource', 'modelStrings', '$timeout', '$route', 'breadCrumb',
+            function($scope, $resource, modelStrings, $timeout, $route, breadCrumb) {
 
             /* jshint validthis: true */
             var vm = this
                 ,chequesPromise = $resource('/api/financeiro/getCheques').get().$promise;
 
+
+            vm.STR = modelStrings;
             vm.breadCrumb = breadCrumb;
-            vm.breadCrumb.title = 'Controle de Cheques';
+            vm.breadCrumb.title = vm.STR.CONTROLCHEQUES;
             vm.cancelEdit = cancelEdit;
             vm.cheques = [];
             vm.modalEdit = {};

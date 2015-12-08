@@ -1,0 +1,53 @@
+{
+  "template": {
+    "header": [{"name": "nome"}, {"name": "data"}, {"name": "valor"}, {"name": "conta bancária"}, {"name": "cpf"}, {"name": "disciplina"}, {"name": "aula"}],
+    "body": []
+  },
+  "modal": {
+    "nome": {
+      "label": "Nome",
+      "type": "text",
+      "name": "nome",
+      "model": { "val": "", "err": "" }
+    },
+    "conta": {
+      "label": "Conta Bancária",
+      "type": "text",
+      "name": "conta",
+      "model": { "val": "", "err": "" }
+    },
+    "cpf": {
+      "label": "CPF",
+      "type": "text",
+      "name": "cpf",
+      "model": { "val": "", "err": "" }
+    },
+    "data": {
+      "label": "Data",
+      "type": "text",
+      "name": "data",
+      "format": "dd/MM/yyyy",
+      "model": { "val": "", "err": "" }
+    },
+    "aula": {
+      "label": "Aulas",
+      "type": "text",
+      "name": "aula",
+      "model": { "val": "", "err": "" }
+    },
+    "curso": {
+      "label": "Curso",
+      "type": "select",
+      "name": "curso",
+      "list": [{"id": "0", "text": "Curso 1"}],
+      "model": { "val": "", "err": "" }
+    },
+    "disciplina": {
+      "label": "Disciplina",
+      "type": "select",
+      "name": "disciplina",
+      "list": [{"id": "0", "text": "Disciplina 1"}],
+      "model": { "val": "", "err": "" }
+    }
+  }
+}

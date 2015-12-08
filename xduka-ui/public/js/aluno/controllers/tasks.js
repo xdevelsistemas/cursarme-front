@@ -13,9 +13,9 @@
         var vm = this
             ,tarefasPromise = $resource('/api/aluno/tarefas/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
-        breadCrumb.title = 'Tarefas';
 
         vm.STR = modelStrings;
+        breadCrumb.title = vm.STR.TAREFAS;
 
         //vm.selectFilter = selectFilter;
         //vm.sendData = sendData;

@@ -6,6 +6,7 @@ angular.module('app',[
     'ui.bootstrap',
     'ui.utils',
     'ui.utils.masks',
+    'ui.grid',
     'ngImgCrop',
     'common.values',
     'common.filters',
@@ -98,11 +99,18 @@ angular.module('app',[
                 controllerAs: 'ec'
             });
 
-    // ========= ENVIAR CIRCULAR ========= //
+    // ========= MATERIAL COMPLEMENTAR ========= //
             $routeProvider.when('/secretaria/material-complementar', {
                 templateUrl: 'html/secretaria/material-complementar.html',
                 controller: 'materialComplementar',
                 controllerAs: 'mc'
+            });
+
+    // ========= AULAS DADAS ========= //
+            $routeProvider.when('/secretaria/aulas-dadas', {
+                templateUrl: 'html/secretaria/aulas-dadas.html',
+                controller: 'aulasDadas',
+                controllerAs: 'aud'
             });
     // ========= OTHERWISE ========= //
             $routeProvider.otherwise({

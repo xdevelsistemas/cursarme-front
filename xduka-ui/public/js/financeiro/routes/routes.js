@@ -6,6 +6,7 @@ angular.module('app',[
     'ui.bootstrap',
     'ui.utils',
     'ui.utils.masks',
+    'ui.grid',
     'ngImgCrop',
     'common.values',
     'common.filters',
@@ -17,8 +18,7 @@ angular.module('app',[
     'app.directives',
     'app.controllers',
     'gridshore.c3js.chart',
-    'ngProgress',
-    'textAngular'
+    'ngProgress'
 ])
     .config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;

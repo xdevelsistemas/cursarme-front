@@ -2,11 +2,13 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('pedagogico', ['$scope', '$resource', 'breadCrumb', '$timeout', function($scope, $resource, breadCrumb, $timeout){
+        .controller('pedagogico', ['$scope', '$resource', 'modelStrings', 'breadCrumb', '$timeout',
+            function($scope, $resource, modelStrings, breadCrumb, $timeout){
 
             var vm = this;
 
-            breadCrumb.title = 'Pedagógico';
+            vm.STR = modelStrings;
+            breadCrumb.title = vm.STR.PEDAGOGICO;
 
             vm.options = [
                 {
@@ -14,6 +16,12 @@
                     "icon": "entypo-clipboard",
                     "href": "#/secretaria/pauta",
                     "description": "Controle de pautas"
+                },
+                {
+                    "text": "Aulas Dadas",
+                    "icon": "glyphicon glyphicon-calendar",
+                    "href": "#/secretaria/aulas-dadas",
+                    "description": "Cronograma de aulas dadas"
                 },
                 {
                     "text": "Enviar Circular",

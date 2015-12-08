@@ -9,14 +9,15 @@
                 dadosCursoPautaPromise = $resource('/api/secretaria/dados-curso-pauta/:id').get({"id": defineUnidade.getIdUnidade()}).$promise,
                 templatePautaPromise = $resource('/api/secretaria/template-pauta').get().$promise;
 
-            breadCrumb.title = 'Pauta';
+
+            vm.STR = modelStrings;
+            breadCrumb.title = vm.STR.PAUTA;
 
             // VARIÁVEIS COMUNS
             //controles de dados
             vm._alunos = [];
             vm._model = {};
             vm._modelAlunos = {};
-            vm.STR = modelStrings;
             //visualização na tela
             vm.disableDisciplina = true;
             vm.disableTables = false;

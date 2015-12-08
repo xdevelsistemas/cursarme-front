@@ -13,9 +13,9 @@
         var vm = this
             , parcelasPromise = $resource('/api/aluno/parcelas/:id').get({id: defineCurso.getIdCurso()}).$promise;
 
-        breadCrumb.title = 'Mensalidades';
 
         vm.STR = modelStrings;
+        breadCrumb.title = vm.STR.MENSALIDADE;
 
         parcelasPromise
             .then(function(data) {

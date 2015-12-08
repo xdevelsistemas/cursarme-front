@@ -1,4 +1,24 @@
 <div>
+    <div class="col-md-12 center text-center center-block" style="display: block" id="{{'tableLoading_'+_params.id}}">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <div id="{{'grid'+_params.id}}" style="display: none">
+        <div ui-grid="params" ui-grid-pagination class="gridStyle"></div>
+    </div>
+    <div ng-if="">
+        <p>Página atual: {{ gridApi.pagination.getPage() }} of {{ gridApi.pagination.getTotalPages() }}</p>
+        <button type="button" class="btn btn-success" ng-click="gridApi.pagination.previousPage()">
+            Anterior
+        </button>
+        <button type="button" class="btn btn-success" ng-click="gridApi.pagination.nextPage()">
+            Próximo
+        </button>
+    </div>
+    <!--
     <div class="col-md-12 center text-center center-block" style="display: block" id="{{'tableLoading_'+params.id}}">
         <div class="spinner">
             <div class="bounce1"></div>
@@ -53,5 +73,5 @@
             </td>
         </tr>
         </tbody>
-    </table>
+    </table>-->
 </div>

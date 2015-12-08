@@ -4,6 +4,7 @@ var urlDataBase = '',
     alunos = require('../mockup/xduka-json/common/alunos.json'),
     dadosAddCurso = require('../mockup/xduka-json/common/dadosAddCurso.json'),
     dadosAddDisciplina = require('../mockup/xduka-json/common/dadosAddDisciplina.json'),
+    dadosAulasDadas = require('../mockup/xduka-json/secretaria/dadosAulasDadas.json'),
     dadosCurso = require('../mockup/xduka-json/common/dadosCursos.json'),
     dadosCursoPauta = require('../mockup/xduka-json/common/dadosCursoPauta.json'),
     dadosEnviarCircular = require('../mockup/xduka-json/common/dadosEnviarCircular.json'),
@@ -16,6 +17,7 @@ var urlDataBase = '',
     templateAddCurso = require('../mockup/xduka-json/secretaria/templateAddCurso.json'),
     templateAddDisciplina = require('../mockup/xduka-json/secretaria/templateAddDisciplina.json'),
     templateAluno = require('../mockup/xduka-json/secretaria/templateAluno.json'),
+    templateAulasDadas = require('../mockup/xduka-json/secretaria/templateAulasDadas.json'),
     templateConfig = require('../mockup/xduka-json/secretaria/templateConfig.json'),
     templateDadosAddCurso = require('../mockup/xduka-json/secretaria/templateDadosAddCurso.json'),
     templateEnviarCircular = require('../mockup/xduka-json/secretaria/templateEnviarCircular.json'),
@@ -34,6 +36,8 @@ module.exports = function() {
     controller.showConfig = showConfig;
     controller.showCursos = showCursos;
     controller.showDadosAddCurso = getDadosAddCurso;
+    controller.showDadosAulasDadas = getDadosAulasDadas;
+    controller.saveAulasDadas = saveAulasDadas;
     controller.showDadosCurso = getDadosCurso;
     controller.showDadosCursoPauta = getDadosCursoPauta;
     controller.showDadosEnviarCircular = getDadosEnviarCircular;
@@ -54,6 +58,7 @@ module.exports = function() {
     controller.showViewInscr = getViewInscr;
     controller.putDadosInscricao = postDadosInscricao;
     controller.putDadosTurmas = postDadosTurmas;
+    controller.putSaveAulasDadas = postSaveAulasDadas;
     controller.putSaveDisciplinas = postSaveDisciplinas;
     controller.putSaveConfig = postSaveConfig;
     controller.putSaveDadosCurso = postSaveDadosCurso;
@@ -250,6 +255,15 @@ function getDadosMaterialComp(req, res) {
 
 function getDadosAddCurso(req, res) {
     res.json(getUnidade(dadosAddCurso.unidades, req.params.id));
+}
+
+function getDadosAulasDadas(req, res) {
+    extend(templateAulasDadas.template, dadosAulasDadas.cronograma);
+    res.status(200).json(templateAulasDadas);
+}
+
+function saveAulasDadas(req, res) {
+    res.status(200).json({success: true});
 }
 
 function getUnidade(list, id) {
@@ -449,6 +463,15 @@ function postDadosTurmas(req, res) {
     console.log(result); // ???
 
     res.json(dataSent);
+}
+
+function postSaveAulasDadas(req, res) {
+    var dataSent = req.body;
+
+    // TOdo  -  Dando push nos dados para simular o cadastro das aulas dadas
+    templateAulasDadas.template.body.push(dataSent.dados);
+
+    res.status(201).json(templateAulasDadas);
 }
 
 function postSaveDisciplinas(req, res) {

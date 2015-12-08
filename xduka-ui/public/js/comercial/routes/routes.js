@@ -6,6 +6,7 @@ angular.module('app',[
     'ui.bootstrap',
     'ui.utils',
     'ui.utils.masks',
+    'ui.grid',
     'ngImgCrop',
     'common.values',
     'common.filters',
