@@ -21,6 +21,7 @@ module.exports = function(config) {
         'public/lib/angular-route/angular-route.js',
         'public/lib/angular-resource/angular-resource.js',
         'public/lib/angular-mocks/angular-mocks.js',
+        'public/lib/angular-ui-grid/ui-grid.js',
         'public/lib/jquery-maskedinput/dist/jquery.maskedinput.js',
         'public/lib/jquery-ui/jquery-ui.js',
         'public/lib/bootstrap/dist/js/bootstrap.js',
