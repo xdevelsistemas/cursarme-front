@@ -24,7 +24,8 @@
     "ngImgCrop": "0.3.2",
     "ngprogress": "~1.1.2",
     "select2": "3.5.2",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "angular-mocks": "~1.4.8"
   },
   "homepage": "https://github.com/xdevelsistemas/xDuka",
   "authors": [
