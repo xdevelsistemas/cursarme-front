@@ -2,10 +2,10 @@
   "template": {
     "columnDefs": [
       {"name": "nome"},
-      {"name": "data", "cellTemplate": "<div class=\"ui-grid-cell-contents ng-binding ng-scope\" ng-bind=\"row.entity.data | date: 'dd/MM/yyyy'\"></div>"},
-      {"name": "valor"},
+      {"name": "data", "cellTemplate": "<div class=\"ui-grid-cell-contents\" ng-bind=\"row.entity.data | date: 'dd/MM/yyyy'\"></div>"},
+      {"name": "valor", "cellTemplate": "<div class=\"ui-grid-cell-contents\">{{ 'R$ ' + row.entity.valor }}</div>"},
       {"name": "conta bancária", "field": "conta"},
-      {"name": "cpf"},
+      {"name": "CPF", "cellTemplate": "<div class=\"ui-grid-cell-contents\" ng-bind=\"row.entity.cpf | cpfFilter\"></div>"},
       {"name": "disciplina"},
       {"name": "aula"}
     ],
@@ -28,6 +28,7 @@
       "label": "CPF",
       "type": "text",
       "name": "cpf",
+      "mask": "?999.999.999-99",
       "model": { "val": "", "err": "" }
     },
     "data": {
