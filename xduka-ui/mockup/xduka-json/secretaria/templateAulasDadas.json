@@ -1,6 +1,14 @@
 {
   "template": {
-    "header": [{"name": "nome"}, {"name": "data"}, {"name": "valor"}, {"name": "conta bancária"}, {"name": "cpf"}, {"name": "disciplina"}, {"name": "aula"}],
+    "columnDefs": [
+      {"name": "nome"},
+      {"name": "data", "cellTemplate": "<div class=\"ui-grid-cell-contents ng-binding ng-scope\" ng-bind=\"row.entity.data | date: 'dd/MM/yyyy'\"></div>"},
+      {"name": "valor"},
+      {"name": "conta bancária", "field": "conta"},
+      {"name": "cpf"},
+      {"name": "disciplina"},
+      {"name": "aula"}
+    ],
     "body": []
   },
   "modal": {
