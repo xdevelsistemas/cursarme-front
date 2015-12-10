@@ -1,4 +1,16 @@
 {
+  "columnDefs": [
+    {"name": "", "field": "btn"},
+    {"name": "data", "cellTemplate": "<div class=\"ui-grid-cell-contents\" ng-bind=\"row.entity.data | date: 'dd/MM/yyyy'\"></div>"},
+    {"name": "bomPara", "cellTemplate": "<div class=\"ui-grid-cell-contents\" ng-bind=\"row.entity.bomPara | date: 'dd/MM/yyyy'\"></div>"},
+    {"name": "valor", "cellTemplate": "<div class=\"ui-grid-cell-contents\">{{row.entity.cheque.valor | currency:\"R$ \":2}}</div>"},
+    {"name": "parcela"},
+    {"name": "Nº Cheque", "field": "cheque.numero"},
+    {"name": "banco", "field": "cheque.banco.text"},
+    {"name": "agência", "field": "cheque.agencia"},
+    {"name": "status", "field": "status.text"},
+    {"name": "destino"}
+  ],
   "list": [
     {
       "data": 1444273200000,

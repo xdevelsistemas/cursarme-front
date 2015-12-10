@@ -19,23 +19,17 @@
             vm.saveEdit = saveEdit;
             vm.tableCheques = {
                 id: 'tableCheques',
-                class: 'table-hover display',
-                dataTable: {
-                    "columnDefs": [
-                        { "orderable": false, "targets": 0 }
-                    ],
-                    "order": [[ 1, "desc" ]]
-                },
-                list: [],
-                head: ["", "Data", "Bom para", "Valor", "Parcela", "Nº Cheque", "Banco", "Agência", "Status", "Destino"]
+                columnDefs: []
             };
 
             //Requisições
             chequesPromise
                 .then(function (data) {
-                    vm.cheques = data.list;
+                    //vm.cheques = data.list;
+                    vm.tableCheques.data = data.list;
+                    vm.tableCheques.columnDefs = data.columnDefs;
                     vm.modalEdit = data.modal;
-                    preencheTabelaCheques();
+                    //preencheTabelaCheques();
                 })
                 .catch(function(err){
                     console.log(err)
