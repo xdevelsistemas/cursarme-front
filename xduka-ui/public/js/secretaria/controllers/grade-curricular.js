@@ -28,9 +28,10 @@
                 columnDefs: []
             };
 
-            //Variáveis de funções
-            vm.limpar = limpaCampos;
-            vm.salvar = salvar;
+            // VARIÁVEIS FUNÇÕES
+            vm.limpaCampos = limpaCampos;
+            vm.salvarGrade = salvarGrade;
+            vm.salvarDisciplina = salvarDisciplinaGrade;
             vm.voltar = voltar;
 
             // Requisições
@@ -96,7 +97,7 @@
             }
 
             function salvarDisciplinaGrade(){
-                if(_validaCampos()){
+                if(_validaCampos(vm._modalDisciplina)){
                     $resource('/api/secretaria/dados-disciplinas-curricular').save({}, vm._modalDisciplina).$promise
                         .then(function(data){
                             if (data.success) {
