@@ -7,7 +7,7 @@
         </div>
     </div>
     <div id="{{'grid'+_params.id}}" style="display: none">
-        <div ui-grid="params" ui-grid-pagination class="gridStyle"></div>
+        <div ui-grid="params" ui-grid-pagination class="gridStyle" ui-grid-resize-columns ui-grid-move-columns></div>
     </div>
     <div ng-if="">
         <p>Página atual: {{ gridApi.pagination.getPage() }} of {{ gridApi.pagination.getTotalPages() }}</p>

@@ -1,14 +1,14 @@
 {
   "columnDefs": [
-    {"name": "", "field": "btn"},
-    {"name": "data", "cellTemplate": "<div class=\"ui-grid-cell-contents\" ng-bind=\"row.entity.data | date: 'dd/MM/yyyy'\"></div>"},
+    {"name": "", "field": "btn", "cellTemplate": "<div class=\"ui-grid-cell-contents text-center\"> <button class=\"btn btn-blue btn-sm\" ng-click=\"row.entity.btn.click(row.entity.btn.args)\"><i class=\"entypo entypo-pencil\"></i></button> </div>", "width": 60, "enableColumnResizing": false},
+    {"name": "data", "cellTemplate": "<div class=\"ui-grid-cell-contents\" ng-bind=\"row.entity.data | date: 'dd/MM/yyyy'\"></div>", "minWidth": 50, "maxWidth": 100},
     {"name": "bomPara", "cellTemplate": "<div class=\"ui-grid-cell-contents\" ng-bind=\"row.entity.bomPara | date: 'dd/MM/yyyy'\"></div>"},
-    {"name": "valor", "cellTemplate": "<div class=\"ui-grid-cell-contents\">{{row.entity.cheque.valor | currency:\"R$ \":2}}</div>"},
-    {"name": "parcela"},
-    {"name": "Nº Cheque", "field": "cheque.numero"},
-    {"name": "banco", "field": "cheque.banco.text"},
-    {"name": "agência", "field": "cheque.agencia"},
-    {"name": "status", "field": "status.text"},
+    {"name": "valor", "cellTemplate": "<div class=\"ui-grid-cell-contents\">{{row.entity.cheque.valor | currency:\"R$ \":2}}</div>", "minWidth": 80, "maxWidth": 150},
+    {"name": "parcela", "minWidth": 40, "maxWidth": 70},
+    {"name": "Nº Cheque", "field": "cheque.numero", "minWidth": 100, "maxWidth": 200},
+    {"name": "banco", "field": "cheque.banco.text", "minWidth": 150, "maxWidth": 300},
+    {"name": "agência", "field": "cheque.agencia", "minWidth": 50, "maxWidth": 80},
+    {"name": "status", "field": "status.text", "minWidth": 60, "maxWidth": 150},
     {"name": "destino"}
   ],
   "list": [

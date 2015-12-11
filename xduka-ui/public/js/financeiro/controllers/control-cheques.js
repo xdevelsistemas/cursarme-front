@@ -29,53 +29,31 @@
                     vm.tableCheques.data = data.list;
                     vm.tableCheques.columnDefs = data.columnDefs;
                     vm.modalEdit = data.modal;
-                    //preencheTabelaCheques();
+
+                    for (var i = 0; i < vm.tableCheques.data.length; i++){
+                        vm.tableCheques.data[i].btn = {
+                            click: editCheque,
+                            args: i
+                        };
+                    }
+
                 })
                 .catch(function(err){
                     console.log(err)
                 });
 
             //Funções
-            function preencheTabelaCheques() {
-                vm.tableCheques.list = [];
-
-                for (var i = 0; i < vm.cheques.length; i++){
-                    vm.tableCheques.list.push(
-                        {
-                            "0botao": {
-                                btn: true,
-                                list: [{
-                                    text: "",
-                                    click: editCheque,
-                                    args: i,
-                                    class: "btn btn-blue btn-sm",
-                                    entypo: "entypo-pencil"
-                                }]
-                            },
-                            "1data": {date: true, int: vm.cheques[i].data},
-                            "2bompara": {date: true, int: vm.cheques[i].bomPara},
-                            "3valor": Number(vm.cheques[i].cheque.valor).toFixed(2),
-                            "4parcela": vm.cheques[i].parcela.toString(),
-                            "5num": vm.cheques[i].cheque.numero,
-                            "6banco": vm.cheques[i].cheque.banco.text,
-                            "7agencia": vm.cheques[i].cheque.agencia.toString(),
-                            "8status": vm.cheques[i].status.text,
-                            "9destino": vm.cheques[i].destino
-                        }
-                    )
-                }
-            }
 
             function editCheque(pos) {
-                vm.modalEdit.data.model.val = new Date(vm.cheques[pos].data);
-                vm.modalEdit.valor.model.val = vm.cheques[pos].cheque.valor.toString();
-                vm.modalEdit.bomPara.model.val = new Date(vm.cheques[pos].bomPara);
-                vm.modalEdit.parcela.model.val = vm.cheques[pos].parcela;
-                vm.modalEdit.num.model.val = vm.cheques[pos].num;
-                vm.modalEdit.banco.model.val = vm.cheques[pos].cheque.banco.id;
-                vm.modalEdit.agencia.model.val = vm.cheques[pos].cheque.agencia.toString();
-                vm.modalEdit.destino.model.val = vm.cheques[pos].destino;
-                vm.modalEdit.status.model.val = vm.cheques[pos].status.id;
+                vm.modalEdit.data.model.val = new Date(vm.tableCheques.data[pos].cheque.data);
+                vm.modalEdit.valor.model.val = vm.tableCheques.data[pos].cheque.valor;
+                vm.modalEdit.bomPara.model.val = new Date(vm.tableCheques.data[pos].bomPara);
+                vm.modalEdit.parcela.model.val = vm.tableCheques.data[pos].parcela;
+                vm.modalEdit.num.model.val = vm.tableCheques.data[pos].cheque.numero;
+                vm.modalEdit.banco.model.val = vm.tableCheques.data[pos].cheque.banco.id;
+                vm.modalEdit.agencia.model.val = vm.tableCheques.data[pos].cheque.agencia;
+                vm.modalEdit.destino.model.val = vm.tableCheques.data[pos].destino;
+                vm.modalEdit.status.model.val = vm.tableCheques.data[pos].status.id;
                 vm.modalEdit.pos = pos;
                 $('#editChequeModal').modal({
                     backdrop: 'static',
@@ -84,22 +62,22 @@
             }
 
             function saveEdit(pos) {
-                vm.cheques[pos].data = new Date(vm.modalEdit.data.model.val).getTime();
-                vm.cheques[pos].cheque.valor = vm.modalEdit.valor.model.val;
-                vm.cheques[pos].bomPara = new Date(vm.modalEdit.bomPara.model.val).getTime();
-                vm.cheques[pos].parcela = vm.modalEdit.parcela.model.val;
-                vm.cheques[pos].num = vm.modalEdit.num.model.val;
-                vm.cheques[pos].cheque.banco.id = vm.modalEdit.banco.model.val;
-                vm.cheques[pos].cheque.agencia = vm.modalEdit.agencia.model.val;
-                vm.cheques[pos].destino = vm.modalEdit.destino.model.val;
-                //TODO MELHORAR O SALVAMENTO DO STATUS ABAIXO
-                vm.cheques[pos].status = vm.modalEdit.status.list[vm.modalEdit.status.model.val];
-                vm.cheques[pos].repassadoCpf = vm.modalEdit.repassadoCpf.model.val;
-                vm.cheques[pos].repassadoNome = vm.modalEdit.repassadoNome.model.val;
+                var cheque = $.extend(true, {}, vm.tableCheques.data[pos]);
+                cheque.cheque.data = new Date(vm.modalEdit.data.model.val).getTime();
+                cheque.cheque.valor = vm.modalEdit.valor.model.val;
+                cheque.bomPara = new Date(vm.modalEdit.bomPara.model.val).getTime();
+                cheque.parcela = vm.modalEdit.parcela.model.val;
+                cheque.cheque.numero = vm.modalEdit.num.model.val;
+                cheque.cheque.banco.id = vm.modalEdit.banco.model.val;
+                cheque.cheque.agencia = vm.modalEdit.agencia.model.val;
+                cheque.destino = vm.modalEdit.destino.model.val;
+                cheque.status = vm.modalEdit.status.list.filter(function(el){return el.id === vm.modalEdit.status.model.val})[0];
+                cheque.repassadoCpf = vm.modalEdit.repassadoCpf.model.val;
+                cheque.repassadoNome = vm.modalEdit.repassadoNome.model.val;
 
                 // possível sintaxe para causar erro 400
                 //var chequeEditPromise = $resource('/api/financeiro/chequeEdit').save({}, pos).$promise;
-                var chequeEditPromise = $resource('/api/financeiro/chequeEdit').save({}, {"pos": pos, "cheque": vm.cheques[pos]}).$promise;
+                var chequeEditPromise = $resource('/api/financeiro/chequeEdit').save({}, {"pos": pos, "cheque": cheque}).$promise;
 
                 chequeEditPromise
                     .then(function(data) {
@@ -107,7 +85,6 @@
                         console.log(data);
 
                         cancelEdit();
-                        atualizaTable();
                     })
                     .catch(function(error) {
                         // TODO TRATAR POSSÍVEL ERROR NA EDIÇÃO DO CHEQUE
@@ -117,15 +94,6 @@
                         console.log("function saveEdit");
                         console.log(error);
                     });
-            }
-
-            function atualizaTable() {
-                /* TODO ATUALIZAR TABELA AO SALVAR */
-                // To refresh the page
-                $timeout(function () {
-                    // 0 ms delay to reload the page.
-                    $route.reload();
-                }, 0);
             }
 
             function cancelEdit() {
