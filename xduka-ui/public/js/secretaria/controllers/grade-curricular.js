@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('app.controllers')
-        .controller('aulasDadas', ['$scope', '$resource', '$timeout', '$route', 'breadCrumb', 'modelStrings', 'defineUnidade', 'modelMenu', '$location', 'alunoService', 'ngProgressFactory', 'dataUser',
+        .controller('gradeCurricular', ['$scope', '$resource', '$timeout', '$route', 'breadCrumb', 'modelStrings', 'defineUnidade', 'modelMenu', '$location', 'alunoService', 'ngProgressFactory', 'dataUser',
         function($scope, $resource, $timeout, $route, breadCrumb, modelStrings, defineUnidade, modelMenu, $location, alunoService, ngProgressFactory, dataUser) {
 
             /* jshint validthis: true */
@@ -20,7 +20,9 @@
             vm._model = {};
             vm._modalGrade = {};
             vm._modalDisciplina = {};
+            vm.STR = modelStrings;
 
+            // ui-grid control
             vm.tableCronograma = {
                 id: 'tableCronograma',
                 columnDefs: []
@@ -56,7 +58,7 @@
                 var ret = true;
                 for(var i in list){
                     if(!list[i].model.val){
-                        list[i].model.err = 'Campo obrigatório!';
+                        list[i].model.err = vm.STR.FIELD;
                         ret = false;
                     }else{
                         list[i].model.err = '';
