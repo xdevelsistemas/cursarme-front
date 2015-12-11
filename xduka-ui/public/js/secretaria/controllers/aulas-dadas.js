@@ -30,11 +30,13 @@
 
             dadosAulasPromise
                 .then(function(data){
-                    vm.tableCronograma.data = data.template.body.map(function(el){
+                    vm.tableCronograma.data = data.template.body;
+                    vm.tableCronograma.columnDefs = data.template.columnDefs;
+                        /*.map(function(el){
                         var data = new Date(el.data);
-                        el.data = data.toLocaleDateString();
+                        //el.data = data.toLocaleDateString();
                         return el;
-                    });
+                    });*/
                     vm._model = data.modal;
                 })
                 .catch(function(err){
@@ -66,9 +68,10 @@
 
             function salvar(){
                 if(_valida()){
-                    $resource('/api/secretaria/aulas-dadas/salvar').save({},vm._model).$promise
+                    $resource('/api/secretaria/save-aulas-dadas').save({},vm._model).$promise
                         .then(function(data){
                             limpar();
+                            vm.tableCronograma.data = data.dados;
                             $('#modalNovoProf').modal('hide');
                         })
                         .catch(function(err){

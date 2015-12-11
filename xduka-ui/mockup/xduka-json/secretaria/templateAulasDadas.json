@@ -1,6 +1,14 @@
 {
   "template": {
-    "header": [{"name": "nome"}, {"name": "data"}, {"name": "valor"}, {"name": "conta bancária"}, {"name": "cpf"}, {"name": "disciplina"}, {"name": "aula"}],
+    "columnDefs": [
+      {"name": "nome"},
+      {"name": "data", "cellTemplate": "<div class=\"ui-grid-cell-contents\" ng-bind=\"row.entity.data | date: 'dd/MM/yyyy'\"></div>"},
+      {"name": "valor", "cellTemplate": "<div class=\"ui-grid-cell-contents\">{{ 'R$ ' + row.entity.valor }}</div>"},
+      {"name": "conta bancária", "field": "conta"},
+      {"name": "CPF", "cellTemplate": "<div class=\"ui-grid-cell-contents\" ng-bind=\"row.entity.cpf | cpfFilter\"></div>"},
+      {"name": "disciplina"},
+      {"name": "aula"}
+    ],
     "body": []
   },
   "modal": {
@@ -20,6 +28,7 @@
       "label": "CPF",
       "type": "text",
       "name": "cpf",
+      "mask": "?999.999.999-99",
       "model": { "val": "", "err": "" }
     },
     "data": {

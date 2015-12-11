@@ -38,12 +38,9 @@ module.exports = function(config) {
         'public/js/comercial/routes/routes.js',
         'public/js/comercial/**/*.js',
         'public/js/common/**/*.js',
-        'tests/spec/comercial/controllers/formPreCadastroSpec.js'
+        'tests/spec/comercial/services/*Spec.js',
+        'tests/spec/comercial/controllers/*Spec.js'
     ],
-      //'tests/spec/comercial/**/*Spec.js'
-
-      /*'public/html/comercial/!**!/!*.html',
-      'public/html/common/!**!/!*.html',*/
 
     // list of files to exclude
     exclude: [

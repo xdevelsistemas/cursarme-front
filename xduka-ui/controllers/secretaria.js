@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var urlDataBase = '',
     extend = require('node.extend'),
     request = require('request'),
@@ -37,7 +38,6 @@ module.exports = function() {
     controller.showCursos = showCursos;
     controller.showDadosAddCurso = getDadosAddCurso;
     controller.showDadosAulasDadas = getDadosAulasDadas;
-    controller.saveAulasDadas = saveAulasDadas;
     controller.showDadosCurso = getDadosCurso;
     controller.showDadosCursoPauta = getDadosCursoPauta;
     controller.showDadosEnviarCircular = getDadosEnviarCircular;
@@ -262,10 +262,6 @@ function getDadosAulasDadas(req, res) {
     res.status(200).json(templateAulasDadas);
 }
 
-function saveAulasDadas(req, res) {
-    res.status(200).json({success: true});
-}
-
 function getUnidade(list, id) {
     return list.filter(function(elem) {
         return elem.id == id
@@ -468,10 +464,20 @@ function postDadosTurmas(req, res) {
 function postSaveAulasDadas(req, res) {
     var dataSent = req.body;
 
-    // TOdo  -  Dando push nos dados para simular o cadastro das aulas dadas
-    templateAulasDadas.template.body.push(dataSent.dados);
+    var dados = {
+        aula: dataSent.aula.model.val,
+        conta: dataSent.conta.model.val,
+        cpf: dataSent.cpf.model.val,
+        curso: _.find(dataSent.curso.list, _.matchesProperty('id', dataSent.curso.model.val)).text,
+        data: new Date(dataSent.data.model.val).getTime(),
+        disciplina: _.find(dataSent.disciplina.list, _.matchesProperty('id', dataSent.disciplina.model.val)).text,
+        nome: dataSent.nome.model.val
+    };
 
-    res.status(201).json(templateAulasDadas);
+    // TOdo  -  Dando push nos dados para simular o cadastro das aulas dadas
+    templateAulasDadas.template.body.push(dados);
+
+    res.status(201).json({success: true, dados: templateAulasDadas.template.body});
 }
 
 function postSaveDisciplinas(req, res) {
