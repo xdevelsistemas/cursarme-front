@@ -31,7 +31,7 @@
       "name": "grade",
       "placeholder": "Selecione uma opção",
       "required": false,
-      "list": [],
+      "list": [{"id": "0", "text": "Grade - 2014/2"}, {"id": "1", "text": "Grade - 2015/1"}],
       "model": {"val": "", "err": ""}
     }
   },
@@ -76,7 +76,7 @@
     }
   },
   "modalDisciplina": {
-    "dicpliplina": {
+    "disciplina": {
       "label": "Disciplina",
       "type": "text",
       "name": "disciplina",
