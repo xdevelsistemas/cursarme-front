@@ -478,20 +478,26 @@ function postDadosTurmas(req, res) {
 function postSaveAulasDadas(req, res) {
     var dataSent = req.body;
 
-    var dados = {
-        aula: dataSent.aula.model.val,
-        conta: dataSent.conta.model.val,
-        cpf: dataSent.cpf.model.val,
-        curso: _.find(dataSent.curso.list, _.matchesProperty('id', dataSent.curso.model.val)).text,
-        data: new Date(dataSent.data.model.val).getTime(),
-        disciplina: _.find(dataSent.disciplina.list, _.matchesProperty('id', dataSent.disciplina.model.val)).text,
-        nome: dataSent.nome.model.val
-    };
+    if (!!dataSent.aula.model.val && !!dataSent.conta.model.val && !!dataSent.cpf.model.val &&
+    !!dataSent.curso.model.val && !!dataSent.data.model.val && !!dataSent.disciplina.model.val &&
+    !!dataSent.nome.model.val) {
+        var dados = {
+            aula: dataSent.aula.model.val,
+            conta: dataSent.conta.model.val,
+            cpf: dataSent.cpf.model.val,
+            curso: _.find(dataSent.curso.list, _.matchesProperty('id', dataSent.curso.model.val)).text,
+            data: new Date(dataSent.data.model.val).getTime(),
+            disciplina: _.find(dataSent.disciplina.list, _.matchesProperty('id', dataSent.disciplina.model.val)).text,
+            nome: dataSent.nome.model.val
+        };
 
-    // TOdo  -  Dando push nos dados para simular o cadastro das aulas dadas
-    templateAulasDadas.template.body.push(dados);
+        // TOdo  -  Dando push nos dados para simular o cadastro das aulas dadas
+        templateAulasDadas.template.body.push(dados);
 
-    res.status(201).json({success: true, dados: templateAulasDadas.template.body});
+        res.status(201).json({success: true, dados: templateAulasDadas.template.body});
+    } else {
+        return res.status(400).send();
+    }
 }
 
 function postSaveConfig(req, res) {
