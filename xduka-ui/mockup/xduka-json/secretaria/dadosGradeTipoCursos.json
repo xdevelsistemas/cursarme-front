@@ -1,0 +1,14 @@
+{
+  "tipoCurso": {
+    "list": [
+      {
+        "id": "pos1",
+        "text": "Pós Graduação"
+      },
+      {
+        "id": "mes1",
+        "text": "Mestrado"
+      }
+    ]
+  }
+}

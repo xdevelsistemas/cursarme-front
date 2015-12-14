@@ -10,24 +10,24 @@
 <div>
     <div class="row">
         <div class="col-md-5">
-            <xd-select data-params="gc._model.tipoCurso"></xd-select>
+            <xd-select data-params="gc._model.tipoCurso" data-change="gc.changeTipoCurso"></xd-select>
         </div>
         <div class="col-md-7">
-            <xd-select data-params="gc._model.area"></xd-select>
+            <xd-select data-params="gc._model.area" data-disable="gc.disableArea" data-change="gc.changeArea"></xd-select>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <xd-select data-params="gc._model.curso"></xd-select>
+            <xd-select data-params="gc._model.curso" data-disable="gc.disableCurso" data-change="gc.changeCurso"></xd-select>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <xd-select data-params="gc._model.grade" data-change="gc.addGrade"></xd-select>
+            <xd-select data-params="gc._model.grade" data-disable="gc.disableGrade" data-change="gc.changeGrade"></xd-select>
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row" data-ng-show="gc.showGrid">
     <div class="col-md-12">
         <div class="col-md-12">
             <div class="col-md-12">
@@ -41,7 +41,7 @@
         <div class="col-md-6 pull-right">
             <div class="col-md-4 pull-right">
                 <button class="btn btn-blue btn-icon icon-left btn-lg btn-block" ng-click="gc.addDisc()"
-                        data-ng-disabled="">
+                        data-ng-disabled="" data-ng-show="gc.showGrid">
                     Adicionar
                     <i class="icon entypo-plus icon-right"></i></button>
             </div>

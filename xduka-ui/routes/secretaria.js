@@ -33,8 +33,20 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/dados-gera-turma')
         .get(controller.showDadosGeraTurma);
 
+    // template-area-grade
+    app.route('/api/secretaria/template-area-grade-curricular/:id')
+        .get(controller.showTemplateAreaGradeCurricular);
+
+    // template-curso-grade
+    app.route('/api/secretaria/template-curso-grade-curricular/:id')
+        .get(controller.showTemplateCursoGradeCurricular);
+
+    // template-grade
+    app.route('/api/secretaria/template-grade-grade-curricular/:id')
+        .get(controller.showTemplateGradeGradeCurricular);
+
     // dados-grade
-    app.route('/api/secretaria/dados-grade-curricular')
+    app.route('/api/secretaria/dados-grade-curricular/:id')
         .get(controller.showDadosGradeCurricular);
 
     //
