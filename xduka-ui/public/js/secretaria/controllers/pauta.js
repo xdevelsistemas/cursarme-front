@@ -61,22 +61,8 @@
                 list: []
             };
             vm.tableNotas = {
-                /* ID importante se for usar dataTable*/
-                id: 'tableNotas',
-                /* CLASSES CSS QUE A TABELA IRÁ UTILIZAR*/
-                class: 'table-hover display',
-                /* Se irá sar dataTable*/
-                dataTable: {
-                    /*  elementos desabilitados ou habilitados dataTable*/
-                    "paging":   true,
-                    "ordering": true,
-                    "info":     true,
-                    "filter":   true,
-                    "order": [[ 0, "asc" ]]
-                },
-                /*  Cabeçalho do grid   */
-                head: [],
-                list: []
+                id: 'tableNotas'
+
             };
 
             // VARIÁVEIS TIPO FUNÇÃO

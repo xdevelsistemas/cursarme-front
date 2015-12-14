@@ -1,0 +1,123 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <h2><i class="entypo-plus-circled"></i> <span>Grade Curricular</span><br/></h2>
+        </div>
+    </div>
+</div>
+<hr/>
+<br/>
+<div>
+    <div class="row">
+        <div class="col-md-5">
+            <xd-select data-params="gc._model.tipoCurso"></xd-select>
+        </div>
+        <div class="col-md-7">
+            <xd-select data-params="gc._model.area"></xd-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <xd-select data-params="gc._model.curso"></xd-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <xd-select data-params="gc._model.grade" data-change="gc.addGrade"></xd-select>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <xd-grid data-params="gc.tableCronograma"></xd-grid>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="padding-top: 3%">
+    <div class="col-md-12">
+        <div class="col-md-6 pull-right">
+            <div class="col-md-4 pull-right">
+                <button class="btn btn-blue btn-icon icon-left btn-lg btn-block" ng-click="gc.addDisc()"
+                        data-ng-disabled="">
+                    Adicionar
+                    <i class="icon entypo-plus icon-right"></i></button>
+            </div>
+            <div class="col-md-4 pull-right">
+                <button class="btn btn-primary btn-lg btn-icon icon-left btn-block" ng-click="" data-ng-disabled="">
+                    Voltar
+                    <i class="entypo-left"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Grade -->
+<div class="modal fade" id="modalAddGrade" tabindex="-1" role="dialog" aria-labelledby="Cadastrar Nova Grade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="gc.cancelAddGrade()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Cadastrar Nova Grade</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <xd-select data-params="gc._modalGrade.tipoCurso"></xd-select>
+                    </div>
+                    <div class="col-md-6">
+                        <xd-select data-params="gc._modalGrade.area"></xd-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-select data-params="gc._modalGrade.curso"></xd-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input data-params="gc._modalGrade.nome"></xd-input>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="gc.cancelAddGrade()">Cancelar</button>
+                <button type="button" class="btn btn-green" ng-click="gc.salvarGrade()">Adicionar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Disciplina -->
+<div class="modal fade" id="modalAddDisc" tabindex="-1" role="dialog" aria-labelledby="Adicionar disciplina à grade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click=""><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalAddDiscLabel">Adicionar disciplina à grade "{{gc.gradeAtual.text}}"</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-select data-params="gc._modalDisciplina.disciplina"></xd-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-select data-params="gc._modalDisciplina.tipoDisciplina"></xd-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <xd-input data-params="gc._modalDisciplina.ch"></xd-input>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="">Cancelar</button>
+                <button type="button" class="btn btn-green" ng-click="gc.salvarDisciplina()">Adicionar</button>
+            </div>
+        </div>
+    </div>
+</div>
