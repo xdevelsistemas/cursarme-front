@@ -4,17 +4,17 @@
       {
         "nome": "Gianomo Guilizzoni Founder",
         "tipo": "Eixo Comum",
-        "valor": 60
+        "ch": 60
       },
       {
         "nome": "Marco Botton",
         "tipo": "Eixo Específico",
-        "valor": 80
+        "ch": 80
       },
       {
         "nome": "Mariah Maclachian",
         "tipo": "Eixo Específico",
-        "valor": 40
+        "ch": 40
       }
     ]
   }
