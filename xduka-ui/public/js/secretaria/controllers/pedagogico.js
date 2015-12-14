@@ -49,6 +49,12 @@
                     "description": "Novas disciplinas"
                 },
                 {
+                    "text": "Grade Curricular",
+                    "icon": "entypo-list",
+                    "href": "#/secretaria/grade-curricular",
+                    "description": "Adicionar Grade"
+                },
+                {
                     "text": "Adicionar Turma",
                     "icon": "entypo-plus",
                     "href": "#/secretaria/adicionar-turma",

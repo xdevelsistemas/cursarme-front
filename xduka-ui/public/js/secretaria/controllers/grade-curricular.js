@@ -29,6 +29,9 @@
             };
 
             // VARIÁVEIS FUNÇÕES
+            vm.addDisc = addDisc;
+            vm.addGrade = addGrade;
+            vm.cancelAddGrade = cancelAddGrade;
             vm.limpaCampos = limpaCampos;
             vm.salvarGrade = salvarGrade;
             vm.salvarDisciplina = salvarDisciplinaGrade;
@@ -41,6 +44,13 @@
                     vm._model = data.template;
                     vm._modalGrade = data.modalGrade;
                     vm._modalDisciplina = data.modalDisciplina;
+
+                    /* Adicionar grade */
+                    vm._model.grade.list.unshift({
+                        id: "add",
+                        text: "Adicionar Grade"
+                    });
+
                 })
                 .catch(function(err){
                     console.log(err);
@@ -66,6 +76,39 @@
                     }
                 }
                 return ret;
+            }
+
+            function addDisc(){
+                if(!_validaCampos(vm._model)){
+                    return false;
+                }
+
+                //obtendo a grade atual do select
+                vm.gradeAtual = vm._model.grade.list.filter(function(el){return el.id === vm._model.grade.model.val})[0];
+
+                $("#modalAddDisc").modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+                return true;
+            }
+
+            function addGrade(line){
+                if(line.id === "add"){
+                    $("#modalAddGrade").modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    return true;
+                }
+                return false;
+            }
+
+            function cancelAddGrade(){
+                limpaCampos(vm._modalGrade);
+                vm._model.grade.model.val = "";
+                $("#modalAddGrade").modal("hide");
+                return true;
             }
 
             function limpaCampos(list){
@@ -103,7 +146,7 @@
                             if (data.success) {
                                 limpaCampos(vm._modalDisciplina);
                                 vm.tableCronograma.data = data.dados;
-                                $('#modalDisciplina').modal('hide');
+                                $('#modalAddDisc').modal('hide');
                             } else {
                                 _validaModalDisciplina();
                             }
@@ -120,5 +163,6 @@
             }
 
             $scope.progressbar.complete();
+
         }]);
 })();
