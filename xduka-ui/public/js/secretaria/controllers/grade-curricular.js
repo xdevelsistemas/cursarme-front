@@ -26,6 +26,9 @@
             vm.disableCurso = true;
             vm.disableGrade = true;
             vm.showGrid = true;
+            vm.disableAreaModal = true;
+            vm.disableCursoModal = true;
+            vm.disableGradeModal = true;
 
             // ui-grid control
             vm.tableCronograma = {
@@ -36,10 +39,16 @@
             // VARIÁVEIS FUNÇÕES
             vm.addDisc = addDisc;
             vm.cancelAddGrade = cancelAddGrade;
+            // select do template
             vm.changeArea = changeArea;
             vm.changeCurso = changeCurso;
             vm.changeGrade = changeGrade;
             vm.changeTipoCurso = changeTipoCurso;
+            // select do modalGrade
+            vm.changeAreaModal = changeAreaModal;
+            vm.changeCursoModal = changeCursoModal;
+            vm.changeTipoCursoModal = changeTipoCursoModal;
+            //
             vm.limpaCampos = limpaCampos;
             vm.salvarGrade = salvarGrade;
             vm.salvarDisciplina = salvarDisciplinaGrade;
@@ -96,14 +105,14 @@
             function limpaCampos(objeto){
                 var el;
                 for(el in objeto){
-                    if(angular.isDefined(objeto[el].model)){
+                    if(!!objeto[el].model){
                         objeto[el].model.val = "";
                         objeto[el].model.err = "";
                     }
                 }
             }
 
-            // funcções para alteração dos selects da tela para filtrar/adicionar grade curricular
+            // tipoCurso _model
             function changeTipoCurso(item, model) {
                 vm.disableArea = false;
                 vm.disableCurso = true;
@@ -126,6 +135,28 @@
                 defineModel(vm._model.grade);
             }
 
+            // tipoCurso _modalGrade
+            function changeTipoCursoModal(item, model) {
+                vm.disableAreaModal = false;
+                vm.disableCursoModal = true;
+                vm.disableGradeModal = true;
+
+                $resource('/api/secretaria/template-area-grade-curricular/:id').get({"id": model}).$promise
+                    .then(function(data){
+                        if (data.success) {
+                            vm._modalGrade.area.list = data.list;
+                        }
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    });
+
+                defineModel(vm._modalGrade.area);
+                defineModel(vm._modalGrade.curso);
+                defineModel(vm._modalGrade.nome);
+            }
+
+            // area _model
             function changeArea(item, model) {
                 vm.disableCurso = false;
                 vm.disableGrade = true;
@@ -146,6 +177,26 @@
                 defineModel(vm._model.grade);
             }
 
+            // area _modalGrade
+            function changeAreaModal(item, model) {
+                vm.disableCursoModal = false;
+                vm.disableGradeModal = true;
+
+                $resource('/api/secretaria/template-curso-grade-curricular/:id').get({"id": model}).$promise
+                    .then(function(data){
+                        if (data.success) {
+                            vm._modalGrade.curso.list = data.list;
+                        }
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    });
+
+                defineModel(vm._modalGrade.curso);
+                defineModel(vm._modalGrade.nome);
+            }
+
+            // curso _model
             function changeCurso(item, model) {
                 vm.disableGrade = false;
                 vm.showGrid = true;
@@ -155,28 +206,39 @@
                     .then(function(data){
                         if (data.success) {
                             vm._model.grade.list = data.list;
+
+                            vm._model.grade.list.unshift({
+                                id: "add",
+                                text: "Adicionar Grade"
+                            });
                         }
                     })
                     .catch(function(err){
                         console.log(err);
                     });
 
-                vm._model.grade.list.unshift({
-                    id: "add",
-                    text: "Adicionar Grade"
-                });
-
                 defineModel(vm._model.grade);
             }
 
+            // curso _modalGrade
+            function changeCursoModal(item, model) {
+                vm.disableGradeModal = false;
+
+                defineModel(vm._modalGrade.nome);
+            }
+
+            // grade _model
             function changeGrade(item, model) {
                 vm.showGrid = true;
-                
+                vm.tableCronograma.data = [];
+
                 if(item.id === "add"){
                     $("#modalAddGrade").modal({
                         backdrop: 'static',
                         keyboard: false
                     });
+
+                    tranfDadosModal();
                     return true;
                 }
 
@@ -197,16 +259,43 @@
                 objeto.model = {"val": "", "err": ""};
             }
 
+            // cópia sem referência dos objetos de _model para _modalGrade
+            function tranfDadosModal() {
+                // tipo curso
+                vm._modalGrade.tipoCurso.list = withoutRef(vm._model.tipoCurso.list);
+                vm._modalGrade.tipoCurso.model = withoutRef(vm._model.tipoCurso.model);
+
+                // area
+                vm.disableAreaModal = vm.disableArea;
+                vm._modalGrade.area.list = withoutRef(vm._model.area.list);
+                vm._modalGrade.area.model = withoutRef(vm._model.area.model);
+
+                // curso
+                vm.disableCursoModal = vm.disableCurso;
+                vm._modalGrade.curso.list = withoutRef(vm._model.curso.list);
+                vm._modalGrade.curso.model = withoutRef(vm._model.curso.model);
+
+                // nome grade
+                vm.disableGradeModal = !vm._modalGrade.curso.model.val;
+            }
+
+            function withoutRef(objeto) {
+                return JSON.parse(JSON.stringify(objeto));
+            }
+
+            // salva uma nova grade sem as disciplinas
             function salvarGrade(){
                 if(_validaCampos(vm._modalGrade)){
                     $resource('/api/secretaria/save-dados-grade-curricular').save({}, vm._modalGrade).$promise
                         .then(function(data){
                             if (data.success) {
                                 limpaCampos(vm._modalGrade);
-                                vm._model.grade.list = data.dados;
-                                $('#modalGrade').modal('hide');
+                                vm._model.grade.list = data.list;
+                                vm._model.grade.model.val = vm._modalGrade.nome.model.val;
+                                vm.tableCronograma.data = [];
+                                $('#modalAddGrade').modal('hide');
                             } else {
-                                _validaModalGrade();
+                                _validaCampos(vm._modalGrade);
                             }
                         })
                         .catch(function(err){
@@ -215,6 +304,7 @@
                 }
             }
 
+            // salva uma disciplina para a grade selecionada
             function salvarDisciplinaGrade(){
                 if(_validaCampos(vm._modalDisciplina)){
                     $resource('/api/secretaria/dados-disciplinas-curricular').save({}, vm._modalDisciplina).$promise

@@ -10,7 +10,7 @@
       {"id": "grade2014B", "text": "Grade 2014B - 2014/2", "curso": "his1"},
       {"id": "grade2015A", "text": "Grade 2015A - 2015/1", "curso": "his1"},
       {"id": "gradeB2009", "text": "GradeB - 2009/2", "curso": "eng2"},
-      {"id": "GradeA2010", "text": "GradeA - 2010/1", "curso": "eng2"},
+      {"id": "gradeA2010", "text": "GradeA - 2010/1", "curso": "eng2"},
       {"id": "gradeA2014", "text": "GradeA - 2014/2", "curso": "sis1"},
       {"id": "gradeB2015", "text": "GradeB - 2015/1", "curso": "sis1"},
       {"id": "grade22009", "text": "Grade - 2009/2", "curso": "soc1"},

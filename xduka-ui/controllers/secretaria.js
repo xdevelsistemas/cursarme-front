@@ -833,17 +833,19 @@ function postSaveFreqAlunos(req, res) {
 function postSaveGradeCurricular(req, res) {
     var dataSent = req.body;
 
-    if (!!dataSent.nome.model.val) {
-        var dados = { "id": dataSent.nome.model.val, "text": dataSent.nome.model.val };
+    // Verificando se o nome é válido e se não repete
+    if (!!dataSent.nome.model.val && !dadosGradeCurricular[dataSent.nome.model.val]) {
+        var list,
+            dados = { "id": dataSent.nome.model.val, "text": dataSent.nome.model.val, "curso": dataSent.curso.model.val };
 
         dadosGradeCurricular[dataSent.nome.model.val] = {"data": []};
+        dadosGradeGrades.grade.list.push(dados);
 
-        // TOdo - filtar {tipoCuro}/{area}/{curso}
-        // TOdo - salvar {grade}
+        list = dadosGradeGrades.grade.list.filter(function(el) {
+            return el.curso === dataSent.curso.model.val;
+        });
 
-        templateGradeCurricular.template.grade.list.push(dados);
-
-        return res.status(201).json({"success": true, "dados": templateGradeCurricular.template.grade.list});
+        return res.status(201).json({"success": true, "list": list});
     } else {
         return res.status(400).json({"success": false});
     }
