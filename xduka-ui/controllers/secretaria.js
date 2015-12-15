@@ -11,6 +11,11 @@ var urlDataBase = '',
     dadosEnviarCircular = require('../mockup/xduka-json/common/dadosEnviarCircular.json'),
     dadosGeraTurma = require('../mockup/xduka-json/common/dadosGeraTurma.json'),
     dadosGradeCurricular = require('../mockup/xduka-json/secretaria/dadosGradeCurricular.json'),
+    dadosGradeAreas = require('../mockup/xduka-json/secretaria/dadosGradeAreas.json'),
+    dadosGradeCursos = require('../mockup/xduka-json/secretaria/dadosGradeCursos.json'),
+    dadosGradeDisciplinas = require('../mockup/xduka-json/secretaria/dadosGradeDisciplinas.json'),
+    dadosGradeGrades = require('../mockup/xduka-json/secretaria/dadosGradeGrades.json'),
+    dadosGradeTipoCursos = require('../mockup/xduka-json/secretaria/dadosGradeTipoCursos.json'),
     dadosPauta = require('../mockup/xduka-json/common/dadosPauta.json'),
     dadosPeriodo = require('../mockup/xduka-json/common/dadosPeriodo.json'),
     dadosMaterialComp = require('../mockup/xduka-json/common/dadosMaterialComp.json'),
@@ -53,8 +58,11 @@ module.exports = function() {
     controller.showTemplateAddDisciplina = getTemplateAddDisciplina;
     controller.showTemplateAddTurma = getTemplateAddTurma;
     controller.showTemplateAl = getTemplateAl;
+    controller.showTemplateAreaGradeCurricular = getTemplateAreaGradeCurricular;
+    controller.showTemplateCursoGradeCurricular = getTemplateCursoGradeCurricular;
     controller.showTemplateEnviarCircular = getTemplateEnviarCircular;
     controller.showTemplateGradeCurricular = getTemplateGradeCurricular;
+    controller.showTemplateGradeGradeCurricular = getTemplateGradesGradeCurricular;
     controller.showTemplateInscricao = getTemplateInscricao;
     controller.showTemplateMaterialCircular = getTemplateMaterialCircular;
     controller.showTemplatePauta = getTemplatePauta;
@@ -256,7 +264,15 @@ function getDadosGeraTurma(req, res) {
 }
 
 function getDadosGradeCurricular(req, res) {
-    res.json(dadosGradeCurricular);
+    var id = req.params.id;
+
+    if (!!id) {
+        !!dadosGradeCurricular[id] ?
+        res.json({"success": true, "data": dadosGradeCurricular[id].data}) :
+        res.json({"success": false});
+    } else {
+        res.json({"success": false});
+    }
 }
 
 function getDadosMaterialComp(req, res) {
@@ -320,12 +336,57 @@ function getTemplateAl(req,res) {
     res.json(templateAluno);
 }
 
+function getTemplateAreaGradeCurricular(req, res) {
+    var idTipoCurso = req.params.id;
+
+    if (!!idTipoCurso) {
+        var dados = dadosGradeAreas.area.list.filter(function (el) {
+            return el.tipoCurso === idTipoCurso;
+        });
+
+        res.status(200).json({"success": true, "list": dados});
+    } else {
+        res.status(400).json({"success": false});
+    }
+}
+
+function getTemplateCursoGradeCurricular(req, res) {
+    var idArea = req.params.id;
+
+    if (!!idArea) {
+        var dados = dadosGradeCursos.curso.list.filter(function (el) {
+            return el.area === idArea;
+        });
+
+        res.status(200).json({"success": true, "list": dados});
+    } else {
+        res.status(400).json({"success": false});
+    }
+}
+
+function getTemplateGradesGradeCurricular(req, res) {
+    var idCurso = req.params.id;
+
+    if (!!idCurso) {
+        var dados = dadosGradeGrades.grade.list.filter(function (el) {
+            return el.curso === idCurso;
+        });
+
+        res.status(200).json({"success": true, "list": dados});
+    } else {
+        res.status(400).json({"success": false});
+    }
+}
+
 function getTemplateEnviarCircular(req, res) {
     res.json(templateEnviarCircular);
 }
 
 function getTemplateGradeCurricular(req, res) {
-    res.json(templateGradeCurricular);
+    templateGradeCurricular.template.tipoCurso.list = dadosGradeTipoCursos.tipoCurso.list;
+    templateGradeCurricular.modalDisciplina.disciplina.list = dadosGradeDisciplinas.disciplinas;
+    templateGradeCurricular.modalDisciplina.tipoDisciplina.list = dadosGradeDisciplinas.tipoDisciplina;
+    res.status(200).json(templateGradeCurricular);
 }
 
 function getTemplateInscricao(req, res) {
@@ -619,16 +680,16 @@ function postSaveDadosCurso(req, res) {
 function postSaveDiscGradCurric(req, res) {
     var dataSent = req.body;
 
-    if (!!dataSent.disciplina.model.val && !!dataSent.tipoDisciplina.model.val && !!dataSent.ch.model.val) {
+    if (!!dataSent.model.disciplina.model.val && !!dataSent.model.tipoDisciplina.model.val && !!dataSent.model.ch.model.val) {
         var dados = {
-            "nome": _.find(dataSent.disciplina.list, _.matchesProperty('id', dataSent.disciplina.model.val)).text,
-            "tipo": _.find(dataSent.tipoDisciplina.list, _.matchesProperty('id', dataSent.tipoDisciplina.model.val)).text,
-            "ch": dataSent.ch.model.val
+            "nome": _.find(dataSent.model.disciplina.list, _.matchesProperty('id', dataSent.model.disciplina.model.val)),
+            "tipo": _.find(dataSent.model.tipoDisciplina.list, _.matchesProperty('id', dataSent.model.tipoDisciplina.model.val)),
+            "ch": dataSent.model.ch.model.val
         };
 
-        dadosGradeCurricular.cronograma.data.push(dados);
+        dadosGradeCurricular[dataSent.grade.id].data.push(dados);
 
-        return res.status(201).json({"success": true, "dados": dadosGradeCurricular.cronograma.data});
+        return res.status(201).json({"success": true, "dados": dadosGradeCurricular[dataSent.grade.id].data});
     } else {
         return res.status(400).json({"success": false});
     }
@@ -775,12 +836,19 @@ function postSaveFreqAlunos(req, res) {
 function postSaveGradeCurricular(req, res) {
     var dataSent = req.body;
 
-    if (!!dataSent.nome.model.val) {
-        var dados = { "id": dataSent.nome.model.val, "text": dataSent.nome.model.val };
+    // Verificando se o nome é válido e se não repete
+    if (!!dataSent.nome.model.val && !dadosGradeCurricular[dataSent.nome.model.val]) {
+        var list,
+            dados = { "id": dataSent.nome.model.val, "text": dataSent.nome.model.val, "curso": dataSent.curso.model.val };
 
-        templateGradeCurricular.template.grade.list.push(dados);
+        dadosGradeCurricular[dataSent.nome.model.val] = {"data": []};
+        dadosGradeGrades.grade.list.push(dados);
 
-        return res.status(201).json({"success": true, "dados": templateGradeCurricular.template.grade.list});
+        list = dadosGradeGrades.grade.list.filter(function(el) {
+            return el.curso === dataSent.curso.model.val;
+        });
+
+        return res.status(201).json({"success": true, "list": list});
     } else {
         return res.status(400).json({"success": false});
     }

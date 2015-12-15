@@ -1,0 +1,46 @@
+{
+  "curso": {
+    "list": [
+      {
+        "id": "eng1",
+        "text": "Engenharia Mecânica",
+        "area": "exa1"
+      },
+      {
+        "id": "cie1",
+        "text": "Ciências Contábeis",
+        "area": "exa1"
+      },
+      {
+        "id": "geo1",
+        "text": "Geografia",
+        "area": "hum1"
+      },
+      {
+        "id": "his1",
+        "text": "História",
+        "area": "hum1"
+      },
+      {
+        "id": "eng2",
+        "text": "Engenharia Eletrônica",
+        "area": "exa2"
+      },
+      {
+        "id": "sis1",
+        "text": "Sistema de Informação",
+        "area": "exa2"
+      },
+      {
+        "id": "soc1",
+        "text": "Sociologia",
+        "area": "hum2"
+      },
+      {
+        "id": "bib1",
+        "text": "biblioteconomia",
+        "area": "hum2"
+      }
+    ]
+  }
+}
