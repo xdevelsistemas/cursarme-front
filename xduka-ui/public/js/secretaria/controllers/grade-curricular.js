@@ -65,14 +65,14 @@
                 });
 
             // Funções do controller
-            function _validaCampos(list){
+            function _validaCampos(objeto){
                 var ret = true;
-                for(var i in list){
-                    if(!list[i].model.val){
-                        list[i].model.err = vm.STR.FIELD;
+                for(var i in objeto){
+                    if(!objeto[i].model.val){
+                        objeto[i].model.err = vm.STR.FIELD;
                         ret = false;
                     }else{
-                        list[i].model.err = '';
+                        objeto[i].model.err = '';
                     }
                 }
                 return ret;
@@ -110,13 +110,13 @@
                 $("#modalAddGrade").modal("hide");
                 return true;
             }
-
-            function limpaCampos(list){
+            
+            function limpaCampos(objeto){
                 var el;
-                for(el in list){
-                    if(angular.isDefined(list[el].model)){
-                        list[el].model.val = "";
-                        list[el].model.err = "";
+                for(el in objeto){
+                    if(angular.isDefined(objeto[el].model)){
+                        objeto[el].model.val = "";
+                        objeto[el].model.err = "";
                     }
                 }
             }
