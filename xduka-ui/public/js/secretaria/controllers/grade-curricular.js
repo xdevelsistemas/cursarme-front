@@ -114,6 +114,7 @@
 
             // tipoCurso _model
             function changeTipoCurso(item, model) {
+                vm._model.tipoCurso.model.err = '';
                 vm.disableArea = false;
                 vm.disableCurso = true;
                 vm.disableGrade = true;
@@ -158,6 +159,7 @@
 
             // area _model
             function changeArea(item, model) {
+                vm._model.area.model.err = '';
                 vm.disableCurso = false;
                 vm.disableGrade = true;
                 vm.showGrid = true;
@@ -198,6 +200,7 @@
 
             // curso _model
             function changeCurso(item, model) {
+                vm._model.curso.model.err = '';
                 vm.disableGrade = false;
                 vm.showGrid = true;
                 vm.tableCronograma.data = [];
@@ -205,12 +208,7 @@
                 $resource('/api/secretaria/template-grade-grade-curricular/:id').get({"id": model}).$promise
                     .then(function(data){
                         if (data.success) {
-                            vm._model.grade.list = data.list;
-
-                            vm._model.grade.list.unshift({
-                                id: "add",
-                                text: "Adicionar Grade"
-                            });
+                            addGradeList(data.list);
                         }
                     })
                     .catch(function(err){
@@ -229,6 +227,7 @@
 
             // grade _model
             function changeGrade(item, model) {
+                vm._model.grade.model.err = '';
                 vm.showGrid = true;
                 vm.tableCronograma.data = [];
 
@@ -283,17 +282,25 @@
                 return JSON.parse(JSON.stringify(objeto));
             }
 
+            function addGradeList(list) {
+                vm._model.grade.list = list;
+                vm._model.grade.list.unshift({
+                    id: "add",
+                    text: "Adicionar Grade"
+                });
+            }
+
             // salva uma nova grade sem as disciplinas
             function salvarGrade(){
                 if(_validaCampos(vm._modalGrade)){
                     $resource('/api/secretaria/save-dados-grade-curricular').save({}, vm._modalGrade).$promise
                         .then(function(data){
                             if (data.success) {
-                                limpaCampos(vm._modalGrade);
-                                vm._model.grade.list = data.list;
+                                addGradeList(data.list);
                                 vm._model.grade.model.val = vm._modalGrade.nome.model.val;
                                 vm.tableCronograma.data = [];
                                 $('#modalAddGrade').modal('hide');
+                                limpaCampos(vm._modalGrade);
                             } else {
                                 _validaCampos(vm._modalGrade);
                             }
@@ -307,14 +314,16 @@
             // salva uma disciplina para a grade selecionada
             function salvarDisciplinaGrade(){
                 if(_validaCampos(vm._modalDisciplina)){
-                    $resource('/api/secretaria/dados-disciplinas-curricular').save({}, vm._modalDisciplina).$promise
+                    $resource('/api/secretaria/save-dados-disciplinas-curricular').save({}, {
+                        "grade": vm.gradeAtual, "model": vm._modalDisciplina
+                    }).$promise
                         .then(function(data){
                             if (data.success) {
                                 limpaCampos(vm._modalDisciplina);
                                 vm.tableCronograma.data = data.dados;
                                 $('#modalAddDisc').modal('hide');
                             } else {
-                                _validaModalDisciplina();
+                                _validaCampos(vm._modalDisciplina);
                             }
                         })
                         .catch(function(err){

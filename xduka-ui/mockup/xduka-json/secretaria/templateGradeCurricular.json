@@ -80,14 +80,14 @@
       "label": "Disciplina",
       "type": "text",
       "name": "disciplina",
-      "list": [{"id": "0", "text": "Disciplina 1"}, {"id": "1", "text": "Disciplina 2"}],
+      "list": [],
       "model": { "val": "", "err": "" }
     },
     "tipoDisciplina": {
       "label": "Tipo Disciplina",
       "type": "text",
       "name": "tipoDisciplina",
-      "list": [{"id": "0", "text": "Eixo Comun"}, {"id": "1", "text": "Eixo Específico"}],
+      "list": [],
       "model": { "val": "", "err": "" }
     },
     "ch": {
