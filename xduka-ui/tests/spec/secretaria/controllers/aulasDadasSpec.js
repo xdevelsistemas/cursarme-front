@@ -74,7 +74,7 @@
                 vm._model.nome.model.val = 'Teste unitário';
                 vm._model.conta.model.val = '012450';
                 vm._model.cpf.model.val = '01234567890';
-                vm._model.data.model.val = 1450836000000;
+                vm._model.data.model.val = new Date();
                 vm._model.aula.model.val = 20;
                 vm._model.curso.model.val = '0123';
                 vm._model.disciplina.model.val = '0123';
