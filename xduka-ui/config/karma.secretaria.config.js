@@ -42,7 +42,7 @@ module.exports = function(config) {
         'public/js/secretaria/routes/routes.js',
         'public/js/secretaria/**/*.js',
         'public/js/common/**/*.js',
-        'tests/spec/secretaria/controllers/enviarCircularSpec.js'
+        'tests/spec/secretaria/controllers/**/*Spec.js'
     ],
 
     // list of files to exclude
