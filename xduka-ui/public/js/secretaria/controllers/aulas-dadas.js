@@ -26,17 +26,13 @@
             vm.limpar = limpar;
             vm.salvar = salvar;
             vm.voltar = voltar;
+            vm._valida= _valida;
 
 
             dadosAulasPromise
                 .then(function(data){
                     vm.tableCronograma.data = data.template.body;
                     vm.tableCronograma.columnDefs = data.template.columnDefs;
-                        /*.map(function(el){
-                        var data = new Date(el.data);
-                        //el.data = data.toLocaleDateString();
-                        return el;
-                    });*/
                     vm._model = data.modal;
                 })
                 .catch(function(err){

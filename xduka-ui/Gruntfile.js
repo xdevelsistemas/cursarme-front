@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         clean: ['dist', '.tmp'],
         "karma": {
             unit: {
-                configFile: 'config/karma.comercial.config.js'
+                configFile: 'config/karma.secretaria.config.js'
             }
         },
         uglify: {
