@@ -1,5 +1,15 @@
 {
-  "head": ["Tipo de Curso", "Área", "Curso", "Período de Vigência", "Até", "Valor Integral", "Valor a Vista", "Valor Inscrição"],
+  "ex": {"name": "", "field": "btn", "cellTemplate": "<div class=\"ui-grid-cell-contents text-center\"> <button class=\"btn btn-blue btn-sm\" ng-click=\"row.entity.btn.click(row.entity.btn.args)\"><i class=\"entypo entypo-pencil\"></i></button> </div>", "width": 60, "enableColumnResizing": false},
+  "columnDefs": [
+    {"name": "Tipo de Curso", "field": "tipoCurso"},
+    {"name": "Área", "field": "area"},
+    {"name": "curso"},
+    {"name": "Período de Vigência", "field": "periodoVigencia", "cellTemplate": "<div class=\"ui-grid-cell-contents text-center\" ng-bind=\"row.entity.periodoVigencia | date: dd/MM/yyyy\"></div>"},
+    {"name": "Até", "field": "ate", "cellTemplate": "<div class=\"ui-grid-cell-contents text-center\" ng-bind=\"row.entity.ate | date: dd/MM/yyyy\"></div>"},
+    {"name": "valorIntegral", "cellTemplate": "<div class=\"ui-grid-cell-contents\">{{row.entity.valorIntegral | currency:\"R$ \":2}}</div>"},
+    {"name": "Valor a Vista", "field": "valorAvista", "cellTemplate": "<div class=\"ui-grid-cell-contents\">{{row.entity.valorAvista | currency:\"R$ \":2}}</div>"},
+    {"name": "Valor Inscrição", "field": "valorInscr", "cellTemplate": "<div class=\"ui-grid-cell-contents\">{{row.entity.valorInscr | currency:\"R$ \":2}}</div>"}
+  ],
   "dados": [
     {
       "tipoCurso": "Pós Graduação em Educação",

@@ -1,25 +1,29 @@
 {
-  "head": ["Curso", "Data de Início", "Data de Término"],
+  "columnDefs": [
+    {"name": "curso"},
+    {"name": "Data de Início", "field": "dataInicio", "cellTemplate": "<div class=\"ui-grid-cell-contents\" ng-bind=\"row.entity.dataInicio | date: dd/MM/yyyy\"></div>"},
+    {"name": "Data de Término", "field": "dataFim", "cellTemplate": "<div class=\"ui-grid-cell-contents\" ng-bind=\"row.entity.dataFim | date: dd/MM/yyyy\"></div>"}
+  ],
   "list": [
     {
-      "acurso": "Sistemas de Informação",
-      "bdataInicio": {"date": true,"int": 1442595983183},
-      "cdataFim": {"date": true,"int": 1442995983183}
+      "curso": "Sistemas de Informação",
+      "dataInicio": "1442595983183",
+      "dataFim": "1442995983183"
     },
     {
-      "acurso": "Matemática",
-      "bdataInicio": {"date": true,"int": 1443595983183},
-      "cdataFim": {"date": true,"int": 1443995983183}
+      "curso": "Matemática",
+      "dataInicio": "1443595983183",
+      "dataFim": "1443995983183"
     },
     {
-      "acurso": "Economia",
-      "bdataInicio": {"date": true,"int": 1443595983183},
-      "cdataFim": {"date": true,"int": 1443659983183}
+      "curso": "Economia",
+      "dataInicio": "1443595983183",
+      "dataFim": "1443659983183"
     },
     {
-      "acurso": "História",
-      "bdataInicio": {"date": true,"int": 1443659983183},
-      "cdataFim": {"date": true,"int": 1445659983183}
+      "curso": "História",
+      "dataInicio": "1443659983183",
+      "dataFim": "1445659983183"
     }
   ]
 }

@@ -112,6 +112,13 @@ angular.module('app',[
                 controller: 'aulasDadas',
                 controllerAs: 'aud'
             });
+
+    // ========= GRADE CURRICULAR ========= //
+            $routeProvider.when('/secretaria/grade-curricular', {
+                templateUrl: 'html/secretaria/grade-curricular.html',
+                controller: 'gradeCurricular',
+                controllerAs: 'gc'
+            });
     // ========= OTHERWISE ========= //
             $routeProvider.otherwise({
                 redirectTo: '/'

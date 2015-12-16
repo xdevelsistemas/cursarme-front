@@ -5,7 +5,7 @@
       "type": "select",
       "name": "tipoCurso",
       "placeholder": "Selecione uma opção",
-      "list": [{"id": "0", "text": "Pós Graduação"}, {"id": "1", "text": "Mestrado"}],
+      "list": [],
       "model": {"val": "", "err": ""}
     },
     "area": {
@@ -13,7 +13,7 @@
       "type": "select",
       "name": "area",
       "placeholder": "Selecione uma opção",
-      "list": [{"id": "0", "text": "Área 1"}, {"id": "1", "text": "Área 2"}],
+      "list": [],
       "model": {"val": "", "err": ""}
     },
     "curso": {
@@ -22,7 +22,7 @@
       "name": "curso",
       "placeholder": "Selecione uma opção",
       "required": false,
-      "list": [{"id": "0", "text": "Curso 1"}, {"id": "1", "text": "Curso 2"}],
+      "list": [],
       "model": {"val": "", "err": ""}
     },
     "grade": {
@@ -37,8 +37,8 @@
   },
   "grid": {
     "columnDefs": [
-      {"name": "nome da Disciplina", "field": "nome"},
-      {"name": "tipo Disciplina", "field": "tipo"},
+      {"name": "nome da Disciplina", "field": "nome", "cellTemplate": "<div class=\"ui-grid-cell-contents\" ng-bind=\"row.entity.nome.text\"></div>"},
+      {"name": "tipo Disciplina", "field": "tipo", "cellTemplate": "<div class=\"ui-grid-cell-contents\" ng-bind=\"row.entity.tipo.text\"></div>"},
       {"name": "CH", "field": "ch"}
     ],
     "data": []
@@ -76,18 +76,18 @@
     }
   },
   "modalDisciplina": {
-    "dicpliplina": {
+    "disciplina": {
       "label": "Disciplina",
       "type": "text",
       "name": "disciplina",
-      "list": [{"id": "0", "text": "Disciplina 1"}, {"id": "1", "text": "Disciplina 2"}],
+      "list": [],
       "model": { "val": "", "err": "" }
     },
     "tipoDisciplina": {
       "label": "Tipo Disciplina",
       "type": "text",
       "name": "tipoDisciplina",
-      "list": [{"id": "0", "text": "Eixo Comun"}, {"id": "1", "text": "Eixo Específico"}],
+      "list": [],
       "model": { "val": "", "err": "" }
     },
     "ch": {

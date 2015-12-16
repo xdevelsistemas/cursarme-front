@@ -27,17 +27,7 @@
             vm.srcCartao = '';
             vm.tableCaixa = {
                 id: 'tableCaixa',
-                dataTable: {
-                    "paging":   true,
-                    "ordering": false,
-                    "info":     true,
-                    "filter":   true,
-                    "order": [[ 0, "asc" ]]
-
-                },
-                class: 'table-hover table-bordered display',
-                head: ["Nome", "Tipo", "Obs"],
-                list: []
+                columnDefs: []
             };
 
             // VARIÁVEIS TIPO FUNÇÃO
@@ -62,7 +52,8 @@
 
             dadosCadastroCaixa
                 .then(function(data) {
-                    vm.tableCaixa.list = data.list;
+                    vm.tableCaixa.columnDefs = data.columnDefs;
+                    vm.tableCaixa.data = data.list;
                 })
                 .catch(function(error) {
                     // TOdo tratar error
@@ -203,8 +194,7 @@
                     .then(function(data) {
                         //TOdo tela de resposta com um "salvo com sucesso."
                         if (data.success) {
-                            vm.tableCaixa.list = data.list;
-
+                            vm.tableCaixa.data = data.list;
                             vm.editing = false;
                             limpar();
                             voltar();

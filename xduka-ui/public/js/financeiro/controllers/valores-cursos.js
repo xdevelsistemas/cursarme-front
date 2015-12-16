@@ -22,10 +22,7 @@
             vm.editing = false;
             vm.tableValoresCurso = {
                 "id": "tableValoresCurso",
-                "dataTable": {},
-                "class": "table table-hover table-striped",
-                "head": [],
-                "list": []
+                "columnDefs": []
             };
 
             // VARIÁVEIS TIPO FUNÇÕES
@@ -51,19 +48,8 @@
 
             valoresCadastradosPromise
                 .then(function(data){
-                    vm.tableValoresCurso.head = data.head;
-                    for (var i = 0; i < data.dados.length; i++){
-                        vm.tableValoresCurso.list.push({
-                            "a": data.dados[i].tipoCurso,
-                            "b": data.dados[i].area,
-                            "d": data.dados[i].curso,
-                            "e": {date: true, int: data.dados[i].periodoVigencia},
-                            "f": {date: true, int: data.dados[i].ate},
-                            "g": data.dados[i].valorIntegral,
-                            "h": data.dados[i].valorAvista,
-                            "i": data.dados[i].valorAvista
-                        })
-                    }
+                    vm.tableValoresCurso.columnDefs = data.columnDefs;
+                    vm.tableValoresCurso.data = data.dados;
                 })
                 .catch(function(error){
                     // Todo tratar error
@@ -189,7 +175,10 @@
                     .then(function(data) {
                         //response
                         if (data.success) {
-                            // TOdo tela com resposta como um "Valores cadastrado com sucesso".
+
+                            //todo responder o post com a tabela atualizada
+                            //vm.tableValoresCurso.data = data.dados;
+
                             vm.disableArea = true;
                             vm.disableCurso = true;
                             vm.disableTipoCurso = true;
