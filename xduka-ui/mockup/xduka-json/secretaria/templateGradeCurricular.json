@@ -1,0 +1,100 @@
+{
+  "template": {
+    "tipoCurso": {
+      "label": "Tipo Curso",
+      "type": "select",
+      "name": "tipoCurso",
+      "placeholder": "Selecione uma opção",
+      "list": [],
+      "model": {"val": "", "err": ""}
+    },
+    "area": {
+      "label": "Área",
+      "type": "select",
+      "name": "area",
+      "placeholder": "Selecione uma opção",
+      "list": [],
+      "model": {"val": "", "err": ""}
+    },
+    "curso": {
+      "label": "Curso",
+      "type": "select",
+      "name": "curso",
+      "placeholder": "Selecione uma opção",
+      "required": false,
+      "list": [],
+      "model": {"val": "", "err": ""}
+    },
+    "grade": {
+      "label": "Grade Curricular",
+      "type": "select",
+      "name": "grade",
+      "placeholder": "Selecione uma opção",
+      "required": false,
+      "list": [],
+      "model": {"val": "", "err": ""}
+    }
+  },
+  "grid": {
+    "columnDefs": [
+      {"name": "nome da Disciplina", "field": "nome", "cellTemplate": "<div class=\"ui-grid-cell-contents\" ng-bind=\"row.entity.nome.text\"></div>"},
+      {"name": "tipo Disciplina", "field": "tipo", "cellTemplate": "<div class=\"ui-grid-cell-contents\" ng-bind=\"row.entity.tipo.text\"></div>"},
+      {"name": "CH", "field": "ch"}
+    ],
+    "data": []
+  },
+  "modalGrade": {
+    "tipoCurso": {
+      "label": "Tipo Curso",
+      "type": "select",
+      "name": "tipoCurso",
+      "placeholder": "Selecione uma opção",
+      "list": [{"id": "0", "text": "Pós Graduação"}, {"id": "1", "text": "Mestrado"}],
+      "model": { "val": "", "err": "" }
+    },
+    "area": {
+      "label": "Área",
+      "type": "text",
+      "name": "area",
+      "placeholder": "Selecione uma opção",
+      "list": [{"id": "0", "text": "Área 1"}, {"id": "1", "text": "Área 2"}],
+      "model": { "val": "", "err": "" }
+    },
+    "curso": {
+      "label": "Curso",
+      "type": "select",
+      "name": "curso",
+      "placeholder": "Selecione uma opção",
+      "list": [{"id": "0", "text": "Curso 1"}, {"id": "1", "text": "Curso 2"}],
+      "model": { "val": "", "err": "" }
+    },
+    "nome": {
+      "label": "Grade Curricular",
+      "type": "text",
+      "name": "grade",
+      "model": { "val": "", "err": "" }
+    }
+  },
+  "modalDisciplina": {
+    "disciplina": {
+      "label": "Disciplina",
+      "type": "text",
+      "name": "disciplina",
+      "list": [],
+      "model": { "val": "", "err": "" }
+    },
+    "tipoDisciplina": {
+      "label": "Tipo Disciplina",
+      "type": "text",
+      "name": "tipoDisciplina",
+      "list": [],
+      "model": { "val": "", "err": "" }
+    },
+    "ch": {
+      "label": "CH",
+      "type": "text",
+      "name": "ch",
+      "model": { "val": "", "err": "" }
+    }
+  }
+}

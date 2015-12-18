@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var urlDataBase = '',
     extend = require('node.extend'),
     request = require('request'),
@@ -9,6 +10,12 @@ var urlDataBase = '',
     dadosCursoPauta = require('../mockup/xduka-json/common/dadosCursoPauta.json'),
     dadosEnviarCircular = require('../mockup/xduka-json/common/dadosEnviarCircular.json'),
     dadosGeraTurma = require('../mockup/xduka-json/common/dadosGeraTurma.json'),
+    dadosGradeCurricular = require('../mockup/xduka-json/secretaria/dadosGradeCurricular.json'),
+    dadosGradeAreas = require('../mockup/xduka-json/secretaria/dadosGradeAreas.json'),
+    dadosGradeCursos = require('../mockup/xduka-json/secretaria/dadosGradeCursos.json'),
+    dadosGradeDisciplinas = require('../mockup/xduka-json/secretaria/dadosGradeDisciplinas.json'),
+    dadosGradeGrades = require('../mockup/xduka-json/secretaria/dadosGradeGrades.json'),
+    dadosGradeTipoCursos = require('../mockup/xduka-json/secretaria/dadosGradeTipoCursos.json'),
     dadosPauta = require('../mockup/xduka-json/common/dadosPauta.json'),
     dadosPeriodo = require('../mockup/xduka-json/common/dadosPeriodo.json'),
     dadosMaterialComp = require('../mockup/xduka-json/common/dadosMaterialComp.json'),
@@ -21,6 +28,7 @@ var urlDataBase = '',
     templateConfig = require('../mockup/xduka-json/secretaria/templateConfig.json'),
     templateDadosAddCurso = require('../mockup/xduka-json/secretaria/templateDadosAddCurso.json'),
     templateEnviarCircular = require('../mockup/xduka-json/secretaria/templateEnviarCircular.json'),
+    templateGradeCurricular = require('../mockup/xduka-json/secretaria/templateGradeCurricular.json'),
     templateInscr = require('../mockup/xduka-json/common/templateInscricao.json'),
     templateMaterialComp = require('../mockup/xduka-json/secretaria/templateMaterialComp.json'),
     templatePauta = require('../mockup/xduka-json/secretaria/templatePauta.json'),
@@ -37,11 +45,11 @@ module.exports = function() {
     controller.showCursos = showCursos;
     controller.showDadosAddCurso = getDadosAddCurso;
     controller.showDadosAulasDadas = getDadosAulasDadas;
-    controller.saveAulasDadas = saveAulasDadas;
     controller.showDadosCurso = getDadosCurso;
     controller.showDadosCursoPauta = getDadosCursoPauta;
     controller.showDadosEnviarCircular = getDadosEnviarCircular;
     controller.showDadosGeraTurma = getDadosGeraTurma;
+    controller.showDadosGradeCurricular = getDadosGradeCurricular;
     controller.showDadosMaterialComp = getDadosMaterialComp;
     controller.showDadosPauta = getDadosPauta;
     controller.showIdCurso = getIdCurso;
@@ -50,7 +58,11 @@ module.exports = function() {
     controller.showTemplateAddDisciplina = getTemplateAddDisciplina;
     controller.showTemplateAddTurma = getTemplateAddTurma;
     controller.showTemplateAl = getTemplateAl;
+    controller.showTemplateAreaGradeCurricular = getTemplateAreaGradeCurricular;
+    controller.showTemplateCursoGradeCurricular = getTemplateCursoGradeCurricular;
     controller.showTemplateEnviarCircular = getTemplateEnviarCircular;
+    controller.showTemplateGradeCurricular = getTemplateGradeCurricular;
+    controller.showTemplateGradeGradeCurricular = getTemplateGradesGradeCurricular;
     controller.showTemplateInscricao = getTemplateInscricao;
     controller.showTemplateMaterialCircular = getTemplateMaterialCircular;
     controller.showTemplatePauta = getTemplatePauta;
@@ -62,9 +74,11 @@ module.exports = function() {
     controller.putSaveDisciplinas = postSaveDisciplinas;
     controller.putSaveConfig = postSaveConfig;
     controller.putSaveDadosCurso = postSaveDadosCurso;
+    controller.putSaveDiscGradCurric = postSaveDiscGradCurric;
     controller.putSaveEditConteudo = postSaveEditConteudo;
     controller.putSaveEnviarCircular = postSaveEnviarCircular;
     controller.putSaveFreqAlunos = postSaveFreqAlunos;
+    controller.putSaveGradeCurricular = postSaveGradeCurricular;
     controller.putSaveMaterialComp = postSaveMaterialComp;
     controller.putSaveNovoConteudo = postSaveNovoConteudo;
     controller.putRemoveConteudo = postRemoveConteudo;
@@ -249,6 +263,18 @@ function getDadosGeraTurma(req, res) {
     res.json(dadosGeraTurma);
 }
 
+function getDadosGradeCurricular(req, res) {
+    var id = req.params.id;
+
+    if (!!id) {
+        !!dadosGradeCurricular[id] ?
+        res.json({"success": true, "data": dadosGradeCurricular[id].data}) :
+        res.json({"success": false});
+    } else {
+        res.json({"success": false});
+    }
+}
+
 function getDadosMaterialComp(req, res) {
     res.json(getUnidade(dadosMaterialComp.unidades, req.params.id));
 }
@@ -260,10 +286,6 @@ function getDadosAddCurso(req, res) {
 function getDadosAulasDadas(req, res) {
     extend(templateAulasDadas.template, dadosAulasDadas.cronograma);
     res.status(200).json(templateAulasDadas);
-}
-
-function saveAulasDadas(req, res) {
-    res.status(200).json({success: true});
 }
 
 function getUnidade(list, id) {
@@ -314,8 +336,57 @@ function getTemplateAl(req,res) {
     res.json(templateAluno);
 }
 
+function getTemplateAreaGradeCurricular(req, res) {
+    var idTipoCurso = req.params.id;
+
+    if (!!idTipoCurso) {
+        var dados = dadosGradeAreas.area.list.filter(function (el) {
+            return el.tipoCurso === idTipoCurso;
+        });
+
+        res.status(200).json({"success": true, "list": dados});
+    } else {
+        res.status(400).json({"success": false});
+    }
+}
+
+function getTemplateCursoGradeCurricular(req, res) {
+    var idArea = req.params.id;
+
+    if (!!idArea) {
+        var dados = dadosGradeCursos.curso.list.filter(function (el) {
+            return el.area === idArea;
+        });
+
+        res.status(200).json({"success": true, "list": dados});
+    } else {
+        res.status(400).json({"success": false});
+    }
+}
+
+function getTemplateGradesGradeCurricular(req, res) {
+    var idCurso = req.params.id;
+
+    if (!!idCurso) {
+        var dados = dadosGradeGrades.grade.list.filter(function (el) {
+            return el.curso === idCurso;
+        });
+
+        res.status(200).json({"success": true, "list": dados});
+    } else {
+        res.status(400).json({"success": false});
+    }
+}
+
 function getTemplateEnviarCircular(req, res) {
     res.json(templateEnviarCircular);
+}
+
+function getTemplateGradeCurricular(req, res) {
+    templateGradeCurricular.template.tipoCurso.list = dadosGradeTipoCursos.tipoCurso.list;
+    templateGradeCurricular.modalDisciplina.disciplina.list = dadosGradeDisciplinas.disciplinas;
+    templateGradeCurricular.modalDisciplina.tipoDisciplina.list = dadosGradeDisciplinas.tipoDisciplina;
+    res.status(200).json(templateGradeCurricular);
 }
 
 function getTemplateInscricao(req, res) {
@@ -468,20 +539,26 @@ function postDadosTurmas(req, res) {
 function postSaveAulasDadas(req, res) {
     var dataSent = req.body;
 
-    // TOdo  -  Dando push nos dados para simular o cadastro das aulas dadas
-    templateAulasDadas.template.body.push(dataSent.dados);
+    if (!!dataSent.aula.model.val && !!dataSent.conta.model.val && !!dataSent.cpf.model.val &&
+    !!dataSent.curso.model.val && !!dataSent.data.model.val && !!dataSent.disciplina.model.val &&
+    !!dataSent.nome.model.val) {
+        var dados = {
+            aula: dataSent.aula.model.val,
+            conta: dataSent.conta.model.val,
+            cpf: dataSent.cpf.model.val,
+            curso: _.find(dataSent.curso.list, _.matchesProperty('id', dataSent.curso.model.val)).text,
+            data: new Date(dataSent.data.model.val).getTime(),
+            disciplina: _.find(dataSent.disciplina.list, _.matchesProperty('id', dataSent.disciplina.model.val)).text,
+            nome: dataSent.nome.model.val
+        };
 
-    res.status(201).json(templateAulasDadas);
-}
+        // TOdo  -  Dando push nos dados para simular o cadastro das aulas dadas
+        templateAulasDadas.template.body.push(dados);
 
-function postSaveDisciplinas(req, res) {
-    var dataSent = req.body;
-
-    var result = {"list": dataSent.tableNome.list};
-
-    // Todo enviar dados para p backend | disciplinas adicionadas/editadas
-
-    res.json({"success": true, "tableNome": dataSent.tableNome});
+        res.status(201).json({success: true, dados: templateAulasDadas.template.body});
+    } else {
+        return res.status(400).send();
+    }
 }
 
 function postSaveConfig(req, res) {
@@ -515,14 +592,14 @@ function postSaveConfig(req, res) {
 
         /*  ENVIAR PARA BD O OBJETO SENDDADOS CRIADO SÓ COM OS DADOS A SEREM SALVOS   */
         /*
-        request(urlDataBase, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                res.json(JSON.parse(body));
-            }else {
-                res.json({"erro": true});
-            }
-        });
-        */
+         request(urlDataBase, function (error, response, body) {
+         if (!error && response.statusCode == 200) {
+         res.json(JSON.parse(body));
+         }else {
+         res.json({"erro": true});
+         }
+         });
+         */
         /*  ===   */
 
         res.json(extend(true, dataSent, sendDados));
@@ -531,6 +608,101 @@ function postSaveConfig(req, res) {
 
         res.json(dataSent);
     }
+}
+
+function postSaveDadosCurso(req, res) {
+    var dataSent = req.body;
+
+    if (verificaDadosAddCurso(dataSent)) {
+        if (auxFilterCodCurso(templateDadosAddCurso.tableCursos, dataSent.model.codigoCurso.model.val)) {
+            var pos = descobrePos(templateDadosAddCurso.tableCursos.list,dataSent.model.codigoCurso.model.val);
+
+            templateDadosAddCurso.tableCursos.list[pos].acodigo = dataSent.model.codigoCurso.model.val;
+            templateDadosAddCurso.tableCursos.list[pos].bcurso = dataSent.model.curso.model.val;
+            templateDadosAddCurso.tableCursos.list[pos].ctipo = auxGeraTextObj(dataSent.model.tipo)[0].text;
+            templateDadosAddCurso.tableCursos.list[pos].darea = auxGeraTextObj(dataSent.model.area)[0].text;
+            templateDadosAddCurso.tableCursos.list[pos].eturno = auxGeraTextObj(dataSent.model.turno)[0].text;
+            templateDadosAddCurso.tableCursos.list[pos].fvagas = dataSent.model.vagasTurma.model.val;
+            templateDadosAddCurso.tableCursos.list[pos].gcarga = dataSent.model.cargaHoraria.model.val;
+            templateDadosAddCurso.tableCursos.list[pos].hperiodo = auxGeraTextObj(dataSent.model.periodo)[0].text;
+
+            for (var elem in templateDadosAddCurso.tableCursos.listComp[pos]) {
+                if (elem != "tableCriterios") {
+                    templateDadosAddCurso.tableCursos.listComp[pos][elem] = {"model": {"val": dataSent.model[elem].model.val}};
+                }
+            }
+            templateDadosAddCurso.tableCursos.listComp[pos].tableCriterios = dataSent.tableCriterios.list;
+        } else {
+            templateDadosAddCurso.tableCursos.list.push({
+                "acodigo": dataSent.model.codigoCurso.model.val,
+                "bcurso": dataSent.model.curso.model.val,
+                "ctipo": auxGeraTextObj(dataSent.model.tipo)[0].text,
+                "darea": auxGeraTextObj(dataSent.model.area)[0].text,
+                "eturno": auxGeraTextObj(dataSent.model.turno)[0].text,
+                "fvagas": dataSent.model.vagasTurma.model.val,
+                "gcarga": dataSent.model.cargaHoraria.model.val,
+                "hperiodo": auxGeraTextObj(dataSent.model.periodo)[0].text,
+                "ibtn": {
+                    "btn": true,
+                    "list": [
+                        {
+                            "text": "",
+                            "class": "btn btn-white",
+                            "title": "Editar",
+                            "entypo": "entypo-pencil"
+                        }
+                    ]
+                }
+            });
+            templateDadosAddCurso.tableCursos.listComp.push({
+                "curso": {"model": {"val": dataSent.model.curso.model.val}},
+                "codigoCurso": {"model": {"val": dataSent.model.codigoCurso.model.val}},
+                "tipo": {"model": {"val": dataSent.model.tipo.model.val}},
+                "area": {"model": {"val": dataSent.model.area.model.val}},
+                "turno": {"model": {"val": dataSent.model.turno.model.val}},
+                "vagasTurma": {"model": {"val": dataSent.model.vagasTurma.model.val}},
+                "cargaHoraria": {"model": {"val": dataSent.model.cargaHoraria.model.val}},
+                "periodo": {"model": {"val": dataSent.model.periodo.model.val}},
+                "habilitacao": {"model": {"val": dataSent.model.habilitacao.model.val}},
+                "autorizacao": {"model": {"val": dataSent.model.autorizacao.model.val}},
+                "reconhecimento": {"model": {"val": dataSent.model.reconhecimento.model.val}},
+                "tableCriterios": dataSent.tableCriterios.list
+            });
+        }
+
+        res.json({"success": true, "tableCursos": templateDadosAddCurso.tableCursos});
+    } else {
+        validaDadosAddCurso(dataSent);
+        res.json({"success": false, "model": dataSent.model});
+    }
+}
+
+function postSaveDiscGradCurric(req, res) {
+    var dataSent = req.body;
+
+    if (!!dataSent.model.disciplina.model.val && !!dataSent.model.tipoDisciplina.model.val && !!dataSent.model.ch.model.val) {
+        var dados = {
+            "nome": _.find(dataSent.model.disciplina.list, _.matchesProperty('id', dataSent.model.disciplina.model.val)),
+            "tipo": _.find(dataSent.model.tipoDisciplina.list, _.matchesProperty('id', dataSent.model.tipoDisciplina.model.val)),
+            "ch": dataSent.model.ch.model.val
+        };
+
+        dadosGradeCurricular[dataSent.grade.id].data.push(dados);
+
+        return res.status(201).json({"success": true, "dados": dadosGradeCurricular[dataSent.grade.id].data});
+    } else {
+        return res.status(400).json({"success": false});
+    }
+}
+
+function postSaveDisciplinas(req, res) {
+    var dataSent = req.body;
+
+    var result = {"list": dataSent.tableNome.list};
+
+    // Todo enviar dados para p backend | disciplinas adicionadas/editadas
+
+    res.json({"success": true, "tableNome": dataSent.tableNome});
 }
 
 function postSaveFreqAlunos(req, res) {
@@ -661,70 +833,24 @@ function postSaveFreqAlunos(req, res) {
     }
 }
 
-function postSaveDadosCurso(req, res) {
+function postSaveGradeCurricular(req, res) {
     var dataSent = req.body;
 
-    if (verificaDadosAddCurso(dataSent)) {
-        if (auxFilterCodCurso(templateDadosAddCurso.tableCursos, dataSent.model.codigoCurso.model.val)) {
-            var pos = descobrePos(templateDadosAddCurso.tableCursos.list,dataSent.model.codigoCurso.model.val);
+    // Verificando se o nome é válido e se não repete
+    if (!!dataSent.nome.model.val && !dadosGradeCurricular[dataSent.nome.model.val]) {
+        var list,
+            dados = { "id": dataSent.nome.model.val, "text": dataSent.nome.model.val, "curso": dataSent.curso.model.val };
 
-            templateDadosAddCurso.tableCursos.list[pos].acodigo = dataSent.model.codigoCurso.model.val;
-            templateDadosAddCurso.tableCursos.list[pos].bcurso = dataSent.model.curso.model.val;
-            templateDadosAddCurso.tableCursos.list[pos].ctipo = auxGeraTextObj(dataSent.model.tipo)[0].text;
-            templateDadosAddCurso.tableCursos.list[pos].darea = auxGeraTextObj(dataSent.model.area)[0].text;
-            templateDadosAddCurso.tableCursos.list[pos].eturno = auxGeraTextObj(dataSent.model.turno)[0].text;
-            templateDadosAddCurso.tableCursos.list[pos].fvagas = dataSent.model.vagasTurma.model.val;
-            templateDadosAddCurso.tableCursos.list[pos].gcarga = dataSent.model.cargaHoraria.model.val;
-            templateDadosAddCurso.tableCursos.list[pos].hperiodo = auxGeraTextObj(dataSent.model.periodo)[0].text;
+        dadosGradeCurricular[dataSent.nome.model.val] = {"data": []};
+        dadosGradeGrades.grade.list.push(dados);
 
-            for (var elem in templateDadosAddCurso.tableCursos.listComp[pos]) {
-                if (elem != "tableCriterios") {
-                    templateDadosAddCurso.tableCursos.listComp[pos][elem] = {"model": {"val": dataSent.model[elem].model.val}};
-                }
-            }
-            templateDadosAddCurso.tableCursos.listComp[pos].tableCriterios = dataSent.tableCriterios.list;
-        } else {
-            templateDadosAddCurso.tableCursos.list.push({
-                "acodigo": dataSent.model.codigoCurso.model.val,
-                "bcurso": dataSent.model.curso.model.val,
-                "ctipo": auxGeraTextObj(dataSent.model.tipo)[0].text,
-                "darea": auxGeraTextObj(dataSent.model.area)[0].text,
-                "eturno": auxGeraTextObj(dataSent.model.turno)[0].text,
-                "fvagas": dataSent.model.vagasTurma.model.val,
-                "gcarga": dataSent.model.cargaHoraria.model.val,
-                "hperiodo": auxGeraTextObj(dataSent.model.periodo)[0].text,
-                "ibtn": {
-                    "btn": true,
-                    "list": [
-                        {
-                            "text": "",
-                            "class": "btn btn-white",
-                            "title": "Editar",
-                            "entypo": "entypo-pencil"
-                        }
-                    ]
-                }
-            });
-            templateDadosAddCurso.tableCursos.listComp.push({
-                "curso": {"model": {"val": dataSent.model.curso.model.val}},
-                "codigoCurso": {"model": {"val": dataSent.model.codigoCurso.model.val}},
-                "tipo": {"model": {"val": dataSent.model.tipo.model.val}},
-                "area": {"model": {"val": dataSent.model.area.model.val}},
-                "turno": {"model": {"val": dataSent.model.turno.model.val}},
-                "vagasTurma": {"model": {"val": dataSent.model.vagasTurma.model.val}},
-                "cargaHoraria": {"model": {"val": dataSent.model.cargaHoraria.model.val}},
-                "periodo": {"model": {"val": dataSent.model.periodo.model.val}},
-                "habilitacao": {"model": {"val": dataSent.model.habilitacao.model.val}},
-                "autorizacao": {"model": {"val": dataSent.model.autorizacao.model.val}},
-                "reconhecimento": {"model": {"val": dataSent.model.reconhecimento.model.val}},
-                "tableCriterios": dataSent.tableCriterios.list
-            });
-        }
+        list = dadosGradeGrades.grade.list.filter(function(el) {
+            return el.curso === dataSent.curso.model.val;
+        });
 
-        res.json({"success": true, "tableCursos": templateDadosAddCurso.tableCursos});
+        return res.status(201).json({"success": true, "list": list});
     } else {
-        validaDadosAddCurso(dataSent);
-        res.json({"success": false, "model": dataSent.model});
+        return res.status(400).json({"success": false});
     }
 }
 

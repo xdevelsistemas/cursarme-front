@@ -19,10 +19,7 @@
             vm.showAdd = false;
             vm.tableCampanhas = {
                 id: "tableCampanhas",
-                dataTable: {},
-                class: "table table-hover",
-                head: [],
-                list: []
+                columnDefs: []
             };
 
             // VARIÁVIES TIPO FUNÇÃO
@@ -56,8 +53,8 @@
                 });
             tableCampPromoPromise
                 .then(function (data) {
-                    vm.tableCampanhas.head = data.head;
-                    vm.tableCampanhas.list = data.list;
+                    vm.tableCampanhas.columnDefs = data.columnDefs;
+                    vm.tableCampanhas.data = data.list;
                 })
                 .catch();
 
@@ -121,6 +118,7 @@
                 saveCampPromoPromise
                     .then(function(data) {
                         $.extend(true, vm._model, data.model);
+                        //vm.tableCampanhas.data = data.list; //todo responder com tabela atualizada
                         if (data.success) cancelar();
                     })
                     .catch(function(error) {

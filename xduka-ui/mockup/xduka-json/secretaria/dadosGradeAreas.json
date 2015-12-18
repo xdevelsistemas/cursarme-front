@@ -1,0 +1,26 @@
+{
+  "area": {
+    "list": [
+      {
+        "id": "exa1",
+        "text": "Exatas",
+        "tipoCurso": "pos1"
+      },
+      {
+        "id": "hum1",
+        "text": "Humanas",
+        "tipoCurso": "pos1"
+      },
+      {
+        "id": "exa2",
+        "text": "Exatas",
+        "tipoCurso": "mes1"
+      },
+      {
+        "id": "hum2",
+        "text": "Humanas",
+        "tipoCurso": "mes1"
+      }
+    ]
+  }
+}

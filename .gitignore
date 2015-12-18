@@ -5,5 +5,4 @@ public/lib/
 .vagrant/
 dist
 .tmp
-tests/spec/aluno/coverage
-tests/spec/comercial/coverage
+tests/spec/**/coverage

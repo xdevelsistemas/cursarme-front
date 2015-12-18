@@ -1,0 +1,22 @@
+{
+  "grade": {
+    "list": [
+      {"id": "grade20092", "text": "Grade 2009 - 2009/2", "curso": "eng1"},
+      {"id": "grade20101", "text": "Grade 2010 - 2010/1", "curso": "eng1"},
+      {"id": "grade20142", "text": "Grade 2014 - 2014/2", "curso": "cie1"},
+      {"id": "grade20151", "text": "Grade 2015 - 2015/1", "curso": "cie1"},
+      {"id": "grade2009B", "text": "Grade 2009B - 2009/2", "curso": "geo1"},
+      {"id": "grade2010A", "text": "Grade 2010A - 2010/1", "curso": "geo1"},
+      {"id": "grade2014B", "text": "Grade 2014B - 2014/2", "curso": "his1"},
+      {"id": "grade2015A", "text": "Grade 2015A - 2015/1", "curso": "his1"},
+      {"id": "gradeB2009", "text": "GradeB - 2009/2", "curso": "eng2"},
+      {"id": "gradeA2010", "text": "GradeA - 2010/1", "curso": "eng2"},
+      {"id": "gradeA2014", "text": "GradeA - 2014/2", "curso": "sis1"},
+      {"id": "gradeB2015", "text": "GradeB - 2015/1", "curso": "sis1"},
+      {"id": "grade22009", "text": "Grade - 2009/2", "curso": "soc1"},
+      {"id": "grade12010", "text": "Grade - 2010/1", "curso": "soc1"},
+      {"id": "grade22014", "text": "Grade - 2014/2", "curso": "bib1"},
+      {"id": "grade12015", "text": "Grade - 2015/1", "curso": "bib1"}
+    ]
+  }
+}

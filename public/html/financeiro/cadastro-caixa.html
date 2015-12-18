@@ -81,6 +81,12 @@
         </div>
     </div>
 </div>
+<br>
+<div class="row" data-ng-show="cadc.showTable&&cadc.editing">
+    <div class="col-md-12 text-center">
+        <span class="text-warning">Adição em andamento</span>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12 centered center-block text-center">
         <span class="btn-group" style="padding: 2%">
@@ -105,9 +111,9 @@
                 <i class="icon entypo-cancel icon-right"></i></button>
         </span>
         <span class="btn-group" style="padding: 2%" data-ng-hide="cadc.showTable">
-            <button class="btn btn-warning btn-icon icon-left btn-lg" data-toggle="modal" data-target="#confirmClear" ng-click="cadc.voltar()">
+            <button class="btn btn-primary btn-icon icon-left btn-lg" data-toggle="modal" data-target="#confirmClear" ng-click="cadc.voltar()">
                 Voltar
-                <i class="icon entypo-cup icon-right"></i></button>
+                <i class="icon entypo-left icon-right"></i></button>
         </span>
     </div>
 </div>

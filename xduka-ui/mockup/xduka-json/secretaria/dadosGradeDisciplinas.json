@@ -1,0 +1,36 @@
+{
+  "disciplinas": [
+    { "id": "a1", "text": "Circuitos Elétricos" },
+    { "id": "a2", "text": "Cálculo 1" },
+    { "id": "a3", "text": "Elétrica Avançada" },
+    { "id": "a4", "text": "Gianomo Guilizzoni Founder" },
+    { "id": "a5", "text": "Marco Botton" },
+    { "id": "a6", "text": "Mariah Maclachian" },
+    { "id": "a7", "text": "Geografia 1" },
+    { "id": "a8", "text": "Geografia 2" },
+    { "id": "a9", "text": "Geografia 3" },
+    { "id": "a10", "text": "Mecânica 1" },
+    { "id": "a11", "text": "Elétrônica Avançada" },
+    { "id": "a12", "text": "Marco Botton 2" },
+    { "id": "a13", "text": "Mariah Maclachian 2" },
+    { "id": "a14", "text": "Circuitos Elétricos 2" },
+    { "id": "a15", "text": "Mecânica Avançada" },
+    { "id": "a16", "text": "Programação 1" },
+    { "id": "a17", "text": "Administração Financeira" },
+    { "id": "a18", "text": "História 1" },
+    { "id": "a19", "text": "História 2" },
+    { "id": "a20", "text": "História 3" },
+    { "id": "a21", "text": "Estatística 1" },
+    { "id": "a22", "text": "Programação 2" },
+    { "id": "a23", "text": "Cálculo 2" },
+    { "id": "a24", "text": "Metodologia da Pesquisa" },
+    { "id": "a25", "text": "História 4" },
+    { "id": "a26", "text": "História 5" },
+    { "id": "a27", "text": "História 6" },
+    { "id": "a28", "text": "Estatística 2" }
+  ],
+  "tipoDisciplina": [
+    {"id": "b1", "text": "Eixo Comum"},
+    {"id": "b2", "text": "Eixo Específico"}
+  ]
+}

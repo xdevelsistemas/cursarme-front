@@ -33,10 +33,86 @@
                 vm.visualizarAluno = false;
                 vm.tableAnexos = {
                     id: 'tableAnexos',
-                    dataTable: {},
-                    class: 'table table-hover',
-                    head: ["Nome do arquivo", "Data", ""],
-                    list: []
+                    columnDefs: [
+                    {"name": "Nome do arquivo", "field": "nome"}, 
+                    {"name": "data"},
+                    {"name": "", "field": "todo"}
+                    ]
+                };
+
+                /* NAV (LINKS PARTE DE CIMA) */
+                vm._model.navs = [
+                    {
+                        text: 'Home',
+                        entypo: 'entypo-home',
+                        active: true,
+                        target: '#home'
+                    },
+                    {
+                        text: 'Endereço',
+                        entypo: 'entypo-address',
+                        target: '#endereco'
+                    },
+                    {
+                        text: 'Documentação',
+                        entypo: 'entypo-vcard',
+                        target: '#documentacao'
+                    },
+                    {
+                        text: 'Grade',
+                        entypo: 'entypo-docs',
+                        target: '#gradeDisc'
+                    },
+                    {
+                        text: 'Notas',
+                        entypo: 'entypo-graduation-cap',
+                        target: '#notas'
+                    },
+                    {
+                        text: 'Histórico',
+                        entypo: 'entypo-archive',
+                        target: '#historico'
+                    },
+                    {
+                        text: 'Anexo',
+                        entypo: 'glyphicon glyphicon-paperclip',
+                        target: '#anexar'
+                    },
+                    {
+                        text: 'Log',
+                        entypo: 'entypo-book-open',
+                        target: '#log'
+                    }
+                ];
+                vm._model.gridLOg = {
+                    id: 'logTable',
+                    columnDefs: [
+                    {"name": "Data/Hora", "field": "data"}, 
+                    {"name": "Usuário", "field": "user"}, 
+                    {"name": "evento"}
+                    ]
+                };
+                vm._model.gridAvaliacoes = {
+                    id: "gridAvaliacoes",
+                    columnDefs: [
+                    {"name": "Disciplina", "field": "disc"}, 
+                    {"name": "AV1", "field": "av1"},
+                    {"name": "AV2", "field": "av2"},
+                    {"name": "nota"},
+                    {"name": "Média", "field": "media"},
+                    {"name": "REC", "field": "rec"},
+                    {"name": "2HC", "field": "2hc"}, 
+                    {"name": "Média Final", "field": "mediaf"}, 
+                    {"name": "Resultado", "field": "result"}
+                    ]
+                };
+                vm._model.gridGrade = {
+                    id: 'gradeDiscTable',
+                    columnDefs: [
+                    { "name": "Período", "field": "periodo"}, 
+                    { "name": "disciplina"}, 
+                    { "name": "Carga Horária", "field": "cargahoraria"}
+                    ]
                 };
 
 
@@ -146,145 +222,6 @@
                     /* ROTA DE TRATAMENTO DO NODE */
                     vm.editing = false;  //SE VALIDAÇÃO OK
 
-                };
-
-                /* NAV (LINKS PARTE DE CIMA) */
-                vm._model.navs = [
-                    {
-                        text: 'Home',
-                        entypo: 'entypo-home',
-                        active: true,
-                        target: '#home'
-                    },
-                    {
-                        text: 'Endereço',
-                        entypo: 'entypo-address',
-                        target: '#endereco'
-                    },
-                    {
-                        text: 'Documentação',
-                        entypo: 'entypo-vcard',
-                        target: '#documentacao'
-                    },
-                    {
-                        text: 'Grade',
-                        entypo: 'entypo-docs',
-                        target: '#gradeDisc'
-                    },
-                    {
-                        text: 'Notas',
-                        entypo: 'entypo-graduation-cap',
-                        target: '#notas'
-                    },
-                    {
-                        text: 'Histórico',
-                        entypo: 'entypo-archive',
-                        target: '#historico'
-                    },
-                    {
-                        text: 'Anexo',
-                        entypo: 'glyphicon glyphicon-paperclip',
-                        target: '#anexar'
-                    },
-                    {
-                        text: 'Log',
-                        entypo: 'entypo-book-open',
-                        target: '#log'
-                    }
-                ];
-                vm._model.gridLOg = {
-                    id: 'logTable',
-                    dataTable: {
-                        "paging":   false,
-                        "ordering": true,
-                        "info":     false,
-                        "filter":   false,
-                        "order": [[ 0, "desc" ]],
-                        "aoColumnDefs": [
-                            { 'bSortable': false, 'aTargets': [ 2 ] }
-                        ]
-
-                    },
-                    class: 'table-hover table-bordered display',
-                    head: ["Data/Hora", "Usuário", "Evento"],
-                    list: [
-                        {
-                            'adata': {date: true, int: 1437423897997, formatDate: 'dd/MM/yyyy h:mm a'},
-                            'buser': 'Camila Ferreira',
-                            'cevento': 'Usuário(a) Camila Ferreira Matrícula Aluno(a): (21321231) ADENILSON BLA BLA BLA BLA NKL NASDKLASDKLASALDASKLDMSAKLDAMKLAMDSMKLA MSDAKD MAKLSMDAKLMSDKLAMDSKAMDKALDMKSAL MDASKLDM KAM AKL MSDKL'
-                        },
-                        {
-                            'adata': {date: true, int: 1437426700808, formatDate: 'dd/MM/yyyy h:mm a'},
-                            'buser': 'João da Silva',
-                            'cevento': 'Usuário(a) João da Silva Matrícula Aluno(a): (343434343) MARIA BLA BLA BLA BLA NKL NASDKLASDKLASALDASKLDMSAKLDAMKLAMDSMKLA MSDAKD MAKLSMDAKLMSDKLAMDSKAMDKALDMKSAL MDASKLDM KAM AKL MSDKL'
-                        }
-                    ]
-                };
-                vm._model.gridAvaliacoes = {
-                    class: 'table-hover table-bordered display',
-                    head: ["Disciplina", "AV1","AV2","Nota","Média","REC","2HC", "Média Final", "Resultado"],
-                    list: [
-                        {
-                            "adisc": "Serviços de Saúde: Legislação e Segurança do Trabalho",
-                            "bav1": "10",
-                            "cav2": "10",
-                            "dnota": "9",
-                            "emedia": "4.5",
-                            "frec": "8",
-                            "g2hc": "6.25",
-                            "hmediaf": "6",
-                            "iresult": "APROVADO"
-                        },
-                        {
-                            "adisc": "Políticas Públicas de Saúde no Brasil",
-                            "bav1": "10",
-                            "cav2": "10",
-                            "dnota": "9",
-                            "emedia": "4.5",
-                            "frec": "8",
-                            "g2hc": "6.25",
-                            "hmediaf": "6",
-                            "iresult": "APROVADO"
-                        }
-                    ]
-                };
-                vm._model.gridGrade = {
-                    id: 'gradeDiscTable',
-                    dataTable: {
-                        "paging":   false,
-                        "ordering": true,
-                        "info":     false,
-                        "filter":   true,
-                        "order": [[ 2, "desc" ]],
-                        "language": {
-                            "search": "Pesquisar Grade"
-                        }
-
-                    },
-                    class: 'table-hover table-bordered display',
-                    head: ["Período", "Disciplina", "Carga Horária"],
-                    list: [
-                        {
-                            "aperiodo": "Único",
-                            "bdisciplina": "Políticas Públicas de Saúde no Brasil",
-                            "ccargahoraria": "30"
-                        },
-                        {
-                            "aperiodo": "Único",
-                            "bdisciplina": "Serviços de Saúde: Legislação e Segurança do Trabalho",
-                            "ccargahoraria": "40"
-                        },
-                        {
-                            "aperiodo": "Único",
-                            "bdisciplina": "Vigilância em Saúde",
-                            "ccargahoraria": "30"
-                        },
-                        {
-                            "aperiodo": "Único",
-                            "bdisciplina": "Orientação do Trabalho de Conclusão de Curso",
-                            "ccargahoraria": "80"
-                        }
-                    ]
                 };
 
                 function search(matNome){

@@ -1,29 +1,34 @@
 {
+  "columnDefs": [
+    {"name": "nome"},
+    {"name": "tipo"},
+    {"name": "obs"}
+  ],
   "list": [
     {
-      "anome": "Bradesco",
-      "btipo": "Boleto",
-      "cobs": "Alunos"
+      "nome": "Bradesco",
+      "tipo": "Boleto",
+      "obs": "Alunos"
     },
     {
-      "anome": "Visa",
-      "btipo": "Cartão de Crédito",
-      "cobs": ""
+      "nome": "Visa",
+      "tipo": "Cartão de Crédito",
+      "obs": ""
     },
     {
-      "anome": "Mastercard",
-      "btipo": "Cartão de Crédito",
-      "cobs": ""
+      "nome": "Mastercard",
+      "tipo": "Cartão de Crédito",
+      "obs": ""
     },
     {
-      "anome": "Cheque",
-      "btipo": "",
-      "cobs": "Alunos"
+      "nome": "Cheque",
+      "tipo": "",
+      "obs": "Alunos"
     },
     {
-      "anome": "Acordo",
-      "btipo": "Advocacia",
-      "cobs": "Alunos"
+      "nome": "Acordo",
+      "tipo": "Advocacia",
+      "obs": "Alunos"
     }
   ]
 }

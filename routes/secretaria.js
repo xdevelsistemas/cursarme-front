@@ -21,10 +21,6 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/dados-aulas-dadas')
         .get(controller.showDadosAulasDadas);
 
-    // Salvar aulas dadas
-    app.route('/api/secretaria/aulas-dadas/salvar')
-        .post(controller.saveAulasDadas);
-
     //
     app.route('/api/secretaria/dados-curso')
         .get(controller.showDadosCurso);
@@ -33,9 +29,25 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/dados-curso-pauta/:id')
         .get(controller.showDadosCursoPauta);
 
-    //dados-gera-turma
+    // dados-gera-turma
     app.route('/api/secretaria/dados-gera-turma')
         .get(controller.showDadosGeraTurma);
+
+    // template-area-grade
+    app.route('/api/secretaria/template-area-grade-curricular/:id')
+        .get(controller.showTemplateAreaGradeCurricular);
+
+    // template-curso-grade
+    app.route('/api/secretaria/template-curso-grade-curricular/:id')
+        .get(controller.showTemplateCursoGradeCurricular);
+
+    // template-grade
+    app.route('/api/secretaria/template-grade-grade-curricular/:id')
+        .get(controller.showTemplateGradeGradeCurricular);
+
+    // dados-grade
+    app.route('/api/secretaria/dados-grade-curricular/:id')
+        .get(controller.showDadosGradeCurricular);
 
     //
     app.route('/api/secretaria/dados-enviar-circular/:id')
@@ -93,6 +105,10 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/template-enviar-circular')
         .get(controller.showTemplateEnviarCircular);
 
+    // template-grade-curricular
+    app.route('/api/secretaria/template-grade-curricular')
+        .get(controller.showTemplateGradeCurricular);
+
     //
     app.route('/api/secretaria/template-material-complementar')
         .get(controller.showTemplateMaterialCircular);
@@ -117,6 +133,10 @@ module.exports = function (app, passport) {
     app.route('/api/secretaria/save-dados-disciplinas')
         .post(controller.putSaveDisciplinas);
 
+    //save-dados-disciplinas
+    app.route('/api/secretaria/save-dados-disciplinas-curricular')
+        .post(controller.putSaveDiscGradCurric);
+
     //
     app.route('/api/secretaria/save-enviar-circular')
         .post(controller.putSaveEnviarCircular);
@@ -124,6 +144,10 @@ module.exports = function (app, passport) {
     //
     app.route('/api/secretaria/save-frequencia-alunos')
         .post(controller.putSaveFreqAlunos);
+
+    // save-dados-grade-curricular
+    app.route('/api/secretaria/save-dados-grade-curricular')
+        .post(controller.putSaveGradeCurricular);
 
     //
     app.route('/api/secretaria/save-material-complementar')

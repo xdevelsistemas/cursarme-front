@@ -7,6 +7,7 @@ angular.module('app',[
     'ui.utils',
     'ui.utils.masks',
     'ui.grid',
+    'ui.grid.resizeColumns',
     'ngImgCrop',
     'common.values',
     'common.filters',
