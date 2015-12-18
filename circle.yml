@@ -7,7 +7,7 @@ dependencies:
   override:
     - sudo pip install awscli
     - docker info
-    - docker build -t claytonsilva/xduka-ui ./xduka-ui
+    - docker build -t claytonsilva/xduka-ui .
 test:
   override:
     - docker run -d --name mongodb  xdevelsistemas/debian-env:mongodb-env
@@ -20,10 +20,10 @@ deployment:
     branch: publicacao
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - (cd xduka-ui && npm install)
-      - (cd xduka-ui && npm install --dev)
-      - (cd xduka-ui && bower install)
-      - (cd xduka-ui && grunt production)
+      - (npm install)
+      - (npm install --dev)
+      - (bower install)
+      - (grunt production)
       - (bash s3cmd.sh)
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push claytonsilva/xduka-ui
