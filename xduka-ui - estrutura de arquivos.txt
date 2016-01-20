@@ -1,43 +1,53 @@
 app
-  -- css
-  -- img
-  -- html
-  -- js
-    -- controllers
-    -- directives
-    -- filters
-    -- routes
-    -- services
-    -- module.js
-areas
-  -- aluno
-    -- css
-    -- img
-    -- html
-    -- js
-      -- controllers
-      -- directives
-      -- filters
-      -- routes
-      -- services
-      -- module.js
-  -- comercial
-    -- ...
-  -- gestor
-    -- ...
-  -- pedagogico
-    -- ...
-  -- professor
-    -- ...
-  -- secretaria
-    -- ...
-  -- tesouraria
-    -- ...
-  -- visitante
-    -- ...
-lib
-index.html
-index.js
+  -- public
+        -- assets (/assets na rota do node) ( manter a estrutura para funcionar com neon )
+              -- css
+              -- img
+              -- html
+              -- js
+
+
+        -- common (/common na rota do node)
+            -- css
+            -- img
+            -- html
+            -- js
+              -- controllers
+              -- directives
+              -- filters
+              -- routes
+              -- services
+              -- module.js
+        -- aluno (/aluno na rota do node)
+            -- css
+            -- img
+            -- html
+            -- js
+              -- controllers
+              -- directives
+              -- filters
+              -- routes
+              -- services
+              -- module.js
+            index.html ( a base da spa fica aqui)
+        -- comercial
+            -- ...
+        -- gestor
+            -- ...
+        -- pedagogico
+            -- ...
+        -- professor
+            -- ...
+        -- secretaria
+            -- ...
+        -- tesouraria
+            -- ...
+        -- visitante
+            -- ...
+
+estrutura de backend
+        -  (/api na rota do node)
+            segue o path normal
 
 
 

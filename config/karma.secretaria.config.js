@@ -39,9 +39,9 @@ module.exports = function(config) {
         'public/lib/d3/d3.min.js',
         'public/lib/angular-file-upload/dist/angular-file-upload.min.js',
         'public/assets/js/jquery.mask.min.js',
-        'public/js/secretaria/routes/routes.js',
-        'public/js/secretaria/**/*.js',
-        'public/js/common/**/*.js',
+        'public/secretaria/js/routes/routes.js',
+        'public/secretaria/js/**/*.js',
+        'public/common/js/**/*.js',
         'tests/spec/secretaria/controllers/gradeCurricularSpec.js'
     ],
 
@@ -56,7 +56,7 @@ module.exports = function(config) {
           // source files, that you wanna generate coverage for
           // do not include tests or libraries
           // (these files will be instrumented by Istanbul)
-          'public/js/secretaria/**/*.js': ['coverage']
+          'public/secretaria/js/**/*.js': ['coverage']
       },
 
       // optionally, configure the reporter

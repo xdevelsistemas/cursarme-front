@@ -35,9 +35,9 @@ module.exports = function(config) {
         'public/lib/angular-ui-select/dist/select.js',
         'public/lib/ngprogress/build/ngprogress.js',
         'public/assets/js/jquery.mask.min.js',
-        'public/js/comercial/routes/routes.js',
-        'public/js/comercial/**/*.js',
-        'public/js/common/**/*.js',
+        'public/comercial/js/routes/routes.js',
+        'public/comercial/js/**/*.js',
+        'public/common/js/**/*.js',
         'tests/spec/comercial/services/*Spec.js',
         'tests/spec/comercial/controllers/*Spec.js'
     ],
@@ -53,7 +53,7 @@ module.exports = function(config) {
           // source files, that you wanna generate coverage for
           // do not include tests or libraries
           // (these files will be instrumented by Istanbul)
-          'public/js/comercial/**/*.js': ['coverage']
+          'public/comercial/js/**/*.js': ['coverage']
       },
 
       // optionally, configure the reporter

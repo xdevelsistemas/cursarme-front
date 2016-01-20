@@ -1,0 +1,23 @@
+<div id="{{'graf_'+params.id}}" class="col-md-12" style="height: {{params.height || '300px'}}; width: 100%'">
+    <div id="{{'load_'+params.id}}" class="col-md-12 text-center">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <c3chart bindto-id="{{'c3_'+params.id}}">
+        <chart-column ng-if="!!params.x" column-id="x"
+                      column-values="{{params.x}}"/>
+        <chart-column ng-repeat="colum in params.list" column-id="{{colum.name}}"
+                      column-values="{{colum.values}}"
+                      column-type="{{colum.type}}"/>
+        <chart-axes ng-if="!!params.x" values-x="x" />
+        <chart-axis>
+            <chart-axis-x axis-position="outer-center"
+                          axis-type="category">
+                <chart-axis-x-tick tick-rotate="50"/>
+            </chart-axis-x>
+        </chart-axis>
+    </c3chart>
+</div>

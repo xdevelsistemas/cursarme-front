@@ -14,7 +14,7 @@
                 $httpBackend = _$httpBackend_;
 
                 // Requisição do servidor
-                $httpBackend.when('GET','html/secretaria/secretaria.html').respond(200);
+                $httpBackend.when('GET','html/secretaria.html').respond(200);
                 $httpBackend.when('GET','/api/secretaria/template-grade-curricular').respond(200, template);
 
                 // Definindo controller
