@@ -35,9 +35,9 @@ module.exports = function(config) {
         'public/lib/angular-ui-select/dist/select.js',
         'public/lib/ngprogress/build/ngprogress.js',
         'public/assets/js/jquery.mask.min.js',
-        'public/js/aluno/routes/routes.js',
-        'public/js/aluno/**/*.js',
-        'public/js/common/**/*.js',
+        'public/aluno/js/routes/routes.js',
+        'public/aluno/js/**/*.js',
+        'public/common/js/**/*.js',
         'tests/spec/aluno/**/*Spec.js'
     ],
 
@@ -53,7 +53,7 @@ module.exports = function(config) {
           // source files, that you wanna generate coverage for
           // do not include tests or libraries
           // (these files will be instrumented by Istanbul)
-          'public/js/aluno/**/*.js': ['coverage']
+          'public/aluno/js/**/*.js': ['coverage']
       },
 
     // optionally, configure the reporter

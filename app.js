@@ -32,19 +32,22 @@ app.use(function(req, res, next) {
 });
 
 //Callback ejs
-app.engine('ejs', function (filePath, options, callback) {
+/*app.engine('ejs', function (filePath, options, callback) {
     ejs.__express(filePath, options, function (err, html) {
         if (err) return callback(err);
         callback(null, html)
     })
-});
+});*/
+//Nova engine ejs com extensão html
+app.engine('html', ejs.renderFile);
+app.set('view engine', 'html');
 
 // view engine setup
 app.get('env') === 'development' ?
     app.set('views', path.join(__dirname, 'views')):
     app.set('views', path.join(__dirname, 'dist/views'));
 
-app.set('view engine', 'ejs'); // set up ejs for templating
+//app.set('view engine', 'ejs'); // set up ejs for templating
 
 app.use(favicon());
 app.use(logger('dev'));
@@ -97,7 +100,7 @@ if (app.get('env') === 'development') {
         var err = new Error('Not Found');
         err.status = 404;
 
-        res.render('error', {
+        res.status(err.status).render('error', {
             message: err.message,
             error: err
         });
@@ -108,7 +111,7 @@ if (app.get('env') === 'development') {
         err.status = 404;
         /*next(err);*/
 
-        res.render('404');
+        res.status(err.status).render('404');
     });
 }
 /// error handlers
