@@ -18,7 +18,7 @@
                 // Buscando dados servidor
                 $httpBackend.when('GET', '/api/comercial/template-inscricao').respond(200, template);
                 $httpBackend.when('GET', '/api/comercial/view-inscr').respond(200, inscr);
-                $httpBackend.when('GET', 'html/comercial/pre-cadastro.html').respond(200);
+                $httpBackend.when('GET', 'html/pre-cadastro.html').respond(200);
 
                 vm = _$controller_('FormPreCadastro', {"$scope": $scope});
             });
