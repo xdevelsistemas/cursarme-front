@@ -63,12 +63,14 @@ module.exports = function(grunt) {
                     svgoPlugins: [{ removeViewBox: false }],
                     use: [mozjpeg()]
                 },
-                files: [{
-                    expand: true,
-                    cwd: 'public/assets/',
-                    src: ['/{images,xduka}/**/*.{png,jpg,gif}'],
-                    dest: 'dist/public/assets'
-                }]
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'public/assets/',
+                        src: ['/{images,xduka}/**/*.{png,jpg,gif}'],
+                        dest: 'dist/public/assets'
+                    }
+                ]
             }
         },
         htmlmin: {
@@ -77,12 +79,38 @@ module.exports = function(grunt) {
                     removeComments: true,
                     collapseWhitespace: true
                 },
-                files: [{
-                    expand: true,
-                    cwd: 'public/html',
-                    src: '**/*.html',
-                    dest: 'dist/public/html'
-                }]
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'public/aluno/html',
+                        src: '*.html',
+                        dest: 'dist/public/aluno/html'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'public/comercial/html',
+                        src: '*.html',
+                        dest: 'dist/public/comercial/html'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'public/common/html',
+                        src: '*.html',
+                        dest: 'dist/public/common/html'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'public/financeiro/html',
+                        src: '*.html',
+                        dest: 'dist/public/financeiro/html'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'public/secretaria/html',
+                        src: '*.html',
+                        dest: 'dist/public/secretaria/html'
+                    }
+                ]
             }
         },
         cdnify: {
@@ -94,7 +122,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     src: ['dist/views/**/*',
-                          'dist/public/html/**/*.html']
+                          'dist/public/**/html/*.html']
                 }]
             }
         },
@@ -111,14 +139,14 @@ module.exports = function(grunt) {
             }
         },
         usemin: {
-            html: 'dist/views/**/*.ejs'
+            html: 'dist/views/**/*.html'
         },
         useminPrepare: {
             options: {
                 root: 'public',
                 dest: 'dist/public'
             },
-            html: 'dist/views/**/*.ejs'
+            html: 'dist/views/**/*.html'
         }
     });
 
