@@ -35,7 +35,7 @@
                 "href": "#/campanhas-promocionais"
             },
             {
-                "text": "contrato",
+                "text": "Contrato",
                 "iconClass": "entypo-newspaper",
                 "href": "#/contrato"
             }

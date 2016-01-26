@@ -211,7 +211,7 @@ var public_vars = public_vars || {};
 
 
 
-		// Panels
+		/*// Panels
 		$('body').on('click', '.panel > .panel-heading > .panel-options > a[data-rel="reload"]', function(ev)
 		{
 			ev.preventDefault();
@@ -274,7 +274,7 @@ var public_vars = public_vars || {};
 				$body.slideDown('normal', fit_main_content_height);
 				$panel.removeClass('panel-collapse');
 			}
-		});
+		});*/
 
 
 
