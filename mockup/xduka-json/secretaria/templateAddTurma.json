@@ -23,6 +23,14 @@
       ],
       "model": {"val": "", "err": ""}
     },
+    "area": {
+      "label": "Área",
+      "type": "select",
+      "name": "area",
+      "placeholder": "Selecione uma opção",
+      "list": [],
+      "model": {"val": "", "err": ""}
+    },
     "curso": {
       "label": "Curso",
       "type": "select",
