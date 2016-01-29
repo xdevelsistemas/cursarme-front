@@ -8,6 +8,13 @@ body {
     color: #000; /*cor padrão sobrepondo a do neon*/
 }
 
+.main-content {
+    min-height: 81vh;
+}
+footer.main {
+    text-align: center;
+}
+
 .titleRed {
     background-color: rgba(228, 11, 11, 0.88);
     transition: all 400ms ease-in-out 0.1s;

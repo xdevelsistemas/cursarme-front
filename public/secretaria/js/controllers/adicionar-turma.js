@@ -11,6 +11,7 @@
             //VARIÁVEIS COMUNS
             breadCrumb.title = 'Adicionar Turma';
             vm._model = {};
+            vm.disableArea = true;
             vm.disableCurso = true;
             vm.disablePeriodo = true;
             vm.editing = false;
@@ -25,6 +26,7 @@
 
             //VARIÁVEIS TIPO FUNÇÕES
             vm.adicionar = adicionar;
+            vm.areaChange = areaChange;
             vm.cancelar = cancelar;
             vm.cursoChange = cursoChange;
             vm.limpar = limpar;
@@ -48,6 +50,28 @@
             function adicionar(){
 
                 vm.editing = true;
+            }
+
+            function areaChange(item, model){
+                var getCursos = $http({
+                    url: '/api/secretaria/cursos/'+model,
+                    method: "GET"
+                }).then(
+                    function(data){
+                        vm._model.curso.list = data.data.listCursos;
+                        vm._model.curso.model.val = '';
+
+                        vm._model.periodo.model.val = '';
+                        vm._model.periodo.list = [];
+                        vm._model.periodo.listAux = data.data.listPeriodos;
+
+                        vm.disableCurso = false;
+                        vm.disablePeriodo = true;
+                    },
+                    function(err) {
+                        console.log(err)
+                    }
+                )
             }
 
             function cancelar() {
@@ -139,25 +163,18 @@
             }
 
             function tipoCursoChange(item, model) {
-                var getCursos = $http({
-                    url: '/api/secretaria/cursos/'+model,
+
+                /*$http({
+                    url: '/api/secretaria/area/'+model,
                     method: "GET"
                 }).then(
                     function(data){
-                        vm._model.curso.list = data.data.listCursos;
-                        vm._model.curso.model.val = '';
 
-                        vm._model.periodo.model.val = '';
-                        vm._model.periodo.list = [];
-                        vm._model.periodo.listAux = data.data.listPeriodos;
-                        
-                        vm.disableCurso = false;
-                        vm.disablePeriodo = true;
+
+
                     },
-                    function(err) {
-                        console.log(err)
-                    }
-                )
+                    function(err){console.log(err);}
+                )*/
 
             }
 

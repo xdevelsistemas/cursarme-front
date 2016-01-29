@@ -83,12 +83,31 @@
                                     {id: 3, text: 'Período 3'},
                                     {id: 4, text: 'Período 4'}
                                 ]
+                            },
+                            "situacao": {
+                                "label": "Situação",
+                                "type": "text",
+                                "placeholder": "Selecione...",
+                                "name": "situacao",
+                                "model": {"val": "", "err": ""},
+                                "list": [
+                                    {id: 0, text: 'Normal'},
+                                    {id: 1, text: 'Transferência de turma'},
+                                    {id: 2, text: 'Transferência de curso'},
+                                    {id: 3, text: 'Desistência'},
+                                    {id: 4, text: 'Cancelado'},
+                                    {id: 5, text: 'Transferência de instituição'},
+                                    {id: 6, text: 'Remanejado'}
+                                ]
                             }
                         });
                         if (Object.keys(alunoService.aluno).length==0){
                             $routeParams.matricula.length > 6?search($routeParams.matricula):vm._erro='Matrícula '+$routeParams.matricula+' inexistente!'
                         }else{
                             $.extend(true,vm._model,alunoService.aluno);
+                            if(angular.isDefined(alunoService.aluno.pendencia)){
+                                vm.msgPendencia = vm.modelStrings.PENDENCIA+' R$'+alunoService.aluno.pendencia.model.val;
+                            }
                             vm.completeBar();
                         }
                     })
