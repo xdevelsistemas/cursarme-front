@@ -99,6 +99,18 @@
                                     {id: 5, text: 'Transferência de instituição'},
                                     {id: 6, text: 'Remanejado'}
                                 ]
+                            },
+                            "origem": {
+                                "label": "Origem",
+                                "name": "origem",
+                                "type": "text",
+                                "model": {"val": "", "err": ""}
+                            },
+                            "destino": {
+                                "label": "Destino",
+                                "name": "destino",
+                                "type": "text",
+                                "model": {"val": "", "err": ""}
                             }
                         });
                         if (Object.keys(alunoService.aluno).length==0){

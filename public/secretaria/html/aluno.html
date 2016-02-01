@@ -85,6 +85,14 @@
                                 <xd-select data-params="al._model.situacao" data-disable="!al.editing"></xd-select>
                             </div>
                         </div>
+                        <div class="row" ng-show="al._model.situacao.model.val === 1 || al._model.situacao.model.val === 2 || al._model.situacao.model.val === 5">
+                            <div class="col-md-6 padding1">
+                                <xd-input data-params="al._model.origem" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="col-md-6 padding1">
+                                <xd-input data-params="al._model.destino" data-disable="!al.editing"></xd-input>
+                            </div>
+                        </div>
                     </xd-panel-collapse>
                     <xd-panel-collapse title="'Relatórios'">
                         <div class="row">
