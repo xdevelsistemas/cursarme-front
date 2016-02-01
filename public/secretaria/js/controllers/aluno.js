@@ -161,17 +161,70 @@
                                     {id: 6, text: 'Remanejado'}
                                 ]
                             },
-                            "origem": {
-                                "label": "Origem",
-                                "name": "origem",
+                            "origemCurso": {
+                                "label": "Origem (Curso)",
                                 "type": "text",
-                                "model": {"val": "", "err": ""}
+                                "placeholder": "Selecione...",
+                                "name": "origemCurso",
+                                "model": {"val": "", "err": ""},
+                                "list": [
+                                    {id: 0, text: 'Curso 1'}
+                                ]
                             },
-                            "destino": {
-                                "label": "Destino",
-                                "name": "destino",
+                            "origemTurma": {
+                                "label": "Origem (Turma)",
                                 "type": "text",
-                                "model": {"val": "", "err": ""}
+                                "placeholder": "Selecione...",
+                                "name": "origemTurma",
+                                "model": {"val": "", "err": ""},
+                                "list": [
+                                    {id: 0, text: 'Turma 1'}
+                                ]
+                            },
+                            "destinoCurso": {
+                                "label": "Destino (Curso)",
+                                "type": "text",
+                                "placeholder": "Selecione...",
+                                "name": "destinoCurso",
+                                "model": {"val": "", "err": ""},
+                                "list": [
+                                    {id: 0, text: 'Curso 2'},
+                                    {id: 1, text: 'Curso 3'},
+                                    {id: 2, text: 'Curso 4'}
+                                ]
+                            },
+                            "destinoTurma": {
+                                "label": "Destino (Turma)",
+                                "type": "text",
+                                "placeholder": "Selecione...",
+                                "name": "destinoTurma",
+                                "model": {"val": "", "err": ""},
+                                "list": [
+                                    {id: 0, text: 'Turma 1'},
+                                    {id: 1, text: 'Turma 2'},
+                                    {id: 2, text: 'Turma 3'}
+                                ]
+                            },
+                            "origemUnidade": {
+                                "label": "Origem (Unidade)",
+                                "type": "text",
+                                "placeholder": "Selecione...",
+                                "name": "origemUnidade",
+                                "model": {"val": "", "err": ""},
+                                "list": [
+                                    {id: 0, text: 'Unidade Vitória'}
+                                ]
+                            },
+                            "destinoUnidade": {
+                                "label": "Destino (Unidade)",
+                                "type": "text",
+                                "placeholder": "Selecione...",
+                                "name": "destinoUnidade",
+                                "model": {"val": "", "err": ""},
+                                "list": [
+                                    {id: 0, text: 'Unidade Cariacica'},
+                                    {id: 1, text: 'Unidade São Mateus'}
+                                ]
                             }
                         });
                         if (Object.keys(alunoService.aluno).length==0){
