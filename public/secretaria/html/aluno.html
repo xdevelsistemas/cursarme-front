@@ -85,12 +85,32 @@
                                 <xd-select data-params="al._model.situacao" data-disable="!al.editing"></xd-select>
                             </div>
                         </div>
-                        <div class="row" ng-show="al._model.situacao.model.val === 1 || al._model.situacao.model.val === 2 || al._model.situacao.model.val === 5">
-                            <div class="col-md-6 padding1">
-                                <xd-input data-params="al._model.origem" data-disable="!al.editing"></xd-input>
+                        <div ng-show="al._model.situacao.model.val === 1 || al._model.situacao.model.val === 2">
+                            <div class="row">
+                                <div class="col-md-6 padding1">
+                                    <xd-select data-params="al._model.origemCurso" data-disable="true"></xd-select>
+                                </div>
+                                <div class="col-md-6 padding1">
+                                    <xd-select data-params="al._model.origemTurma" data-disable="true"></xd-select>
+                                </div>
                             </div>
-                            <div class="col-md-6 padding1">
-                                <xd-input data-params="al._model.destino" data-disable="!al.editing"></xd-input>
+                            <div class="row">
+                                <div class="col-md-6 padding1">
+                                    <xd-select data-params="al._model.destinoCurso" data-disable="!al.editing || al._model.situacao.model.val === 1"></xd-select>
+                                </div>
+                                <div class="col-md-6 padding1">
+                                    <xd-select data-params="al._model.destinoTurma" data-disable="!al.editing"></xd-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="al._model.situacao.model.val === 5">
+                            <div class="row">
+                                <div class="col-md-6 padding1">
+                                    <xd-select data-params="al._model.origemUnidade" data-disable="true"></xd-select>
+                                </div>
+                                <div class="col-md-6 padding1">
+                                    <xd-select data-params="al._model.destinoUnidade" data-disable="!al.editing"></xd-select>
+                                </div>
                             </div>
                         </div>
                     </xd-panel-collapse>
