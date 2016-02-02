@@ -86,16 +86,6 @@
       "err": ""
     }
   },
-  "telefone": {
-    "label": "Telefone",
-    "type": "text",
-    "mask": "?(99) 9999-9999",
-    "name": "telefone",
-    "model": {
-      "val": "",
-      "err": ""
-    }
-  },
   "cidadeUf": {
     "label": "Cidade/UF",
     "type": "text",
@@ -1191,5 +1181,85 @@
       "val": "",
       "err": ""
     }
+  },
+  "raca": {
+    "label": "Raça",
+    "type": "select",
+    "name": "raca",
+    "placeholder": "Selecione...",
+    "list":[
+      {"id": "1", "text": "Branca"},
+      {"id": "2", "text": "Preta"},
+      {"id": "3", "text": "Amarela"},
+      {"id": "4", "text": "Parda"},
+      {"id": "5", "text": "Indígena"}
+    ],
+    "model": {"val": "", "err": ""}
+  },
+  "estadoCivil": {
+    "label": "Estado Civil",
+    "type": "select",
+    "name": "estadoCivil",
+    "placeholder": "Selecione...",
+    "list":[
+      {"id": "1", "text": "Solteiro(a)"},
+      {"id": "2", "text": "Casado(a)"},
+      {"id": "3", "text": "Divorciado(a)"},
+      {"id": "4", "text": "Viúvo(a)"},
+      {"id": "5", "text": "Separado(a)"},
+      {"id": "5", "text": "Separado(a)"},
+      {"id": "6", "text": "Companheiro(a)"}
+    ],
+    "model": {"val": "", "err": ""}
+  },
+  "naturalidade": {
+    "label": "Naturalidade",
+    "type": "text",
+    "name": "naturalidade",
+    "help": "",
+
+    "model": {"val": ""}
+  },
+  "natUf": {
+    "label": "UF",
+    "type": "text",
+    "placeholder": "Selecione...",
+    "name": "natUf",
+    "model": {"val": "", "err": ""},
+    "list": [{"id": "UF_AC", "text": "AC"},
+      {"id": "UF_AL", "text": "AL"},
+      {"id": "UF_AP", "text": "AP"},
+      {"id": "UF_AM", "text": "AM"},
+      {"id": "UF_BA", "text": "BA"},
+      {"id": "UF_CE", "text": "CE"},
+      {"id": "UF_DF", "text": "DF"},
+      {"id": "UF_ES", "text": "ES"},
+      {"id": "UF_GO", "text": "GO"},
+      {"id": "UF_MA", "text": "MA"},
+      {"id": "UF_MT", "text": "MT"},
+      {"id": "UF_MS", "text": "MS"},
+      {"id": "UF_MG", "text": "MG"},
+      {"id": "UF_PA", "text": "PA"},
+      {"id": "UF_PB", "text": "PB"},
+      {"id": "UF_PR", "text": "PR"},
+      {"id": "UF_PE", "text": "PE"},
+      {"id": "UF_PI", "text": "PI"},
+      {"id": "UF_RJ", "text": "RJ"},
+      {"id": "UF_RN", "text": "RN"},
+      {"id": "UF_RS", "text": "RS"},
+      {"id": "UF_RO", "text": "RO"},
+      {"id": "UF_SC", "text": "SC"},
+      {"id": "UF_RR", "text": "RR"},
+      {"id": "UF_SP", "text": "SP"},
+      {"id": "UF_SE", "text": "SE"},
+      {"id": "UF_TO", "text": "TO"}]
+  },
+  "nacionalidade": {
+    "label": "Nacionalidade",
+    "type": "text",
+    "name": "nacionalidade",
+    "help": "",
+
+    "model": {"val": ""}
   }
 }
