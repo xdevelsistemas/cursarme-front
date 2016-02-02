@@ -4,8 +4,7 @@
     "type": "picture",
     "name": "foto",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "matricula": {
@@ -13,8 +12,7 @@
     "type": "text",
     "name": "matricula",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "nome": {
@@ -22,16 +20,14 @@
     "type": "text",
     "name": "nome",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "dataMatr": {
     "label": "Data de Matrícula",
     "type": "text",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     },
     "name": "dataMatr",
     "format": "dd/MM/yyyy"
@@ -42,8 +38,7 @@
     "name": "sexo",
     "placeholder": "Selecione...",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     },
     "list": [
       {
@@ -61,8 +56,7 @@
     "type": "text",
     "name": "dataNasc",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     },
     "format": "dd/MM/yyyy"
   },
@@ -72,8 +66,7 @@
     "name": "rg",
     "mask": "?9.999-999",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "cpf": {
@@ -82,18 +75,7 @@
     "name": "cpf",
     "mask": "?999.999.999-99",
     "model": {
-      "val": "",
-      "err": ""
-    }
-  },
-  "telefone": {
-    "label": "Telefone",
-    "type": "text",
-    "mask": "?(99) 9999-9999",
-    "name": "telefone",
-    "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "cidadeUf": {
@@ -101,8 +83,7 @@
     "type": "text",
     "name": "cidadeUf",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "email": {
@@ -110,8 +91,7 @@
     "type": "email",
     "name": "email",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "cursoTurma": {
@@ -121,8 +101,7 @@
     "placeholder": "Selecione...",
     "list": [],
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "relatorio": {
@@ -148,8 +127,7 @@
       }
     ],
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "cep": {
@@ -158,8 +136,7 @@
     "name": "cep",
     "mask": "?99.999-999",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "bairro": {
@@ -167,8 +144,7 @@
     "type": "text",
     "name": "bairro",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "endUf": {
@@ -177,8 +153,7 @@
     "placeholder": "Selecione...",
     "name": "endUf",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     },
     "list": [
       {
@@ -296,8 +271,7 @@
     "type": "text",
     "name": "avRua",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "endNum": {
@@ -305,8 +279,7 @@
     "type": "text",
     "name": "endNum",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "complemento": {
@@ -314,8 +287,7 @@
     "type": "text",
     "name": "complemento",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "telefone": {
@@ -324,8 +296,7 @@
     "mask": "?(99) 9999-9999",
     "name": "telefone",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "tipoTelefone": {
@@ -348,16 +319,14 @@
       }
     ],
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "dataExp": {
     "label": "Data Expedição",
     "type": "text",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     },
     "name": "dataExp",
     "format": "dd/MM/yyyy"
@@ -367,8 +336,7 @@
     "type": "text",
     "name": "orgaoEmissor",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "escolaridade": {
@@ -376,8 +344,7 @@
     "type": "text",
     "name": "escolaridade",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "formacao": {
@@ -385,8 +352,7 @@
     "type": "text",
     "name": "formacao",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "profissao": {
@@ -394,8 +360,7 @@
     "type": "text",
     "name": "profissao",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "empresa": {
@@ -403,8 +368,7 @@
     "type": "text",
     "name": "empresa",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "funcao": {
@@ -412,8 +376,7 @@
     "type": "text",
     "name": "funcao",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "mae": {
@@ -421,8 +384,7 @@
     "type": "text",
     "name": "mae",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "pai": {
@@ -430,15 +392,13 @@
     "type": "text",
     "name": "pai",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "statusMilitar": {
     "label": "Status",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     },
     "name": "statusMilitar",
     "placeholder": "Selecione uma opção",
@@ -459,8 +419,7 @@
     "type": "text",
     "name": "certificadoRes",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "registro": {
@@ -468,8 +427,7 @@
     "type": "text",
     "name": "registro",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "ufReservista": {
@@ -478,8 +436,7 @@
     "placeholder": "Selecione...",
     "name": "ufReservista",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     },
     "list": [
       {
@@ -597,8 +554,7 @@
     "type": "text",
     "name": "categoria",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "statusCertidao": {
@@ -607,8 +563,7 @@
     "placeholder": "Selecione...",
     "name": "statusCertidao",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     },
     "list": [
       {
@@ -626,8 +581,7 @@
     "type": "text",
     "name": "certidaoNc",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "livro": {
@@ -635,8 +589,7 @@
     "type": "text",
     "name": "livro",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "folha": {
@@ -644,8 +597,7 @@
     "type": "text",
     "name": "folha",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "cartorio": {
@@ -653,8 +605,7 @@
     "type": "text",
     "name": "cartorio",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "certidaoCidadeUf": {
@@ -662,8 +613,7 @@
     "type": "text",
     "name": "certidaoCidadeUf",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "tituloEleito": {
@@ -671,8 +621,7 @@
     "type": "text",
     "name": "tituloEleito",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "zona": {
@@ -680,8 +629,7 @@
     "type": "text",
     "name": "zona",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "secao": {
@@ -689,8 +637,7 @@
     "type": "text",
     "name": "secao",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "ufTitulo": {
@@ -699,8 +646,7 @@
     "name": "ufTitulo",
     "placeholder": "Selecione...",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     },
     "list": [
       {
@@ -818,8 +764,7 @@
     "type": "text",
     "name": "im",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "observacoes": {
@@ -827,8 +772,7 @@
     "type": "textarea",
     "name": "observacoes",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "monografia": {
@@ -836,8 +780,7 @@
     "type": "text",
     "name": "monografia",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "orientador": {
@@ -845,8 +788,7 @@
     "type": "text",
     "name": "orientador",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "nota": {
@@ -854,16 +796,14 @@
     "type": "text",
     "name": "nota",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "dataApuracao": {
     "label": "Data Apuração",
     "type": "text",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     },
     "name": "dataApuracao",
     "format": "dd/MM/yyyy"
@@ -872,8 +812,7 @@
     "label": "Data Colação",
     "type": "text",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     },
     "name": "dataColacao",
     "format": "dd/MM/yyyy"
@@ -883,8 +822,7 @@
     "type": "text",
     "name": "anoLetivo",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "anoEm": {
@@ -892,8 +830,7 @@
     "type": "text",
     "name": "anoEm",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "escolaEm": {
@@ -901,8 +838,7 @@
     "type": "text",
     "name": "escolaEm",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "municipioEm": {
@@ -910,8 +846,7 @@
     "type": "text",
     "name": "municipioEm",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "ufEm": {
@@ -920,8 +855,7 @@
     "placeholder": "Selecione...",
     "name": "ufEm",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     },
     "list": [
       {
@@ -1039,8 +973,7 @@
     "type": "text",
     "name": "cursoEm",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "instituicao": {
@@ -1048,8 +981,7 @@
     "type": "text",
     "name": "instituicao",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "anoGrad": {
@@ -1057,8 +989,7 @@
     "type": "text",
     "name": "anoGrad",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "cursoGrad": {
@@ -1066,8 +997,7 @@
     "type": "text",
     "name": "cursoGrad",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "ufGraf": {
@@ -1076,8 +1006,7 @@
     "placeholder": "Selecione...",
     "name": "ufGraf",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     },
     "list": [
       {
@@ -1195,8 +1124,7 @@
     "type": "textarea",
     "name": "obsGrad",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
   },
   "obsLog": {
@@ -1204,8 +1132,87 @@
     "type": "textarea",
     "name": "obsLog",
     "model": {
-      "val": "",
-      "err": ""
+      "val": ""
     }
+  },
+  "raca": {
+    "label": "Raça",
+    "type": "select",
+    "name": "raca",
+    "placeholder": "Selecione...",
+    "list":[
+      {"id": "1", "text": "Branca"},
+      {"id": "2", "text": "Preta"},
+      {"id": "3", "text": "Amarela"},
+      {"id": "4", "text": "Parda"},
+      {"id": "5", "text": "Indígena"}
+    ],
+    "model": {"val": "", "err": ""}
+  },
+  "estadoCivil": {
+    "label": "Estado Civil",
+    "type": "select",
+    "name": "estadoCivil",
+    "placeholder": "Selecione...",
+    "list":[
+      {"id": "1", "text": "Solteiro(a)"},
+      {"id": "2", "text": "Casado(a)"},
+      {"id": "3", "text": "Divorciado(a)"},
+      {"id": "4", "text": "Viúvo(a)"},
+      {"id": "5", "text": "Separado(a)"},
+      {"id": "5", "text": "Separado(a)"},
+      {"id": "6", "text": "Companheiro(a)"}
+    ],
+    "model": {"val": "", "err": ""}
+  },
+  "naturalidade": {
+    "label": "Naturalidade",
+    "type": "text",
+    "name": "naturalidade",
+    "help": "",
+
+    "model": {"val": ""}
+  },
+  "natUf": {
+    "label": "UF",
+    "type": "text",
+    "placeholder": "Selecione...",
+    "name": "natUf",
+    "model": {"val": "", "err": ""},
+    "list": [{"id": "UF_AC", "text": "AC"},
+      {"id": "UF_AL", "text": "AL"},
+      {"id": "UF_AP", "text": "AP"},
+      {"id": "UF_AM", "text": "AM"},
+      {"id": "UF_BA", "text": "BA"},
+      {"id": "UF_CE", "text": "CE"},
+      {"id": "UF_DF", "text": "DF"},
+      {"id": "UF_ES", "text": "ES"},
+      {"id": "UF_GO", "text": "GO"},
+      {"id": "UF_MA", "text": "MA"},
+      {"id": "UF_MT", "text": "MT"},
+      {"id": "UF_MS", "text": "MS"},
+      {"id": "UF_MG", "text": "MG"},
+      {"id": "UF_PA", "text": "PA"},
+      {"id": "UF_PB", "text": "PB"},
+      {"id": "UF_PR", "text": "PR"},
+      {"id": "UF_PE", "text": "PE"},
+      {"id": "UF_PI", "text": "PI"},
+      {"id": "UF_RJ", "text": "RJ"},
+      {"id": "UF_RN", "text": "RN"},
+      {"id": "UF_RS", "text": "RS"},
+      {"id": "UF_RO", "text": "RO"},
+      {"id": "UF_SC", "text": "SC"},
+      {"id": "UF_RR", "text": "RR"},
+      {"id": "UF_SP", "text": "SP"},
+      {"id": "UF_SE", "text": "SE"},
+      {"id": "UF_TO", "text": "TO"}]
+  },
+  "nacionalidade": {
+    "label": "Nacionalidade",
+    "type": "text",
+    "name": "nacionalidade",
+    "help": "",
+
+    "model": {"val": ""}
   }
 }
