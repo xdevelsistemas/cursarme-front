@@ -65,13 +65,16 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4 padding1">
+                            <div class="col-md-3 padding1">
                                 <xd-input data-params="al._model.cpf" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-4 padding1">
+                            <div class="col-md-3 padding1">
                                 <xd-input data-params="al._model.telefone" data-disable="!al.editing"></xd-input>
                             </div>
-                            <div class="col-md-4 padding1">
+                            <div class="col-md-3 padding1">
+                                <xd-select data-params="al._model.tipoTelefone" data-disable="!al.editing"></xd-select>
+                            </div>
+                            <div class="col-md-3 padding1">
                                 <xd-input data-params="al._model.cidadeUf" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
@@ -211,16 +214,33 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="padding1 col-md-12">
+                            <div class="padding1 col-md-4">
                                 <xd-input data-params="al._model.profissao" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.empresa" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.funcao" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
                         <div class="row">
                             <div class="padding1 col-md-6">
-                                <xd-input data-params="al._model.empresa" data-disable="!al.editing"></xd-input>
+                                <xd-select data-params="al._model.raca" data-disable="!al.editing"></xd-select>
                             </div>
                             <div class="padding1 col-md-6">
-                                <xd-input data-params="al._model.funcao" data-disable="!al.editing"></xd-input>
+                                <xd-select data-params="al._model.estadoCivil" data-disable="!al.editing"></xd-select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.naturalidade" data-disable="!al.editing"></xd-input>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-select data-params="al._model.natUf" data-disable="!al.editing"></xd-select>
+                            </div>
+                            <div class="padding1 col-md-4">
+                                <xd-input data-params="al._model.nacionalidade" data-disable="!al.editing"></xd-input>
                             </div>
                         </div>
                     </xd-panel-collapse>
