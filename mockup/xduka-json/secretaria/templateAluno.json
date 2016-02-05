@@ -616,7 +616,7 @@
       "val": ""
     }
   },
-  "tituloEleito": {
+  "tituloEleitor": {
     "label": "Título Eleitor",
     "type": "text",
     "name": "tituloEleito",
