@@ -252,13 +252,13 @@ div.bottomReset {
 
 .xdCustomSearch {
     border: 1px solid #eee;
-    width: 200px;
+    width: 180px;
     min-height: 40px;
     background: rgba(255, 255, 255, 0.98);
     position: absolute;
     z-index: 1039;
     top: 25px;
-    right: 125px;
+    right: 160px;
     -moz-border-radius:7px;
     -webkit-border-radius:7px;
     border-radius:7px;
