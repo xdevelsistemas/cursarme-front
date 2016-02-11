@@ -27,7 +27,16 @@
                 vm.lista_cheques = lista_cheques;
 
                 vm.collapseForm = false;
-                vm.tableGerarTurma = {};
+                vm.tableGerarTurma = {
+                    id: 'tableGerarTurma',
+                    columnDefs: [
+                        {displayName: "", "field": "acao", "cellTemplate": "<div class=\"ui-grid-cell-contents\"><input type=\"checkbox\" ng-model=\"row.entity.acao.model.val\"></div>"},
+                        { name: "Vagas", "field": "vagas"},
+                        { name: "Turma", "field": "turma"},
+                        { name: "Data de início", "field": "dataInicio"},
+                        { name: "Área", "field": "area"}
+                    ]
+                };
 
                 //alert sucesso
                 vm.sendSuccess = false;
@@ -103,7 +112,7 @@
 
                             list.push(turma);
                         }
-                        vm.tableGerarTurma.list = list;
+                        vm.tableGerarTurma.data = list;
                     })
                     .catch(function (erro) {
                         console.log(erro);
@@ -333,26 +342,6 @@
 
                 vm.topCollapse = function(){
                     $('html, body').animate({scrollTop: 0},'slow');
-                };
-
-                vm.tableGerarTurma = {
-                    /* ID importante se for usar dataTable*/
-                    id: 'tableGerarTurma',
-                    /* CLASSES CSS QUE A TABELA IRÁ UTILIZAR*/
-                    class: 'table-hover display',
-
-                    /* Se irá sar dataTable*/
-                    dataTable: {
-                        /*  elementos desabilitados ou habilitados dataTable*/
-                        "paging":   false,
-                        "ordering": true,
-                        "info":     false,
-                        "filter":   false,
-                        "order": [[ 1, "desc" ]]
-                    },
-
-                    /*  Cabeçalho do grid   */
-                    head: ["", "Vagas", "Turma", "Data de início", "Área"]
                 };
 
                 vm.sendTurmas = function() {
