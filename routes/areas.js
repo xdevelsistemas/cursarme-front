@@ -52,32 +52,40 @@ module.exports = function (app, passport) {
 
     // VISITANTE ========
     app.get('/', isLoggedIn, loginRedirect, function (req, res) {
-        res.render('index', { title: 'Visitante', modulos: Object.keys(req.user.local.areas).length > 1, area: 'visitante'});
+        res.render('index', { title: 'Visitante', modulos: _acessoModulos(req.user._doc.local.areas), area: 'visitante'});
     });
 
     // ALUNO ========
     app.get('/aluno', isLoggedIn, isAluno, function (req, res) {
-        res.render('index', { title: 'Aluno', modulos: Object.keys(req.user.local.areas).length > 1, area: 'aluno' });
+        res.render('index', { title: 'Aluno', modulos: _acessoModulos(req.user._doc.local.areas), area: 'aluno' });
     });
 
     // COMERCIAL ========
     app.get('/comercial', isLoggedIn, isComercial, require('../services/isComercial.js'), function (req, res) {
-        res.render('comercial', { title: 'Comercial', modulos: Object.keys(req.user.local.areas).length > 1, area: 'comercial' });
+        res.render('comercial', { title: 'Comercial', modulos: _acessoModulos(req.user._doc.local.areas), area: 'comercial' });
     });
 
     // SECRETARIA ========
     app.get('/secretaria', isLoggedIn, isSecretaria, require('../services/isSecretaria.js'), function (req, res) {
-        res.render('secretaria', { title: 'Secretaria', modulos: Object.keys(req.user.local.areas).length > 1, area: 'secretaria' });
+        res.render('secretaria', { title: 'Secretaria', modulos: _acessoModulos(req.user._doc.local.areas), area: 'secretaria' });
     });
 
     // FINANCEIRO ========
     app.get('/financeiro', isLoggedIn, isFinanceiro, require('../services/isFinanceiro.js'), function (req, res) {
-        res.render('financeiro', { title: 'Financeiro', modulos: Object.keys(req.user.local.areas).length > 1, area: 'financeiro' });
+        res.render('financeiro', { title: 'Financeiro', modulos: _acessoModulos(req.user._doc.local.areas), area: 'financeiro' });
     });
 
     // App ========
     app.get('/app', isLoggedIn, isComercial, require('../services/isComercial.js'), function (req, res) {
-        res.render('comercial', { title: 'Comercial', modulos: Object.keys(req.user.local.areas).length > 1, area: 'comercial' });
+        res.render('comercial', { title: 'Comercial', modulos: _acessoModulos(req.user._doc.local.areas), area: 'comercial' });
     });
     return app;
 };
+
+function _acessoModulos(areas){
+    var c = 0;
+    for(var k in areas){
+        if (areas[k]) c++;
+    }
+    return c>1;
+}
