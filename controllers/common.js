@@ -14,7 +14,8 @@ var fs = require('fs'),
 
 function showTemplateHeaderFooter(req, res) {
     // Ler o conteúdo do arquivo para a memória
-    fs.readFile("./public/html/common/" + req.params.template + ".ejs", function ( err, data ) {
+    fs.readFile("./public/common/html/" + req.params.template + ".ejs", function ( err, data ) {
+        if(err)throw err;
         headerFooter.template = {"content": data.toString()};
         res.json(headerFooter);
     });
