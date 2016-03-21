@@ -6,15 +6,18 @@ module.exports = function (req, res, next) {
             cont++
         }
     }
-    cont>1?res.redirect('/modulos'):0;
 
-    if (!!req.user.local.areas.aluno)
-        res.redirect('/aluno');
-    if (!!req.user.local.areas.comercial)
-        res.redirect('/comercial');
-    if (!!req.user.local.areas.secretaria)
-        res.redirect('/secretaria');
-    if (!!req.user.local.areas.financeiro)
-        res.redirect('/financeiro');
-    return next();
+    if(cont>1){
+        return res.redirect('/modulos');
+    }else {
+        if (!!req.user.local.areas.aluno)
+            return res.redirect('/aluno');
+        if (!!req.user.local.areas.comercial)
+            return res.redirect('/comercial');
+        if (!!req.user.local.areas.secretaria)
+            return res.redirect('/secretaria');
+        if (!!req.user.local.areas.financeiro)
+            return res.redirect('/financeiro');
+        return next();
+    }
 };
